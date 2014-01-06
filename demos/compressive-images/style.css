@@ -1,0 +1,76 @@
+#holder {
+  border: 10px dashed #ccc;
+  width: 320px;
+  margin:2em auto;
+  text-align: center;
+  font-size: 1.5em;
+  padding: 2em;
+}
+#holder.is_hover {
+  border: 10px dashed #333;
+}
+
+canvas {
+  display:none;
+}
+
+body {
+  width:850px;
+  margin:0 auto;
+}
+
+figure {
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#user-image .outer {
+  padding:1em 0;
+}
+
+#user-image .outer figure {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#user-image .outer figure img {
+  display: block;
+  margin: 0 auto;
+}
+
+.cross-fade img:nth-child(1) {
+  display:none;
+}
+
+.cross-fade:hover img:nth-child(0) {
+  display:none;
+}
+.cross-fade:hover img:nth-child(1) {
+  display:block;
+}
+
+#high-compressed {
+  display:none;
+}
+
+#hover-comparison:hover #high-compressed {
+  display:block;
+}
+
+#hover-comparison:hover #low-compressed {
+  display:none;
+}
+
+#hover-comparison > div {
+  position: relative;
+}
+
+#hover-comparison span {
+  position: absolute;
+  font-weight: bold;
+  padding:0.5em;
+  opacity: .7;
+  background-color: white;
+  border-bottom-right-radius: 5px;
+}

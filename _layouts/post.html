@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="wrapper">
+    <div class="post">
+        {% if post.url %}
+        <a href="{{ post.url }}">
+            <h1>{{ page.title }}</h1>
+        </a>
+        {% else %}
+        <h1>{{ page.title }}</h1>
+        {% endif %}
+        {{ content }}
+    </div>
+    <hr />
+    <div class="post-data">
+        Posted on {{ page.date | date_to_string }}
+    </div>
+</div>

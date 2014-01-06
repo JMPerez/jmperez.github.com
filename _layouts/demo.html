@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+<div class="wrapper">
+    <div class="post">
+        {% if post.url %}
+        <a href="{{ post.url }}">
+            <h1>{{ page.title }}</h1>
+        </a>
+        {% else %}
+        <h1>{{ page.title }}</h1>
+        {% endif %}
+        {{ content }}
+        <hr />
+        <p>This is a demo for the post <a href="{{ page.related_post_url }}">{{ page.related_post_title }}</a></p>
+    </div>
+</div>
+<hr />

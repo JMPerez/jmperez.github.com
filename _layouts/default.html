@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ page.title }}</title>
+        <meta name="description" content="{{ page.description }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="author" href="https://plus.google.com/107456024651797783420" />
+        <link href="/css/main.css" rel="stylesheet" type="text/css">
+        <link href="/css/syntax.css" rel="stylesheet" type="text/css">
+
+        <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.url }}/feed.xml">
+
+        <meta property="og:title" content="{{ page.title }}">
+        <meta property="og:description" content="{{ page.description }}">
+
+        <meta name="twitter:card" content="summary">
+        {% if page.url %}
+        <meta name="twitter:url" content="http://jmperezperez.com/embeddable-widget/">
+        {% endif %}
+        <meta name="twitter:title" content="{{ page.title }}">
+        <meta name="twitter:description" content="{{ page.description }}">
+        <meta name="twitter:site" content="@jmperezperez">
+        {% if page.image %}
+        <meta name="twitter:image:src" content="{{ page.image }}">
+        {% endif %}
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-39254352-1"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src="http://www.google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})()
+        </script>
+        <div id="header">
+            <div id="menu">
+                <a href="/">JMPerez Blog – Web development</a>
+                <a href="/about-me/">About me</a>
+            </div>
+        </div>
+
+        <div id="page">
+            {{ content }}
+        </div>
+
+        <footer>
+            <section class="copyright">© 2014 JMPerez Blog</section>
+            <section class="links">
+                <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter · <a href="https://github.com/JMPerez">GitHub</a> · <a href="http://www.linkedin.com/in/jmperezperez">LinkedIn</a> · <a href="https://plus.google.com/107456024651797783420">Google+</a>
+            </section>
+        </footer>
+    </body>
+</html>

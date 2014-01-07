@@ -1,0 +1,8 @@
+{
+  "name": "jmperez-blog",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4",
+    "grunt-contrib-cssmin": "~0.7"
+  }
+}

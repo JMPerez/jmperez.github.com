@@ -9,7 +9,7 @@ tags:
 
 ---
 
-__Echa un vistazo al [análisis más reciente que he hecho de la web del Senado]({{ site.url }}revisitando-nueva-web-senado), donde hablo sobre algunos cambios que han llevado a cabo desde que publicó el nuevo sitio.
+_Echa un vistazo al [análisis más reciente que he hecho de la web del Senado]({{ site.url }}revisitando-nueva-web-senado), donde hablo sobre algunos cambios que han llevado a cabo desde que publicó el nuevo sitio._
 
 [![Portada de Senado.es]({{ site.url }}/assets/images/posts/senado-es-portada-300x175.jpg)]({{ site.url }}/assets/images/posts/senado-es-portada.jpg)
 
@@ -20,7 +20,7 @@ Particularmente, me gustan los análisis que hacen webs como [zoompf](http://zoo
 Aquí hablaré sobre algunos problemas de ámbito general y otros específicos sobre rendimiento web.
 
 ## Problemas generales
-Hay algunos problemas relacionados con XSS (que parece que ya se ha resuelto), indexación y navegación.
+Hay algunos problemas relacionados con XSS (que parece que ya se ha resuelto), indexado y navegación.
 
 ### senado.es no funciona sin www
 [![Conversación en Twitter sobre redirección de la web del Senado]({{ site.url }}/assets/images/posts/www-senado-300x153.png)]({{ site.url }}/assets/images/posts/www-senado.png)

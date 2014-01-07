@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>{{ page.title }}</title>
         {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ page.excerpt | raw_content }}{% endif %}{% endcapture %}
-        <meta name="description" content="{{ description | strip_html | strip_newlines | condense_spaces | truncate:300 }}">
+        <meta name="description" content="{{ description | strip_html | condense_spaces | truncate:300 }}">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link rel="author" href="https://plus.google.com/107456024651797783420" />
         <link href="/css/main.css" rel="stylesheet" type="text/css">
@@ -14,14 +14,14 @@
         <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.url }}/feed.xml">
 
         <meta property="og:title" content="{{ page.title }}">
-        <meta property="og:description" content="{{ description | strip_html | strip_newlines | condense_spaces | truncate:300 }}">
+        <meta property="og:description" content="{{ description | strip_html | condense_spaces | truncate:300 }}">
 
         <meta name="twitter:card" content="summary">
         {% if page.url %}
         <meta name="twitter:url" content="http://jmperezperez.com/embeddable-widget/">
         {% endif %}
         <meta name="twitter:title" content="{{ page.title }}">
-        <meta name="twitter:description" content="{{ description | strip_html | strip_newlines | condense_spaces | truncate:300 }}">
+        <meta name="twitter:description" content="{{ description | strip_html | condense_spaces | truncate:300 }}">
         <meta name="twitter:site" content="@jmperezperez">
         {% if page.image %}
         <meta name="twitter:image:src" content="{{ page.image }}">

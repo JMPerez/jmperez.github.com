@@ -102,7 +102,7 @@ By using one of these headers, the server can respond to the browser that the ve
 
 Google has just [released a way to patch client files](http://code.google.com/p/diffable/) (mainly large JS files, but virtually any file) by just serving the content that has been changed from client's version of the file to the current version.
 
-## Browser renderization
+## Browser rendering
 
 ### Putting Javascript includes after CSS
 
@@ -140,6 +140,10 @@ Nicholas Zakas is great at showing javascript performance issues in his [High Pe
 
 [Web workers](http://www.whatwg.org/specs/web-workers/current-work/) provide a way to execute javascript code in background threads. The goal is to perform processor-intensive calculations without blocking the user interface thread.
 
+### Frame rate
+
+In order to provide a smooth experience, especially regarding scrolling (and parallax), you should take a look at [these issues and how to solve them](http://calendar.perfplanet.com/2013/the-runtime-performance-checklist/).
+
 ## Others
 
 ### Avoid 404 errors (pages and resources)
@@ -163,3 +167,5 @@ There are recent protocols like [SPDY](http://www.chromium.org/spdy/spdy-whitepa
 **EDIT **(9 Mar. 2013) : Added Zopfli to "Gzip Compression" section
 
 **EDIT **(28 Jun. 2013) : Added "Use advanced protocols" about SPDY and QUIC
+
+**EDIT **(7 Jan. 2014) : Added "Frame rate"

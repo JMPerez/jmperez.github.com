@@ -1,6 +1,6 @@
 name: José M. Pérez
 description: A description for your blog
-url: http://localhost:4000
+url: http://jmperezperez.com
 markdown: redcarpet
 pygments: true
 permalink: /:title

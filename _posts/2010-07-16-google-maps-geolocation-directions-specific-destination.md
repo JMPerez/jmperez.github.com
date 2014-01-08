@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Google Maps Geolocation and Directions to a Specific Destination'
-excerpt: Have you ever wondered how to show a google map showing instructions on how
+description: Have you ever wondered how to show a google map showing instructions on how
   to get to your business? You can do it easily detecting your visitor's position
   and then provide directions to get to a specific destination.
 date: 2010-07-16 18:50:57+00:00

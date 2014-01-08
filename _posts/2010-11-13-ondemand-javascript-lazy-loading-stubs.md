@@ -2,7 +2,7 @@
 layout: post
 title: 'Lazy loading Javascript: On-demand scripts to faster load times'
 date: 2010-11-13 16:14:34+00:00
-excerpt: How to load JavaScript on-demand using stub functions and progressive enhancements
+description: How to load JavaScript on-demand using stub functions and progressive enhancements
 tags:
   - javascript
   - lazy loading

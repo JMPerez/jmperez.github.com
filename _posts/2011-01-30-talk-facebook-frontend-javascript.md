@@ -2,8 +2,7 @@
 layout: post
 title: 'Front End Tech Talk - Facebook'
 date: 2011-01-30 17:29:22+00:00
-excerpt: Nice ideas taken from Facebook's Front End Tech Talk about implementing common
-  interactions and patterns to reduce Javascript file size and use progressive enhancement.
+description: Nice ideas taken from Facebook's Front End Tech Talk about implementing common interactions and patterns to reduce Javascript file size and use progressive enhancement.
 tags:
   - bootloader
   - facebook

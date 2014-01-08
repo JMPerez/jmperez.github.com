@@ -2,8 +2,7 @@
 layout: post
 title: 'Web technologies behind Google+'
 date: 2011-07-02 18:59:19+00:00
-excerpt: What web technologies are behind Google+ website? This is a collection of
-  links to posts explaining interesting features of this brand new network site.
+description: What web technologies are behind Google+ website? This is a collection of links to posts explaining interesting features of this brand new network site.
 tags:
   - google
   - google plus

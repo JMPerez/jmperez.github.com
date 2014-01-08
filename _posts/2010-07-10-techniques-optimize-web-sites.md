@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Website optimization checklist'
-excerpt: A compilation of known techniques to improve your website performance, both
+description: A compilation of known techniques to improve your website performance, both
   client-side and server-side.
 date: 2010-07-10 18:39:58+00:00
 tags:

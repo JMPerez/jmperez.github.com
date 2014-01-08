@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Using HTML5 features today'
-excerpt: You can already use different HTML5 to improve your websites. These are some
+description: You can already use different HTML5 to improve your websites. These are some
   that I have already started to use in several web applications, offering an equivalent
   functionality in older browsers.
 date: 2010-07-02 11:17:27+00:00

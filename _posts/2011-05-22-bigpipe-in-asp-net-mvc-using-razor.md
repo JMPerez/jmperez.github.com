@@ -2,8 +2,7 @@
 layout: post
 title: 'BigPipe in ASP.Net MVC using Razor'
 date: 2011-05-22 11:55:24+00:00
-excerpt: Razor to implement BigPipe using ASP.Net MVC. You can use the new view engine
-  to early flush pagelets content and mimic this technique created by Facebook.
+description: Razor to implement BigPipe using ASP.Net MVC. You can use the new view engine to early flush pagelets content and mimic this technique created by Facebook.
 tags:
   - asp net mvc
   - bigpipe

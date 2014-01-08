@@ -2,7 +2,7 @@
 layout: post
 title: 'Facebook for iOS: From HTML5 to native'
 date: 2012-08-26 10:07:43+00:00
-excerpt: Facebook has rewritten their iOS app from HTML5 to native code to provide
+description: Facebook has rewritten their iOS app from HTML5 to native code to provide
   a faster user experience. Having actively promoted HTML5 development, this shows
   hybrid apps performance is still not good enough, but some ideas can be taken from
   this decision.

@@ -2,11 +2,6 @@
 layout: post
 title: 'Response.Flush to make more responsive websites using ASP.Net MVC'
 date: 2010-04-23 07:47:53+00:00
-excerpt: While I was watching a Google
-  I/O 2009 video by Steve Souders, the author of High
-  Performance Websites and Even
-  Faster Websites, I really liked the fact of using flushing to send earlier the document to the browser, allowing a prefetching of external
-  resources.
 tags:
   - flush
   - flushing

@@ -2,8 +2,7 @@
 layout: post
 title: 'On webkit-only mobile javascript libraries'
 date: 2012-01-08 16:39:02+00:00
-excerpt: Many mobile-focused JS libraries doesn't support Opera or Windows Phone 7.
-  Thus, not all smartphones are covered.
+description: Many mobile-focused JS libraries doesn't support Opera or Windows Phone 7. Thus, not all smartphones are covered.
 tags:
   - js library
   - windows phone

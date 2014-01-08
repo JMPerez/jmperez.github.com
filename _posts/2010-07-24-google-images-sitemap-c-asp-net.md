@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Generating google images sitemap with C#'
-excerpt: This is the C# code to generate a XML images sitemap to let Google Images
+description: This is the C# code to generate a XML images sitemap to let Google Images
   Bot index more easily the pictures of your site.
 date: 2010-07-24 09:02:20+00:00
 tags:

@@ -2,8 +2,7 @@
 layout: post
 title: 'Avoid showing address bar on iPhone when loading ajax'
 date: 2011-06-11 18:28:08+00:00
-excerpt: Workaround to avoid showing the loading address bar when loading ajax content
-  on iPhone.
+description: Workaround to avoid showing the loading address bar when loading ajax content on iPhone.
 tags:
   - ajax
   - facebook

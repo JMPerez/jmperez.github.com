@@ -2,8 +2,7 @@
 layout: post
 title: 'Tutorial: Implementing Facebook''s BigPipe Using ASP.Net MVC - Part 2'
 date: 2010-09-22 19:34:36+00:00
-excerpt: Build Facebook's BigPipe using C#. Source code to make pagelets and achieve
-  delayed parallel execution in an ASP.Net MVC website.
+description: Build Facebook's BigPipe using C#. Source code to make pagelets and achieve delayed parallel execution in an ASP.Net MVC website.
 tags:
   - asp net mvc
   - bigpipe

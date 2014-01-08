@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Personal thoughts on web development'
-excerpt: Until 2 years ago I had always seen Javascript as a poor language.
+description: Until 2 years ago I had always seen Javascript as a poor language.
   It was painful to develop a simple script and expect it to work cross-browser. I
   had to write alert messages to be able to trace the execution of the functions and
   make try-and-error continuosly to quickly find that silent error that could make

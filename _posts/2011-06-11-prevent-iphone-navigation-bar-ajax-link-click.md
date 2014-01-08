@@ -141,6 +141,6 @@ I will try to check the techniques that other sites have implemented to solve th
 
 And I find this less hacky than using a 'link' attribute instead of 'href' attribute in anchors, or replace anchors by buttons, as I have read somewhere.
 
-Want to see it in action? [**See the demo**](http://josemanuelperez.es/links.html).
+Want to see it in action? [**See the demo**]({{ site.url }}/demos/iphone-links).
 
 EDIT: It seems that jQuery Mobile has managed to implement this in their [beta 1.0](http://jquerymobile.com/blog/2011/06/20/jquery-mobile-beta-1-released/)

@@ -1,16 +1,16 @@
 /*--RESET--*/
 
 * {
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
-    font: inherit;
-    vertical-align: baseline;
 
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    vertical-align: baseline;
+    font: inherit;
 }
 
 input, button {
@@ -24,13 +24,13 @@ input, button {
 /*--BODY--*/
 
 body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background: #fff;
+    color: #555;
     font-weight: 300;
     font-style: normal;
     font-size: 16px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     line-height: 1.725;
-    color: #555;
-    background: #fff;
 }
 
 h1, h2, h3, h4, h5 {
@@ -51,8 +51,8 @@ p, .post ul, .post ol {
 
 a {
     color: #3498db;
-    font-weight: inherit;
     text-decoration: none;
+    font-weight: inherit;
 
     -webkit-transition: color .15s ease-out, border-bottom-color .15s ease-out;
        -moz-transition: color .15s ease-out, border-bottom-color .15s ease-out;
@@ -127,24 +127,30 @@ sup {vertical-align: super;}
 sub {vertical-align: sub;}
 
 hr {
-    height: 2px;
-    width: 50%;
-    margin: 30px auto;
-    color: #eee;
-    background: #eee;
     display: block;
     clear: both;
+    margin: 30px auto;
+    width: 50%;
+    height: 2px;
+    background: #eee;
+    color: #eee;
 }
 
 pre, code {
-    margin: 0 0 5% 0;
-    font: 400 15px/24px monospace;
-    color: #333;
-    border: 1px solid #ddd;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
     overflow-x: auto;
+    margin: 0 0 5% 0;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    border: 1px solid #ddd;
     border-radius: 3px;
+    color: #333;
+    font: 400 15px/24px monospace;
+}
+
+pre code {
+    padding-left: 0;
+    border: none;
+    font-size: 90%;
 }
 
 pre {
@@ -158,35 +164,35 @@ code {
 /*--CLEARFIXES--*/
 
 .post:after {
-    content: '';
     display: block;
     clear: both;
+    content: '';
 }
 
 /*--HEADER--*/
 
 #header {
+    position: relative;
+    overflow: hidden;
+    padding: 1em;
     width: 100%;
     border-bottom: 2px solid #eee;
     background: #fff;
-    overflow: hidden;
-    position: relative;
     text-align: center;
-    padding: 1em;
 }
 
 /*--MENU--*/
 
 #menu {
-    margin: 1px 0;
     display: inline-block;
+    margin: 1px 0;
 }
 
 #menu a {
     margin-left: 15px;
-    font-size: 13px;
-    text-transform: uppercase;
     color: #999;
+    text-transform: uppercase;
+    font-size: 13px;
 }
 
 #menu a:hover {
@@ -199,11 +205,11 @@ code {
 /*--PAGE--*/
 
 #page {
-    width: 80%;
-    max-width: 640px;
+    position: relative;
     margin: 0 auto;
     padding: 100px 0;
-    position: relative;
+    max-width: 640px;
+    width: 80%;
 }
 
 /*--WRAPPER--*/
@@ -214,29 +220,29 @@ code {
 }
 
 .wrapper:first-child {
-    border-top: none;
     padding-top: 0;
+    border-top: none;
 }
 
 /*--POSTS--*/
 
 .post {
-    width: 100%;
     display: block;
+    width: 100%;
 }
 
 .post p img {
-    max-width: 100%;
     display: block;
     margin: 0 auto;
+    max-width: 100%;
     border: 1px solid #eee;
 }
 
 /*--POST DATA--*/
 
 .post-data {
-    width: 100%;
     margin-top: 25px;
+    width: 100%;
 }
 
 /*--PAGINATION--*/
@@ -246,32 +252,32 @@ code {
 }
 
 .pagination a {
-    max-height: 30px;
     min-width: 30px;
+    max-height: 30px;
     text-align: center;
 }
 
 /*--FOOTER--*/
 
 footer {
-    background: rgba(0, 0, 0, 0.05);
     margin: 4em 0 0;
     padding: 2em 0;
+    background: rgba(0, 0, 0, 0.05);
     text-align: center;
 }
 
 /*--BUTTONS--*/
 
 .button {
-    padding: 10px;
-    font-size: 13px;
-    line-height: 10px;
-    color: #fff;
-    text-transform: uppercase;
-    background-color: #212121;
     display: inline-block;
+    padding: 10px;
 
     border-radius: 4px;
+    background-color: #212121;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 10px;
 
     -webkit-transition: background-color .15s ease-out;
        -moz-transition: background-color .15s ease-out;
@@ -280,13 +286,13 @@ footer {
 }
 
 .button:hover {
-    color: #fff;
     background-color: #3498db;
+    color: #fff;
 }
 
 .button.inactive {
-    color: #fff;
     background-color: #ccc;
+    color: #fff;
 }
 
 @media only screen and (max-width: 768px) {
@@ -294,9 +300,9 @@ footer {
     /*--PAGE--*/
 
     #page, .wrapper {
-        width: 100%;
-        max-width: 100%;
         margin: 0;
+        max-width: 100%;
+        width: 100%;
     }
 
     /*--WRAPPER--*/
@@ -308,9 +314,9 @@ footer {
     /*--POSTS--*/
 
     .post, .post-data {
-        width: 80%;
-        max-width: 640px;
         margin: 0 auto;
+        max-width: 640px;
+        width: 80%;
     }
 
     .post-data {
@@ -342,10 +348,3 @@ footer {
     h5 {font-size: 15px;}
 
 }
-
-pre code {
-    border: none;
-    font-size: 90%;
-    padding-left: 0;
-}
-

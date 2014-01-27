@@ -26,8 +26,6 @@ It represents the time spent downloading a page (in milliseconds) reported by Go
 
 To be fair, I will say I probably wasn't using one of the best hosting services out there. My previous Wordpress blog was very light, and I made sure it followed the [performance tips]({{site.url}}/techniques-optimize-web-sites/) that I always promote. For instance, I was using [W3 Total Cache](http://wordpress.org/plugins/w3-total-cache/) to try to serve cached versions of the posts. But [GitHub Pages CDN](https://github.com/blog/1715-faster-more-awesome-github-pages) makes a big difference.
 
-![GTMetrix timeline performance report for jmperezperez.com]({{ site.url }}/assets/images/posts/gtmetrix-jmperezperez.png)
-
 ### Features I gained, features I lost
 Since I had close to zero comments in my posts, I don't miss the comments feature, and I can always include a widget from Disqus if I eventually need it. **Syntax highlighting comes built-in** and is performed when generating the static file for the post, so I don't need to include a plug-in that does syntax-highlighting using Javascript client-side. If you think of it, doing this for every request is a waste of time and processing.
 

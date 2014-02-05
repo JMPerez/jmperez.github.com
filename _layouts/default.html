@@ -17,13 +17,13 @@
 
         <meta name="twitter:card" content="summary">
         {% if page.url %}
-        <meta name="twitter:url" content="http://jmperezperez.com/embeddable-widget/">
+        <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
         {% endif %}
         <meta name="twitter:title" content="{{ page.title }}">
         <meta name="twitter:description" content="{{ description | strip_html | condense_spaces | truncate:300 }}">
         <meta name="twitter:site" content="@jmperezperez">
         {% if page.image %}
-        <meta name="twitter:image:src" content="{{ page.image }}">
+        <meta name="twitter:image:src" content="{{ site.url }}{{ page.image }}">
         {% endif %}
     </head>
 

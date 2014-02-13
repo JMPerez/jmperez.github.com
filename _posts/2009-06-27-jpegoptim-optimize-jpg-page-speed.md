@@ -6,15 +6,22 @@ tags:
   - google page speed
   - images
   - optimization
-excerpt: This posts shows a script to recursively optimize a set of JPG files using jpegoptim
+excerpt: This post shows a script to recursively optimize a set of JPG files using jpegoptim
 
 ---
 
-Having a look at [Google Page Speed](http://code.google.com/speed/page-speed/) I liked 'Optimize images' section, which reports the size reduction that can be achieved in the images of a website, also offering a version of the image after having applied the reduction.
+Image optimization is a big topic these days. The main culprit in site traffic are images, and [their transfer size is increasing over time](http://httparchive.org/trends.php#bytesImg&reqImg).
 
-[![Sample applying google page speed to ElPais.com website]({{ site.url }}/assets/images/posts/elpais-google-page-speed-300x173.jpg)]({{ site.url }}/assets/images/posts/elpais-google-page-speed.jpg)
+You may have wondered how to optimize your images. First, check if there is room for improvement. For that I will be using [Google Page Speed](http://developers.google.com/speed/pagespeed), which offers several tools for analyzing your site. One of them is a handy [online analyzer](http://developers.google.com/speed/pagespeed/insights/). Type there the name of your site and click to analyze it.
 
-The truth is that when you save a JPG image, you don't know exactly how much compression level apply. Sometimes we try different values until we find the best balance between quality and size. Google Page Speed must be using an algorithm that optimizes this relationship, performing a lossless compression to JPG and PNG files.
+I like the 'Optimize images' section. It telles you what resources can be optimized and how much traffic you can save, both in the mobile version of your site and the one served for desktop:
+
+[![Analyzing a site using Google PageSpeed Insights online]({{ site.url }}/assets/images/posts/google-pagespeed-insights-report-thumb.jpg)]({{ site.url }}/assets/images/posts/google-pagespeed-insights-report.png)
+_Analyzing the analyzer: Here you can see the 'Optimize images' section for the Google PageSpeed Insights page. Notice the it reports the optimizable images and how much size you can save._
+
+## Optimizing your JPG images with Jpegoptim
+
+The truth is that when you save a JPG image, you don't know exactly how much compression level you should apply. Sometimes we try different values until we find the best balance between quality and size. Google Page Speed must be using an algorithm that optimizes this relationship, performing a lossless compression to JPG and PNG files.
 
 As mentioned in the [section on optimization of images](http://code.google.com/speed/page-speed/docs/payload.html#CompressImages), we can use tools like [jpegtran](http://jpegclub.org/) and [jpegoptim](http://freshmeat.net/projects/jpegoptim/)
 
@@ -48,4 +55,15 @@ This script uses the option `--strip-all` to strip out the text information cont
 
 If you are interested in image optimization, I recommend you having a look at:
 
-* [Image optimization: Lossy, lossless and other techniques]({{ site.url }}/image-optimization-lossy-lossless-techniques/)
+## Other tools for optimizing images
+
+I have been using image optimization actively for a long time. Depending on your needs, I recommend you one of these methods:
+
+* **Optimization of a few files through a desktop app (on Mac)**: Use [ImageOptim](http://imageoptim.com/‎). Drag and drop JPG and PNG files and you are goo to go. 
+* **Optimization of images on Wordpress**: Use [Smush.it](http://wordpress.org/plugins/wp-smushit/). It optimizes uploaded images automatically, and you can also run the plug-in against the existing images.
+* **Optimizing PNG files using lossy compression**: Use [TinyPNG](https://tinypng.com). It can reduce PNG images size a lot, but double check the result before, since sometimes you can notice the difference in the colours.
+
+##  Read also
+
+I wrote a post about [Image optimization: Lossy, lossless and other techniques]({{ site.url }}/image-optimization-lossy-lossless-techniques/) in which I explain some tools and considerations when compressing images.
+

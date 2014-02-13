@@ -5,6 +5,7 @@ date: 2010-09-18 09:37:07+00:00
 description: First part of the tutorial to implement Facebook's BigPipe using ASP.Net
   MVC. BigPipe improves pages loading time dividing them into regions that are generated
   on the server concurrently.
+excerpt: Frist part of the tutorial to Build Facebook's BigPipe using C#. Source code to make pagelets and achieve delayed parallel execution in an ASP.Net MVC website.
 tags:
   - bigpipe
   - facebook

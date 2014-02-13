@@ -3,6 +3,7 @@ layout: post
 title: 'Tutorial: Implementing Facebook''s BigPipe Using ASP.Net MVC - Part 3'
 date: 2010-09-27 19:25:11+00:00
 description: Last part of my tutorial on Implementing BigPipe, focused on browser side, loading CSS and JS resources efficiently using a small script.
+excerpt: Third part of the tutorial to Build Facebook's BigPipe using C#. Source code to make pagelets and achieve delayed parallel execution in an ASP.Net MVC website.
 tags:
   - asp net mvc
   - bigpipe

@@ -3,6 +3,7 @@ layout: post
 title: 'Tutorial: Implementing Facebook''s BigPipe Using ASP.Net MVC - Part 2'
 date: 2010-09-22 19:34:36+00:00
 description: Build Facebook's BigPipe using C#. Source code to make pagelets and achieve delayed parallel execution in an ASP.Net MVC website.
+excerpt: Second part of the tutorial to Build Facebook's BigPipe using C#. Source code to make pagelets and achieve delayed parallel execution in an ASP.Net MVC website.
 tags:
   - asp net mvc
   - bigpipe
@@ -153,7 +154,7 @@ public static class RendererHelper {
 }
 {% endhighlight %}
 
-HtmlHelper already has the `Action` method extension that gets the result of an action in a string, but it can be problematic when using multiple threads to execute the pagelets, as I explain in the [third part of this tutorial](({{ site.url }}/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-3).
+HtmlHelper already has the `Action` method extension that gets the result of an action in a string, but it can be problematic when using multiple threads to execute the pagelets, as I explain in the [third part of this tutorial]({{ site.url }}/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-3).
 {% highlight c# %}
 public static class BigPipeHelper
 {

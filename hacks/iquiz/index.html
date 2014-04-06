@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=description content="My description"><title>iQuiz</title><link id=favicon rel="shortcut icon" href=favicon.ico><link rel=stylesheet type=text/css href=//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css><link rel=stylesheet href=css/2b140b9f.style.css></head><body><div id=logged-out><div class=wrapper><h1 class=huge>Spotify iQuiz</h1><h2>What's this?</h2><p>Do you really know about the music you have in your playlists?</p><p><strong>iQuiz</strong> creates a Quiz about your library tracks. Try it. It's easy. And fun!</p><button id=login class="btn btn-primary">Login with Spotify</button></div></div><div id=logged-in><div id=question></div></div><script id=template-guess-name type=text/x-handlebars-template><div class="album-placeholder" style="background-image:url({{cover}})"></div>
+      <div class="wrapper">
+        <div id="score">Score: {{score}}</div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
+              <span class="sr-only">{{progress}}% Complete</span>
+            </div>
+        </div>
+        <h1>{{question}}</h1>
+        <img src="{{cover}}" class="cover">
+        <form>
+        {{#each options}}
+          <button data-index="{{@index}}" class="btn btn-primary button-response">{{this}}</input>
+        {{/each}}
+        </form>
+      </div></script><script id=template-album type=text/x-handlebars-template><div class="album-placeholder" style="background-image:url({{cover}})"></div>
+        <div class="wrapper">
+          <div id="score">Score: {{score}}</div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
+              <span class="sr-only">{{progress}}% Complete</span>
+            </div>
+          </div>
+          <h1>{{question}}</h1>
+          <img src="{{cover}}" class="cover">
+          <form>
+          {{#each options}}
+            <button data-index="{{@index}}" class="btn btn-primary button-response">{{this}}</input>
+          {{/each}}
+          </form>
+        </div></script><script src=http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js></script><script src=js/fdb11b57.app.js></script></body></html>

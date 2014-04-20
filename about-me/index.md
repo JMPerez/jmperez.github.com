@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me - José Manuel Pérez Pérez
-description: Frontend developer at Spotify.
+description: Information about José M. Pérez - Frontend developer at Spotify
 ---
 
 Hello, I am **José Manuel Pérez**.

@@ -239,6 +239,12 @@ code {
     border: 1px solid #eee;
 }
 
+.post .svg-container {
+    text-align: center;
+    margin-bottom: 5%;
+    max-width: 100%;
+}
+
 /*--POST DATA--*/
 
 .post-data {

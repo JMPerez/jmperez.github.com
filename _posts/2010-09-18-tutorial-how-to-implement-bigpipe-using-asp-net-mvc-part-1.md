@@ -47,31 +47,17 @@ The implementation of these pagelets is performed in parallel on the server and 
 
 Sequence of the different stages during a pagelet generation:
 
-<div class="svg-container"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 721 106" style="max-height: 106px; margin-bottom: 5%;">
- <g>
-  <title>Sequence of the different stages during a pagelet generation</title>
-  <path id="svg_6" d="m3.519989,3.55249l133.499985,0l44.500015,50.499496l-44.500015,50.500504l-133.499985,0l44.5,-50.500504l-44.5,-50.499496z" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#DDDDDD"></path>
-  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="20" id="svg_7" y="47" x="60" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Generate</text>
-  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="20" id="svg_8" y="71" x="60" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">pagelet</text>
-  <path id="svg_9" d="m137.519989,3.55249l133.5,0l44.5,50.499496l-44.5,50.500504l-133.5,0l44.5,-50.500504l-44.5,-50.499496z" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#BBBBBB"></path>
-  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="20" id="svg_10" y="47" x="188" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Send it to</text>
-  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="20" id="svg_11" y="71" x="188" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">the browser</text>
-  <path id="svg_12" d="m271.519989,3.55249l133.5,0l44.499969,50.499496l-44.499969,50.500504l-133.5,0l44.5,-50.500504l-44.5,-50.499496z" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#DDDDDD"></path>
-  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="20" id="svg_13" y="47" x="318" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Download</text>
-  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="17" id="svg_14" y="71" x="318" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">CSS resources</text>
-  <path id="svg_15" d="m405.519989,3.55249l133.500031,0l44.499939,50.499496l-44.499939,50.500504l-133.500031,0l44.5,-50.500504l-44.5,-50.499496z" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#BBBBBB"></path>
-  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="20" id="svg_16" y="47" x="462" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Append</text>
-  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="20" id="svg_17" y="71" x="462" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">pagelet</text>
-  <path id="svg_18" d="m539.519958,3.55249l133.500061,0l44.499939,50.499496l-44.499939,50.500504l-133.500061,0l44.500061,-50.500504l-44.500061,-50.499496z" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#DDDDDD"></path>
-  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="20" id="svg_19" y="47" x="595" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Download</text>
-  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="17" id="svg_20" y="71" x="595" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">JS resources</text>
- </g>
-</svg></div>
+<div class="svg-container">
+  <object data="http://localhost:4000/assets/images/posts/bigpipe-sequence.svg" type="image/svg+xml" class="svg-content" alt="Sequence of the different stages during a pagelet generation"></object>
+</div>
 
 Apart from the pagelet generation, parallelism is also applied during the processing of the pagelet by the browser. Each pagelet can define a set of CSS and JS files that it needs to work properly. These files are requested in such a way that it keeps a good performance.
 
 Graph showing how pagelets resources are requested:
-![Graph showing how pagelets resources are requested]({{ site.url }}/assets/images/posts/bigpipe-pagelet-process-en1.png)
+
+<div class="svg-container">
+  <object data="http://localhost:4000/assets/images/posts/bigpipe-pagelet-process.svg" type="image/svg+xml" class="svg-content" alt="Graph showing how pagelets resources are requested" style="max-width:518px"></object>
+</div>
 
 1.  For each pagelet, request in parallel every necessary CSS resource
 2.  Once a pagelet has the necessary CSS files, inject the HTML code

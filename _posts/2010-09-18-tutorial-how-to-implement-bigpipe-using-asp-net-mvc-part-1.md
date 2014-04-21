@@ -48,7 +48,7 @@ The implementation of these pagelets is performed in parallel on the server and 
 Sequence of the different stages during a pagelet generation:
 
 <div class="svg-container">
-  <object data="http://localhost:4000/assets/images/posts/bigpipe-sequence.svg" type="image/svg+xml" class="svg-content" alt="Sequence of the different stages during a pagelet generation"></object>
+  <object data="{{ site.url }}/assets/images/posts/bigpipe-sequence.svg" type="image/svg+xml" class="svg-content" alt="Sequence of the different stages during a pagelet generation"></object>
 </div>
 
 Apart from the pagelet generation, parallelism is also applied during the processing of the pagelet by the browser. Each pagelet can define a set of CSS and JS files that it needs to work properly. These files are requested in such a way that it keeps a good performance.
@@ -56,7 +56,7 @@ Apart from the pagelet generation, parallelism is also applied during the proces
 Graph showing how pagelets resources are requested:
 
 <div class="svg-container">
-  <object data="http://localhost:4000/assets/images/posts/bigpipe-pagelet-process.svg" type="image/svg+xml" class="svg-content" alt="Graph showing how pagelets resources are requested" style="max-width:518px"></object>
+  <object data="{{ site.url }}/assets/images/posts/bigpipe-pagelet-process.svg" type="image/svg+xml" class="svg-content" alt="Graph showing how pagelets resources are requested" style="max-width:518px"></object>
 </div>
 
 1.  For each pagelet, request in parallel every necessary CSS resource

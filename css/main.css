@@ -245,6 +245,10 @@ code {
     max-width: 100%;
 }
 
+.post .svg-container object {
+    max-width: 100%;
+}
+
 /*--POST DATA--*/
 
 .post-data {

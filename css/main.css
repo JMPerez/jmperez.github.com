@@ -246,7 +246,7 @@ code {
 }
 
 .post .svg-container object {
-    max-width: 100%;
+    width: 100%;
 }
 
 /*--POST DATA--*/

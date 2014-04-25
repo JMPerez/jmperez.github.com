@@ -5,7 +5,9 @@ date: 2014-04-21 10:10:00+02:00
 image: /assets/images/posts/meetups-stickers.svg
 ---
 
-[![Stickers from several meetups]({{ site.url }}/assets/images/posts/meetups-stickers.svg)]({{ site.url }}/assets/images/posts/meetups-stickers.svg)
+<div class="svg-container">
+  <object data="{{ site.url }}/assets/images/posts/meetups-stickers.svg" type="image/svg+xml" class="svg-content"></object>
+</div>
 I am becoming a **Meetup** addict, especially those around web development. In Stockholm there are plenty of them, as everywhere else, and you can find one that covers the area in which you are interested, without any doubts.
 
 I have attended many meetups since I arrived in Stockholm almost 2 years ago. The ones I like the most are those that deal with real situations and experience from startups and other companies.

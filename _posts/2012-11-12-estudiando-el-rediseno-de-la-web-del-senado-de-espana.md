@@ -114,7 +114,7 @@ Otras webs están recogiendo también algunos problemas a nivel técnico:
 
 - [Los problemas del desarrollo web en España resumidos en senado.es](http://formatinternet.wordpress.com/2012/11/12/los-problemas-del-desarrollo-web-en-espana-resumidos-en-senado-es/) en format internet
 - [La nueva timo web del Senado que cuesta medio millón de euros](http://www.pedroventura.com/desarrollo-web/la-nueva-timo-web-del-senado-que-cuesta-medio-millon-de-euros/) en pedroventura.com
-- [Análisis de la web del Senado](http://www.social4u.es/content/an%C3%A1lisis-de-la-web-del-senado) en social4u.es
+- [Análisis de la web del Senado](http://www.social4u.es/analisis-de-la-web-del-senado/) en social4u.es
 
 ## Más problemas
 Si sabes de algún problema más o alguna posible mejora, añádelo en los comentarios. El propósito de este post es promover las mejores prácticas en cuanto a desarrollo web se refiere.

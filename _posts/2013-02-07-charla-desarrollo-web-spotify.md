@@ -8,7 +8,7 @@ tags:
 
 ---
 
-El pasado 7 de febrero hablé sobre Desarrollo Web en Spotify en [un hangout con los compañeros de HTML5Spain](http://html5spain.wordpress.com/2013/02/06/evento-online-desarrollo-web-en-spotify/). Aquí está la presentación:
+El pasado 7 de febrero hablé sobre Desarrollo Web en Spotify en [un hangout con los compañeros de HTML5Spain](http://html5spain.wordpress.com/2013/02/03/evento-online-desarrollo-web-en-spotify/). Aquí está la presentación:
 
 <script async class="speakerdeck-embed" data-id="9a7600c053260130765612313d18c439" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 

@@ -7,7 +7,6 @@
             box-sizing: border-box;
     margin: 0;
     padding: 0;
-    outline: none;
     border: none;
     vertical-align: baseline;
     font: inherit;
@@ -171,7 +170,7 @@ code {
 
 /*--HEADER--*/
 
-#header {
+header {
     position: relative;
     overflow: hidden;
     padding: 1em;
@@ -370,4 +369,13 @@ footer {
     h4 {font-size: 16px;}
     h5 {font-size: 15px;}
 
+}
+
+
+/*--ACCESSIBILITY--*/
+.outscreen
+{
+    position: absolute;
+    left: -1000px;
+    width: 900px;
 }

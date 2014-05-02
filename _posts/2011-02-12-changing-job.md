@@ -8,7 +8,7 @@ tags:
 
 ---
 
-This week I change jobs, from [Signum Software](http://signumsoftware.com) to [Tuenti](http://www.tuenti.com).
+This week I change jobs, from [Signum Software](http://signumsoftware.com/en) to [Tuenti](http://www.tuenti.com).
 
 Working at Signum Software I have met a group of very professional people and I learnt a lot from them. It is a pleasure to work at a company that takes care of their own products, always trying to improve them. And for a developer it's even better when that product is a complete framework that optimizes and makes your work easier.
 

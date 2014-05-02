@@ -126,11 +126,11 @@ It can be a good idea to download resources prior to when they are really needed
 
 ### Specify images dimensions
 
-By setting the dimensions of our images we can help the browser find out the layout of the different elements of the documents, avoiding repaintings and reflows. This tip is nicely explained at [Google Page Speed](http://code.google.com/intl/en/speed/page-speed/docs/rendering.html#SpecifyImageDimensions).
+By setting the dimensions of our images we can help the browser find out the layout of the different elements of the documents, avoiding repaintings and reflows. This tip is nicely explained at [Google Page Speed](https://developers.google.com/speed/docs/best-practices/rendering#SpecifyImageDimensions).
 
 ### CDN
 
-[Using a Content Delivery Network](http://developer.yahoo.com/performance/rules.html#cdn) can greatly improve the download time of your resources (as already stated before). Small websites can take advantage of CDN if they make use of Javascript libraries such as jQuery, requesting the framework Javascript files using a [Google](http://code.google.com/intl/es-ES/apis/ajaxlibs/documentation/)'s or [Microsoft](http://www.asp.net/ajaxlibrary/cdn.ashx)'s CDN. You can decrease your site traffic and improve the website load (maybe the user has already cached that file). Just [consider a fallback](http://stackoverflow.com/questions/1014203/best-way-to-use-googles-hosted-jquery-but-fall-back-to-my-hosted-library-on-goo) in case there is any problem getting these files from the CDN.
+[Using a Content Delivery Network](http://developer.yahoo.com/performance/rules.html#cdn) can greatly improve the download time of your resources (as already stated before). Small websites can take advantage of CDN if they make use of Javascript libraries such as jQuery, requesting the framework Javascript files using a [Google](https://developers.google.com/speed/libraries/)'s or [Microsoft](http://www.asp.net/ajaxlibrary/cdn.ashx)'s CDN. You can decrease your site traffic and improve the website load (maybe the user has already cached that file). Just [consider a fallback](http://stackoverflow.com/questions/1014203/best-way-to-use-googles-hosted-jquery-but-fall-back-to-my-hosted-library-on-goo) in case there is any problem getting these files from the CDN.
 
 ### Revise your javascript performance
 

@@ -13,7 +13,7 @@ tags:
 
 ---
 
-This week Facebook [announced an update for their iOS app](http://newsroom.fb.com/News/A-Faster-Facebook-for-iOS-1b4.aspx) whose main change is a faster overall experience. Going deeper into technical details, we have "[Under the hood: Rebuilding Facebook for iOS](https://www.facebook.com/notes/facebook-engineering/under-the-hood-rebuilding-facebook-for-ios/10151036091753920)", a nice post explaining what changes have been done.
+This week Facebook [announced an update for their iOS app](http://web.archive.org/web/20121019162440/http://newsroom.fb.com/News/A-Faster-Facebook-for-iOS-1b4.aspx) whose main change is a faster overall experience. Going deeper into technical details, we have "[Under the hood: Rebuilding Facebook for iOS](https://www.facebook.com/notes/facebook-engineering/under-the-hood-rebuilding-facebook-for-ios/10151036091753920)", a nice post explaining what changes have been done.
 
 ## Lessons learned from HTML5
 

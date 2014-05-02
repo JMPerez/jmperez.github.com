@@ -8,7 +8,7 @@ tags:
 
 ---
 
-You probably know already about [the redesign Facebook will be carrying out to their News Feed](https://www.facebook.com/about/newsfeed). After reading some articles covering their presentation, there are lots of mentions to "clutter reduction", "more space for pictures", "more info about check-ins", etc. What I personally think is that Facebook has decided, simply, to unify their layout across devices.
+You probably know already about [the redesign Facebook will be carrying out to their News Feed](http://www.engadget.com/2013/03/07/facebook-freshens-up-news-feed/). After reading some articles covering their presentation, there are lots of mentions to "clutter reduction", "more space for pictures", "more info about check-ins", etc. What I personally think is that Facebook has decided, simply, to unify their layout across devices.
 
 ![Facebook News Feed Update]({{ site.url }}/assets/images/posts/facebook-news-feed.jpg)
 

@@ -42,7 +42,7 @@ So far we are using:
     an option to remember the selected tab using a cookie. This cookie
     would have to contain every selected tab in each of your pages.
     Another example is [the persistence approach that TreeView plugin
-    takes](http://docs.jquery.com/Plugins/Treeview/treeview#options),
+    takes](https://github.com/jzaefferer/jquery-treeview/blob/master/jquery.treeview.js#L191),
     also based on cookies. Why don't just use localStorage to
     keep that information? In addition, taking into account graceful
     degradation, cookies approximation can be used if localStorage is

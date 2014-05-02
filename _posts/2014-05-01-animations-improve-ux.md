@@ -15,3 +15,16 @@ After reading the article one starts appreciating those transitions that became 
 On the web, it is sometimes difficult to create proper animations without lots of hacks like duplicating elements and setting fixed dimensions and absolute positioning. And this, together with responsive design, makes it a real challenge.
 
 There are many websites for getting inspired and seeing how animations are used in practice. Many of those sites are listed on  [Interface Animations and Transitions: where to get inspiration](http://www.inpixelitrust.fr/blog/en/interface-animations-and-transitions-where-to-get-inspiration/).
+
+## Practical example
+I would like to save a form and give feedback to the user. One possibility is to click on save and then show an [alert](http://getbootstrap.com/components/#alerts) on top of the form. However, what should we do when the user starts modifying the form again? One possibility is to remove the alert. Collapsing the alert would reflow the form and would look a bit ugly. Another possibility is to use something like the notifications shown on Gmail on top of the page, fixed positioned.
+
+If the user continues editing and we didn't remove the alert, then when she saves again she doesn't get any feedback about the most recent saving action. Does that alert refer to this save or to the previous one?
+
+Then I thought it would be useful to have the Save button change between Save - Saving - Saved, similar to [the example on the post](https://medium.com/p/3d1b0a9b810e). A first draft was this:
+<iframe src="http://jsfiddle.net/8Z8Jh/1/show/" width="100%" height="110px"></iframe>
+
+After that, I found [this post](http://minimalmonkey.com/fun-animations-with-css3/) and applied some transitions:
+<iframe src="http://jsfiddle.net/8Z8Jh/2/show/" width="100%" height="130px"></iframe>
+
+Even though I'm not super happy with the result I think that a button like that with some animation can be very useful when saving data in a form.

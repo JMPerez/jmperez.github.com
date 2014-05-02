@@ -4,14 +4,14 @@ related_post_url: /prevent-iphone-navigation-bar-ajax-link-click
 related_post_title: Avoid showing address bar on iPhone when loading ajax
 ---
 
-## iPhone address bar on ajax navigation tests
+# iPhone address bar on ajax navigation tests
 
 <ul>
   <li>
-    <a class="prevent" href="http://josemanuelperez.es/">This link is ignored. However, it shows the bar</a>
+    <a class="prevent" href="http://jmperezperez.com">This link is ignored. However, it shows the bar</a>
   </li>
   <li>
-    <a class="facebook" href="http://josemanuelperez.es/blog">This link is ignored. It does not show the bar, and modifies the hash tag.</a>
+    <a class="facebook" href="http://jmperezperez.com">This link is ignored. It does not show the bar, and modifies the hash tag.</a>
   </li>
 </ul>
 

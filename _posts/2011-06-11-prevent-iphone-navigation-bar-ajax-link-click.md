@@ -93,7 +93,7 @@ JX.behavior("m-link", function() {
 
 As we see, this is only done for touch devices. Non-touch devices see normal links, so we can provide the default navigation for the rest of devices. That is nice for our progressive enhancement approach.
 
-This workaround works nice when applied to a hash based ajax navigation. In addition, if we want to use History API, then we could call to history.pushState() in the click event, once we have replaced the href to its original value. That way we would use the hash as a temporary hack to prevent Safari browser from showing the bar. Have a look at this snippet:
+This workaround works nice when applied to a hash based ajax navigation. In addition, if we want to use History API, then we could call `history.pushState()` in the click event, once we have replaced the href to its original value. That way we would use the hash as a temporary hack to prevent Safari browser from showing the bar. Have a look at this snippet:
 
 {% highlight javascript %}
 //hide bar on page load
@@ -142,5 +142,3 @@ I will try to check the techniques that other sites have implemented to solve th
 And I find this less hacky than using a 'link' attribute instead of 'href' attribute in anchors, or replace anchors by buttons, as I have read somewhere.
 
 Want to see it in action? [**See the demo**]({{ site.url }}/demos/iphone-links).
-
-EDIT: It seems that jQuery Mobile has managed to implement this in their [beta 1.0](http://jquerymobile.com/blog/2011/06/20/jquery-mobile-beta-1-released/)

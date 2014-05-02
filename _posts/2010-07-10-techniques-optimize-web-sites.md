@@ -19,7 +19,7 @@ I pretend to keep this list as updated as possible. If you find mistakes or non-
 
 ### Use a server near your user (or improving your RTT)
 
-The fact of hosting your website geographically far from your target users can increase the round-trip delay time of your requests. Have a look at recent [Mike Bailey's article](http://mike.bailey.net.au/blog/?p=38) measuring RTT over a server in the USA and one in Australia. If you see yourself in this situation, consider changing your hosting server or using cloud servers such [Amazon's S3](http://aws.amazon.com/s3/).
+The fact of hosting your website geographically far from your target users can increase the round-trip delay time of your requests. Have a look at recent [Mike Bailey's article](http://mike.bailey.net.au/2010/07/latency-is-a-killer/) measuring RTT over a server in the USA and one in Australia. If you see yourself in this situation, consider changing your hosting server or using cloud servers such [Amazon's S3](http://aws.amazon.com/s3/).
 
 ## Reduce HTTP requests
 
@@ -37,7 +37,7 @@ Instead of image sprites you can take a look at [Data URIs](http://www.nczonline
 
 ### Use CSS3 instead of images
 
-[Gradients](http://www.webdesignerwall.com/tutorials/cross-browser-css-gradient/), [patterns](http://leaverou.me/2010/12/checkered-stripes-other-background-patterns-with-css3-gradients/) and [triangles](http://www.dinnermint.org/blog/css/creating-triangles-in-css/) can be made using CSS/CSS3. Not only do they reduce the number of requests, but they also improve maintainability since changes can be made very quickly.
+[Gradients](http://www.webdesignerwall.com/tutorials/cross-browser-css-gradient/), [patterns](http://lea.verou.me/2010/12/checkered-stripes-other-background-patterns-with-css3-gradients/) and [triangles](http://www.dinnermint.org/blog/css/creating-triangles-in-css/) can be made using CSS/CSS3. Not only do they reduce the number of requests, but they also improve maintainability since changes can be made very quickly.
 
 ### Multipart XHR
 
@@ -64,11 +64,11 @@ By linking consistently to correct URLs accross your website you will save the b
 
 ### Minification
 
-Smaller files sizes can be achieved by minimizing content before sending it to the wire. Javascript and CSS files are well known to be easily minified (you can serve a minified copy of your file or let your server minify it on-the-air). HTML can also be minified by, for instance, [removing white spaces](http://madskristensen.net/post/A-whitespace-removal-HTTP-module-for-ASPNET-20.aspx) (caution with the textareas).
+Smaller files sizes can be achieved by minimizing content before sending it to the wire. Javascript and CSS files are well known to be easily minified (you can serve a minified copy of your file or let your server minify it on-the-air). HTML can also be minified by, for instance, [removing white spaces](http://madskristensen.net/post/a-whitespace-removal-http-module-for-aspnet-20) (caution with the textareas).
 
 ### LocalStorage versus cookies
 
-I have already explained [how localStorage can replace cookies]({{ site.url }}/progressively-addopting-html5-feature/) for saving users' preferences that the server doesn't need to be aware of, reducing subsequently traffic.
+I have already explained [how localStorage can replace cookies]({{ site.url }}/progressively-using-html5-features/) for saving users' preferences that the server doesn't need to be aware of, reducing subsequently traffic.
 
 ### Provide static resources from cookieless domains
 

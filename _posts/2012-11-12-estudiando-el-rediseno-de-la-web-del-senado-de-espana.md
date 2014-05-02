@@ -9,7 +9,7 @@ tags:
 
 ---
 
-_Echa un vistazo al [análisis más reciente que he hecho de la web del Senado]({{ site.url }}revisitando-nueva-web-senado), donde hablo sobre algunos cambios que han llevado a cabo desde que publicó el nuevo sitio._
+_Echa un vistazo al [análisis más reciente que he hecho de la web del Senado]({{ site.url }}/revisitando-nueva-web-senado), donde hablo sobre algunos cambios que han llevado a cabo desde que publicó el nuevo sitio._
 
 [![Portada de Senado.es]({{ site.url }}/assets/images/posts/senado-es-portada-300x175.jpg)]({{ site.url }}/assets/images/posts/senado-es-portada.jpg)
 

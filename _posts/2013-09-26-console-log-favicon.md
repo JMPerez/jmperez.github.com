@@ -2,6 +2,7 @@
 layout: post
 title: 'Printing a message in the browser console with a favicon'
 date: 2013-09-26 11:40:14+00:00
+description: How to use custom styles in console.log to render a favicon with some text in the developer tools console.
 tags:
   - console
   - favicon
@@ -19,7 +20,7 @@ But I thought it would be even better to show the logo of the site next to the m
 Continue reading to know how to achieve it, or have a look [at this jsFiddle](http://jsfiddle.net/J3yZP/).
 
 ## Basic idea, compatibility and limitations of the different consoles
-You can use styles in the printed messages in the console, at least on Google Chrome and Firebug. Each of them have a limitation when trying to render the favicon. The idea is to use a style that sets the logo as the background image. Then, set its size and add some margin between the logo and the text.
+You can use styles in the printed messages in the console, at least on Google Chrome and Firebug (support in Firefox is limited, see below). Each of them have a limitation when trying to render the favicon. The idea is to use a style that sets the logo as the background image. Then, set its size and add some margin between the logo and the text.
 
 ### Google Chrome
 You can check out the [section about styling the console](https://developers.google.com/chrome-developer-tools/docs/console#styling_console_output_with_css) on Google Chrome. It works, but [it doesn't seem to support `background-repeat: no-repeat`](https://plus.google.com/+AddyOsmani/posts/TanDFKEN9Kn#z12wstwg0wr5g1xoy04cepzz1lamdxbqjjg#1365803568707861). So if we use `"%c text"`, the logo repeats all the way until the end of the string. Thus, we have to place the logo on the right side by doing `"text %c"`.
@@ -57,3 +58,5 @@ Below is the code I am using to render the message together with a favicon, in t
   }
 })();
 {% endhighlight %}
+
+**Update May 8th 2014**: [Firefox 31 supports basic styling](https://developer.mozilla.org/en/docs/Tools/Web_Console#Styling_messages) in its console, without the need of using Firebug. However, it only allows a [subset of CSS rules](https://bugzilla.mozilla.org/attachment.cgi?id=8404667&action=diff#a/browser/devtools/webconsole/console-output.js_sec2) that doesn't include `background-image`. However, even though `background` is supported, `url()` [is not supported](https://bugzilla.mozilla.org/attachment.cgi?id=8404667&action=diff#a/browser/devtools/webconsole/test/browser_webconsole_console_custom_styles.js_sec1).

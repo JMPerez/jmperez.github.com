@@ -230,6 +230,11 @@ header {
     width: 100%;
 }
 
+.post p:first-child {
+    font-size: 120%;
+    color: #333;
+}
+
 .post p img {
     display: block;
     margin: 0 auto;

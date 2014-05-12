@@ -15,6 +15,8 @@ One month ago I moved to Stockholm to start working at [Spotify](http://www.spot
 
 I already talked about [hybrid applications]({{ site.url }}/developing-mobile-webapp-first/#hybrid). By hybrid apps we usually mean hybrid mobile apps, since it is normally used when describing the approach of building an application for a mobile device that includes content that is generated using web technologies. In fact, I had the change of working on hybrid mobile applications when working at Tuenti. Both [Tuenti Classic](https://play.google.com/store/apps/details?id=com.tuenti.android.client) and [Tuenti Social Messenger](https://play.google.com/store/apps/details?id=com.tuenti.messenger) include content that is loaded in a WebView.
 
+**Update 2014-05-12**: It is interesting to see that the hybrid app development is still a thing. Take a look to [Hybrid sweet spot: Native navigation, web content](http://signalvnoise.com/posts/3743-hybrid-sweet-spot-native-navigation-web-content) which summarises some of the advantages of the hybrid approach.
+
 ## Hybrid desktop apps
 
 But hybrid apps are also present in desktop. And that's the magic of web development, where I can use web technologies to provide content to a large amount of devices, and as a developer use the very same tools and techniques that I used to build websites. Being abstracted from the underlying operating system, the browser embedded in the client allows you implement once and have it available across Windows, Mac and Linux. It's a nice way for developers to [write apps](https://developer.spotify.com/technologies/apps/) without having to learn a different stack of technologies.

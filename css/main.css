@@ -230,7 +230,7 @@ header {
     width: 100%;
 }
 
-.post p:first-child {
+.post div[itemprop=articleBody] > p:first-child {
     font-size: 120%;
     color: #333;
 }

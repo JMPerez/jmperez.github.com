@@ -3,19 +3,14 @@ layout: post
 title: Detecting tempo of a song using brower's Audio API
 date: 2014-08-09 8:40:00+02:00
 image: /assets/images/posts/bpm.png
-description: This article explains some ideas behind a small project to detect tempo of a song using the Audio API.
+description: Article about project for detecting BPM of a track using the Audio API, in combination with Spotify Web API and Echo Nest API.
 tags:
   - spotify
   - echo nest
   - bpm
 ---
 
-This article explains some ideas behind a small project to detect tempo of a song using the Audio API:
-
-- [Demo](http://jmperezperez.com/beats-audio-api/)
-- [Code on GitHub](https://github.com/JMPerez/beats-audio-api)
-
-I recommend you to have a look at them before reading this.
+This article explains some ideas behind a small project to detect the tempo of a song using the Audio API. I recommend you to have a look at these links before reading the rest of the article: [Demo](http://jmperezperez.com/beats-audio-api/) and [Code on GitHub](https://github.com/JMPerez/beats-audio-api).
 
 ## Beat detection using Audio API
 

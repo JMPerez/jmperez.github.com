@@ -230,9 +230,14 @@ header {
     width: 100%;
 }
 
+.post h1[itemprop=headline] {
+  text-align: center;
+}
+
 .post div[itemprop=articleBody] > p:first-child {
     font-size: 120%;
     color: #333;
+    line-height: 1.5em;
 }
 
 .post p img {
@@ -257,7 +262,9 @@ header {
 
 .post-data {
     margin-top: 25px;
+    margin-bottom: 25px;
     width: 100%;
+    text-align: center;
 }
 
 /*--PAGINATION--*/
@@ -340,14 +347,10 @@ footer {
 
     /*--POSTS--*/
 
-    .post, .post-data {
+    .post {
         margin: 0 auto;
         max-width: 640px;
         width: 80%;
-    }
-
-    .post-data {
-        margin: 15px auto 0 auto;
     }
 
 }

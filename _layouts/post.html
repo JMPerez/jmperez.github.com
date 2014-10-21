@@ -11,12 +11,12 @@ layout: default
         {% else %}
         <h1 itemprop="headline">{{ page.title }}</h1>
         {% endif %}
+        <div class="post-data" itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
+            {{ page.date | date: "%B %d %Y" }}
+        </div>
         <div itemprop="articleBody">
         {{ content }}
         </div>
     </div>
     <hr />
-    <div class="post-data" itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
-        Posted on {{ page.date | date_to_string }}
-    </div>
 </div>

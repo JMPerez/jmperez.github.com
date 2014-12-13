@@ -9,9 +9,7 @@ tags:
   - iframe
 ---
 
-**tl;dr**
-
-Communicating between an iframe and a popup is not straightforward. If you are implementing a widget-ish element that needs to communicate with other page, Have a read at this (and test your solution on multiple platforms).
+**tl;dr**: Communication between an iframe and a popup is not straightforward. If you are implementing a widget-ish element that needs to communicate with other page, Have a read at this (and test your solution on multiple platforms).
 
 ### An overview
 

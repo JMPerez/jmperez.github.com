@@ -35,7 +35,7 @@ Let's suppose that the site `www.example.com` embeds an iframe (from now on, **t
 
 On a mobile browser, a popup opens a new tab, which is more suitable for their screen sizes. Apart from that, the OS can perform some optimizations to save memory and CPU due to foregrounded browser tabs.
 
-__Note: I haven't performed a deep research to see what combinations of operating system and browser exhibit each of these issues. But it's enough with one of them failing to try to implement a workaround. __
+Note: I haven't performed a deep research to see what combinations of operating system and browser exhibit each of these issues. But it's enough with one of them failing to try to implement a workaround.
 
 #### `window.opener` is undefined
 

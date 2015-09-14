@@ -206,9 +206,8 @@ header {
 #page {
     position: relative;
     margin: 0 auto;
-    padding: 100px 0;
+    padding: 100px 30px;
     max-width: 640px;
-    width: 80%;
 }
 
 /*--WRAPPER--*/
@@ -228,10 +227,6 @@ header {
 .post {
     display: block;
     width: 100%;
-}
-
-.post h1[itemprop=headline] {
-  text-align: center;
 }
 
 .post div[itemprop=articleBody] > p:first-child {
@@ -261,10 +256,8 @@ header {
 /*--POST DATA--*/
 
 .post-data {
-    margin-top: 25px;
     margin-bottom: 25px;
     width: 100%;
-    text-align: center;
 }
 
 /*--PAGINATION--*/
@@ -282,8 +275,7 @@ header {
 /*--FOOTER--*/
 
 footer {
-    margin: 4em 0 0;
-    padding: 2em 0;
+    padding: 2em;
     background: rgba(0, 0, 0, 0.05);
     text-align: center;
 }
@@ -336,7 +328,7 @@ footer {
         margin: 0;
         max-width: 100%;
         width: 100%;
-        padding: 30px 0;
+        padding: 30px;
     }
 
     /*--WRAPPER--*/
@@ -350,7 +342,6 @@ footer {
     .post {
         margin: 0 auto;
         max-width: 640px;
-        width: 80%;
     }
 
 }

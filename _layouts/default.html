@@ -8,13 +8,9 @@
         <meta name="description" content="{{ description | strip_html | condense_spaces | truncate:300 }}">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link rel="author" href="https://plus.google.com/107456024651797783420" />
-        <link href="/css/style.css" rel="stylesheet" type="text/css">
-
         <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.url }}/feed.xml">
-
         <meta property="og:title" content="{{ page.title }}">
         <meta property="og:description" content="{{ description | strip_html | condense_spaces | truncate:300 }}">
-
         <meta name="twitter:card" content="summary">
         {% if page.url %}
         <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
@@ -25,6 +21,7 @@
         {% if page.image %}
         <meta name="twitter:image:src" content="{{ site.url }}{{ page.image }}">
         {% endif %}
+        <style>{% include style.css %}</style>
     </head>
 
     <body>

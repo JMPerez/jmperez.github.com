@@ -1,6 +1,7 @@
 name: José M. Pérez
 description: JMPerez Blog
-url: http://jmperezperez.com
+url: https://jmperezperez.com
+enforce_ssl: jmperezperez.com
 markdown: redcarpet
 pygments: true
 permalink: /:title

@@ -75,7 +75,7 @@ usually include:
 -   **Locale**: The language that will be used to localise the text of
     the widget (see the [Localisation section](#localisation) for more info).
 
-![Youtube Subscribe Button](http://jmperezperez.com/assets/images/posts/youtube-subscribe-button.png)
+![Youtube Subscribe Button](/assets/images/posts/youtube-subscribe-button.png)
 _Notice the light and dark themes and try to foresee what would happen if
 you embed the light one in a dark site._
 

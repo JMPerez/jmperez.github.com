@@ -20,14 +20,20 @@
         {% if page.image %}
         <meta name="twitter:image:src" content="{{ site.url }}{{ page.image }}">
         {% endif %}
+        <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
         <style>{% include style.css %}</style>
+        <script type="text/javascript">
+        if (window.location.host === 'jmperezperez.com' &&
+            window.location.protocol != 'https:')
+            window.location.protocol = 'https';
+        </script>
     </head>
 
     <body>
         {% include ga.html %}
         <header>
             <nav id="menu">
-                <a href="/">JMPerez Blog – Web development</a>
+                <a href="/">JMPerez Blog - Web development</a>
                 <a href="/about-me/">About</a>
             </nav>
         </header>

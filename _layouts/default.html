@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         {% assign url = page.url|remove:'index.html' %}
-        {% if url == "/" %}{% assign url = "" %}{% else %}{% capture url %}{{ url }}/{% endcapture %}{% endif %}
+        {% if url == "/" %}{% assign url = "" %}{% endif %}
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>{{ page.title }}</title>
         {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ page.excerpt | raw_content }}{% endif %}{% endcapture %}

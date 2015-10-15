@@ -1,5 +1,5 @@
 name: José M. Pérez
-description: JMPerez Blog
+description: Personal web site of frontend engineer JMPerez. Web development, standards, design patterns and some other good practices.
 url: https://jmperezperez.com
 enforce_ssl: jmperezperez.com
 markdown: redcarpet

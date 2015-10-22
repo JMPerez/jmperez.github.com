@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div class="wrapper" itemscope itemtype="http://schema.org/Article">
+<div class="wrapper" itemscope itemtype="http://schema.org/BlogPosting">
     <div class="post">
         {% if post.url %}
         <a href="{{ post.url }}">
@@ -14,6 +14,9 @@ layout: default
         <div class="post-data" itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
             {{ page.date | date: "%B %d %Y" }}
         </div>
+        {% if page.image %}
+        <img itemprop="image" src="{{ page.image }}" alt="{{ page.title"}} style="display:none">
+        {% endif %}
         <div itemprop="articleBody">
         {{ content }}
         </div>

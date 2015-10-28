@@ -16,13 +16,13 @@ To see how image loading works in Medium, it is best to see a demo:
   <source src="{{ site.url }}/assets/images/posts/medium-progressive-loading.mp4" type="video/mp4">
 </video>
 
-I have performed a [WebPageTest test](http://www.webpagetest.org/video/compare.php?tests=151018_XD_KDF-r:1-c:0) against [this page on Medium](https://medium.com/backchannel/exclusive-why-apple-is-still-sweating-the-details-on-imac-531a95e50c91) where you can see how it loads too. And if you want to see it by yourself, open the post in your browser, disable the cache and throttle the response so it takes longer to load.
+I have performed a [WebPageTest test](http://www.webpagetest.org/video/compare.php?tests=151018_XD_KDF-r:1-c:0) against [this page on Medium](https://medium.com/backchannel/exclusive-why-apple-is-still-sweating-the-details-on-imac-531a95e50c91) where you can see how it loads too. And if you want to see it by yourself, open Medium's post in your browser, disable the cache and throttle the response so it takes longer to fetch the images and you can see the effect.
 
 Here is what is going on:
 
   1. **Render a div where the image will be displayed**. Medium uses a `<div/>` with a `padding-bottom` set to a percentage, which corresponds to the aspect ratio of the image. Thus, they prevent reflows while the images are loaded since everything is rendered in its final position.
 
-  2. **Load a tiny version of the image**. At the moment, they seem to be requesting small JPEG thumbnails with a very low quality (20%). The markup for these images is returned in the initial HTML, so the browser starts fetching them right away.
+  2. **Load a tiny version of the image**. At the moment, they seem to be requesting small JPEG thumbnails with a very low quality (e.g. 20%). The markup for this small image is returned in the initial HTML as an `<img/>`, so the browser starts fetching them right away.
 
   3. Once the image is loaded, **it is drawn in a `<canvas/>`**. Then, the image data is taken and passed through a custom `blur()` function You can see it, a bit scrumbled, in the `main-base.bundle` JS file. This function is similar, though not identical, to [StackBlur](http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html)'s blur function. At the same time, **the main image is requested**.
 
@@ -63,9 +63,23 @@ And a concrete example, so you see what goes in those tags:
 
 _Note that the actual image sizes requested depend on the device._
 
-As you see, there is a lot of things going on to be able to render an image, but it has some advantages:
 
-- **Lazy loading**. Using JS for making the requests allows them to be in control of what images are requested. While all the small thumbnails are requested, the large images are only requestes when they are within the viewport.
+## An attempt to reproduce the effect
+
+I have prepared [this CodePen](http://codepen.io/jmperez/pen/yYjPER) where I have implemented the same effect, though using CSS filters for the blur instead of a canvas (see below more info about this variant).
+
+Here is a demo:
+
+<p data-height="403" data-theme-id="0" data-slug-hash="yYjPER" data-default-tab="result" data-user="jmperez" class='codepen'>See the Pen <a href='http://codepen.io/jmperez/pen/yYjPER/'>Medium loading image effect reproduced</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+You can see it better [in full screen](http://codepen.io/jmperez/full/Xmzobe/). I recommend that you use network throttling and disable cache to notice the full animation.
+
+## Is it worth it?
+Clearly, there is a lot of things going on to be able to render an image this way, and it can be discouraging to do something similar on your site. A few years ago it would have been impossible to do this animations and blur effects in a performant way, but the truth is that most of the times the latency is the bottleneck, not the device capabilities, and we can play with these visual explorations.
+
+Having full control of the loading of images has some advantages:
+
+- **Lazy loading**. Using JS for making the requests allows them to be in control of what images are requested. While all the small thumbnails are requested, the large images are only requests when they are within the viewport.
 
 - **Better placeholder**. The thumbnails are very small, barely 2kB, which combined with the blurry effect allows for a better placeholder than a solid colour, without sacrificing payload.
 
@@ -96,7 +110,7 @@ The blur effect can also be achieved using [CSS Filter Effects](http://codepen.i
 
 The advantage of this technique is that you can easily tweak how much blur you want and everything is achieved using CSS.
 
-### Google Images Search
+### Other ways of improving placeholders: Google Images Search
 
 A simpler technique is used by Google Search when searching for images from a smartphone:
 
@@ -104,10 +118,6 @@ A simpler technique is used by Google Search when searching for images from a sm
 _&uarr; Google Images Search shows a solid background as placeholder (left image is while loading, right when already loaded)._
 
 They pick a colour (maybe the dominant colour of the picture?) and they use it a solid colour background. It gives the user the feeling that images loads faster.
-
-## An attempt to reproduce the effect
-
-I have prepared [this CodePen](http://codepen.io/jmperez/full/yYjPER) where I have tried to implement the same effect. I recommend that you use network throttling and disable cache to notice the full animation.
 
 ## Conclusion
 

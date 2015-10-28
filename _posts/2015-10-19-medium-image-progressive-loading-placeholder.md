@@ -105,6 +105,10 @@ _&uarr; Google Images Search shows a solid background as placeholder (left image
 
 They pick a colour (maybe the dominant colour of the picture?) and they use it a solid colour background. It gives the user the feeling that images loads faster.
 
+## An attempt to reproduce the effect
+
+I have prepared [this CodePen](http://codepen.io/jmperez/full/vNjZWK) where I have tried to implement the same effect. I recommend that you use network throttling and disable cache to notice the full animation.
+
 ## Conclusion
 
 As our pages load more and more images, it is good to think of their loading process on our pages, since it affects performance and user experience.

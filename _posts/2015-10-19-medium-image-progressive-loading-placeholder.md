@@ -107,7 +107,7 @@ They pick a colour (maybe the dominant colour of the picture?) and they use it a
 
 ## An attempt to reproduce the effect
 
-I have prepared [this CodePen](http://codepen.io/jmperez/full/vNjZWK) where I have tried to implement the same effect. I recommend that you use network throttling and disable cache to notice the full animation.
+I have prepared [this CodePen](http://codepen.io/jmperez/full/yYjPER) where I have tried to implement the same effect. I recommend that you use network throttling and disable cache to notice the full animation.
 
 ## Conclusion
 

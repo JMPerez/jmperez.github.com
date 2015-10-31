@@ -1,0 +1,50 @@
+ul.projects {
+    list-style: none;
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0;
+}
+
+ul.projects p {
+    margin-bottom: 1em;
+}
+
+ul.projects > li {
+    float: left;
+    width: 45%;
+    margin-right: 10%;
+    margin-bottom: 10%;
+}
+
+ul.projects > li:nth-child(2n+2) {
+    margin-right: 0;
+}
+
+ul.projects > li.project-full {
+    width: 100%;
+}
+
+ul.projects::after {
+    clear: both;
+    content: '';
+    display: block;
+    height: 0;
+}
+
+ul.projects .project-links a {
+    display: inline-block;
+    padding: 0.2em 1em;
+    margin-right: 1em;
+    border: 1px solid #f3f3f3;
+    transition: border-color .15s ease-out;
+}
+
+ul.projects .project-links a:hover {
+    border: 1px solid #999;
+}
+
+@media (max-width: 450px) {
+    ul.projects > li {
+        width: 100%;
+    }
+}

@@ -162,7 +162,7 @@ code {
 
 /*--CLEARFIXES--*/
 
-.post:after {
+.post::after {
     display: block;
     clear: both;
     content: '';
@@ -313,7 +313,7 @@ footer {
 /*--404--*/
 .search-goog input {
     padding: 10px;
-    border: 2px solid #ddd;   
+    border: 2px solid #ddd;
 }
 
 .search-goog input[type=submit] {
@@ -336,6 +336,12 @@ footer {
 
     .wrapper {
         padding: 10% 0;
+    }
+
+    .wraper::after {
+        display: block;
+        clear: both;
+        content: '';
     }
 
     /*--POSTS--*/
@@ -370,7 +376,6 @@ footer {
     h5 {font-size: 15px;}
 
 }
-
 
 /*--ACCESSIBILITY--*/
 .outscreen

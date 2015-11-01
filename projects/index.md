@@ -4,7 +4,7 @@ title: Projects - José Manuel Pérez Pérez
 description: Some projects in which I have been working on
 ---
 <style>{% include projects.css %}</style>
-These are some things I have been working on outside my regular job to learn more about certain libraries and browser APIs.
+These are some personal projects I have been working on to learn more about certain libraries and browser APIs.
 
 I like trying out "the last new thing" in a small project and publish it on GitHub, both as a personal reminder of what I did, and to help people looking for examples.
 
@@ -42,7 +42,7 @@ I like trying out "the last new thing" in a small project and publish it on GitH
     <h3>Sync subs</h3>
     <div class="description">
       <p>A handy tool to apply an offset to a subtitle file.</p>
-      <p>I did this to play with the File API and CommonJS modules (plus testing).</p>
+      <p>I did this to play with the File API, CommonJS modules (including testing), and Service Workers (offline support)</p>
       <div class="project-links"><a href="https://jmperezperez.com/sync-subs/">Website</a><a href="https://github.com/JMPerez/sync-subs">GitHub</a></div>
     </div>
   </li>

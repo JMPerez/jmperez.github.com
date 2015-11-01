@@ -42,7 +42,7 @@ I like trying out "the last new thing" in a small project and publish it on GitH
     <h3>Sync subs</h3>
     <div class="description">
       <p>A handy tool to apply an offset to a subtitle file.</p>
-      <p>I did this to play with the File API, CommonJS modules (including testing), and Service Workers (offline support)</p>
+      <p>I did this to play with the File API, CommonJS modules (including testing), and Service Workers (offline support).</p>
       <div class="project-links"><a href="https://jmperezperez.com/sync-subs/">Website</a><a href="https://github.com/JMPerez/sync-subs">GitHub</a></div>
     </div>
   </li>
@@ -57,7 +57,7 @@ I like trying out "the last new thing" in a small project and publish it on GitH
   <li>
     <h3>Spotify Dedup</h3>
     <div class="description">
-      <p>A simple tool to remove duplicated tracks from a user's Spotify playlists</p>
+      <p>A simple tool to remove duplicated tracks from a user's Spotify playlists.</p>
       <p>I did this to play with knockout and handling lots of async operations using promises.</p>
       <div class="project-links"><a href="https://jmperezperez.com/spotify-dedup/">Website</a><a href="https://github.com/JMPerez/spotify-dedup">GitHub</a></div>
     </div>

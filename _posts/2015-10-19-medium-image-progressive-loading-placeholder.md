@@ -74,6 +74,10 @@ Here is a demo:
 
 You can see it better [in full screen](http://codepen.io/jmperez/full/Xmzobe/). I recommend that you use network throttling and disable cache to notice the full animation.
 
+This filmstrip view shows the above codepen when disabling cache and throttling to "Good 3G":
+
+![Chrome Inspector Timeline Capture]({{ site.url }}/assets/images/posts/medium-codepen.png)
+
 ## Is it worth it?
 Clearly, there is a lot of things going on to be able to render an image this way, and it can be discouraging to do something similar on your site. A few years ago it would have been impossible to do this animations and blur effects in a performant way, but the truth is that most of the times the latency is the bottleneck, not the device capabilities, and we can play with these visual explorations.
 

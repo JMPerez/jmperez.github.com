@@ -3,8 +3,11 @@ description: Personal web site of frontend engineer JMPerez. Web development, st
 url: https://jmperezperez.com
 enforce_ssl: jmperezperez.com
 markdown: redcarpet
-pygments: true
+highlighter: pygments
 permalink: /:title/
 paginate: 5
 paginate_path: "page:num"
 timezone: Europe/Madrid
+gems:
+  - jekyll-sitemap
+  - jekyll-paginate

@@ -23,7 +23,7 @@ _SSE will fire on iOS even if the page is not active_
 
 Having a look at how iPhone behaves when using Server Sent Events I  realized that even if the tab showing a page using SSE is not the  active one, Server Sent Events are processed. In short, events are  processed as long as that page is loaded in any tab, no matter if it  focused or not, and even after Safari is closed using Home button or the  device is locked using the top button. The difference is that only when using Safari, a loading spinner is shown on top.
 
-The behaviuor of iPad is quite similar. It also processes SSE when it is locked or when a different tab is active, but it won't process them when closing Safari.
+The behaviour of iPad is quite similar. It also processes SSE when it is locked or when a different tab is active, but it won't process them when closing Safari.
 
 Is this how iPhone and iPad should behave? [According to W3C](http://dev.w3.org/html5/eventsource/), yes. They state:
 

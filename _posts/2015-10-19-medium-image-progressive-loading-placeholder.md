@@ -123,6 +123,14 @@ _&uarr; Google Images Search shows a solid background as placeholder (left image
 
 They pick a colour (maybe the dominant colour of the picture?) and they use it a solid colour background. It gives the user the feeling that images loads faster.
 
+### An even more advanced one: Facebook's 200 byte technique
+
+Earlier this year Facebook posted "[The technology behind preview photos](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/)", an interesting article about serving 42 x 42px image previews without the JPEG header.
+
+The scenario is a bit different, since these "images" are served to the Facebook mobile client, which knows how to prepend the header to compose a valid JPEG image. In the case of a website, we would need to compose this using Javascript, which would probably remove most of the savings. A solution would be to use a Service Worker to do the composition, though we would still need some Javascript to send a "request" with the image contents.
+
+In any case, it seems a bit overkilling for the web, but I wanted to include it as a reference.
+
 ## Conclusion
 
 As our pages load more and more images, it is good to think of their loading process on our pages, since it affects performance and user experience.

@@ -129,7 +129,7 @@ Earlier this year Facebook posted "[The technology behind preview photos](https:
 
 The scenario is a bit different, since these "images" are served to the Facebook mobile client, which knows how to prepend the header to compose a valid JPEG image. In the case of a website, we would need to compose this using Javascript, which would probably remove most of the savings. A solution would be to use a Service Worker to do the composition, though we would still need some Javascript to send a "request" with the image contents.
 
-In any case, it seems a bit overkilling for the web, but I wanted to include it as a reference.
+In any case, it seems a bit overkilling for the web, but I wanted to include it as a reference. [Using WebP for generating this preview images]({{ site.url }}/webp-placeholder-images/) can lead to similar savings without having to resort to "creative" solutions.
 
 ## Conclusion
 

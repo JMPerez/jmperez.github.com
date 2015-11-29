@@ -12,7 +12,7 @@ layout: default
         <h1 itemprop="headline">{{ page.title }}</h1>
         {% endif %}
         <div class="post-data" itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
-            {{ page.date | date: "%B %d %Y" }}
+            {{ page.date | date_to_string }}
         </div>
         {% if page.image %}
         <img itemprop="image" src="{{ page.image }}" alt="{{ page.title}}" style="display:none">
@@ -20,6 +20,14 @@ layout: default
         <div itemprop="articleBody">
         {{ content }}
         </div>
+        {% if page.tags.size > 0 %}
+        <div class="tags">Tagged as
+            <ul class="tag-list">{% for post_tag in page.tags %}
+                <li><a href="/tags/#{{ post_tag }}">{{ post_tag }}</a></li>
+            {% endfor %}</ul>
+        </div>
+        {% endif %}
+
     </div>
     <hr />
 </div>

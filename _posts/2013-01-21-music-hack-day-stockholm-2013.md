@@ -3,7 +3,7 @@ layout: post
 title: 'Music Hack Day Stockholm 2013'
 date: 2013-01-21 07:47:22+00:00
 tags:
-  - musichackday
+  - music hack day
   - spotify
 
 ---

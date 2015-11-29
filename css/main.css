@@ -38,7 +38,7 @@ h1, h2, h3, h4, h5 {
     line-height: 1.3;
 }
 
-#menu a, .button, .tags {
+#menu a, .button {
 
     font-weight: 400;
     font-size: 17px;
@@ -80,7 +80,7 @@ em {
 }
 
 h1, h2, h3, h4, h5 {
-    margin: 0 0 5% 0;
+    margin: 0 0 0.2em;
     color: #212121;
 }
 
@@ -252,6 +252,27 @@ header {
 
 .post .svg-container object {
     width: 100%;
+}
+
+.tags {
+    font-size: 90%;
+}
+
+.tag-list {
+    padding: 0;
+    display: inline-block;
+}
+
+.tag-list li {
+    display: inline-block;
+}
+
+.tag-list li:after {
+    content: ', ';
+}
+
+.tag-list li:last-child:after {
+    content: '';
 }
 
 /*--POST DATA--*/

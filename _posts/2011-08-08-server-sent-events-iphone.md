@@ -5,8 +5,7 @@ date: 2011-08-08 19:13:31+00:00
 description: Server Sent Events are fired on iOS even when the page is not active. Are there any good applications for this?
 tags:
   - ajax
-  - ipad
-  - iphone
+  - ios
   - polling
   - server sent events
 

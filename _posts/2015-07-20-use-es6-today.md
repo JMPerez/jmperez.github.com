@@ -3,6 +3,8 @@ layout: post
 title: Using ES6 today
 date: 2015-07-20 10:20:00+02:00
 description: Setting up ES6 in your next web project isn't that difficult... if you know how.
+tags:
+  - es6
 ---
 
 Yesterday I was reading [How to Use ES6 for

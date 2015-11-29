@@ -3,6 +3,8 @@ layout: post
 title: What I've been up to recently
 date: 2015-06-27 12:55:00+01:00
 description: Some open-source projects I have been working on recently. Rest APIs, ES6 and Audio API.
+tags:
+  - es6
 ---
 
 Yes! It's been a while since I last posted on this blog. I haven't come up with new ideas for some time, but I do have been working on some projects I had on GitHub and needed a revisit.

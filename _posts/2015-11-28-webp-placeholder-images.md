@@ -4,6 +4,11 @@ title: Using WebP to create tiny preview images
 date: 2015-11-28 13:30:00+02:00
 description: Following with the image optimization topic, I am going to have a deeper look to Facebook's technique to create preview photos, and will show how WebP can simplify their solution.
 image: /assets/images/posts/webp-vs-jpeg-preview-photos.jpg
+tags:
+  - webp
+  - images
+  - ux
+  - facebook
 ---
 Following with the image optimization topic, I am going to have a deeper look to [Facebook's technique to create _preview_ photos](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/), and will show how WebP can simplify their solution.<br/><br/>![WebP vs JPEG when encoding tiny images]({{ site.url }}/assets/images/posts/webp-vs-jpeg-preview-photos.jpg)
 

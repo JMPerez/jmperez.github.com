@@ -6,7 +6,6 @@ tags:
   - bigpipe
   - facebook
   - performance
-  - wpo
 
 ---
 

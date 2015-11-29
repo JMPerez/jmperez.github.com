@@ -3,19 +3,21 @@ layout: post
 title: iOS 9 and content blockers
 date: 2015-09-21 19:33:00+02:00
 description: Some opinions on ads and content blockers and how they affect web development.
+tags:
+  - progressive
 ---
 
 Everyone is talking about ad-blockers these days after the release of iOS 9. But we should talk more about the "content blockers" feature in general, which can, by default, block scripts, fonts or images. What you can do as a web developer is what you should have been doing until now: don't take anything for granted and follow a progressive enhacement approach.
 
 I've read lots of articles about why it is a good or bad idea to use these blockers, and I can understand both sides of the discussion. I get that it can make things difficult for businesses that rely on advertising and tracking scripts to finance themselves, and I also understand that as a user I want to see web content quickly. If that comes with savings in bandwith, double win.
 
-If I were to choose a post with which I agree, I would pick [Content Blocking Primer](http://meyerweb.com/eric/thoughts/2015/09/19/content-blocking-primer/). It doesn't say that this is the end of the world, and encourages web developers to do what they should have been doing all this time. 
+If I were to choose a post with which I agree, I would pick [Content Blocking Primer](http://meyerweb.com/eric/thoughts/2015/09/19/content-blocking-primer/). It doesn't say that this is the end of the world, and encourages web developers to do what they should have been doing all this time.
 
 There have been browser extensions to block certain content for a long time. But it's now when it gets built-in and easily accessible for everyone, not necessarily tech-savvy ones.
 
 ## No scripts
 
-Our content (at least the most important bit) should ideally be rendered server side. This improves load time and makes all bots index our content. 
+Our content (at least the most important bit) should ideally be rendered server side. This improves load time and makes all bots index our content.
 > "But Google Bot is able to run Javascript", you say.
 
 Truth is that there are other bots out there that might not be that smart. Say someone shares a link to your site on Twitter. A Twitter bot goes and makes a request to that page and tries to use its metadata to show a nice Twitter Card. Facebook? Same story.

@@ -8,7 +8,6 @@ tags:
   - asp net mvc
   - bigpipe
   - facebook
-  - tutorial
 
 ---
 

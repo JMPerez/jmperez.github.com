@@ -3,6 +3,8 @@ layout: post
 title: SSL all the things
 date: 2015-10-09 11:35:00+02:00
 description: Adding SSL to your site can be super easy. If you are using GitHub Pages with a custom domain, read this.
+tags:
+  - ssl
 ---
 _... or why I have migrated my site to SSL_. I have been willing to use HTTPS on my site for some time, especially to be able to play with some new technologies like Service Workers. And, if GitHub implements it, [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2#Encryption).
 

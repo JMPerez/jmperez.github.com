@@ -3,6 +3,8 @@ layout: post
 title: 'Moving from Wordpress to Jekyll + Github Pages'
 date: 2014-01-27 21:03:00+01:00
 description: I recently migrated my blog to Jekyll and Github Pages and it was worth it. Even though there are drawbacks, it is convenient and the website has know a very good performance.
+tags:
+  - jekyll
 ---
 
 A few weeks ago I migrated this blog to [Jekyll and GitHub Pages](https://help.github.com/articles/using-jekyll-with-pages), and the process has turned out to be quite easy. I have wanted to give [Octopress](http://octopress.org/) or [Jekyll](http://jekyllrb.com/) a try for a long time, but I neved found the time.

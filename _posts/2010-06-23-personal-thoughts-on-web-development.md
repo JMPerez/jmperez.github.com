@@ -8,8 +8,7 @@ description: Until 2 years ago I had always seen Javascript as a poor language.
   you spend hours trying to find.
 date: 2010-06-23 08:00:03+00:00
 tags:
-  - ipad
-  - iphone
+  - ios
 
 ---
 

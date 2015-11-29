@@ -10,6 +10,9 @@ description: Personal web site of frontend engineer JMPerez. Web development, st
             <a href="{{ post.url }}">
                 <h1>{{ post.title }}</h1>
             </a>
+            <div class="post-data" itemprop="datePublished" content="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date_to_string }}
+            </div>
             {{ post.excerpt }}
 
             <div class="post-data">

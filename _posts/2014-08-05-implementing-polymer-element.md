@@ -2,6 +2,9 @@
 layout: post
 title: Polymer and Web Components
 date: 2014-08-05 18:30:00+02:00
+tags:
+  - web components
+  - polymer
 ---
 
 It's been a few weeks since I last posted. Rather than being on vacations resting on a beach, I have be been busy trying out some things I had in my backlog, and one of them is **[Polymer](http://www.polymer-project.org/)**. Read below about what Polymer is and my impressions after creating some elements.

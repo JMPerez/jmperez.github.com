@@ -4,6 +4,9 @@ title: How Medium does progressive image loading
 date: 2015-10-19 00:05:00+02:00
 description: This post explains how Medium renders an image placeholder using low-res thumbnails and canvas
 image: /assets/images/posts/medium-placeholder.png
+tags:
+  - images
+  - ux
 ---
 
 Recently, I was browsing a post on Medium and I spotted a nice image loading effect. First, load a small blurry image, and then transition to the large image. I found it pretty neat and wanted to disect how it was done.<br/><br/>![A screenshot of a blurry placeholder while the image is loaded]({{ site.url }}/assets/images/posts/medium-placeholder.png)

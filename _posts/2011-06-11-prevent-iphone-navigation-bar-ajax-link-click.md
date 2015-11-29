@@ -7,7 +7,6 @@ tags:
   - ajax
   - facebook
   - ios
-  - iphone
   - javascript
   - mobile
 

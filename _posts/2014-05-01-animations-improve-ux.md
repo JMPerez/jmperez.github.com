@@ -2,6 +2,8 @@
 layout: post
 title: Subtle animations to improve the user experience
 date: 2014-05-01 11:30:00+02:00
+tags:
+  - animations
 ---
 
 I have just come across the post [Improve the payment experience with animations - Behind the scenes of Stripe Checkout

@@ -5,9 +5,7 @@ date: 2010-06-21 16:33:44+00:00
 description: This post shows how we can easily track the execution times of our actions
   and controllers by using a filter attribute
 tags:
-  - actionfilterattribute
-  - monitoring
-  - times
+  - asp net mvc
 
 ---
 

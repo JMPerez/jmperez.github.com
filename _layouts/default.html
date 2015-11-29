@@ -10,18 +10,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link rel="author" href="https://plus.google.com/107456024651797783420" />
         <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.url }}/feed.xml">
-        <meta property="og:title" content="{{ page.title }}">
-        <meta property="og:description" content="{{ description | strip_html | condense_spaces | truncate:300 }}">
         <meta name="twitter:card" content="summary">
         {% if page.url %}
-        <meta name="twitter:url" content="{{ site.url }}{{ url }}">
+        <meta name="twitter:url" content="{{ site.url }}{{ url }}" property="og:url">
         {% endif %}
-        <meta name="twitter:title" content="{{ page.title }}">
-        <meta name="twitter:description" content="{{ description | strip_html | condense_spaces | truncate:300 }}">
+        <meta name="twitter:title" content="{{ page.title }}" property="og:title">
+        <meta name="twitter:description" property="og:description" content="{{ description | strip_html | condense_spaces | truncate:300 }}">
         <meta name="twitter:site" content="@jmperezperez">
         {% if page.image %}
-        <meta name="twitter:image:src" content="{{ site.url }}{{ page.image }}">
+        <meta name="twitter:image" property="og:image" content="{{ site.url }}{{ page.image }}">
         {% endif %}
+        <meta property="fb_app_id" content="1702266270006013">
         <link rel="canonical" href="{{ site.url }}{{ url }}" />
         <style>{% include style.css %}</style>
         <script>
@@ -30,13 +29,12 @@
             window.location.protocol = 'https';
         </script>
     </head>
-
     <body>
         {% include ga.html %}
         <header>
             <nav id="menu">
                 <a href="/">JMPerez Blog</a>
-                <a href="/projects">Projects</a>
+                <a href="/projects/">Projects</a>
                 <a href="/about-me/">About</a>
             </nav>
         </header>

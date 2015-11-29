@@ -5,7 +5,7 @@ enforce_ssl: jmperezperez.com
 markdown: redcarpet
 highlighter: pygments
 permalink: /:title/
-paginate: 5
+paginate: 10
 paginate_path: "page:num"
 timezone: Europe/Madrid
 gems:

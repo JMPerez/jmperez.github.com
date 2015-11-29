@@ -19,6 +19,10 @@ I have already talked about image optimization in my [list of optimization techn
 
 I have prepared [a demo of the Compressive Images technique]({{ site.url }}/demos/compressive-images/) where you can test your own images.
 
+<div class="callout">
+<strong>Info</strong>: Note that this technique might have a high impact on decoding + resizing, especially on mobile. Tim Kadlec explained it at Velocity SC 2015 in his <a href="https://www.youtube.com/watch?v=jP68rCjSSjM&t=10m56s">Mobile Image Processing talk</a>.
+</div>
+
 ## Progressive JPEGs
 
 Thanks to [Progressive jpegs: a new best practice](http://calendar.perfplanet.com/2012/progressive-jpegs-a-new-best-practice/) I have learnt that progressive JPGs normally weight less than baseline ones. Not only that, but they make some browsers start rendering the image sooner, preventing showing a white chunk until the full image is downloaded. By using tools such as imageoptim, which runs jpegtran behind the scenes, you can make sure the smallest file is chosen.

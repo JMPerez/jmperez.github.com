@@ -23,6 +23,8 @@ After making the change I went through some additional steps:
 ## Why switching to SSL
 You might wonder why this site, a static blog that doesn't deal with user's private information, needs SSL. I consider HTTPS to be a sign of a good network citizen. In addition, some of my projects use 3rd party APIs like Spotify's Web API, and the token retrieval and storage will be even more secure with HTTPS. And as I said, this will allow me to do some hacking with new browser APIs.
 
+**Update December 4th, 2015**: CloudFlare has just enabled HTTP/2 for the sites using their SSL, which means that if your browser supports it, you should be getting this page using HTTP/2.
+
 ## Performance implications
 Migrating to HTTPS has a small effect in terms of performance. The requests will take longer to be fulfilled due to the negotiation phase of the protocol, and the decryption.
 

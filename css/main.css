@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5 {
     font-size: 17px;
 }
 
-p, .post ul, .post ol {
+p, .post ul, .post ol, iframe {
     margin: 0 0 5% 0;
 }
 

@@ -24,9 +24,11 @@ I would like to save a form and give feedback to the user. One possibility is to
 If the user continues editing and we didn't remove the alert, then when she saves again she doesn't get any feedback about the most recent saving action. Does that alert refer to this save or to the previous one?
 
 Then I thought it would be useful to have the Save button change between Save - Saving - Saved, similar to [the example on the post](https://medium.com/p/3d1b0a9b810e). A first draft was this:
-<iframe src="http://jsfiddle.net/8Z8Jh/1/show/" width="100%" height="110px"></iframe>
+
+<iframe src="https://jsfiddle.net/JMPerez/khjs3x9x/show/" width="100%" height="150px"></iframe>
 
 After that, I found [this post](http://minimalmonkey.com/fun-animations-with-css3/) and applied some transitions:
-<iframe src="http://jsfiddle.net/8Z8Jh/2/show/" width="100%" height="130px"></iframe>
+
+<iframe src="https://jsfiddle.net/JMPerez/kbtr8mqs/show/" width="100%" height="170px"></iframe>
 
 Even though I'm not super happy with the result I think that a button like that with some animation can be very useful when saving data in a form.

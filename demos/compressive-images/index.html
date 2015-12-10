@@ -13,7 +13,7 @@
     var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-39254352-1"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src="http://www.google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})()
 	</script>
     <h1>Compressive Images Demo</h1>
-    <p>This is a demo of the technique known as <a href="http://filamentgroup.com/lab/rwd_img_compression/">Compressive Images</a>, mentioned in my blog post <a href="http://jmperezperez.com/image-optimization-lossy-lossless-techniques/">Image optimization: Lossy, lossless and other techniques</a>. It consists of generating a large high-compressed image as opposed to multiple images to accomplish images that are flexible enough to be shown in different resolutions and pixel densities.</p>
+    <p>This is a demo of the technique known as <a href="http://filamentgroup.com/lab/rwd_img_compression/">Compressive Images</a>, mentioned in my blog post <a href="https://jmperezperez.com/image-optimization-lossy-lossless-techniques/">Image optimization: Lossy, lossless and other techniques</a>. It consists of generating a large high-compressed image as opposed to multiple images to accomplish images that are flexible enough to be shown in different resolutions and pixel densities.</p>
 
     <p>This demo uses Drag&amp;Drop, canvas and File API. Drag and drop your image to see it in action, or scroll down to see a sample image. Try to use an image with at least 1024x768 pixels.</p>
 
@@ -65,7 +65,7 @@
     <img src="normal.jpg" width="600">
     <img src="compressed.jpg" width="600">
     <h3>800px wide</h3>
-    <div class="cross-fade">    
+    <div class="cross-fade">
     	<img src="normal.jpg" width="800">
     	<img src="compressed.jpg" width="800">
     </div>
@@ -82,7 +82,7 @@
 			canvas.width = w;
 			canvas.height = h;
 			context.drawImage(i, 0, 0, w, h);
-			return canvas.toDataURL('image/jpeg', level);	
+			return canvas.toDataURL('image/jpeg', level);
 		}
 
 		function processImage(i) {
@@ -152,10 +152,10 @@
 			document.getElementById('high-compressed').src = highCompressedUrl;
 			document.getElementById('high-compressed').width = 800;
 		}
-			
+
 
 		var holder = document.getElementById('holder');
-    
+
 	    holder.ondragover = function() {
 	        this.className = 'is_hover';
 	        return false;
@@ -167,8 +167,8 @@
 	    holder.ondrop = function(e) {
 	        this.className = '';
 	        e.preventDefault();
-	                
-	        var file = e.dataTransfer.files[0], 
+
+	        var file = e.dataTransfer.files[0],
 	        reader = new FileReader();
 	        reader.onload = function(event) {
 	            var i = new Image();
@@ -181,11 +181,11 @@
 
 	        sourceImageSection.querySelector('.size').innerHTML = Math.round(parseInt(file.size) / 1024);
 	        reader.readAsDataURL(file);
-	        
+
 	        return false;
 	    };
 
-    })();    
+    })();
     </script>
 </body>
 </html>

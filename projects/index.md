@@ -29,7 +29,7 @@ I like trying out "the last new thing" in a small project and publish it on GitH
   <li>
     <h3>iQuiz</h3>
     <div class="description">
-      <p>A fun quiz game about your saved Spotify playlists. Do you really know abour your saved music).</p>
+      <p>A fun quiz game about your saved Spotify playlists. Do you really know about your saved music).</p>
       <p>I did this to play with the Web Audio API and Speech Synthesis API.</p>
       <div class="project-links"><a href="https://jmperezperez.com/spotify-iquiz/">Website</a><a href="https://github.com/JMPerez/spotify-iquiz">GitHub</a></div>
     </div>

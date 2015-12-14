@@ -15,7 +15,7 @@
         <meta name="twitter:url" content="{{ site.url }}{{ url }}" property="og:url">
         {% endif %}
         <meta name="twitter:title" content="{{ page.title }}" property="og:title">
-        <meta name="twitter:description" property="og:description" content="{{ description | strip_html | condense_spaces | truncate:300 }}">
+        <meta name="twitter:description" content="{{ description | strip_html | condense_spaces | truncate:300 }}" property="og:description">
         <meta name="twitter:site" content="@jmperezperez">
         {% if page.image %}
         <meta name="twitter:image" property="og:image" content="{{ site.url }}{{ page.image }}">

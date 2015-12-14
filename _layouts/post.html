@@ -30,8 +30,8 @@ layout: default
         {{ page.date | date_to_string }}
     </div>
     {% if page.image %}
-    <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-      <img itemprop="image" src="{{ site.url }}{{ page.image }}" alt="{{ page.title}}" style="display:none">
+    <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display:none">
+      <img itemprop="image" src="{{ site.url }}{{ page.image }}" alt="{{ page.title}}">
       <meta itemprop="url" content="{{ site.url }}{{ page.image }}">
       {% if page.image_width %}<meta itemprop="width" content="{{ page.image_width}}">{% endif %}
       {% if page.image_height %}<meta itemprop="height" content="{{ page.image_height}}">{% endif %}

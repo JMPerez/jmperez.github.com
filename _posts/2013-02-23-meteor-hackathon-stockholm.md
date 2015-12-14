@@ -3,6 +3,8 @@ layout: post
 title: 'Meteor meetup in Stockholm'
 date: 2014-02-23 14:50:00+02:00
 image: /assets/images/posts/meteor-hackathon.jpg
+image_width: 600
+image_height: 883
 tags:
   - meteor
 description: Meteor Stockholm organized a meetup to talk about meteor and build an app during a hack event.

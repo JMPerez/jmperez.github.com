@@ -2,7 +2,9 @@
 layout: post
 title: Detecting tempo of a song using brower's Audio API
 date: 2014-08-09 8:40:00+02:00
-image: /assets/images/posts/bpm.png
+image: /assets/images/posts/bpm-detection-example.png
+image_width: 383
+image_height: 368
 description: Article about project for detecting BPM of a track using the Audio API, in combination with Spotify Web API and Echo Nest API.
 tags:
   - spotify
@@ -23,9 +25,9 @@ So I sat down and coded a small project using his algorithms and adding a search
 The algorithm is supposed to work better with the central fragment of a song. This avoids the parts with lower volume and fewer signals we can take to detect the beats.
 
 ## Searching songs and obtaining a preview MP3
-The APIs of some music streaming services provide a sample of 30 seconds of every song in their catalog. We can't choose what 30 seconds of a track we want (i.e. what the starting point of the chunk is), but they will usually be a fragment of the most representative part of the song, and this is a good candidate for the algorithm. 
+The APIs of some music streaming services provide a sample of 30 seconds of every song in their catalog. We can't choose what 30 seconds of a track we want (i.e. what the starting point of the chunk is), but they will usually be a fragment of the most representative part of the song, and this is a good candidate for the algorithm.
 
-The bitrate of the samples is rather low, around 96 kb/s according to my tests. I have tried to use them previously for my [karaoke project](http://jmperezperez.com/karaoke/), but the result was very noisy. 
+The bitrate of the samples is rather low, around 96 kb/s according to my tests. I have tried to use them previously for my [karaoke project](http://jmperezperez.com/karaoke/), but the result was very noisy.
 
 Since I'm more than familiar with the [Spotify Web API](https://developer.spotify.com/web-api/), I have chosen it for [searching tracks](https://developer.spotify.com/web-api/search-item/). The search is also quite flexible and normally is enough with the track name (without artist name) to find the song we want.
 
@@ -35,7 +37,7 @@ The Search endpoint returns a list of tracks, and their preview_url property poi
 
 I am following the algorithm described (in great detail) by Joe Sullivan. I have tweaked it a bit to:
 
-1. **Dynamically adjust the threshold to identify peaks**: In some cases a threshold of 0.8 was simply too much and the amount of representative peaks returned too low for doing a proper guess. Thus, I lower the threshold until I have a few more peaks for the given sample. 
+1. **Dynamically adjust the threshold to identify peaks**: In some cases a threshold of 0.8 was simply too much and the amount of representative peaks returned too low for doing a proper guess. Thus, I lower the threshold until I have a few more peaks for the given sample.
 
 2. **Round the theoretical tempo to the closest integer**. Otherwise it is rather impossible to get multiple intervals with the same value. At first sight we lose precision, but tempos are usually integers anyway,
 

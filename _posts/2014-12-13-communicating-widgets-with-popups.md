@@ -3,6 +3,8 @@ layout: post
 title: On widgets, popups and communication between them
 date: 2014-12-13 11:45:00+01:00
 image: /assets/images/posts/iframe-widget.png
+image_width: 479
+image_height: 406
 description: How to communicate from an iframe to a popup served from the same domain i.e. when using login forms in popups.
 tags:
   - popup

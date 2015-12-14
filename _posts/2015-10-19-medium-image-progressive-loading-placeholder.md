@@ -4,6 +4,8 @@ title: How Medium does progressive image loading
 date: 2015-10-19 00:05:00+02:00
 description: This post explains how Medium renders an image placeholder using low-res thumbnails and canvas
 image: /assets/images/posts/medium-placeholder.png
+image_width: 476
+image_height: 608
 tags:
   - images
   - ux

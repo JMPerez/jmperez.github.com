@@ -4,10 +4,14 @@ title: Web Performance talk in Stockholm - Internet Days
 date: 2015-11-23 21:00:00+02:00
 description: Faster than lightning was a set of talks around web performance during Internetdagarna 2015 in Stockholm, Sweden
 image: /assets/images/posts/internetdagarna-logo.jpg
+image_width: 1060
+image_height: 550
 tags:
   - conference
 ---
 Today I have had the chance of attending the [Faster than lightning track](https://internetdagarna.se/program/faster_than_lightning/) of [Internetdagarna 2015](https://internetdagarna.se/english/). There have been talks about web performance, and some broader topics like big data and UI, how data is important for large companies offering free services, and the need for public Governments to build compelling competitive services. [The videos are already online](https://www.youtube.com/watch?v=7G0Xz0JsiFg&index=1&list=PLtDs7N_g_eiZ5ag.e-xntFYydij0xSPL42).<br/><br/>![The Heart logo @ Internetdagarna 2015]({{ site.url }}/assets/images/posts/internetdagarna-logo.jpg)
+
+{% include image.html ratio="52%" source="/assets/images/posts/internetdagarna-logo.jpg" %}
 
 ## Internetdagarna
 

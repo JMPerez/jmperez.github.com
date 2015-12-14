@@ -3,6 +3,8 @@ layout: post
 title: Music Hack Day Paris 2014 and other projects
 date: 2014-04-20 10:20:00+02:00
 image: /assets/images/posts/mhd-paris.jpg
+image_width: 2048
+image_height: 1470
 tags:
   - spotify
   - music hack day

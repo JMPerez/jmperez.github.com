@@ -3,6 +3,8 @@ layout: post
 title: 'Spotify Hack Week 2014'
 date: 2014-02-03 8:15:00+02:00
 image: /assets/images/posts/spotify-hack-week-2014-presentation-sm.jpg
+image_width: 500
+image_height: 410
 tags:
   - spotify
 

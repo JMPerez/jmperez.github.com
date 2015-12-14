@@ -3,6 +3,8 @@ layout: post
 title: Meetups in Stockholm - Web and Startups
 date: 2014-04-21 10:10:00+02:00
 image: /assets/images/posts/meetups-stickers.svg
+image_width: 600
+image_height: 443
 tags:
   - meetups
 ---

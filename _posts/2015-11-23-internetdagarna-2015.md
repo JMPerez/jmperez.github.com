@@ -11,8 +11,6 @@ tags:
 ---
 Today I have had the chance of attending the [Faster than lightning track](https://internetdagarna.se/program/faster_than_lightning/) of [Internetdagarna 2015](https://internetdagarna.se/english/). There have been talks about web performance, and some broader topics like big data and UI, how data is important for large companies offering free services, and the need for public Governments to build compelling competitive services. [The videos are already online](https://www.youtube.com/watch?v=7G0Xz0JsiFg&index=1&list=PLtDs7N_g_eiZ5ag.e-xntFYydij0xSPL42).<br/><br/>![The Heart logo @ Internetdagarna 2015]({{ site.url }}/assets/images/posts/internetdagarna-logo.jpg)
 
-{% include image.html ratio="52%" source="/assets/images/posts/internetdagarna-logo.jpg" %}
-
 ## Internetdagarna
 
 A couple of weeks ago I attended [Monitoring web performance using Open Source tools and AMP](http://www.meetup.com/es/Stockholm-Web-Performance-Group/events/226316269/) by the [Stockholm Web Performance Group](http://www.meetup.com/es/Stockholm-Web-Performance-Group/). I was lucky and got a ticket at a raffle where they gave out a couple of tickets to Internetdagarna.

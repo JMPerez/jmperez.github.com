@@ -3,31 +3,48 @@ layout: default
 ---
 
 <div class="wrapper" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="post">
-        {% if post.url %}
-        <a href="{{ post.url }}">
-            <h1 itemprop="headline">{{ page.title }}</h1>
-        </a>
-        {% else %}
-        <h1 itemprop="headline">{{ page.title }}</h1>
-        {% endif %}
-        <div class="post-data" itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
-            {{ page.date | date_to_string }}
+  <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="https://google.com/article"/>
+  <div class="post">
+    {% if post.url %}
+    <a href="{{ post.url }}">
+      <h1 itemprop="headline">{{ page.title }}</h1>
+    </a>
+    {% else %}
+    <h1 itemprop="headline">{{ page.title }}</h1>
+    {% endif %}
+    <div style="display:none">
+      <h3 itemprop="author" itemscope itemtype="https://schema.org/Person">
+        By <span itemprop="name">José M. Pérez</span>
+      </h3>
+      <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+          <img src="{{ site.url }}/assets/images/jmperez.jpg"/>
+          <meta itemprop="url" content="{{ site.url }}/assets/images/jmperez.jpg">
+          <meta itemprop="width" content="160">
+          <meta itemprop="height" content="160">
         </div>
-        {% if page.image %}
-        <img itemprop="image" src="{{ page.image }}" alt="{{ page.title}}" style="display:none">
-        {% endif %}
-        <div itemprop="articleBody">
-        {{ content }}
-        </div>
-        {% if page.tags.size > 0 %}
-        <div class="tags">Tagged as
-            <ul class="tag-list">{% for post_tag in page.tags %}
-                <li><a href="/tags/#{{ post_tag }}">{{ post_tag }}</a></li>
-            {% endfor %}</ul>
-        </div>
-        {% endif %}
-
+        <meta itemprop="name" content="José M. Pérez">
+      </div>
     </div>
-    <hr />
+    <div class="post-data" itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date_to_string }}
+    </div>
+    {% if page.image %}
+    <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+      <img itemprop="image" src="{{ site.url }}{{ page.image }}" alt="{{ page.title}}" style="display:none">
+      <meta itemprop="url" content="{{ site.url }}{{ page.image }}">
+    </div>
+    {% endif %}
+    <div itemprop="articleBody">
+    {{ content }}
+    </div>
+    {% if page.tags.size > 0 %}
+    <div class="tags">Tagged as
+      <ul class="tag-list">{% for post_tag in page.tags %}
+          <li><a href="/tags/#{{ post_tag }}">{{ post_tag }}</a></li>
+      {% endfor %}</ul>
+    </div>
+    {% endif %}
+  </div>
+  <hr />
 </div>

@@ -1,4 +1,4 @@
 ---
 layout: redirection
-target: "/tutorial-bigpipe-asp-net-mvc-facebook/"
+target: "/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-1/"
 ---

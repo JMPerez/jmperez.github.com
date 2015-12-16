@@ -18,7 +18,8 @@
         <meta name="twitter:description" content="{{ description | strip_html | condense_spaces | truncate:300 }}" property="og:description">
         <meta name="twitter:site" content="@jmperezperez">
         {% if page.image %}
-        <meta name="twitter:image" property="og:image" content="{{ site.url }}{{ page.image }}">
+        <meta property="og:image" content="{{ site.url }}{{ page.image }}">
+        <meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
         {% endif %}
         <meta property="fb:app_id" content="1702266270006013">
         <link rel="canonical" href="{{ site.url }}{{ url }}" />

@@ -119,6 +119,8 @@ The blur effect can also be achieved using [CSS Filter Effects](http://codepen.i
 
 The advantage of this technique is that you can easily tweak how much blur you want and everything is achieved using CSS.
 
+Another option is to use a SVG filter, as explained in [The “Blur Up” Technique for Loading Background Images](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/).
+
 ### Other ways of improving placeholders: Google Images Search
 
 A simpler technique is used by Google Search when searching for images from a smartphone:

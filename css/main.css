@@ -305,12 +305,11 @@ footer {
 
 .button {
     display: inline-block;
-    padding: 10px;
-
-    border-radius: 4px;
-    background-color: #212121;
-    color: #fff;
-    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #555;
+    background-color: #fff;
+    color: #555;
     font-size: 13px;
     line-height: 10px;
 
@@ -323,6 +322,7 @@ footer {
 .button:hover {
     background-color: #3498db;
     color: #fff;
+    border-color: transparent;
 }
 
 .button.inactive {

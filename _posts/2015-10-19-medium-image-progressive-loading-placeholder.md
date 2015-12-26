@@ -11,7 +11,7 @@ tags:
   - ux
 ---
 
-Recently, I was browsing a post on Medium and I spotted a nice image loading effect. First, load a small blurry image, and then transition to the large image. I found it pretty neat and wanted to disect how it was done.<br/><br/>![A screenshot of a blurry placeholder while the image is loaded]({{ site.url }}/assets/images/posts/medium-placeholder.png)
+Recently, I was browsing a post on Medium and I spotted a nice image loading effect. First, load a small blurry image, and then transition to the large image. I found it pretty neat and wanted to dissect how it was done.<br/><br/>![A screenshot of a blurry placeholder while the image is loaded]({{ site.url }}/assets/images/posts/medium-placeholder.png)
 
 ## Medium's technique
 
@@ -29,7 +29,7 @@ Here is what is going on:
 
   2. **Load a tiny version of the image**. At the moment, they seem to be requesting small JPEG thumbnails with a very low quality (e.g. 20%). The markup for this small image is returned in the initial HTML as an `<img/>`, so the browser starts fetching them right away.
 
-  3. Once the image is loaded, **it is drawn in a `<canvas/>`**. Then, the image data is taken and passed through a custom `blur()` function You can see it, a bit scrumbled, in the `main-base.bundle` JS file. This function is similar, though not identical, to [StackBlur](http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html)'s blur function. At the same time, **the main image is requested**.
+  3. Once the image is loaded, **it is drawn in a `<canvas/>`**. Then, the image data is taken and passed through a custom `blur()` function You can see it, a bit scrambled, in the `main-base.bundle` JS file. This function is similar, though not identical, to [StackBlur](http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html)'s blur function. At the same time, **the main image is requested**.
 
   4. Once the main image is loaded, **it is shown** and the `canvas` is hidden.
 
@@ -137,6 +137,10 @@ Earlier this year Facebook posted "[The technology behind preview photos](https:
 The scenario is a bit different, since these "images" are served to the Facebook mobile client, which knows how to prepend the header to compose a valid JPEG image. In the case of a website, we would need to compose this using Javascript, which would probably remove most of the savings. A solution would be to use a Service Worker to do the composition, though we would still need some Javascript to send a "request" with the image contents.
 
 In any case, it seems a bit overkilling for the web, but I wanted to include it as a reference. [Using WebP for generating this preview images]({{ site.url }}/webp-placeholder-images/) can lead to similar savings without having to resort to "creative" solutions.
+
+### LQIP: Low Quality Image Placeholders
+
+Instead of waiting for the final image to be rendered, we can serve a highly compressed image first, and then switch to the large one. This is what  [Low Quality Image Placeholders (LQIP)](http://www.guypo.com/introducing-lqip-low-quality-image-placeholders/) consists of. The idea is similar to Medium's, but serving an image with the same dimensions but higher compression.
 
 ## Conclusion
 

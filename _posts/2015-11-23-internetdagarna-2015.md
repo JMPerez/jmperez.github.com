@@ -61,7 +61,7 @@ _&uarr; Andy Davies showing how to debug HTTP/2 connections with Chrome tools_
 
 [Video on Youtube](https://www.youtube.com/watch?v=m1b_VQk73SI)
 
-### Working with performance, by Tobias Järlund
+### Working with performance, by Tobias J&#228;rlund
 
 Tobias explains how Aftonbladet.se, the main news site in Sweden, approaches web performance, and what problems they have faced when trying to make everyone aware of the performance implications of the content (ads, large images...).
 

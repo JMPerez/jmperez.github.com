@@ -22,13 +22,13 @@ Ahora, la URL [senado.es](http://senado.es) redirecciona a [www.senado.es](http:
 ### Indexable por robots
 Su [robots.txt](http://www.senado.es/robots.txt) ha cambiado y ahora permite a los buscadores indexar el contenido del sitio.
 
-### Compresión Gzip
+### Compresi&#243;n Gzip
 Ahora los recursos se sirven con compresión GZIP habilitada ([fuente](http://gtmetrix.com/compare/BN8ZgvCB/3gwi5Qp4)). Entre otras mejoras, la página principal _pesa_ ahora menos de la mitad, y han mejorado considerablemente el índica PageSpeed y YSlow ([fuente](http://gtmetrix.com/reports/www.senado.es/eS68ECWL)).
 
 ### Errores 404
 Ahora en la página principal, ya sólo hay 1 request que da error 404 ([fuente](http://www.webpagetest.org/result/121203_ZZ_4QD/1/details/)).
 
-## Todavía hay algunos problemas que solucionar
+## Todav&#237;a hay algunos problemas que solucionar
 Pese a todo, aún quedan mejoras por hacer, como la minificación de ficheros, optimización de imágenes, tratar de reducir el número de peticiones y corregir el Mime Type devuelto por el servidor.
 
 Además, con la modificación del fichero [robots.txt](http://www.senado.es/robots.txt) existen detalles dignos de mención. El fichero actual tiene este contenido:

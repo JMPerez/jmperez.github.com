@@ -112,7 +112,7 @@ Best way is to use an [async snippet](http://calendar.perfplanet.com/2013/browse
 You can find plenty of examples by having a look at [this list of
 popular scripts with async loading](https://developers.google.com/speed/docs/insights/UseAsync).
 
-### <a name="localisation"></a>Localisation
+### Localisation
 
 If you want to localise your widget, there are several options. You can detect the language by reading the HTTP `Accept-Language` header sent in the request, and localise your widget accordingly. Thus, it will be rendered using the preferred user's language, and you could default to English if you can't provide a localisation for the languages listed in the header.
 
@@ -124,8 +124,13 @@ The localisation also applies to numbers. If your widget shows a quantity (i.e. 
 
 If you are interested in rounding, [here you have a jsFiddle showing the algorithm used in Twitter's Follow Button](http://jsfiddle.net/sUVFC/).
 
-Conclusion
-----------
+## Useful resources
+
+If you are thinking of using a SDK, I definitely recommend checking out [this JavaScript SDK design guide] (http://sdk-design.js.org/).
+
+## Conclusion
 
 Build widgets that don't affect the performance of the sites using it,
 and strive for compatibility.
+
+

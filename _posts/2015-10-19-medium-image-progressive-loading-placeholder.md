@@ -25,7 +25,7 @@ I have performed a [WebPageTest test](http://www.webpagetest.org/video/compare.p
 
 Here is what is going on:
 
-  1. **Render a div where the image will be displayed**. Medium uses a `<div/>` with a `padding-bottom` set to a percentage, which corresponds to the aspect ratio of the image. Thus, they prevent reflows while the images are loaded since everything is rendered in its final position.
+  1. **Render a div where the image will be displayed**. Medium uses a `<div/>` with a `padding-bottom` set to a percentage, which corresponds to the aspect ratio of the image. Thus, they prevent reflows while the images are loaded since everything is rendered in its final position. This has also been referred to as [intrinsic placeholders](http://daverupert.com/2015/12/intrinsic-placeholders-with-picture/).
 
   2. **Load a tiny version of the image**. At the moment, they seem to be requesting small JPEG thumbnails with a very low quality (e.g. 20%). The markup for this small image is returned in the initial HTML as an `<img/>`, so the browser starts fetching them right away.
 

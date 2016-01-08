@@ -3,7 +3,7 @@
     <head>
         {% assign url = page.url|remove:'index.html' %}
         {% if url == "/" %}{% assign url = "" %}{% endif %}
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>{{ page.title }}</title>
         {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ page.excerpt | raw_content }}{% endif %}{% endcapture %}
         <meta name="description" content="{{ description | strip_html | condense_spaces | truncate:300 }}">

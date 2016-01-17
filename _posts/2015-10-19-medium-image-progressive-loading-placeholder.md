@@ -148,4 +148,4 @@ As our pages load more and more images, it is good to think of their loading pro
 
 If you are generating several thumbnail sizes for your images, you can experiment using a very small one to use it as the background while the final image loads.
 
-And if you are interested in other image tips and tricks, check out [Image optimization: Lossy, lossless and other techniques]({{ site.url }}/image-optimization-lossy-lossless-techniques).
+<div class="read-next" style="padding: 1em; background-color: #fdf6ea"><strong>Interested in other image tips and tricks?</strong><br>Check out <a href="/image-optimization-lossy-lossless-techniques">Image optimization: Lossy, lossless and other techniques</a>.</div>

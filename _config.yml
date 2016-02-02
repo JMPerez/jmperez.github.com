@@ -2,10 +2,6 @@ name: José M. Pérez
 description: Personal web site of frontend engineer JMPerez. Web development, standards, design patterns and some other good practices.
 url: https://jmperezperez.com
 enforce_ssl: jmperezperez.com
-markdown: redcarpet
-redcarpet:
-  extensions: [with_toc_data]
-highlighter: pygments
 permalink: /:title/
 paginate: 10
 paginate_path: "page:num"

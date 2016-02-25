@@ -400,7 +400,10 @@ footer {
 {
     position: absolute;
     left: -1000px;
-    width: 900px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 /*--CALLOUT--*/

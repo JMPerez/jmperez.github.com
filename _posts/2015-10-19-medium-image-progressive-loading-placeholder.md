@@ -73,9 +73,9 @@ _Note that the actual image sizes requested depend on the device._
 
 I have prepared [this CodePen](http://codepen.io/jmperez/pen/yYjPER) where I have implemented the same effect, though using CSS filters for the blur instead of a canvas (see below more info about this variant).
 
-Here is a demo:
+Here is a demo (click 'Run Pen' to run it):
 
-<p data-height="403" data-theme-id="0" data-slug-hash="yYjPER" data-default-tab="result" data-user="jmperez" class='codepen'>See the Pen <a href='http://codepen.io/jmperez/pen/yYjPER/'>Medium loading image effect reproduced</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="403" data-theme-id="0" data-slug-hash="yYjPER" data-default-tab="result" data-user="jmperez" class='codepen' data-preview="true">See the Pen <a href='http://codepen.io/jmperez/pen/yYjPER/'>Medium loading image effect reproduced</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
 You can see it better [in full screen](http://codepen.io/jmperez/full/Xmzobe/). I recommend that you use network throttling and disable cache to notice the full animation.
 
@@ -119,7 +119,7 @@ The blur effect can also be achieved using [CSS Filter Effects](http://codepen.i
 
 The advantage of this technique is that you can easily tweak how much blur you want and everything is achieved using CSS.
 
-Another option is to use a SVG filter, as explained in [The “Blur Up” Technique for Loading Background Images](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/).
+Another option is to use a SVG filter, as explained in [The “Blur Up” Technique for Loading Background Images](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/) and [Textured Gradients in Pure CSS](http://rentafounder.com/textured-gradients-in-pure-css/).
 
 ### Other ways of improving placeholders: Google Images Search
 

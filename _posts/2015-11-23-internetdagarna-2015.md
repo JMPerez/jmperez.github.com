@@ -20,6 +20,7 @@ I have only attended the first of the two days of the conference. It has been ve
 [![Main room at Internetdagarna 2015]({{ site.url }}/assets/images/posts/internetdagarna-hall.jpg)]({{ site.url }}/assets/images/posts/internetdagarna-hall.jpg)
 
 ## Talks
+
 ### High Performance Images, by Tobias Baldauf
 
 Great talk! If you care about images, their size and format, please watch this. Instead of just explaining the typical tips about resizing and optimising images, Tobias focuses on formats and compression.

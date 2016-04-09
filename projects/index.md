@@ -86,7 +86,7 @@ I like trying out "the last new thing" in a small project and publish it on GitH
       <li><a href="https://github.com/JMPerez/js-crusher">A JS crusher</a> that can be used in JS1K contest submissions.</li>
       <li><a href="https://github.com/JMPerez/promise-throttle">A promise throttle</a> which is useful to avoid rate limiting when using REST APIs.</li>
       <li><a href="https://github.com/JMPerez/raml2swagger">A library to convert REST API definitions from RAML to Swagger</a>.
-      <li><a href=https://www.gitbook.com/book/jmperez/wpo/">WPO Techniques: A list of good practices for improving website performance</a></li>
+      <li><a href="https://www.gitbook.com/book/jmperez/wpo/">WPO Techniques: A list of good practices for improving website performance</a></li>
     </ul>
   </li>
 </ul>

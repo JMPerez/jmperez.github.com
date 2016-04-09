@@ -451,3 +451,8 @@ footer {
     width: 3.5em;
     margin-right: 0.5em;
 }
+
+.highlight {
+    border: 1px solid #eee;
+    margin-bottom: 1em;
+}

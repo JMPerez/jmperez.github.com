@@ -102,7 +102,7 @@ Instead of making a request for the small thumbnails, it is possible to inline t
 
 ### Blur effect
 
-By default, when a browser renders a small image scaled up, it applies a light blur effect to smooth the artifacts of the image. The effect can also be [turned off](http://superuser.com/questions/530317/how-to-prevent-chrome-from-blurring-small-images-when-zoomed-in) for images like QR codes.
+By default, when a browser renders a small image scaled up, it applies a light blur effect to smooth the artefacts of the image. The effect can also be [turned off](http://superuser.com/questions/530317/how-to-prevent-chrome-from-blurring-small-images-when-zoomed-in) for images like QR codes.
 
 >[...]the browser would render it in a way that didn’t make it look blocky[...] from [Google Developers](https://developers.google.com/web/updates/2015/01/pixelated).
 
@@ -110,7 +110,7 @@ This works both in Chrome, Safari and Firefox (I haven't tried on IE yet), thoug
 
 <p data-height="367" data-theme-id="0" data-slug-hash="Xmzobe" data-default-tab="result" data-user="jmperez" class='codepen'>See the Pen <a href='http://codepen.io/jmperez/pen/Xmzobe/'>Blur effect when scaling up a small image</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
-Note how the artifacts are smoothen. Keep in mind that the image is only 27px wide and has very low quality, which should result in an awful scaled-up version, but it isn't. If the above effect is enough for you, then you don't need to use more complicated alternatives.
+Note how the artefacts are smoothen. Keep in mind that the image is only 27px wide and has very low quality, which should result in an awful scaled-up version, but it isn't. If the above effect is enough for you, then you don't need to use more complicated alternatives.
 
 The blur effect can also be achieved using [CSS Filter Effects](http://codepen.io/aniketpant/pen/DsEve). [Its support is quite wide](http://caniuse.com/#feat=css-filters) aside from IE. I'm pretty sure Medium tried this before going to a canvas solution, which feels far too over-engineered, but for some reason they decided not to use it.
 

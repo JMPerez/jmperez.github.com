@@ -18,7 +18,7 @@ This article explains some ideas behind a small project to detect the tempo of a
 
 ## Beat detection using Audio API
 
-A couple of days ago I came across [Beat Detection Using Web Audio](http://tech.beatport.com/2014/web-audio/beat-detection-using-web-audio/), a blog post by **Joe Sullivan** where he explained a simple algorithm to calculate the tempo of a song using the Audio API. After reading it, I was curious about how well the algorithm would work for other tracks.
+A couple of days ago I came across [Beat Detection Using Web Audio](http://joesul.li/van/beat-detection-using-web-audio/), a blog post by **Joe Sullivan** where he explained a simple algorithm to calculate the tempo of a song using the Audio API. After reading it, I was curious about how well the algorithm would work for other tracks.
 
 So I sat down and coded a small project using his algorithms and adding a search box to search for songs, and display the result for them.
 

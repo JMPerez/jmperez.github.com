@@ -11,7 +11,7 @@ Javascript is not just a language for the browser. Node.JS is becoming popular a
 
 Developers haven't decided what to call them yet, but for the sake of consistency I'll be referring to them as _universal_ web apps. These projects have 2 main features:
 
-- The server runs JSwe
+- The server runs JS
 - Most of the code of the project is shared between browser and server.
 
 For a long time we tangled business logic with markup. One would generate some HTML in the server and JS would run in the client to make AJAX requests and changes in the DOM. This worked for most websites, but today lots of projects start as a SPA, where state is managed in a single place and the server acts merely to provide the initial page and a set of endpoints that provide data. But this approach has caused [long page load times](https://blog.twitter.com/2012/improving-performance-on-twittercom) and bad SEO forced rethinking the web.
@@ -92,6 +92,9 @@ From the libraries I tested, 4 of them were using `browser` and 2 of them not. T
 It is not straightforward to know what modules are contributing the most size to the output bundle. One way you can try is by creating an entry JS file that only includes the module you are interested in, which is what I did when comparing request libraries. But if you are using webpack, a better way is to use [webpack-visualizer](https://github.com/chrisbateman/webpack-visualizer).
 
 This tool generates a pie chart with all the required dependencies and makes it straightforward to find the culprit.
+
+![iconv-lite and pako are the main contributors to node-fetch bundle size]({{ site.url }}/assets/images/posts/node-fetch-webpack-stats.png)
+_^ iconv-lite and pako are the main contributors to node-fetch bundle size_
 
 ### One more thing: ES6 imports
 

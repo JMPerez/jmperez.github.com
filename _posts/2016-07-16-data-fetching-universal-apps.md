@@ -11,7 +11,7 @@ Javascript is not just a language for the browser. Node.JS is becoming popular a
 
 Developers haven't decided what to call them yet, but for the sake of consistency I'll be referring to them as _universal_ web apps. These projects have 2 main features:
 
-- The server runs JS
+- The server runs JSwe
 - Most of the code of the project is shared between browser and server.
 
 For a long time we tangled business logic with markup. One would generate some HTML in the server and JS would run in the client to make AJAX requests and changes in the DOM. This worked for most websites, but today lots of projects start as a SPA, where state is managed in a single place and the server acts merely to provide the initial page and a set of endpoints that provide data. But this approach has caused [long page load times](https://blog.twitter.com/2012/improving-performance-on-twittercom) and bad SEO forced rethinking the web.
@@ -47,7 +47,7 @@ Notice the big difference in size between them, all the way from 4kB to 489kB. H
 
 Something I learnt while creating those bundles is that it is very useful to double check the generated code. If the bundler sees that the code is using some feature only available in Node, it will include the JS code for it in the bundle.
 
-An example is `Buffer`, which I was using in a wrapper for the [Spotify Web API. Since `Buffer` is not supported in the browser environment, which accounts to 44kB of JS (minified).
+An example is `Buffer`, which [I was using in a wrapper for the Spotify Web API](https://github.com/thelinmichael/spotify-web-api-node/blob/cf9b5834b828b38b659afd82fb85ae742d5ea0eb/src/spotify-web-api.js#L1241). Since `Buffer` is not supported in the browser environment, which accounts to 44kB of JS (minified).
 
 Same thing can happen with these request libraries when they include code that is supposed to be only run in Node.JS and not on the browser.
 

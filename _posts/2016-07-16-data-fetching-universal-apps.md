@@ -3,6 +3,13 @@ layout: post
 title: Some things I learned while implementing data fetching for universal web apps
 date: 2016-07-16 19:40:00+02:00
 description: Tips when fetching data in an isomorphic/universal app.
+image: /assets/images/posts/node-fetch-webpack-stats.png
+tags:
+  - isomorphic
+  - universal
+  - webpack
+  - browserify
+  - node
 ---
 
 Javascript is not just a language for the browser. Node.JS is becoming popular as a platform to run servers in JS, which combined with more modular JS applications makes it possible to write universal web apps. But what are universal apps? And why we should care about data fetching?

@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Some things I learned while implementing data fetching for universal web apps
+title: Some things I learned implementing Data Fetching for Universal Web Apps
 date: 2016-07-16 19:40:00+02:00
 description: Tips when fetching data in an isomorphic/universal app.
-image: /assets/images/posts/node-fetch-webpack-stats.png
+image: /assets/images/posts/universal-data-fetching.png
 tags:
   - isomorphic
   - universal
@@ -12,26 +12,30 @@ tags:
   - node
 ---
 
-Javascript is not just a language for the browser. Node.JS is becoming popular as a platform to run servers in JS, which combined with more modular JS applications makes it possible to write universal web apps. But what are universal apps? And why we should care about data fetching?
+Javascript is not just a language for the browser. Node.JS is becoming popular as a platform to run JS on the server. We are learning how to build modular websites were business logic and state are not coupled with the markup. And finally we are getting the tools to build universal web apps. But what are universal apps, aAnd why should we care about data fetching?
 
 ## Universal/Isomorphic apps
 
-Developers haven't decided what to call them yet, but for the sake of consistency I'll be referring to them as _universal_ web apps. These projects have 2 main features:
+The community hasn’t decided on what to call them yet, but for the sake of consistency I’ll be referring to them as _universal_ web apps. These projects have 2 main features:
 
 - The server runs JS
 - Most of the code of the project is shared between browser and server.
 
-For a long time we tangled business logic with markup. One would generate some HTML in the server and JS would run in the client to make AJAX requests and changes in the DOM. This worked for most websites, but today lots of projects start as a SPA, where state is managed in a single place and the server acts merely to provide the initial page and a set of endpoints that provide data. But this approach has caused [long page load times](https://blog.twitter.com/2012/improving-performance-on-twittercom) and bad SEO forced rethinking the web.
+For a long time we tangled business logic with markup. We would generate some HTML in the server and JS would run in the client to make AJAX requests and changes in the DOM.
 
-The best way to provide fast-loading pages is to server-side render them. Though service workers might help eventually, the first request will still need to make all the way through to the server. In order to compose the page, the server needs to identify the user, fetch some data and generate the markup through some template system. After the initial load, JS comes in and replaces full page loads with some data fetching and markup composition.
+This worked for most websites, but today lots of projects start as a SPA. Their state is managed in a single place and the server just provides the initial page and a set of endpoints that return data to the view. But this approach has caused [long page load times](https://blog.twitter.com/2012/improving-performance-on-twittercom) and bad SEO forced rethinking the web.
+
+The best way to provide fast-loading pages is to server-side render them. Though service workers might help eventually, the initial request needs to reach the server. To compose the page, the server needs to identify the user, fetch some data and generate the markup through some template system. After the initial load, JS comes in and replaces full page loads with some data fetching and markup composition.
 
 Here we can see that some code will be duplicated, especially in SPAs. A way to improve this is by running JS in the server and trying to write code that is decoupled from the DOM. Server-side rendering can be seen these days as an enhancement for SPAs.
 
 ## Data fetching in universal apps
 
+![Universal request libraries abstract your code from how a request is made.]({{ site.url }}/assets/images/posts/universal-data-fetching.png)
+
 In universal apps, most of the code can be shared between browser and server. One of the pieces that differs is data fetching. Node.JS has its own way to make requests, and neither `XMLHttpRequest` nor `fetch` is supported.
 
-There are many request libraries that will perform the request properly, using whatever is supported in the platform running the script. Some of them try to polyfill `fetch` in Node, others polyfill `http` in the browser. In our code we `require`/`import` them, and then the code is included in the bundle served to the browser using browserify or webpack.
+There exists many libraries that will perform the async requests using the mechanism available in the platform running the code. Some of them try to polyfill `fetch` in Node, others polyfill `http` in the browser. In our code we `require`/`import` them, and then the code is included in the bundle served to the browser using browserify or webpack.
 
 ### Choosing a universal request package
 
@@ -46,13 +50,13 @@ I have used browserify to create a bundle just requiring each of there libraries
 - [isomorphic-request 1.0.0](https://registry.npmjs.org/isomorphic-request): 240kB
 - [node-fetch 1.5.3](https://github.com/bitinn/node-fetch): 489kB
 
-Note that these packages might not be equivalent in terms of features, and I haven't tried most of them myself. In some cases it might be worth it creating your custom request library that only supports the needed functionality to access the endpoints you are using. But all in all these libraries should generate code that wraps `XMLHttpRequest` and its response.
+Note that these packages might not have the same features, and I haven’t tried most of them myself. In some cases it might be worth creating your custom request library accesses the endpoints you are using. But all in all these libraries should generate code that wraps `XMLHttpRequest` and its response.
 
 Notice the big difference in size between them, all the way from 4kB to 489kB. How can that be? For that we need to understand what is going on when our code is bundled.
 
 ### Bundling of Node's APIs
 
-Something I learnt while creating those bundles is that it is very useful to double check the generated code. If the bundler sees that the code is using some feature only available in Node, it will include the JS code for it in the bundle.
+Something I learnt while creating those bundles is that it is very useful to double check the generated code. **If the required code includes some feature only available in Node, the bundler will add the JS code for it in the output bundle.**
 
 An example is `Buffer`, which [I was using in a wrapper for the Spotify Web API](https://github.com/thelinmichael/spotify-web-api-node/blob/cf9b5834b828b38b659afd82fb85ae742d5ea0eb/src/spotify-web-api.js#L1241). Since `Buffer` is not supported in the browser environment, which accounts to 44kB of JS (minified).
 
@@ -109,7 +113,7 @@ A great way to reduce the footprint of a library is by exporting it in pieces. T
 
 This is really useful if you are implementing a wrapper for your API endpoints. It is convenient to support all the endpoints, but an app might only be interesting in using a few of those.
 
-I have started experimenting with this building [a wrapper for the Spotify Web API](https://github.com/JMPerez/spotify-web-api-js-poc) that exposes each endpoint as an exported function, so that the unused endpoints are not part of the generated code.
+I have started experimenting with this building [a new wrapper for the Spotify Web API](https://github.com/JMPerez/spotify-web-api-js-poc) that exposes each endpoint as an exported function, so that the unused endpoints are not part of the generated code.
 
 ## Conclusion
 

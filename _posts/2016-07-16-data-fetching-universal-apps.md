@@ -2,7 +2,7 @@
 layout: post
 title: Some things I learned implementing Data Fetching for Universal Web Apps
 date: 2016-07-16 19:40:00+02:00
-description: Tips when fetching data in an isomorphic/universal app.
+description: Webpack and Browserify generate large bundles if we include Node.JS code to be run on the browser. In this post you will learn how to prevent this issue.
 image: /assets/images/posts/universal-data-fetching.png
 tags:
   - isomorphic

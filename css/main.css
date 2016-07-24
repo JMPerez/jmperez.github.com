@@ -201,7 +201,7 @@ code {
 
 /*--HEADER--*/
 
-header {
+body > header {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     position: relative;
     overflow: hidden;

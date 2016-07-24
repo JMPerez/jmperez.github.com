@@ -2,49 +2,54 @@
 layout: default
 ---
 
-<div class="wrapper" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="wrapper" itemscope itemtype="http://schema.org/BlogPosting">
   <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="https://google.com/article"/>
   <div class="post">
-    <div class="media author">
-      <div class="img">
-        <a href="{{ site.url }}/about-me/">
-          <img src="https://jmperezperez.com/assets/images/jmperez.jpg" class="avatar-img" alt="">
-        </a>
-      </div>
-      <div class="bd">
-        <div class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="{{ site.url }}/about-me/" itemprop="name">José M. Pérez</a></div>
-        <time class="post-data op-published" itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}" datetime=content="{{ page.date | date_to_xmlschema }}">
-            {{ page.date | date_to_string }}
-        </time>
-      </div>
-    </div>
-    {% if post.url %}
-    <a href="{{ post.url }}">
-      <h1 itemprop="headline">{{ page.title }}</h1>
-    </a>
-    {% else %}
-    <h1 itemprop="headline">{{ page.title }}</h1>
-    {% endif %}
-    <div style="display:none">
-      <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-          <img src="{{ site.url }}/assets/images/jmperez.jpg"/>
-          <meta itemprop="url" content="{{ site.url }}/assets/images/jmperez.jpg">
-          <meta itemprop="width" content="160">
-          <meta itemprop="height" content="160">
+    <header>
+      <div class="media author">
+        <div class="img">
+          <a href="{{ site.url }}/about-me/">
+            <img src="https://jmperezperez.com/assets/images/jmperez.jpg" class="avatar-img" alt="">
+          </a>
         </div>
-        <meta itemprop="name" content="José M. Pérez">
+        <div class="bd">
+          <div class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="{{ site.url }}/about-me/" itemprop="name">José M. Pérez</a></div>
+          <time class="post-data op-published" itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}" datetime="{{ page.date | date_to_xmlschema }}">
+              {{ page.date | date_to_string }}
+          </time>
+          <time class="op-modified" datetime="{{ page.date | date_to_xmlschema }}" style="display:none">
+              {{ page.date | date_to_string }}
+          </time>
+        </div>
       </div>
-    </div>
+      {% if post.url %}
+      <a href="{{ post.url }}">
+        <h1 itemprop="headline">{{ page.title }}</h1>
+      </a>
+      {% else %}
+      <h1 itemprop="headline">{{ page.title }}</h1>
+      {% endif %}
+      <div style="display:none">
+        <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+          <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+            <img src="{{ site.url }}/assets/images/jmperez.jpg"/>
+            <meta itemprop="url" content="{{ site.url }}/assets/images/jmperez.jpg">
+            <meta itemprop="width" content="160">
+            <meta itemprop="height" content="160">
+          </div>
+          <meta itemprop="name" content="José M. Pérez">
+        </div>
+      </div>
 
-    {% if page.image %}
-    <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display:none">
-      <img itemprop="image" src="{{ site.url }}{{ page.image }}" alt="{{ page.title}}">
-      <meta itemprop="url" content="{{ site.url }}{{ page.image }}">
-      {% if page.image_width %}<meta itemprop="width" content="{{ page.image_width}}">{% endif %}
-      {% if page.image_height %}<meta itemprop="height" content="{{ page.image_height}}">{% endif %}
-    </div>
-    {% endif %}
+      {% if page.image %}
+      <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display:none">
+        <img itemprop="image" src="{{ site.url }}{{ page.image }}" alt="{{ page.title}}">
+        <meta itemprop="url" content="{{ site.url }}{{ page.image }}">
+        {% if page.image_width %}<meta itemprop="width" content="{{ page.image_width}}">{% endif %}
+        {% if page.image_height %}<meta itemprop="height" content="{{ page.image_height}}">{% endif %}
+      </div>
+      {% endif %}
+    </header>
     <div itemprop="articleBody">
     {{ content }}
     </div>
@@ -57,4 +62,4 @@ layout: default
     {% endif %}
   </div>
   <hr />
-</div>
+</article>

@@ -13,9 +13,9 @@ layout: default
       </div>
       <div class="bd">
         <div class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="{{ site.url }}/about-me/" itemprop="name">José M. Pérez</a></div>
-        <div class="post-data" itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
+        <time class="post-data op-published" itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}" datetime=content="{{ page.date | date_to_xmlschema }}">
             {{ page.date | date_to_string }}
-        </div>
+        </time>
       </div>
     </div>
     {% if post.url %}

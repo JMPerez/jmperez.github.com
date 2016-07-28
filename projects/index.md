@@ -72,7 +72,7 @@ I like trying out "the last new thing" in a small project and publish it on GitH
       <li>An exploration of using Polymer to build components for Spotify: a <a href="https://github.com/JMPerez/spotify-search">search component</a>, a <a href="https://github.com/JMPerez/spotify-coverart">responsive cover art</a>, and a <a href="https://github.com/JMPerez/spotify-save-as-playlist">save a playlist button</a>.</li>
       <li><a href="https://github.com/JMPerez/thirtiflux">A basic Spotify Web Player using React and Flux</a></li>
       <li><a href="https://github.com/JMPerez/spotify-web-api-graphql">A proof of concept of a GraphQL provider for the Spotify Web API</a></li>
-      <li><a href="https://github.com/JMPerez/spotify-web-api-js">A wrapper for the Spotify Web API in Javascript</a></li>
+      <li><a href="https://github.com/JMPerez/spotify-web-api-js">A wrapper for the Spotify Web API in Javascript</a>, and a <a href="https://github.com/JMPerez/spotify-web-api-js-poc">proof of concept of a universal wrapper using ES6 and named exports</a></li>
       <li><a href="https://github.com/JMPerez/spotify-most-followed-popular-artists-genres">A visualization of most followed artists and genres in Spotify</a></li>
     </ul>
   </li>

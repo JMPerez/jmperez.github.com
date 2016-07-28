@@ -18,13 +18,14 @@ There have been browser extensions to block certain content for a long time. But
 ## No scripts
 
 Our content (at least the most important bit) should ideally be rendered server side. This improves load time and makes all bots index our content.
+
 > "But Google Bot is able to run Javascript", you say.
 
 Truth is that there are other bots out there that might not be that smart. Say someone shares a link to your site on Twitter. A Twitter bot goes and makes a request to that page and tries to use its metadata to show a nice Twitter Card. Facebook? Same story.
 
 Relying on Javascript for our main content makes us also vulnerable to SPOF issues. Say the JS file has a typo, or maybe the CDN that contains a JS file you need is not accessible in that moment. If your content can be rendered server-side, the user will still be able to see it.
 
-> But I need Javascript for my site to work! you claim.
+> "But I need Javascript for my site to work!" you claim.
 
 You are probably right for this one, but more often than not you depend on Javascript because you didn't think of a scenario in which Javascript wasn't available. After all, who disables Javascript these days! _Note: I've done this and I continue doing it, so you can blaim me too._
 

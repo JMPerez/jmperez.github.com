@@ -14,8 +14,7 @@ Image optimization is a big topic these days. The main culprit in site traffic a
 
 You may have wondered how to optimize your images. First, check if there is room for improvement. For that I will be using [Google Page Speed](http://developers.google.com/speed/pagespeed), which offers several tools for analyzing your site. One of them is a handy [online analyzer](http://developers.google.com/speed/pagespeed/insights/). Type there the name of your site and click to analyze it.
 
-I like the 'Optimize images' section. It telles you what resources can be optimized and how much traffic you can save, both in the mobile version of your site and the one served for desktop:
-
+I like the 'Optimize images' section. It tells you what resources can be optimized and how much traffic you can save, both in the mobile version of your site and the one served for desktop:
 [![Analyzing a site using Google PageSpeed Insights online]({{ site.url }}/assets/images/posts/google-pagespeed-insights-report-thumb.jpg)]({{ site.url }}/assets/images/posts/google-pagespeed-insights-report.png)
 _Analyzing the analyzer: Here you can see the 'Optimize images' section for the Google PageSpeed Insights page. Notice the it reports the optimizable images and how much size you can save._
 
@@ -59,11 +58,10 @@ If you are interested in image optimization, I recommend you having a look at:
 
 I have been using image optimization actively for a long time. Depending on your needs, I recommend you one of these methods:
 
-* **Optimization of a few files through a desktop app (on Mac)**: Use [ImageOptim](http://imageoptim.com). Drag and drop JPG and PNG files and you are goo to go. 
+* **Optimization of a few files through a desktop app (on Mac)**: Use [ImageOptim](http://imageoptim.com). Drag and drop JPG and PNG files and you are goo to go.
 * **Optimization of images on Wordpress**: Use [Smush.it](http://wordpress.org/plugins/wp-smushit/). It optimizes uploaded images automatically, and you can also run the plug-in against the existing images.
 * **Optimizing PNG files using lossy compression**: Use [TinyPNG](https://tinypng.com). It can reduce PNG images size a lot, but double check the result before, since sometimes you can notice the difference in the colours.
 
 ##  Read also
 
 I wrote a post about [Image optimization: Lossy, lossless and other techniques]({{ site.url }}/image-optimization-lossy-lossless-techniques/) in which I explain some tools and considerations when compressing images.
-

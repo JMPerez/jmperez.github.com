@@ -8,10 +8,10 @@ tags:
 
 ---
 
-![Welcome our heroes! at Terminal Building, Budapest]({{ site.url }}/assets/images/posts/design-terminal-welcome-heroes-300x171.jpg)
-_Welcome our heroes! at Terminal Building, Budapest_
-
 These days I have been attending the [mloc.js conference](http://mloc-js.com/) in Budapest. It was a nice experience with a great organisation and good speakers working around Javascript limitations (more about that below).
+![Welcome our heroes! at Terminal Building, Budapest]({{ site.url }}/assets/images/posts/design-terminal-welcome-heroes-300x171.jpg)
+
+_Welcome our heroes! at Terminal Building, Budapest_
 
 The mloc.js conference was quite focused on generating JS from compiled languages and programming paradigms for safer, faster, more productive development tools. Initially it also included multiplatform development using JS as a runtime environment.
 
@@ -20,7 +20,6 @@ Not much information about large scale applications on JS, and a lot about gener
 Lots of speakers were pointing out the limitation of Javascript in regards of typing, but instead of using what the language provides or extending it somehow, they encouraged developers to use a completely different language to generate Javascript. Then, it was needed to mock the interface of popular JS libraries so their code could still refer to these libraries and not break.
 
 Even though I find this interesting, sometimes it became a bit too dense. I wondered many times the real application of such compilers, how they could help out when developing a large code base, and if it was really worth it trying to introduce them in a project.
-
 [![Nick Fisher talking about the new design of Soundcloud]({{ site.url }}/assets/images/posts/nick-fisher-soundcloud-300x234.jpg)]({{ site.url }}/assets/images/posts/nick-fisher-soundcloud.jpg)
 _Nick Fisher talking about the new design of Soundcloud_
 

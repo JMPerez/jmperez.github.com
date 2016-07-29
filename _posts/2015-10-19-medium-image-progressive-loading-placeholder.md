@@ -80,7 +80,6 @@ Here is a demo (click 'Run Pen' to run it):
 You can see it better [in full screen](http://codepen.io/jmperez/full/Xmzobe/). I recommend that you use network throttling and disable cache to notice the full animation.
 
 This filmstrip view shows the above codepen when disabling cache and throttling to "Good 3G":
-
 ![Chrome Inspector Timeline Capture]({{ site.url }}/assets/images/posts/medium-codepen.png)
 
 ## Is it worth it?
@@ -124,7 +123,6 @@ Another option is to use a SVG filter, as explained in [The “Blur Up” Techni
 ### Other ways of improving placeholders: Google Images Search
 
 A simpler technique is used by Google Search when searching for images from a smartphone:
-
 [![Searching on Google Images from the phone]({{ site.url }}/assets/images/posts/google-images-placeholder.png)]({{{ site.url }}/assets/images/posts/google-images-placeholder.png)
 _&uarr; Google Images Search shows a solid background as placeholder (left image is while loading, right when already loaded)._
 

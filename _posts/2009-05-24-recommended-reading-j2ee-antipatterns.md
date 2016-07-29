@@ -10,9 +10,8 @@ tags:
 
 ---
 
-![j2ee-antipatterns]({{ site.url }}/assets/images/posts/j2ee-antipatterns.jpg)
-
 J2EE AntiPatterns is a book that teaches design patterns using a different approach.
+![j2ee-antipatterns]({{ site.url }}/assets/images/posts/j2ee-antipatterns.jpg)
 
 Accustomed to the descriptions of design patterns based on the famous [Design Patterns: Elements of Reusable Object-Oriented Software](https://en.wikipedia.org/wiki/Design_Patterns) book, which was the first one in classifying and studying techniques to solve recurring problems in programming, _J2EE AntiPatterns_, rather than listing various design patterns and explaining in what scenarios each one might be applied (it is true that some are applicable only when using certain languages or in very specific cases), begins showing the problems that we can face when writing code in an object oriented language like Java, and explains how to solve them by proposing a design pattern.
 

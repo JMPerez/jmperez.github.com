@@ -59,7 +59,7 @@ On Chrome for iOS, you would do:
     var w = window.open(<login_url>,...);
     console.log(w);   // prints undefined
 
-`w` should hape a reference to the opened popup, which we could use, for instance, to poll its `w.closed` attribute to see if the user has closed it. This would be useful to detect that the user ignored the login form. However, `w` won't store a reference to the popup on Chrome for iOS.
+`w` should have a reference to the opened popup, which we could use, for instance, to poll its `w.closed` attribute to see if the user has closed it. This would be useful to detect that the user ignored the login form. However, `w` won't store a reference to the popup on Chrome for iOS.
 
 Try it on [JSFiddle](http://jsfiddle.net/JMPerez/4d0g5csa/show).
 
@@ -78,7 +78,6 @@ Welcome Safari 8 and IE 11.
 #### Reading localStorage from a host different than the page's host will fail
 
 Some browsers come with default privacy preferences that will prevent you from carrying out certain operations.
-
 [![Privacy settings in Safari 8]({{ site.url }}/assets/images/posts/safari-8-privacy-settings.png)]({{ site.url }}/assets/images/posts/safari-8-privacy-settings.png)
 
 In the image above you can see Safari 8's default privacy settings, with "Allow from websites I visit" checked.

@@ -10,9 +10,9 @@ tags:
   - zepto
 
 ---
-[![jQ.mobi demo running on a WP7 emulator]({{ site.url }}/assets/images/posts/jq-mobi-requires-webkit-browser-164x300.png)]({{ site.url }}/assets/images/posts/jq-mobi-requires-webkit-browser.png)
 
 During the last days I have been looking for a Javascript library targeted to recent mobile devices. Though I am familiar with jQuery, there is a lot of code that deals with browsers and issues that are specific to desktop browsers, but not to mobile ones, at least when working with browsers running on smartphones and tablets.
+[![jQ.mobi demo running on a WP7 emulator]({{ site.url }}/assets/images/posts/jq-mobi-requires-webkit-browser-164x300.png)]({{ site.url }}/assets/images/posts/jq-mobi-requires-webkit-browser.png)
 
 All of them work seamlessly on webkit browsers, which are the most broadly used ones, but only a few take into account Internet Explorer, Opera Mobile or Firefox.
 

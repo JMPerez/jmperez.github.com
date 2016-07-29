@@ -31,9 +31,8 @@ Here we can see that some code will be duplicated, especially in SPAs. A way to 
 
 ## Data fetching in universal apps
 
-![Universal request libraries abstract your code from how a request is made.]({{ site.url }}/assets/images/posts/universal-data-fetching.png)
-
 In universal apps, most of the code can be shared between browser and server. One of the pieces that differs is data fetching. Node.JS has its own way to make requests, and neither `XMLHttpRequest` nor `fetch` is supported.
+![Universal request libraries abstract your code from how a request is made.]({{ site.url }}/assets/images/posts/universal-data-fetching.png)
 
 There exists many libraries that will perform the async requests using the mechanism available in the platform running the code. Some of them try to polyfill `fetch` in Node, others polyfill `http` in the browser. In our code we `require`/`import` them, and then the code is included in the bundle served to the browser using browserify or webpack.
 
@@ -103,7 +102,6 @@ From the libraries I tested, 4 of them were using `browser` and 2 of them not. T
 It is not straightforward to know what modules are contributing the most size to the output bundle. One way you can try is by creating an entry JS file that only includes the module you are interested in, which is what I did when comparing request libraries. But if you are using webpack, a better way is to use [webpack-visualizer](https://github.com/chrisbateman/webpack-visualizer).
 
 This tool generates a pie chart with all the required dependencies and makes it straightforward to find the culprit.
-
 ![iconv-lite and pako are the main contributors to node-fetch bundle size]({{ site.url }}/assets/images/posts/node-fetch-webpack-stats.png)
 _^ iconv-lite and pako are the main contributors to node-fetch bundle size_
 

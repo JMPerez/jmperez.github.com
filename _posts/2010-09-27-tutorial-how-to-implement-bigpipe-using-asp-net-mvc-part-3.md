@@ -297,7 +297,6 @@ Resources chart
 ---------------
 
 The following chart shows how resources are loaded:
-
 ![Resources loading graph using BigPipe]({{ site.url }}/assets/images/posts/bigpipe-02.jpg)
 
 We can see that the main document flushes early, starting the requests for Site.css

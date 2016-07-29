@@ -14,8 +14,7 @@ tags:
 
 While helping in the redesign of Signum's website I took a look at Google Maps. It's been almost 2 years since I last used the API for my end career project.
 
-Now I wanted to know if I could make use of geolocalization and directions to show a visitor the way to get to our headquarters from wherever he/she is, instead of just showing with a marker where we are. Thanks to geolocation we can find out with precission the position coordinates of the visitor.
-
+Now I wanted to know if I could make use of geolocalization and directions to show a visitor the way to get to our headquarters from wherever he/she is, instead of just showing with a marker where we are. Thanks to geolocation we can find out with precision the position coordinates of the visitor.
 [![Geolocation to guide visitor's to a specific place]({{ site.url }}/assets/images/posts/google-maps-geolocation-directions-300x187.jpg)]({{ site.url }}/assets/images/posts/google-maps-geolocation-directions.jpg)
 [View demo](/demos/geoposition)
 
@@ -32,7 +31,7 @@ Here is the JS code (also as [a Gist on Github](https://gist.github.com/4587682)
   'use strict';
   var map, //the google map
   directionsService, //service that provides directions to reach our destination
-  directionsDisplay, //rendeder that draws directions on map
+  directionsDisplay, //renderer that draws directions on map
   destinationName = 'Ventorro del Cano, Madrid'; //our destination. Set yours!
 
   // providers

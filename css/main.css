@@ -271,8 +271,7 @@ body > header {
 
 .post p img {
     display: block;
-    margin: 0 auto;
-    margin-bottom: 5%;
+    margin: 5% auto;
     max-width: 100%;
     border: 1px solid #eee;
 }

@@ -12,7 +12,6 @@ tags:
 It's been several weeks since I wrote [a tutorial to implement BigPipe using C# and ASP.Net MVC]({{ site.url }}/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-1). And I have just read [a PDF from a presentation at Velocity China](http://velocity.oreilly.com.cn/index.php?func=session&amp;name=Facebook%E7%BD%91%E7%AB%99%E7%9A%84Ajax%E5%8C%96%E3%80%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%B5%81%E6%B0%B4%E7%BA%BF) in which Changhao Jiang, from Facebook, explains some details about Bigpipe, as well as other techniques they use to improve Time to interact (both real and perceived), as well as data savings. These techniques (named Quickling and PageCache) are based on hijax and an intelligent update of specific content of the page instead of the whole page when data changes.
 
 According to Changhao Jiang, this is the improvement when using BigPipe on Facebook:
-
 ![Improvement when using BigPipe on Facebook]({{ site.url }}/assets/images/posts/bigpipe-tti-improvement-e1320910397828.png)
 
 My first project using BigPipe as I explained is about to go online. Overall I can say that BigPipe approach has helped divide pages into independent chunks using RenderAction, opposite to overpopulating a single action to retrieve all data needed by the page. And I have faced some problems involving pagelet content.

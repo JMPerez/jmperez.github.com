@@ -4,9 +4,8 @@ title: 'Cómo hemos cambiado - Un antiguo proyecto web'
 date: 2013-02-13 07:30:50+00:00
 
 ---
-[![Captura de pantalla del proyecto Inmodomus]({{ site.url }}/assets/images/posts/inmodomus-300x276.jpg)]({{ site.url }}/assets/images/posts/inmodomus.jpg)
-
 Ayer, mi buen amigo [Alberto Juan (@aprezia)](https://twitter.com/Aprezia), me enviaba [un link a un perfil de GTMetrix](http://gtmetrix.com/reports/82.165.143.130/L2CqUhX8). Él sabe que me encanta la optimización web. Y yo le echaba un vistazo rápido a los números y pensaba que se podía mejorar bastante el Page Speed y YSlow de ese sitio.
+[![Captura de pantalla del proyecto Inmodomus]({{ site.url }}/assets/images/posts/inmodomus-300x276.jpg)]({{ site.url }}/assets/images/posts/inmodomus.jpg)
 
 Y en ningún momento me había dado cuenta de que [ese sitio web, Inmodomus](http://82.165.143.130:2005/publico/), lo habíamos implementado 8 años atrás Alberto y yo para una práctica en la asignatura [Programación en Internet de la Universidad de Alicante](http://gplsi.dlsi.ua.es/asignaturas/pi/). Y hasta teníamos una buena [documentación web](http://82.165.143.130:2005/documentacion/).
 

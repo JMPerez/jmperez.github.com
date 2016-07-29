@@ -18,11 +18,9 @@ Lots of websites have started replacing their icon fonts and small icons with SV
 Since the SVGs are usually small in size, lots of developers decide to inline them. Especially when replacing a web icon font, which can be fetch in a single request.
 
 Some sites inline the SVGs as part of their CSS file. This can be done uri-encoding the SVG data, or converting it to base 64, but [this one results in a larger payload](https://css-tricks.com/probably-dont-base64-svg/).
-
 [![Including SVGs in the markup]({{ site.url }}/assets/images/posts/svg-inline-html-use.png)]({{ site.url }}/assets/images/posts/svg-inline-html-use.png)
 
 Some other sites include them as part of the markup, defining them as `<symbol />`s, and adding a reference to them where they should be rendered through the `<use />` tag. I like this one because it is easier to just serve the SVGs used in that page. If you use this, remember to define the symbols above the reference to them, or some browsers (e.g. Safari on iPhone) will not render the SVGs.
-
 [![Including SVGs inlined in the CSS]({{ site.url }}/assets/images/posts/svg-inline-css.png)]({{ site.url }}/assets/images/posts/svg-inline-css.png)
 
 In any case, the SVGs are making their way to the critical path, and saving bytes won't result in a worse experience.
@@ -46,7 +44,6 @@ If you have read this far, you will welcome ideas to further optimise your SVGs.
 Optimising SVGs "by hand" might look a bit tedious and only at reach of a few ones, but the gains are big.
 
 ## An example: Spotify logo
-
 [![Editing the Spotify logo in fontForge]({{ site.url }}/assets/images/posts/spotify-fontforge.png)]({{ site.url }}/assets/images/posts/spotify-fontforge.png)
 
 I decided to try to use some of Andreas' ideas and try to optimise the Spotify logo. This is what I did:

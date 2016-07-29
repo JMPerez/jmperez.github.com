@@ -74,8 +74,8 @@ usually include:
     unreadable.
 -   **Locale**: The language that will be used to localise the text of
     the widget (see the [Localisation section](#localisation) for more info).
-
 ![Youtube Subscribe Button](/assets/images/posts/youtube-subscribe-button.png)
+
 _Notice the light and dark themes and try to foresee what would happen if
 you embed the light one in a dark site._
 
@@ -132,5 +132,3 @@ If you are thinking of using a SDK, I definitely recommend checking out [this Ja
 
 Build widgets that don't affect the performance of the sites using it,
 and strive for compatibility.
-
-

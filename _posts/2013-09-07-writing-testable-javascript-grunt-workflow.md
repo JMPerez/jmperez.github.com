@@ -20,7 +20,6 @@ Grunt.
 ## First things first. Read a bit on it.
 
 It is definitely worth it reading if you care about testing JS code.
-
 ![Testable JavaScript by Mark Ethan Trostler]({{ site.url }}/assets/images/posts/testable-javascript.jpg)
 
 I grabbed the [Testable JavaScript][] book and took it home. Read through it and realize I was

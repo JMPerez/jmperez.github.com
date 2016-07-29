@@ -17,9 +17,8 @@ Yesterday I watched this [Front End Tech Talk by Facebook](http://www.facebook.c
 
 > We had about 1MB of JS on the homepage
 
-[![We had about of 1MB of JS on the homepage]({{ site.url }}/assets/images/posts/facebook-1mb-javascript-1024x574.jpg)]({{ site.url }}/assets/images/posts/facebook-1mb-javascript.jpg)
-
 They realized they had a problem with so much JS code and they worked at different levels to shrink it.
+[![We had about of 1MB of JS on the homepage]({{ site.url }}/assets/images/posts/facebook-1mb-javascript-1024x574.jpg)]({{ site.url }}/assets/images/posts/facebook-1mb-javascript.jpg)
 
 ## Haste
 
@@ -40,21 +39,17 @@ Makinde Adeagbo [already talked about Primer at JSConf 2010](http://jsconf.blip.
 A waterfall analysis showed that CSS resources where requested quite at the bottom and a lot of javascript on the head. Moving Javascript code to the bottom showed that the user interface would freeze while downloading/parsing/executing this code and that would provide a bad user experience. In some way, this is quite similar to what Yahoo! also found out, and I explained on my _[The not so good performance tips]({{ site.url }}/yahoo-tips-website-performance-flush-bottom/)_ post.
 
 They decided to rewrite their JS code so that they could load a small file at the top that would provide the common functionality needed (about 80% of the interactions). And they moved Javascript client code to PHP code on the server. Instead of calling to a function like this one:
-
 [![Before Primer]({{ site.url }}/assets/images/posts/prev-dialog-code-1024x574.jpg)]({{ site.url }}/assets/images/posts/prev-dialog-code.jpg)
 _Javascript code to build a dialog_
 
 they rewrote dialogs as anchors with a rel="dialog" attribute:
-
 [![Dialog link using Primer]({{ site.url }}/assets/images/posts/after-dialog-code-1024x574.jpg)]({{ site.url }}/assets/images/posts/after-dialog-code.jpg) _Simplified code to mark a link as a dialog_
 
 Basically they embraced progressive enhancement. This dialog links would be ajaxified later using a common Javascript code:
-
 [![Adding dialog behavior using Javascript]({{ site.url }}/assets/images/posts/after-dialog-code-common-1024x573.jpg)]({{ site.url }}/assets/images/posts/after-dialog-code-common.jpg)
 _Adding a listener to manage click events on links marked as dialogs_
 
 And instead of letting Javascript set the title, content and the rest of dialog properties, it is the server the one that serves the dialog formatted as needed.
-
 [![PHP code to generate a dialog]({{ site.url }}/assets/images/posts/dialog-server-code-1024x574.jpg)]({{ site.url }}/assets/images/posts/dialog-server-code.jpg)
 _PHP chainable code to create a dialog and set different properties_
 
@@ -67,7 +62,6 @@ Like Makindo says,
 > if you are writing a site with tons and tons of Javascript it is very easy to forget about actual forms
 
 All this common interactions are shown in the comments form:
-
 [![Facebook's comment form]({{ site.url }}/assets/images/posts/application-comment-form-1024x573.jpg)]({{ site.url }}/assets/images/posts/application-comment-form.jpg)
 _An example of common interactions that in their comment form_
 

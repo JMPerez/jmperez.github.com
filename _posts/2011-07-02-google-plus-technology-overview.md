@@ -18,12 +18,10 @@ Meanwhile I am trying to get useful conclusions by seeing their CSS and JavaScri
 Feedback system
 
 Google Plus feedback system is brilliant. It is very easy to use for low-tech users thanks to their highlight / black out feature and area selection, and useful for Google due to the information they retrieve from the browser, HTML structure and javascript log.
-
 [![Creating a feedback message in Google+, blacking out and highlighting certain areas]({{ site.url }}/assets/images/posts/feedback-test-1024x572.jpg)]({{ site.url }}/assets/images/posts/feedback-test.jpg)
 _Creating a feedback message in Google+, blacking out and highlighting certain areas_
 
 I find it very interesting how they are taking a screenshot of the web page when you preview the feedback message:
-
 [![Preview of a feedback message in Google+, showing a screenshot of the web page]({{ site.url }}/assets/images/posts/feedback-test-preview.jpg)]({{ site.url }}/assets/images/posts/feedback-test-preview.jpg)
 _Preview of a feedback message in Google+, showing a screenshot of the web page_
 

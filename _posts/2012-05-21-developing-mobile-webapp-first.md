@@ -21,7 +21,6 @@ Some UI designers are so familiar with web that they use HTML+CSS to implement n
 Your web development can be easily reused to make a hybrid application. Your native app can be a wrapper of your webapp, and you can use PhoneGap or Titanium to to access hardware through JS bridges. In addition, you can iterate and port parts of your application to native controls if you realize it is more suitable. You don't lose your previous development, since you can reuse them in your mobile site.
 
 Take Google+ iPhone app as an example:
-
 ![Google+ iPhone app]({{ site.url }}/assets/images/posts/google-plus-hybrid.jpg)
 
 The Google+ iPhone app was basically a wrapper around their mobile webapp. From there, they have evolve it to a much richer one. However, certain features like the login page remain the same. And there is the mobile site, that looks a lot like the 'old' iphone app.

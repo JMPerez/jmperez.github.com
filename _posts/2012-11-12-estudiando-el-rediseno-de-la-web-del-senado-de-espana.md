@@ -9,8 +9,7 @@ tags:
 
 ---
 
-_Echa un vistazo al [análisis más reciente que he hecho de la web del Senado]({{ site.url }}/revisitando-nueva-web-senado), donde hablo sobre algunos cambios que han llevado a cabo desde que publicó el nuevo sitio._
-
+Echa un vistazo al [análisis más reciente que he hecho de la web del Senado]({{ site.url }}/revisitando-nueva-web-senado), donde hablo sobre algunos cambios que han llevado a cabo desde que publicó el nuevo sitio.
 [![Portada de Senado.es]({{ site.url }}/assets/images/posts/senado-es-portada-300x175.jpg)]({{ site.url }}/assets/images/posts/senado-es-portada.jpg)
 
 Hoy se ha presentado el rediseño de la web del Senado de España. Sin entrar a valorar su coste o la necesidad, quería analizarla desde el punto de vista de implementación frontend.
@@ -59,7 +58,6 @@ La verdad es que es difícil justificar la inexistencia de un sitio móvil o sop
 
 ## Rendimiento web
 Si entramos a valorar el rendimiento web tenemos bastantes puntos que tratar. Puedes echar un vistazo a [las puntuaciones Page Speed y YSlow de la página principal en GTmetrix](http://gtmetrix.com/reports/www.senado.es/cCUUkJUm), el resultado de [WebPageTest usando Chrome desde París](http://www.webpagetest.org/result/121112_7M_DP6/) y [IE8 desde Madrid](http://www.webpagetest.org/result/121112_RQ_F0H/), y el [análisis de zoompf](http://scans.zoompf.com/s/e2b8609e20721c1548291f3fd94acaed/report.html), este último teniendo en cuenta 146 páginas de la web del Senado.
-
 ![Puntuación Page Speed y YSlow de www.senado.es]({{ site.url }}/assets/images/posts/gtmetrix-senado-es.jpg)
 _Puntuación Page Speed y YSlow de www.senado.es_
 
@@ -71,7 +69,6 @@ No se especifica política alguna de cacheo de los distintos recursos (JS, PNG, 
 
 ### Errores 404
 Al menos en la página principal, hay 2 requests que resultan en errores 404 ([fuente](http://www.webpagetest.org/result/121112_7M_DP6/1/details/)).
-
 ![Errores 404 en la web del Senado]({{ site.url }}/assets/images/posts/404-senado-es.jpg)
 _Errores 404 en la web del Senado_
 

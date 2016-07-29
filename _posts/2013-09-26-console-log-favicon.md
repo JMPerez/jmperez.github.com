@@ -24,7 +24,6 @@ You can use styles in the printed messages in the console, at least on Google Ch
 
 ### Google Chrome
 You can check out the [section about styling the console](https://developers.google.com/chrome-developer-tools/docs/console#styling_console_output_with_css) on Google Chrome. It works, but [it doesn't seem to support `background-repeat: no-repeat`](https://plus.google.com/+AddyOsmani/posts/TanDFKEN9Kn#z12wstwg0wr5g1xoy04cepzz1lamdxbqjjg#1365803568707861). So if we use `"%c text"`, the logo repeats all the way until the end of the string. Thus, we have to place the logo on the right side by doing `"text %c"`.
-
 ![Chrome doesn't interpret "background-repeat: no-repeat"]({{ site.url }}/assets/images/posts/console-log-favicon-repeat-chrome.jpg)
 
 ### Firebug

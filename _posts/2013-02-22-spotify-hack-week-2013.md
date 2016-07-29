@@ -7,9 +7,11 @@ tags:
 
 ---
 
-![Spotify Hack Week]({{ site.url }}/assets/images/posts/spotify-hackweek-logo.png)This week almost the whole Spotify company have been working on hack projects. Having 5 days to implement your project is a nice thing, especially after having participated in many 24h ones, and encourage you to come up with more complex projects that otherwise wouldn't be possible to implement. On the [Spotify Labs blog](http://labs.spotify.com/) there is [a post on how the hack week was organized](http://labs.spotify.com/2013/02/15/organizing-a-hack-week/), and you have [a video by Kitchen TV](http://kitchen-tv.com/2013/projects/spotify-hack-week/).
+![Spotify Hack Week]({{ site.url }}/assets/images/posts/spotify-hackweek-logo.png)This week almost the whole Spotify company have been working on hack projects. Having 5 days to implement your project is a nice thing, especially after having participated in many 24h ones, and encourage you to come up with more complex projects that otherwise wouldn't be possible to implement.
 
+On the [Spotify Labs blog](http://labs.spotify.com/) there is [a post on how the hack week was organized](http://labs.spotify.com/2013/02/15/organizing-a-hack-week/), and you have [a video by Kitchen TV](http://kitchen-tv.com/2013/projects/spotify-hack-week/).
 [![Spotify Trends Project]({{ site.url }}/assets/images/posts/spotify-trends-hackweek-300x237.jpg)]({{ site.url }}/assets/images/posts/spotify-trends-hackweek.jpg)
+
 The project is a website showing real-time information about tracks being played, skipped and shared by country through Spotify. We even develop a trending-tracks algorithm.
 The thing I enjoyed the most was developing using the same language both client-side and server-side. Not switching once and again really decreases your task-switching headaches.
 

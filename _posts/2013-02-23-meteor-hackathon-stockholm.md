@@ -12,7 +12,6 @@ description: Meteor Stockholm organized a meetup to talk about meteor and build 
 ---
 
 Yesterday I attended [a meetup](http://www.meetup.com/Meteor-Stockholm/events/164634952/) by [Meteor Stockholm](http://www.meetup.com/Meteor-Stockholm/) in which there were some talks and a short hack event.
-
 [![Meteor meetup in Stockholm]({{ site.url }}/assets/images/posts/meteor-hackathon-sm.jpg)]({{ site.url }}/assets/images/posts/meteor-hackathon.jpg)
 
 What did I hack? Well, in 2 hours I just had time to play around with a [basic Meteor example](https://www.meteor.com/examples/leaderboard) and try to add custom functionality. Nothing I can feel proud of, but at least I could get my hands dirty with Meteor.

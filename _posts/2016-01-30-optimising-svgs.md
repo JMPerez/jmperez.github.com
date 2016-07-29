@@ -44,9 +44,11 @@ If you have read this far, you will welcome ideas to further optimise your SVGs.
 Optimising SVGs "by hand" might look a bit tedious and only at reach of a few ones, but the gains are big.
 
 ## An example: Spotify logo
+
+I decided to try to use some of Andreas' ideas and try to optimise the Spotify logo.
 [![Editing the Spotify logo in fontForge]({{ site.url }}/assets/images/posts/spotify-fontforge.png)]({{ site.url }}/assets/images/posts/spotify-fontforge.png)
 
-I decided to try to use some of Andreas' ideas and try to optimise the Spotify logo. This is what I did:
+This is what I did:
 
 1. Install fontForge: I had to install X11 and then fontForge. fontForge can be used to create and edit fonts, so the grid and rules have been thought for that use case. Still, it can be used for a regular SVG.
 2. Import the SVG that you want to optimise.

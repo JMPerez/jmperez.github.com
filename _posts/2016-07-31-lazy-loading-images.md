@@ -33,6 +33,7 @@ We can have a quick look at [spotify.com home page](https://spotify.com/):
 
 <video controls style="max-width:100%">
   <source src="{{ site.url }}/assets/images/posts/spotify-com-loading-images.webm" type="video/webm">
+  <source src="{{ site.url }}/assets/images/posts/spotify-com-loading-images.mp4" type="video/mp4">
 </video>
 
 We load the page, then clear the network tab, which is filtered to show only requests for images. As we scroll down the page, more images are requested, accounting for ~1.1MB.

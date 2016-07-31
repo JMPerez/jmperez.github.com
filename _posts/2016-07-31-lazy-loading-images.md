@@ -14,7 +14,7 @@ tl;dr: Don’t load images that the user doesn’t see on screen. It is easier t
 ## What is lazy loading
 Everyone has seen lazy loading content on web sites and mobile apps. You start seeing some content, and as you scroll, more content gets loaded.
 
-##A web page and all its requests
+## A web page and all its requests
 In the case of web pages, it hasn’t been that easy for developers to find the balance between creating many small resources or serving a big one. A trend these days consist of inlining critical resources, the ones needed to render content above the fold, and load the rest of CSS and JS asynchronously. This is easy to do in small static sites, but more difficult for larger sites with dynamic content.
 
 Delaying the request to some assets has lots of benefits:

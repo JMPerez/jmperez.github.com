@@ -19,7 +19,7 @@ This is by far the best scenario. Javascript is used to improve user experience 
 An example would be a form used to post a comment. This form could be ajaxify using a script that is requested when the textarea is focused. This way, this script would just be downloaded when potentially needed. Another example would be an input search that is improved using autocompletion once it is focused.
 
 ## Using mocks/stubs for Javascript-only functionality
-Some times Javascript is used to allow funcionality that cannot implemented other way. In this case, a mockup approach can be taken.
+Some times Javascript is used to allow functionality that cannot implemented other way. In this case, a mockup approach can be taken.
 
 Mockup Javascript only defines the signatures of the functions and as
 little functionality as possible. We can use mocks to load the "real"

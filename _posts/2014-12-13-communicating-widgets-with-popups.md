@@ -21,7 +21,7 @@ When you click the button you will be prompted with a login form (if not logged 
 
 ### On popups and redirections
 
-You probably want the login form to be displayed in a not too intrusive way. You might want to embed it in an iframe, but this shouldn't be allowed by the service. An iframe would hide the URL of the login page, and URLs are a guarantee for the user that the form belongs to the site it is supposed to belong. Otherwise it would be hard to distinguish whether the login form comes from the real site or it is a phising attempt.
+You probably want the login form to be displayed in a not too intrusive way. You might want to embed it in an iframe, but this shouldn't be allowed by the service. An iframe would hide the URL of the login page, and URLs are a guarantee for the user that the form belongs to the site it is supposed to belong. Otherwise it would be hard to distinguish whether the login form comes from the real site or it is a phishing attempt.
 
 The alternatives are opening a popup or redirecting the user to the login form. I personally like the popup solution. It doesn't cover the whole page, keeps the context of the widget at sight, and also keeps the state of the page.
 
@@ -29,9 +29,10 @@ Working with popups means that you need to think carefully what is going to happ
 
 Opening a popup seems a plausible solution. The login form will return some type of identifier / access token to the iframe when the user logs in. It seems easy but...
 
-### Some definitions
+### Defining the scenario
 
 Let's suppose that the site `www.example.com` embeds an iframe (from now on, **the iframe**) served from `www.widget.com`. The iframe will try to open a popup (from now on, **the popup**) served from the same domain as the widget. That popup will show a login form and will try to communicate back to the iframe when the user logs in.
+![A widget and a popup served from a different domain.]({{ site.url }}/assets/images/posts/widget-popup-different-domain.png)
 
 ### I didn't tell you about mobile
 

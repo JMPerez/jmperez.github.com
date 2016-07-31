@@ -9,7 +9,7 @@ tags:
 
 ---
 
-I have just read [Christian Hilmann's post about Boot to Gecko](http://christianheilmann.com/2012/03/04/mobile-world-congress-boot-to-gecko-and-the-unknown-beast-called-html5/) and I am very excited to see how HTML5 + JS + CSS3 stack can ever power a mobile phone user interface.
+I have just read [Christian Heilmann's post about Boot to Gecko](http://christianheilmann.com/2012/03/04/mobile-world-congress-boot-to-gecko-and-the-unknown-beast-called-html5/) and I am very excited to see how HTML5 + JS + CSS3 stack can ever power a mobile phone user interface.
 
 These are good times for web development. It is moving from client side web development, to server side, then to mobile apps, and now as the top layer used to run all the applications of a typical phone. We need browsers and OS makers to push forward these technologies, implementing better Javascript engines, and making reality the latest HTML5 APIs.
 

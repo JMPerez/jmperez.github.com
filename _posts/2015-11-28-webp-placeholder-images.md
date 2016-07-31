@@ -16,7 +16,7 @@ Following with the image optimization topic, I am going to have a deeper look to
 
 **tl;dr** WebP produces tiny files when compressing small images. This makes it ideal for implementing _preview photos_. [Check the demo]({{ site.url }}/demos/webp-preview/).
 
-In a recent article I talked about [an image loading technique used by Medium](/medium-image-progressive-loading-placeholder/) that combined a small blurry preview plus a transition to the final image. This approach has been used for some time by other sites and mobile applications, and it is getting even more focus these days as major websites try to expand in countries with very slow internet connections.
+In a recent article I talked about [an image loading technique used by Medium]({{ site.url }}/medium-image-progressive-loading-placeholder/) that combined a small blurry preview plus a transition to the final image. This approach has been used for some time by other sites and mobile applications, and it is getting even more focus these days as major websites try to expand in countries with very slow internet connections.
 
 Facebook is one of them and explained some months ago [how they inlined preview photos](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/).
 

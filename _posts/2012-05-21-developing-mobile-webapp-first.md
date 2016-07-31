@@ -23,10 +23,10 @@ Your web development can be easily reused to make a hybrid application. Your nat
 Take Google+ iPhone app as an example:
 ![Google+ iPhone app]({{ site.url }}/assets/images/posts/google-plus-hybrid.jpg)
 
-The Google+ iPhone app was basically a wrapper around their mobile webapp. From there, they have evolve it to a much richer one. However, certain features like the login page remain the same. And there is the mobile site, that looks a lot like the 'old' iphone app.
+The Google+ iPhone app was basically a wrapper around their mobile webapp. From there, they have evolve it to a much richer one. However, certain features like the login page remain the same. And there is the mobile site, that looks a lot like the 'old' iPhone app.
 
 ## Testing new features
-Deploying changes in a webapp is easier than building and dristributing an app. Thus, you can easily perform A/B testing or introduce new features on your webapp and use it as a way to get feedback before porting those changes to native apps.
+Deploying changes in a webapp is easier than building and distributing an app. Thus, you can easily perform A/B testing or introduce new features on your webapp and use it as a way to get feedback before porting those changes to native apps.
 
 ## Defensive development - Future Friendly
 Having a webapp makes your solution compatible with future devices, no matter what OS they are running. Your users will be able to use your application on their mobile phones through their browser. [Open Web Device](http://www.openwebdevice.com/) gaining traction? You are ready. [Intel Mobile phone](http://www.slashgear.com/intels-first-medfield-phone-coming-this-week-claims-ceo-17223318/)? You are ready too. E-book reader? Of course! And take into account that your application wouldn't be compatible with these devices if you had chosen any of current 'native' environments.

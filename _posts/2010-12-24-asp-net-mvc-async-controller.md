@@ -7,7 +7,7 @@ tags:
 
 ---
 
-I usually face asynchroronus WPO from the browser side, for instance making async requests to include Javascript files or AJAX-requesting any other content.
+I usually face asynchronous WPO from the browser side, for instance making async requests to include Javascript files or AJAX-requesting any other content.
 
 Today I have come across a feature that has been around since ASP.Net MVC 2 and that allows Asynchronous processing of controller actions. It is nicely explained on [Using an Asynchronous Controller in ASP.NET MVC](http://msdn.microsoft.com/en-us/library/ee728598.aspx) on MSDN website.
 

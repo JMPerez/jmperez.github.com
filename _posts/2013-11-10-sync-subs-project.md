@@ -9,8 +9,8 @@ tags:
 
 ---
 
-I have been working recently on [Sync Subs](http://jmperez.github.io/sync-subs/). It is a website that allows you to synchronize a file with subtitles (in SRT format) applying a time offset:
-[![Sync Subs - A Subtitles Synchronizer web app]({{ site.url }}/assets/images/posts/sync-subs.png)]({{ site.url }}/projects/sync-subs)
+I have been working recently on [Sync Subs]({{ site.url }}/sync-subs/). It is a website that allows you to synchronize a file with subtitles (in SRT format) applying a time offset:
+[![Sync Subs - A Subtitles Synchronizer web app]({{ site.url }}/assets/images/posts/sync-subs.png)]({{ site.url }}/sync-subs/)
 
 There are lots of websites doing this by letting a user upload a file and then applying the transformation server-side. But with the HTML5 File API you can do this client-side. Thus, you can read the contents of a file, process it and let the user download a file that has been dynamically generated using Javascript in the browser.
 

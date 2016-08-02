@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Detecting tempo of a song using brower's Audio API
+title: Detecting tempo of a song using browser's Audio API
 date: 2014-08-09 8:40:00+02:00
 image: /assets/images/posts/bpm-detection-example.png
 image_width: 383

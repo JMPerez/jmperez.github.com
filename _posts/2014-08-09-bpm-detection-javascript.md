@@ -5,10 +5,9 @@ date: 2014-08-09 8:40:00+02:00
 image: /assets/images/posts/bpm-detection-example.png
 image_width: 383
 image_height: 368
-description: Article about project for detecting BPM of a track using the Audio API, in combination with Spotify Web API and Echo Nest API.
+description: Article about project for detecting BPM of a track using the Audio API, in combination with the Spotify Web API.
 tags:
   - spotify
-  - echo nest
   - bpm
 ---
 
@@ -30,27 +29,18 @@ The bitrate of the samples is rather low, around 96 kb/s according to my tests. 
 
 Since I'm more than familiar with the [Spotify Web API](https://developer.spotify.com/web-api/), I have chosen it for [searching tracks](https://developer.spotify.com/web-api/search-item/). The search is also quite flexible and normally is enough with the track name (without artist name) to find the song we want.
 
-The Search endpoint returns a list of tracks, and their preview_url property points to an MP3 file that we can plug in straight to an AudioContext to process it.
+The Search endpoint returns a list of tracks, and their `preview_url` property points to an MP3 file that we can plug in straight to an `AudioContext` to process it.
 
 ## Calculating the tempo
-
 I am following the algorithm described (in great detail) by Joe Sullivan. I have tweaked it a bit to:
 
 1. **Dynamically adjust the threshold to identify peaks**: In some cases a threshold of 0.8 was simply too much and the amount of representative peaks returned too low for doing a proper guess. Thus, I lower the threshold until I have a few more peaks for the given sample.
 
-2. **Round the theoretical tempo to the closest integer**. Otherwise it is rather impossible to get multiple intervals with the same value. At first sight we lose precision, but tempos are usually integers anyway,
+2. **Round the theoretical tempo to the closest integer**. Otherwise it is rather impossible to get multiple intervals with the same value. At first sight we lose precision, but tempos are usually integers anyway.
 
-To check how well the algorithm works I wanted to know the BPM of the song, calculated by some trustable source. Luckily enough, the [Echo Nest API](http://developer.echonest.com/docs/v4/track.html) provides the BPM value for a song.
+To check how well the algorithm works I wanted to know the BPM of the song, calculated by some trustable source. Luckily enough, the same Spotify API provides an endpoint to [get Audio Features for a Track](https://developer.spotify.com/web-api/get-audio-features/). The first version of this project used The Echo Nest API to obtain the tempo of a song. Some time ago this API was discontinued, and this and other endpoints were merged into Spotify's Web API. That means we don't need to match track identifiers from different music services, making everything easier.
 
-### Matching Spotify tracks with Echo Nest songs
-
-The process of matching is simple. Given a track in Spotify, find the same one in Echo Nest.
-
-However, note that any of these music APIs returned multiple results for what we would think is the same track. And they can have different BPM themselves. So you may obtain a BPM calculated using this algorithm that doesn't match the first result from a track searched on the Echo Nest, using the track name and artist name. But it may match the second or third result.
-
-The Echo Nest API works with identifiers from a wide variety of music APIs. This is called the **Rosetta Stone** project. This makes it easier to return the data for THE specific track we are interested in. One of those IDs is the Spotify URI of a track.
-
-Firstly, we try to obtain the `audio_summary` bucket for the song's profile using the Spotify URI. If this fails because there is no match in Echo Nest's API, we perform a search in EN, and obtain the song's profile for the first of the results.
+The endpoint returns a JSON object with several features of the track, including its `tempo`.
 
 ## Rendering the peaks and playing the track
 

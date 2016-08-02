@@ -37,4 +37,4 @@ Facebook's decision is similar to the one [using web technologies]({{ site.url }
 
 A hybrid app can't offer the same performance as a native app. This is a matter of taking into consideration the pros and cons in terms of code reuse and best experience in every platform. Web implementations run on top of an additional layer, so native code is more likely to have a better performance to achieve the same result. That is why projects such as [Boot to Gecko]({{ site.url }}/boot-to-gecko-html5/) pretend to set an environment that exposes access to native hardware using Javascript.
 
-There is an ongoing discussion about a deliberately decision from Apple and Google on [not making more efforts on improving Javascript performance on hybrid apps](http://branch.com/b/a-blow-to-html5#suyrj57leos). Though it could make sense, I'd rather think this is not the case.
+There is an ongoing discussion about a deliberately decision from Apple and Google on [not making more efforts on improving Javascript performance on hybrid apps](https://web.archive.org/web/20150516201644/http://branch.com/b/a-blow-to-html5). Though it could make sense, I'd rather think this is not the case.

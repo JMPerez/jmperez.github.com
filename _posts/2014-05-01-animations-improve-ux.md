@@ -16,7 +16,7 @@ After reading the article one starts appreciating those transitions that became 
 
 On the web, it is sometimes difficult to create proper animations without lots of hacks like duplicating elements and setting fixed dimensions and absolute positioning. And this, together with responsive design, makes it a real challenge.
 
-There are many websites for getting inspired and seeing how animations are used in practice. Many of those sites are listed on  [Interface Animations and Transitions: where to get inspiration](http://www.inpixelitrust.fr/blog/en/interface-animations-and-transitions-where-to-get-inspiration/).
+There are many websites for getting inspired and seeing how animations are used in practice. Many of those sites are listed on  [Interface Animations and Transitions: where to get inspiration](https://blog.stephaniewalter.fr/en/interface-animations-and-transitions-where-to-get-inspiration/).
 
 ## Practical example
 I would like to save a form and give feedback to the user. One possibility is to click on save and then show an [alert](http://getbootstrap.com/components/#alerts) on top of the form. However, what should we do when the user starts modifying the form again? One possibility is to remove the alert. Collapsing the alert would reflow the form and would look a bit ugly. Another possibility is to use something like the notifications shown on Gmail on top of the page, fixed positioned.

@@ -7,9 +7,9 @@ tags:
   - progressive
 ---
 
-Everyone is talking about ad-blockers these days after the release of iOS 9. But we should talk more about the "content blockers" feature in general, which can, by default, block scripts, fonts or images. What you can do as a web developer is what you should have been doing until now: don't take anything for granted and follow a progressive enhacement approach.
+Everyone is talking about ad-blockers these days after the release of iOS 9. But we should talk more about the "content blockers" feature in general, which can, by default, block scripts, fonts or images. What you can do as a web developer is what you should have been doing until now: don't take anything for granted and follow a progressive enhancement approach.
 
-I've read lots of articles about why it is a good or bad idea to use these blockers, and I can understand both sides of the discussion. I get that it can make things difficult for businesses that rely on advertising and tracking scripts to finance themselves, and I also understand that as a user I want to see web content quickly. If that comes with savings in bandwith, double win.
+I've read lots of articles about why it is a good or bad idea to use these blockers, and I can understand both sides of the discussion. I get that it can make things difficult for businesses that rely on advertising and tracking scripts to finance themselves, and I also understand that as a user I want to see web content quickly. If that comes with savings in bandwidth, double win.
 
 If I were to choose a post with which I agree, I would pick [Content Blocking Primer](http://meyerweb.com/eric/thoughts/2015/09/19/content-blocking-primer/). It doesn't say that this is the end of the world, and encourages web developers to do what they should have been doing all this time.
 
@@ -27,7 +27,7 @@ Relying on Javascript for our main content makes us also vulnerable to SPOF issu
 
 > "But I need Javascript for my site to work!" you claim.
 
-You are probably right for this one, but more often than not you depend on Javascript because you didn't think of a scenario in which Javascript wasn't available. After all, who disables Javascript these days! _Note: I've done this and I continue doing it, so you can blaim me too._
+You are probably right for this one, but more often than not you depend on Javascript because you didn't think of a scenario in which Javascript wasn't available. After all, who disables Javascript these days! _Note: I've done this and I continue doing it, so you can blame me too._
 
 Say you use Javascript for a fancy lazy-loading component that makes your site faster by requesting images only when they are within the viewport. You don't want the browser to start making the requests as soon as it gets the markup, so you do something like:
 

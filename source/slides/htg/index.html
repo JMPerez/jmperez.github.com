@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>The Spotify Platform presentation</title>
+
+		<meta name="description" content="Understanding all of Spotify's APIs">
+		<meta name="author" content="José M. Pérez">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section id="intro" class="dark">
+					<h1>The Spotify Platform</h1>
+					<h3 class="black">Hack The Globe</h3>
+                    <div class="bottom">
+                        <h4>José M. Pérez (<a href="http://twitter.com/jmperezperez">@jmperezperez</a>)</h4>
+                        <h4>Web Developer</h4>
+                    </div>
+				</section>
+
+				<section data-state="white">
+                    <section>
+                        <h2>Spotify Apps API</h2>
+                        <img src="img/soundrop.png" />
+                        <p>Apps inside Spotify</p>
+                    </section>
+                    <section>
+                        <h2>Spotify Apps API</h2>
+                        <ul>
+                            <li>Chromium Embedded Framework</li>
+                            <li>HTML 5 support: canvas, drag &amp; drop, WebGL, local storage, web workers, sockets</li>
+                            <li>Play music, access and modify playlists, interact with user data</li>
+                        </ul>
+                    </section>
+					<section>
+                        <h2>Examples of Spotify Apps</h2>
+
+						<ul>
+							<li><strong>Drag &amp; Drop</strong>: <a href="spotify:app:filtr">Filtr</a></li>
+							<li><strong>User's Library</strong>: <a href="spotify:app:tastebuds">Tastebuds</a></li>
+							<li><strong>Visualizations</strong>: <a href="spotify:app:visualizer">Visualizer</a></li>
+							<li><strong>What's playing</strong>: <a href="spotify:app:musixmatch">Musixmatch</a></li>
+							<li><strong>Listen Language</strong>: <a href="spotify:app:listenlanguage">Filtr</a></li>
+							<li>more on <a href="spotify:app:finder">Spotify's App Finder</a></li>
+						</ul>
+					</section>
+
+                   <section>
+                    	<h2>How to start building a Spotify App</h2>
+                        <ul>
+                        	<li><a href="https://github.com/spotify/boilerplate-app">Boilerplate app</a>: contains the basic structure for your app.</li>
+                        	<li><a href="https://github.com/spotify/apps-tutorial">Tutorial app</a>: contains working code snippets covering common use cases.</li>
+                        </ul>
+                    </section>
+
+				</section>
+
+				<section data-state="white">
+                    <section>
+                        <h2>Spotify Web API</h2>
+                        <p>An API to surface the Spotify catalog through GET requests</p>
+                        <img src="img/web-api.png" id="web-api" />
+                    </section>
+                    <section>
+                      <h2>Search &amp; Lookup</h2>
+
+<pre><code>http://ws.spotify.com/service/version/method{.format}?parameters
+
+http://ws.spotify.com/search/1/album.json?q=foo
+http://ws.spotify.com/search/1/artist.json?q=foo
+http://ws.spotify.com/search/1/track.json?q=foo
+
+http://ws.spotify.com/lookup/1/.json?uri={uri}</code></pre>
+
+                        <ul class="left">
+                          <li>Provides information like name, release date, popularity, artists
+                          <li><b>Search</b>: String -> multiple results</li>
+                          <li><b>Lookup</b>: Spotify URI -> Details for that result</li>
+                        </ul>
+                    </section>
+				</section>
+
+				<section data-state="white">
+                    <section>
+                        <h2>libspotify</h2>
+                        <p>Embed Spotify in your application or hardware.</p>
+                        <img src="img/boxee.png" width="200"/>
+                        <p>C library wrapped in Ruby, Python, Java, C#</p>
+                        <p>Builds in iOS, Android, Win32, Mac OS X/Darwin, Linux, even one for Raspberry Pi</p>
+                        <p>It has enough features to write a complete client. See <a href="https://github.com/iKenndac/Viva">Viva</a></p>
+                    </section>
+
+                    <section>
+                        <h2>CocoaLibSpotify</h2>
+                        <img src="img/spot-on.png" />
+                        <ul class="left">
+                            <li>For iOS (iPhone, iPad)</li>
+                            <li>Open source, hosted on <a href="https://github.com/spotify/cocoalibspotify">Github</a></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Examples</h2>
+                        <ul>
+                        	<li>Guess the song<br/>
+                        		<img src="img/guess-the-song.png" width="400"/>
+                        	</li>
+                        	<li><a href="https://github.com/spotify/cocoalibspotify/tree/master/iOS%20Library/Sample%20Projects">Other samples</a></li>
+                        </ul>
+                    </section>
+				</section>
+
+				<section data-state="white">
+					<section>
+                        <h2>Spotify Play Button</h2>
+                        <img src="img/tumblr.png" id="tumblr" />
+                        <p><a href="http://embed.spotify.com">http://embed.spotify.com</a></p>
+					</section>
+					<section>
+						<h2>Tracks</h2>
+                        <iframe src="https://embed.spotify.com/?uri=spotify:track:5fEWugSKjh5I5DQHl5tkFc&view=coverart" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+                        <pre><code>&lt;iframe src="https://embed.spotify.com/?uri=spotify:track:5fEWugSKjh5I5DQHl5tkFc" width="300" height="380" frameborder="0" allowtransparency="true"&gt;&lt;/iframe&gt;</code></pre>
+					</section>
+					<section>
+						<h2>Albums</h2>
+                        <iframe src="https://embed.spotify.com/?uri=spotify:album:7w19PFbxAjwZ7UVNp9z0uT&view=list" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+                        <pre><code>&lt;iframe src="https://embed.spotify.com/?uri=spotify:album:7w19PFbxAjwZ7UVNp9z0uT&view=list" width="300" height="380" frameborder="0" allowtransparency="true"&gt;&lt;/iframe&gt;</code></pre>
+					</section>
+					<section>
+						<h2>Playlists</h2>
+                        <iframe src="https://embed.spotify.com/?uri=spotify:user:magerleagues:playlist:5CZ3KO3EExplZOzHDMzgym&view=coverart" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+                        <pre><code>&lt;iframe src="https://embed.spotify.com/?uri=spotify:user:magerleagues:playlist:5CZ3KO3EExplZOzHDMzgym&view=coverart" width="300" height="380" frameborder="0" allowtransparency="true"&gt;&lt;/iframe&gt;</code></pre>
+					</section>
+				</section>
+
+				<section data-state="white">
+
+                    <h2>If you need help</h2>
+                    <ul>
+                    	<li>Check out our dev site <a href="https://developer.spotify.com">https://developer.spotify.com</a></li>
+                    	<li>Send a tweet to <a href="http://twitter.com/jmperezperez">@jmperezperez</a> or <a href="http://twitter.com/SpotifyPlatform">@SpotifyPlatform</a></li>
+                    	<li>Browse the <a href="https://stackoverflow.com/questions/tagged/spotify">Spotify tag on Stackoverflow</a>
+                    </ul>
+                </section>
+                <section class"dark">
+                	<h1>It's your turn to play</h1>
+                    <ul class="left">
+                        <li>Prizes: <strong>6 months of Spotify Premium</strong> + <strong>speaker with Spotify Connect</li>
+                    </ul>
+                    <img src="img/spotify-connect.png" width="300" />
+
+                    <hr/>
+                    José M. Pérez <a href="http://twitter.com/jmperezperez">@jmperezperez</a><br/>
+                    Slides on <strong><a href="http://goo.gl/gyeuQP">http://goo.gl/gyeuQP</a></strong>
+
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

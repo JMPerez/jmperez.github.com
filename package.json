@@ -1,0 +1,24 @@
+{
+  "name": "jmperez-blog",
+  "version": "1.0.0",
+  "private": true,
+  "hexo": {
+    "version": "3.2.2"
+  },
+  "dependencies": {
+    "clean-css": "^3.4.19",
+    "hexo": "^3.2.0",
+    "hexo-deployer-git": "^0.2.0",
+    "hexo-generator-amp": "^1.0.0",
+    "hexo-generator-feed": "^1.2.0",
+    "hexo-generator-index": "^0.2.0",
+    "hexo-generator-sitemap": "^1.1.2",
+    "hexo-generator-tag": "^0.2.0",
+    "hexo-html-minifier": "0.0.1",
+    "hexo-renderer-ejs": "^0.2.0",
+    "hexo-renderer-marked": "^0.2.10",
+    "hexo-renderer-stylus": "^0.3.1",
+    "hexo-server": "^0.2.0",
+    "image-size": "^0.5.0"
+  }
+}

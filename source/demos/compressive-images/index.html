@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Compressive Images Demo - JMPerez Blog</title>
+    <meta name="description" content="A demo of Compressive Images technique, using large and highly compressed images as a solution for responsive images">
+    <link rel="author" href="https://plus.google.com/107456024651797783420" />
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<script type="text/javascript">
+    var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-39254352-1"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src="http://www.google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})()
+	</script>
+    <h1>Compressive Images Demo</h1>
+    <p>This is a demo of the technique known as <a href="http://filamentgroup.com/lab/rwd_img_compression/">Compressive Images</a>, mentioned in my blog post <a href="https://jmperezperez.com/image-optimization-lossy-lossless-techniques/">Image optimization: Lossy, lossless and other techniques</a>. It consists of generating a large high-compressed image as opposed to multiple images to accomplish images that are flexible enough to be shown in different resolutions and pixel densities.</p>
+
+    <p>This demo uses Drag&amp;Drop, canvas and File API. Drag and drop your image to see it in action, or scroll down to see a sample image. Try to use an image with at least 1024x768 pixels.</p>
+
+    <div id="holder">Drop your image here</div>
+    <div id="user-image" style="display:none">
+	    <h3>Original image</h3>
+	    <figure id="source-image">
+	    	<img/>
+			<figcaption>The original image, with a size of <span class="size"></span>kB.</figcaption>
+		</figure>
+
+		<h3>Comparison using small dimensions</h3>
+		<div class="outer">
+			<figure id="compressed-90">
+				<img/>
+				<figcaption>
+					<strong>Slightly compressed, displayed at 100% size</strong><br>
+					The image compressed to 90% quality, with a resolution of <span class="resolution"></span> and a size of <span class="size"></span>kB approx.</figcaption>
+			</figure>
+
+		  	<figure id="compressed-0">
+				<img/>
+				<figcaption><strong>Highly compressed, down-scaled</strong><br>
+					The image compressed to 20% quality using Canvas, with a resolution of <span class="resolution"></span> and a size of <span class="size"></span>kB approx.</figcaption>
+			</figure>
+		</div>
+
+		<h3>Comparison using large dimensions</h3>
+		<p>Now you will see the same images as before, but resized to larger dimensions. Hover the image to switch from the low-compressed image to the down-scaled and highly compressed. Note that this technique works better for certain images, and some differences between images are better perceived on high resolution screens.</p>
+		<div id="hover-comparison">
+			<div id="low-compressed-container">
+				<span>Low compression, up-scaled</span>
+				<img id="low-compressed"/>
+			</div>
+			<div id="high-compressed-container">
+				<span>High compression</span>
+				<img id="high-compressed"/>
+			</div>
+		</div>
+	</div>
+
+	<h2>Example</h2>
+	<p>Here you can see two images. The first one has a size of 400x300 and has been saved with a compression quality of 90% (261kB). The second one has a size of 1024x768 and <strong>compression quality of 0</strong> (258kB).</p>
+	<p>You will see these images scaled to different dimensions, so you can see how they look like.</p>
+    <h3>400px wide</h3>
+	<img src="normal.jpg" width="400">
+	<img src="compressed.jpg" width="400">
+    <h3>600px wide</h3>
+    <img src="normal.jpg" width="600">
+    <img src="compressed.jpg" width="600">
+    <h3>800px wide</h3>
+    <div class="cross-fade">
+    	<img src="normal.jpg" width="800">
+    	<img src="compressed.jpg" width="800">
+    </div>
+    <canvas id="compressed"></canvas>
+
+    <script>
+    (function() {
+    	var userImageSection = document.getElementById('user-image');
+    	var sourceImageSection = document.getElementById('source-image');
+
+    	function getCompressedUrl(i, level, w, h) {
+			var canvas  = document.getElementById("compressed");
+			var context = canvas.getContext("2d");
+			canvas.width = w;
+			canvas.height = h;
+			context.drawImage(i, 0, 0, w, h);
+			return canvas.toDataURL('image/jpeg', level);
+		}
+
+		function processImage(i) {
+
+	 		var w = i.width,
+   	 			h = i.height;
+
+			var maxSide = 400;
+
+   	 		var finalWidth,
+   	 			finalHeight;
+   	 		if (w > h) {
+   	 			finalWidth = Math.min(maxSide, w);
+   	 			finalHeight = finalWidth * h / w | 0;
+   	 		} else {
+   	 			finalHeight = Math.min(maxSide, h);
+   	 			finalWidth = finalHeight * w / h | 0;
+   	 		}
+
+   	 		// show original image
+   	 		var sourceImage = sourceImageSection.querySelector('img');
+
+            sourceImage.src = i.src;
+            sourceImage.width = finalWidth;
+            sourceImage.height = finalHeight;
+
+            // show compressed image to 90%
+            var lowCompressedUrl = getCompressedUrl(i, 0.9, finalWidth, finalHeight);
+
+   	 		var lowCompressedSection = document.getElementById('compressed-90'),
+   	 			lowCompressedImage = lowCompressedSection.querySelector('img');
+
+            lowCompressedImage.src = lowCompressedUrl;
+			lowCompressedImage.width = finalWidth;
+			lowCompressedImage.height = finalHeight;
+			lowCompressedSection.querySelector('.resolution').innerHTML = finalWidth + 'x' + finalHeight;
+			lowCompressedSection.querySelector('.size').innerHTML = Math.round(lowCompressedUrl.length / 1024 * 0.8);
+
+			document.getElementById('low-compressed').src = lowCompressedUrl;
+			document.getElementById('low-compressed').width = 800;
+
+			// show compressed image to 20% and large dimensions
+       		maxSide = 1024;
+
+   	 		var finalWidth2,
+   	 			finalHeight2;
+   	 		if (w > h) {
+   	 			finalWidth2 = Math.min(maxSide, w);
+   	 			finalHeight2 = finalWidth2 * h / w | 0;
+   	 		} else {
+   	 			finalHeight2 = Math.min(maxSide, h);
+   	 			finalWidth2 = finalHeight2 * w / h | 0;
+   	 		}
+
+            var highCompressedUrl = getCompressedUrl(i, 0.2, finalWidth2, finalHeight2);
+
+   	 		var highCompressedSection = document.getElementById('compressed-0'),
+   	 			highCompressedImage = highCompressedSection.querySelector('img');
+
+            highCompressedImage.src = highCompressedUrl;
+			highCompressedImage.width = finalWidth;
+			highCompressedImage.height = finalHeight;
+			highCompressedImage.style.backgroundSize = 'cover';
+			highCompressedSection.querySelector('.resolution').innerHTML = finalWidth2 + 'x' + finalHeight2;
+			highCompressedSection.querySelector('.size').innerHTML = Math.round(highCompressedUrl.length / 1024 * 0.8);
+
+			document.getElementById('high-compressed').src = highCompressedUrl;
+			document.getElementById('high-compressed').width = 800;
+		}
+
+
+		var holder = document.getElementById('holder');
+
+	    holder.ondragover = function() {
+	        this.className = 'is_hover';
+	        return false;
+	    };
+	    holder.ondragend = function() {
+	        this.className = '';
+	        return false;
+	    };
+	    holder.ondrop = function(e) {
+	        this.className = '';
+	        e.preventDefault();
+
+	        var file = e.dataTransfer.files[0],
+	        reader = new FileReader();
+	        reader.onload = function(event) {
+	            var i = new Image();
+           	 	i.src = event.target.result;
+           	 	i.onload = function(){
+           	 		processImage(i);
+					userImageSection.style.display = 'block';
+           	 	}
+	        };
+
+	        sourceImageSection.querySelector('.size').innerHTML = Math.round(parseInt(file.size) / 1024);
+	        reader.readAsDataURL(file);
+
+	        return false;
+	    };
+
+    })();
+    </script>
+</body>
+</html>

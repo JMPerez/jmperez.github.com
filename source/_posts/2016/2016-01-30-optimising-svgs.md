@@ -48,6 +48,7 @@ Optimising SVGs "by hand" might look a bit tedious and only at reach of a few on
 ## An example: Spotify logo
 
 I decided to try to use some of Andreas' ideas and try to optimise the Spotify logo.
+
 [![Editing the Spotify logo in fontForge](/assets/images/posts/spotify-fontforge.png)](/assets/images/posts/spotify-fontforge.png)
 
 This is what I did:

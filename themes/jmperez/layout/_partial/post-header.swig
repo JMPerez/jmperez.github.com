@@ -66,10 +66,10 @@
 
   {% if page.image %}
   <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display:none">
-    <img itemprop="image" src="{{ page.image }}" alt="{{ page.title}}">
-    <meta itemprop="url" content="{{ page.image }}">
-    {% if page.image_width %}<meta itemprop="width" content="{{ page.image_width}}">{% endif %}
-    {% if page.image_height %}<meta itemprop="height" content="{{ page.image_height}}">{% endif %}
+    <img itemprop="image" src="{{ page.image.url }}" alt="{{ page.title}}">
+    <meta itemprop="url" content="{{ page.image.url }}">
+    {% if page.image.width %}<meta itemprop="width" content="{{ page.image.width}}">{% endif %}
+    {% if page.image.height %}<meta itemprop="height" content="{{ page.image.height}}">{% endif %}
   </div>
   {% endif %}
 </header>

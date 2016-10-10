@@ -95,6 +95,8 @@ html_minifier:
   exclude:
   collapseWhitespace: true
   minifyJS: true
+  removeAttributeQuotes: true
+  sortAttributes: true
 
 sitemap:
   path: sitemap.xml

@@ -36,12 +36,21 @@ I run it through all JPG images on this blog, and I liked seeing that there were
 
 ![Jpeg.io results for some of the images of this blog](/assets/images/posts/jpeg-io-results.png)
 
-Some images were left untouched, while others reduced their size as much as 70% ([before  236kB](/assets/images/posts/spotify-hack-week-2014-presentation-before.jpg), [after 71kB](/assets/images/posts/spotify-hack-week-2014-presentation.jpg)). Another advantage is that it generates [progressive JPGs](http://blog.patrickmeenan.com/2013/06/progressive-jpegs-ftw.html). Compared to baseline JPGs, progressive ones will render a larger area of the image earlier, though more _pixelated_. It provides a standard way to progressive load images without having to do something as fancy as [Medium's technique](/medium-image-progressive-loading-placeholder/).
+Some images were left untouched, while others reduced their size as much as 70% ([before  236kB](/assets/images/posts/spotify-hack-week-2014-presentation-before.jpg), [after 71kB](/assets/images/posts/spotify-hack-week-2014-presentation.jpg)).
 
+### Progressive JPEGs
+Another advantage is that it generates [progressive JPGs](http://blog.patrickmeenan.com/2013/06/progressive-jpegs-ftw.html). Compared to baseline JPGs, progressive ones will render a larger area of the image earlier, though more _pixelated_. It provides a standard way to progressive load images without having to do something as fancy as [Medium's technique](/medium-image-progressive-loading-placeholder/).
+
+Note, however, that users might prefer baseline images, [according to a study](http://www.webperformancetoday.com/2014/09/17/progressive-image-rendering-good-evil/), which was later [presented at Velocity](http://conferences.oreilly.com/velocity/velocityny2014/public/schedule/detail/35658):
+
+> When, as with the Progressive JPEG method, image rendition is a two-stage process in which an initially coarse image snaps into sharp focus, cognitive fluency is inhibited and the brain has to work slightly harder to make sense of what is being displayed
+
+### Customisation
 Jpeg.io doesn't have any customisation options like image quality or compression. They don't give too many details about the process they apply [on their site](https://www.jpeg.io/about), but they do seem to do some kind of SSIM processing:
 
 > Jpeg.io is a free online interface for rapidly and conveniently converting your images into highly optimized JPEGs using Kraken.io's proprietary JPEG optimization algorithms. [...] you'll get a progressive JPEG compressed to the smallest possible size without perceptible quality loss.
 
 Kraken.io also offers [an alternative web interface](https://kraken.io/web-interface) where they do have some level of customisation, and show the percentage of savings per file.
 
+## Future of SSIM-based optimisation tools
 I do hope that we see more libraries that make use of image similarity and we can be easily used in our build pipelines and CMSs.

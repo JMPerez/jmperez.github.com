@@ -10,4 +10,3 @@ permalink: techniques-optimize-web-sites
 ---
 
 The contents of this post have been moved to my repo [WPO Book](https://github.com/JMPerez/wpo-book).
-<!-- more -->

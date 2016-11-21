@@ -9,11 +9,12 @@ permalink: implementing-polymer-element
 ---
 
 It's been a few weeks since I last posted. Rather than being on vacations resting on a beach, I have be been busy trying out some things I had in my backlog, and one of them is **[Polymer](http://www.polymer-project.org/)**. Read below about what Polymer is and my impressions after creating some elements.
+
 <!-- more -->
 ## Polymer
 
 Web components are a collection of standards that allow the creation of custom HTML elements. These elements encapsulate HTML, CSS and Javascript which is not accessible from external code. Browser support at the moment is limited, so until web components are widely supported, there are polyfills such as Polymer or [X-Tag](http://www.x-tags.org/) to get started.
-<!-- more -->
+
 Google has launched a bunch of Polymer elements, both [Core elements](http://www.polymer-project.org/docs/elements/core-elements.html) and [Paper elements](http://www.polymer-project.org/docs/elements/paper-elements.html), which follow their concept of Material Design. As a developer hearing about new things being released every day, I have started to appreciate a proper documentation accompanying the code, and I think the developers in charge of Polymer have made a great work.
 
 I encourage you to check out their site, which is also a great example of a Jekyll site and [is available on GitHub](https://github.com/Polymer/docs). They even have "Edit on GitHub" links to fork the project and send pull requests to improve it. The documentation contains lots of examples of already made elements, a tutorial about creating one from scratch (called seed-element) and an awesome drag&drop [designer](http://www.polymer-project.org/tools/designer/) that is open source and supports, right from the start, importing your own Polymer elements.

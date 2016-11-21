@@ -11,6 +11,7 @@ permalink: yahoo-tips-website-performance-flush-bottom
 
 Yesterday I was reading [Zakas' Performance on the Yahoo! Homepage slideshare presentation](http://www.slideshare.net/nzakas/performance-yahoohomepage), and I got very surprised when I saw that Yahoo had realised that two of the wide accepted tips for improving website performance had not work so well for them.
 ![Yahoo's Home page](/assets/images/posts/yahoo-homepage.jpg)
+
 <!-- more -->
 **1) Put scripts at the bottom** (slide 37)
 Or at least that is [what Yahoo recommends](http://developer.yahoo.com/performance/rules.html#js_bottom), and it contributes as one of the indicators to calculate YSlow score. But they found out that page would stay frozen while fetching, executing and parsing Javascript and this was worse over slow connections.

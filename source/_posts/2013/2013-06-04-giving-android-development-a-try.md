@@ -9,6 +9,7 @@ permalink: giving-android-development-a-try
 ---
 
 It may seem a bit strange that I talk about Android. After all I am a web developer and I have been actively promoting Web for mobile development. But after a course I have been taking, I wanted to share some thoughts.
+
 <!-- more -->
 ## Mobile development some time ago
 

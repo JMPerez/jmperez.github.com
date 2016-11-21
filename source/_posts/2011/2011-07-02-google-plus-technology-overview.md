@@ -12,6 +12,7 @@ permalink: google-plus-technology-overview
 We are all excited about the Google+ release, and this is a nice opportunity for web developers to find out how some of its more interesting features have been implemented.
 
 I am trying to collect information about implementation details for every innovative functionality that makes Google+ push the limits of web development.
+
 <!-- more -->
 Meanwhile I am trying to get useful conclusions by seeing their CSS and JavaScript code and the flow of HTTP requests. Until now I haven't seen especial things involving static resources like images (not using [WebP](http://code.google.com/speed/webp/)), CSS or JavaScript files. I can only say that CSS and JavaScript files are greatly minified, squishing their content to the last byte.
 

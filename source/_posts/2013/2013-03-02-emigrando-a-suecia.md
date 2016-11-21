@@ -10,6 +10,7 @@ permalink: emigrando-a-suecia
 Ya hace 8 meses que me mudé a Estocolmo para trabajar en Spotify. Y desde entonces he visto cómo más y más ex-compañeros de trabajo han decidido hacer las maletas y salir fuera de España.
 
 Trabajar en el extranjero era algo que estaba en mis planes desde hace tiempo. Desde luego, estoy muy contento con la decisión que tomé y muy agradecido a Spotify por contar conmigo. Cambiar de país con una oferta ya firmada facilita muchísimo los trámites para obtener un número personal, encontrar vivienda, abrir una cuenta en el banco o recibir prestación sanitaria. Pero algo muy diferente es salir a la aventura.
+
 <!-- more -->
 Hace poco vi el programa de [Salvados "Soy inmigrante"](http://www.lasexta.com/videos/salvados/2013-febrero-24-2013022200029.html). Después de tanto Españoles en el mundo, hacía falta un programa así que abriera un poco los ojos a la gente que cree ciegamente que yéndose a otro país les va a ir todo de maravilla. Sin preocuparse mucho sobre las condiciones del país, el coste de vida o idiomas.
 <blockquote class="twitter-tweet" lang="es">Irte a Noruega sin dinero, sin trabajo y sin saber el idioma y pasar hambre. Echarle la culpa a Españoles por el mundo.

@@ -9,6 +9,7 @@ permalink: head-section-meta-tags-hell
 
 ![Meta tags hell](/assets/images/posts/head-meta-tags.png)
 The head section of a page is becoming the place to include information for integrating your page with external services. Thus, if you want to include support for [Facebook's Open Graph Protocol](http://developers.facebook.com/docs/opengraphprotocol/) or [Twitter Cards](https://dev.twitter.com/docs/cards), you need to include some custom meta tags inside the head section. This also applies to iOS large app icons or Microsoft shortcut integration.
+
 <!-- more -->
 Have a look at a page such as [this news on The Verge](http://www.theverge.com/2013/4/3/4179236/the-facebook-phone-is-coming-and-its-already-in-your-pocket/) and view its source HTML code. Removing common meta tags such as content type, favicon, RSS or description, we have this:
 

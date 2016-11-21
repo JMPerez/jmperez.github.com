@@ -9,6 +9,7 @@ permalink: use-es6-today
 ---
 
 Yesterday I was reading [How to Use ES6 for Universal JavaScript Apps](https://medium.com/javascript-scene/how-to-use-es6-for-isomorphic-javascript-apps-2a9c3abe5ea2) and decided to create [a small template](https://github.com/JMPerez/es6-template) from which I can start a project using ES6 both client and server-side. _Note: You can replace the term "ES6" with ES2015, ES.next or whatever it's called today, you get the idea._
+
 <!-- more -->
 Although everyone is promoting ES6 nowadays, the truth is that using it in a real project is not that straightforward. I spent some time with [LinkedIn to JSON Résumé](https://github.com/JMPerez/linkedin-to-json-resume) trying to figure out how to easily compile to ES5 and how to import modules as defined in ES6 instead of NodeJS's `require`.
 

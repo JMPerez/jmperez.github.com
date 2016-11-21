@@ -19,6 +19,7 @@ Yesterday I watched this [Front End Tech Talk by Facebook](http://www.facebook.c
 
 They realized they had a problem with so much JS code and they worked at different levels to shrink it.
 [![We had about of 1MB of JS on the homepage](/assets/images/posts/facebook-1mb-javascript-1024x574.jpg)](/assets/images/posts/facebook-1mb-javascript.jpg)
+
 <!-- more -->
 ## Haste
 

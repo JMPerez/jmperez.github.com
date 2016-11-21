@@ -20,6 +20,7 @@ Parts of the tutorial
 4.  [Check out the demo Visual Studio solution](https://github.com/JMPerez/BigPipe)
 
 In [the previous post of this tutorial](/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-1) I made an overview explaining how Bigpipe works and why it can improve users' perceived speed when loading our pages.
+
 <!-- more -->
 Basically Bigpipe combines early flushing, parallel processing and a managed resources loading in the browser to prioritize showing content quickly over loading and executing JavaScript files.
 

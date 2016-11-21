@@ -11,6 +11,7 @@ permalink: migrating-wordpress-jekyll-github-pages
 A few weeks ago I migrated this blog to [Jekyll and GitHub Pages](https://help.github.com/articles/using-jekyll-with-pages), and the process has turned out to be quite easy. I have wanted to give [Octopress](http://octopress.org/) or [Jekyll](http://jekyllrb.com/) a try for a long time, but I never found the time.
 
 WordPress is a powerful blogging platform. I have used it for a 3 years to serve the few posts I have written so far. But I felt I wasn't really using many of its features and I wanted to use a Markdown to compose and store my posts.
+
 <!-- more -->
 ## Personal opinion
 There are many posts out there about how to migrate from Wordpress to Jekyll, but I wanted to focus on my opinion **after** doing it.

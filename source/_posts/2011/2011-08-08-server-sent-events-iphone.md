@@ -14,6 +14,7 @@ permalink: server-sent-events-iphone
 You have probably heard about web sockets, which promise to be a better  alternative to short and long polling to achieve real time updated  websites. But maybe you didn't know about **server sent events**. They are nice to send information from server to client using the same server  technology you probably have, using a lighter approach than polling.
 
 [Here you can find a nice explanation](http://www.html5rocks.com/en/tutorials/eventsource/basics/), and you can give it a try by visiting this [Server-sent Event Demo](http://html5.firejune.com/demo/sse.html) from a capable browser.
+
 <!-- more -->
 ## How iOS devices react to Server Sent Events
 

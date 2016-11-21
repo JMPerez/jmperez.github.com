@@ -9,6 +9,7 @@ permalink: making-more-responsive-websites-using-asp-net-mvc-response-flush
 
 While I was watching a [Google I/O 2009 video](http://www.youtube.com/watch?v=aJGC0JSlpPE) by Steve Souders, the author of [High Performance Websites](http://oreilly.com/catalog/9780596529307) and [Even Faster Websites](http://oreilly.com/catalog/9780596522315), I really liked the fact of using **flushing** to send earlier the document to the browser, allowing a prefetching of external resources.
 [![Response Flush in Google Chrome](/assets/images/posts/response-flush-short-300x101.jpg)](/assets/images/posts/response-flush-short.jpg)
+
 <!-- more -->
 I looked for the way of using flush in ASP.Net MVC as I am currently developing websites using this platform, and this can be accomplished by using `Response.Flush()`. The idea is to execute a flush in the view after some external files have been referenced. For instance we can call it after the head tag has been closed:
 ```html

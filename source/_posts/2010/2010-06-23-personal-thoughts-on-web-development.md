@@ -13,6 +13,7 @@ permalink: personal-thoughts-on-web-development
 ---
 
 Or as [David Walsh](http://davidwalsh.name) would say, "[confessions of a web developer](http://davidwalsh.name/confessions-viii)".  Until 2 years ago I had always seen Javascript as a poor language. It was painful to develop a simple script and expect it to work cross-browser. I had to write alert messages to be able to trace the execution of the functions and make try-and-error continuously to quickly find that silent error that could make you spend hours trying to find.
+
 <!-- more -->
 But times have changed and now I feel more comfortable programming JavaScript. Thanks to current powerful frameworks (such as jQuery and Mootools), developer tools (Firebug and Webkit tools) and a greater knowledge about how JavaScript affects webpages (Steve Souders, Nicholas Zakas...) the task of making good performance websites with great UX is now much easier.
 

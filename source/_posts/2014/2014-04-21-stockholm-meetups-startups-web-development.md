@@ -17,6 +17,7 @@ permalink: stockholm-meetups-startups-web-development
 I am becoming a **Meetup** addict, especially those around web development. In Stockholm there are plenty of them, as everywhere else, and you can find one that covers the area in which you are interested, without any doubts.
 
 I have attended many meetups since I arrived in Stockholm almost 2 years ago. The ones I like the most are those that deal with real situations and experience from startups and other companies.
+
 <!-- more -->
 Some meetups are based on talks about a specific language or platform. [sthml.js](http://www.meetup.com/sthlm-js/) is by far the one that raises more expectation. Every time they announce a new event they run out of seats in just a few seconds.
 

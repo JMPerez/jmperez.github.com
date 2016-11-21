@@ -15,6 +15,7 @@ During the last days I have been looking for a Javascript library targeted to re
 [![jQ.mobi demo running on a WP7 emulator](/assets/images/posts/jq-mobi-requires-webkit-browser-164x300.png)](/assets/images/posts/jq-mobi-requires-webkit-browser.png)
 
 All of them work seamlessly on webkit browsers, which are the most broadly used ones, but only a few take into account Internet Explorer, Opera Mobile or Firefox.
+
 <!-- more -->
 ## The current status of modern mobile browsers
 

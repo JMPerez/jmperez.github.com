@@ -15,6 +15,7 @@ permalink: bpm-detection-javascript
 
 This article explains some ideas behind a small project to detect the tempo of a song using the Audio API. I recommend you to have a look at these links before reading the rest of the article: [Demo](http://jmperezperez.com/beats-audio-api/) and [Code on GitHub](https://github.com/JMPerez/beats-audio-api).
 ![Beat Detection Algorithm Example](/assets/images/posts/bpm-detection-example.png)
+
 <!-- more -->
 ## Beat detection using Audio API
 

@@ -17,6 +17,7 @@ permalink: data-fetching-universal-apps
 ---
 
 Javascript is not just a language for the browser. Node.JS is becoming popular as a platform to run JS on the server. We are learning how to build modular websites where business logic and state are not coupled with the markup. And finally we are getting the tools to build universal web apps. But what are universal apps, and why should we care about data fetching?
+
 <!-- more -->
 ## Universal/Isomorphic apps
 

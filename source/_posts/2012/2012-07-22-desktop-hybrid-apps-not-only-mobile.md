@@ -9,6 +9,7 @@ permalink: desktop-hybrid-apps-not-only-mobile
 
 One month ago I moved to Stockholm to start working at [Spotify](http://www.spotify.com). For those of you who don't know what Spotify is about, I will tell you Spotify is a service that offers you legal and free access to a huge library of music. There are Spotify clients for a lot of different platforms, and right now I am working on the desktop one as a web developer.
 ![Spotify desktop client showing its HTML5 support](/assets/images/posts/spotify-apps-html5.jpg)
+
 <!-- more -->
 ## Hybrid mobile apps
 

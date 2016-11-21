@@ -17,6 +17,7 @@ It's been some time since my previous post and I wanted to write a short one tel
 ## Personal projects
 
 I have several small personal projects around Spotify in which I am working in my free time. I recently attended the Music Hack Day Paris 2014, where I coded [Spotify iQuiz](http://jmperezperez.com/hacks/iquiz/), an iQuiz-like web app that uses your Spotify playlists and to create some questions about albums and tracks you saved. I think the most fun part is the Speech Synthesis API, which provides a very easy to use text-to-voice feature, right on your browser.
+
 <!-- more -->
 For these hack projects I definitely need some framework on which build quickly a project. I always try to avoid it at first, and end up using a template engine (when I'm fed up of generating markup using JS), plus too many DOM manipulations and a bad time fixing small issues. This time I started from [this template I built](https://github.com/JMPerez/grunt-template), which was helpful for combining and minimizing all the small JS modules I created, and generate the files that I would deploy.
 

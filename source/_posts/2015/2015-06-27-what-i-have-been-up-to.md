@@ -9,6 +9,7 @@ permalink: what-i-have-been-up-to
 ---
 
 Yes! It's been a while since I last posted on this blog. I haven't come up with new ideas for some time, but I do have been working on some projects I had on GitHub and needed a revisit.
+
 <!-- more -->
 ## Calculating tempo of a song using Javascript
 

@@ -7,6 +7,7 @@ permalink: personal-projects
 ---
 
 This blog you are reading is more a tool for me to consolidate some ideas and experiences I come across. So is [my GitHub account](https://github.com/JMPerez), where I upload some small projects that otherwise would remain on my computer and eventually die. It is also a way of _giving back_: I have learned may things reading other people's posts and code, and I hope someone can find what I do useful.
+
 <!-- more -->
 Posting my code on GitHub also forces me to improve its readability, documentation and testability. They are an opportunity to test build tools, libraries & frameworks and different ways of structuring a web project. They help me get a grasp of the implications of picking one tool over the other in applications larger than a "Hello World", and I can make more informed decisions on what to use when I am faced with a real project at work.
 

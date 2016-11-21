@@ -13,6 +13,7 @@ permalink: duotone-using-fecolormatrix
 ---
 
 This is a short post where I show how to use SVG and a `feColorMatrix` filter to apply a duotone effect to an image.
+
 <!-- more -->
 Demo & Code: [http://codepen.io/jmperez/pen/LGqaxQ](http://codepen.io/jmperez/pen/LGqaxQ)
 

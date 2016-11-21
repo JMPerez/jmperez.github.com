@@ -12,6 +12,7 @@ These days I have been attending the [mloc.js conference](http://mloc-js.com/) i
 ![Welcome our heroes! at Terminal Building, Budapest](/assets/images/posts/design-terminal-welcome-heroes-300x171.jpg)
 
 _Welcome our heroes! at Terminal Building, Budapest_
+
 <!-- more -->
 The mloc.js conference was quite focused on generating JS from compiled languages and programming paradigms for safer, faster, more productive development tools. Initially it also included multiplatform development using JS as a runtime environment.
 
@@ -25,6 +26,6 @@ _Nick Fisher talking about the new design of Soundcloud_
 
 I did like a lot talks around solving the so-called callback hell, improvements in Mozilla's SpiderMonkey, information about Bacon.js, a new compiler for CoffeeScript, and insights on how the new Soundcloud site was implemented.
 
-The conference also included some 4-minute long lightning talks, and I gave one of them about web development in Spotify ([video here](http://www.ustream.tv/recorded/29323529)).
+The conference also included some 4-minute long lightning talks, and I gave one of them about web development in Spotify ([slides here](https://speakerdeck.com/jmperez/x-platform-web-dev-in-spotify)).
 
 [On Lanyrd](http://lanyrd.com/2013/mlocjs/) you can find the whole list of talks and slides.

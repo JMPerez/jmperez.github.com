@@ -9,6 +9,7 @@ permalink: developing-spotify-apps
 ---
 
 I have been working for some time with [Spotify Apps](https://developer.spotify.com/technologies/apps/). Creating them is a great way to extend the Spotify client with extra features using web technologies. As it exposes a Chrome-ish browser, you can tweak your apps and take advantage of running on a well-known environment.
+
 <!-- more -->
 ## Developing apps for Spotify
 

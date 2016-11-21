@@ -14,9 +14,12 @@ tags:
   - facebook
 permalink: webp-placeholder-images
 ---
-Following with the image optimization topic, I am going to have a deeper look to [Facebook's technique to create _preview_ photos](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/), and will show how WebP can simplify their solution.<br/><br/>![WebP vs JPEG when encoding tiny images](/assets/images/posts/webp-vs-jpeg-preview-photos.jpg)
+Following with the image optimization topic, I am going to have a deeper look to [Facebook's technique to create _preview_ photos](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/), and will show how WebP can simplify their solution.
+
+![WebP vs JPEG when encoding tiny images](/assets/images/posts/webp-vs-jpeg-preview-photos.jpg)
 
 **tl;dr** WebP produces tiny files when compressing small images. This makes it ideal for implementing _preview photos_. [Check the demo](/demos/webp-preview/).
+
 <!-- more -->
 In a recent article I talked about [an image loading technique used by Medium](/medium-image-progressive-loading-placeholder/) that combined a small blurry preview plus a transition to the final image. This approach has been used for some time by other sites and mobile applications, and it is getting even more focus these days as major websites try to expand in countries with very slow internet connections.
 

@@ -14,6 +14,7 @@ permalink: google-images-sitemap-c-asp-net
 Today I have implemented an action in ASP.Net MVC that generates a sitemap containing the images of a website we are developing, just to check how this affects to the amount of images indexed in google images.
 
 The XML structure, as well as the optional parameters, are defined on [Adding image information to a Sitemap](http://www.google.com/support/webmasters/bin/answer.py?answer=178636) on Google Webmaster central.
+
 <!-- more -->
 The code I use is the following one:
 

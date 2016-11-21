@@ -14,6 +14,7 @@ permalink: lazy-loading-images
 ---
 
 tl;dr: Don’t load images that the user doesn’t see on screen. It is easier than you think.
+
 <!-- more -->
 ## What is lazy loading
 Everyone has seen lazy loading content on web sites and mobile apps. You start seeing some content, and as you scroll, more content gets loaded.

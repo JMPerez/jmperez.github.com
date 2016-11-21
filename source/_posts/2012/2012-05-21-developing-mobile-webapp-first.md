@@ -13,6 +13,7 @@ permalink: developing-mobile-webapp-first
 Mobile web apps are not at the same level of native ones. Until browsers don't implement HTML5 API specifications to access device hardware (device API, audio, video), implement push notifications, and improve general performance (animations, scroll) web apps will not be able to deliver the experience that can't be reach through native development.
 
 However, there are some advantages when taking a webapp first approach for mobile development.
+
 <!-- more -->
 ## UI mocking
 Some UI designers are so familiar with web that they use HTML+CSS to implement native apps mockups. Then, this mockups are used by iOS or Android developers to implement the app UI. Why don't take advantage of that web mockup and use it for a web app?

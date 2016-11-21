@@ -10,6 +10,7 @@ permalink: github-pages-ssl-custom-domain
 _... or why I have migrated my site to SSL_. I have been willing to use HTTPS on my site for some time, especially to be able to play with some new technologies like Service Workers. And, if GitHub implements it, [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2#Encryption).
 
 I'm using GitHub Pages with a custom domain to power this blog and the pages for my GitHub projects. While GitHub Pages can be served using HTTPS, if you define a custom domain you need to manage this.
+
 <!-- more -->
 ## How to set up
 A simple search got me to [Set Up SSL on Github Pages With Custom Domains for Free](https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/), where it's explained how to use Cloudfare to add SSL to your domain. The steps are quite clear and I got it set up in a few minutes. And after some hours has propagated the server name configuration.

@@ -6,6 +6,7 @@ description: Some thoughts about Rdio closing down.
 permalink: farewell-rdio
 ---
 [The news about Rdio shutting down](http://blog.rdio.com/us/2015/11/important-news-from-rdio.html) have been unexpected. It's always sad when a company building great products closes down. And even though I am working at Spotify, I still want to see good competitors, both smaller and bigger, that make everyone else strive for improving. All in the benefit of users.
+
 <!-- more -->
 Those of us who work with the web are thankful to the existence of multiple browsers, that have result in a healthy race for implementing more features and delivering better performance, pushing the web forward.
 

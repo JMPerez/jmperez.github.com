@@ -15,6 +15,7 @@ permalink: ssim-jpeg-io
 The size of images in JPG varies a lot based on the compression level we choose when saving them. Often, we tweak this level by hand until we consider we don't have too many artifacts and the resulting image is close enough to the original one.
 
 The same compression level doesn't generate the same amount of artifacts in two different images. We need to find an automated approach that measures how different (or similar) two images are, and loop through several compression levels to find the most suitable one.
+
 <!-- more -->
 ## Structural similarity
 

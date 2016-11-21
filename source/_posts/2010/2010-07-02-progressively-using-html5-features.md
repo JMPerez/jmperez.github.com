@@ -18,6 +18,7 @@ enhance web applications developed in my current job. HTML5 has a good
 thing: users with modern browsers can enjoy enhancements without harming
 those who use older ones. This allows you integrate new features
 provided by HTML5 and don't worry about incompatibilities.
+
 <!-- more -->
 So far we are using:
 

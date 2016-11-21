@@ -10,6 +10,7 @@ permalink: revisitando-nueva-web-senado
 ---
 
 Hace unos días hacía un [análisis del rediseño de la web del Senado](/estudiando-el-rediseno-de-la-web-del-senado-de-espana/), justo tras su lanzamiento, desde el punto de vista de rendimiento web y mejores prácticas a la hora de desarrollar sitios web. La nueva web del Senado sufría múltiples problemas poco más que inaceptables para un proyecto tan reciente y con tal presupuesto.
+
 <!-- more -->
 Pero al igual que destacaba dichos problemas, unas semanas después debo mencionar que varios de ellos han sido resueltos. Aunque aún quedan algunos por resolver, es de destacar que hayan seguido trabajando en el sitio.
 ![Web del Senado de España](/assets/images/posts/web-senado.jpg)

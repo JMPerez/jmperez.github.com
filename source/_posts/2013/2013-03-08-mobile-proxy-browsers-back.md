@@ -12,6 +12,7 @@ permalink: mobile-proxy-browsers-back
 Mobile proxy browsers are coming back. For a long time we had Opera Mini. And these days we have seen the release of Opera Beta for Android and an update to Chrome Beta for Android, both highlighting data compression features. And they are not the only ones. About a year ago Amazon introduced their Silk browser with a similar proxy solution to Google's.
 
 On desktop, although this feature hasn't become that popular due to the higher bandwidth that is usually available, Opera also had presence with their [Opera Turbo](http://www.opera.com/turbo) feature.
+
 <!-- more -->
 ## Opera's Off-Road Mode
 

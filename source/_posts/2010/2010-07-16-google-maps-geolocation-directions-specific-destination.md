@@ -15,6 +15,7 @@ While helping in the redesign of Signum's website I took a look at Google Maps. 
 Now I wanted to know if I could make use of geolocalization and directions to show a visitor the way to get to our headquarters from wherever he/she is, instead of just showing with a marker where we are. Thanks to geolocation we can find out with precision the position coordinates of the visitor.
 [![Geolocation to guide visitor's to a specific place](/assets/images/posts/google-maps-geolocation-directions-300x187.jpg)](/assets/images/posts/google-maps-geolocation-directions.jpg)
 [View demo](/demos/geoposition)
+
 <!-- more -->
 The code makes use of HTML5 and Google geolocation services, as well as the new Google Maps API v3.
 

@@ -11,6 +11,7 @@ I have just come across the post [Improve the payment experience with animations
 ](https://medium.com/p/3d1b0a9b810e). I must say that I don't usually take into account animations when building a UI, since the priority is always the layout and I seldom have time to enhance the interface with subtle animations.
 
 After reading the article one starts appreciating those transitions that became a thing when the iPhone went out (maybe [too much on iOS7?](http://www.theguardian.com/technology/2013/sep/27/ios-7-motion-sickness-nausea). The good thing is that good animations make the interface look smoother and more professional, and it just feels great to use it. However, it is very easy to end up overusing animations and applying them to lots of elements just because it is possible.
+
 <!-- more -->
 > If you disable animations, the flow should feel broken; if it is not, this might mean your animations are superfluous.
 — _[Michaël Villar](https://medium.com/p/3d1b0a9b810e)_

@@ -12,6 +12,7 @@ permalink: image-optimization-lossy-lossless-techniques
 During last days I have come across interesting articles about images optimization. Images are currently the largest average payload in web sites, meaning a [62%](http://httparchive.org/interesting.php) of all the bytes. With the increasingly importance of responsive design, [responsive images](http://css-tricks.com/which-responsive-images-solution-should-you-use/) are becoming a challenge to face.
 
 I have already talked about image optimization in my [list of optimization techniques](/techniques-optimize-web-sites/#images-optimization) and my short [post about using jpegoptim](/jpegoptim-optimize-jpg-page-speed/). But recently I have read about highly compressed JPG to target high-res screens and progressive JPG images, and I thought it would worth sharing.
+
 <!-- more -->
 ## Highly compressed JPG images and high resolution screens
 

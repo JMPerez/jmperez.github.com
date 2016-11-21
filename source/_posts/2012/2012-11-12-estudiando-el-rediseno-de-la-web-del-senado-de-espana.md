@@ -11,6 +11,7 @@ permalink: estudiando-el-rediseno-de-la-web-del-senado-de-espana
 
 Echa un vistazo al [análisis más reciente que he hecho de la web del Senado](/revisitando-nueva-web-senado), donde hablo sobre algunos cambios que han llevado a cabo desde que publicó el nuevo sitio.
 [![Portada de Senado.es](/assets/images/posts/senado-es-portada-300x175.jpg)](/assets/images/posts/senado-es-portada.jpg)
+
 <!-- more -->
 Hoy se ha presentado el rediseño de la web del Senado de España. Sin entrar a valorar su coste o la necesidad, quería analizarla desde el punto de vista de implementación frontend.
 

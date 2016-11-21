@@ -13,6 +13,7 @@ permalink: console-log-favicon
 I recently read [this Steve Souder's tweet](https://twitter.com/souders/status/378587712543944704/photo/1) about a `console.log()` message that Etsy is printing out to catch developer's attention. You can see it by visiting [Etsy.com](http://www.etsy.com) and opening the console from the developer tools. Another good one is [Pinterest](https://twitter.com/rosariomgomez/status/466254762367655936).
 
 But I thought it would be even better to show the logo of the site next to the message.
+
 <!-- more -->
 ## What we will be achieving
 ![Final result showing a console.log message together with a favicon](/assets/images/posts/console-log-favicon-final.jpg)

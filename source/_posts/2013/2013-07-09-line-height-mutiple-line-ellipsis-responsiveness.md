@@ -9,6 +9,7 @@ permalink: line-height-mutiple-line-ellipsis-responsiveness
 ---
 
 Recently I was implementing a pinterest-ish layout in which the elements have a specific height. These elements contain a title that can expand multiple lines, and an additional text to which I would like to apply a multi-line ellipsis. Initially, I don't know how many lines of text the title will take. The text can be arbitrarily long, and depending on the screen width this number will vary.
+
 <!-- more -->
 ## Multiline ellipsis
 

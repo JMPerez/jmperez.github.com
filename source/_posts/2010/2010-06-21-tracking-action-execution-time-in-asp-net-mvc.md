@@ -10,6 +10,7 @@ permalink: tracking-action-execution-time-in-asp-net-mvc
 ---
 
 Using filter attributes we can add features to our actions or controllers easily. In this case, I have implemented an action filter attribute that stores how much time has taken to execute an action.
+
 <!-- more -->
 ```csharp
 public class TrackTimeFilter : ActionFilterAttribute

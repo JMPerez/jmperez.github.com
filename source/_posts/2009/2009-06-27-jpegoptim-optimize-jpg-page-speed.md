@@ -13,6 +13,7 @@ permalink: jpegoptim-optimize-jpg-page-speed
 Image optimization is a big topic these days. The main culprit in site traffic are images, and [their transfer size is increasing over time](http://httparchive.org/trends.php#bytesImg&reqImg).
 
 You may have wondered how to optimize your images. First, check if there is room for improvement. For that I will be using [Google Page Speed](http://developers.google.com/speed/pagespeed), which offers several tools for analyzing your site. One of them is a handy [online analyzer](http://developers.google.com/speed/pagespeed/insights/). Type there the name of your site and click to analyze it.
+
 <!-- more -->
 I like the 'Optimize images' section. It tells you what resources can be optimized and how much traffic you can save, both in the mobile version of your site and the one served for desktop:
 [![Analyzing a site using Google PageSpeed Insights online](/assets/images/posts/google-pagespeed-insights-report-thumb.jpg)](/assets/images/posts/google-pagespeed-insights-report.png)

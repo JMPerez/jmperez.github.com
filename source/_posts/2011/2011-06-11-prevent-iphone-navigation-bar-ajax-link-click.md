@@ -15,6 +15,7 @@ permalink: prevent-iphone-navigation-bar-ajax-link-click
 You can find a [**demo** showing the default behaviour and the one using Facebook's technique]( /demos/iphone-links). Use an iPhone or iPod Touch to see the effect.
 
 When clicking a link for ajax navigation on iPhone and iPod Touch, the navigation bar slides down and up for every link, even when they are enhanced to support ajax navigation and its click event is captured and we load content using XMLHttpRequest instead.
+
 <!-- more -->
 This is a bit annoying and some developers have already tried to solve it. See these links:
 

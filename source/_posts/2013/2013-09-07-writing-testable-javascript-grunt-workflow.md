@@ -16,6 +16,7 @@ I wanted to make sure I didn't commit JS code with syntax errors, lint
 errors or functional errors. And I think I have improved this a lot
 after reading about writing testable code and embracing
 Grunt.
+
 <!-- more -->
 ## First things first. Read a bit on it.
 

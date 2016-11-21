@@ -14,6 +14,7 @@ permalink: optimising-svgs
 
 <style>.language-xml{white-space: normal}</style>
 Lots of websites have started replacing their icon fonts and small icons with SVGs. They support CSS manipulations, animations and are great for responsive sites. But it is important to keep an eye on their size.
+
 <!-- more -->
 ## How SVGs are included in a page
 

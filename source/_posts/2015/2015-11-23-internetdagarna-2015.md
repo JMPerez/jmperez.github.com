@@ -12,6 +12,7 @@ tags:
 permalink: internetdagarna-2015
 ---
 Today I have had the chance of attending the [Faster than lightning track](https://internetdagarna.se/arkiv/2015/internetdagarna.se/index.html%3Fp=17396.html) of [Internetdagarna 2015](https://internetdagarna.se/arkiv/2015/internetdagarna.se/index.html). There have been talks about web performance, and some broader topics like big data and UI, how data is important for large companies offering free services, and the need for public Governments to build compelling competitive services. [The videos are already online](https://www.youtube.com/watch?v=7G0Xz0JsiFg&index=1&list=PLtDs7N_g_eiZ5ag.e-xntFYydij0xSPL42).![The Heart logo @ Internetdagarna 2015](/assets/images/posts/internetdagarna-logo.jpg)
+
 <!-- more -->
 ## Internetdagarna
 

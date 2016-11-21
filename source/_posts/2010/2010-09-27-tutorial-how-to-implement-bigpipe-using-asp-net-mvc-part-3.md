@@ -21,6 +21,7 @@ Parts of the tutorial
 4.  [Check out the demo Visual Studio solution](https://github.com/JMPerez/BigPipe)
 
 In this third part of the tutorial to carry out a technique similar to BigPipe I will cover the browser side. BigPipe is not only focused on server side, but it also sets how the different resources that our pagelets need have to be requested and loaded in the document.
+
 <!-- more -->
 ## Registering a pagelet and its resources
 In the Pagelet class I will declare a constructor that accepts a list of CSS files and a list of JavaScript files needed by the pagelet:

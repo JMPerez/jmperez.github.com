@@ -16,6 +16,7 @@ like [Disqus comments](http://disqus.com/websites/). They can be included on a s
 normally through an `iframe` or some JS snippet which will create an
 iframe. Although at first sight these widgets seem basic, lots of things
 need to be taken into account when implementing one.
+
 <!-- more -->
 ## Embeddable code
 

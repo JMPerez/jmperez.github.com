@@ -13,7 +13,10 @@ tags:
 permalink: medium-image-progressive-loading-placeholder
 ---
 
-Recently, I was browsing a post on Medium and I spotted a nice image loading effect. First, load a small blurry image, and then transition to the large image. I found it pretty neat and wanted to dissect how it was done.<br/><br/>![A screenshot of a blurry placeholder while the image is loaded](/assets/images/posts/medium-placeholder.png)
+Recently, I was browsing a post on Medium and I spotted a nice image loading effect. First, load a small blurry image, and then transition to the large image. I found it pretty neat and wanted to dissect how it was done.
+
+![A screenshot of a blurry placeholder while the image is loaded](/assets/images/posts/medium-placeholder.png)
+
 <!-- more -->
 ## Medium's technique
 

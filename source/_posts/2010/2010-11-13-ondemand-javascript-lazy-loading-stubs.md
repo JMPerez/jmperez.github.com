@@ -12,6 +12,7 @@ permalink: ondemand-javascript-lazy-loading-stubs
 ---
 
 Loading on-demand code can boost website performance in the sense that the browser does not need to request and execute Javascript code that is not needed. Depending on the script, a different approach can be taken to lazy load it.
+
 <!-- more -->
 ## Progressive enhancement Javascript
 This is by far the best scenario. Javascript is used to improve user experience but the web page can work without Javascript (in example, browsers with Javascript disabled). In this case, script loading can be delayed to the very moment it is needed or it can be loaded after some timeout.

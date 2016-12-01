@@ -4,9 +4,9 @@ title: Lazy-loading images on the web to improve loading time and saving bandwid
 date: 2016-07-31 09:30:00+02:00
 description: When building a website, consider lazy loading the assets when they are needed. This post will focus in the specific case of lazy loading images.
 image:
-  url: /assets/images/posts/universal-data-fetching.png
-  width: 540
-  height: 480
+  url: /assets/images/posts/open-pages-structure.png
+  width: 1486
+  height: 3258
 tags:
   - lazy-loading
   - images

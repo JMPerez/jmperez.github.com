@@ -31,6 +31,7 @@ body {
     line-height: 1.725;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%; /* fixes a too large font issue in horizontally scrollable <pre> on webkit */
 }
 
 @media(max-width: 800px) {
@@ -171,17 +172,11 @@ pre, code {
     color: #333;
     font-family: Courier, Menlo, Monaco;
     letter-spacing: 0px;
-    font-size: 0.9em;
-}
-
-pre code {
-    padding-left: 0;
-    border: none;
-    font-size: 90%;
+    font-size: 0.8em;
 }
 
 pre {
-    padding: 15px 20px;
+    padding: 0.8em 1em;
 }
 
 code {
@@ -464,4 +459,4 @@ footer {
   overflow-x: auto;
 }
 
-.code{font-family: Courier,Menlo,Monaco;letter-spacing: 0; font-size: .9em;display:block;background:white;color:#333333;overflow-x:auto}.code .comment,.code .meta{color:#969896}.code .string,.code .variable,.code .template-variable,.code .strong,.code .emphasis,.code .quote{color:#df5000}.code .keyword,.code .selector-tag,.code .type{color:#a71d5d}.code .literal,.code .symbol,.code .bullet,.code .attribute{color:#0086b3}.code .section,.code .name{color:#63a35c}.code .tag{color:#333333}.code .title,.code .attr,.code .selector-id,.code .selector-class,.code .selector-attr,.code .selector-pseudo{color:#795da3}.code .addition{color:#55a532;background-color:#eaffea}.code .deletion{color:#bd2c00;background-color:#ffecec}.code .link{text-decoration:underline}
+.code{letter-spacing: 0; display:block;background:white;color:#333333;overflow-x:auto}.code .comment,.code .meta{color:#969896}.code .string,.code .variable,.code .template-variable,.code .strong,.code .emphasis,.code .quote{color:#df5000}.code .keyword,.code .selector-tag,.code .type{color:#a71d5d}.code .literal,.code .symbol,.code .bullet,.code .attribute{color:#0086b3}.code .section,.code .name{color:#63a35c}.code .tag{color:#333333}.code .title,.code .attr,.code .selector-id,.code .selector-class,.code .selector-attr,.code .selector-pseudo{color:#795da3}.code .addition{color:#55a532;background-color:#eaffea}.code .deletion{color:#bd2c00;background-color:#ffecec}.code .link{text-decoration:underline}

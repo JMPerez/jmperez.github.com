@@ -36,7 +36,7 @@ I will talk about how we can get big wins focusing on delaying the load of image
 
 We can have a quick look at [spotify.com home page](https://spotify.com/):
 
-<video width="1194" height="798" controls src="/assets/images/posts/spotify-com-loading-images.webm">
+<video width="1194" height="798" controls>
   <source src="/assets/images/posts/spotify-com-loading-images.webm" type="video/webm">
   <source src="/assets/images/posts/spotify-com-loading-images.mp4" type="video/mp4">
 </video>

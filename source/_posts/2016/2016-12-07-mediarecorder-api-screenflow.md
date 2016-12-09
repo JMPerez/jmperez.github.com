@@ -22,7 +22,7 @@ The best way to learn is by practising and, [quoting Soledad](https://soledadpen
 
 ## The project
 
-<video width="2880" height="1800" controls src="/assets/images/posts/screenflow-output.webm">
+<video width="720" height="450" controls poster="/assets/images/posts/screenflow-poster.jpg">
   <source src="/assets/images/posts/screenflow-output.webm" type="video/webm">
   <source src="/assets/images/posts/screenflow-output.mp4" type="video/mp4">
 </video>

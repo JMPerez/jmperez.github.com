@@ -40,10 +40,12 @@ The code for the project is at [JMPerez/screenflow on GitHub](https://github.com
 Let's have a look at the most important code fragments. First of all, we define functions to request access to the different media sources:
 
 ```js
-// we ask for permission to record the screen
-const getStreamForScreen = () => navigator.mediaDevices.getUserMedia({
+// we ask for permission to record the window
+// mediaSource could also be 'screen' if we wanted
+// to record the entire screen
+const getStreamForWindow = () => navigator.mediaDevices.getUserMedia({
   video: {
-    mediaSource: 'screen'
+    mediaSource: 'window'
   }
 });
 
@@ -58,8 +60,8 @@ Now, we execute them, one after the other one. I tried to execute both in parall
 ```js
 getStreamForCamera().then(streamCamera => {
     // we know have access to the camera, let's append it to the DOM
-    // appendCamera(streamCamera);
-    getStreamForScreen().then(streamScreen => {
+    appendCamera(streamCamera);
+    getStreamForWindow().then(streamScreen => {
 
       // we now have access to the screen too
       // we generate a combined stream with the video from the

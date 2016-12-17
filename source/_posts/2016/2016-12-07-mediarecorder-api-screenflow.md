@@ -61,13 +61,13 @@ Now, we execute them, one after the other one. I tried to execute both in parall
 getStreamForCamera().then(streamCamera => {
     // we know have access to the camera, let's append it to the DOM
     appendCamera(streamCamera);
-    getStreamForWindow().then(streamScreen => {
+    getStreamForWindow().then(streamWindow => {
 
       // we now have access to the screen too
       // we generate a combined stream with the video from the
       // screen and the audio from the camera
       var finalStream = new MediaStream();
-      const videoTrack = streamScreen.getVideoTracks()[0];
+      const videoTrack = streamWindow.getVideoTracks()[0];
       finalStream.addTrack(videoTrack);
       const audioTrack = streamCamera.getAudioTracks()[0];
       finalStream.addTrack(audioTrack);

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Lazy-loading images on the web to improve loading time and saving bandwidth
+title: How to lazy-load images to improve loading time and save bandwidth
 date: 2016-07-31 09:30:00+02:00
 description: When building a website, consider lazy loading the assets when they are needed. This post will focus in the specific case of lazy loading images.
 image:

@@ -59,7 +59,17 @@ When doing lazy load, we want to detect when the page is scrolled, and then chec
 
 Scroll listeners can have a negative impact in scrolling performance. During the scroll movement, the browser triggers many scroll events, and finding out the position and dimension of our images causes [a layout recalculation](https://gist.github.com/paulirish/5d52fb081b3570c81e3a). This is an expensive operation that makes the browser spend too long drawing frames, producing [stuttering when scrolling](http://jankfree.org/).
 
-To avoid it, JS developers usually cache dimensions and positions of some elements, and use throttling and debouncing to execute the scroll callback fewer times. Last, but not least, there is an experimental API called [IntersectionObserver](https://developers.google.com/web/updates/2016/04/intersectionobserver) that suits very well this use case. Instead of subscribing to the scroll event, and then go through the lazy-loaded images, IntersectionObserver allows us to subscribe to an event triggered when the image enters the rendered area (viewport).
+To avoid it, JS developers usually cache dimensions and positions of some elements, and use throttling and debouncing to execute the scroll callback fewer times.
+
+#### IntersectionObserver
+There is an experimental API called [IntersectionObserver](https://developers.google.com/web/updates/2016/04/intersectionobserver) that suits very well this use case. Instead of subscribing to the scroll event, and then go through the lazy-loaded images, IntersectionObserver allows us to subscribe to an event triggered when the image enters the rendered area (viewport).
+
+![IntersectionObserver](/assets/images/posts/intersectionobserver.gif)
+_Source: [IntersectionObserver’s Coming into View](https://developers.google.com/web/updates/2016/04/intersectionobserver)._
+
+The API is fully supported on Chrome, Opera and MS Edge. It's [also enabled in Firefox](http://caniuse.com/intersectionobserver), behind the `dom.IntersectionObserver.enabled` preference.
+
+IntersectionObserver has also other interesting applications. The main one is probable a more fine control on ads, to make sure impressions are tracked for ads that the user actually sees. Another one is infinite scrolling lists, that can be implemented as sets of _pages_ (top, current, bottom) that we can listen to for visibility events and load/unload rows or change the height of the pages.
 
 ### Fallback content and viewport
 When an image is displayed within the rendered area, we know it needs to be fetched. But we could also fetch it when, not being strictly within the rendered area, it is very close to it. This reduces the likeliness that a placeholder is rendered without its image, but can also mean requesting images that will never be displayed.

@@ -22,7 +22,7 @@ The best way to learn is by practising and, [quoting Soledad](https://soledadpen
 
 ## The project
 
-<iframe width="720" height="450" src="http://www.youtube.com/embed/tOWwV8ZRn3g" frameborder="0" allowfullscreen></iframe>
+<iframe width="720" height="450" src="https://www.youtube.com/embed/tOWwV8ZRn3g" frameborder="0" allowfullscreen></iframe>
 
 I had this idea about creating a [ScreenFlow](http://www.telestream.net/screenflow/overview.htm)-like prototype. I would show my webcam in a corner of the screen and I would generate a video combining audio from the mic and the image from the screen.
 

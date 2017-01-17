@@ -61,7 +61,7 @@ h1, h2, h3, h4, h5 {
     font-size: 1em;
 }
 
-p, .post ul, .post ol, iframe, video, amp-video {
+p, .post ul, .post ol, iframe, video, amp-video, amp-vimeo, amp-youtube {
     margin: 0;
     margin-bottom: 1em;
 }

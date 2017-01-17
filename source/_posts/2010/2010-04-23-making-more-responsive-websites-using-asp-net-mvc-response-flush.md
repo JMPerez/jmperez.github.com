@@ -7,7 +7,7 @@ tags:
 permalink: making-more-responsive-websites-using-asp-net-mvc-response-flush
 ---
 
-While I was watching a [Google I/O 2009 video](http://www.youtube.com/watch?v=aJGC0JSlpPE) by Steve Souders, the author of [High Performance Websites](http://oreilly.com/catalog/9780596529307) and [Even Faster Websites](http://oreilly.com/catalog/9780596522315), I really liked the fact of using **flushing** to send earlier the document to the browser, allowing a prefetching of external resources.
+While I was watching a [Google I/O 2009 video](https://www.youtube.com/watch?v=aJGC0JSlpPE) by Steve Souders, the author of [High Performance Websites](http://oreilly.com/catalog/9780596529307) and [Even Faster Websites](http://oreilly.com/catalog/9780596522315), I really liked the fact of using **flushing** to send earlier the document to the browser, allowing a prefetching of external resources.
 [![Response Flush in Google Chrome](/assets/images/posts/response-flush-short-300x101.jpg)](/assets/images/posts/response-flush-short.jpg)
 
 <!-- more -->

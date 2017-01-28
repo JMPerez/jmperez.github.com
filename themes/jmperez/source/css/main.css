@@ -195,11 +195,11 @@ code {
 
 body > header {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #005689;
     position: relative;
     overflow: hidden;
     padding: 1em;
     width: 100%;
-    border-bottom: 2px solid #eee;
     text-align: center;
 }
 
@@ -212,17 +212,14 @@ body > header {
 
 #menu a {
     margin-left: 15px;
-    color: #666;
+    color: #fff;
     text-transform: uppercase;
     font-size: 14px;
     padding: 20px 10px;
 }
 
-#menu a:hover {
-    color: #212121;
-}
-#menu a.current {
-    color: #212121;
+#menu a[aria-current=page] {
+    font-weight: bold;
 }
 
 /*--PAGE--*/

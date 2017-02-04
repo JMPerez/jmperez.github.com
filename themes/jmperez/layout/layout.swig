@@ -24,6 +24,8 @@
   {% if (is_post() && config.generator_amp) %}
   <link rel="amphtml" href="{{ url_for(page.path + 'amp/') }}">
   {% endif %}
+  <meta name="theme-color" content="#005689">
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   {{ partial('_partial/ga')}}

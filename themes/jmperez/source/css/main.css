@@ -217,7 +217,7 @@ body > header {
     padding: 20px 10px;
 }
 
-#menu a[aria-current=page] {
+#menu a[aria-current] {
     font-weight: bold;
 }
 
@@ -251,7 +251,7 @@ body > header {
 
 .wrapper {
     border-top: 2px solid #eee;
-    margin-bottom: 3.5em;
+    padding: 3em 0;
 }
 
 .wrapper:first-child {

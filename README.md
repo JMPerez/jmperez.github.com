@@ -8,6 +8,7 @@ These are some interesting features:
 - It supports [redirects](https://github.com/JMPerez/jmperez.github.com/blob/hexo/themes/jmperez/layout/redirection.swig) so old URLs are redirected to their new location.
 - It uses [clean-css](https://github.com/jakubpawlowicz/clean-css) to minify CSS assets, which are later inlined.
 - It has [very good performance](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fjmperezperez.com%2F).
+- It scores 100/100 on [Lighthouse](https://developers.google.com/web/tools/lighthouse/) thanks to its ServiceWorker and manifest file. When offline, you can still access the home, about, and project pages, as well as any page that has been previously browsed.
 - It supports [AMP (Accelerated Mobile Pages)](https://www.ampproject.org) through [hexo-generator-amp](https://github.com/tea3/hexo-generator-amp).
 
 ## Installing it

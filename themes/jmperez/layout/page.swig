@@ -1,3 +1,1 @@
-<article class="wrapper">
-  {{ page.content }}
-</article>
+{{ page.content }}

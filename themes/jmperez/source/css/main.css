@@ -259,7 +259,7 @@ body > header {
     padding-top: 5%;
 }
 
-.posts-list .wrapper:first-child h2 {
+.posts-list h2 {
   margin-top: 0;
 }
 

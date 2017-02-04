@@ -3,6 +3,9 @@ layout: projects
 title: Projects - José Manuel Pérez Pérez
 description: Some projects in which I have been working on
 ---
+
+# Personal Projects
+
 These are some personal projects I have been working on to learn more about certain libraries and browser APIs.
 
 I like trying out "the last new thing" in a small project and publish it on GitHub, both as a personal reminder of what I did, and to help people looking for examples.

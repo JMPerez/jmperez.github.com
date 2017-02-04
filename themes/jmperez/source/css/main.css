@@ -55,6 +55,10 @@ h1, h2, h3, h4, h5 {
     margin-bottom: 1em;
 }
 
+h2, h3, h4, h5 {
+  margin-top: 2em;
+}
+
 #menu a, .button {
 
     font-weight: 400;
@@ -110,11 +114,6 @@ h3 {
 }
 h4 {font-size: 1.18em;}
 h5 {font-size: 1em;}
-
-
-p + h2, p + h3, p + h4, p + h5 {
-    padding-top: 1em;
-}
 
 a h1, a h2, a h3, a h4, a h5 {
     -webkit-transition: color .15s ease-out;
@@ -231,16 +230,37 @@ body > header {
     max-width: 40em;
 }
 
+.videoWrapper {
+    height: 0;
+    margin-bottom: 1em;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    position: relative;
+}
+
+.videoWrapper iframe, .videoWrapper amp-youtube {
+    left: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+
 /*--WRAPPER--*/
 
 .wrapper {
-    padding: 7.5% 0;
     border-top: 2px solid #eee;
+    margin-bottom: 3.5em;
 }
 
 .wrapper:first-child {
-    padding-top: 0;
     border-top: none;
+    padding-top: 5%;
+}
+
+.posts-list .wrapper:first-child h2 {
+  margin-top: 0;
 }
 
 /*--POSTS--*/

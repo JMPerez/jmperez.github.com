@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row posts-list">
  {% for post in page.posts %}
    <div class="wrapper">
      <div class="post">

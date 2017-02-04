@@ -28,7 +28,9 @@ I have decided to collect some of the best posts and articles I have read during
 
 * [**What Comes Next Is The Future**](https://vimeo.com/177267839). A very interesting documentary about the Web that [started as a Kickstarter project](https://www.kickstarter.com/projects/bearded/what-comes-next-is-the-future) and is now available to everyone for free. A must-watch for every web developer to understand the history of web development.
 
+<div class="videoWrapper">
 <iframe src="https://player.vimeo.com/video/177267839?byline=0&portrait=0" width="684" height="385" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
 
 ## Books
 

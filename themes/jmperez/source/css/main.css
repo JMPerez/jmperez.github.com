@@ -217,6 +217,10 @@ body > header {
     padding: 20px 10px;
 }
 
+#menu a:first-child {
+    margin-left: 0;
+}
+
 #menu a[aria-current] {
     font-weight: bold;
 }

@@ -105,4 +105,4 @@ Javascript or search engine bots (keeping SEO and accessibility).
 
 #### Other resources
 
-Some other people have implemented the basics of this technique using Java ([Bruno Fernandez-Ruiz](http://www.olympum.com/java/facebook-bigpipe-in-an-async-servlet/) and [Stephan Schmidt](http://codemonkeyism.com/facebook-bigpipe-java/)) and using Node.js ([Subbu Allamaraju](http://www.subbu.org/blog/2010/07/bigpipe-done-in-node-js)).
+Some other people have implemented the basics of this technique using Java ([Bruno Fernandez-Ruiz](http://www.olympum.com/java/facebook-bigpipe-in-an-async-servlet) and [Stephan Schmidt](http://codemonkeyism.com/facebook-bigpipe-java/)) and using Node.js ([Subbu Allamaraju](http://www.subbu.org/blog/2010/07/bigpipe-done-in-node-js)).

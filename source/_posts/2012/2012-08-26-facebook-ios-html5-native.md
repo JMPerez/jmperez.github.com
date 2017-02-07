@@ -18,7 +18,7 @@ This week Facebook [announced an update for their iOS app](http://web.archive.or
 <!-- more -->
 ## Lessons learned from HTML5
 
-I really recommend reading "[How Facebook Mobile Was Designed to Write Once, Run Everywhere](http://www.readwriteweb.com/mobile/2011/09/how-facebook-mobile-was-design.php)" since it provides a better understanding about how Facebook mobile development has evolved. They found HTML5 to be the answer to share code between their mobile site and iOS app, developed as a hybrid app. After their experience on iOS, they decided to do the same with their Android app:
+I really recommend reading "[How Facebook Mobile Was Designed to Write Once, Run Everywhere](http://readwrite.com/2011/12/27/redux_how_facebook_mobile_was_designed_to_write_once_run/)" since it provides a better understanding about how Facebook mobile development has evolved. They found HTML5 to be the answer to share code between their mobile site and iOS app, developed as a hybrid app. After their experience on iOS, they decided to do the same with their Android app:
 
 > But, this worked well enough that we said we are going to put the Android app on this party train too. So, we were actually able to write something like the m.site news feed once. Any time you change a news feed story or add a news feed story or add commenting and Liking or whatever, that is going to show up on low-end m.site, high-end m.site, Facebook for iPhone and Facebook for Android the very next day, or whenever we push, which is actually pretty awesome. - Dan Rowinski
 

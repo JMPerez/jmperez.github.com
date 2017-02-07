@@ -13,7 +13,7 @@ I'm using GitHub Pages with a custom domain to power this blog and the pages for
 
 <!-- more -->
 ## How to set up
-A simple search got me to [Set Up SSL on Github Pages With Custom Domains for Free](https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/), where it's explained how to use Cloudfare to add SSL to your domain. The steps are quite clear and I got it set up in a few minutes. And after some hours has propagated the server name configuration.
+A simple search got me to [Set Up SSL on Github Pages With Custom Domains for Free](https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/), where it's explained how to use Cloudflare to add SSL to your domain. The steps are quite clear and I got it set up in a few minutes. And after some hours has propagated the server name configuration.
 
 After making the change I went through some additional steps:
 
@@ -25,7 +25,7 @@ After making the change I went through some additional steps:
 ## Why switching to SSL
 You might wonder why this site, a static blog that doesn't deal with user's private information, needs SSL. I consider HTTPS to be a sign of a good network citizen. In addition, some of my projects use 3rd party APIs like Spotify's Web API, and the token retrieval and storage will be even more secure with HTTPS. And as I said, this will allow me to do some hacking with new browser APIs.
 
-**Update December 4th, 2015**: CloudFlare has just enabled HTTP/2 for the sites using their SSL, which means that if your browser supports it, you should be getting this page using HTTP/2.
+**Update December 4th, 2015**: Cloudflare has just enabled HTTP/2 for the sites using their SSL, which means that if your browser supports it, you should be getting this page using HTTP/2.
 
 ## Performance implications
 Migrating to HTTPS has a small effect in terms of performance. The requests will take longer to be fulfilled due to the negotiation phase of the protocol, and the decryption.

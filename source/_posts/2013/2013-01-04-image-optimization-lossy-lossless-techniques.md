@@ -16,7 +16,7 @@ I have already talked about image optimization in my [list of optimization techn
 <!-- more -->
 ## Highly compressed JPG images and high resolution screens
 
-[Compressive Images](http://filamentgroup.com/lab/rwd_img_compression/) is a post by Filament Group where they show a way to target responsive images. Instead of using multiple copies of an image with different sizes, you can generate a large JPG image with a compression of 0 quality. That way, not only one single copy can be used to target different screen sizes and resolutions, but there are even large savings in file size comparing to normal 1:1 images.
+[Compressive Images](https://www.filamentgroup.com/lab/compressive-images.html) is a post by Filament Group where they show a way to target responsive images. Instead of using multiple copies of an image with different sizes, you can generate a large JPG image with a compression of 0 quality. That way, not only one single copy can be used to target different screen sizes and resolutions, but there are even large savings in file size comparing to normal 1:1 images.
 
 I have prepared [a demo of the Compressive Images technique](/demos/compressive-images/) where you can test your own images.
 

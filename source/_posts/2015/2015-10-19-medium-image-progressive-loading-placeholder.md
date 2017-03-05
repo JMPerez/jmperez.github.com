@@ -128,7 +128,7 @@ Another option is to use a SVG filter, as explained in [The “Blur Up” Techni
 ### Other ways of improving placeholders: Google Images Search
 
 A simpler technique is used by Google Search when searching for images from a smartphone:
-[![Searching on Google Images from the phone](/assets/images/posts/google-images-placeholder.png)]({/assets/images/posts/google-images-placeholder.png)
+[![Searching on Google Images from the phone](/assets/images/posts/google-images-placeholder.png)](/assets/images/posts/google-images-placeholder.png)
 _&uarr; Google Images Search shows a solid background as placeholder (left image is while loading, right when already loaded)._
 
 They pick a colour (maybe the dominant colour of the picture?) and they use it a solid colour background. It gives the user the feeling that images loads faster.

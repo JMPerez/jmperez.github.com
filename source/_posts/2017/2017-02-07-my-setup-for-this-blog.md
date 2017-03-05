@@ -26,7 +26,7 @@ The few JPG images on this site are progressive JPGs, [generated using Jpeg.io](
 
 [![Filmstrip for jmperezperez.com](/assets/images/posts/jmperez-filmstrip.png)](/assets/images/posts/jmperez-filmstrip.png)
 
-Something in my to-do list is to prevent [content jumping](https://css-tricks.com/content-jumping-avoid/) by using some [intrinsic ratio placeholders](http://blog.learningspaces.io/flexible-cover-images-using-intrinsic-ratio/) for the images.
+Something in my to-do list is to prevent [content jumping](https://css-tricks.com/content-jumping-avoid/) by using some [intrinsic ratio placeholders](http://blog.learningspaces.io/flexible-cover-images-using-intrinsic-ratio/) for the images, and lazy-load them.
 
 ## SSL and HTTP/2
 
@@ -52,4 +52,8 @@ When browsing the App Store/Play Store, the user has an indication of the size o
 
 ## Performance
 
-I like talking about web performance so my own site has to be a good example of what I advocate for. I use [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fjmperezperez.com) to check the performance and usability on mobile (score >98/100) and [Lighthouse](https://developers.google.com/web/tools/lighthouse/) (100/100).
+I like talking about web performance so my own site has to be a good example of what I advocate for. I use [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fjmperezperez.com) to check the performance and usability on mobile (score >=99/100 for most pages) and [Lighthouse](https://developers.google.com/web/tools/lighthouse/) (100/100).
+
+[![Screenshot from Lighthouse for jmperezperez.com](/assets/images/posts/jmperezperez-lighthouse.png)](/assets/images/posts/jmperezperez-lighthouse.png)
+
+I'm looking forward to more ideas that I can apply to this blog and then some real project at scale :)

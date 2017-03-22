@@ -6,7 +6,7 @@ description: Medium is not the only site using blurry placeholders. Let's look a
 permalink: more-progressive-image-loading
 ---
 
-In [a past post](/medium-image-progressive-loading-placeholder) I dissected a technique used by Medium to display images, transitioning from a blurry image to the final one. Since then I have found some more sites following a similar approach. Let's see how Quora and Quartz do it.
+In [a past post](/medium-image-progressive-loading-placeholder) I dissected a technique used by Medium to display images, transitioning from a blurry image to the final one. Since then I have found some more sites following a similar approach. Let's see how Quora, Quartz and Clicktorelease do it.
 
 <!-- more -->
 
@@ -122,6 +122,45 @@ In short, Quora's technique consists of:
 1. Draw an inlined tiny PNG in a canvas
 2. Request the large image using WebP (if supported) or other format.
 3. Set the large image as source for the `<img/>` element, animate its opacity and hide the canvas.
+
+### Clicktorelease
+[Clicktorelease.com](https://www.clicktorelease.com/), [@thespite](https://twitter.com/thespite)’s website, has just been redesigned and he has also added lazy-loading of images.
+
+<video width="1616" height="1204" controls>
+  <source src="/assets/images/posts/clicktorelease.webm" type="video/webm">
+  <source src="/assets/images/posts/clicktorelease.mp4" type="video/mp4">
+</video>
+
+The most interesting bit here is that the thumbnail is not the image itself, but the values [of the DCT matrix for the thumbnail](https://twitter.com/thespite/status/827110706642305024), which makes the payload really small.
+
+These are the steps to load an image:
+
+1. Make a request for the `thumb-src` image. It is a 16x4 PNG thumbnail whose size is usually in the 300B.
+2. Create a `<canvas/>` and draw the image resulting from the calculation the inverse DCT of the thumbnail.
+3. Request the large image using the `original-src` url. If the browser supports the webp image format, then ".webp" is appended to the src and a webp image is requested.
+
+The initial markup looks like this:
+
+```html
+<div class="hero image">
+    <!-- the lazy loaded image -->
+    <!-- thumb-src is a matrix of DCT coefficients -->
+    <!-- note that a background-color is also set so -->
+    <!-- it is rendered while the image is fetched -->
+    <div thumb-lazy
+      original-src="/images/graphical-web-2016.jpg"
+      thumb-src="/images/graphical-web-2016-thumb.png"
+      thumb-width="2880" thumb-height="1800"
+      style="background-color:#121513;width:100%">
+    <!-- a div with intrinsic ratio -->
+    <div style="padding-bottom:62.5%">
+        <!-- fallback for browsers not using JS / bots -->
+        <noscript><img src="/images/graphical-web-2016.jpg"></noscript>
+    </div>
+</div>
+```
+
+I think it is a very good example of progressive enhancement, providing a `<noscript>` alternative, and going all the way up from a solid background-color, to a blurry gradient and finally the large image with support for webp.
 
 ## Wrapping Up
 

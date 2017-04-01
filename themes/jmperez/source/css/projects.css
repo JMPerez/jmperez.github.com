@@ -1,6 +1,6 @@
 ul.projects {
-    list-style: none;
     font-size: 0.8em;
+    list-style: none;
     margin: 0;
     padding: 0;
 }
@@ -11,9 +11,9 @@ ul.projects p {
 
 ul.projects > li {
     float: left;
-    width: 45%;
-    margin-right: 10%;
     margin-bottom: 10%;
+    margin-right: 10%;
+    width: 45%;
 }
 
 ul.projects > li:nth-child(2n+2) {
@@ -32,10 +32,10 @@ ul.projects::after {
 }
 
 ul.projects .project-links a {
-    display: inline-block;
-    padding: 0.2em 1em;
-    margin-right: 1em;
     border: 1px solid #f3f3f3;
+    display: inline-block;
+    margin-right: 1em;
+    padding: 0.2em 1em;
     transition: border-color .15s ease-out;
 }
 

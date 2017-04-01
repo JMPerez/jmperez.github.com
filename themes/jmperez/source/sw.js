@@ -1,4 +1,4 @@
-const CACHE_VERSION = 7;
+const CACHE_VERSION = 8;
 let CURRENT_CACHE = 'main-v' + CACHE_VERSION;
 
 const cacheFiles = [

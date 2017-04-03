@@ -56,7 +56,7 @@ const update = request =>
   );
 
 self.addEventListener('fetch', evt => {
-  evt.respondWith(fromNetwork(evt.request, 400).catch(
+  evt.respondWith(fromNetwork(evt.request, 10000).catch(
     () => fromCache(evt.request)
   ));
   evt.waitUntil(update(evt.request));

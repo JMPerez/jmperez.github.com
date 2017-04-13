@@ -80,6 +80,10 @@ amp-youtube {
     margin-bottom: 1em;
 }
 
+twitterwidget {
+  margin-bottom: 1em !important;
+}
+
 a {
     color: #2a7cb2;
     font-weight: inherit;

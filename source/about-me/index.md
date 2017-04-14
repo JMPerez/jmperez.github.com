@@ -10,7 +10,7 @@ I am a software engineer dedicated to web development and committed to web perfo
 
 I love progressive enhancement and mobile-first approach to deliver content that can be enjoyed from any device.
 
-Currently I am working as a web developer at [Spotify](http://spotify.com) in Stockholm.
+Currently I am working as a web developer at [Spotify](https://spotify.com) in Stockholm, Sweden. Occasionally [I speak at web conferences](/talks/).
 
 ## More info about me?
 

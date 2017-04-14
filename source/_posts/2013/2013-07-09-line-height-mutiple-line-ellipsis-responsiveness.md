@@ -20,7 +20,7 @@ There are [many](http://css-tricks.com/line-clampin/) [ways](http://www.mobify.c
 I have coded [a jsfiddle](http://jsfiddle.net/vEvbG/5/) that helps to visualise how this works. Try
 changing the width of the "Result" window dragging the vertical separator.
 
-<iframe src="http://jsfiddle.net/vEvbG/5/embedded/result,html,css" height="300" width="100%" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe src="https://jsfiddle.net/vEvbG/5/embedded/result,html,css" height="300" width="100%" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 And a screenshot, in case you have problems visualising the jsfiddle:
 ![Same line-height (small items)](/assets/images/posts/line-height-responsive-01.png)

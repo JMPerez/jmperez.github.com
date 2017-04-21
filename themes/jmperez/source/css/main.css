@@ -542,3 +542,14 @@ footer {
 .code .link {
     text-decoration: underline;
 }
+
+.caption {
+  display: block;
+  margin-top: -0.8em;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+img + .caption {
+    margin-top: -4%;
+}

@@ -213,7 +213,7 @@ code {
 
 /*--HEADER--*/
 
-body > header {
+.main-header {
     background-color: #005689;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     overflow: hidden;

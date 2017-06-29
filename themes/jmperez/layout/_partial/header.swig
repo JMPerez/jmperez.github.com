@@ -1,4 +1,4 @@
-<header>
+<header class="main-header">
     <nav id="menu">
         <a href="/"{% if is_current('index.html') %} aria-current{% endif %}>JMPerez Blog</a>
         <a href="/projects/"{% if is_current('projects/') %} aria-current{% endif %}>Projects</a>

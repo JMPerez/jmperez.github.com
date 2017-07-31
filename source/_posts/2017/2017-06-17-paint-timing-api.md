@@ -1,6 +1,6 @@
 ---
 layout: post
-title: PerformanceObserver and Paint Timing API
+title: PerformanceObserver and Paint Timing API
 date: 2017-06-17 11:15:00+02:00
 description: A quick look at the Paint Timing API to get metrics about render events on our pages.
 image:
@@ -18,9 +18,9 @@ In [a recent post about Chrome 60 Beta](https://blog.chromium.org/2017/06/chrome
 
 ![Example of Paint Timing API entries](/assets/images/posts/paint-timing-example.png)
 
-<small class="caption">Image taken from the [Chrome 60 blog post](https://blog.chromium.org/2017/06/chrome-60-beta-paint-timing-api-css.html), which first appeared in ["Web Performance: Leveraging the Metrics that Most Affect User Experience"](https://youtu.be/6Ljq-Jn-EgU) at Google I/O 2017</small>
+<small class="caption">Image taken from the [Chrome 60 blog post](https://blog.chromium.org/2017/06/chrome-60-beta-paint-timing-api-css.html), which first appeared in ["Web Performance: Leveraging the Metrics that Most Affect User Experience"](https://youtu.be/6Ljq-Jn-EgU) at Google I/O 2017</small>
 
-Up until now we have been measuring performance through other metrics, mostly using the [Navigation Timing API](developer.mozilla.org/docs/Web/API/Navigation_timing_API), which is also what Google Analytics uses for their [Site Speed report](http://www.ericmobley.net/measuring-performance-google-analytics/). Yet those metrics don’t tell us the whole picture about the rendering experience.
+Up until now we have been measuring performance through other metrics, mostly using the [Navigation Timing API](https://developer.mozilla.org/docs/Web/API/Navigation_timing_API), which is also what Google Analytics uses for their [Site Speed report](http://www.ericmobley.net/measuring-performance-google-analytics/). Yet those metrics don’t tell us the whole picture about the rendering experience.
 
 The [Paint Timing API](https://github.com/WICG/paint-timing) aims to improve this by exposing metrics on paint events that are grouped in two types of entries. By [its definition](https://github.com/WICG/paint-timing#definition):
 
@@ -30,10 +30,10 @@ The [Paint Timing API](https://github.com/WICG/paint-timing) aims to improve thi
 A picture is worth a thousand words, so let’s see how these entries would be reported by some real web sites:
 ![Filmstrip from several sites showing when Paint Timing API entries are triggered](/assets/images/posts/paint-timing-filmstrip.png)
 
-<small class="caption">Image taken from the [Paint timing API repo on WICG](https://github.com/WICG/paint-timing#examples).</small>
+<small class="caption">Image taken from the [Paint timing API repo on WICG](https://github.com/WICG/paint-timing#examples).</small>
 
 
-#### Hacking on it
+#### Hacking on it
 
 As a hack project I decided to give it a try and implement it on a web site. You have a basic example [on the Paint timing page](https://github.com/WICG/paint-timing#usage):
 
@@ -73,7 +73,7 @@ const observer = new PerformanceObserver((list) => {
 observer.observe({entryTypes: ['paint']});
 ```
 
-#### Word of Caution
+#### Word of Caution
 
 The API is still experimental and [in “Editor’s Draft” state](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver). Also, the fact that a browser supports PerformanceObserver doesn’t mean that it supports the Paint events.
 

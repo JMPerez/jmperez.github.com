@@ -43,4 +43,4 @@ This is a list of some posts and talks I have read and watch during the last day
 
 - [Alex Fernández](https://twitter.com/pinchito) has published [How Much Did JSDayES 2017 Cost?](http://pinchito.es/2017/jsdayes-2017-cost.html). This is a conference [I attended](/jsdayes-madrid-2017) and it's eye-opening to see how much effort is put behind the scenes.
 
-- I'm from Alicante, Spain, and I was very happy to find out about [React Alicante 2017](http://reactalicante.es). There are not many tech conferences in the area, and I hope it is a success. Unfortunately I won't be able to attend, but i¡ll keep a close eye on it.
+- I'm from Alicante, Spain, and I was very happy to find out about [React Alicante 2017](http://reactalicante.es). There are not many tech conferences in the area, and I hope it is a success. I'm glad I'll attend!

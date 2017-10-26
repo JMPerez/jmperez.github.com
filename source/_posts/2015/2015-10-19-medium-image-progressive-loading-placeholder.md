@@ -155,6 +155,7 @@ If you are generating several thumbnail sizes for your images, you can experimen
 <p><strong>Related Posts</strong></p>
 <ul>
 <li>I gave a talk at CSSConf about progressive images. You can watch the video and slides on <a href="/cssconf-au-2016/">Speaking at CSSConf Australia 2016</a>.</li>
+<li>I collected more examples of sites using a similar technique on <a href="/more-progressive-image-loading/">More examples of Progressive Image Loading</a>.
 <li>Interested in other image tips and tricks? Check out <a href="/image-optimization-lossy-lossless-techniques">Image optimization: Lossy, lossless and other techniques</a>.
 </li>
 </ul>

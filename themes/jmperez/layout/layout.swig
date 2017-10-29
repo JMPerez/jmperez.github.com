@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
   <title>{{ page.title }}{% if page.title %} - {% endif %}JMPerez Blog</title>
   {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

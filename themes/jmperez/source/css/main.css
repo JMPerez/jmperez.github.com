@@ -543,6 +543,10 @@ footer {
     text-decoration: underline;
 }
 
+.code-wrap pre {
+    white-space: pre-wrap;
+}
+
 .caption {
   display: block;
   margin-top: -0.8em;

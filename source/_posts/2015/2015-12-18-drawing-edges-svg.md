@@ -30,8 +30,7 @@ One of the applications I like is path animation. This draws slowly the lines th
 
 Some time ago I played with [this technique and the vector version of the Spotify logo](https://github.com/JMPerez/spotify-logo-svg-drawing-animation):
 
-<p data-height="403" data-theme-id="0" data-slug-hash="rxxRRg" data-default-tab="result" data-user="jmperez" class='codepen'>See the Pen <a href='http://codepen.io/jmperez/pen/rxxRRg/'>Drawing SVGs - Spotify Logo</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+{% codepen jmperez rxxRRg 0 result 403 %}
 
 This was based on [the SVG Animation (Polygon.com PS4 Review) pen by Derek Palladino](http://codepen.io/derekjp/pen/KIGFe/), who reproduced Polygon's drawings.
 

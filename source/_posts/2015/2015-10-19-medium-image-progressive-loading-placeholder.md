@@ -80,7 +80,7 @@ I have prepared [this CodePen](http://codepen.io/jmperez/pen/yYjPER) where I hav
 
 Here is a demo (click 'Run Pen' to run it):
 
-<p data-height="403" data-theme-id="0" data-slug-hash="yYjPER" data-default-tab="result" data-user="jmperez" class='codepen' data-preview="true">See the Pen <a href='http://codepen.io/jmperez/pen/yYjPER/'>Medium loading image effect reproduced</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+{% codepen jmperez yYjPER 0 result 403 100% preview %}
 
 You can see it better [in full screen](http://codepen.io/jmperez/full/Xmzobe/). I recommend that you use network throttling and disable cache to notice the full animation.
 
@@ -112,14 +112,13 @@ By default, when a browser renders a small image scaled up, it applies a light b
 
 This works both in Chrome, Safari and Firefox (I haven't tried on IE yet), though the smoothing effect is more prominent in Chrome. Here is a demo, but you can see it better [in full screen](http://codepen.io/jmperez/full/Xmzobe/):
 
-<p data-height="367" data-theme-id="0" data-slug-hash="Xmzobe" data-default-tab="result" data-user="jmperez" class='codepen'>See the Pen <a href='http://codepen.io/jmperez/pen/Xmzobe/'>Blur effect when scaling up a small image</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+{% codepen jmperez Xmzobe 0 result 367 %}
 
 Note how the artefacts are smoothen. Keep in mind that the image is only 27px wide and has very low quality, which should result in an awful scaled-up version, but it isn't. If the above effect is enough for you, then you don't need to use more complicated alternatives.
 
 The blur effect can also be achieved using [CSS Filter Effects](http://codepen.io/aniketpant/pen/DsEve). [Its support is quite wide](http://caniuse.com/#feat=css-filters) aside from IE. I'm pretty sure Medium tried this before going to a canvas solution, which feels far too over-engineered, but for some reason they decided not to use it.
 
-<p data-height="367" data-theme-id="0" data-slug-hash="PPOXzY" data-default-tab="result" data-user="jmperez" class='codepen'>See the Pen <a href='http://codepen.io/jmperez/pen/PPOXzY/'>Blur effect using CSS blur() filter on a small image</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+{% codepen jmperez PPOXzY 0 result 367 %}
 
 The advantage of this technique is that you can easily tweak how much blur you want and everything is achieved using CSS.
 

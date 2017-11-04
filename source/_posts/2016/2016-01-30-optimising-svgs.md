@@ -81,5 +81,4 @@ You can see how the multiple `<path />`s have been merged into one and the value
 
 In this pen I have included both the original and the optimised logo:
 
-<p data-height="367" data-theme-id="0" data-slug-hash="BjYaKg" data-default-tab="result" data-user="jmperez" class='codepen'>See the Pen <a href='http://codepen.io/jmperez/pen/BjYaKg/'>Optimising Spotify SVG</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+{% codepen jmperez BjYaKg 0 result 367 %}

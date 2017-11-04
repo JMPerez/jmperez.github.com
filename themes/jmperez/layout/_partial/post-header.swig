@@ -58,18 +58,9 @@
   </div>
   {% if page.url %}
   <a href="{{ page.url }}">
-    <h1 itemprop="headline">{{ page.title }}</h1>
+    <h1>{{ page.title }}</h1>
   </a>
   {% else %}
-  <h1 itemprop="headline">{{ page.title }}</h1>
-  {% endif %}
-
-  {% if page.image %}
-  <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display:none">
-    <img itemprop="image" src="{{ page.image.url }}" alt="{{ page.title}}">
-    <meta itemprop="url" content="{{ page.image.url }}">
-    {% if page.image.width %}<meta itemprop="width" content="{{ page.image.width}}">{% endif %}
-    {% if page.image.height %}<meta itemprop="height" content="{{ page.image.height}}">{% endif %}
-  </div>
+  <h1>{{ page.title }}</h1>
   {% endif %}
 </header>

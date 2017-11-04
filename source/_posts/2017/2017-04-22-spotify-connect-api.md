@@ -79,8 +79,7 @@ Other methods include a function to make calls to other Spotify endpoints reusin
 
 Let’s have a look at [this pen](https://codepen.io/jmperez/full/MmwObE) as an example of a basic visualisation:
 
-<p data-height="389" data-theme-id="0" data-slug-hash="MmwObE" data-default-tab="result" data-user="jmperez" data-embed-version="2" data-pen-title="Spotify - Now Playing Visualisation" class="codepen">
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+{% codepen jmperez MmwObE 0 result 389 %}
 
 And in case you can’t try it or don’t have a Spotify account this is pretty much
 what it looks like:

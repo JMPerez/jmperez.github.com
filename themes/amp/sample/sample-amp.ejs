@@ -67,11 +67,18 @@
 			}
 		}
 	</script>
-	<% if (cssTxt != ""){ %>
 	<style amp-custom>
-		<%- cssTxt %>
+		<% if (cssTxt != ""){ %>
+			<%- cssTxt %>
+		<% } %>
+		.codepen-aspect-ratio {
+			margin-bottom: inherit !important;
+			padding-bottom: inherit !important;
+		}
+		amp-iframe {
+			margin-bottom: 10px;
+		}
 	</style>
-	<% } %>
   </head>
   <body>
 
@@ -94,7 +101,7 @@
 	</amp-analytics>
 	<% } %>
 
-  <header>
+  <header class="main-header">
       <nav id="menu">
           <a href="/">JMPerez Blog</a>
           <a href="/projects/">Projects</a>

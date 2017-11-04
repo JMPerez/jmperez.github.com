@@ -88,8 +88,7 @@ data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoqABwAP/3+/3+/urWyMBVYA
 
 That's 199 characters. And this is the result:
 
-<p data-height="403" data-theme-id="0" data-slug-hash="QjeWVv" data-default-tab="result" data-user="jmperez" class='codepen'>See the Pen <a href='http://codepen.io/jmperez/pen/QjeWVv/'>Medium loading image effect reproduced - WebP version</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+{% codepen jmperez QjeWVv 0 result 403 %}
 
 You can see it better [in full screen](http://codepen.io/jmperez/full/QjeWVv/). I recommend that you use network throttling and disable cache to notice the full animation.
 

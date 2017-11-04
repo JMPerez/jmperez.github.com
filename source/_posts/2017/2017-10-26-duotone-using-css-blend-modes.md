@@ -17,9 +17,7 @@ In a past post I explained [how to use SVG and a `feColorMatrix` filter](/duoton
 <!-- more -->
 Demo & Code: [https://codepen.io/jmperez/pen/wrVxga](http://codepen.io/jmperez/pen/wrVxga)
 
-
-<p data-height="367" data-theme-id="0" data-slug-hash="wrVxga" data-default-tab="result" data-user="jmperez" class='codepen'>See the Pen <a href='http://codepen.io/jmperez/pen/wrVxga/'>Duotone effect (Spotify Duotone) - Using CSS blend modes</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+{% codepen jmperez wrVxga 0 result 367 %}
 
 The code consists of a `<div/>` that has an image set as a background. Then, we add a `::before` and an `::after` pseudo-elements with the colours we want to apply and the right blend modes.
 

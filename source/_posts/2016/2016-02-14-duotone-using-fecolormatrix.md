@@ -21,7 +21,6 @@ You may have seen that the [Spotify's new brand identity](http://www.fastcodesig
 
 The JS version uses `<canvas>`, and after reading [A List Apart's Finessing feColorMatrix](http://alistapart.com/article/finessing-fecolormatrix), where they also mention the duotone images used in [Spotify's Year in Music](https://yearinmusic.spotify.com), I forked [Thodoris' pen](http://codepen.io/72lions/pen/jPzLJX) and used `feColorMatrix` instead:
 
-<p data-height="367" data-theme-id="0" data-slug-hash="LGqaxQ" data-default-tab="result" data-user="jmperez" class='codepen'>See the Pen <a href='http://codepen.io/jmperez/pen/LGqaxQ/'>Duotone effect (Spotify Duotone) - Using feColumnMatrix</a> by José Manuel Pérez (<a href='http://codepen.io/jmperez'>@jmperez</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+{% codepen jmperez LGqaxQ 0 result 367 %}
 
 The code consists of a `<svg/>` that has an `<image/>` to which we apply a `<filter />`. The filter uses a `feColorMatrix`, and its values are calculated using JS, though if you already know the range of colours you want to apply there is no need to run JS, just set them in the markup. If you have any issues understanding how the matrix is calculated, check [this question on StackOverflow](http://stackoverflow.com/questions/21977929/match-colors-in-fecolormatrix-filter).

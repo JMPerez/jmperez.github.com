@@ -58,8 +58,7 @@ The Connect endpoints allow you to list the devices available for the user and t
 
 A few weeks ago [I published a post talking about a small library I built to fetch what you are playing on Spotify](/spotify-connect-api). The library is handy for not having to deal with the authorisation flow, and makes it easy to crease visualisations such as [this one](https://codepen.io/jmperez/full/MmwObE):
 
-<p data-height="389" data-theme-id="0" data-slug-hash="MmwObE" data-default-tab="result" data-user="jmperez" data-embed-version="2" data-pen-title="Spotify - Now Playing Visualisation" class="codepen">
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+{% codepen jmperez MmwObE 0 result 389 %}
 
 I created some other visualisations and organised them on [this Codepen collection](https://codepen.io/collection/AyVBYB).
 

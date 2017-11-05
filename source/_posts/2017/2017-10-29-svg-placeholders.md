@@ -22,14 +22,6 @@ During the last days I have come across some loading techniques that use SVG, an
 <small class="caption">Generating SVGs from images can be used for placeholders. Keep reading!</small>
 
 <!-- more -->
-
-<style>
-    .codepen-aspect-ratio iframe {
-        height: 100%;
-        position: absolute;
-        width: 100%;
-    }
-</style>
 In this post we will go through these topics:
 
 * Overview of different types of placeholders
@@ -69,7 +61,7 @@ We know SVGs are ideal for vector images. In most cases we want to load a bitmap
 In [a previous post](/drawing-edges-svg) I explained how to find out the edges of an image and create an animation. My initial goal was to try to draw regions, vectorising the image, but I didn't know how to do it. I realised that using the edges could also be innovative and I decided to animate them creating a "drawing" effect.
 
 <div class="codepen-aspect-ratio" style="margin-bottom: 10px; padding-bottom: 100%; position: relative; width: 100%">
-{% codepen jmperez oogqdp 0 result 700 %}
+{% codepen jmperez oogqdp 0 result 600 600 %}
 </div>
 
 #### Shapes
@@ -79,7 +71,7 @@ SVG can also be used to draw areas from the image instead of edges/borders. In a
 Back in the days I tried to do something similar with triangles. You can see the result in my talks [at CSSConf](/cssconfau16/#/45) and [Render Conf](/renderconf17/#/46).
 
 <div class="codepen-aspect-ratio" style="margin-bottom: 10px; padding-bottom: 74%; position: relative; width: 100%">
-{% codepen jmperez BmaWmQ 0 result 500 %}
+{% codepen jmperez BmaWmQ 0 result 444 600 %}
 </div>
 
 The codepen above is a proof of concept of a SVG-based placeholder composed of 245 triangles. The generation of the triangles is based on [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation) using [Possan's polyserver](https://github.com/possan/polyserver). As expected, the more triangles the SVG uses, the bigger the file size.
@@ -94,26 +86,26 @@ Primitive generates an image based on shapes like triangles, rectangles and circ
 
 In order to understand how Primitive works, I ran it through a couple of images. I generated SVGs for the artwork using 10 shapes and 100 shapes:
 
-<div style="float:left; padding-bottom:10px">
+<div>
 <img
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367394/pexels-photo-281184-square-10.svg_ifiu2z.png"
-    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 10 shapes" style="width:32%;float:left;margin-right:2%" /><img
+    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 10 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367394/pexels-photo-281184-square-100.svg_tkr8el.png"
-    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 100 shapes" style="width:32%;float:left;margin-right:2%" /><img
+    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 100 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367395/pexels-photo-281184-square_tuhvso.jpg"
-    sizes="(max-width: 768px) 33vw, 228px" alt="Original picture" style="width:32%;float:left" />
+    sizes="(max-width: 768px) 33vw, 228px" alt="Original picture" style="width:32%;float:left;padding-bottom:10px" />
 </div>
 
 <small class="caption">Processing [this picture](/assets/images/posts/svg-placeholders/pexels-photo-281184-square.jpg) using Primitive, using [10 shapes](/assets/images/posts/svg-placeholders/pexels-photo-281184-square-10.svg) and [100 shapes]((/assets/images/posts/svg-placeholders/pexels-photo-281184-square-100.svg).</small>
 
-<div style="float:left; padding-bottom:10px">
+<div>
 <img
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367394/pexels-photo-618463-square-10.svg_aeonon.png"
-    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 10 shapes" style="width:32%;float:left;margin-right:2%" /><img
+    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 10 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367394/pexels-photo-618463-square-100.svg_t6pwcv.png"
-    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picturethrough Primitive using 100 shapes" style="width:32%;float:left;margin-right:2%" /><img
+    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picturethrough Primitive using 100 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367395/pexels-photo-618463-square_pmbi9x.jpg"
-    sizes="(max-width: 768px) 33vw, 228px" alt="Original picture" style="width:32%;float:left" />
+    sizes="(max-width: 768px) 33vw, 228px" alt="Original picture" style="width:32%;float:left;padding-bottom:10px" />
 </div>
 
 <small class="caption">Processing [this picture](/assets/images/posts/svg-placeholders/pexels-photo-618463-square.jpg) using Primitive, using [10 shapes](/assets/images/posts/svg-placeholders/pexels-photo-618463-square-10.svg) and [100 shapes]((/assets/images/posts/svg-placeholders/pexels-photo-618463-square-100.svg).</small>
@@ -142,12 +134,12 @@ The result is similar to using a tiny placeholder image for the blur-up techniqu
 
 If we run SQIP against the original images we'll get this:
 
-<div style="float:left; padding-bottom:10px">
+<div>
 <img
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509370309/pexels-photo-281184-square-sqip.svg_zspgb0.png"
-    sizes="(max-width: 768px) 50vw, 342px" alt="SQIP applied to an image" style="width:49%;float:left;margin-right:2%" /><img
+    sizes="(max-width: 768px) 50vw, 342px" alt="SQIP applied to an image" style="width:49%;float:left;margin-right:2%;padding-bottom:10px" /><img
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509370308/pexels-photo-618463-square-sqip.svg_qjrexh.png"
-    sizes="(max-width: 768px) 50vw, 342px" alt="SQIP applied to an image" style="width:49%;float:left;" />
+    sizes="(max-width: 768px) 50vw, 342px" alt="SQIP applied to an image" style="width:49%;float:left;padding-bottom:10px" />
 </div>
 
 <small class="caption">The output images using SQIP for [the first picture](/assets/images/posts/svg-placeholders/pexels-photo-281184-square-sqip.svg) and [the second one]((/assets/images/posts/svg-placeholders/pexels-photo-618463-square-sqip.svg).</small>

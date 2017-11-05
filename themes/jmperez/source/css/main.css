@@ -311,7 +311,6 @@ twitterwidget {
 .post p img {
     border: 1px solid #eee;
     display: block;
-    margin: 5% auto;
     max-width: 100%;
 }
 
@@ -549,11 +548,12 @@ footer {
 
 .caption {
   display: block;
-  margin-top: -0.8em;
   font-size: 0.8em;
   text-align: center;
 }
 
-img + .caption {
-    margin-top: -4%;
+.codepen-aspect-ratio > iframe {
+    height: 100%;
+    position: absolute;
+    width: 100%;
 }

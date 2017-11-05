@@ -10,7 +10,7 @@ function codepenTagRender(args) {
     const src = `//codepen.io/${userId}/embed/${clickToLoad ? 'preview/' : ''}${slugHash}?height=${height}&theme-id=${theme}&slug-hash=${slugHash}&default-tab=${defaultTab}`;
     const id = `cp_embed_${slugHash.replace(/\//g, '_')}`
 
-    return `<iframe id="${id}" src="${src}" scrolling="no" frameborder="no" height="${height}" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: ${width}; overflow: hidden;"></iframe>`;
+    return `<iframe id="${id}" src="${src}" scrolling="no" frameborder="no" height="${height}" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="${width}" style="width: ${width}; overflow: hidden;"></iframe>`;
   }
 
   hexo.extend.tag.register('codepen', codepenTagRender);

@@ -63,7 +63,7 @@ Si entramos a valorar el rendimiento web tenemos bastantes puntos que tratar. Pu
 _Puntuación Page Speed y YSlow de www.senado.es_
 
 ### Compresi&#243;n gzip
-Sólo en la página principal se podría ahorrar 476.6KiB (un 30% del total) habilitando la compresión gzip ([fuente](http://gtmetrix.com/reports/www.senado.es/cCUUkJUm)).
+Sólo en la página principal se podría ahorrar 476.6KiB (un 30% del total) habilitando la compresión gzip ([fuente](http://gtmetrix.com/reports/www.senado.es/cCUUkJUm)).
 
 ### Falta de cacheo
 No se especifica política alguna de cacheo de los distintos recursos (JS, PNG, JPG) por lo que el navegador decide si los cachea o no y por cuánto tiempo. Además, los recursos no especifican correctamente su tipo Mime ([fuente](http://gtmetrix.com/reports/www.senado.es/cCUUkJUm)).
@@ -113,7 +113,7 @@ Otras webs están recogiendo también algunos problemas a nivel técnico:
 
 - [Los problemas del desarrollo web en España resumidos en senado.es](http://formatinternet.wordpress.com/2012/11/12/los-problemas-del-desarrollo-web-en-espana-resumidos-en-senado-es/) en format internet
 - [La nueva timo web del Senado que cuesta medio millón de euros](http://www.pedroventura.com/desarrollo-web/la-nueva-timo-web-del-senado-que-cuesta-medio-millon-de-euros/) en pedroventura.com
-- [Análisis de la web del Senado](http://www.social4u.es/analisis-de-la-web-del-senado/) en social4u.es
+- [Análisis de la web del Senado](http://www.social4u.es/analisis-de-la-web-del-senado/) en social4u.es
 
 ## M&#225;s problemas
 Si sabes de algún problema más o alguna posible mejora, añádelo en los comentarios. El propósito de este post es promover las mejores prácticas en cuanto a desarrollo web se refiere.

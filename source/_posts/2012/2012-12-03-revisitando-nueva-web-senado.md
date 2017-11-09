@@ -9,7 +9,7 @@ tags:
 permalink: revisitando-nueva-web-senado
 ---
 
-Hace unos días hacía un [análisis del rediseño de la web del Senado](/estudiando-el-rediseno-de-la-web-del-senado-de-espana/), justo tras su lanzamiento, desde el punto de vista de rendimiento web y mejores prácticas a la hora de desarrollar sitios web. La nueva web del Senado sufría múltiples problemas poco más que inaceptables para un proyecto tan reciente y con tal presupuesto.
+Hace unos días hacía un [análisis del rediseño de la web del Senado](/estudiando-el-rediseno-de-la-web-del-senado-de-espana/), justo tras su lanzamiento, desde el punto de vista de rendimiento web y mejores prácticas a la hora de desarrollar sitios web. La nueva web del Senado sufría múltiples problemas poco más que inaceptables para un proyecto tan reciente y con tal presupuesto.
 
 <!-- more -->
 Pero al igual que destacaba dichos problemas, unas semanas después debo mencionar que varios de ellos han sido resueltos. Aunque aún quedan algunos por resolver, es de destacar que hayan seguido trabajando en el sitio.
@@ -31,7 +31,7 @@ Ahora en la página principal, ya sólo hay 1 request que da error 404 ([fuente]
 ## Todav&#237;a hay algunos problemas que solucionar
 Pese a todo, aún quedan mejoras por hacer, como la minificación de ficheros, optimización de imágenes, tratar de reducir el número de peticiones y corregir el Mime Type devuelto por el servidor.
 
-Además, con la modificación del fichero [robots.txt](http://www.senado.es/robots.txt) existen detalles dignos de mención. El fichero actual tiene este contenido:
+Además, con la modificación del fichero [robots.txt](http://www.senado.es/robots.txt) existen detalles dignos de mención. El fichero actual tiene este contenido:
 
 ```
 User-agent: *
@@ -60,13 +60,13 @@ Que se pretenda evitar el indexado de las iniciativas parlamentarias y fichas de
 
 ¿Por qué se evita el indexado del contenido más útil para el ciudadano?
 
-Aunque en ese caso, en lugar de restringir /detalleiniciativa/, /web/actividadparlamentaria/iniciativas/detalleiniciativa/
+Aunque en ese caso, en lugar de restringir /detalleiniciativa/, /web/actividadparlamentaria/iniciativas/detalleiniciativa/
 
-Y en vez de /fichasenador/ deberían haber restringido algo como /web/composicionorganizacion/senadores/composicionsenado/fichasenador/
+Y en vez de /fichasenador/ deberían haber restringido algo como /web/composicionorganizacion/senadores/composicionsenado/fichasenador/
 
 Por otra parte, se evita el indexado de una serie de documentos PDF y páginas HTML, también por alguna razón que me supera. Pero es casi peor el hecho de que de los 6 documentos, sólo 2 existen y las 2 páginas HTML tampoco existen.
 
-Por último, han introducido la limitación del indexado de páginas para que se haga entre las 02:00 y 06:00 AM GMT.  A mí me parece un poco extraño querer limitar el rastreo a las horas de menos tráfico. Un documento creado durante el día no podrá aparecer en los resultados de búsqueda hasta el día siguiente como mínimo. Y no deja de ser una señal de que el sitio no se comporta bien con un tráfico normal más el tráfico que puedan generar los bots de los buscadores.
+Por último, han introducido la limitación del indexado de páginas para que se haga entre las 02:00 y 06:00 AM GMT.  A mí me parece un poco extraño querer limitar el rastreo a las horas de menos tráfico. Un documento creado durante el día no podrá aparecer en los resultados de búsqueda hasta el día siguiente como mínimo. Y no deja de ser una señal de que el sitio no se comporta bien con un tráfico normal más el tráfico que puedan generar los bots de los buscadores.
 
 ## Conclusiones
 En general, está bien que hayan continuado haciendo mejoras en el sitio, aunque por el camino han tomado decisiones ciertamente discutibles.

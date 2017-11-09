@@ -94,4 +94,4 @@ In short, if you are giving this API a try, make sure you `try...catch` the `obs
 
 #### Conclusions
 
-This is a bit in early stages but I’m looking forward to see how the API evolves and we can use it to track Web Performance even better. This will also be a great addition to [LightHouse](https://developes.google.com/web/tools/lighthouse/), [WebPageTest](http://www.webpagetest.org), [Calibre](https://calibreapp.com) and the rest of tools we use to monitor metrics on our sites.
+This is a bit in early stages but I’m looking forward to see how the API evolves and we can use it to track Web Performance even better. This will also be a great addition to [LightHouse](https://developers.google.com/web/tools/lighthouse/), [WebPageTest](http://www.webpagetest.org), [Calibre](https://calibreapp.com) and the rest of tools we use to monitor metrics on our sites.

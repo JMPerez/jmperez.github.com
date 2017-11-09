@@ -8,7 +8,7 @@ tags:
 permalink: developing-spotify-apps
 ---
 
-I have been working for some time with [Spotify Apps](https://developer.spotify.com/technologies/apps/). Creating them is a great way to extend the Spotify client with extra features using web technologies. As it exposes a Chrome-ish browser, you can tweak your apps and take advantage of running on a well-known environment.
+I have been working for some time with [Spotify Apps](https://developer.spotify.com/technologies/apps/). Creating them is a great way to extend the Spotify client with extra features using web technologies. As it exposes a Chrome-ish browser, you can tweak your apps and take advantage of running on a well-known environment.
 
 <!-- more -->
 ## Developing apps for Spotify
@@ -23,7 +23,7 @@ In order to offer the best experience, there are some points that should be take
 
 ### Bundle size
 
-It makes sense to try to optimize the size of the bundle so that it takes less time for the user to download it. Also, the less JS code to execute, the better.
+It makes sense to try to optimize the size of the bundle so that it takes less time for the user to download it. Also, the less JS code to execute, the better.
 
 In addition, since we know about the environment on which our app will run, we can take advantage of it in several ways. As of September 2013, Spotify 0.9.3 uses a Chrome v.27 browser.
 
@@ -43,6 +43,6 @@ I recommend you to use a CSS processor such as LESS, so you only define what rul
 
 Good web performance practices are quite well known and are the base for the emerging Web Performance Optimization techniques. Additionally, we could write about the best way to architect an app, with lazily loaded resources. Why load resources for every tab in a certain app, and not only the active one?
 
-Ideally, an app should load the required content as fast as possible, and lazy load the rest as it is needed. Avoid loading bars, which are usually a smell of a bigger problem underneath, which is the one that should be targeted.
+Ideally, an app should load the required content as fast as possible, and lazy load the rest as it is needed. Avoid loading bars, which are usually a smell of a bigger problem underneath, which is the one that should be targeted.
 
 All in all, developing a Spotify app is quite similar to developing a web app, except that most assets are bundled in a package.

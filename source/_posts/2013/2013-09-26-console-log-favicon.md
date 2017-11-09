@@ -20,7 +20,7 @@ But I thought it would be even better to show the logo of the site next to the m
 
 Continue reading to know how to achieve it, or have a look [at this jsFiddle](http://jsfiddle.net/J3yZP/).
 
-## Basic idea, compatibility and limitations of the different consoles
+## Basic idea, compatibility and limitations of the different consoles
 You can use styles in the printed messages in the console, at least on Google Chrome and Firebug (support in Firefox is limited, see below). Each of them have a limitation when trying to render the favicon. The idea is to use a style that sets the logo as the background image. Then, set its size and add some margin between the logo and the text.
 
 ### Google Chrome
@@ -28,7 +28,7 @@ You can check out the [section about styling the console](https://developers.goo
 ![Chrome doesn't interpret "background-repeat: no-repeat"](/assets/images/posts/console-log-favicon-repeat-chrome.jpg)
 
 ### Firebug
-Firebug, however, doesn't support custom styles using `%c` in a position other than the start of the string, so we need to use `"%c text"`. In addition, neither margin-left, padding-left or text-indent push the string towards the right side to leave place to the logo, rendering the text on top of the logo. The hacky solution is to add whitespaces between the style and the text: `"%c   text"`.
+Firebug, however, doesn't support custom styles using `%c` in a position other than the start of the string, so we need to use `"%c text"`. In addition, neither margin-left, padding-left or text-indent push the string towards the right side to leave place to the logo, rendering the text on top of the logo. The hacky solution is to add whitespaces between the style and the text: `"%c   text"`.
 
 ## A solution that works on both browsers
 I haven't found a proper way to detect that the browser is using Firebug. Even if there was, we don't know whether the user opened the Firebug console or the built-in one. Although Firebug also runs on Chrome, most developers use Chrome Developer Tools on Chrome, so with some user agent sniffing (I hate it, but I can't find a more suitable way) we can use one or the other version depending on whether the browser is Chrome or not.

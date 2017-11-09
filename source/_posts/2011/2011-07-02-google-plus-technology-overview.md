@@ -14,11 +14,11 @@ We are all excited about the Google+ release, and this is a nice opportunity for
 I am trying to collect information about implementation details for every innovative functionality that makes Google+ push the limits of web development.
 
 <!-- more -->
-Meanwhile I am trying to get useful conclusions by seeing their CSS and JavaScript code and the flow of HTTP requests. Until now I haven't seen especial things involving static resources like images (not using [WebP](http://code.google.com/speed/webp/)), CSS or JavaScript files. I can only say that CSS and JavaScript files are greatly minified, squishing their content to the last byte.
+Meanwhile I am trying to get useful conclusions by seeing their CSS and JavaScript code and the flow of HTTP requests. Until now I haven't seen especial things involving static resources like images (not using [WebP](http://code.google.com/speed/webp/)), CSS or JavaScript files. I can only say that CSS and JavaScript files are greatly minified, squishing their content to the last byte.
 
 Feedback system
 
-Google Plus feedback system is brilliant. It is very easy to use for low-tech users thanks to their highlight / black out feature and area selection, and useful for Google due to the information they retrieve from the browser, HTML structure and javascript log.
+Google Plus feedback system is brilliant. It is very easy to use for low-tech users thanks to their highlight / black out feature and area selection, and useful for Google due to the information they retrieve from the browser, HTML structure and javascript log.
 [![Creating a feedback message in Google+, blacking out and highlighting certain areas](/assets/images/posts/feedback-test-1024x572.jpg)](/assets/images/posts/feedback-test.jpg)
 _Creating a feedback message in Google+, blacking out and highlighting certain areas_
 
@@ -50,7 +50,7 @@ More info:
 
 ## Accessibility
 
-The use of ARIA attributes in the HTML code (aria-haspopup, aria-owns, aria-owner) makes me thing they have take accessibility as a priority. This is in line with their effort for spreading the word about  developing accessible websites, as they explained in their talk [Creating Accessible Interactive Web Apps using HTML5](http://www.google.com/events/io/2011/sessions/creating-accessible-interactive-web-apps-using-html5.html) in the recent Google I/O 2011 conference.
+The use of ARIA attributes in the HTML code (aria-haspopup, aria-owns, aria-owner) makes me thing they have take accessibility as a priority. This is in line with their effort for spreading the word about developing accessible websites, as they explained in their talk [Creating Accessible Interactive Web Apps using HTML5](https://www.youtube.com/watch?v=lMrkCoqgoxw) in the recent Google I/O 2011 conference.
 
 ## JSON responses forcing AJAX calls
 
@@ -74,7 +74,7 @@ Google has even add [a parameter to look for Google+ profile pages](http://searc
 
 ## Tools used to implement Google+
 
-Google+ has been implemented using a set of tools that are mostly open source. In the server side, they use Java Servlets, [BigTable](http://en.wikipedia.org/wiki/BigTable) and [Colossus](http://www.cs.cornell.edu/projects/ladis2009/talks/dean-keynote-ladis2009.pdf). Google+ seems to be using GSE ([Google Servlet Engine](http://code.google.com/p/opengse/)) according to the 'Server' response header when requesting the root page.
+Google+ has been implemented using a set of tools that are mostly open source. In the server side, they use Java Servlets, [BigTable](http://en.wikipedia.org/wiki/BigTable) and [Colossus](http://www.cs.cornell.edu/projects/ladis2009/talks/dean-keynote-ladis2009.pdf). Google+ seems to be using GSE ([Google Servlet Engine](http://code.google.com/p/opengse/)) according to the 'Server' response header when requesting the root page.
 
 And in the client side, they use [Closure](http://code.google.com/closure/).
 
@@ -86,4 +86,4 @@ More info:
 
   * [Google+ social network in depth](http://stackoverflow.com/questions/6545811/google-social-network-in-depth)
 
-Have you come across some Google+ implementation detail that should be highlighted? Don't hesitate to comment to this post!
+Have you come across some Google+ implementation detail that should be highlighted? Don't hesitate to comment to this post!

@@ -32,9 +32,9 @@ In this first post I will describe what BigPipe is and sketch how we can make a 
 You can clone the code from [the BigPipe project on GitHub](https://github.com/JMPerez/BigPipe)  that includes all the source code needed to run the sample.
 
 ## What is BigPipe
-BigPipe is a [website performance technique](/techniques-optimize-web-sites) used and coined by Facebook to serve web pages improving user's perceived load speed. In general, it consists of serving quickly the main content of the page, and then serve the content from other regions of the page called pagelets.
+BigPipe is a [website performance technique](/techniques-optimize-web-sites) used and coined by Facebook to serve web pages improving user's perceived load speed. In general, it consists of serving quickly the main content of the page, and then serve the content from other regions of the page called pagelets.
 
-The implementation of these pagelets is performed in parallel on the server and served to the browser as soon as they are generated. This allows:
+The implementation of these pagelets is performed in parallel on the server and served to the browser as soon as they are generated. This allows:
 
 1.  Browser can start rendering the page content earlier (early
     flushing)

@@ -10,7 +10,7 @@ tags:
 permalink: developing-mobile-webapp-first
 ---
 
-Mobile web apps are not at the same level of native ones. Until browsers don't implement HTML5 API specifications to access device hardware (device API, audio, video), implement push notifications, and improve general performance (animations, scroll) web apps will not be able to deliver the experience that can't be reach through native development.
+Mobile web apps are not at the same level of native ones. Until browsers don't implement HTML5 API specifications to access device hardware (device API, audio, video), implement push notifications, and improve general performance (animations, scroll) web apps will not be able to deliver the experience that can't be reach through native development.
 
 However, there are some advantages when taking a webapp first approach for mobile development.
 

@@ -8,7 +8,7 @@ tags:
 permalink: music-hack-day-stockholm-2013
 ---
 
-Last weekend Spotify hosted the [Music Hack Day Stockholm 2013](http://stockholm.musichackday.org/2013/) at their office in Stockholm. In the end, [65 projects](https://www.hackerleague.org/hackathons/music-hack-day-stockholm-13/hacks) were built by 162 participants, using APIs from a variety of music services such as Echonest, Musixmatch, Soundcloud, Radio and Spotify among others.
+Last weekend Spotify hosted the [Music Hack Day Stockholm 2013](http://stockholm.musichackday.org/2013/) at their office in Stockholm. In the end, [65 projects](https://www.hackerleague.org/hackathons/music-hack-day-stockholm-13/hacks) were built by 162 participants, using APIs from a variety of music services such as Echonest, Musixmatch, Soundcloud, Radio and Spotify among others.
 ![Music Hack Day Stockholm](/assets/images/posts/music-hack-day-stockholm-300x225.jpg)
 
 <!-- more -->

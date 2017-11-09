@@ -96,7 +96,7 @@ In order to understand how Primitive works, I ran it through a couple of images.
     sizes="(max-width: 768px) 33vw, 228px" alt="Original picture" style="width:32%;float:left;padding-bottom:10px" />
 </div>
 
-<small class="caption">Processing [this picture](/assets/images/posts/svg-placeholders/pexels-photo-281184-square.jpg) using Primitive, using [10 shapes](/assets/images/posts/svg-placeholders/pexels-photo-281184-square-10.svg) and [100 shapes]((/assets/images/posts/svg-placeholders/pexels-photo-281184-square-100.svg).</small>
+<small class="caption">Processing [this picture](/assets/images/posts/svg-placeholders/pexels-photo-281184-square.jpg) using Primitive, using [10 shapes](/assets/images/posts/svg-placeholders/pexels-photo-281184-square-10.svg) and [100 shapes](/assets/images/posts/svg-placeholders/pexels-photo-281184-square-100.svg).</small>
 
 <div>
 <img
@@ -108,7 +108,7 @@ In order to understand how Primitive works, I ran it through a couple of images.
     sizes="(max-width: 768px) 33vw, 228px" alt="Original picture" style="width:32%;float:left;padding-bottom:10px" />
 </div>
 
-<small class="caption">Processing [this picture](/assets/images/posts/svg-placeholders/pexels-photo-618463-square.jpg) using Primitive, using [10 shapes](/assets/images/posts/svg-placeholders/pexels-photo-618463-square-10.svg) and [100 shapes]((/assets/images/posts/svg-placeholders/pexels-photo-618463-square-100.svg).</small>
+<small class="caption">Processing [this picture](/assets/images/posts/svg-placeholders/pexels-photo-618463-square.jpg) using Primitive, using [10 shapes](/assets/images/posts/svg-placeholders/pexels-photo-618463-square-10.svg) and [100 shapes](/assets/images/posts/svg-placeholders/pexels-photo-618463-square-100.svg).</small>
 
 When using 10 shapes the images we start getting a grasp of the original image. In the context of image placeholders there is potential to use this SVG as the placeholder. Actually, the code for the SVG with 10 shapes is really small, around 1030 bytes, which goes down to ~640 bytes when passing the output through SVGO.
 

@@ -27,7 +27,9 @@ desktop client to a speaker, from the Spotify app on mobile to Spotify for
 PlayStation, from the Spotify web player to Chromecast… In short, you have
 controllers and devices that can play music.
 
-![Spotify Web Player](/assets/images/posts/spotify-web-player.png)
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510477863/spotify-web-player_k5sx2j.png"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Spotify Web Player"/>
 <small class="caption">Spotify’s Web Player (zoomed in). Clicking on the icon next to the volume we get a list of connected devices (FireTV, desktop client, speakers and the web player).</small>
 
 Your application can become a controller through the Web API endpoints, getting
@@ -84,7 +86,9 @@ Let’s have a look at [this pen](https://codepen.io/jmperez/full/MmwObE) as an 
 And in case you can’t try it or don’t have a Spotify account this is pretty much
 what it looks like:
 
-![Example of a visualisation of Spotify](/assets/images/posts/spotify-connect-api-visualisation-example.jpg)
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510476629/spotify-connect-api-visualisation-example_hwu7uw.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Example of a visualisation of Spotify"/>
 <small class="caption">See [the Pen on Codepen](https://codepen.io/jmperez/full/MmwObE)</small>
 
 I have kept the example very basic since the point is understanding the usage of
@@ -116,16 +120,20 @@ and [Possan’s original visualisation on GitHub](https://github.com/possan/webg
 
 Are you a coffee-shop owner and people always wonder what song is playing? You could have a TV showing a branded now playing view. You could even have a widget on your website, or a script posting to a social network what is currently playing so your customers know. Or a small browser extension showing what is playing and/or [showing desktop notifications](https://developer.chrome.com/extensions/notifications) when the track changes.
 
-![Spotify Visualisation showing Web Notifications when the track changes](/assets/images/posts/spotify-connect-api-visualisation-notification.jpg)
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510477615/spotify-connect-api-visualisation-notification_mgxad5.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Spotify Visualisation showing Web Notifications when the track changes"/>
 <small class="caption">See [the Pen on Codepen](https://codepen.io/jmperez/full/VbvPbR). When the track changes the browser shows a Web Notification.</small>
 
 Or if you are at home hosting a dinner or party, show on the TV or computer what is playing.
 
 You can combine other Spotify Web API endpoints too. Eg you could [fetch the artists info](https://developer.spotify.com/web-api/get-artist/) to show the artist profile image in the background:
 
-![Spotify Visualisation showing Web Notifications when the track changes](/assets/images/posts/spotify-connect-api-visualisation-artist.jpg)
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510477674/spotify-connect-api-visualisation-artist_ebk7cc.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Spotify Visualisation showing the artist profile image in the background"/>
 <small class="caption">See [the Pen on Codepen](https://codepen.io/jmperez/full/YVXEaz).
-A simple visualisation of what’s playing in Spotify rendering the artist profile image as the background.</small>
+    A simple visualisation of what’s playing in Spotify rendering the artist profile image as the background.</small>
 
 You could use an API like [Musixmatch](https://developer.musixmatch.com/)’s and create an app or a website showing the lyrics for the current song, synchronised with the playback position.
 

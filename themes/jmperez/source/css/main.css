@@ -314,6 +314,10 @@ twitterwidget {
     max-width: 100%;
 }
 
+.post img + .caption {
+  padding-top: 5px;
+}
+
 .post .svg-container {
     margin-bottom: 5%;
     max-width: 100%;

@@ -49,10 +49,7 @@ document.body.addEventListener('keyup', function(e) {
 And a video showing what it looks like when tabbing:
 
 <div style="text-align:center">
-  <video width="320" height="560" controls>
-    <source src="/assets/images/posts/css-outline-focus.webm" type="video/webm">
-    <source src="/assets/images/posts/css-outline-focus.mp4" type="video/mp4">
-  </video>
+  <video width="320" height="560" controls src="https://res.cloudinary.com/jmperez/video/upload/v1510495843/css-outline-focus_olx6zh.mp4" />
 </div>
 
 Some additional a11y improvements are that I apply the same effect on hover and on focus, like when going through the "More by ..." albums section. Last, but not least, the track row acts as a button to start the playback.

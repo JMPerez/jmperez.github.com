@@ -14,7 +14,9 @@ This is a post about a hack project I have been working on lately, and I wanted 
 
 tl;dr [Here is **the demo**](https://c-spotify.herokuapp.com) and [**the project on GitHub**](https://github.com/JMPerez/c).
 
-![C, collaborative room to listen to Spotify](/assets/images/posts/c-collaborative.png)
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510476635/c-collaborative_k8kxsa.png"
+    sizes="(max-width: 768px) 100vw, 684px" alt="C, collaborative room to listen to Spotify"/>
 
 <!-- more -->
 
@@ -38,8 +40,9 @@ The app was based on the now defunct [Spotify Apps API](https://developer.spotif
 
 Soundrop as a collaborative app is no more. After the removal of the Apps API [they pivoted to a different product](http://www.show.co/blog/heavy-hearts).
 
-![Spotify App Finder](/assets/images/posts/spotify-app-finder.jpg)
-
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510495292/spotify-app-finder_lfgest.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Spotify App Finder"/>
 <small class="caption">List of the initial Spotify Apps. Source: [evolver.fm](http://evolver.fm/2011/12/02/spotify-apps-slated-to-roll-out-next-week/)</small>
 
 The Apps API was the first project I worked on when I joined in Spotify in 2012. I would review submissions, support developers that had questions about how to use it, and create example apps.

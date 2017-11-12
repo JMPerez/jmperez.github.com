@@ -46,7 +46,7 @@
   <div class="media author">
     <div class="img">
       <a href="/about-me/">
-        <img src="/assets/images/jmperez.jpg" class="avatar-img" alt="" height="53" width="53">
+        <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510494899/jmperez_ogpkt5.jpg" class="avatar-img" alt="" height="53" width="53" sizes="53px">
       </a>
     </div>
     <div class="bd">

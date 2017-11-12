@@ -27,6 +27,7 @@ In this post we will go through these topics:
 * Overview of different types of placeholders
 * SVG-based placeholders (edges, shapes and silhouettes)
 * Automating the process.
+
 ### Overview of different types of placeholders
 
 In the past [I have written about placeholders and lazy-load of images](/lazy-loading-images), and also [talked about it](https://www.youtube.com/watch?v=szmVNOnkwoU). When doing lazy-loading of images it's a good idea to think about what to render as a placeholder, since it can have a big impact in user's perceived performance. In the past I described several options:

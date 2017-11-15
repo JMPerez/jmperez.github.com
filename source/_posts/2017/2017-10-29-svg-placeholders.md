@@ -47,9 +47,9 @@ Turns out there are many other variations and lots of smart people are developin
 One of them is having gradients instead of solid colours. The gradients can create a more accurate preview of the final image, with very little overhead (increase in payload).
 
 <img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509278575/gradient-background_jyymty.jpg"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_1368/v1509278575/gradient-background_jyymty.jpg"
     sizes="(max-width: 768px) 100vw, 684px" alt="Using gradients as backgrounds. Screenshot from Gradify"/>
-<small class="caption">Using gradients as backgrounds. Screenshot from Gradify, which is not online anymore. Code [on GitHub](https://github.com/SilverStripers/gradify).</small>
+<small class="caption">Using gradients as backgrounds. Screenshot from Gradify, which is not online anymore. Code [on GitHub](https://github.com/fraser-hemp/gradify).</small>
 
 Another technique is using SVGs based on the image, which is getting some traction with recent experiments and hacks.
 
@@ -89,11 +89,11 @@ In order to understand how Primitive works, I ran it through a couple of images.
 
 <div>
 <img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367394/pexels-photo-281184-square-10.svg_ifiu2z.png"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_500/v1509367394/pexels-photo-281184-square-10.svg_ifiu2z.png"
     sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 10 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367394/pexels-photo-281184-square-100.svg_tkr8el.png"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_500/v1509367394/pexels-photo-281184-square-100.svg_tkr8el.png"
     sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 100 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367395/pexels-photo-281184-square_tuhvso.jpg"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_500/v1509367395/pexels-photo-281184-square_tuhvso.jpg"
     sizes="(max-width: 768px) 33vw, 228px" alt="Original picture" style="width:32%;float:left;padding-bottom:10px" />
 </div>
 
@@ -101,11 +101,11 @@ In order to understand how Primitive works, I ran it through a couple of images.
 
 <div>
 <img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367394/pexels-photo-618463-square-10.svg_aeonon.png"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_500/v1509367394/pexels-photo-618463-square-10.svg_aeonon.png"
     sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 10 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367394/pexels-photo-618463-square-100.svg_t6pwcv.png"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_500/v1509367394/pexels-photo-618463-square-100.svg_t6pwcv.png"
     sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picturethrough Primitive using 100 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509367395/pexels-photo-618463-square_pmbi9x.jpg"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_500/v1509367395/pexels-photo-618463-square_pmbi9x.jpg"
     sizes="(max-width: 768px) 33vw, 228px" alt="Original picture" style="width:32%;float:left;padding-bottom:10px" />
 </div>
 
@@ -137,9 +137,9 @@ If we run SQIP against the original images we'll get this:
 
 <div>
 <img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509370309/pexels-photo-281184-square-sqip.svg_zspgb0.png"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_670/v1509370309/pexels-photo-281184-square-sqip.svg_zspgb0.png"
     sizes="(max-width: 768px) 50vw, 342px" alt="SQIP applied to an image" style="width:49%;float:left;margin-right:2%;padding-bottom:10px" /><img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1509370308/pexels-photo-618463-square-sqip.svg_qjrexh.png"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_670/v1509370308/pexels-photo-618463-square-sqip.svg_qjrexh.png"
     sizes="(max-width: 768px) 50vw, 342px" alt="SQIP applied to an image" style="width:49%;float:left;padding-bottom:10px" />
 </div>
 

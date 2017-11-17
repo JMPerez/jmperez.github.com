@@ -561,3 +561,8 @@ footer {
     position: absolute;
     width: 100%;
 }
+
+.twitter-tweet {
+    margin-left: auto;
+    margin-right: auto;
+}

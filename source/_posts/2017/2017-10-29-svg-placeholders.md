@@ -143,7 +143,7 @@ If we run SQIP against the original images we'll get this:
     sizes="(max-width: 768px) 50vw, 342px" alt="SQIP applied to an image" style="width:49%;float:left;padding-bottom:10px" />
 </div>
 
-<small class="caption">The output images using SQIP for [the first picture](/assets/images/posts/svg-placeholders/pexels-photo-281184-square-sqip.svg) and [the second one]((/assets/images/posts/svg-placeholders/pexels-photo-618463-square-sqip.svg).</small>
+<small class="caption">The output images using SQIP for [the first picture](/assets/images/posts/svg-placeholders/pexels-photo-281184-square-sqip.svg) and [the second one](/assets/images/posts/svg-placeholders/pexels-photo-618463-square-sqip.svg).</small>
 
 The output SVG is ~900 bytes, and inspecting the code we can spot the `feGaussianBlur` filter applied to the group of shapes:
 

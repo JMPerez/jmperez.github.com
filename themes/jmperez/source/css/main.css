@@ -272,11 +272,6 @@ code {
     width: 100%;
 }
 
-twitterwidget {
-    margin-left: auto;
-    margin-right: auto;
-}
-
 /*--WRAPPER--*/
 
 .wrapper {
@@ -565,4 +560,11 @@ footer {
 .twitter-tweet {
     margin-left: auto;
     margin-right: auto;
+}
+
+.twitter-tweet::after {
+    content: "";
+    display: block;
+    padding-bottom: 20px;
+    width: 100%;
 }

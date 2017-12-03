@@ -19,7 +19,7 @@ This weekend I have been in Spain to attend [React Alicante](http://reactalicant
 Continue reading to know more about the event and its contents.
 
 <img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510326427/react-alicante-glenn-reyes_kokxlw.jpg"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_1368/v1510326427/react-alicante-glenn-reyes_kokxlw.jpg"
     sizes="(max-width: 768px) 100vw, 684px" alt="Glenn Reyes speaking at React Alicante" />
 <small class="caption">Glenn Reyes speaking at React Alicante</small>
 

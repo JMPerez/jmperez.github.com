@@ -41,6 +41,14 @@ I like trying out "the last new thing" in a small project and publish it [on Git
 <h2>Some useful tools built as single page apps</h2>
 <ul class="projects">
   <li>
+    <h3>Cs</h3>
+    <div class="description">
+      <p>A collaborative listening room using Spotify.</p>
+      <p>This project uses Spotify's APIs to log users in, search tracks and play them on any device through Connect. It was also an excuse to try out Next.JS.</p>
+      <div class="project-links"><a href="https://c-spotify.herokuapp.com">Website</a><a href="https://https://github.com/JMPerez/c">GitHub</a></div>
+    </div>
+  </li>
+  <li>
     <h3>Sync subs</h3>
     <div class="description">
       <p>A handy tool to apply an offset to a subtitle file.</p>
@@ -70,7 +78,8 @@ I like trying out "the last new thing" in a small project and publish it [on Git
 <ul class="projects">
   <li class="project-full">
     <p>Some libraries to make it easier to use Spotify's Web API:</p>
-    <ul>
+    <ul>,
+      <li><a href="https://github.com/JMPerez/spotify-player">spotify-player</a>, a library to interact with Spotify's player endpoint, with built-in authentication and token refresh. Ideal for codepen and any simple demo.</li>
       <li>An exploration of using Polymer to build components for Spotify: a <a href="https://github.com/JMPerez/spotify-search">search component</a>, a <a href="https://github.com/JMPerez/spotify-coverart">responsive cover art</a>, and a <a href="https://github.com/JMPerez/spotify-save-as-playlist">save a playlist button</a>.</li>
       <li><a href="https://github.com/JMPerez/thirtiflux">A basic Spotify Web Player using React and Flux</a></li>
       <li><a href="https://github.com/JMPerez/spotify-web-api-graphql">A proof of concept of a GraphQL provider for the Spotify Web API</a></li>

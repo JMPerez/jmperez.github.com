@@ -6,7 +6,7 @@
   <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
   <title>{{ page.title }}{% if page.title %} - {% endif %}JMPerez Blog</title>
   {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
   <link rel="author" href="https://plus.google.com/107456024651797783420" />
   <link rel="alternate" type="application/rss+xml" title="Jose M. Perez" href="https://jmperezperez.com/feed.xml">
   <meta name="twitter:card" content="{% if page.image %}summary_large_image{% else %}summary{% endif %}">

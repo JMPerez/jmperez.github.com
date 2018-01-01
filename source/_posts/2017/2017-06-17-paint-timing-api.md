@@ -17,7 +17,7 @@ In [a recent post about Chrome 60 Beta](https://blog.chromium.org/2017/06/chrome
 <!-- more -->
 
 <img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510494808/paint-timing-example_byc6z2.png"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510494808/paint-timing-example_byc6z2.png"
     sizes="(max-width: 768px) 100vw, 684px" alt="Example of Paint Timing API entries"/>
 <small class="caption">Image taken from the [Chrome 60 blog post](https://blog.chromium.org/2017/06/chrome-60-beta-paint-timing-api-css.html), which first appeared in ["Web Performance: Leveraging the Metrics that Most Affect User Experience"](https://youtu.be/6Ljq-Jn-EgU) at Google I/O 2017</small>
 
@@ -31,7 +31,7 @@ The [Paint Timing API](https://github.com/WICG/paint-timing) aims to improve thi
 A picture is worth a thousand words, so let’s see how these entries would be reported by some real web sites:
 
 <img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510476598/paint-timing-filmstrip_anq3pv.png"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510476598/paint-timing-filmstrip_anq3pv.png"
     sizes="(max-width: 768px) 100vw, 684px" alt="Filmstrip from several sites showing when Paint Timing API entries are triggered"/>
 <small class="caption">Image taken from the [Paint timing API repo on WICG](https://github.com/WICG/paint-timing#examples).</small>
 

@@ -64,7 +64,7 @@ Quora also implements a blur-up technique for the images in their posts. To see 
 Here we see what the page looks like when displaying the blurry placeholder:
 
 <img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510477139/quora-progressive-image-loading_fze0za.png"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510477139/quora-progressive-image-loading_fze0za.png"
     sizes="(max-width: 768px) 100vw, 684px" alt="Screenshot from Quora showing the blurry placeholder"/>
 
 Let's dive into the code to see what's going on. First of all, let's focus on the HTML markup:

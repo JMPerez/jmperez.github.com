@@ -13,7 +13,7 @@ image:
 This week I had a blast speaking at [a meetup organised by Alicante Frontend](https://www.meetup.com/Alicante-Frontend/events/242461990/). To me this was really special. Alicante is my home town and it’s also where I studied Computer Science.
 
 <img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510326708/alicante-frontend_anptgy.jpg"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510326708/alicante-frontend_anptgy.jpg"
     sizes="(max-width: 768px) 100vw, 684px" alt="Alicante Frontend" />
 
 <!-- more -->

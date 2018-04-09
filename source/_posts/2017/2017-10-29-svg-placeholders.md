@@ -10,6 +10,9 @@ image:
 tags:
   - svg
 permalink: svg-placeholders
+i18n:
+  en: svg-placeholders
+  es: es/svg-placeholders
 ---
 
 I'm passionate about image performance optimisation and making images load fast on the web. One of the most interesting areas of exploration is placeholders: what to show when the image hasn't loaded yet.
@@ -18,7 +21,8 @@ During the last days I have come across some loading techniques that use SVG, an
 
 <img
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1509278557/jmperez-composition-primitive_j8zyfn.jpg"
-    sizes="(max-width: 768px) 100vw, 684px" />
+    sizes="(max-width: 768px) 100vw, 684px"
+    alt="Example of a SVG generated using 10 and 100 triangles based on a bitmap image"/>
 <small class="caption">Generating SVGs from images can be used for placeholders. Keep reading!</small>
 
 <!-- more -->
@@ -85,7 +89,7 @@ Primitive is quite fascinating and I definitely recommend you to check it out. I
 
 Primitive generates an image based on shapes like triangles, rectangles and circles (and a few others). In every step it adds a new one. The more steps, the resulting image looks closer to the original one. If your output is SVG it also means the size of the output code will be larger.
 
-In order to understand how Primitive works, I ran it through a couple of images. I generated SVGs for the artwork using 10 shapes and 100 shapes:
+In order to understand how Primitive works, I ran it through a couple of images. I generated SVGs for the pictures using 10 shapes and 100 shapes:
 
 <div>
 <img
@@ -171,7 +175,7 @@ We just had a look at using SVGs for edges and primitive shapes. Another possibi
 
 The SVGs in this case were hand drawn, but the technique quickly spawned integrations with tools to automate the process.
 
-- [Gatsby](https://www.gatsbyjs.org), a static site generator using React supports these traced SVGs now. It uses [a JS PORT of potrace](https://www.npmjs.com/package/potrace) to vectorise the images.
+- [Gatsby](https://www.gatsbyjs.org), a static site generator using React supports these traced SVGs now. It uses [a JS port of potrace](https://www.npmjs.com/package/potrace) to vectorise the images.
 
 <blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Excited to announce that Gatsby now has super simple support for traced SVG!<br><br>Thanks to <a href="https://twitter.com/fk?ref_src=twsrc%5Etfw">@fk</a> for his great work!<a href="https://t.co/XfgEDbSILA">https://t.co/XfgEDbSILA</a> <a href="https://t.co/wTwOgT8C5V">pic.twitter.com/wTwOgT8C5V</a></p>&mdash; Gatsby (@gatsbyjs) <a href="https://twitter.com/gatsbyjs/status/923304195666485248?ref_src=twsrc%5Etfw">25 October 2017</a></blockquote>
 
@@ -207,5 +211,7 @@ If you have enjoyed this post, check out these other posts I have written about 
 - [How Medium does progressive image loading](/medium-image-progressive-loading-placeholder)
 - [Using WebP to create tiny preview images](/webp-placeholder-images)
 - [More examples of Progressive Image Loading](/more-progressive-image-loading)
+
+_This post is also available [in Spanish](/es/svg-placeholders)_
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

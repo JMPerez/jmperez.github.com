@@ -23,7 +23,7 @@ In [a recent post about Chrome 60 Beta](https://blog.chromium.org/2017/06/chrome
 
 Up until now we have been measuring performance through other metrics, mostly using the [Navigation Timing API](https://developer.mozilla.org/docs/Web/API/Navigation_timing_API), which is also what Google Analytics uses for their [Site Speed report](http://www.ericmobley.net/measuring-performance-google-analytics/). Yet those metrics don’t tell us the whole picture about the rendering experience.
 
-The [Paint Timing API](https://github.com/WICG/paint-timing) aims to improve this by exposing metrics on paint events that are grouped in two types of entries. By [its definition](https://github.com/WICG/paint-timing#definition):
+The [Paint Timing API](https://github.com/WICG/paint-timing) aims to improve this by exposing metrics on paint events that are grouped in two types of entries. By [its definition](https://w3c.github.io/paint-timing/#sec-terminology):
 
 *   `"first-paint"` entries contain a `DOMHighResTimeStamp` reporting the time when the browser first rendered after navigation. This excludes the default background paint, but includes non-default background paint. This is the first key moment developers care about in page load – when the browser has started to render the page.
 *   `"first-contentful-paint"` contain a `DOMHighResTimestamp` reporting the time when the browser first rendered any text, image (including background images), non-white canvas or SVG. This includes text with pending webfonts. This is the first time users could start consuming page content.

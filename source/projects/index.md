@@ -13,6 +13,13 @@ I like trying out "the last new thing" in a small project and publish it [on Git
 <h2>Music/Audio Projects</h2>
 <ul class="projects">
   <li>
+    <h3>Spotify Dedup (mobile)</h3>
+    <div class="description">
+      <p>A mobile application to find and remove duplicated tracks from your Spotify library.</p>
+      <p>I did this to get started building apps with React Native and Expo.</p>
+      <div class="project-links"><a href="https://expo.io/@jmperez/spotify-deduplicator">Website</a><a href="https://github.com/JMPerez/spotify-dedup-mobile">GitHub</a></div>
+    </div>
+  <li>
     <h3>BPM</h3>
     <div class="description">
       <p>Calculating the BPM of a song using Javascript.</p>
@@ -45,7 +52,7 @@ I like trying out "the last new thing" in a small project and publish it [on Git
     <div class="description">
       <p>A collaborative listening room using Spotify.</p>
       <p>This project uses Spotify's APIs to log users in, search tracks and play them on any device through Connect. It was also an excuse to try out Next.JS.</p>
-      <div class="project-links"><a href="https://c-spotify.herokuapp.com">Website</a><a href="https://https://github.com/JMPerez/c">GitHub</a></div>
+      <div class="project-links"><a href="https://c-spotify.herokuapp.com">Website</a><a href="https://github.com/JMPerez/c">GitHub</a></div>
     </div>
   </li>
   <li>

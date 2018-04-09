@@ -25,7 +25,12 @@
   {% endif %}
   "author": {
       "@type": "Person",
-      "name": "{{ config.author }}"
+      "name": "{{ config.author }}",
+      "url": "https://jmperezperez.com",
+      "sameAs": [
+        "http://www.linkedin.com/in/jmperezperez",
+        "https://twitter.com/jmperezperez"
+      ]
   },
   "publisher": {
       "@type": "Organization",
@@ -46,7 +51,7 @@
   <div class="media author">
     <div class="img">
       <a href="/about-me/">
-        <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510494899/jmperez_ogpkt5.jpg" class="avatar-img" alt="" height="53" width="53" sizes="53px">
+        <img src="https://res.cloudinary.com/jmperez/image/upload/w_120,f_auto,c_scale/v1519156883/profile_ysrm5y.jpg" class="avatar-img" alt="" height="53" width="53" sizes="53px">
       </a>
     </div>
     <div class="bd">

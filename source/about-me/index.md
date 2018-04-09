@@ -14,4 +14,4 @@ Currently I am working as a web developer at [Spotify](https://spotify.com) in S
 
 ## More info about me?
 
-You can follow me on Twitter [@jmperezperez](https://twitter.com/jmperezperez), where I post about web development, or check my [GitHub](https://github.com/JMPerez/), [LinkedIn](http://www.linkedin.com/in/jmperezperez) or [StackOverflow](http://stackoverflow.com/users/540274/jmperez)/[Careers](https://careers.stackoverflow.com/jmperez) profiles.
+You can follow me on Twitter [@jmperezperez](https://twitter.com/jmperezperez), where I post about web development, or check my [GitHub](https://github.com/JMPerez/), [LinkedIn](https://www.linkedin.com/in/jmperezperez) or [StackOverflow](http://stackoverflow.com/users/540274/jmperez)/[Careers](https://careers.stackoverflow.com/jmperez) profiles.

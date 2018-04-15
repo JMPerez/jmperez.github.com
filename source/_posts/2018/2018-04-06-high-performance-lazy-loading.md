@@ -15,8 +15,8 @@ Componentization has marked a before and after in web development. The main adva
 <img
     style="max-width:100%; border: 0"
     sizes="(max-width: 768px) 100vw, 684px"
-    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto,c_scale/v1522995807/high-performance_mbjoct.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto,c_scale/v1522995807/high-performance_mbjoct.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto,c_scale/v1522995807/high-performance_mbjoct.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto,c_scale/v1522995807/high-performance_mbjoct.jpg 1400w"
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1522995807/high-performance_mbjoct.jpg"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995807/high-performance_mbjoct.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995807/high-performance_mbjoct.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995807/high-performance_mbjoct.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995807/high-performance_mbjoct.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995807/high-performance_mbjoct.jpg"
     alt="" />
 
 We are explicit about our dependencies, so we know what code we need to run to run a specific component. Lazy-loading and bundle splitting can have a huge impact on page performance: less code requested, parsed, and executed. And this not only applies to JavaScript, but every type of asset.
@@ -92,8 +92,8 @@ Imagine a typical web page. You can check [Website Sameness](https://css-tricks.
 <img
     style="max-width:100%"
     sizes="300px"
-    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:300,f_auto,c_scale/v1523084060/observer/site.png 300w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:600,f_auto,c_scale/v1523084060/observer/site.png 600w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:900,f_auto,c_scale/v1523084060/observer/site.png 900w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto,c_scale/v1523084060/observer/site.png 1400w"
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:300,f_auto,c_scale/v1523084060/observer/site.png"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:300,f_auto/v1523084060/observer/site.png 300w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:600,f_auto/v1523084060/observer/site.png 600w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:900,f_auto/v1523084060/observer/site.png 900w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1523084060/observer/site.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:300,f_auto/v1523084060/observer/site.png"
     alt="A typical website" />
 <small class="caption">The basic structure of a page we will be using as example.</small>
 </p>
@@ -126,8 +126,8 @@ A code coverage report, like [the one Google Chrome provides](https://developers
 <img
     style="max-width:100%"
     sizes="(max-width: 768px) 100vw, 684px"
-    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto,c_scale/v1522995652/observer/chrome-coverage.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto,c_scale/v1522995652/observer/chrome-coverage.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto,c_scale/v1522995652/observer/chrome-coverage.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto,c_scale/v1522995652/observer/chrome-coverage.png 1400w"
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1522995652/observer/chrome-coverage.png"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/chrome-coverage.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/chrome-coverage.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/chrome-coverage.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/chrome-coverage.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/chrome-coverage.png"
     alt="Code coverage tab on Google Chrome" />
 <small class="caption">Code coverage tab on Google Chrome ([source](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage))</small>
 
@@ -138,8 +138,8 @@ As with everything else, **there are trade-offs with lazy-loading**. We don't wa
 <img
     style="max-width:100%"
     sizes="(max-width: 768px) 100vw, 684px"
-    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto,c_scale/v1522995652/observer/fold.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto,c_scale/v1522995652/observer/fold.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto,c_scale/v1522995652/observer/fold.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto,c_scale/v1522995652/observer/fold.png 1400w"
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1522995652/observer/fold.png"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/fold.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/fold.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/fold.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/fold.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/fold.png"
     alt="Don't lazy load above the fold" />
 
   Where to set the fold? This is tricky, and it will depend on the user's device, which varies greatly, and your layout.
@@ -149,8 +149,8 @@ As with everything else, **there are trade-offs with lazy-loading**. We don't wa
 <img
     style="max-width:100%"
     sizes="(max-width: 768px) 100vw, 684px"
-    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto,c_scale/v1522995652/observer/preloading.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto,c_scale/v1522995652/observer/preloading.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto,c_scale/v1522995652/observer/preloading.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto,c_scale/v1522995652/observer/preloading.png 1400w"
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1522995652/observer/preloading.png"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/preloading.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/preloading.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/preloading.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/preloading.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/preloading.png"
     alt="Lazy load a bit earlier than when it's needed" />
 
 - <p>**Invisible content in some scenarios**. You need to take into account that lazy-loaded content want be shown in some situations:</p>
@@ -161,8 +161,8 @@ As with everything else, **there are trade-offs with lazy-loading**. We don't wa
 
    Here I'm rendering [a test page](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) (you can see the source [here](https://github.com/JMPerez/lazy-load/blob/master/text-above-fold.js)) using Google Webmaster Tools' "Fetch as Google". Googlebot renders the content in the box shown within the viewport, but not the content below it.
 
-  <div style="text-align:center">
-    <video width="1024" height="680" controls src="https://res.cloudinary.com/jmperez/video/upload/c_scale,h_680,w_1024,dpr_auto,f_auto,q_auto,c_scale/v1522995646/observer/googlebot-lazy-load-demo.mp4" />
+  <div class="videoWrapper">
+    <iframe width="1764" height="1080" src="https://www.youtube.com/embed/YEWaufLXX_Q" frameborder="0" allowfullscreen></iframe>
   </div>
   <small class="caption">Rendering [a test page](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) using Google Webmaster Tools' "Fetch as Google".</small>
 
@@ -402,8 +402,8 @@ class ObserverOnce extends Component {
         }}
       >
         {Array.isArray(this.props.children)
-          ? this.props.children.map(child => child(this.state.visible))
-          : this.props.children(this.state.visible)}
+          ? this.props.children.map(child => child(this.state.hasBeenVisible))
+          : this.props.children(this.state.hasBeenVisible)}
       </div>
     );
   }
@@ -417,7 +417,7 @@ We have used the `Observer` component to load resources on-demand. We can also u
 Here is an example taken from the React Alicante website. It animates some conference numbers as soon as the user scrolls to that section.
 
 <div style="text-align:center">
-  <video width="1064" height="618" controls src="https://res.cloudinary.com/jmperez/video/upload/dpr_auto,f_auto,q_auto,c_scale/v1522995652/observer/react-alicante.mp4" />
+  <video width="1064" height="618" controls src="https://res.cloudinary.com/jmperez/video/upload/dpr_auto,f_auto,q_auto/v1522995652/observer/react-alicante.mp4" />
 </div>
 
 We could recreate it like this (see [example on Codepen](https://codepen.io/jmperez/pen/LQXjYv)):
@@ -522,8 +522,8 @@ You can see [a demo here](https://react-intersection-observer.stackblitz.io/) (c
 <img
     style="max-width:100%"
     sizes="(max-width: 768px) 100vw, 684px"
-    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto,c_scale/v1522995652/observer/safari-intersection-observer-2.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto,c_scale/v1522995652/observer/safari-intersection-observer-2.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto,c_scale/v1522995652/observer/safari-intersection-observer-2.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto,c_scale/v1522995652/observer/safari-intersection-observer-2.jpg 1400w"
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1522995652/observer/safari-intersection-observer-2.jpg"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg"
      />
 <small class="caption">Safari requests the polyfill for intersection-observer on demand. No need to ship it to browsers that support it natively.</small>
 
@@ -555,6 +555,6 @@ Hopefully I have shown how componentization can make code-splitting and loading 
 
 ----
 
-I would like to thank [@alexjoverm](https://twitter.com/alexjoverm), [@aarongarciah](https://twitter.com/aarongarciah) and [@FlavioCorpa](https://twitter.com/FlavioCorpa) for reviewing the the post, researching similar topics and recommending tools to provide the examples on the page.
+I would like to thank [@alexjoverm](https://twitter.com/alexjoverm), [@aarongarciah](https://twitter.com/aarongarciah) and [@FlavioCorpa](https://twitter.com/FlavioCorpa) for reviewing the post, researching similar topics and recommending tools to provide the examples on the page.
 
 Did you see any typo or wrong information? In that case, [drop me a line](https://twitter.com/jmperezperez).

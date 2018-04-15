@@ -56,8 +56,13 @@ In the future I would like to extend the reported metrics to include [First Mean
     sizes="(max-width: 768px) 100vw, 684px" />
 <small class="caption">Slide from [Web Performance: Leveraging the Metrics that Most Affect User Experience from Google I/O '17](https://www.youtube.com/watch?v=6Ljq-Jn-EgU) showing different key moments during a page load.</small>
 
-If you are into this topic, I recommend you to watch the talk [Web Performance: Leveraging the Metrics that Most Affect User Experience from Google I/O '17](https://www.youtube.com/watch?v=6Ljq-Jn-EgU).
+[Leonardo Zizzamia](https://twitter.com/Zizzamia) has been working on [Perfume.js](http://zizzamia.github.io/perfume/), a library to measure these metrics, annotate them to the dev tools timeline and optionally reporting them to Google Analytics. It also has a fallback for browsers that do not support the Paint Timing API.
 
+You can read more about the library on his posts "[First (Contentful) Paint with a touch of Perfume(.js)](https://medium.com/@zizzamia/first-contentful-paint-with-a-touch-of-perfume-js-cd11dfd2e18f) and "[Time to Interactive with RUM](https://medium.com/@zizzamia/time-to-interactive-with-rum-862ba874392c)".
+
+If you are into this topic, I also recommend you to watch the talk [Web Performance: Leveraging the Metrics that Most Affect User Experience from Google I/O '17](https://www.youtube.com/watch?v=6Ljq-Jn-EgU).
+
+## How to Calculate the Transfer Size
 The Resource Timing API allows to [know the transfer size of the assets fetched by the page](https://developer.mozilla.org/docs/Web/API/Resource_Timing_API/Using_the_Resource_Timing_API#Size_matters). For CORS requests is necessary to [include the `timing-allow-origin` header](https://developer.mozilla.org/docs/Web/API/Resource_Timing_API/Using_the_Resource_Timing_API#Coping_with_CORS) set up properly to return the transfer size. Otherwise they will report 0 as the transfer size.
 
 Another caveat is that there doesn’t seem to be a way to know the transfer size of the page itself. One could calculate the length of the document’s innerHTML, but that won’t match the transfer size if the response was compressed (which hopefully was).

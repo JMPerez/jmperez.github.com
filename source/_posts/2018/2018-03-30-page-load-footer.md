@@ -8,6 +8,8 @@ image:
   width: 1200
   height: 728
 permalink: page-load-footer
+tags:
+  - performance
 ---
 
 I was browsing [Tim Kadlec's website](https://timkadlec.com) and I noticed he had added page load time metrics in the footer.

@@ -8,6 +8,9 @@ image:
   width: 1200
   height: 374
 permalink: progressive-images-user-perception
+tags:
+  - performance
+  - image optimization
 ---
 
 I have just published my first article on Smashing Magazine. There I talk about progressive image loading techniques and what we know about how users perceive them.

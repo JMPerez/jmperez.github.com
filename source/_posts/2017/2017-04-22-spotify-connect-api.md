@@ -8,7 +8,7 @@ image:
   width: 1200
   height: 588
 tags:
-  - api
+  - spotify
 permalink: spotify-connect-api
 ---
 

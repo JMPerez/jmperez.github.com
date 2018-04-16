@@ -4,4 +4,7 @@
     {{ page.content }}
   </div>
   <hr />
+  {% if page.tags && page.tags.length %}
+    Tags: {{ list_tags(page.tags, { show_count: false }) }}
+  {% endif %}
 </article>

@@ -9,7 +9,6 @@ image:
   width: 2000
   height: 1123
 tags:
-  - web
   - conference
   - react
 ---
@@ -31,20 +30,13 @@ It’s the first edition of the conference, and I believe it’s also the first 
 
 The most impressive is that **it was arranged by 2 Spanish expats who form the company [Limenius](https://limenius.com/), based in Munich**. [Nacho](https://twitter.com/nacmartin) and [Victoria](https://twitter.com/vicqr) did an impressive job, putting together a top-level conference with a great line-up and contents. They managed to prove that its possible to arrange a good conference in a well-communicated location like Alicante, with good weather and interesting attractions, while making it affordable (the regular tickets for the talks were 99).
 
-
-<img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510331531/react-alicante-nacho-martin_wzczdx.jpg"
-    sizes="(max-width: 768px) 100vw, 684px" alt="Nacho Martín speaking at React Alicante" />
+{% resp_image v1510331531/react-alicante-nacho-martin_wzczdx.jpg "Nacho Martín speaking at React Alicante" %}
 <small class="caption">Nacho Martín speaking at React Alicante</small>
 
-<img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510331531/react-alicante-flavio-corpa_tg37vj.jpg"
-    sizes="(max-width: 768px) 100vw, 684px" alt="Flavio Corpa during his talk" />
+{% resp_image v1510331531/react-alicante-flavio-corpa_tg37vj.jpg "Flavio Corpa during his talk" %}
 <small class="caption">Flavio Corpa during his talk</small>
 
-<img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510331531/react-alicante-overview_hncowx.jpg"
-    sizes="(max-width: 768px) 100vw, 684px" alt="Overview of React Alicante" />
+{% resp_image v1510331531/react-alicante-overview_hncowx.jpg "Overview of React Alicante" %}
 <small class="caption">General overview of the full room</small>
 
 There were several talks touching on style guides and the difficult world of creating UI components that can be customisable in options and theming. Other topics were forms, CSS in JS, Redux/Mobx, code splitting, GraphQL, and React Native.
@@ -235,11 +227,9 @@ It was a down-to-earth talk in which most of us felt identified with. It was als
 
 Nick talked about scaling websites through [OpenComponents](https://github.com/opentable/oc). Think of the microservice approach taken all the way till the frontend.
 
-<img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510331530/react-alicante-nick-balestra_gzaig6.jpg"
-    sizes="(max-width: 768px) 100vw, 684px" alt="Nick Balestra speaking at React Alicante" />
+{% resp_image v1510331530/react-alicante-nick-balestra_gzaig6.jpg "Nick Balestra speaking at React Alicante" %}
 
-I liked his presentation very much’W eve been trying to solve some of these issues at Spotify for years, in creative ways like [pushing the boundaries of what iframes can do](https://speakerdeck.com/jmperez/cross-platform-web-development).
+I liked his presentation very much. We have been trying to solve some of these issues at Spotify for years, in creative ways like [pushing the boundaries of what iframes can do](https://speakerdeck.com/jmperez/cross-platform-web-development).
 
 OC’s approach (and thus OpenTable’s, the company that built it) is to have parts of the UI served my different services, that can be written in different languages, and maintained/versioned/deployed by a certain team without dependencies on others. The same services can be used to compose email messages or create embeddable widgets.
 

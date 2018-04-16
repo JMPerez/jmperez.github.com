@@ -336,6 +336,18 @@ video {
     width: 100%;
 }
 
+.tag-list {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tag-list-item {
+    display: inline-block;
+    margin-left: .8em;
+}
+
 /*--PAGINATION--*/
 
 .pagination {

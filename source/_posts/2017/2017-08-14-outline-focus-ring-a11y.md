@@ -9,7 +9,7 @@ image:
   width: 320
   height: 560
 tags:
-  - web
+  - a11y
 ---
 
 Last week I came across [Removing that ugly :focus ring (and keeping it too)](https://hackernoon.com/removing-that-ugly-focus-ring-and-keeping-it-too-6c8727fefcd2). It's a really good post about  `outline`, that CSS property lots of devs tend to hide. The post explains some a11y-friendly alternatives to not display it, and show it when needed.

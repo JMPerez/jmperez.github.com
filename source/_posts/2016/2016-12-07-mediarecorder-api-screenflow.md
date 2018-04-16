@@ -8,7 +8,7 @@ image:
   width: 1200
   height: 761
 tags:
-  - images
+  - browser apis
 permalink: mediarecorder-api-screenflow
 ---
 

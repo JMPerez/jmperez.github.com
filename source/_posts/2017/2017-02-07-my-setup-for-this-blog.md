@@ -4,6 +4,8 @@ title: SSL, HTTP/2, Service Worker, Offline Mode? This blog has all of them
 date: 2017-02-07 8:30:00+01:00
 description: Some background on the hidden features of this blog. Static site, progressive images, AMP, HTTP/2, SSL...
 permalink: my-setup-for-this-blog
+tags:
+ - sw
 ---
 
 I usually see myself spending more time migrating from one setup to another one than writing valuable content. After all, I consider my blog a playground where I try some concepts.

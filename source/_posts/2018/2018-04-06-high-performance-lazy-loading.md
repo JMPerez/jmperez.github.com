@@ -8,6 +8,9 @@ image:
   width: 1600
   height: 835
 permalink: high-performance-lazy-loading
+tags:
+  - performance
+  - lazy-loading
 ---
 
 Componentization has marked a before and after in web development. The main advantages that are usually mentioned is reusability and modularization. Well defined pieces that we can use to build our sites, like bricks of Legos. It turns out this component structure provides a great foundation to improve the performance of our sites.
@@ -123,35 +126,20 @@ What's the point in requesting resources that the user will not need, like image
 
 A code coverage report, like [the one Google Chrome provides](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage) **won't help us much**. The JS code will be executed and the CSS applied to elements that aren't visible.
 
-<img
-    style="max-width:100%"
-    sizes="(max-width: 768px) 100vw, 684px"
-    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/chrome-coverage.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/chrome-coverage.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/chrome-coverage.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/chrome-coverage.png 1400w"
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/chrome-coverage.png"
-    alt="Code coverage tab on Google Chrome" />
+{% resp_image v1522995652/observer/chrome-coverage.png "Code coverage tab on Google Chrome" %}
 <small class="caption">Code coverage tab on Google Chrome ([source](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage))</small>
 
 As with everything else, **there are trade-offs with lazy-loading**. We don't want to apply lazy-loading to everything. Here are some points to take into account.
 
 - **Don't lazy load above the fold**. In most cases we want the above-the-fold content to be rendered as soon as possible. Every lazy-loading technique will introduce a delay. The browser has to run the JS that injects the HTML to the document, parse it and start requesting the referenced assets.
 
-<img
-    style="max-width:100%"
-    sizes="(max-width: 768px) 100vw, 684px"
-    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/fold.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/fold.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/fold.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/fold.png 1400w"
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/fold.png"
-    alt="Don't lazy load above the fold" />
+{% resp_image v1522995652/observer/fold.png "Don't lazy load above the fold" %}
 
   Where to set the fold? This is tricky, and it will depend on the user's device, which varies greatly, and your layout.
 
 - **Lazy load a bit earlier than when it's needed**. You want to avoid showing void areas to the user. For this, you can load an asset that is needed when it's closed enough to the visible area. For instance, a user scrolls down and if the image to load is, let's say, 100px below the bottom of the viewport, start requesting it.
 
-<img
-    style="max-width:100%"
-    sizes="(max-width: 768px) 100vw, 684px"
-    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/preloading.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/preloading.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/preloading.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/preloading.png 1400w"
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/preloading.png"
-    alt="Lazy load a bit earlier than when it's needed" />
+{% resp_image v1522995652/observer/preloading.png "Lazy load a bit earlier than when it's needed" %}
 
 - <p>**Invisible content in some scenarios**. You need to take into account that lazy-loaded content want be shown in some situations:</p>
    - If the lazy-loaded content hasn't been loaded it won't show up when printing the page.
@@ -519,12 +507,8 @@ class Observer extends Component {
 
 You can see [a demo here](https://react-intersection-observer.stackblitz.io/) (check [the code source](https://stackblitz.com/edit/react-intersection-observer)). Safari will make an extra request to load the `intersection-observer` npm package, since it doesn't support IntersectionObserver.
 
-<img
-    style="max-width:100%"
-    sizes="(max-width: 768px) 100vw, 684px"
-    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 1400w"
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg"
-     />
+{% resp_image v1522995652/observer/safari-intersection-observer-2.jpg "Screenshot of the network panel in Safari, displaying a request for the polyfill" %}
+
 <small class="caption">Safari requests the polyfill for intersection-observer on demand. No need to ship it to browsers that support it natively.</small>
 
 This is achieved thanks to code splitting. There are tools like [Parcel](https://parceljs.org/code_splitting.html) or [Webpack](https://webpack.js.org/guides/code-splitting/) that will create a bundle for that imported package, and the logic needed to request the file.

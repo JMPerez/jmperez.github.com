@@ -8,6 +8,10 @@ image:
   width: 640
   height: 426
 permalink: choosing-platform-blogging
+tags:
+  - hexo
+  - medium
+  - amp
 ---
 
 Or why no single platform is the best one.

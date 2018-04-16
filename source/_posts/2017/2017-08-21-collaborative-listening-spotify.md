@@ -8,6 +8,8 @@ image:
   url: /assets/images/posts/c-collaborative.png
   width: 1200
   height: 899
+tags:
+  - spotify
 ---
 
 This is a post about a hack project I have been working on lately, and I wanted to share some information about why and how I built it.

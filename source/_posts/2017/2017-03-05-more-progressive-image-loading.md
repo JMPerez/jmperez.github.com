@@ -4,6 +4,9 @@ title: More examples of Progressive Image Loading
 date: 2017-03-05 19:45:00+01:00
 description: Medium is not the only site using blurry placeholders. Let's look at how Quora and Quartz implement a similar technique.
 permalink: more-progressive-image-loading
+tags:
+ - image performance
+ - svg
 ---
 
 In [a past post](/medium-image-progressive-loading-placeholder) I dissected a technique used by Medium to display images, transitioning from a blurry image to the final one. Since then I have found some more sites following a similar approach. Let's see how Quora, Quartz and Clicktorelease do it.

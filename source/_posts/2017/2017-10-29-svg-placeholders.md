@@ -19,10 +19,7 @@ I'm passionate about image performance optimisation and making images load fast 
 
 During the last days I have come across some loading techniques that use SVG, and I would like to describe them in this post.
 
-<img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1509278557/jmperez-composition-primitive_j8zyfn.jpg"
-    sizes="(max-width: 768px) 100vw, 684px"
-    alt="Example of a SVG generated using 10 and 100 triangles based on a bitmap image"/>
+{% resp_image v1509278557/jmperez-composition-primitive_j8zyfn.jpg "Example of a SVG generated using 10 and 100 triangles based on a bitmap image" %}
 <small class="caption">Generating SVGs from images can be used for placeholders. Keep reading!</small>
 
 <!-- more -->
@@ -36,9 +33,7 @@ In this post we will go through these topics:
 
 In the past [I have written about placeholders and lazy-load of images](/lazy-loading-images), and also [talked about it](https://www.youtube.com/watch?v=szmVNOnkwoU). When doing lazy-loading of images it's a good idea to think about what to render as a placeholder, since it can have a big impact in user's perceived performance. In the past I described several options:
 
-<img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1509278557/placeholder-options_vtwp6b.png"
-    sizes="(max-width: 768px) 100vw, 684px" />
+{% resp_image v1509278557/placeholder-options_vtwp6b.png "Several strategies to fill the area of an image before it loads" %}
 <small class="caption">Several strategies to fill the area of an image before it loads.</small>
 
 * **Keeping the space empty for the image**: In a world of responsive design, this prevents content from jumping around. Those layout changes are bad from a user's experience point of view, but also for performance. The browser is forced to do layout re calculations every time it fetches the dimensions of an image, leaving space for it.
@@ -50,9 +45,7 @@ Turns out there are many other variations and lots of smart people are developin
 
 One of them is having gradients instead of solid colours. The gradients can create a more accurate preview of the final image, with very little overhead (increase in payload).
 
-<img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale,w_1368/v1509278575/gradient-background_jyymty.jpg"
-    sizes="(max-width: 768px) 100vw, 684px" alt="Using gradients as backgrounds. Screenshot from Gradify"/>
+{% resp_image v1509278575/gradient-background_jyymty.jpg "Using gradients as backgrounds. Screenshot from Gradify" %}
 <small class="caption">Using gradients as backgrounds. Screenshot from Gradify, which is not online anymore. Code [on GitHub](https://github.com/fraser-hemp/gradify).</small>
 
 Another technique is using SVGs based on the image, which is getting some traction with recent experiments and hacks.

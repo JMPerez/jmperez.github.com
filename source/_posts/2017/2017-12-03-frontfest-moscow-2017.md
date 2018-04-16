@@ -8,16 +8,13 @@ image:
   width: 1024
   height: 683
 tags:
-  - images
   - talks
 permalink: frontfest-moscow-2017
 ---
 
 A couple of weeks ago I attended [FrontFest 2017](https://2017.frontfest.ru/) in Moscow. There were around 200 attendees at Digital October, an impressive venue. I had a lot of fun and met many local developers.
 
-<img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1512318752/frontfest/frontfest-01.jpg"
-    sizes="(max-width: 768px) 100vw, 684px" alt="Jose M. Perez speaking at Frontfest Moscow 2017" />
+{% resp_image v1512318752/frontfest/frontfest-01.jpg "Jose M. Perez speaking at Frontfest Moscow 2017" %}
 
 <!-- more -->
 

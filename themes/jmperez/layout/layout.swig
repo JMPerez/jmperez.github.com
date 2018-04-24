@@ -47,20 +47,21 @@
       var t = window.performance && performance.timing;
       function round2(num) { return Math.round(num * 100) / 100; }
       if (t) {
-          var timingStats = document.querySelector('.timing-stats');
-          var loadTime = (t.loadEventEnd - t.navigationStart) / 1000;
-          var timingStatsHTML = 'This page loaded in ' + round2(loadTime) + ' seconds. ';
-          var performanceEntries = performance.getEntriesByType('paint');
-          performanceEntries.forEach(function(performanceEntry, i, entries) {
-            var name = performanceEntry.name;
-            if (name === 'first-paint') {
-              name = '<abbr title=' + name + '>FP</abbr>';
-            } else if (name === 'first-contentful-paint') {
-              name = '<abbr title=' + name + '>FCP</abbr>';
-            }
-            timingStatsHTML += name + ' was ' + round2(performanceEntry.startTime / 1000) + ' seconds. ';
-          });
-          timingStats.innerHTML = timingStatsHTML;
+        var timingStats = document.querySelector('.timing-stats');
+        var loadTime = (t.loadEventEnd - t.navigationStart) / 1000;
+        var timingStatsHTML = 'This page loaded in ' + round2(loadTime) + ' seconds. ';
+        var performanceEntries = performance.getEntriesByType('paint');
+        performanceEntries.forEach(function(performanceEntry, i, entries) {
+          var name = performanceEntry.name;
+          if (name === 'first-paint') {
+            name = '<abbr title=' + name + '>FP</abbr>';
+          } else if (name === 'first-contentful-paint') {
+            name = '<abbr title=' + name + '>FCP</abbr>';
+          }
+          timingStatsHTML += name + ' was ' + round2(performanceEntry.startTime / 1000) + ' seconds. ';
+        });
+        timingStatsHTML += '<a href="https://jmperezperez.com/page-load-footer/">More info</a>.';
+        timingStats.innerHTML = timingStatsHTML;
       }
     }, 0);
    });

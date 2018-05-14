@@ -15,6 +15,16 @@ button {
     background: none;
 }
 
+html {
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
 /*--BODY--*/
 
 body {
@@ -23,23 +33,10 @@ body {
     font-family: Georgia, Times;
     font-weight: 300;
     font-style: normal;
-    font-size: 19px;
-    line-height: 1.725;
+    line-height: 1.5rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%; /* fixes a too large font issue in horizontally scrollable <pre> on webkit */
-}
-
-@media(max-width: 800px) {
-    body {
-        font-size: 17px;
-    }
-}
-
-@media(max-width: 600px) {
-    body {
-        font-size: 15px;
-    }
 }
 
 h1,
@@ -50,16 +47,8 @@ h5 {
     color: #212121;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600;
-    font-size: 1em;
-    line-height: 1.3;
-    margin-bottom: 1em;
-}
-
-h2,
-h3,
-h4,
-h5 {
-    margin-top: 2em;
+    line-height: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 #menu a,
@@ -77,7 +66,7 @@ amp-video,
 amp-vimeo,
 amp-youtube {
     margin: 0;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 }
 
 twitterwidget {
@@ -117,22 +106,26 @@ h1 {
 
 h2 {
     color: #444;
-    font-size: 1.6em;
+    display: inline-block;
+    font-size: 1.6rem;
     font-weight: 400;
+    margin-top: 1rem;
 }
 
 h3 {
     color: #666;
-    font-size: 1.4em;
+    display: inline-block;
+    font-size: 1.4rem;
     font-weight: 400;
+    margin-top: 1rem;
 }
 
 h4 {
-    font-size: 1.18em;
+    font-size: 1.18rem;
 }
 
 h5 {
-    font-size: 1em;
+    font-size: 1rem;
 }
 
 a h1,
@@ -218,7 +211,8 @@ code {
     background-color: #005689;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     overflow: hidden;
-    padding: 1em;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
     position: relative;
     text-align: center;
     width: 100%;
@@ -228,21 +222,21 @@ code {
 
 #menu {
     display: inline-block;
-    margin: 1px 0;
+    line-height: 2rem;
 }
 
 #menu a {
     color: #fff;
-    font-size: 14px;
-    margin-left: 15px;
-    padding: 20px 10px;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    padding: 1rem 0.5rem;
     text-transform: uppercase;
 }
 
 @media(max-width: 500px) {
   #menu a {
-    margin-left: 10px;
-    padding: 10px 5px;
+    margin-left: 0.5rem;
+    padding: 0.5rem 0.25rem;
   }
 }
 
@@ -258,8 +252,9 @@ code {
 
 #page {
     margin: 0 auto;
-    max-width: 40em;
-    padding: 3em 2em;
+    max-width: 41rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     position: relative;
 }
 
@@ -284,12 +279,12 @@ code {
 
 .wrapper {
     border-top: 2px solid #eee;
-    padding: 3em 0;
+    padding-top: 2rem;
 }
 
 .wrapper:first-child {
     border-top: none;
-    padding-top: 5%;
+    padding-top: 1rem;
 }
 
 .posts-list h2 {
@@ -300,6 +295,7 @@ code {
 
 .post {
     display: block;
+    margin-bottom: 2rem;
     width: 100%;
 }
 
@@ -308,7 +304,11 @@ code {
 }
 
 .post li {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5rem;
+}
+
+.post p + img {
+    margin-bottom: 1rem;
 }
 
 .post p img {
@@ -318,7 +318,7 @@ code {
 }
 
 .post img + .caption {
-  padding-top: 5px;
+  padding-top: 0.5rem;
 }
 
 .post .svg-container {
@@ -341,6 +341,7 @@ video {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    padding-bottom: 1rem;
 }
 
 .tag-list-item {
@@ -351,6 +352,7 @@ video {
 /*--PAGINATION--*/
 
 .pagination {
+    padding-bottom: 1rem;
     text-align: center;
 }
 
@@ -378,12 +380,10 @@ footer {
 .button {
     background-color: #fff;
     border: 1px solid #555;
-    border-radius: 20px;
+    border-radius: 2rem;
     color: #555;
     display: inline-block;
-    font-size: 13px;
-    line-height: 10px;
-    padding: 10px 20px;
+    padding: 0.5rem 1rem;
     transition: background-color .15s ease-out;
 }
 
@@ -409,7 +409,7 @@ footer {
     cursor: pointer;
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
 
     /*--PAGE--*/
 
@@ -417,14 +417,13 @@ footer {
     .wrapper {
         margin: 0;
         max-width: 100%;
-        padding: 1.5em;
         width: 100%;
     }
 
     /*--WRAPPER--*/
 
     .wrapper {
-        padding: 10% 0;
+        padding-top: 2rem;
     }
 
     .wraper::after {
@@ -432,14 +431,6 @@ footer {
         content: '';
         display: block;
     }
-
-    /*--POSTS--*/
-
-    .post {
-        margin: 0 auto;
-        max-width: 640px;
-    }
-
 }
 
 /*--ACCESSIBILITY--*/
@@ -465,13 +456,13 @@ footer {
 
 .author {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 0.8em;
-    margin-bottom: 2em;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
 }
 
 .author .name {
-    line-height: 1.5;
-    padding-top: 0.35em;
+    line-height: 1rem;
+    padding-top: 0.5rem;
 }
 
 .media, .bd {
@@ -486,9 +477,9 @@ footer {
 
 .avatar-img {
     border-radius: 100%;
-    height: 3.5em;
-    margin-right: 0.5em;
-    width: 3.5em;
+    height: 3rem;
+    margin-right: 0.5rem;
+    width: 3rem;
 }
 
 /* SYNTAX HIGHLIGHTING */
@@ -620,7 +611,7 @@ pre[class*="language-"] {
 
 .caption {
   display: block;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   text-align: center;
 }
 
@@ -644,10 +635,17 @@ pre[class*="language-"] {
 
 .me {
     max-width: 20em;
-    margin: 0 auto 0.5em;
+    margin: 0 auto 1rem;
     text-align: center;
 }
 
+.me img {
+    height: 8rem;
+    width: 8rem;
+}
+
 .me h1 {
-    margin-bottom: 0em;
+    font-size: 1.7rem;
+    line-height: 2rem;
+    margin-bottom: 0.5rem;
 }

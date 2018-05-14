@@ -13,14 +13,14 @@ I like trying out "the last new thing" in a small project and publish it [on Git
 <h2>Music/Audio Projects</h2>
 <ul class="projects">
   <li>
-    <h3>Spotify Dedup (mobile)</h3>
+    <h3 style="margin-top:0">Spotify Dedup (mobile)</h3>
     <div class="description">
       <p>A mobile application to find and remove duplicated tracks from your Spotify library.</p>
       <p>I did this to get started building apps with React Native and Expo.</p>
       <div class="project-links"><a href="https://expo.io/@jmperez/spotify-deduplicator">Website</a><a href="https://github.com/JMPerez/spotify-dedup-mobile">GitHub</a></div>
     </div>
   <li>
-    <h3>BPM</h3>
+    <h3 style="margin-top:0">BPM</h3>
     <div class="description">
       <p>Calculating the BPM of a song using Javascript.</p>
       <p>I did this to play with the Web Audio API and show a useful example of using the Spotify Web API.</p>
@@ -28,7 +28,7 @@ I like trying out "the last new thing" in a small project and publish it [on Git
     </div>
   </li>
   <li>
-    <h3>Karaoke</h3>
+    <h3 style="margin-top:0">Karaoke</h3>
     <div class="description">
       <p>An exploration of audio manipulation using browser libraries to remove voices from songs.</p>
       <p>I did this to play with the Web Audio API... and to realise I'm not very good at singing.</p>
@@ -36,7 +36,7 @@ I like trying out "the last new thing" in a small project and publish it [on Git
     </div>
   </li>
   <li>
-    <h3>iQuiz</h3>
+    <h3 style="margin-top:0">iQuiz</h3>
     <div class="description">
       <p>A fun quiz game about your saved Spotify playlists. Do you really know about your saved music).</p>
       <p>I did this to play with the Web Audio API and Speech Synthesis API.</p>
@@ -48,7 +48,15 @@ I like trying out "the last new thing" in a small project and publish it [on Git
 <h2>Some useful tools built as single page apps</h2>
 <ul class="projects">
   <li>
-    <h3>Cs</h3>
+    <h3 style="margin-top:0">Abrevio</h3>
+    <div class="description">
+      <p>A <a href="http://www.hemingwayapp.com/">Hemingway editor</a>-like for text in Spanish language. Get hints to improve its readability and write clearer.</p>
+      <p>This project is built as a PWA with offline support. It uses Preact/React.</p>
+      <div class="project-links"><a href="https://abrev.io">Website</a></div>
+    </div>
+  </li>
+  <li>
+    <h3 style="margin-top:0">C - Spotify</h3>
     <div class="description">
       <p>A collaborative listening room using Spotify.</p>
       <p>This project uses Spotify's APIs to log users in, search tracks and play them on any device through Connect. It was also an excuse to try out Next.JS.</p>
@@ -56,7 +64,7 @@ I like trying out "the last new thing" in a small project and publish it [on Git
     </div>
   </li>
   <li>
-    <h3>Sync subs</h3>
+    <h3 style="margin-top:0">Sync subs</h3>
     <div class="description">
       <p>A handy tool to apply an offset to a subtitle file.</p>
       <p>I did this to play with the File API, CommonJS modules (including testing), and Service Workers (offline support).</p>
@@ -64,7 +72,7 @@ I like trying out "the last new thing" in a small project and publish it [on Git
     </div>
   </li>
   <li>
-    <h3>LinkedIn to JSON Resume</h3>
+    <h3 style="margin-top:0">LinkedIn to JSON Resume</h3>
     <div class="description">
       <p>An exporter from a LinkedIn profile to JSON Résumé.</p>
       <p>I did this to play with the File API and ES6.</p>
@@ -72,7 +80,7 @@ I like trying out "the last new thing" in a small project and publish it [on Git
     </div>
   </li>
   <li>
-    <h3>Spotify Dedup</h3>
+    <h3 style="margin-top:0">Spotify Dedup</h3>
     <div class="description">
       <p>A simple tool to remove duplicated tracks from a user's Spotify playlists.</p>
       <p>I did this to play with knockout and handling lots of async operations using promises.</p>

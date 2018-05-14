@@ -14,9 +14,7 @@
          <h2>{{ post.title }}</h2>
        </a>
        {% if post.excerpt %}
-       <p>
-        {{ post.excerpt }}
-        </p>
+       {{ post.excerpt }}
         <div class="post-data">
           <a class="button" href="{{ url_for(post.path) }}">Continue reading <span class="outscreen"> about {{ post.title }}</span>...</a>
         </div>

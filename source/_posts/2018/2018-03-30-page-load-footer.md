@@ -17,7 +17,8 @@ I was browsing [Tim Kadlec's website](https://timkadlec.com) and I noticed he ha
 <img
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1522388675/load-time/tim-kadlec-load-time.png"
     sizes="(max-width: 768px) 100vw, 684px"
-    style="border: 0" />
+    style="border: 0"
+    alt="Tim Kadlec's site shows how long the page took to load in the footer" />
 <small class="caption">Tim Kadlec's site shows how long the page took to load in the footer.</small>
 
 Stoyan Stefanov also realized and wrote ["This page loaded in X seconds"](http://www.phpied.com/this-page-loaded-in-x-seconds/), a blog post describing the code used for this. Stoyan also created a bookmark that shows an alert with the load time of the current page. The data is obtained from [`window.performance`](https://developer.mozilla.org/en-US/docs/Web/API/Window/performance).

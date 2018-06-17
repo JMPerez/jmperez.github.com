@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me - José Manuel Pérez Pérez
-description: Information about José M. Pérez - Frontend developer at Spotify
+description: Information about José M. Pérez - Software Engineer at Spotify
 ---
 
 # Hello 👋 !
@@ -10,7 +10,7 @@ I am a Software Engineer who likes web development and performance optimization.
 
 I like working with companies to improve their sites, ensuring they load quickly regardless of device and network conditions. From the initial developing process to auditing and analysis.
 
-Currently I am working as a Technical Owner at [Spotify](https://spotify.com) in Stockholm, Sweden. Occasionally [I speak at web conferences and meetups](/talks/) and [work on side projects](/projects/). I'm also a [Google Developer Expert](https://developers.google.com/experts/about) in Web Technologies.
+Currently I am working as a Technical Owner at [Spotify](https://spotify.com) in Stockholm, Sweden. Occasionally [I speak at web conferences and meetups](/talks/) and [work on side projects](/projects/). I'm also a [Google Developer Expert](https://developers.google.com/experts/people/jose-manuel-perez-perez) in Web Technologies.
 
 ## Contact
 

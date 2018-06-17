@@ -17,7 +17,8 @@ I have just published my first article on Smashing Magazine. There I talk about 
 
 <img
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1518013062/smashing/filmstrip.png"
-    sizes="(max-width: 768px) 100vw, 684px" />
+    sizes="(max-width: 768px) 100vw, 684px"
+    alt="Percentage of visual completeness increases using progressive image loading." />
 <small class="caption">Percentage of visual completeness increases using progressive image loading.</small>
 
 Read more on [Smashing Magazine](https://www.smashingmagazine.com/2018/02/progressive-image-loading-user-perceived-performance/).

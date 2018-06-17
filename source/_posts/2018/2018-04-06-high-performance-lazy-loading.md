@@ -11,6 +11,9 @@ permalink: high-performance-lazy-loading
 tags:
   - performance
   - lazy-loading
+i18n:
+  en: high-performance-lazy-loading
+  es: es/high-performance-lazy-loading
 ---
 
 Componentization has marked a before and after in web development. The main advantages that are usually mentioned is reusability and modularization. Well defined pieces that we can use to build our sites, like bricks of Legos. It turns out this component structure provides a great foundation to improve the performance of our sites.
@@ -27,16 +30,18 @@ We are explicit about our dependencies, so we know what code we need to run to r
 I see many sites that could take advantage of this, and I wanted to show how some basic techniques to load content as needed.
 
 <!-- more -->
+
 The article will be using Preact/React, yet the ideas can be applied to any other component library.
 
 We are going to cover several topics:
 
-1. [Compositional Patterns](#Compositional-Patterns): Overview of a couple of patterns that we can use to build complex components.
-2. [Improving performance of our sites by loading only what is needed](#Improving-performance-of-our-sites-by-loading-only-what-is-needed): A practical case where we will apply lazy-loading.
-3. [A small component to detect visibility](#A-small-component-to-detect-when-an-area-is-visible): A simple component that wraps the logic to notify when an element appears on screen.
-4. [More use cases](#More-use-cases): We will see that a component to detect visibility can also be useful in other situations.
-5. [Polyfilling IntersectionObserver on-demand](#Polyfilling-IntersectionObserver-on-demand): How we can include a polyfill only when needed.
-6. [Useful implementations](#Useful-implementations): Existing npm libraries that implement the pattern we have gone through.
+1.  [Compositional Patterns](#Compositional-Patterns): Overview of a couple of patterns that we can use to build complex components.
+2.  [Improving performance of our sites by loading only what is needed](#Improving-performance-of-our-sites-by-loading-only-what-is-needed): A practical case where we will apply lazy-loading.
+3.  [A small component to detect visibility](#A-small-component-to-detect-when-an-area-is-visible): A simple component that wraps the logic to notify when an element appears on screen.
+4.  [More use cases](#More-use-cases): We will see that a component to detect visibility can also be useful in other situations.
+5.  [Polyfilling IntersectionObserver on-demand](#Polyfilling-IntersectionObserver-on-demand): How we can include a polyfill only when needed.
+6.  [Code Splitting and CSS-in-JS](#Code-Splitting-and-CSS-in-JS): How CSS-in-JS extends code-splitting and lazy-loading to CSS, SVGs and other resources.
+7.  [Useful implementations](#Useful-implementations): Existing npm libraries that implement the pattern we have gone through.
 
 Let's start!
 
@@ -57,9 +62,10 @@ const MyComponent = props => (
 
 // ...
 
-const ConnectedComponent = connect(mapStateToProps, mapDispatchToProps)(
-  MyComponent
-);
+const ConnectedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyComponent);
 ```
 
 Function as Child Component (also known as "[Render Callback](https://reactpatterns.com/#render-callback)") is another pattern used in similar scenarios. It is getting quite popular these days. You might have come across them in [react-media](https://github.com/ReactTraining/react-media) or [unstated](https://github.com/jamiebuilds/unstated).
@@ -110,7 +116,7 @@ const Page = () => {
     <Gallery />
     <Map />
     <Footer />
-  </div>
+  </div>;
 };
 ```
 
@@ -135,19 +141,19 @@ As with everything else, **there are trade-offs with lazy-loading**. We don't wa
 
 {% resp_image v1522995652/observer/fold.png "Don't lazy load above the fold" %}
 
-  Where to set the fold? This is tricky, and it will depend on the user's device, which varies greatly, and your layout.
+Where to set the fold? This is tricky, and it will depend on the user's device, which varies greatly, and your layout.
 
 - **Lazy load a bit earlier than when it's needed**. You want to avoid showing void areas to the user. For this, you can load an asset that is needed when it's closed enough to the visible area. For instance, a user scrolls down and if the image to load is, let's say, 100px below the bottom of the viewport, start requesting it.
 
 {% resp_image v1522995652/observer/preloading.png "Lazy load a bit earlier than when it's needed" %}
 
-- <p>**Invisible content in some scenarios**. You need to take into account that lazy-loaded content want be shown in some situations:</p>
+- <p>**Invisible content in some scenarios**. You need to take into account that lazy-loaded content won't be shown in some situations:</p>
    - If the lazy-loaded content hasn't been loaded it won't show up when printing the page.
    - The same can happen when the page is shown in RSS readers that might not execute the Javascript needed to load the content.
    - When it comes to SEO, you might have issues indexing lazy-loaded content on Google. At the time of writing this article, Googlebot supports IntersectionObserver and it invokes its callback with changes in the viewport above the fold. However, **it won't trigger the callback for content below the fold**. Thus, **that content won't be seen nor indexed by Google**.
      If you content is important you can, for instance, render the text and lazy-load components like images and other widgets (eg maps).
 
-   Here I'm rendering [a test page](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) (you can see the source [here](https://github.com/JMPerez/lazy-load/blob/master/text-above-fold.js)) using Google Webmaster Tools' "Fetch as Google". Googlebot renders the content in the box shown within the viewport, but not the content below it.
+  Here I'm rendering [a test page](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) (you can see the source [here](https://github.com/JMPerez/lazy-load/blob/master/text-above-fold.js)) using Google Webmaster Tools' "Fetch as Google". Googlebot renders the content in the box shown within the viewport, but not the content below it.
 
   <div class="videoWrapper">
     <iframe width="1764" height="1080" src="https://www.youtube.com/embed/YEWaufLXX_Q" frameborder="0" allowfullscreen></iframe>
@@ -208,15 +214,11 @@ Now, we can use this component to lazy load two of our components, `Gallery` and
 const Page = () => {
   <div>
     <Header />
-    <Observer>
-      {isVisible => <Gallery isVisible />}
-    </Observer>
-    <Observer>
-      {isVisible => <Map isVisible />}
-    </Observer>
+    <Observer>{isVisible => <Gallery isVisible />}</Observer>
+    <Observer>{isVisible => <Map isVisible />}</Observer>
     <Footer />
-  </div>
-}
+  </div>;
+};
 ```
 
 In the code above I'm just passing the `isVisible` property to the `Gallery` and `Map` components so they handle it. Alternatively we could return the component if visible, or an empty element otherwise.
@@ -236,7 +238,7 @@ class Map extends Component {
   initializeMap() {
     this.setState({ initialized: true });
     // loadScript loads an external script, its definition is not included here.
-    loadScript("https://maps.google.com/maps/api/js?key=<your_key>", () => {
+    loadScript('https://maps.google.com/maps/api/js?key=<your_key>', () => {
       const latlng = new google.maps.LatLng(38.34, -0.48);
       const myOptions = { zoom: 15, center: latlng };
       const map = new google.maps.Map(this.map, myOptions);
@@ -309,8 +311,8 @@ class Gallery extends Component {
     );
   }
 }
-
 ```
+
 The above example defines another stateful component. In fact, we are storing in the state the same information as we did with the `Map`.
 
 If the Gallery is shown within the viewport, and afterwards it is outside the viewport, the images will remain in the DOM. In most cases this is what we want when working with images.
@@ -337,7 +339,6 @@ const Gallery = ({ isVisible }) => (
     )}
   </div>
 );
-
 ```
 
 If you do this, **make sure that the images have the right cache response headers** so subsequent requests from the browser hit the cache and it doesn't download the images again.
@@ -526,6 +527,7 @@ A component could link to other resources or even inline them. Think of SVGs or 
 There is no point in requesting styles that aren't going to be applied to any element. Dynamically requesting and injecting CSS causes a FOUC (Flash of Unstyled Content). The browser shows the HTML elements with the existing style, and once the additional styles are injected it re-styles the content. With the advent of CSS-in-JS (or JSS) solutions this is no longer a problem. CSS is inlined within the component, and we get true code splitting for our components. **With CSS-in-JS we take code splitting further, loading CSS on demand.**
 
 ## Useful implementations
+
 In this post I have explained how to implement a basic Observer component. There are existing implementations of similar components that have been more battle-tested, support more options and extra ways to integrate in your project.
 
 I definitely recommend you to check out these 2 libraries:
@@ -537,7 +539,7 @@ I definitely recommend you to check out these 2 libraries:
 
 Hopefully I have shown how componentization can make code-splitting and loading resources on demand easier than ever. Define what your code depends on and leverage bundlers and modern tools to request the dependencies as needed when the user navigates to new paths or new components are shown on the page.
 
-----
+---
 
 I would like to thank [@alexjoverm](https://twitter.com/alexjoverm), [@aarongarciah](https://twitter.com/aarongarciah) and [@FlavioCorpa](https://twitter.com/FlavioCorpa) for reviewing the post, researching similar topics and recommending tools to provide the examples on the page.
 

@@ -10,6 +10,7 @@ These are some personal projects I have been working on to learn more about cert
 
 I like trying out "the last new thing" in a small project and publish it [on GitHub](https://github.com/JMPerez), both as a personal reminder of what I did, and to help people looking for examples.
 {% raw %}
+
 <h2>Music/Audio Projects</h2>
 <ul class="projects">
   <li>
@@ -50,8 +51,8 @@ I like trying out "the last new thing" in a small project and publish it [on Git
   <li>
     <h3 style="margin-top:0">Abrevio</h3>
     <div class="description">
-      <p>A <a href="http://www.hemingwayapp.com/">Hemingway editor</a>-like for text in Spanish language. Get hints to improve its readability and write clearer.</p>
-      <p>This project is built as a PWA with offline support. It uses Preact/React.</p>
+      <p>A <a href="http://www.hemingwayapp.com/">Hemingway editor</a>-like for text in Spanish language. Get hints as you write to improve your text readability.</p>
+      <p>This project is built as a PWA with offline support. It uses React and DraftJS.</p>
       <div class="project-links"><a href="https://abrev.io">Website</a></div>
     </div>
   </li>

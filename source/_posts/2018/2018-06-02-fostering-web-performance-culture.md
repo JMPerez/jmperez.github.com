@@ -74,15 +74,15 @@ You might never have time to look beyond that. Time is finite while your backlog
 
 **The prioritization should be objective and based on measurable hypothesis.** “We think that by implementing feature X, user retention will grow Y%”. In practice this setup is more difficult. Let’s take a look at those topics we need to care about and think about who proposes them:
 
-* **Implementing features**: Normally a PO/PM determines what needs to be done next, according to a vision and mission for the team. The feature might come from stakeholders that have a dependency on us (eg adding a third-party script for [tracking or A/B testing](https://simonhearne.github.io/weak-links))
+- **Implementing features**: Normally a PO/PM determines what needs to be done next, according to a vision and mission for the team. The feature might come from stakeholders that have a dependency on us (eg adding a third-party script for [tracking or A/B testing](https://simonhearne.github.io/weak-links))
 
-* **Setting up CI/CD**: Although developers could come up with their own build and deployment pipelines, chances are that they are relying on some infrastructure provided by another team (eg an “infra” team)
+- **Setting up CI/CD**: Although developers could come up with their own build and deployment pipelines, chances are that they are relying on some infrastructure provided by another team (eg an “infra” team)
 
-* **Security**: Hopefully there’s a team or individual with deep knowledge about security that help us reviewing system designs, implementations, and informs us about reports or and security patches.
+- **Security**: Hopefully there’s a team or individual with deep knowledge about security that help us reviewing system designs, implementations, and informs us about reports or and security patches.
 
-* **UI/UX**: There is usually a designer and/or UX person that sets the look & feel and information architecture.
+- **UI/UX**: There is usually a designer and/or UX person that sets the look & feel and information architecture.
 
-* **Testing**: Well, we should write some tests, right?
+- **Testing**: Well, we should write some tests, right?
 
 When someone has the responsibility for a task to be done it will be more likely to be on the board. Most of them can be traced back to a certain role, but others like testing are something developers are supposed to do. Tests are up to the team, and so some parts will be better tested than others.
 
@@ -305,11 +305,11 @@ In general, using these tools cost money in form of a subscription. Other open-s
 
 A few months ago I proposed to use Calibre to monitor web performance. In the past I would have proposed it as another happy idea but this time I wanted it to succeed. This is what I did:
 
-* **Try the product out for myself.** Sign up for a trial, set up monitoring for our websites, use realistic conditions (locations, network speed) and start gathering data.
+- **Try the product out for myself.** Sign up for a trial, set up monitoring for our websites, use realistic conditions (locations, network speed) and start gathering data.
 
-* **Present it to the team.** Once I was convinced about the product, I prepared presentation for my team exposing the problems we had and how a tool like this could improve the situation. I went through the tool and proposed using it for 3 months, taking a decision on whether to continue using it.
+- **Present it to the team.** Once I was convinced about the product, I prepared presentation for my team exposing the problems we had and how a tool like this could improve the situation. I went through the tool and proposed using it for 3 months, taking a decision on whether to continue using it.
 
-* **Formalize it.** I wrote a formal proposal so stakeholders could review. This included sections like “Why use something at all”, “Why use Calibre”, “Advantages”, “Disadvantages” and “Roadmap”. Having a deadline to take a decision whether to use a paid product is appreciated by everyone.
+- **Formalize it.** I wrote a formal proposal so stakeholders could review. This included sections like “Why use something at all”, “Why use Calibre”, “Advantages”, “Disadvantages” and “Roadmap”. Having a deadline to take a decision whether to use a paid product is appreciated by everyone.
 
 Why was the proposal valuable? It ticked all the 6 ideas that I have talked about in the article.
 

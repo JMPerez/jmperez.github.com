@@ -50,7 +50,7 @@
 
   <div class="media author">
     <div class="img">
-      <a href="/about-me/">
+      <a href="/about-me/?ref=post-header">
         <img src="https://res.cloudinary.com/jmperez/image/upload/w_120,f_auto,c_scale/v1519156883/profile_ysrm5y.jpg" class="avatar-img" alt="" height="53" width="53" sizes="53px">
       </a>
     </div>

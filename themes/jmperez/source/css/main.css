@@ -84,6 +84,11 @@ a:hover {
   color: #2a7cb2;
 }
 
+abbr {
+  border-bottom: 1px dashed #ccc;
+  text-decoration: none;
+}
+
 p a {
   border-bottom: 1px solid #eee;
 }
@@ -612,10 +617,6 @@ pre[class*='language-'] {
   font-style: italic;
 }
 
-.code-wrap pre {
-  white-space: pre-wrap;
-}
-
 .caption {
   display: block;
   font-size: 0.8rem;
@@ -641,7 +642,7 @@ pre[class*='language-'] {
 }
 
 .me {
-  max-width: 20em;
+  max-width: 22rem;
   margin: 0 auto 1rem;
   text-align: center;
 }

@@ -15,18 +15,21 @@ tags:
 I was browsing [Tim Kadlec's website](https://timkadlec.com) and I noticed he had added page load time metrics in the footer.
 
 <img
-    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1522388675/load-time/tim-kadlec-load-time.png"
+    style="max-width:100%; border: 0"
     sizes="(max-width: 768px) 100vw, 684px"
-    style="border: 0"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522388675/load-time/tim-kadlec-load-time.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522388675/load-time/tim-kadlec-load-time.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522388675/load-time/tim-kadlec-load-time.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522388675/load-time/tim-kadlec-load-time.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522388675/load-time/tim-kadlec-load-time.png"
     alt="Tim Kadlec's site shows how long the page took to load in the footer" />
 <small class="caption">Tim Kadlec's site shows how long the page took to load in the footer.</small>
 
 Stoyan Stefanov also realized and wrote ["This page loaded in X seconds"](http://www.phpied.com/this-page-loaded-in-x-seconds/), a blog post describing the code used for this. Stoyan also created a bookmark that shows an alert with the load time of the current page. The data is obtained from [`window.performance`](https://developer.mozilla.org/en-US/docs/Web/API/Window/performance).
 
 I liked the idea and added a similar snippet that shows the page load time in the footer (you should see it if you scroll to the bottom). If your browser supports the [Paint Timing API](https://css-tricks.com/paint-timing-api/) you will see a couple of extra metrics: First Paint and First Contentful Paint.
+
 <!-- more -->
 
 ## First Paint and First Contentful Paint
+
 Page load time is a metric that tells us part of the story. Yet it might not reflect how fast the visible area loads. For instance, a page with lots of images will report a large page load time, since the `load` event will be triggered when all of them are fetched, even though the above-the-fold content might load way earlier. It is still a good idea, since it forces us to think about lazy-loading the resources when needed.
 
 I have written before about [user perceived performance](https://www.smashingmagazine.com/2018/02/progressive-image-loading-user-perceived-performance/) and metrics that tell how long it takes to render something on the page. Using the [Paint Timing API](/paint-timing-api/) we can get the [First Paint and First Contentful Paint metrics](https://w3c.github.io/paint-timing/#sec-terminology).
@@ -44,7 +47,9 @@ window.addEventListener('load', () => {
       let timingStatsHTML = `This page loaded in ${round2(loadTime)} seconds. `;
       const perfEntries = performance.getEntriesByType('paint');
       perfEntries.forEach((perfEntry, i, entries) => {
-        timingStatsHTML += `${perfEntry.name} was ${round2(perfEntry.startTime / 1000)} seconds. `;
+        timingStatsHTML += `${perfEntry.name} was ${round2(
+          perfEntry.startTime / 1000
+        )} seconds. `;
       });
       timingStats.innerHTML = timingStatsHTML;
     }
@@ -66,6 +71,7 @@ You can read more about the library on his posts "[First (Contentful) Paint with
 If you are into this topic, I also recommend you to watch the talk [Web Performance: Leveraging the Metrics that Most Affect User Experience from Google I/O '17](https://www.youtube.com/watch?v=6Ljq-Jn-EgU).
 
 ## How to Calculate the Transfer Size
+
 The Resource Timing API allows to [know the transfer size of the assets fetched by the page](https://developer.mozilla.org/docs/Web/API/Resource_Timing_API/Using_the_Resource_Timing_API#Size_matters). For CORS requests is necessary to [include the `timing-allow-origin` header](https://developer.mozilla.org/docs/Web/API/Resource_Timing_API/Using_the_Resource_Timing_API#Coping_with_CORS) set up properly to return the transfer size. Otherwise they will report 0 as the transfer size.
 
 Another caveat is that there doesn’t seem to be a way to know the transfer size of the page itself. One could calculate the length of the document’s innerHTML, but that won’t match the transfer size if the response was compressed (which hopefully was).
@@ -81,10 +87,9 @@ Let’s have a look at an example:
 The page that I’m loading, served from jmperezperez.com, makes requests to fetch assets from res.cloudinary.com and www.google-analytics.com, which are external domains. Once loaded, I run this code to calculate the transferred size:
 
 ```js
-const totalBytes = performance.getEntriesByType('resource')
-  .reduce((a, r) => {
-    return a + r.transferSize;
-  }, 0);
+const totalBytes = performance.getEntriesByType('resource').reduce((a, r) => {
+  return a + r.transferSize;
+}, 0);
 console.log(`Page size is ${Math.round(totalBytes / 1024)} kB`);
 ```
 
@@ -95,6 +100,7 @@ You can read more about Cloudinary’s usage of Server Timing on their recent po
 Although we can’t get the exact page load size, using these APIs get us way closer.
 
 ## Reporting Metrics Inline and RUM
+
 These new browser APIs allow us to access metrics from JavaScript, which previously could only be accessed manually using the developer tools. Access from the browser means we can show them to the user or report them to a Real User Monitoring solution to track and optimize user's experience.
 
 Displaying these metrics on our sites is a way to communicate publicly that we are taking performance seriously.

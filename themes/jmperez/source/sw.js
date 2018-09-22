@@ -1,4 +1,4 @@
-const CACHE_VERSION = 24;
+const CACHE_VERSION = 25;
 let CURRENT_CACHE = 'main-v' + CACHE_VERSION;
 
 const cacheFiles = [
@@ -32,7 +32,7 @@ self.addEventListener('install', evt =>
 );
 
 const fromNetwork = (request, timeout) =>
-  new Promise( (fulfill, reject) => {
+  new Promise((fulfill, reject) => {
     var timeoutId = setTimeout(reject, timeout);
     fetch(request).then(response => {
       clearTimeout(timeoutId);

@@ -5,7 +5,7 @@
       <img src="https://res.cloudinary.com/jmperez/image/upload/w_240,f_auto,c_scale/v1519156883/profile_ysrm5y.jpg" style="border-radius:100%" alt="José M. Pérez" sizes="120px" width="120" height="120">
     </div>
     <h1>José M. Pérez</h1>
-    <p>Engineer at <a href="https://spotify.com">Spotify</a> and Web Perf geek.
+    <p>Engineer at <a href="https://spotify.com">Spotify</a> and <abbr title="Google Developer Expert">GDE</abbr> in Web Techologies.
   </div>
 </div>
 <div class="row posts-list">

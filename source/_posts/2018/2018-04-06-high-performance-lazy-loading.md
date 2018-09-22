@@ -543,4 +543,6 @@ Hopefully I have shown how componentization can make code-splitting and loading 
 
 I would like to thank [@alexjoverm](https://twitter.com/alexjoverm), [@aarongarciah](https://twitter.com/aarongarciah) and [@FlavioCorpa](https://twitter.com/FlavioCorpa) for reviewing the post, researching similar topics and recommending tools to provide the examples on the page.
 
+_This post is also available [in Spanish](/es/high-performance-lazy-loading)_
+
 Did you see any typo or wrong information? In that case, [drop me a line](https://twitter.com/jmperezperez).

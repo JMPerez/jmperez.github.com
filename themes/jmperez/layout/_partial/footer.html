@@ -1,10 +1,10 @@
 <script>
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/sw.js').then(function(registration) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').then(function (registration) {
         // Successfully registered the Service Worker
         //console.log('Service Worker registration successful with scope: ', registration.scope);
-      }).catch(function(err) {
+      }).catch(function (err) {
         // Failed to register the Service Worker
         //console.log('Service Worker registration failed: ', err);
       });
@@ -12,8 +12,11 @@
   }
 </script>
 <footer>
-    <section class="links">
-        <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter · <a href="https://github.com/JMPerez">GitHub</a> · <a href="http://www.linkedin.com/in/jmperezperez">LinkedIn</a>
-    </section>
-    <div class="timing-stats"></div>
+  <section class="links">
+    <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter ·
+    <a href="https://github.com/JMPerez">GitHub</a> ·
+    <a href="https://www.linkedin.com/in/jmperezperez">LinkedIn</a> ·
+    <a href="https://medium.com/@jmperezperez">Medium</a>
+  </section>
+  <div class="timing-stats"></div>
 </footer>

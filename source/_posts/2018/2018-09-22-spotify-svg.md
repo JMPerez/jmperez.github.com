@@ -67,7 +67,7 @@ The screenshot shows the style applied to `.navbar-logo`, which is the one shown
     alt="Inspecting the Spotify logo in the header" />
 <small class="caption">Inspecting the Spotify logo in the footer.</small>
 
-If that wasn’t enough, it is inlined a third time in the .navbar-transparent-signup-b .navbar-logo CSS rule, which is not being applied to this specific page.
+If that wasn’t enough, it is inlined a third time in the `.navbar-transparent-signup-b .navbar-logo` CSS rule, which is not being applied to this specific page.
 
 Even though gzip helps with the size of the CSS, **a better way would be to include it just once in a CSS class that can be reused as needed**. Stylesheets are part of the critical path, so any savings here means that the page will render faster.
 

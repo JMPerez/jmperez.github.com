@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Optimizing Spotify's Logo in SVG
+title: Common Pitfalls when Serving SVGs and How to Solve Them
 date: 2018-09-22 10:20:00+02:00
 description: Some ways to reduce the payload of the Spotify logo on their website, which can be applied to other SVGs.
 image:
@@ -12,7 +12,11 @@ tags:
   - svg
 ---
 
-This post explains different ways to reduce the paylod of SVGs. I will use Spotify's websites and logo as an example.
+Optimizing SVGs is great for performance, but can we go beyond? In this post I will show some common issues with inlined and responsive SVGs applied to a real website.
+
+Scalable Vector Graphics (SVG) are ideal to show logos and drawings on the web due to their small size. SVGs also have other useful applications, such as [placeholders for lazy loaded images](/svg-placeholders) and [animations](/drawing-edges-svg). In a past post I also explained [how to optimize a SVG](/optimising-svgs) with several tools that remove unneeded code and simplify shapes.
+
+Even if we optimize our SVG assets, we can still make mistakes delivering those to the browser. In this post I am going to explain some issues I found on Spotify's website, where the same SVG is inlined several times and where a responsive SVG logo could save additional network requests.
 
 <img
     style="max-width:100%; border: 0"
@@ -152,7 +156,7 @@ The code for the responsive Spotify logo looks like this:
         @media (min-aspect-ratio: 1118/335) {
             .square { visibility: hidden; }
             .landscape { visibility: visible; }
-        } 
+        }
  </style>
  <symbol id="c" viewBox="0 0 335 335">
  <path d="M0 167C0 259 75.7738 335 167.5 335C259.226 335 335 259 335 167C335 75 259.226 0 167.5 0C75.7738 0 0 75 0 167ZM229.315 245C190.432 221 140.58 215 82.753 228C68.7946 230 66.8006 210 78.7649 208C142.574 193 196.414 200 240.283 227C251.25 234 240.283 251 229.315 245ZM246.265 200C201.399 172 132.604 164 79.7619 180C62.8125 185 56.8304 159 72.7827 155C133.601 137 208.378 146 260.223 178C274.182 187 260.223 209 246.265 200ZM71.7857 129C54.8363 135 43.869 106 62.8125 99C121.637 81 221.339 84 283.155 121C300.104 130 284.152 158 266.205 148C212.366 116 122.634 113 71.7857 129Z" fill="black" />

@@ -2,6 +2,10 @@
 layout: page
 title: About me
 description: Software Engineer and Web Performance Specialist based in Stockholm, Sweden. Google Developer Expert. Working at Spotify.
+i18n:
+  en: about-me/
+  es: es/about-me/
+permalink: about-me/
 ---
 
 # Hello 👋 !
@@ -27,3 +31,5 @@ Don't hesitate in reaching out if you would like to work together. Talking at yo
 ## More info about me?
 
 You can follow me on [Twitter at @jmperezperez](https://twitter.com/jmperezperez), where I post about web development, or check my [GitHub](https://github.com/JMPerez/), [LinkedIn](https://www.linkedin.com/in/jmperezperez) or [StackOverflow](http://stackoverflow.com/users/540274/jmperez)/[Careers](https://careers.stackoverflow.com/jmperez) profiles.
+
+_This page is also available [in Spanish](/es/about-me/)_

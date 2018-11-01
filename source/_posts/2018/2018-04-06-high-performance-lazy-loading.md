@@ -12,8 +12,8 @@ tags:
   - performance
   - lazy-loading
 i18n:
-  en: high-performance-lazy-loading
-  es: es/high-performance-lazy-loading
+  en: high-performance-lazy-loading/
+  es: es/high-performance-lazy-loading/
 ---
 
 Componentization has marked a before and after in web development. The main advantages that are usually mentioned is reusability and modularization. Well defined pieces that we can use to build our sites, like bricks of Legos. It turns out this component structure provides a great foundation to improve the performance of our sites.
@@ -295,8 +295,7 @@ class Gallery extends Component {
     return (
       <div>
         <h1>Some pictures</h1>
-        Picture 1
-        {this.state.hasBeenVisible ? (
+        Picture 1{this.state.hasBeenVisible ? (
           <img src="http://example.com/image01.jpg" width="300" height="300" />
         ) : (
           <div className="placeholder" />
@@ -325,8 +324,7 @@ A stateless component could also be interesting. It would allow us to unload ima
 const Gallery = ({ isVisible }) => (
   <div>
     <h1>Some pictures</h1>
-    Picture 1
-    {isVisible ? (
+    Picture 1{isVisible ? (
       <img src="http://example.com/image01.jpg" width="300" height="300" />
     ) : (
       <div className="placeholder" />
@@ -543,6 +541,6 @@ Hopefully I have shown how componentization can make code-splitting and loading 
 
 I would like to thank [@alexjoverm](https://twitter.com/alexjoverm), [@aarongarciah](https://twitter.com/aarongarciah) and [@FlavioCorpa](https://twitter.com/FlavioCorpa) for reviewing the post, researching similar topics and recommending tools to provide the examples on the page.
 
-_This post is also available [in Spanish](/es/high-performance-lazy-loading)_
+_This post is also available [in Spanish](/es/high-performance-lazy-loading/)_
 
 Did you see any typo or wrong information? In that case, [drop me a line](https://twitter.com/jmperezperez).

@@ -7,8 +7,8 @@ title: Jose M. Perez's Blog
 subtitle: Web development, performance, and some other good practices.
 description: I am a software engineer who loves web development. Speaker and open-source contributor.
 author: Jose M. Perez
-language:
-timezone:
+language: en
+? timezone
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -42,14 +42,14 @@ future: true
 highlight:
   enable: false
 prism_plugin:
-  mode: 'preprocess'    # realtime/preprocess
+  mode: 'preprocess' # realtime/preprocess
   theme: 'default'
-  line_number: false    # default false
+  line_number: false # default false
 
 # Category & Tag
 default_category: uncategorized
-category_map:
-tag_map:
+? category_map
+? tag_map
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
@@ -99,7 +99,7 @@ inline_assets:
   limit: 100000
 
 html_minifier:
-  exclude:
+  ? exclude
   collapseWhitespace: true
   keepClosingSlash: true
   minifyJS: true
@@ -113,4 +113,4 @@ feed:
   type: atom
   path: feed.xml
   limit: 20
-  hub:
+  ? hub

@@ -10,10 +10,10 @@ image:
 tags:
   - svg
 permalink: es/svg-placeholders
-lang: es
+language: es
 i18n:
-  en: svg-placeholders
-  es: es/svg-placeholders
+  en: svg-placeholders/
+  es: es/svg-placeholders/
 ---
 
 Me apasiona la optimización del rendimiento de imágenes y hacer que las imágenes carguen rápido. Una de las áreas de estudio más interesantes es el placeholder: qué mostrar cuando la imagen todavía no se ha cargado.
@@ -27,11 +27,12 @@ Durante los últimos días me he encontrado con algunas técnicas de carga que u
 <small class="caption">Los SVGs generados a partir de imágenes pueden ser usados como placeholders. ¡Sigue leyendo!</small>
 
 <!-- more -->
+
 En esta publicación hablaré sobre estos temas:
 
-* Descripción general de los diferentes tipos de placeholders
-* Placeholders basados en SVG (contornos, formas y siluetas)
-* Automatización del proceso.
+- Descripción general de los diferentes tipos de placeholders
+- Placeholders basados en SVG (contornos, formas y siluetas)
+- Automatización del proceso.
 
 ### Descripción general de los diferentes tipos de placeholders
 
@@ -42,10 +43,10 @@ En el pasado [he escrito sobre placeholders y lazy-load de imágenes](/lazy-load
     sizes="(max-width: 768px) 100vw, 684px" />
 <small class="caption">Diferentes estrategias para rellenar el área de una imagen mientras ésta carga.</small>
 
-* **Mantener el espacio vacío para las imágenes**: En un mundo de diseño responsive, reservar el área para la imagen evita que el contenido salte. Los cambios de layout son malos desde el punto de vista de la experiencia de usuario, pero también son nefastos en cuanto al rendimiento. El navegador debe recalcular el layout cada vez que obtiene las dimensiones de una imagen, para dejar espacio para la misma.
-* **Placeholder**: Imagina que estamos mostrando la imagen de perfil de un usuario. Quizás queremos mostrar una silueta como imagen de background. Esta imagen se muestra mientras la imagen principal está cargando, pero también si la petición falla o si el usuario no ha establecido ninguna imagen de perfil. Habitualmente estas imágenes son vectoriales, y dado su pequeño tamaño son excelentes candidatas para ser servidas inline.
-* **Color sólido**: Podemos tomar un color de la imagen y usarlo como color de fondo en el placeholder. Puede ser el color dominante, el más vibrante… La idea es que está basado o extraído de la imagen que se desea cargar, y el resultado debería ayudar a suavizar la transición entre "no imagen" e "imagen cargada".
-* **Imagen desenfocada**: También llamada técnica _blur up_. Se renderiza una versión muy pequeña de la imagen y se hace la transición a la imagen completa. La imagen inicial es pequeña tanto en píxeles como en kBs. Para eliminar artefactos de compresión la imagen se amplía y se desenfoca. He escrito previamente sobre este tema en [Cómo Medium hacer carga progresiva de imágenes](/medium-image-progressive-loading-placeholder), [Usando WebP para crear previsualizaciones pequeñas](/webp-placeholder-images), y [Más ejemplos de carga progresiva de imágenes](/more-progressive-image-loading).
+- **Mantener el espacio vacío para las imágenes**: En un mundo de diseño responsive, reservar el área para la imagen evita que el contenido salte. Los cambios de layout son malos desde el punto de vista de la experiencia de usuario, pero también son nefastos en cuanto al rendimiento. El navegador debe recalcular el layout cada vez que obtiene las dimensiones de una imagen, para dejar espacio para la misma.
+- **Placeholder**: Imagina que estamos mostrando la imagen de perfil de un usuario. Quizás queremos mostrar una silueta como imagen de background. Esta imagen se muestra mientras la imagen principal está cargando, pero también si la petición falla o si el usuario no ha establecido ninguna imagen de perfil. Habitualmente estas imágenes son vectoriales, y dado su pequeño tamaño son excelentes candidatas para ser servidas inline.
+- **Color sólido**: Podemos tomar un color de la imagen y usarlo como color de fondo en el placeholder. Puede ser el color dominante, el más vibrante… La idea es que está basado o extraído de la imagen que se desea cargar, y el resultado debería ayudar a suavizar la transición entre "no imagen" e "imagen cargada".
+- **Imagen desenfocada**: También llamada técnica _blur up_. Se renderiza una versión muy pequeña de la imagen y se hace la transición a la imagen completa. La imagen inicial es pequeña tanto en píxeles como en kBs. Para eliminar artefactos de compresión la imagen se amplía y se desenfoca. He escrito previamente sobre este tema en [Cómo Medium hacer carga progresiva de imágenes](/medium-image-progressive-loading-placeholder), [Usando WebP para crear previsualizaciones pequeñas](/webp-placeholder-images), y [Más ejemplos de carga progresiva de imágenes](/more-progressive-image-loading).
 
 Resulta que hay muchas otras variaciones y mucha gente inteligente desarrollando otras técnicas para crear placeholders.
 
@@ -193,6 +194,7 @@ Asumo que la salida generada por potrace utiliza las opciones por defecto. Adici
 Hemos visto diferentes herramientas y técnicas para generar SVGs basados en imágenes bitmap y utilizarlos como placeholders. De la misma forma que [WebP es un formato fantástico para previsualizaciones](/webp-placeholder-images/), SVG es también un formato interesante para aplicar en los placeholders. Podemos controlar el nivel de detalle (y por consiguiente, su tamaño), es altamente comprimible y es fácil de manipular con CSS y JS.
 
 ## Recursos extra
+
 Este post llegó a [lo alto de Hacker News, consiguiendo muchos puntos y comentarios](https://news.ycombinator.com/item?id=15696596). Me siento orgulloso por ello, y por todos los enlaces a otros recursos que han sido compartidos en los comentarios de esa página. Aquí tienes algunos de ellos:
 
 - [Geometrize](https://github.com/Tw1ddle/geometrize-haxe) es un port de Primitive escrito en Haxe. También hay [una implementación en JavaScript](https://github.com/Tw1ddle/geometrize-haxe-web) que puedes probar directamente [en tu navegador](http://www.samcodes.co.uk/project/geometrize-haxe-web/).
@@ -201,6 +203,7 @@ Este post llegó a [lo alto de Hacker News, consiguiendo muchos puntos y comenta
 - [imagetracerjs](https://github.com/jankovicsandras/imagetracerjs), que es un tracer de imágenes ráster y vectorizador escrito en JavaScript. También hay ports para [Java](https://github.com/jankovicsandras/imagetracerjava) y [Android](https://github.com/jankovicsandras/imagetracerandroid).
 
 ## Posts relacionados
+
 Si te ha gustado este post, echa un vistazo a estos otros en los que he escrito sobre técnicas para cargar imágenes:
 
 - [Cómo Medium carga imágenes de forma progresiva](/medium-image-progressive-loading-placeholder)

@@ -10,10 +10,10 @@ image:
 tags:
   - performance
   - lazy-loading
-lang: es
+language: es
 i18n:
-  en: high-performance-lazy-loading
-  es: es/high-performance-lazy-loading
+  en: high-performance-lazy-loading/
+  es: es/high-performance-lazy-loading/
 permalink: es/high-performance-lazy-loading
 ---
 
@@ -296,8 +296,7 @@ class Gallery extends Component {
     return (
       <div>
         <h1>Some pictures</h1>
-        Picture 1
-        {this.state.hasBeenVisible ? (
+        Picture 1{this.state.hasBeenVisible ? (
           <img src="http://example.com/image01.jpg" width="300" height="300" />
         ) : (
           <div className="placeholder" />
@@ -326,8 +325,7 @@ Un componente sin estado (stateless) tambiÃ©n resulta interesante. Nos permitirÃ
 const Gallery = ({ isVisible }) => (
   <div>
     <h1>Some pictures</h1>
-    Picture 1
-    {isVisible ? (
+    Picture 1{isVisible ? (
       <img src="http://example.com/image01.jpg" width="300" height="300" />
     ) : (
       <div className="placeholder" />

@@ -1,7 +1,7 @@
 <h1>Posts with tag <span style="color:#666">{{ page.tag }}</span></h1>
 <div class="row posts-list">
  {% for post in page.posts %}
-  {% if post.lang == 'default' %}
+  {% if post.lang == 'en' %}
    <div class="wrapper">
      <div class="post">
        <a href="{{ url_for(post.path) }}">

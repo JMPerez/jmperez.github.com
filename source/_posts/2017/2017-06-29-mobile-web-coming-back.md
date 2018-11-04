@@ -10,7 +10,7 @@ image:
   height: 521
 tags:
   - web
-
+  - pwa
 ---
 
 The web ecosystem is maturing and every day we understand better how to architecture large and maintainable web applications. We also understand what makes our sites slower and are coming up with solutions to overcome this.
@@ -56,10 +56,10 @@ When I saw [this tweet](https://twitter.com/markdalgleish/status/879144162389393
 <blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Updated: The mobile web in 2017, **now with web fonts!**<br><br>(Original: <a href="https://t.co/nLta2tqk42">https://t.co/nLta2tqk42</a>) <a href="https://t.co/c4ZgEdkbU8">pic.twitter.com/c4ZgEdkbU8</a></p>&mdash; Mark Dalgleish (@markdalgleish) <a href="https://twitter.com/markdalgleish/status/879144162389393409">26 June 2017</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 A moment later I got sad since this is quite true. It seems that everyone at every company assumes that apps are more engaging and retain users better than a web experience.
 
 This is true when:
+
 - a) you haven't made an effort in making your web better,
 - b) you don't hesitate in adding 3rd party tracking code that worsens your site
 - c) you fill the screen with banners and modals, hiding the actual content.

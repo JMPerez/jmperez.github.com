@@ -675,3 +675,46 @@ pre[class*='language-'] {
   line-height: 2rem;
   margin-bottom: 0.5rem;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #38444c;
+    color: #eee;
+  }
+  a {
+    color: #9dcae8;
+  }
+  a:hover {
+    color: #fff;
+  }
+  p a {
+    border-bottom: 1px solid #6d7a82;
+  }
+  p a:hover {
+    border-bottom: 1px solid #fff;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #eee;
+  }
+  a:hover h1,
+  a:hover h2,
+  a:hover h3,
+  a:hover h4,
+  a:hover h5 {
+    color: #4b89b1;
+  }
+  .button:hover {
+    background-color: #4b89b1;
+  }
+  code,
+  pre {
+    color: #ddd;
+  }
+  .main-header {
+    background-color: #4b89b1;
+  }
+}

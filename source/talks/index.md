@@ -51,9 +51,19 @@ Do you want me to talk at your event? <a href="mailto:jmperez1985@gmail.com">Sen
 <div class="intrinsic-ratio">
   <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1530791877/speaking/codemotion-madrid-2018.jpg">
 </div>
-**[Codemotion — Madrid, SPA](https://madrid2018.codemotionworld.com/)**<br/>
-To Be Announced<br/>
+**[Codemotion — Madrid, SPA](https://madrid2018.codemotionworld.com/talk-detail/?detail=9225)**<br/>
+Better performance for component-based web apps<br/>
 Nov 2018
+</li>
+<li>
+  <a href="https://www.meetup.com/Stockholm-ReactJS-Meetup/events/253918039/">
+    <div class="intrinsic-ratio">
+      <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1542536510/speaking/reactjs-stockholm.jpg">
+    </div>
+  </a>
+**[ReactJS Meetup — Stockholm, SWE](https://www.meetup.com/Stockholm-ReactJS-Meetup/events/253918039/)**<br/>
+Increase the Performance of your Site with Lazy-Loading and Code-Splitting<br/>
+Sep 2018
 </li>
 <li>
   <a href="/pitercss-2018/">

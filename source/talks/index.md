@@ -56,6 +56,16 @@ Better performance for component-based web apps<br/>
 Nov 2018
 </li>
 <li>
+  <a href="https://www.meetup.com/Stockholm-Google-Developer-Group/events/255690962/">
+    <div class="intrinsic-ratio">
+      <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1542607868/speaking/gdg-stockholm.png">
+    </div>
+  </a>
+**[Google Developer Group Nov. 2018 — Stockholm, SWE](https://www.meetup.com/Stockholm-Google-Developer-Group/events/255690962/)**<br/>
+Better performance for component-based web apps<br/>
+Nov 2018
+</li>
+<li>
   <a href="https://www.meetup.com/Stockholm-ReactJS-Meetup/events/253918039/">
     <div class="intrinsic-ratio">
       <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1542536510/speaking/reactjs-stockholm.jpg">

@@ -49,7 +49,7 @@ Here you can find a list of my talks at web conferences and local meetups.
 <ul class="columns-2" class="talks">
 <li>
 <div class="intrinsic-ratio">
-  <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1530791877/speaking/codemotion-madrid-2018.jpg">
+  <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1543704714/speaking/codemotion-madrid-2018.jpg">
 </div>
 **[Codemotion — Madrid, SPA](https://madrid2018.codemotionworld.com/talk-detail/?detail=9225)**<br/>
 Better performance for component-based web apps<br/>

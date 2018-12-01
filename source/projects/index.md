@@ -101,6 +101,7 @@ I like trying out "the last new thing" in a small project and publish it [on Git
       <li><a href="https://github.com/JMPerez/spotify-web-api-graphql">A proof of concept of a GraphQL provider for the Spotify Web API</a></li>
       <li><a href="https://github.com/JMPerez/spotify-web-api-js">A wrapper for the Spotify Web API in Javascript</a>, and a <a href="https://github.com/JMPerez/spotify-web-api-js-poc">proof of concept of a universal wrapper using ES6 and named exports</a></li>
       <li><a href="https://github.com/JMPerez/spotify-most-followed-popular-artists-genres">A visualization of most followed artists and genres in Spotify</a></li>
+      <li><a href="https://github.com/JMPerez/extendify">Extendify</a> is a Chrome extension that adds a Spotify Play Button on Wikipedia and other pages to play music for songs, albums and artists. You can install it <a href="https://chrome.google.com/webstore/detail/extendify/jjajfginmjgdpblfanoimdanifdmcokd">from the Chrome Web Store</a>.</li>
     </ul>
   </li>
 </ul>

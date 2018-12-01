@@ -5,7 +5,7 @@ date: 2013-12-19 17:41:06+00:00
 tags:
   - widgets
 permalink: embeddable-widget
-description: What to use to embed a widget? Iframe or Javascript snippet? In this post I explain their pros and cons when deciding how you want users to embed your widget.
+description: 'What to use to embed a widget? Iframe or Javascript snippet? In this post I explain their pros and cons when deciding how you want users to embed your widget.'
 ---
 
 Embeddable widgets (or gadgets) allow users to easily include
@@ -22,7 +22,9 @@ need to be taken into account when implementing one.
 
 ## Embeddable code
 
-These widgets are meant to be easy to add to any site. And the style and functionality of the widget shouldn't be affected by that from the page in which it is being embedded. Thus, a natural solution for this problem is to use `iframe`s. The iframe can be included directly, or appended through a Javascript code. Using the Javascript code has several advantages:
+These widgets are meant to be easy to add to any site. And the style and functionality of the widget shouldn't be affected by that from the page in which it is being embedded.
+
+A natural solution for this problem is to use `iframe`s. The iframe can be included directly, or injected using a snippet of Javascript code. Using the Javascript code has several advantages:
 
 - It can expose an API to manipulate the widget and subscribe to
   events triggered by it more naturally (more on that later).
@@ -38,7 +40,7 @@ These widgets are meant to be easy to add to any site. And the style and functio
 - It allows listening to `resize` events and change the layout of the
   widget accordingly.
 
-And disadvantages:
+It also has some disadvantages:
 
 - Sometimes it is not possible for users to include custom JS code
   where they want to include the widget.
@@ -53,6 +55,8 @@ You can read more on the differences between providing an iframe code
 snippet or a JS one on [StackOverflow](https://stackoverflow.com/questions/5359815/widget-design-what-is-better-iframes-or-javascript).
 
 ## Other things to consider
+
+There are a few things we need to keep in mind, like versioning, how we pass options or performance.
 
 ### Versioning
 
@@ -92,12 +96,12 @@ Most basic widgets like buttons should not I would encourage you to support as m
 
 Your widget will affect the performance of the sites using it. Thus, it
 is important to follow the usual rules (see PageSpeed, YSlow). Try also
-to use scarcely large libraries. In addition, you shouldn't use
+to use scarcely large libraries. In addition, you should not use
 `document.write`, or the page using it will block rendering. If your
 snippet needs to load a JS file, do it in a async way. If not, if the
 request for your file fails, it will become a [SPOF](https://www.stevesouders.com/blog/2011/10/13/frontend-spof-survery/).
 
-Best way is to use an [async snippet](https://calendar.perfplanet.com/2013/browser-wishlist-2013/#async3pc). The general pattern is:
+The best way is using an [async snippet](https://calendar.perfplanet.com/2013/browser-wishlist-2013/#async3pc). The general pattern is:
 
 ```js
 (function() {
@@ -112,8 +116,8 @@ Best way is to use an [async snippet](https://calendar.perfplanet.com/2013/brows
 })();
 ```
 
-You can find plenty of examples by having a look at [this list of
-popular scripts with async loading](https://developers.google.com/speed/docs/insights/UseAsync).
+You can find plenty of examples on [this list of
+popular scripts with async loading](https://web.archive.org/web/20170106194526/https://developers.google.com/speed/docs/insights/UseAsync).
 
 ### Localisation
 

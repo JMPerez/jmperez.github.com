@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Talks - José Manuel Pérez Pérez
-description: Talks by José M. Pérez - Frontend developer at Spotify
+title: Speaker - José M. Pérez
+description: I speak at conferences and meetups about web performance optimization and frontend architecture
 ---
 
-# Talks
+# Speaker
 
 <style>
   .intrinsic-ratio {
@@ -41,9 +41,9 @@ description: Talks by José M. Pérez - Frontend developer at Spotify
   }
 </style>
 
-Here you can find a list of my talks at web conferences and local meetups.
+I speak at conferences and meetups about web performance optimization. If you think one of my talks could fit your event, <a href="mailto:jmperez1985@gmail.com">send me an email or <a href="https://twitter.com/jmperezperez">contact me on Twitter</a>.
 
-Do you want me to talk at your event? <a href="mailto:jmperez1985@gmail.com">Send me an email or <a href="https://twitter.com/jmperezperez">contact me on Twitter</a>.
+Here you can find a list of my talks at web conferences and local meetups.
 
 <hr/>
 <ul class="columns-2" class="talks">

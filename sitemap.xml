@@ -37,20 +37,6 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/google-make-web-faster/</loc>
-    
-    <lastmod>2018-12-16T17:51:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/jpegoptim-optimize-jpg-page-speed/</loc>
-    
-    <lastmod>2018-12-16T17:51:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jmperezperez.com/recommended-reading-building-findable-websites/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
@@ -59,6 +45,20 @@
   
   <url>
     <loc>https://jmperezperez.com/recommended-reading-j2ee-antipatterns/</loc>
+    
+    <lastmod>2018-12-16T17:51:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/google-make-web-faster/</loc>
+    
+    <lastmod>2018-12-16T17:51:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/jpegoptim-optimize-jpg-page-speed/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
@@ -79,13 +79,6 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/progressively-using-html5-features/</loc>
-    
-    <lastmod>2018-12-16T17:51:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jmperezperez.com/personal-thoughts-on-web-development/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
@@ -93,7 +86,7 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/google-maps-geolocation-directions-specific-destination/</loc>
+    <loc>https://jmperezperez.com/progressively-using-html5-features/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
@@ -101,6 +94,13 @@
   
   <url>
     <loc>https://jmperezperez.com/techniques-optimize-web-sites/</loc>
+    
+    <lastmod>2018-12-16T17:51:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/google-maps-geolocation-directions-specific-destination/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
@@ -184,7 +184,7 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/webkit-only-mobile-js-libraries/</loc>
+    <loc>https://jmperezperez.com/boot-to-gecko-html5/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
@@ -198,14 +198,14 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/boot-to-gecko-html5/</loc>
+    <loc>https://jmperezperez.com/developing-mobile-webapp-first/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/developing-mobile-webapp-first/</loc>
+    <loc>https://jmperezperez.com/webkit-only-mobile-js-libraries/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
@@ -261,14 +261,14 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/mlocjs-conference-budapest/</loc>
+    <loc>https://jmperezperez.com/como-hemos-cambiado-antiguo-proyecto-web/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/como-hemos-cambiado-antiguo-proyecto-web/</loc>
+    <loc>https://jmperezperez.com/mlocjs-conference-budapest/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
@@ -317,14 +317,14 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/spain-js-2013/</loc>
+    <loc>https://jmperezperez.com/giving-android-development-a-try/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/giving-android-development-a-try/</loc>
+    <loc>https://jmperezperez.com/spain-js-2013/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
@@ -541,14 +541,14 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/my-setup-for-this-blog/</loc>
+    <loc>https://jmperezperez.com/2017-01-reading-list/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/2017-01-reading-list/</loc>
+    <loc>https://jmperezperez.com/my-setup-for-this-blog/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
@@ -597,14 +597,14 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/duotone-using-css-blend-modes/</loc>
+    <loc>https://jmperezperez.com/speaking-alicante-frontend/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/speaking-alicante-frontend/</loc>
+    <loc>https://jmperezperez.com/duotone-using-css-blend-modes/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     
@@ -779,6 +779,13 @@
   </url>
   
   <url>
+    <loc>https://jmperezperez.com/es/svg-placeholders/</loc>
+    
+    <lastmod>2018-12-16T17:51:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jmperezperez.com/wecodesign-pwa/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
@@ -787,13 +794,6 @@
   
   <url>
     <loc>https://jmperezperez.com/es/high-performance-lazy-loading/</loc>
-    
-    <lastmod>2018-12-16T17:51:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/es/svg-placeholders/</loc>
     
     <lastmod>2018-12-16T17:51:46.000Z</lastmod>
     

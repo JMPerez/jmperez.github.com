@@ -1,0 +1,873 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://jmperezperez.com/collaborative-listening-spotify/" >
+    <title>Collaborative listening on Spotify using Connect endpoints - Web development, performance, and some other good practices.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Collaborative listening on Spotify using Connect endpoints - José M. Pérez" property="og:title">
+		<meta name="twitter:description" content="A project to create a collaborative room to listen to songs in sync using Next.JS and Spotify&#39;s Connect Web API endpoints." property="og:description">
+		<meta name="twitter:site" content="@jmperezperez">
+		
+		<meta property="og:image" content="https://jmperezperez.com/assets/images/posts/c-collaborative.png">
+		<meta name="twitter:image" content="https://jmperezperez.com/assets/images/posts/c-collaborative.png">
+		
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    
+    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+    
+    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    
+
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "Collaborative listening on Spotify using Connect endpoints",
+			
+			"description": "A project to create a collaborative room to listen to songs in sync using Next.JS and Spotify&#39;s Connect Web API endpoints.",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"collaborative-listening-spotify/"
+			},
+			"datePublished": "2017-08-21T15:50:00.000Z",
+			"dateModified": "2018-12-16T17:51:46.000Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510476635/c-collaborative_k8kxsa.png",
+				"width" : "700",
+				"height" : "524"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Jose M. Perez"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Jose M. Perez&#39;s Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "https://jmperezperez.com/amp-dist/logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	<style amp-custom>
+		
+			/*--RESET--*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+input,
+button {
+  background: none;
+}
+
+html {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/*--BODY--*/
+
+body {
+  background: #fff;
+  color: #555;
+  font-family: Georgia, Times;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%; /* fixes a too large font issue in horizontally scrollable <pre> on webkit */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #212121;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+#menu a,
+.button {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+p,
+.post ul,
+.post ol,
+iframe,
+video,
+amp-video,
+amp-vimeo,
+amp-youtube {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+twitterwidget {
+  margin-bottom: 1em ;
+}
+
+a {
+  color: #2a7cb2;
+  font-weight: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease-out, border-bottom-color 0.15s ease-out;
+}
+
+a:hover {
+  color: #2a7cb2;
+}
+
+abbr {
+  border-bottom: 1px dashed #ccc;
+  text-decoration: none;
+}
+
+p a {
+  border-bottom: 1px solid #eee;
+}
+
+p a:hover {
+  border-bottom-color: #212121;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 1.7em;
+}
+
+h2 {
+  color: #444;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h3 {
+  color: #666;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h4 {
+  font-size: 1.18rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+a h1,
+a h2,
+a h3,
+a h4,
+a h5 {
+  transition: color 0.15s ease-out;
+}
+
+a:hover h1,
+a:hover h2,
+a:hover h3,
+a:hover h4,
+a:hover h5 {
+  color: #3498db;
+}
+
+.quote {
+  margin: 0 0 15px 0;
+}
+
+blockquote {
+  border-left: 2px solid #ccc;
+  font-style: italic;
+  margin: 0 0 15px 0;
+  padding-left: 20px;
+}
+
+ul,
+ol {
+  margin: 0 0 15px 0;
+  padding-left: 25px;
+}
+
+ul {
+  list-style: square;
+}
+
+ol {
+  list-style: decimal;
+}
+
+hr {
+  background: #eee;
+  color: #eee;
+  clear: both;
+  display: block;
+  height: 2px;
+  margin: 30px auto;
+  width: 50%;
+}
+
+pre,
+code {
+  color: #333;
+  font-family: Courier, Menlo, Monaco;
+  font-size: 0.8em;
+  letter-spacing: 0px;
+  overflow-x: auto;
+}
+
+pre {
+  padding: 0.8em 1em;
+  white-space: pre-wrap;
+}
+
+code {
+  margin: 0;
+}
+
+/*--CLEARFIXES--*/
+
+.post::after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
+/*--HEADER--*/
+
+.main-header {
+  background-color: #005689;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+/*--MENU--*/
+
+#menu {
+  display: inline-block;
+  line-height: 2rem;
+}
+
+#menu a {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  padding: 1rem 0.5rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 500px) {
+  #menu a {
+    margin-left: 0.5rem;
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+#menu a:first-child {
+  margin-left: 0;
+}
+
+#menu a[aria-current] {
+  font-weight: bold;
+}
+
+/*--PAGE--*/
+
+#page {
+  margin: 0 auto;
+  max-width: 41rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+.videoWrapper {
+  height: 0;
+  margin-bottom: 1em;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  position: relative;
+}
+
+.videoWrapper iframe,
+.videoWrapper amp-youtube {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/*--WRAPPER--*/
+
+.wrapper {
+  border-top: 2px solid #eee;
+  padding-top: 2rem;
+}
+
+.wrapper:first-child {
+  border-top: none;
+  padding-top: 1rem;
+}
+
+.posts-list h2 {
+  margin-top: 0;
+}
+
+/*--POSTS--*/
+
+.post {
+  display: block;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.post div[itemprop='articleBody'] > p:first-child {
+  color: #333;
+}
+
+.post li {
+  margin-bottom: 0.5rem;
+}
+
+.post p + img {
+  margin-bottom: 1rem;
+}
+
+.post p img {
+  border: 1px solid #eee;
+  display: block;
+  max-width: 100%;
+}
+
+.post img + .caption {
+  padding-top: 0.5rem;
+}
+
+.post .svg-container {
+  margin-bottom: 5%;
+  max-width: 100%;
+  text-align: center;
+}
+
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+.post .svg-container object {
+  width: 100%;
+}
+
+.tag-list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+.tag-list-item {
+  display: inline-block;
+  margin-left: 0.8em;
+}
+
+/*--PAGINATION--*/
+
+.pagination {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.pagination a {
+  min-width: 30px;
+  max-height: 30px;
+  text-align: center;
+}
+
+/*--FOOTER--*/
+
+footer {
+  border-top: 1px dashed #ddd;
+  padding: 2em;
+  text-align: center;
+}
+
+.timing-stats {
+  font-size: 0.7em;
+  padding: 0.35em;
+}
+
+/*--BUTTONS--*/
+
+.button {
+  background-color: #fff;
+  border: 1px solid #555;
+  border-radius: 2rem;
+  color: #555;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s ease-out;
+}
+
+.button:hover {
+  background-color: #3498db;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.inactive {
+  background-color: #ccc;
+  color: #fff;
+}
+
+/*--404--*/
+.search-goog input {
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+
+.search-goog input[type='submit'] {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /*--PAGE--*/
+
+  #page,
+  .wrapper {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /*--WRAPPER--*/
+
+  .wrapper {
+    padding-top: 2rem;
+  }
+
+  .wraper::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+}
+
+/*--ACCESSIBILITY--*/
+.outscreen {
+  height: 1px;
+  left: -1000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+/*--CALLOUT--*/
+.callout {
+  border: 1px solid #eee;
+  border-left-color: #777;
+  border-left-width: 5px;
+  border-radius: 3px;
+  font-size: 90%;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.author {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.author .name {
+  line-height: 1rem;
+  padding-top: 0.5rem;
+}
+
+.media,
+.bd {
+  overflow: hidden;
+  _overflow: visible;
+  
+}
+
+.media .img {
+  float: left;
+}
+
+.avatar-img {
+  border-radius: 100%;
+  height: 3rem;
+  margin-right: 0.5rem;
+  width: 3rem;
+}
+
+/* SYNTAX HIGHLIGHTING */
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #393a34;
+  font-family: 'Consolas', 'Bitstream Vera Sans Mono', 'Courier New', Courier,
+    monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 0.85em;
+  line-height: 1.2em;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+  background: #b3d4fc;
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+  background: #b3d4fc;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  padding: 0.2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999988;
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.string,
+.token.attr-value {
+  color: #e3116c;
+}
+.token.punctuation,
+.token.operator {
+  color: #393a34; /* no highlight */
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted {
+  color: #005cc5;
+}
+
+.token.keyword {
+  color: #d73a49;
+}
+
+.token.atrule,
+.token.attr-name {
+  color: #6f42c1;
+}
+
+.token.function,
+.token.deleted {
+  color: #6f42c1;
+}
+
+.token.selector {
+  color: #00009f;
+}
+
+.token.tag {
+  color: #22863a;
+}
+
+.token.class-name {
+  color: #6f42c1;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.caption {
+  display: block;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.codepen-aspect-ratio > iframe {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.twitter-tweet {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.twitter-tweet::after {
+  content: '';
+  display: block;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.me {
+  max-width: 22rem;
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
+.me > div {
+  height: 8rem;
+  margin: 0 auto;
+  position: relative;
+  width: 8rem;
+}
+
+.me svg {
+  border-radius: 100%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.me img {
+  border-radius: 100%;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.me h1 {
+  font-size: 1.7rem;
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #38444c;
+    color: #eee;
+  }
+  a {
+    color: #9dcae8;
+  }
+  a:hover {
+    color: #fff;
+  }
+  p a {
+    border-bottom: 1px solid #6d7a82;
+  }
+  p a:hover {
+    border-bottom: 1px solid #fff;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #eee;
+  }
+  a:hover h1,
+  a:hover h2,
+  a:hover h3,
+  a:hover h4,
+  a:hover h5 {
+    color: #4b89b1;
+  }
+  .button:hover {
+    background-color: #4b89b1;
+  }
+  code,
+  pre {
+    color: #ddd;
+  }
+  .main-header {
+    background-color: #4b89b1;
+  }
+}
+
+		
+		amp-iframe {
+			margin-bottom: 10px;
+		}
+	</style>
+  </head>
+  <body>
+
+  	<!-- google analytics -->
+  	
+  	<amp-analytics type="googleanalytics" id="google-analytics">
+		<script type="application/json">
+		{
+		  "vars": {
+		    "account": "UA-39254352-1"
+		  },
+		  "triggers": {
+		    "trackPageview": {
+		      "on": "visible",
+		      "request": "pageview"
+		    }
+		  }
+		}
+		</script>
+	</amp-analytics>
+	
+
+  <header class="main-header">
+      <nav id="menu">
+          <a href="/">JMPerez Blog</a>
+          <a href="/projects/">Projects</a>
+          <a href="/talks/">Speaking</a>
+          <a href="/about-me/">About</a>
+      </nav>
+  </header>
+
+  <article>
+  	<div class="post">
+	  	<div id="page">
+
+		    <article id="post-collaborative-listening-spotify" class="post wrapper">
+
+        <div class="media author">
+          <div class="img">
+            <a href="/about-me/">
+              <amp-img src="/assets/images/jmperez.jpg" class="avatar-img" alt="" height="53" width="53">
+            </a>
+          </div>
+          <div class="bd">
+            <address class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="/about-me/" itemprop="name">José M. Pérez</a></address>
+            <meta class="post-data" itemprop="datePublished" content="2017-08-21T15:50:00.000Z">
+              August 21 2017
+            </meta>
+          </div>
+        </div>
+
+				<!-- entry title -->
+				<header class="entry-header">
+					
+					  <h1 class="article-title entry-title" itemprop="name">
+					    Collaborative listening on Spotify using Connect endpoints
+					  </h1>
+					
+				</header>
+
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			  		<p>This is a post about a hack project I have been working on lately, and I wanted to share some information about why and how I built it.</p><p>tl;dr <a href="https://c-spotify.herokuapp.com" target="_blank" rel="noopener">Here is <strong>the demo</strong></a> and <a href="https://github.com/JMPerez/c" target="_blank" rel="noopener"><strong>the project on GitHub</strong></a>.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510476635/c-collaborative_k8kxsa.png" width="700" height="524" layout="responsive"></amp-img></div><a id="more"></a><p><small class="caption">A screenshot of C, a simple collaborative room built using Spotify&#x2019;s Web API.</small></p><h3 id="Collaborative-listening"><a href="#Collaborative-listening" class="headerlink" title="Collaborative listening"></a>Collaborative listening</h3><p>The idea is basic. You go to a page where you can propose songs to listen to, and other people do the same thing. The playback is synchronised for all users that are connected in that moment.</p><p>These pages are called &#x201C;rooms&#x201D;, and are normally based on some genre, to guide users when proposing songs. You don&#x2019;t want to hear &#x201C;Despacito&#x201D; in a the latest rock album in a &#x201C;80s Classic Hits&#x201C; room. The songs that are going to play next, which are in a queue, can also be voted up (sometimes down too). Great if you don&#x2019;t feel like proposing new songs but you see one you like in the proposed ones.</p><p>As I said, this is not new at all, and in fact it was part of Spotify&#x2019;s desktop application since <a href="https://www.youtube.com/watch?v=apvqiFsJcas" target="_blank" rel="noopener">end of 2011</a>, as an app called Soundrop:</p><div class="videoWrapper"><amp-youtube data-videoid="cavizRODpL0" width="1920" height="1080" layout="responsive"></amp-youtube></div><p><small class="caption">Video showing the Soundrop Spotify App.</small></p><p>The app was based on the now defunct <a href="https://developer.spotify.com/technologies/apps/" target="_blank" rel="noopener">Spotify Apps API</a>. This set of tools allowed custom web apps to run in an isolated view on Spotify&#x2019;s desktop application, being able to control playback and user&#x2019;s library.</p><p>Soundrop as a collaborative app is no more. After the removal of the Apps API <a href="http://www.show.co/blog/heavy-hearts" target="_blank" rel="noopener">they pivoted to a different product</a>.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510495292/spotify-app-finder_lfgest.jpg" width="700" height="536" layout="responsive"></amp-img></div> <small class="caption">List of the initial Spotify Apps. Source: <a href="http://evolver.fm/2011/12/02/spotify-apps-slated-to-roll-out-next-week/" target="_blank" rel="noopener">evolver.fm</a></small><p>The Apps API was the first project I worked on when I joined in Spotify in 2012. I would review submissions, support developers that had questions about how to use it, and create example apps.</p><p>The project <a href="https://techcrunch.com/2014/11/13/rip-spotify-apps-rip-soundrop/" target="_blank" rel="noopener">was discontinued end of 2014</a>, and with it these integrations. The Apps API were replaced by mobile SDKs (<a href="https://developer.spotify.com/technologies/spotify-ios-sdk/" target="_blank" rel="noopener">iOS</a> and <a href="https://developer.spotify.com/technologies/spotify-android-sdk/" target="_blank" rel="noopener">Android</a>) and a <a href="https://developer.spotify.com/web-api/" target="_blank" rel="noopener">REST API</a>, which we called Web API. The Web API had endpoints for fetching metadata and managing the user&#x2019;s library through some scopes. If you have ever consumed any other API using OAuth 2.0, this one follows the same approach.</p><p>Though there were many endpoints added through the time, it was still impossible to control the playback through the API. This changed recently with the release of <a href="https://developer.spotify.com/web-api/web-api-connect-endpoint-reference/" target="_blank" rel="noopener">the Connect endpoints</a>.</p><h3 id="Spotify-Connect"><a href="#Spotify-Connect" class="headerlink" title="Spotify Connect"></a>Spotify Connect</h3><p>Say you are playing music on your phone. You arrive home and want to start playing on your desktop application. You can transfer the playback from the phone to the desktop, which will pick it up from that moment. The combination phone &#x2194; desktop works also with speakers, video consoles and the Web Player, which makes this very powerful. These capabilities are called <a href="https://www.spotify.com/connect/" target="_blank" rel="noopener">Connect</a>.</p><p>The Connect endpoints allow you to list the devices available for the user and transfer the playback between them. The set of endpoints is still in beta and subject to change, but it&#x2019;s handy to work on a few hacks.</p><h4 id="Now-Playing"><a href="#Now-Playing" class="headerlink" title="Now Playing"></a>Now Playing</h4><p>A few weeks ago <a href="/spotify-connect-api">I published a post talking about a small library I built to fetch what you are playing on Spotify</a>. The library is handy for not having to deal with the authorisation flow, and makes it easy to crease visualisations such as <a href="https://codepen.io/jmperez/full/MmwObE" target="_blank" rel="noopener">this one</a>:</p><amp-iframe height="389" sandbox="allow-scripts allow-same-origin allow-popups" layout="fixed-height" frameborder="0" src="https://codepen.io/jmperez/embed/MmwObE?height=389&amp;theme-id=0&amp;slug-hash=MmwObE&amp;default-tab=result"><amp-img layout="fill" src="/amp-dist/sample/sample-placeholder.png" placeholder=""></amp-img></amp-iframe><p>I created some other visualisations and organised them on <a href="https://codepen.io/collection/AyVBYB" target="_blank" rel="noopener">this Codepen collection</a>.</p><h3 id="Implementing-basic-collaborative-listening-with-Connect"><a href="#Implementing-basic-collaborative-listening-with-Connect" class="headerlink" title="Implementing basic collaborative listening with Connect"></a>Implementing basic collaborative listening with Connect</h3><p>Now that we&#x2019;ve gone through an overview of what we want to accomplish and what tools we have available, let&#x2019;s go for it.</p><p>When you log in with your Spotify account you will enter a room where y<strong>ou can add songs and let the website control your playback</strong> (you should have a Spotify application opened, like the mobile app, desktop app or <a href="https://open.spotify.com" target="_blank" rel="noopener">web player</a>)</p><p>If you think about it, <strong>a room for adding songs is basically a chat room</strong>. Instead of sending regular text messages you send commands like &#x201C;add song&#x201D; or &#x201C;remove song&#x201D; and the server makes sure all connected users get the updates and are kept in sync.</p><p>One use case is using the demo only as a controller, and not a speaker. Imagine that we have a speaker at work. We might want to queue songs but not having them playing from our computer. That&#x2019;s what the mute/unmute button does. It will mute or stop syncing your playback with the room&#x2019;s playback.</p><p>Another feature, or lack of it, is that the controller is the web site and not the server. <strong>Your playback will be synced with the room as long as you have the website open</strong>. This could be changed by letting the server make these requests on your behalf. After all, it has access to your refresh token when logging in. However, it&#x2019;s easy to forget that you didn&#x2019;t log out from the demo and freak out when something is changing your playback randomly, so that&#x2019;s why I didn&#x2019;t take this approach.</p><p>A limitation is that the project only works with Spotify Premium accounts, <a href="https://developer.spotify.com/web-api/working-with-connect/#Premium%20Only" target="_blank" rel="noopener">due to this restriction on the Connect endpoints</a>. You can still add songs, but the &#x201C;play&#x201D; command won&#x2019;t work if your account is a free one.</p><p><strong>The Robot</strong></p><p>You are not alone in the room. <strong>A bot called &#x201C;Robot&#x201D; is always online</strong>, taking care of adding songs to the queue when it gets empty, based on previous submitted songs by users.</p><p>The data is provided by the Web API through its <a href="https://developer.spotify.com/web-api/get-recommendations/" target="_blank" rel="noopener">Get Recommendations Based on Seeds</a> endpoint. This endpoint returns a list of tracks that are based on a list of artists, genres and tracks, and you can set constraints on many music attributes.</p><p>Thus, you could want the Robot to put more energetic music on Fridays. Or have a robot adding recommendations based on Rock music in a Rock room. For this one, check out <a href="https://developer.spotify.com/web-api/get-recommendations/#available-genre-seeds" target="_blank" rel="noopener">the list of available genre seeds</a>. At the moment there are 126 genres of them. Not bad!</p><p><strong>Future?</strong></p><p>The demo is basic. The design is unpolished and the site is limited to a single room. However, it&#x2019;s easy to deploy on a custom instance and the main goal is to serve to others that want to integrate with Spotify&#x2019;s APIs. It&#x2019;s open source, so you can fork it and do as you wish.</p><p>The project would be easy to tweak to cover other use cases. One of them would be <strong>synchronised sessions</strong>. Say I listen to great music (no, I don&#x2019;t) and someone wants to tune in and listen exactly to what I&#x2019;m listening to. You <em>just</em> need to assume every publishing user is a room, listen to changes in user&#x2019;s playback and publish them, synchronising the subscribed users.</p><h3 id="Nerdy-details"><a href="#Nerdy-details" class="headerlink" title="Nerdy details"></a>Nerdy details</h3><p>The project uses React + Redux for rendering, and Node in the backend,this is all done using <a href="https://github.com/zeit/next.js/" target="_blank" rel="noopener">Next.js</a>, which also make Server-Side Rendering easy. An additional tweak is that React is replaced with Preact in production for a smaller payload. The whole thing is deployed on a Heroku instance.</p><p>One of the reasons I wanted to hack on Next.js was to have a better picture of its overhead. For this hack, the main page loads a bundle for the index page that is ~2.8kB minified &amp; gzipped, and the common bundle which is 80.6kB minified &amp; gzipped. It&#x2019;s not the lightest alternative, but <strong>Next.js is designed to scale well as you add more pages to your site</strong>, due to how the bundles are split per page out of the box. Adding a large component to one page will not have an impact in the JS loaded for another page.</p><p>I have played with several ideas in the code base, that&#x2019;s why it&#x2019;s not very uniform and you&#x2019;ll see, for example, several ways of doing CSS-in-JS.</p><p>I use this kind of hacks to give some new libraries and techniques a try, making them part of my tool belt and maybe using them in some real project. It&#x2019;s also good to give Spotify&#x2019;s Web API folks some feedback about the endpoints.</p><p>Regarding Next.js this project was pretty much an excuse to try out this library/framework. Yes, I could have picked any other project but my ideas always gravitate around Spotify-stuff. I wanted to see how opinionated it was, how SSR worked in that page-component pattern they use, and how it feels working with it.</p><h4 id="Why-Next-js"><a href="#Why-Next-js" class="headerlink" title="Why Next.js"></a>Why Next.js</h4><p>If you&#x2019;ve ever tried to set up your own React.JS + ES6 + Webpack + react-intl + whatnot and have succeed without sweating, I&#x2019;m your fan. Whenever I try, I always end up using some boilerplate project with everything in place.</p><p>I like <a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="noopener">create-react-app</a>. It makes everything so easier, and you can always go leave the wizard mode by eject-ing. No lock-in.</p><p>I have been following Next.js from the distance. I would read about it, but never had the time nor the energy to give it a try. I decided it was about time I put it in practice.</p><div class="amp-img-wrapper"><amp-img src="/assets/images/posts/learn-nextjs.png" width="1776" height="1304" layout="responsive"></amp-img></div><p><small class="caption"><a href="https://learnnextjs.com" target="_blank" rel="noopener">learnnext.js</a> is a great interactive step-by-step tutorial. If I ever write a library I&#x2019;ll make sure the tutorial is as great as the library itself, so it&#x2019;s easy to learn and adopt.</small></p><p>I started reading a bit and followed <a href="https://learnnextjs.com" target="_blank" rel="noopener">LearnNext.js</a>. I found it too basic at first, then I jumped to the code, but quickly had to go back to the tutorial. It&#x2019;s good not to take shortcuts. Their tutorial might seem easy but there are some concepts that are important, or you face problems soon.</p><p>The best resource I found for Next.js is <a href="https://github.com/zeit/next.js/tree/master/examples" target="_blank" rel="noopener">the examples folder in their repo</a>. It&#x2019;s pure gold. Lots of concise examples of how to use Next.js with pretty much anything. Pick &#x2019;n&#x2019; mix. I wanted to combine express + preact + redux + socket.io, and I had examples there for all of this.</p><p>I would say the most difficult part is when you realise that part of your code is running on the server. It&#x2019;s quite surprising, but it&#x2019;s what SSR is about. <code>localStorage</code> and <code>fetch</code> would fail, and other browser-only properties we are used to access when working with JS.</p><p>Overall I&#x2019;m really happy. Most of your code is the same and you only need to adapt a bit to their routing. That&#x2019;s what I like the most. It gives you the glue to put everything together, but you can still use the tools you are used to.</p><p>Zeit&#x2019;s project are really awesome. Simple but extremely useful.</p><p>If you haven&#x2019;t done it yet, have a look at <a href="https://c-spotify.herokuapp.com" target="_blank" rel="noopener"><strong>the demo</strong></a> and <a href="https://github.com/JMPerez/c" target="_blank" rel="noopener"><strong>the project on GitHub</strong></a>.</p>
+			  	</div>
+
+		  	</article>
+		</div>
+    <footer>
+        <section class="links">
+            <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter · <a href="https://github.com/JMPerez">GitHub</a> · <a href="http://www.linkedin.com/in/jmperezperez">LinkedIn</a>
+        </section>
+    </footer>
+
+	</div>
+  </article>
+
+  </body>
+</html>

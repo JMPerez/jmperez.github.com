@@ -1,0 +1,873 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://jmperezperez.com/fostering-web-performance-culture/" >
+    <title>Fostering a Web Performance Culture - Web development, performance, and some other good practices.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Fostering a Web Performance Culture - José M. Pérez" property="og:title">
+		<meta name="twitter:description" content="Some ideas to create awareness around performance optimization in a team and company." property="og:description">
+		<meta name="twitter:site" content="@jmperezperez">
+		
+		<meta property="og:image" content="https://jmperezperez.com/assets/images/posts/fostering/fostering-web-performance-culture.png">
+		<meta name="twitter:image" content="https://jmperezperez.com/assets/images/posts/fostering/fostering-web-performance-culture.png">
+		
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    
+    <script async custom-element="amp-vimeo" src="https://cdn.ampproject.org/v0/amp-vimeo-0.1.js"></script>
+    
+    <script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script>
+    
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    
+
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "Fostering a Web Performance Culture",
+			
+			"description": "Some ideas to create awareness around performance optimization in a team and company.",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"fostering-web-performance-culture/"
+			},
+			"datePublished": "2018-06-02T14:00:00.000Z",
+			"dateModified": "2018-12-16T17:51:46.000Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527949830/fostering-web-performance-culture/fostering-web-performance-culture.jpg",
+				"width" : "700",
+				"height" : "405"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Jose M. Perez"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Jose M. Perez&#39;s Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "https://jmperezperez.com/amp-dist/logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	<style amp-custom>
+		
+			/*--RESET--*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+input,
+button {
+  background: none;
+}
+
+html {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/*--BODY--*/
+
+body {
+  background: #fff;
+  color: #555;
+  font-family: Georgia, Times;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%; /* fixes a too large font issue in horizontally scrollable <pre> on webkit */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #212121;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+#menu a,
+.button {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+p,
+.post ul,
+.post ol,
+iframe,
+video,
+amp-video,
+amp-vimeo,
+amp-youtube {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+twitterwidget {
+  margin-bottom: 1em ;
+}
+
+a {
+  color: #2a7cb2;
+  font-weight: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease-out, border-bottom-color 0.15s ease-out;
+}
+
+a:hover {
+  color: #2a7cb2;
+}
+
+abbr {
+  border-bottom: 1px dashed #ccc;
+  text-decoration: none;
+}
+
+p a {
+  border-bottom: 1px solid #eee;
+}
+
+p a:hover {
+  border-bottom-color: #212121;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 1.7em;
+}
+
+h2 {
+  color: #444;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h3 {
+  color: #666;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h4 {
+  font-size: 1.18rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+a h1,
+a h2,
+a h3,
+a h4,
+a h5 {
+  transition: color 0.15s ease-out;
+}
+
+a:hover h1,
+a:hover h2,
+a:hover h3,
+a:hover h4,
+a:hover h5 {
+  color: #3498db;
+}
+
+.quote {
+  margin: 0 0 15px 0;
+}
+
+blockquote {
+  border-left: 2px solid #ccc;
+  font-style: italic;
+  margin: 0 0 15px 0;
+  padding-left: 20px;
+}
+
+ul,
+ol {
+  margin: 0 0 15px 0;
+  padding-left: 25px;
+}
+
+ul {
+  list-style: square;
+}
+
+ol {
+  list-style: decimal;
+}
+
+hr {
+  background: #eee;
+  color: #eee;
+  clear: both;
+  display: block;
+  height: 2px;
+  margin: 30px auto;
+  width: 50%;
+}
+
+pre,
+code {
+  color: #333;
+  font-family: Courier, Menlo, Monaco;
+  font-size: 0.8em;
+  letter-spacing: 0px;
+  overflow-x: auto;
+}
+
+pre {
+  padding: 0.8em 1em;
+  white-space: pre-wrap;
+}
+
+code {
+  margin: 0;
+}
+
+/*--CLEARFIXES--*/
+
+.post::after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
+/*--HEADER--*/
+
+.main-header {
+  background-color: #005689;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+/*--MENU--*/
+
+#menu {
+  display: inline-block;
+  line-height: 2rem;
+}
+
+#menu a {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  padding: 1rem 0.5rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 500px) {
+  #menu a {
+    margin-left: 0.5rem;
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+#menu a:first-child {
+  margin-left: 0;
+}
+
+#menu a[aria-current] {
+  font-weight: bold;
+}
+
+/*--PAGE--*/
+
+#page {
+  margin: 0 auto;
+  max-width: 41rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+.videoWrapper {
+  height: 0;
+  margin-bottom: 1em;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  position: relative;
+}
+
+.videoWrapper iframe,
+.videoWrapper amp-youtube {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/*--WRAPPER--*/
+
+.wrapper {
+  border-top: 2px solid #eee;
+  padding-top: 2rem;
+}
+
+.wrapper:first-child {
+  border-top: none;
+  padding-top: 1rem;
+}
+
+.posts-list h2 {
+  margin-top: 0;
+}
+
+/*--POSTS--*/
+
+.post {
+  display: block;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.post div[itemprop='articleBody'] > p:first-child {
+  color: #333;
+}
+
+.post li {
+  margin-bottom: 0.5rem;
+}
+
+.post p + img {
+  margin-bottom: 1rem;
+}
+
+.post p img {
+  border: 1px solid #eee;
+  display: block;
+  max-width: 100%;
+}
+
+.post img + .caption {
+  padding-top: 0.5rem;
+}
+
+.post .svg-container {
+  margin-bottom: 5%;
+  max-width: 100%;
+  text-align: center;
+}
+
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+.post .svg-container object {
+  width: 100%;
+}
+
+.tag-list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+.tag-list-item {
+  display: inline-block;
+  margin-left: 0.8em;
+}
+
+/*--PAGINATION--*/
+
+.pagination {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.pagination a {
+  min-width: 30px;
+  max-height: 30px;
+  text-align: center;
+}
+
+/*--FOOTER--*/
+
+footer {
+  border-top: 1px dashed #ddd;
+  padding: 2em;
+  text-align: center;
+}
+
+.timing-stats {
+  font-size: 0.7em;
+  padding: 0.35em;
+}
+
+/*--BUTTONS--*/
+
+.button {
+  background-color: #fff;
+  border: 1px solid #555;
+  border-radius: 2rem;
+  color: #555;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s ease-out;
+}
+
+.button:hover {
+  background-color: #3498db;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.inactive {
+  background-color: #ccc;
+  color: #fff;
+}
+
+/*--404--*/
+.search-goog input {
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+
+.search-goog input[type='submit'] {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /*--PAGE--*/
+
+  #page,
+  .wrapper {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /*--WRAPPER--*/
+
+  .wrapper {
+    padding-top: 2rem;
+  }
+
+  .wraper::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+}
+
+/*--ACCESSIBILITY--*/
+.outscreen {
+  height: 1px;
+  left: -1000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+/*--CALLOUT--*/
+.callout {
+  border: 1px solid #eee;
+  border-left-color: #777;
+  border-left-width: 5px;
+  border-radius: 3px;
+  font-size: 90%;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.author {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.author .name {
+  line-height: 1rem;
+  padding-top: 0.5rem;
+}
+
+.media,
+.bd {
+  overflow: hidden;
+  _overflow: visible;
+  
+}
+
+.media .img {
+  float: left;
+}
+
+.avatar-img {
+  border-radius: 100%;
+  height: 3rem;
+  margin-right: 0.5rem;
+  width: 3rem;
+}
+
+/* SYNTAX HIGHLIGHTING */
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #393a34;
+  font-family: 'Consolas', 'Bitstream Vera Sans Mono', 'Courier New', Courier,
+    monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 0.85em;
+  line-height: 1.2em;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+  background: #b3d4fc;
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+  background: #b3d4fc;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  padding: 0.2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999988;
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.string,
+.token.attr-value {
+  color: #e3116c;
+}
+.token.punctuation,
+.token.operator {
+  color: #393a34; /* no highlight */
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted {
+  color: #005cc5;
+}
+
+.token.keyword {
+  color: #d73a49;
+}
+
+.token.atrule,
+.token.attr-name {
+  color: #6f42c1;
+}
+
+.token.function,
+.token.deleted {
+  color: #6f42c1;
+}
+
+.token.selector {
+  color: #00009f;
+}
+
+.token.tag {
+  color: #22863a;
+}
+
+.token.class-name {
+  color: #6f42c1;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.caption {
+  display: block;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.codepen-aspect-ratio > iframe {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.twitter-tweet {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.twitter-tweet::after {
+  content: '';
+  display: block;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.me {
+  max-width: 22rem;
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
+.me > div {
+  height: 8rem;
+  margin: 0 auto;
+  position: relative;
+  width: 8rem;
+}
+
+.me svg {
+  border-radius: 100%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.me img {
+  border-radius: 100%;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.me h1 {
+  font-size: 1.7rem;
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #38444c;
+    color: #eee;
+  }
+  a {
+    color: #9dcae8;
+  }
+  a:hover {
+    color: #fff;
+  }
+  p a {
+    border-bottom: 1px solid #6d7a82;
+  }
+  p a:hover {
+    border-bottom: 1px solid #fff;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #eee;
+  }
+  a:hover h1,
+  a:hover h2,
+  a:hover h3,
+  a:hover h4,
+  a:hover h5 {
+    color: #4b89b1;
+  }
+  .button:hover {
+    background-color: #4b89b1;
+  }
+  code,
+  pre {
+    color: #ddd;
+  }
+  .main-header {
+    background-color: #4b89b1;
+  }
+}
+#hexo-amp-id-1{display:block; margin: 0 auto}
+		
+		amp-iframe {
+			margin-bottom: 10px;
+		}
+	</style>
+  </head>
+  <body>
+
+  	<!-- google analytics -->
+  	
+  	<amp-analytics type="googleanalytics" id="google-analytics">
+		<script type="application/json">
+		{
+		  "vars": {
+		    "account": "UA-39254352-1"
+		  },
+		  "triggers": {
+		    "trackPageview": {
+		      "on": "visible",
+		      "request": "pageview"
+		    }
+		  }
+		}
+		</script>
+	</amp-analytics>
+	
+
+  <header class="main-header">
+      <nav id="menu">
+          <a href="/">JMPerez Blog</a>
+          <a href="/projects/">Projects</a>
+          <a href="/talks/">Speaking</a>
+          <a href="/about-me/">About</a>
+      </nav>
+  </header>
+
+  <article>
+  	<div class="post">
+	  	<div id="page">
+
+		    <article id="post-fostering-web-performance-culture" class="post wrapper">
+
+        <div class="media author">
+          <div class="img">
+            <a href="/about-me/">
+              <amp-img src="/assets/images/jmperez.jpg" class="avatar-img" alt="" height="53" width="53">
+            </a>
+          </div>
+          <div class="bd">
+            <address class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="/about-me/" itemprop="name">José M. Pérez</a></address>
+            <meta class="post-data" itemprop="datePublished" content="2018-06-02T14:00:00.000Z">
+              June 02 2018
+            </meta>
+          </div>
+        </div>
+
+				<!-- entry title -->
+				<header class="entry-header">
+					
+					  <h1 class="article-title entry-title" itemprop="name">
+					    Fostering a Web Performance Culture
+					  </h1>
+					
+				</header>
+
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			  		<p>Web Performance is not only about understanding what makes a site fast. It&#x2019;s about creating awareness amongst both developers and non-developers. Performance is a feature and needs to be prioritized as such.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527949830/fostering-web-performance-culture/fostering-web-performance-culture.jpg" width="700" height="405" layout="responsive"></amp-img></div><a id="more"></a><p>Performance is a topic that has interested me for a long time. I remember when I learned about dynamic programming, greedy or divide and conquer algorithms. There was something gratifying in taking a code that takes minutes to run and make it run in a handful seconds.</p><p>Moving over to web, the performance problems are different. Usually, they are not related with computational complexity, but about serving what&#x2019;s needed when needed in the best possible way. It might seem like a no-brainer, but it&#x2019;s more difficult than it seems.</p><p><a href="https://stevesouders.com/" target="_blank" rel="noopener">Steve Souders</a> was one of the first in reverse-engineering how browsers requested and waited for resources. What resources are blocking? Which ones can be delayed? What about the response headers? He put together <a href="http://stevesouders.com/hpws/rules.php" target="_blank" rel="noopener">a list of 14 rules for faster-loading web sites</a>. If you have ever used YSlow, those are <a href="https://blog.keycdn.com/blog/wp-content/uploads/2016/03/yslow-score-test-results-e1457987091251.png" target="_blank" rel="noopener">the rules the tool was using to flag performance issues</a>.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527949830/fostering-web-performance-culture/steve-souders-rules.jpg" width="700" height="557" layout="responsive"></amp-img></div> <small class="caption">Steve Souders&#x2019; 14 Rules (<a href="https://blog.keycdn.com/blog/wp-content/uploads/2016/03/yslow-score-test-results-e1457987091251.png" target="_blank" rel="noopener">source</a>)</small><p>These days we have more and better tools to audit our performance. They can be run as a one-off or integrated in our development and deployment pipelines. Google&#x2019;s <a href="https://developers.google.com/web/tools/lighthouse/" target="_blank" rel="noopener">Lighthouse</a> is one of them, which shows information about PWA, SEO and more.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527950062/fostering-web-performance-culture/lighthouse.jpg" width="700" height="871" layout="responsive"></amp-img></div> <small class="caption">A screenshot of Lighthouse 3.0, presented in Google IO 2018 (<a href="https://developers.google.com/web/updates/2018/05/lighthouse3" target="_blank" rel="noopener">source</a>)</small><p>These tools make it easier to determine where we need to put emphasis to improve our sites. At the same time, they open a door to lots of concepts that might be overwhelming: PRPL, RAIL, Paint Timing API, TTI, HTTP/2, Speed Index, Priority Hints <a href="https://docs.google.com/presentation/d/1UcjvtuMT4VAmc-MySWOcc1rLkMNoDjt2DxIhvfHNRXg/present?slide=id.g35f8c548da_0_202" target="_blank" rel="noopener">and more</a>&#x2026;</p><h3 id="Why-Performance-doesn&#x2019;t-get-Prioritized"><a href="#Why-Performance-doesn&#x2019;t-get-Prioritized" class="headerlink" title="Why Performance doesn&#x2019;t get Prioritized"></a>Why Performance doesn&#x2019;t get Prioritized</h3><p>Web performance at organizations is a real challenge. We have better guides and tools than ever, yet very few companies get to spend time improving performance. You see, <strong>it&#x2019;s not that we don&#x2019;t know what causes long blank screens on our sites.</strong></p><blockquote><p>This is not a post explaining why web performance is important.</p></blockquote><p>There are plenty of other resources that do a way better job, with real numbers from real projects. <strong>This is a post about culture and how it determines what is a priority in our companies</strong>. Only by understanding that can we prioritize performance as another feature of our projects.</p><p>If you are reading this you are likely a developer who knows about web and cares about performance. You can represent your team and company if I ask you about where you work and what you do. But <strong>most likely you are not representative for the rest of web developers in your team and company</strong>, unless you are working on your own. And this is fine. The same way you can&#x2019;t know everything about every discipline.</p><p>In your daily job you have lots of technical areas to care about. You will work hard on implementing features, collaborating with other teams (eg adding scripts for analytics, ads, retargeting, A/B test), setting up CI/CD, ensuring security, and making sure the project is usable and pleasant to the eye. And don&#x2019;t forget about covering your back with tests.</p><p>You might never have time to look beyond that. Time is finite while your backlog is ever increasing. There needs to be some prioritization.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527949830/fostering-web-performance-culture/scrum-board.png" width="700" height="394" layout="responsive"></amp-img></div><p><strong>The prioritization should be objective and based on measurable hypothesis.</strong> &#x201C;We think that by implementing feature X, user retention will grow Y%&#x201D;. In practice this setup is more difficult. Let&#x2019;s take a look at those topics we need to care about and think about who proposes them:</p><ul><li><p><strong>Implementing features</strong>: Normally a PO/PM determines what needs to be done next, according to a vision and mission for the team. The feature might come from stakeholders that have a dependency on us (eg adding a third-party script for <a href="https://simonhearne.github.io/weak-links" target="_blank" rel="noopener">tracking or A/B testing</a>)</p></li><li><p><strong>Setting up CI/CD</strong>: Although developers could come up with their own build and deployment pipelines, chances are that they are relying on some infrastructure provided by another team (eg an &#x201C;infra&#x201D; team)</p></li><li><p><strong>Security</strong>: Hopefully there&#x2019;s a team or individual with deep knowledge about security that help us reviewing system designs, implementations, and informs us about reports or and security patches.</p></li><li><p><strong>UI/UX</strong>: There is usually a designer and/or UX person that sets the look &amp; feel and information architecture.</p></li><li><p><strong>Testing</strong>: Well, we should write some tests, right?</p></li></ul><p>When someone has the responsibility for a task to be done it will be more likely to be on the board. Most of them can be traced back to a certain role, but others like testing are something developers are supposed to do. Tests are up to the team, and so some parts will be better tested than others.</p><p>We agree that having automated tests is positive. Normally the team decides how well to cover and test the code, and it&#x2019;s important that all developers in a team know how to write tests. Similar to testing, performance is usually left to the developers to figure out. I find that <strong>it is easier to write tests for a piece of code and knowing the implications of broken code in production, than understanding all the moving boxes that can lead to a bad web performance</strong>.</p><h2 id="6-steps-to-start-a-web-performance-culture"><a href="#6-steps-to-start-a-web-performance-culture" class="headerlink" title="6 steps to start a web performance culture"></a>6 steps to start a web performance culture</h2><p>We have the tools to measure performance, though working on it will be up to the team. How can we reach awareness, think of performance as a feature, and have the support of the company?</p><p>I have collected a list of 6 ideas that will take you closer to establish a web performance culture.</p><h3 id="1-Your-dev-environment-is-not-your-user&#x2019;s-environment"><a href="#1-Your-dev-environment-is-not-your-user&#x2019;s-environment" class="headerlink" title="1. Your dev environment is not your user&#x2019;s environment"></a>1. Your dev environment is not your user&#x2019;s environment</h3><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1527950325/fostering-web-performance-culture/emile-perron-190221-unsplash.jpg" width="700" height="394" layout="responsive"></amp-img></div> <small class="caption"><a href="https://unsplash.com/photos/xrVDYZRGdw4/info" target="_blank" rel="noopener">Light Work</a>, a picture by <a href="https://unsplash.com/@emilep" target="_blank" rel="noopener">&#xC9;mile Perron</a></small><p>I use a Macbook Pro to develop websites. I have an iPhone X as my phone, and my testing device. Also, the speed of my internet connection is humongous and I&#x2019;m close to data centres located in Stockholm and London. When I finish my job for the day I take the subway, where I have an uninterrupted 4G connection. In fact, Stockholm was the <a href="https://www.ericsson.com/en/press-releases/2009/12/worlds-first-4glte-network-goes-live-today-in-stockholm" target="_blank" rel="noopener">first city in installing 4G back in 2009</a>.</p><p>Except for exceptionally few cases, the users of your product don&#x2019;t have a similar environment. Not even close.</p><p><strong>How can we prioritize performance if we don&#x2019;t perceive performance issues?</strong>It&#x2019;s like making something accessible without trying to use keyboard navigation, screen readers nor color contrast checkers. There is no way.</p><p>And this is not about to change. Western web developers enjoy using the latest laptops and gadgets. And the chain goes up to pretty much any person responsible for prioritizing tasks and project are your company. Not only that, but in some cases we may prioritize top devices because those are the ones used by the users that are most likely to pay for our product. As <a href="http://www.brucelawson.co.uk/" target="_blank" rel="noopener">Bruce Lawson</a> put it, we should be building the &#x201C;world-wide web, not the wealthy western web&#x201D;.</p><div class="videoWrapper"><amp-vimeo data-videoid="194968584" width="1920" height="1080" layout="responsive"></amp-vimeo></div><p>Ask yourself if having more users, even though they are <em>less worth</em> economically, is better than having fewer potentially good ones.</p><p>An interesting ramification of not using user&#x2019;s devices is that <strong>we make false assumptions</strong>. Let&#x2019;s say we have decided to take a look at the usage stats and deprecate those platforms that have fewer users, or fewer usage (eg less page views per session), in a way to simplify the development and reduce entropy. <strong>There is no point in supporting an old browser that almost nobody uses</strong>. One could argue this is a metric-driven decision.</p><p>Well, not so fast. <strong>What if we are having fewer users or usage on a platform because is just less usable/enjoyable/performant?</strong> This is difficult to prove because developers will say that &#x201C;the experience&#x201D; is what they are seeing on their computers using, for example, Google Chrome. Without a bad intention we tend to prioritize the browser we use, and in that prioritization we often decide on trade-offs in favour of the modern environment. &#x201C;Why are users still using that browser, they should upgrade&#x201D; I hear you yelling.</p><p>Recently I came across this quote, which I really liked:</p><blockquote><p>&#x201C;When I was at Google, someone told me a story about a time that &#x201C;they&#x201D; completed a big optimization push only to find that measured page load times increased. When they dug into the data, they found that the reason load times had increased was that they got a lot more traffic from Africa after doing the optimizations. The team&#x2019;s product went from being unusable for people with slow connections to usable, which caused so many users with slow connections to start using the product that load times actually increased.&#x201D; &#x2014; <a href="https://danluu.com/web-bloat/" target="_blank" rel="noopener">Dan Luu on &#x201C;Web Bloat&#x201D;</a></p></blockquote><p>Again, it&#x2019;s easy to fake performance optimization by leaving out the bad metrics, blocking users who spoil the stats. This is not real performance optimization, <strong>this is just playing with the numbers</strong>.</p><p><strong>Get yourself, and the people working on your project, an old device. Simulate bad network conditions and slow CPUs and make your project resilient. Figure out what devices users own and be careful prioritizing based on what devices users use on your site.</strong></p><h3 id="2-It&#x2019;s-better-to-learn-the-fundamentals-than-the-library"><a href="#2-It&#x2019;s-better-to-learn-the-fundamentals-than-the-library" class="headerlink" title="2. It&#x2019;s better to learn the fundamentals than the library"></a>2. It&#x2019;s better to learn the fundamentals than the library</h3><p>There are still lots of job descriptions and interview processes that focus on libraries and not the underlying technology. What happens when a browser tries to load a website? What are some reasons why a site can take too long to load? How would you architecture a non-trivial size web project (client, server, databases, caching layer)?</p><p>A developer that is aware of this will make better decisions when choosing what npm libraries to add to the project. They will provide a unique point of view when building features with designers and stakeholders. They will keep an eye on new and old browser APIs and will try to take advantage of the platform, rather than trying to isolate it.</p><p>Your team might need to hire someone familiar with React or Vue. You want them to be productive from day 1, and move the project forward. At the same time you want new hires to stay long at the company, encourage them to question the existing tech decisions and come up with better ones.</p><p>There are 2 constants I&#x2019;ve seen as a developer over and over again:</p><ol><li><p><strong>You need to challenge your own company, otherwise a competitor will do.</strong> Promote feedback from individual contributors and give them time to create innovative prototypes and POCs.</p></li><li><p><strong>The technical decisions you take today have a very short lifespan.</strong> Optimize for deletion, modularity and quick delivery.</p></li></ol><p>If you agree with the above you will benefit from ideas by people that aren&#x2019;t sold to a specific technology, and can articulate pros and cons for different tech decisions.</p><p>Get involved in the interview process. Propose having time to learn about topics (lunch &amp; learn / brown bags) and hack on ideas that can benefit your projects, which leads us to the next point.</p><h3 id="3-Get-the-time-to-experiment-and-validate"><a href="#3-Get-the-time-to-experiment-and-validate" class="headerlink" title="3. Get the time to experiment and validate"></a>3. Get the time to experiment and validate</h3><p>I used to send links to my colleagues about the latest Google I/O talk or medium article talking about some new stuff. I found it useful to keep up to date and thought that I was keeping my mates updated too.</p><p><strong>Often, by blindly sharing content you are making them work harder.</strong> Not only do they have to do their job, but now they also have the peer pressure of reading what you shared. Chances are they better learn by putting it in practice, so now they have the added pressure of having to try out that new library/technique/idea.</p><p>Make them a favor and try to apply the novelty to a project at your company. Instead of thinking &#x201C;That new browser API sounds cool&#x201D;, think &#x201C;<strong>This is how using X will improve our project</strong>&#x201D;. Sure, it&#x2019;s more difficult to achieve, but way more valuable. That&#x2019;s how you can convince your boss.</p><p>There is a lot research on how performance optimization improves key metrics and sites like <a href="https://wpostats.com/" target="_blank" rel="noopener">WPO Stats</a> are a good source of case studies.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527951116/fostering-web-performance-culture/wpo-stats.jpg" width="700" height="419" layout="responsive"></amp-img></div> <small class="caption">Lots of case studies where changes in performance led to key metric improvement.</small><p>As clear as it can be, sometimes we need more evidence than these case studies to prioritize performance at our companies.</p><p>You might be thinking you will never get the time to work on that POC. You are too busy working on tickets, either for fixing bugs or adding some new features.</p><p>In my mind, this is how features should be thought:</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527951150/fostering-web-performance-culture/idea-validate-build.png" width="700" height="154" layout="responsive"></amp-img></div> Validate -&gt; Build&quot;&gt;<p>The idea can come from a PO/PM, but <strong>also from a developer</strong>. It should be tested, proved that it works, through a prototype or an MVP. Only then it will be built. This also means that everything we build should have had some form of validation. <strong>We should be required to prove why making performant sites drives metrics, but the same applies to any other feature.</strong></p><p>If you had to pick something that you wanted to speed up, choose one that users can perceive. <strong>In order for users to barely see a difference in time duration, <a href="https://www.smashingmagazine.com/2015/09/why-performance-matters-the-perception-of-time/" target="_blank" rel="noopener">it has to be changed by a minimum of 20%</a>.</strong> Ideally, <a href="https://www.machmetrics.com/speed-blog/highlights-perfmatters-2018-web-performance-conference/" target="_blank" rel="noopener">shoot for 30% speed improvements</a>.</p><h3 id="4-Educate-your-Colleagues"><a href="#4-Educate-your-Colleagues" class="headerlink" title="4. Educate your Colleagues"></a>4. Educate your Colleagues</h3><p>Have you ever been in a situation where some piece of code was removed or replaced because nobody understood what it did? Most of us have been there. The author was the only one who could maintain it and make sense of it. What happens if that person goes on vacation, parental leave, gets sick, leaves the company&#x2026;?</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527951108/fostering-web-performance-culture/github-remove-code.jpg" width="700" height="455" layout="responsive"></amp-img></div> <small class="caption">Taking advantage of John&#x2019;s absence, let&#x2019;s simplify this thing.</small><p>Most of us work in a team and we need to put emphasis in choosing solutions that most colleagues understand. <strong>Find what the lowest common denominator is in the team, and avoid over-engineered solutions just because they are fun to build</strong>. When it comes to performance optimization, it is very easy to introduce a lot of complexity for the sake of small savings.</p><p>A few months ago <a href="https://medium.com/@jmperezperez/lazy-loading-images-on-the-web-to-improve-loading-time-and-saving-bandwidth-ec988b710290" target="_blank" rel="noopener">I wrote about image optimization and how to improve perceived performance</a>. It started with the obvious: avoid requests, choose the right format, optimize the images. However, most people only remember the creative use of the placeholders to have a smooth transition to the final image.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527953176/fostering-web-performance-culture/placeholder-options.png" width="700" height="358" layout="responsive"></amp-img></div> <small class="caption">Different content that we can show in the placeholder before the image is loaded.</small><p>Sure, that&#x2019;s the most fun and innovative part! Now, go to your team and tell them you are going to create a backend service that will process images in a queue and store a tiny thumbnail that is served inline when rendering. When will that be run? How long does it take to run? Where do you store? How do you scale it through different servers?</p><p>The most savings are accomplished by not serving images and optimize the ones you serve. That&#x2019;s the sweet spot. Aim for that.</p><p>Apart from choosing &#x201C;good enough&#x201D; solutions that most of your team understand, <strong>think about ways to raise the bar in your team</strong>. Are you an expert in a certain area? Arrange a presentation and show them. Get them excited.</p><p>If you are the only one pushing for an idea, it will die sooner than later.</p><h3 id="5-Share-and-celebrate-success-and-failure-stories"><a href="#5-Share-and-celebrate-success-and-failure-stories" class="headerlink" title="5. Share and celebrate success (and failure) stories"></a>5. Share and celebrate success (and failure) stories</h3><p>Changing the culture of a company starts with small battles, usually at a team level. Share the results of your experiments beyond your team.</p><p>Within the company, <strong>it will get colleagues inspired and it will spin off larger initiatives</strong>. It will be easier to get support for infrastructure or services if several teams have the same needs.</p><p>Externally, <strong>it&#x2019;s a way to attract talent and show a compromise with clients and users</strong>.</p><p>I&#x2019;m particularly fond of Etsy&#x2019;s openness when it comes to web performance. Internally:</p><blockquote><p>&#x201C;The performance team at Etsy maintains a dashboard celebrating people on other teams who contribute to performance improvements. we include their photo, a graph showing the performance improvement, and a brief description of their solution.&#x201D; &#x2014; <a href="http://designingforperformance.com/changing-culture/" target="_blank" rel="noopener">Lara Hogan on &#x201C;Changing Culture at Your Organization</a>&#x201D;</p></blockquote><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527953178/fostering-web-performance-culture/chris-fairbanks.jpg" width="700" height="340" layout="responsive"></amp-img></div> <small class="caption">Chris Fairbanks acknowledged for optimizing the mobile purchases page at Etsy</small><p>And externally, <a href="https://www.slideshare.net/mikebrittain/web-performance-culture-and-tools-at-etsy" target="_blank" rel="noopener">they have been talking and posting for years</a> about their challenges and performance state.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527951166/fostering-web-performance-culture/etsy-performance-reports.jpg" width="700" height="542" layout="responsive"></amp-img></div> <small class="caption"><a href="https://codeascraft.com/category/performance/" target="_blank" rel="noopener">Site performance reports on Etsy&#x2019;s blog</a>.</small><p>Before talking about performance improvements it is important to be open and clear about the current state and where we would like to take it. One of the best examples is <a href="https://www.voxmedia.com/a/go-deeper" target="_blank" rel="noopener">Vox Media</a>, the company behind <a href="https://www.theverge.com/" target="_blank" rel="noopener">The Verge</a> and other high trafficked sites. In May 2015, Vox Media wrote about the slowness of their site and commitment to make them faster.</p><blockquote><p>&#x201C;Our main priority was to <strong>ship first and iterate later</strong> and we often had to move on to the next big project before we had time to fully polish and optimize our latest release, leading us to accumulate a rather <strong>significant amount of performance debt</strong>.&#x201D; &#x2014; Vox Media&#x2019;s <a href="https://product.voxmedia.com/2015/5/6/8561867/declaring-performance-bankruptcy" target="_blank" rel="noopener">Declaring performance bankruptcy</a> <em>(emphasis mine)</em></p></blockquote><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527953176/fostering-web-performance-culture/vox-media-speedcurve.png" width="700" height="559" layout="responsive"></amp-img></div> <small class="caption">SpeedCurve report for several news sites, including Vox Media&#x2019;s The Verge (<a href="https://product.voxmedia.com/2015/5/6/8561867/declaring-performance-bankruptcy" target="_blank" rel="noopener">source</a>).</small><p>Vox Media took some performance metrics (first paint, page complete and speed index) and decided on a target. Then, they committed to improve it and posted performance update posts regularly.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527953183/fostering-web-performance-culture/vox-media-performance-update.jpg" width="700" height="498" layout="responsive"></amp-img></div> <small class="caption">One of Vox Media&#x2019;s posts where they gave an update on their efforts.</small><p>In summary, don&#x2019;t be afraid of recognizing that your product has a bad performance and be public about it. You will find people that want to help fixing it and it will show you are committed to improve it.</p><h3 id="6-Make-performance-part-of-your-workflow"><a href="#6-Make-performance-part-of-your-workflow" class="headerlink" title="6. Make performance part of your workflow"></a>6. Make performance part of your workflow</h3><p>It&#x2019;s important that your performance checks are integrated in the regular workflow of your team, and are as automated as possible. This way you will be more likely to succeed when evangelizing about performance.</p><p>There are great tools to detect performance issues like <a href="http://webpagetest.org/" target="_blank" rel="noopener">WebPagetest</a>, <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank" rel="noopener">Pagespeed Insights</a> or the <a href="https://developers.google.com/web/tools/lighthouse/" target="_blank" rel="noopener">Audits on Chrome Dev Tools</a>. They are good for getting a quick report of your site&#x2019;s performance.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527953183/fostering-web-performance-culture/webpagetest.jpg" width="700" height="389" layout="responsive"></amp-img></div> <small class="caption">WebPagetest is very useful for creating performance reports.</small><p>You will want to automate the reports to detect issues without having to rely on developers running these tools manually.</p><p>The MVP is to set a <a href="https://infrequently.org/2017/10/can-you-afford-it-real-world-web-performance-budgets/" target="_blank" rel="noopener">performance budget</a>, run performance audits on your production site on a daily basis, and be notified when those budgets aren&#x2019;t met. This will help you catching issues and narrow down what deployments might have caused it, and you barely need to set it up.</p><p>If you want to go beyond, run the tests as part of your pull-request checks. That way you won&#x2019;t merge nor deploy code that decreases the performance. This type of testing is called <a href="https://www.oreilly.com/ideas/web-performance-tools-synthetic-vs-rum" target="_blank" rel="noopener">syntethic</a>, since it&#x2019;s performed automatically by a script with a predefined environment (device, network speed, location&#x2026;).</p><p>A complement to synthetic tests are RUM tests. These are based on real users browsing your site. The idea is to collect some metrics like load time or <a href="https://medium.com/@jmperezperez/performanceobserver-and-paint-timing-api-72d3e5b384ea" target="_blank" rel="noopener">first-paint</a>, and post them to some service that you can use to visualize and compare them.</p><p>Although you can use something basic like Google Analytics with custom events, I recommend you to use tools tailor-made for this. Check <a href="https://calibreapp.com/" target="_blank" rel="noopener">Calibre</a>, <a href="https://speedcurve.com/" target="_blank" rel="noopener">SpeedCurve</a> or <a href="https://www.sitespeed.io/" target="_blank" rel="noopener">SiteSpeed</a>.</p><p><amp-video id="hexo-amp-id-1" controls width="594" height="516" layout="responsive"><source src="https://res.cloudinary.com/jmperez/video/upload/v1527954529/fostering-web-performance-culture/calibre.mp4" type="video/mp4"></amp-video><small class="caption">Calibre&#x2019;s integration with Slack. Whenever a budget is exceeded, Calibre will notify you.</small></p><p><strong>Performance monitoring should be effortless. You should only know about it when you need to act on it.</strong></p><p>In general, using these tools cost money in form of a subscription. Other open-source tools like SiteSpeed will require you to host it, so take into account the time to set it up. It&#x2019;s essential that you think twice how you are going to propose adding these tools.</p><h2 id="A-concrete-example-to-wrap-up"><a href="#A-concrete-example-to-wrap-up" class="headerlink" title="A concrete example to wrap-up"></a>A concrete example to wrap-up</h2><p>A few months ago I proposed to use Calibre to monitor web performance. In the past I would have proposed it as another happy idea but this time I wanted it to succeed. This is what I did:</p><ul><li><p><strong>Try the product out for myself.</strong> Sign up for a trial, set up monitoring for our websites, use realistic conditions (locations, network speed) and start gathering data.</p></li><li><p><strong>Present it to the team.</strong> Once I was convinced about the product, I prepared presentation for my team exposing the problems we had and how a tool like this could improve the situation. I went through the tool and proposed using it for 3 months, taking a decision on whether to continue using it.</p></li><li><p><strong>Formalize it.</strong> I wrote a formal proposal so stakeholders could review. This included sections like &#x201C;Why use something at all&#x201D;, &#x201C;Why use Calibre&#x201D;, &#x201C;Advantages&#x201D;, &#x201C;Disadvantages&#x201D; and &#x201C;Roadmap&#x201D;. Having a deadline to take a decision whether to use a paid product is appreciated by everyone.</p></li></ul><p>Why was the proposal valuable? It ticked all the 6 ideas that I have talked about in the article.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1527949830/fostering-web-performance-culture/six-ideas.png" width="700" height="291" layout="responsive"></amp-img></div><ol><li><p>It tested the sites using several locations and constraints, as opposed to our ideal office conditions.</p></li><li><p>It was library/framework independent. You can choose whatever tool to build your website, in the end we care about a fast experience.</p></li><li><p>It was applied to our projects, what made the solution relevant, not just another link to a random article.</p></li><li><p>The team was informed, knew how to use the tool and collectively agreed to move this forward.</p></li><li><p>It helped visualize performance and see its evolution, which was useful to share results with the rest of web developers at the company. These tools force you to set thresholds for rejecting PRs or getting notified, which become your performance budget.</p></li><li><p>It was part of our workflow and could run effortless, not jeopardizing other tasks.</p></li></ol><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Thanks for reading! I hope I gave you some tips to help you in the quest of building more performant sites.</p>
+			  	</div>
+
+		  	</article>
+		</div>
+    <footer>
+        <section class="links">
+            <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter · <a href="https://github.com/JMPerez">GitHub</a> · <a href="http://www.linkedin.com/in/jmperezperez">LinkedIn</a>
+        </section>
+    </footer>
+
+	</div>
+  </article>
+
+  </body>
+</html>

@@ -1,0 +1,891 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://jmperezperez.com/spotify-connect-api/" >
+    <title>Playing with the Spotify Connect API - Web development, performance, and some other good practices.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Playing with the Spotify Connect API - José M. Pérez" property="og:title">
+		<meta name="twitter:description" content="The new Web API endpoints let you show what is playing in your Spotify account. It is easy to create views that update in real time." property="og:description">
+		<meta name="twitter:site" content="@jmperezperez">
+		
+		<meta property="og:image" content="https://jmperezperez.com/assets/images/posts/spotify-connect-api-visualisation-artist.jpg">
+		<meta name="twitter:image" content="https://jmperezperez.com/assets/images/posts/spotify-connect-api-visualisation-artist.jpg">
+		
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    
+    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+    
+    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    
+
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "Playing with the Spotify Connect API",
+			
+			"description": "The new Web API endpoints let you show what is playing in your Spotify account. It is easy to create views that update in real time.",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"spotify-connect-api/"
+			},
+			"datePublished": "2017-04-21T20:10:00.000Z",
+			"dateModified": "2018-12-16T17:51:46.000Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Jose M. Perez"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Jose M. Perez&#39;s Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "https://jmperezperez.com/amp-dist/logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	<style amp-custom>
+		
+			/*--RESET--*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+input,
+button {
+  background: none;
+}
+
+html {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/*--BODY--*/
+
+body {
+  background: #fff;
+  color: #555;
+  font-family: Georgia, Times;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%; /* fixes a too large font issue in horizontally scrollable <pre> on webkit */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #212121;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+#menu a,
+.button {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+p,
+.post ul,
+.post ol,
+iframe,
+video,
+amp-video,
+amp-vimeo,
+amp-youtube {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+twitterwidget {
+  margin-bottom: 1em ;
+}
+
+a {
+  color: #2a7cb2;
+  font-weight: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease-out, border-bottom-color 0.15s ease-out;
+}
+
+a:hover {
+  color: #2a7cb2;
+}
+
+abbr {
+  border-bottom: 1px dashed #ccc;
+  text-decoration: none;
+}
+
+p a {
+  border-bottom: 1px solid #eee;
+}
+
+p a:hover {
+  border-bottom-color: #212121;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 1.7em;
+}
+
+h2 {
+  color: #444;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h3 {
+  color: #666;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h4 {
+  font-size: 1.18rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+a h1,
+a h2,
+a h3,
+a h4,
+a h5 {
+  transition: color 0.15s ease-out;
+}
+
+a:hover h1,
+a:hover h2,
+a:hover h3,
+a:hover h4,
+a:hover h5 {
+  color: #3498db;
+}
+
+.quote {
+  margin: 0 0 15px 0;
+}
+
+blockquote {
+  border-left: 2px solid #ccc;
+  font-style: italic;
+  margin: 0 0 15px 0;
+  padding-left: 20px;
+}
+
+ul,
+ol {
+  margin: 0 0 15px 0;
+  padding-left: 25px;
+}
+
+ul {
+  list-style: square;
+}
+
+ol {
+  list-style: decimal;
+}
+
+hr {
+  background: #eee;
+  color: #eee;
+  clear: both;
+  display: block;
+  height: 2px;
+  margin: 30px auto;
+  width: 50%;
+}
+
+pre,
+code {
+  color: #333;
+  font-family: Courier, Menlo, Monaco;
+  font-size: 0.8em;
+  letter-spacing: 0px;
+  overflow-x: auto;
+}
+
+pre {
+  padding: 0.8em 1em;
+  white-space: pre-wrap;
+}
+
+code {
+  margin: 0;
+}
+
+/*--CLEARFIXES--*/
+
+.post::after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
+/*--HEADER--*/
+
+.main-header {
+  background-color: #005689;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+/*--MENU--*/
+
+#menu {
+  display: inline-block;
+  line-height: 2rem;
+}
+
+#menu a {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  padding: 1rem 0.5rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 500px) {
+  #menu a {
+    margin-left: 0.5rem;
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+#menu a:first-child {
+  margin-left: 0;
+}
+
+#menu a[aria-current] {
+  font-weight: bold;
+}
+
+/*--PAGE--*/
+
+#page {
+  margin: 0 auto;
+  max-width: 41rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+.videoWrapper {
+  height: 0;
+  margin-bottom: 1em;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  position: relative;
+}
+
+.videoWrapper iframe,
+.videoWrapper amp-youtube {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/*--WRAPPER--*/
+
+.wrapper {
+  border-top: 2px solid #eee;
+  padding-top: 2rem;
+}
+
+.wrapper:first-child {
+  border-top: none;
+  padding-top: 1rem;
+}
+
+.posts-list h2 {
+  margin-top: 0;
+}
+
+/*--POSTS--*/
+
+.post {
+  display: block;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.post div[itemprop='articleBody'] > p:first-child {
+  color: #333;
+}
+
+.post li {
+  margin-bottom: 0.5rem;
+}
+
+.post p + img {
+  margin-bottom: 1rem;
+}
+
+.post p img {
+  border: 1px solid #eee;
+  display: block;
+  max-width: 100%;
+}
+
+.post img + .caption {
+  padding-top: 0.5rem;
+}
+
+.post .svg-container {
+  margin-bottom: 5%;
+  max-width: 100%;
+  text-align: center;
+}
+
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+.post .svg-container object {
+  width: 100%;
+}
+
+.tag-list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+.tag-list-item {
+  display: inline-block;
+  margin-left: 0.8em;
+}
+
+/*--PAGINATION--*/
+
+.pagination {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.pagination a {
+  min-width: 30px;
+  max-height: 30px;
+  text-align: center;
+}
+
+/*--FOOTER--*/
+
+footer {
+  border-top: 1px dashed #ddd;
+  padding: 2em;
+  text-align: center;
+}
+
+.timing-stats {
+  font-size: 0.7em;
+  padding: 0.35em;
+}
+
+/*--BUTTONS--*/
+
+.button {
+  background-color: #fff;
+  border: 1px solid #555;
+  border-radius: 2rem;
+  color: #555;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s ease-out;
+}
+
+.button:hover {
+  background-color: #3498db;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.inactive {
+  background-color: #ccc;
+  color: #fff;
+}
+
+/*--404--*/
+.search-goog input {
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+
+.search-goog input[type='submit'] {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /*--PAGE--*/
+
+  #page,
+  .wrapper {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /*--WRAPPER--*/
+
+  .wrapper {
+    padding-top: 2rem;
+  }
+
+  .wraper::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+}
+
+/*--ACCESSIBILITY--*/
+.outscreen {
+  height: 1px;
+  left: -1000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+/*--CALLOUT--*/
+.callout {
+  border: 1px solid #eee;
+  border-left-color: #777;
+  border-left-width: 5px;
+  border-radius: 3px;
+  font-size: 90%;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.author {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.author .name {
+  line-height: 1rem;
+  padding-top: 0.5rem;
+}
+
+.media,
+.bd {
+  overflow: hidden;
+  _overflow: visible;
+  
+}
+
+.media .img {
+  float: left;
+}
+
+.avatar-img {
+  border-radius: 100%;
+  height: 3rem;
+  margin-right: 0.5rem;
+  width: 3rem;
+}
+
+/* SYNTAX HIGHLIGHTING */
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #393a34;
+  font-family: 'Consolas', 'Bitstream Vera Sans Mono', 'Courier New', Courier,
+    monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 0.85em;
+  line-height: 1.2em;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+  background: #b3d4fc;
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+  background: #b3d4fc;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  padding: 0.2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999988;
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.string,
+.token.attr-value {
+  color: #e3116c;
+}
+.token.punctuation,
+.token.operator {
+  color: #393a34; /* no highlight */
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted {
+  color: #005cc5;
+}
+
+.token.keyword {
+  color: #d73a49;
+}
+
+.token.atrule,
+.token.attr-name {
+  color: #6f42c1;
+}
+
+.token.function,
+.token.deleted {
+  color: #6f42c1;
+}
+
+.token.selector {
+  color: #00009f;
+}
+
+.token.tag {
+  color: #22863a;
+}
+
+.token.class-name {
+  color: #6f42c1;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.caption {
+  display: block;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.codepen-aspect-ratio > iframe {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.twitter-tweet {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.twitter-tweet::after {
+  content: '';
+  display: block;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.me {
+  max-width: 22rem;
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
+.me > div {
+  height: 8rem;
+  margin: 0 auto;
+  position: relative;
+  width: 8rem;
+}
+
+.me svg {
+  border-radius: 100%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.me img {
+  border-radius: 100%;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.me h1 {
+  font-size: 1.7rem;
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #38444c;
+    color: #eee;
+  }
+  a {
+    color: #9dcae8;
+  }
+  a:hover {
+    color: #fff;
+  }
+  p a {
+    border-bottom: 1px solid #6d7a82;
+  }
+  p a:hover {
+    border-bottom: 1px solid #fff;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #eee;
+  }
+  a:hover h1,
+  a:hover h2,
+  a:hover h3,
+  a:hover h4,
+  a:hover h5 {
+    color: #4b89b1;
+  }
+  .button:hover {
+    background-color: #4b89b1;
+  }
+  code,
+  pre {
+    color: #ddd;
+  }
+  .main-header {
+    background-color: #4b89b1;
+  }
+}
+
+		
+		amp-iframe {
+			margin-bottom: 10px;
+		}
+	</style>
+  </head>
+  <body>
+
+  	<!-- google analytics -->
+  	
+  	<amp-analytics type="googleanalytics" id="google-analytics">
+		<script type="application/json">
+		{
+		  "vars": {
+		    "account": "UA-39254352-1"
+		  },
+		  "triggers": {
+		    "trackPageview": {
+		      "on": "visible",
+		      "request": "pageview"
+		    }
+		  }
+		}
+		</script>
+	</amp-analytics>
+	
+
+  <header class="main-header">
+      <nav id="menu">
+          <a href="/">JMPerez Blog</a>
+          <a href="/projects/">Projects</a>
+          <a href="/talks/">Speaking</a>
+          <a href="/about-me/">About</a>
+      </nav>
+  </header>
+
+  <article>
+  	<div class="post">
+	  	<div id="page">
+
+		    <article id="post-spotify-connect-api" class="post wrapper">
+
+        <div class="media author">
+          <div class="img">
+            <a href="/about-me/">
+              <amp-img src="/assets/images/jmperez.jpg" class="avatar-img" alt="" height="53" width="53">
+            </a>
+          </div>
+          <div class="bd">
+            <address class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="/about-me/" itemprop="name">José M. Pérez</a></address>
+            <meta class="post-data" itemprop="datePublished" content="2017-04-21T20:10:00.000Z">
+              April 21 2017
+            </meta>
+          </div>
+        </div>
+
+				<!-- entry title -->
+				<header class="entry-header">
+					
+					  <h1 class="article-title entry-title" itemprop="name">
+					    Playing with the Spotify Connect API
+					  </h1>
+					
+				</header>
+
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			  		<p>Spotify <a href="https://developer.spotify.com/news-stories/2017/04/10/new-endpoints-beta-web-api-connect/" target="_blank" rel="noopener">released recently a set of endpoints</a> in beta to fetch information of what is playing and send playback commands. This allows for a wide range of integrations and I wanted to hack a bit with it.</p><div class="amp-img-wrapper"><amp-img src="/assets/images/posts/spotify-connect.jpg" width="600" height="284" layout="responsive"></amp-img></div><a id="more"></a><h4 id="What-is-Spotify-Connect"><a href="#What-is-Spotify-Connect" class="headerlink" title="What is Spotify Connect"></a>What is Spotify Connect</h4><p><a href="https://www.spotify.com/connect/" target="_blank" rel="noopener">Spotify Connect</a> is a way to transmit the playback from one device to another one without having to use a physical connection like a cable or bluetooth. You can send the music from your Spotify desktop client to a speaker, from the Spotify app on mobile to Spotify for PlayStation, from the Spotify web player to Chromecast&#x2026; In short, you have controllers and devices that can play music.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510477863/spotify-web-player_k5sx2j.png" width="1064" height="794" layout="responsive"></amp-img></div> <small class="caption">Spotify&#x2019;s Web Player (zoomed in). Clicking on the icon next to the volume we get a list of connected devices (FireTV, desktop client, speakers and the web player).</small><p>Your application can become a controller through the Web API endpoints, getting information about what is playing currently and from where, being able to transmit the playback to another connected device or interact with the current context (pausing, changing the volume, skipping, playing something else&#x2026;).</p><h4 id="How-to-use-the-endpoints"><a href="#How-to-use-the-endpoints" class="headerlink" title="How to use the endpoints"></a>How to use the endpoints</h4><p>Before using the Connect endpoints we need to obtain an access token on behalf of the user with certain permissions. There is more information about what scopes are needed in the documentation for each endpoint.</p><p>You don&#x2019;t need to have a premium account to get the playback status, a free account is alright. You will do need a premium one if you want to <a href="https://developer.spotify.com/web-api/working-with-connect/#premium-only" target="_blank" rel="noopener">send commands to change the playback</a>.</p><p>A caveat at the moment is that the endpoints don&#x2019;t support any kind of web socket connection nor long polling. Thus, if you want to get updates on the position of the current playing track or any other change in the context, you need to poll every few seconds.</p><h4 id="A-small-library-to-make-it-easier-to-use-the-endpoints"><a href="#A-small-library-to-make-it-easier-to-use-the-endpoints" class="headerlink" title="A small library to make it easier to use the endpoints"></a>A small library to make it easier to use the endpoints</h4><p>The trickiest part of using the Spotify Web API is to implement the authorization flow. <a href="https://developer.spotify.com/web-api/authorization-guide/" target="_blank" rel="noopener">The Authorization Guide</a> does a good job explaining it, but I thought I could do something so developers wouldn&#x2019;t need to worry about setting up the whole flow, hiding away the authentication and just getting.</p><p>That&#x2019;s why I have created <a href="https://github.com/JMPerez/spotify-player" target="_blank" rel="noopener">spotify-player</a>. It&#x2019;s both a server and a library that you use to communicate with it. To use it, you just need to include a script, call login() and subscribe to the updates:</p><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>https://spotify-player.herokuapp.com/spotify-player.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> spotifyPlayer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SpotifyPlayer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+spotifyPlayer<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&apos;update&apos;</span><span class="token punctuation">,</span> response <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// render the track received</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+spotifyPlayer<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&apos;login&apos;</span><span class="token punctuation">,</span> user <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>user <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// no user</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// say hello to the user, and tell them to play something!</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+spotifyPlayer<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+spotifyPlayer<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>You can forget about <a href="https://developer.spotify.com/my-applications" target="_blank" rel="noopener">setting up a Spotify application</a> and a server, carrying out the token exchange, token refresh, and persisting the current user, <strong>so you can focus on the fun part</strong>.</p><p>Other methods include a function to make calls to other Spotify endpoints reusing the same access token, so you can fetch other data that can help you creating a more complete visualisation.</p><p>Let&#x2019;s have a look at <a href="https://codepen.io/jmperez/full/MmwObE" target="_blank" rel="noopener">this pen</a> as an example of a basic visualisation:</p><amp-iframe height="389" sandbox="allow-scripts allow-same-origin allow-popups" layout="fixed-height" frameborder="0" src="https://codepen.io/jmperez/embed/MmwObE?height=389&amp;theme-id=0&amp;slug-hash=MmwObE&amp;default-tab=result"><amp-img layout="fill" src="/amp-dist/sample/sample-placeholder.png" placeholder=""></amp-img></amp-iframe><p>And in case you can&#x2019;t try it or don&#x2019;t have a Spotify account this is pretty much what it looks like:</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510476629/spotify-connect-api-visualisation-example_hwu7uw.jpg" width="2554" height="1416" layout="responsive"></amp-img></div> <small class="caption">See <a href="https://codepen.io/jmperez/full/MmwObE" target="_blank" rel="noopener">the Pen on Codepen</a></small><p>I have kept the example very basic since the point is understanding the usage of the library. If you are into performance and UX you&#x2019;ll see there is room for improvement, but as a front-end developer I know an example can get out of hand very easily when adding things.</p><p>I encourage you to fork it and start making your own visualisation. And once you do it, ping me so I include it in <a href="https://codepen.io/collection/AyVBYB" target="_blank" rel="noopener">this Codepen collection</a>.</p><h3 id="Possible-applications"><a href="#Possible-applications" class="headerlink" title="Possible applications"></a>Possible applications</h3><p><em>Disclaimer: This is a list of some use cases. You still need to comply with <a href="https://developer.spotify.com/developer-terms-of-use/" target="_blank" rel="noopener">Spotify&#x2019;s terms of use</a> when implementing an application that uses Spotify&#x2019;sWeb API. This might mean adding certain messaging and link to the song in Spotify.</em></p><h4 id="Dynamic-visualisations"><a href="#Dynamic-visualisations" class="headerlink" title="Dynamic visualisations"></a>Dynamic visualisations</h4><p>You could combine the playback position with <a href="https://developer.spotify.com/web-api/get-audio-analysis/" target="_blank" rel="noopener">the audio analysis of the track</a> to generate dynamic visualisations using loudness, tempo, key, timbre or pitch of the segments that compose the track. You can also use <a href="https://developer.spotify.com/web-api/get-audio-features/" target="_blank" rel="noopener">the endpoint to fetch audio features of a track</a>, which gives you high level information about characteristics of the song.</p><div class="videoWrapper"><amp-youtube data-videoid="KO9huh" width="1920" height="1080" layout="responsive"></amp-youtube></div><p><small class="caption">See <a href="https://codepen.io/jmperez/full/GmJOMJ" target="_blank" rel="noopener">the Pen on Codepen</a> and <a href="https://github.com/possan/webgl-spotify-connect-now-playing-screen-example" target="_blank" rel="noopener">Possan&#x2019;s original visualisation on GitHub</a></small></p><h4 id="Now-playing-view"><a href="#Now-playing-view" class="headerlink" title="Now playing view"></a>Now playing view</h4><p>Are you a coffee-shop owner and people always wonder what song is playing? You could have a TV showing a branded now playing view. You could even have a widget on your website, or a script posting to a social network what is currently playing so your customers know. Or a small browser extension showing what is playing and/or <a href="https://developer.chrome.com/extensions/notifications" target="_blank" rel="noopener">showing desktop notifications</a> when the track changes.</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510477615/spotify-connect-api-visualisation-notification_mgxad5.jpg" width="1200" height="691" layout="responsive"></amp-img></div> <small class="caption">See <a href="https://codepen.io/jmperez/full/VbvPbR" target="_blank" rel="noopener">the Pen on Codepen</a>. When the track changes the browser shows a Web Notification.</small><p>Or if you are at home hosting a dinner or party, show on the TV or computer what is playing.</p><p>You can combine other Spotify Web API endpoints too. Eg you could <a href="https://developer.spotify.com/web-api/get-artist/" target="_blank" rel="noopener">fetch the artists info</a> to show the artist profile image in the background:</p><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510477674/spotify-connect-api-visualisation-artist_ebk7cc.jpg" width="1200" height="588" layout="responsive"></amp-img></div> <small class="caption">See <a href="https://codepen.io/jmperez/full/YVXEaz" target="_blank" rel="noopener">the Pen on Codepen</a>. A simple visualisation of what&#x2019;s playing in Spotify rendering the artist profile image as the background.</small><p>You could use an API like <a href="https://developer.musixmatch.com/" target="_blank" rel="noopener">Musixmatch</a>&#x2019;s and create an app or a website showing the lyrics for the current song, synchronised with the playback position.</p><p>And your imagination is the limit. Use <a href="https://genius.com/developers" target="_blank" rel="noopener">Genius&#x2019; API</a> to get <a href="https://docs.genius.com/#annotations-h2" target="_blank" rel="noopener">annotations</a> about a song, or search for trivia and more info about the song or artist using <a href="https://www.mediawiki.org/wiki/API:Main_page" target="_blank" rel="noopener">Wikipedia&#x2019;s API</a>. And if you don&#x2019;t want to miss what&#x2019;s happening in the world, implement a news ticker in your view using <a href="https://newsapi.org/" target="_blank" rel="noopener">News API</a>.</p><div class="videoWrapper"><amp-youtube data-videoid="q4I3ymLgewE" width="1920" height="1080" layout="responsive"></amp-youtube></div><p><small class="caption">See <a href="https://codepen.io/jmperez/full/OmVKOO" target="_blank" rel="noopener">the Pen on Codepen</a><small class="caption"></small></small></p><h4 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h4><p><a href="https://github.com/JMPerez/spotify-player" target="_blank" rel="noopener">The library</a> is really small and it only supports <em>reading</em> the playback state and not send commands. Let&#x2019;s call it an MVP. I might work on adding more features in the future.</p>
+			  	</div>
+
+		  	</article>
+		</div>
+    <footer>
+        <section class="links">
+            <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter · <a href="https://github.com/JMPerez">GitHub</a> · <a href="http://www.linkedin.com/in/jmperezperez">LinkedIn</a>
+        </section>
+    </footer>
+
+	</div>
+  </article>
+
+  </body>
+</html>

@@ -1,0 +1,869 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://jmperezperez.com/wecodesign-pwa/" >
+    <title>Hablando sobre PWA en el podcast WeCodeSign - Web development, performance, and some other good practices.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Hablando sobre PWA en el podcast WeCodeSign - José M. Pérez" property="og:title">
+		<meta name="twitter:description" content="He grabado un podcast sobre Progressive Web App para WeCodeSign. Escúchalo o lee la transcripción." property="og:description">
+		<meta name="twitter:site" content="@jmperezperez">
+		
+		<meta property="og:image" content="https://jmperezperez.com/assets/images/posts/wecodesign-pwa.jpg">
+		<meta name="twitter:image" content="https://jmperezperez.com/assets/images/posts/wecodesign-pwa.jpg">
+		
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    
+
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "Hablando sobre PWA en el podcast WeCodeSign",
+			
+			"description": "He grabado un podcast sobre Progressive Web App para WeCodeSign. Escúchalo o lee la transcripción.",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"wecodesign-pwa/"
+			},
+			"datePublished": "2017-10-03T16:00:00.000Z",
+			"dateModified": "2018-12-16T17:51:46.000Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "https://jmperezperez.com/assets/images/posts/wecodesign-pwa.jpg",
+				"width" : "1024",
+				"height" : "470"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Jose M. Perez"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Jose M. Perez&#39;s Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "https://jmperezperez.com/amp-dist/logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	<style amp-custom>
+		
+			/*--RESET--*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+input,
+button {
+  background: none;
+}
+
+html {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/*--BODY--*/
+
+body {
+  background: #fff;
+  color: #555;
+  font-family: Georgia, Times;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%; /* fixes a too large font issue in horizontally scrollable <pre> on webkit */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #212121;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+#menu a,
+.button {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+p,
+.post ul,
+.post ol,
+iframe,
+video,
+amp-video,
+amp-vimeo,
+amp-youtube {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+twitterwidget {
+  margin-bottom: 1em ;
+}
+
+a {
+  color: #2a7cb2;
+  font-weight: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease-out, border-bottom-color 0.15s ease-out;
+}
+
+a:hover {
+  color: #2a7cb2;
+}
+
+abbr {
+  border-bottom: 1px dashed #ccc;
+  text-decoration: none;
+}
+
+p a {
+  border-bottom: 1px solid #eee;
+}
+
+p a:hover {
+  border-bottom-color: #212121;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 1.7em;
+}
+
+h2 {
+  color: #444;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h3 {
+  color: #666;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h4 {
+  font-size: 1.18rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+a h1,
+a h2,
+a h3,
+a h4,
+a h5 {
+  transition: color 0.15s ease-out;
+}
+
+a:hover h1,
+a:hover h2,
+a:hover h3,
+a:hover h4,
+a:hover h5 {
+  color: #3498db;
+}
+
+.quote {
+  margin: 0 0 15px 0;
+}
+
+blockquote {
+  border-left: 2px solid #ccc;
+  font-style: italic;
+  margin: 0 0 15px 0;
+  padding-left: 20px;
+}
+
+ul,
+ol {
+  margin: 0 0 15px 0;
+  padding-left: 25px;
+}
+
+ul {
+  list-style: square;
+}
+
+ol {
+  list-style: decimal;
+}
+
+hr {
+  background: #eee;
+  color: #eee;
+  clear: both;
+  display: block;
+  height: 2px;
+  margin: 30px auto;
+  width: 50%;
+}
+
+pre,
+code {
+  color: #333;
+  font-family: Courier, Menlo, Monaco;
+  font-size: 0.8em;
+  letter-spacing: 0px;
+  overflow-x: auto;
+}
+
+pre {
+  padding: 0.8em 1em;
+  white-space: pre-wrap;
+}
+
+code {
+  margin: 0;
+}
+
+/*--CLEARFIXES--*/
+
+.post::after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
+/*--HEADER--*/
+
+.main-header {
+  background-color: #005689;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+/*--MENU--*/
+
+#menu {
+  display: inline-block;
+  line-height: 2rem;
+}
+
+#menu a {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  padding: 1rem 0.5rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 500px) {
+  #menu a {
+    margin-left: 0.5rem;
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+#menu a:first-child {
+  margin-left: 0;
+}
+
+#menu a[aria-current] {
+  font-weight: bold;
+}
+
+/*--PAGE--*/
+
+#page {
+  margin: 0 auto;
+  max-width: 41rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+.videoWrapper {
+  height: 0;
+  margin-bottom: 1em;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  position: relative;
+}
+
+.videoWrapper iframe,
+.videoWrapper amp-youtube {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/*--WRAPPER--*/
+
+.wrapper {
+  border-top: 2px solid #eee;
+  padding-top: 2rem;
+}
+
+.wrapper:first-child {
+  border-top: none;
+  padding-top: 1rem;
+}
+
+.posts-list h2 {
+  margin-top: 0;
+}
+
+/*--POSTS--*/
+
+.post {
+  display: block;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.post div[itemprop='articleBody'] > p:first-child {
+  color: #333;
+}
+
+.post li {
+  margin-bottom: 0.5rem;
+}
+
+.post p + img {
+  margin-bottom: 1rem;
+}
+
+.post p img {
+  border: 1px solid #eee;
+  display: block;
+  max-width: 100%;
+}
+
+.post img + .caption {
+  padding-top: 0.5rem;
+}
+
+.post .svg-container {
+  margin-bottom: 5%;
+  max-width: 100%;
+  text-align: center;
+}
+
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+.post .svg-container object {
+  width: 100%;
+}
+
+.tag-list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+.tag-list-item {
+  display: inline-block;
+  margin-left: 0.8em;
+}
+
+/*--PAGINATION--*/
+
+.pagination {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.pagination a {
+  min-width: 30px;
+  max-height: 30px;
+  text-align: center;
+}
+
+/*--FOOTER--*/
+
+footer {
+  border-top: 1px dashed #ddd;
+  padding: 2em;
+  text-align: center;
+}
+
+.timing-stats {
+  font-size: 0.7em;
+  padding: 0.35em;
+}
+
+/*--BUTTONS--*/
+
+.button {
+  background-color: #fff;
+  border: 1px solid #555;
+  border-radius: 2rem;
+  color: #555;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s ease-out;
+}
+
+.button:hover {
+  background-color: #3498db;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.inactive {
+  background-color: #ccc;
+  color: #fff;
+}
+
+/*--404--*/
+.search-goog input {
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+
+.search-goog input[type='submit'] {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /*--PAGE--*/
+
+  #page,
+  .wrapper {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /*--WRAPPER--*/
+
+  .wrapper {
+    padding-top: 2rem;
+  }
+
+  .wraper::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+}
+
+/*--ACCESSIBILITY--*/
+.outscreen {
+  height: 1px;
+  left: -1000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+/*--CALLOUT--*/
+.callout {
+  border: 1px solid #eee;
+  border-left-color: #777;
+  border-left-width: 5px;
+  border-radius: 3px;
+  font-size: 90%;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.author {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.author .name {
+  line-height: 1rem;
+  padding-top: 0.5rem;
+}
+
+.media,
+.bd {
+  overflow: hidden;
+  _overflow: visible;
+  
+}
+
+.media .img {
+  float: left;
+}
+
+.avatar-img {
+  border-radius: 100%;
+  height: 3rem;
+  margin-right: 0.5rem;
+  width: 3rem;
+}
+
+/* SYNTAX HIGHLIGHTING */
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #393a34;
+  font-family: 'Consolas', 'Bitstream Vera Sans Mono', 'Courier New', Courier,
+    monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 0.85em;
+  line-height: 1.2em;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+  background: #b3d4fc;
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+  background: #b3d4fc;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  padding: 0.2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999988;
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.string,
+.token.attr-value {
+  color: #e3116c;
+}
+.token.punctuation,
+.token.operator {
+  color: #393a34; /* no highlight */
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted {
+  color: #005cc5;
+}
+
+.token.keyword {
+  color: #d73a49;
+}
+
+.token.atrule,
+.token.attr-name {
+  color: #6f42c1;
+}
+
+.token.function,
+.token.deleted {
+  color: #6f42c1;
+}
+
+.token.selector {
+  color: #00009f;
+}
+
+.token.tag {
+  color: #22863a;
+}
+
+.token.class-name {
+  color: #6f42c1;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.caption {
+  display: block;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.codepen-aspect-ratio > iframe {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.twitter-tweet {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.twitter-tweet::after {
+  content: '';
+  display: block;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.me {
+  max-width: 22rem;
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
+.me > div {
+  height: 8rem;
+  margin: 0 auto;
+  position: relative;
+  width: 8rem;
+}
+
+.me svg {
+  border-radius: 100%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.me img {
+  border-radius: 100%;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.me h1 {
+  font-size: 1.7rem;
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #38444c;
+    color: #eee;
+  }
+  a {
+    color: #9dcae8;
+  }
+  a:hover {
+    color: #fff;
+  }
+  p a {
+    border-bottom: 1px solid #6d7a82;
+  }
+  p a:hover {
+    border-bottom: 1px solid #fff;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #eee;
+  }
+  a:hover h1,
+  a:hover h2,
+  a:hover h3,
+  a:hover h4,
+  a:hover h5 {
+    color: #4b89b1;
+  }
+  .button:hover {
+    background-color: #4b89b1;
+  }
+  code,
+  pre {
+    color: #ddd;
+  }
+  .main-header {
+    background-color: #4b89b1;
+  }
+}
+
+		
+		amp-iframe {
+			margin-bottom: 10px;
+		}
+	</style>
+  </head>
+  <body>
+
+  	<!-- google analytics -->
+  	
+  	<amp-analytics type="googleanalytics" id="google-analytics">
+		<script type="application/json">
+		{
+		  "vars": {
+		    "account": "UA-39254352-1"
+		  },
+		  "triggers": {
+		    "trackPageview": {
+		      "on": "visible",
+		      "request": "pageview"
+		    }
+		  }
+		}
+		</script>
+	</amp-analytics>
+	
+
+  <header class="main-header">
+      <nav id="menu">
+          <a href="/">JMPerez Blog</a>
+          <a href="/projects/">Projects</a>
+          <a href="/talks/">Speaking</a>
+          <a href="/about-me/">About</a>
+      </nav>
+  </header>
+
+  <article>
+  	<div class="post">
+	  	<div id="page">
+
+		    <article id="post-wecodesign-pwa" class="post wrapper">
+
+        <div class="media author">
+          <div class="img">
+            <a href="/about-me/">
+              <amp-img src="/assets/images/jmperez.jpg" class="avatar-img" alt="" height="53" width="53">
+            </a>
+          </div>
+          <div class="bd">
+            <address class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="/about-me/" itemprop="name">José M. Pérez</a></address>
+            <meta class="post-data" itemprop="datePublished" content="2017-10-03T16:00:00.000Z">
+              October 03 2017
+            </meta>
+          </div>
+        </div>
+
+				<!-- entry title -->
+				<header class="entry-header">
+					
+					  <h1 class="article-title entry-title" itemprop="name">
+					    Hablando sobre PWA en el podcast WeCodeSign
+					  </h1>
+					
+				</header>
+
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			  		<p>Esta semana se ha publicado <a href="http://wecodesignpodcast.com/2017/10/03/progressive-web-apps/" target="_blank" rel="noopener">el podcast sobre Progressive Web Apps</a> que grab&#xE9; con Ignacio Villanueva y Carmen Ansio para WeCodeSign.</p><a id="more"></a><p>En &#xE9;l hablamos sobre qu&#xE9; son las PWA, c&#xF3;mo se originaron y c&#xF3;mo podemos implementarlas. Tambi&#xE9;n compartimos algunos recursos &#xFA;tiles que nos har&#xE1;n m&#xE1;s f&#xE1;cil trabajar con Service Workers.</p><p><a href="http://wecodesignpodcast.com/2017/10/03/progressive-web-apps/" target="_blank" rel="noopener"></a></p><div class="amp-img-wrapper"><a href="http://wecodesignpodcast.com/2017/10/03/progressive-web-apps/" target="_blank" rel="noopener"><amp-img src="/assets/images/posts/wecodesign-pwa.jpg" width="1024" height="470" layout="responsive"></amp-img></a></div><p><a href="http://wecodesignpodcast.com" target="_blank" rel="noopener">WeCodeSign</a> es uno de los podcasts l&#xED;deres sobre desarrollo y dise&#xF1;o en espa&#xF1;ol, y ha sido un honor formar parte de &#xE9;l. Pod&#xE9;is escucharlo desde su web, en <a href="https://itunes.apple.com/es/podcast/wecodesign-podcast/id1113501272" target="_blank" rel="noopener">iTunes</a>, <a href="http://www.ivoox.com/escuchar-audios-wecodesign-podcast_al_5101204_1.html" target="_blank" rel="noopener">iVoox</a>, <a href="http://www.spreaker.com/user/8737490" target="_blank" rel="noopener">Spreaker</a> y <a href="https://www.podkas.com/directorio/weckdesign-podcast-de-httpstwitter-comwecodesign/" target="_blank" rel="noopener">Podkas</a>.</p><hr><h2 id="Transcripcion"><a href="#Transcripcion" class="headerlink" title="Transcripci&#xF3;n"></a>Transcripci&#xF3;n</h2><p><strong>[Ignacio Villanueva] En el programa de hoy hablaremos sobre las Progressive Web Apps ,que es un t&#xE9;rmino que se acu&#xF1;a a una nueva generaci&#xF3;n de aplicaciones que se basa en las nuevas tecnolog&#xED;as web para incrementar su funcionalidad. Tenemos el placer de contar con Jos&#xE9; Manuel P&#xE9;rez, desarrollador web en Spotify.</strong></p><p><strong>Os dejamos con la entrevista, esperamos que la disfrut&#xE9;is, y como siempre nos vemos al final.</strong></p><p><strong>Una vez m&#xE1;s traemos a un invitado nuevo como siempre. Esta vez es un desarrollador que no trabaja en Espa&#xF1;a y nos contar&#xE1; un poco acerca del tema y vamos a hablar sobre Progressive Web Apps.</strong></p><p>As&#xED; que bienvenido, Jos&#xE9; Manuel.</p><p>[Jos&#xE9; M. P&#xE9;rez] Hola, muchas gracias. Pues s&#xED;, soy un desarrollador web, llevo unos diez a&#xF1;os pr&#xE1;cticamente haciendo web. Estudi&#xE9; inform&#xE1;tica en la Universidad de Alicante. Por aquel entonces la web era un desconocido. Como parte del plan de estudios estudiabas c&#xF3;mo hacer aplicaciones WAP. Pr&#xE1;cticamente hacer aplicaciones m&#xF3;viles utilizando J2ME era lo &#xFA;nico que hab&#xED;a y ten&#xED;as que luchar t&#xFA; un poquito para encontrar alguna asignatura optativa donde se utilizara web y, bueno, hoy en d&#xED;a la verdad es que la situaci&#xF3;n ha cambiado bastante. Y nada, me alegro un mont&#xF3;n de que la web sea mucho m&#xE1;s importante que antes. Llevo cinco a&#xF1;os trabajando en Spotify en Estocolmo trabajando haciendo web h&#xED;brida para m&#xF3;vil, aplic&#xE1;ndolo a la aplicaci&#xF3;n de m&#xF3;vil aplicando web tambi&#xE9;n a la aplicaci&#xF3;n h&#xED;brida de escritorio, utilizando web para implementar la aplicaci&#xF3;n para televisi&#xF3;n y para PlayStation y &#xFA;ltimamente estoy trabajando en el reproductor web. As&#xED; que nada, est&#xE1; s&#xFA;perbien porque te das cuenta de que puedes desarrollar utilizando el mismo lenguaje y pr&#xE1;cticamente tienes acceso a cualquier plataforma. Esto viene un poco tambi&#xE9;n de cuando sol&#xED;a trabajar en Tuenti en el sitio m&#xF3;vil de Tuenti, tambi&#xE9;n ah&#xED; estuve haciendo cosillas para hacer una aplicaci&#xF3;n h&#xED;brida. Tambi&#xE9;n se integraban ciertas vistas dentro de la aplicaci&#xF3;n nativa.</p><p>Y nada, asegur&#xE1;ndote de que la web funcionara en Nintendo DS, en PSP (PlayStation Portable), en la Blackberry 8520 que es lo que utilizaba todo el mundo. Y la verdad es que en esos momentos es cuando te das cuenta de que no puedes asumir nada, que un navegador tenga Javascript no significa que vaya a tener la capacidad de funcionar como te esperas, que haya una funci&#xF3;n declarada no significa que vaya a funcionar luego. As&#xED; que aprend&#xED; bastante a hacer lo que se llama Progressive Enhancement para asegurarte de que funciona con HTML y CSS y luego ya a&#xF1;adir funcionalidad con Javascript.</p><p>He sido bastante defensor de ese paradigma, aunque &#xFA;ltimamente est&#xE1; siendo un poco complicado con todo el desarrollo de Javascript pr&#xE1;cticamente basado en el lado de cliente. Esto es un poco lo que he estado haciendo &#xFA;ltimamente.</p><p><strong>[I] Bueno, una pasada, porque la verdad es que hasta ahora, por lo menos que nos hayan comentado, no hemos tenido ning&#xFA;n invitado ni ninguna invitada que nos haya hablado sobre desarrollo Javascript para PSPs ni tecnolog&#xED;as un poco m&#xE1;s antiguas, en este caso consolas.</strong></p><p>[J] En aquel momento yo trabajaba en Tuenti y la mayor&#xED;a de usuarios eran j&#xF3;venes, se conectaban a Internet con lo que pod&#xED;an, normalmente utilizaban wifi, no ten&#xED;an una conexi&#xF3;n de datos. Se conectaban tarde, por la noche, pr&#xE1;cticamente a escondidas de los padres, utilizando la consola o lo que pod&#xED;an tener a mano. De hecho la misma aplicaci&#xF3;n m&#xF3;vil funcionaba tanto en estas consolas port&#xE1;tiles como en la PlayStation 3 por ejemplo. Era un desaf&#xED;o bastante grande porque adem&#xE1;s utilizaban Netfront como navegador, no era WebKit, y daban un mont&#xF3;n de problemas. Una de las razones por las que me interes&#xF3; Spotify es porque ten&#xED;an una plataforma para desarrollar aplicaciones web dentro de la aplicaci&#xF3;n de escritorio. Hoy en d&#xED;a es una cosa un poco m&#xE1;s normal. Los que usamos Slack sabemos que tiene una versi&#xF3;n web y otra de escritorio que es pr&#xE1;cticamente lo mismo, Whatsapp tambi&#xE9;n tiene una versi&#xF3;n web y Telegram lo mismo. Se est&#xE1;n viendo m&#xE1;s y m&#xE1;s ejemplos de aplicaciones que pueden correr tanto en webs como ser empaquetadas para poder instalarlas. En aquel entonces era una cosa bastante novedosa y es algo que me gustar&#xED;a tratar en el tema de hoy; esta moda de Progressive Web Apps y hablar un poco de lo que ten&#xED;amos antes y a lo que vienen a sustituir.</p><blockquote><p>PWA es un t&#xE9;rmino de marketing, no se corresponde con ninguna versi&#xF3;n nueva del est&#xE1;ndar de Javascript. Muchas veces lo comparo con Web 2.0 o HTML5.</p></blockquote><p><strong>[Carmen Ansio] &#xBF;Nos podr&#xED;as explicar as&#xED; resumidamente que es una Progressive Web App?</strong></p><p>[J] Pues lo primero que voy a decir es que es un t&#xE9;rmino de marketing, no se corresponde con ninguna versi&#xF3;n nueva del est&#xE1;ndar de Javascript, ni nada parecido. Muchas veces lo comparo con Web 2.0 o HTML5. HTML5 s&#xED; era una versi&#xF3;n nueva pero en realidad estamos hablando de todas estas APIs nuevas para poder desarrollar aplicaciones web o sitios web para los que les vamos a ir a&#xF1;adiendo alguna una funcionalidad.</p><p>El t&#xE9;rmino Progressive Web App lo acu&#xF1;&#xF3; Alex Russell y Frances Berriman que eran 2 desarrolladores de Google. Hace un par de a&#xF1;os escribieron <a href="https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/" target="_blank" rel="noopener">un post</a> y describ&#xED;an el t&#xE9;rmino como websites que son responsive, que se parecen a aplicaciones nativas, que se puede instalar en la pantalla de inicio y que en algunos casos soportan modo offline. Es bastante interesante porque Alex estuvo hace poco explicando, <a href="https://twitter.com/slightlylate/status/879458731519389697" target="_blank" rel="noopener">en una serie de tweets</a>, c&#xF3;mo surgi&#xF3; el tema y el t&#xE9;rmino PWA.</p><p>Hay mucha gente a la que no le gusta lo de Progressive Web Apps y no entiende por qu&#xE9; es &#x201C;app&#x201D; y no es &#x201C;site&#x201D;. En cuanto lees sobre el tema b&#xE1;sicamente te dicen que PWA no es un t&#xE9;rmino ara los desarrolladores, sino para para tu jefe. Es un t&#xE9;rmino para el inversor, para el que va a hacer campa&#xF1;a de marketing de tu sitio. Es una forma de continuar construyendo proyectos en la web de forma abierta, que parezcan una aplicaci&#xF3;n y que normalmente tu compa&#xF1;&#xED;a quiere hacer como aplicaci&#xF3;n nativa y no como web. Y la quieren hacer tres veces: una vez para Android, otra para iOS y otra, si pueden para Windows Phone. Al final es otra forma de decir que tenemos una serie de APIs, vamos a llamarla de alguna forma y con eso a ver si la gente se siente atra&#xED;da y lo identifica como algo cool, algo novedoso, y que valga la pena verlo.</p><p>Esto lo escribieron ellos cuando estaban evaluando si ten&#xED;an que tender hacia desarrollar aplicaciones para Chrome utilizando su sistema propietario, o ten&#xED;an que ir m&#xE1;s hacia un sistema m&#xE1;s abierto, que es lo que defend&#xED;an Alex y Francis. Se sentaron y estuvieron hablando sobre c&#xF3;mo unificar en un t&#xE9;rmino esa funcionalidad de a&#xF1;adir a la pantalla de inicio, ServiceWorkers, notificaciones push y dem&#xE1;s,</p><p>Cuando los desarrolladores escuchamos Progressive Web App tenemos que parar por un momento y pensar qu&#xE9; quiere decir, qu&#xE9; hay detr&#xE1;s. Google est&#xE1; promoviendo PWA y lo hace como una marca. Nosotros tenemos que verlo como un conjunto de herramientas que tenemos que tomar y aplicar a nuestras webs si as&#xED; lo queremos. Muchas compa&#xF1;&#xED;as que estaban centradas en desarrollar aplicaciones nativas ahora ven la web como una alternativa v&#xE1;lida.</p><blockquote><p>Hay mucha gente nueva en Internet en muchos pa&#xED;ses emergentes que no quiere descargar. Las tarifas de datos son car&#xED;simas y quieren consumir contenido directamente, sin pasar por el proceso de instalaci&#xF3;n.</p></blockquote><p><strong>[I] S&#xED; porque adem&#xE1;s hace tiempo que se demuestra que muchos usuarios se instalan cinco aplicaciones en el m&#xF3;vil y el resto no las abren nunca m&#xE1;s. Son las t&#xED;picas de mensajer&#xED;a instant&#xE1;nea, de redes sociales y las 2 extra de turno que se usen por el motivo que sea. Hay gente que obviamente s&#xED; usa m&#xE1;s aplicaciones, los que estamos m&#xE1;s en la web porque somos desarrolladores o m&#xE1;s frikis, como queramos llamarlo. Supongo que depende un poco de cada perfil. Pero no hay que olvidar que la inmensa mayor&#xED;a no somos nosotros que es todo el resto de personas que usan muy muy muy muy poquitas cosas.</strong></p><p>[J] Hasta ahora, para las empresas el objetivo era estar en las tiendas de aplicaciones y &#xE9;sta era la &#xFA;nica forma de obtener visibilidad. Si no estaban ah&#xED; el usuario no iba a poder descubrir la aplicaci&#xF3;n. Hubo un boom de aplicaciones que pr&#xE1;cticamente no serv&#xED;an para nada. Para usar una aplicaci&#xF3;n tengo que pasar por todo el proceso de encontrar la aplicaci&#xF3;n, descargarla e instalarla, ocupando un espacio en el tel&#xE9;fono. En occidente, que hemos crecido con smartphones y tenemos buenas tarifas de datos, tenemos todav&#xED;a la costumbre de estas aplicaciones. Pero hay mucha gente nueva en Internet en muchos pa&#xED;ses emergentes que no quiere descargar. Las tarifas de datos son car&#xED;simas y quieren consumir contenido directamente, sin pasar por el proceso de instalaci&#xF3;n.</p><p>Es curioso porque yo trabajo en Spotify y siempre tenemos este dilema de si debemos promocionar las aplicaciones nativas (por ejemplo descargar la aplicaci&#xF3;n de escritorio) y qu&#xE9; casos de uso cubre un reproductor web. &#xBF;Puede reemplazar un reproductor web a la aplicaci&#xF3;n de escritorio? Este tipo de conversaciones las tenemos casi todos los d&#xED;as. Hay un mont&#xF3;n de empresas que est&#xE1;n viendo que tienen que ir hacia web si quieren estar donde va a estar el pr&#xF3;ximo bill&#xF3;n (mil millones) de usuarios. Lo vemos con Twitter y Uber, que hace poco lanz&#xF3; su mobile site, y con muchos otros. Habitualmente son compa&#xF1;&#xED;as de India y de China las que m&#xE1;s est&#xE1;n empujando por este tipo de desarrollos.</p><p>Creo que es un buen momento para explicar que hay detr&#xE1;s de las PWAs y qu&#xE9; engloban.</p><p><strong>[I] Perfecto, cu&#xE9;ntanos un poco porque obviamente ya hemos dicho que no son tecnolog&#xED;as completamente nuevas. Es un Progressive Enhancement, que se ven&#xED;a haciendo desde hace ya mucho tiempo. Los que desarrollamos para web debemos tener en cuenta tecnolog&#xED;as m&#xE1;s antiguas y dispositivos m&#xE1;s antiguos para que tengan una m&#xED;nima experiencia. Luego vamos sumando funcionalidades para llegar a dar a nuestros usuarios lo que creemos que es mejor para ellos, o lo que creemos que ayuda al negocio en este caso.</strong></p><p>[J] Yo creo que al final eso es lo que tenemos que hacer. Nos tenemos que centrar en qu&#xE9; quiere el usuario y ver cu&#xE1;l es la soluci&#xF3;n t&#xE9;cnica. Muchas veces cuando aparece este tipo de tecnolog&#xED;as todo el mundo quiere utilizarlas. Intentan un proyecto en el que aplicarlas, cuando en realidad deber&#xED;a ser al contrario.</p><p>Cuando hablamos de PWAs lo hacemos principalmente de ServiceWorkers. A veces tambi&#xE9;n de a&#xF1;adir un manifest.json y notificaciones push. ServiceWorker es un fichero Javascript que el navegador se va a descargar una vez cargada la p&#xE1;gina y es capaz de interceptar peticiones. Cualquier petici&#xF3;n que se haga a tu dominio va a ser capturada por este ServiceWorker. Ah&#xED; ya puedes hacer lo que quieras: puedes devolver tu respuesta personalizada, puedes acceder a una cach&#xE9; si quiere devolver datos cacheados, etc. En resumen, es un proxy, un fichero Javascript que se pone en medio. Hay un mont&#xF3;n de &#x201C;recetas&#x201D; (cookbook). Si busc&#xE1;is en google encontrar&#xE9;is muchas cosas que puedes con ServiceWorkers.</p><p>Por ejemplo vas a tu p&#xE1;gina web o blog y quieres poder volver a ver el contenido cuando no haya conexi&#xF3;n a internet. En este caso puedes tener un ServiceWorker que se descarga el contenido para tenerlo accesible offline. Otro ejemplo es hacer una petici&#xF3;n para obtener una imagen y que el ServiceWorker se encargue de devolver el formato que soporta el navegador, como por ejemplo webp.</p><p>La principal caracter&#xED;stica es offline, que no la ten&#xED;amos bien implementada hasta ahora. S&#xED; que exist&#xED;a una tecnolog&#xED;a llamada Application Cache que pr&#xE1;cticamente nadie utilizaba porque era muy dif&#xED;cil de implementar, y que est&#xE1; soportada todav&#xED;a en iOS. Cuando hablamos de soporte para estas APIs siempre iOS y Safari quedan un poco fuera. &#xC9;sta es la tecnolog&#xED;a que ServiceWorker intenta reemplazar.</p><blockquote><p>Debemos hacer un uso justo y limpio de estas tecnolog&#xED;as o si no va a resultar en problemas y habr&#xE1; que establecer l&#xED;mites, lo que no es bueno para nadie.</p></blockquote><p><strong>[I] De hecho ahora mismo es el &#xFA;nico navegador moderno que no tiene ServiceWorker integrado, frente a Chrome, Firefox, Opera o Samsung Web Browser.</strong></p><p>[J] Para ser correcto, en Edge est&#xE1;n trabajando en implementarlo y Safari ha anunciado que hay cierto inter&#xE9;s en implementarlo en su plan de aqu&#xED; a 5 a&#xF1;os, as&#xED; que con suerte llegar&#xE1;. Tambi&#xE9;n podemos hablar de la pr&#xE1;ctica empresarial de Google promoviendo PWAs frente a Apple, que no lo hace. Podemos ver que hay quiz&#xE1;s ciertos intereses detr&#xE1;s de estas decisiones.</p><p>Algo que tambi&#xE9;n permiten los ServiceWorkers es la sincronizaci&#xF3;n background, de tal forma que no necesitas ni siquiera tener la pesta&#xF1;a abierta de tu p&#xE1;gina para poder acceder al contenido. Si despliegas una nueva versi&#xF3;n de tu web puedes comprobar en un ServiceWorker instalado si hay una nueva versi&#xF3;n y descargarte los assets. As&#xED;, una nueva petici&#xF3;n del usuario a tu web puede usar directamente esos nuevos assets, cargando m&#xE1;s r&#xE1;pido.</p><p>Un problema es que con el poder de un ServiceWorker viene tambi&#xE9;n una gran responsabilidad. Mucha gente ve el hecho de hacer que una p&#xE1;gina funcione offline con una excusa para poder descargar toda la web por si acaso el usuario quiera acceder a una de las p&#xE1;ginas. Es algo que a m&#xED; personalmente no me gusta. Por ejemplo si accedo a tu blog quiz&#xE1;s est&#xE9; interesado en ver esa p&#xE1;gina offline pero no me gustar&#xED;a que utilizaras mi conexi&#xF3;n a internet para descargar todo el contenido y todas las im&#xE1;genes de tu blog para hacerlo disponible offline. Hay un conjunto de buenas pr&#xE1;cticas como por ejemplo mostrar un bot&#xF3;n para que el usuario pueda hacer cierto contenido offline. Debemos ser cuidadosos en este aspecto. Cuando instalas una aplicaci&#xF3;n en iOS o en Android ves cu&#xE1;ntos MBs te est&#xE1;s descargando, al menos para la instalaci&#xF3;n inicial. Cuando accedes a una p&#xE1;gina web t&#xFA; no lo sabes, Debemos hacer un uso justo y limpio de estas tecnolog&#xED;as o si no va a resultar en problemas y habr&#xE1; que establecer l&#xED;mites, lo que no es bueno para nadie.</p><p><strong>[C] &#xBF;Hay otros mecanismos de almacenamiento?</strong></p><p>[J] Cuando interceptas estas peticiones almacenas los datos en una cach&#xE9; y hay una forma de hacer que el contenido se almacene de forma temporal o persistente. El navegador considera que todo lo que descargas lo puede eliminar si lo necesita, pero hay una cierta cantidad de datos para los que puedes decir que por favor lo mantenga. Esto se calcula como un porcentaje del total de espacio disponible, teniendo en cuenta tambi&#xE9;n cookies y localStorage. Antes hab&#xED;a por ejemplo un l&#xED;mite de 5MB en localStorage. Ahora el navegador dedica un porcentaje del espacio de disponible en disco duro para almacenar datos. As&#xED; que en principio no hay l&#xED;mite, y &#xE9;se es el problema. Desde una web puedes hacer una descarga grande hasta que el navegador se quede sin espacio y lance una excepci&#xF3;n.</p><p>A la hora de implementar ServiceWorkers se puede hacer o bien a mano o utilizando una librer&#xED;a. Google tiene un par de librer&#xED;as buenas que para incluir en proyectos: una se llama <a href="https://github.com/GoogleChromeLabs/sw-toolbox" target="_blank" rel="noopener">sw-toolbox</a> y la otra <a href="https://github.com/GoogleChromeLabs/sw-precache" target="_blank" rel="noopener">sw-precache</a>. Hay 3 p&#xE1;ginas que me gustan bastante sobre ServiceWorkers. Una es una p&#xE1;gina de ejemplos que hay en googlechrome/samples y Jake Archibald, que trabaja en Google, tiene tambi&#xE9;n un <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" target="_blank" rel="noopener">documento muy bueno que se llama The Offline Cookbook</a>, y por &#xFA;ltimo Mozilla tiene en <a href="https://serviceworke.rs/" target="_blank" rel="noopener">serviceworke.rs</a> una lista de diferentes estrategias a la hora de implementar ServiceWorkers.</p><p><strong>[I] Pues luego las anotamos y las dejamos en el programa. Algo que has mencionado son las Push Notifications, que no s&#xE9; si van directamente ligadas con el hecho de usar una PWA, pero que es algo que va de la mano. Por ejemplo utilizando websockets, obtener informaci&#xF3;n en directo y que vas recopilando en funci&#xF3;n de cu&#xE1;ndo la env&#xED;as desde un servidor y el usuario va recibiendo ese feedback.</strong></p><p>[J] Todo esto se basa en ServiceWorkers porque al final necesitas tener algo corriendo. Si tu p&#xE1;gina no est&#xE1; en primer plano tienes que tener un ServiceWorker que es lo que se va a quedar ejecut&#xE1;ndose cuando el usuario cierra esa ventana o esa pesta&#xF1;a. Las notificaciones push son la misma notificaci&#xF3;n push que se ve normalmente en una aplicaci&#xF3;n. Va por otra v&#xED;a pero al final la parte visual es exactamente igual.</p><p>Las notificaciones push eran una de las razones principales por las que las empresas quer&#xED;an hacer aplicaci&#xF3;n nativa. Una de las razones era el descubrir esa aplicaci&#xF3;n, para lo cual necesitabas hacer una aplicaci&#xF3;n nativa y ponerla en la tienda, la segunda era poder tener notificaciones push. Es &#xFA;til para que el usuario vuelva a tu aplicaci&#xF3;n y no es suficiente con que el usuario instale la aplicaci&#xF3;n. Pr&#xE1;cticamente hoy tenemos acceso a todo lo que tiene acceso una aplicaci&#xF3;n nativa.</p><p><strong>[I] Hay ciertas APIs que de momento funcionan ah&#xED; ah&#xED;. Hablamos con tecnolog&#xED;as web sin tener algo de por medio como pueda ser PhoneGap o Ionic. Nosotros desarrollamos una plataforma con WebRTC y tuvimos un mont&#xF3;n de problemas para implementarlo porque obviamente no est&#xE1; soportado en varios navegadores. Hasta Edge 14 &#xF3; 15 no funcionaba. Obviamente Internet Explorer tampoco. Safari no funcionaba hasta hace muy poquito o han dicho que lo van a implementar en la siguiente versi&#xF3;n del sistema operativo y obviamente funcionaba en Chrome. Aunque Chrome es una gran mayor&#xED;a en uso a nivel mundial no hay que olvidar que hay muchos otros usuarios que no usan Chrome.</strong></p><p>[J] S&#xED;, y luego todos aquellos que usen iPhone est&#xE1;n fuera de momento de las PWAs. No es posible a&#xF1;adir una web a la pantalla de inicio y abrirlo a pantalla completa. Como dec&#xED;a, es un tema de marketing. PWA no deja de ser una web de toda la vida a la que le hemos a&#xF1;adido una funcionalidad extra para ponerlo en la pantalla de inicio y que no se abra el navegador, y soporte offline.</p><blockquote><p>ServiceWorker es un progressive enhancement, no puedes suponer que va a estar ah&#xED;.</p></blockquote><p><strong>[C] Hablando de ese soporte offline y de ServiceWorkers, he le&#xED;do el t&#xE9;rmino &#x201C;offline first&#x201D;. &#xBF;Nos pod&#xED;as comentar un poco c&#xF3;mo funciona?</strong></p><p>[J] Es gracioso porque estaba escuchando <a href="http://wecodesignpodcast.com/2017/07/04/mobile-first/" target="_blank" rel="noopener">el podcast que hicisteis con Diana sobre Mobile First</a>. A veces nos hablan de offline first, a veces nos hablan de mobile first y a veces de content first cuando se habla sobre response design. Al final como desarrollador dices &#xBF;qu&#xE9; tengo que hacer?</p><p>La idea de offline first est&#xE1; muy bien, no dar nada por hecho, que tu web pueda funcionar sin conexi&#xF3;n a internet. Pero a la hora de implementarlo viene la parte dif&#xED;cil porque al introducir ServiceWorkers normalmente introduces el cacheo de fichero Javascript y tambi&#xE9;n un sistema de templates. Para esto funciona muy bien utilizar librer&#xED;as como Preact o Vue, donde tienes los templates y tienes el JS y no tienes nada server-side. Esto es muy f&#xE1;cil de cachear. Tambi&#xE9;n offline se pod&#xED;a conseguir hasta ahora utilizando unas buenas cabeceras de respuesta. Muchas veces no hace falta utilizar ServiceWorkers si quieres que tu p&#xE1;gina siga funcionando o que no repitas una request. Es cuesti&#xF3;n de decirle al navegador que cachee el contenido durante m&#xE1;s tiempo. Cuando hablan de offline first se entiende que no hay que asumir cu&#xE1;les son las condiciones de la red. Sup&#xF3;n que no hay red, &#xBF;c&#xF3;mo va a comportarse tu p&#xE1;gina?</p><p>Uno de las caracter&#xED;sticas de ServiceWorkers es que la primera vez que visitas una p&#xE1;gina, &#xE9;sta no se va a renderizar utilizando ServiceWorkers. El SW se a&#xF1;ade despu&#xE9;s, lo descarga el navegador y s&#xF3;lo funciona para las siguientes peticiones. Es un progressive enhancement, no puedes suponer que el Service Worker va a estar ah&#xED;. Para que tu contenido sea offline primero tienes que visitar la web y tienes que poder cargar este ServiceWorker, que descargar&#xE1; el contenido. Me gusta offline first, igual que se suele pensar sobre qu&#xE9; pasar&#xED;a si no se pudiera descargar o ejecutar Javascript, en cuyo caso habr&#xED;a que hacer, por ejemplo, Server Side Rendering. O &#xBF;qu&#xE9; pasar&#xED;a si el usuario tiene problemas de accesibilidad, qu&#xE9; va a ocurrir con el contenido, va a ser le&#xED;do por lectores de accesibilidad? Todo esto al final va sumando y tenemos que pensar en una experiencia buena para que luego le a&#xF1;adamos funcionalidad. Y offline first no deja de ser otra m&#xE1;s. Cuesta mucho decidir qu&#xE9; va primero &#xBF;contenido, mobile, offline? Son metodolog&#xED;as diferentes. Como desarrolladores a veces estamos cansados, hay un poco de fatiga con todo lo que sale nuevo y hay que leerlo e intentar decir &#x201C;vale, esto lo sit&#xFA;o aqu&#xED; y forma parte de mis herramientas para en alg&#xFA;n momento determinado poder aplicarlas&#x201D;.</p><p><strong>[I] Hay una p&#xE1;gina web de una desarrolladora que se llama [inaudible] que tiene un botoncito para hacer offline un post determinado, como dec&#xED;as t&#xFA; al principio &#x201C;quiero que este post en concreto, que me interesa escuchar a lo mejor cuando no tenga conexi&#xF3;n&#x201D;, pues lo guarda y te cachea las im&#xE1;genes y todo lo que tiene ese post. Ella graba con voz cada uno de los art&#xED;culos que escribe y deja que los escuches de forma offline si quieres. Creo que es una manera muy buena para dejar que el usuario decida si quiere descargar ese episodio o en este caso un art&#xED;culo y que lo pueda leer cuando va en el metro sin conexi&#xF3;n. No nos olvidemos que aunque vivimos en grandes ciudades en much&#xED;simas ocasiones tenemos eso que llaman Lo-Fi. No tienes conexi&#xF3;n suficiente porque est&#xE1;s dentro de un t&#xFA;nel y durante un per&#xED;odo de tiempo determinado tienes una conexi&#xF3;n realmente mala o directamente ninguna.</strong></p><p>[J] S&#xED;, tambi&#xE9;n lo llaman Lie-Fi, como que es un poco de mentira. Te dice que tiene wi-fi pero intenta descargar cosas por la wi-fi y no acaba de traerse nada. Yo creo que &#xE9;se es un buen caso de uso. Jake Archibald, que es uno de los ingenieros de Google que ha estado dando presentaciones sobre esto, tiene una PWA para ver art&#xED;culos de Wikipedia. Y tiene un bot&#xF3;n para descargar un art&#xED;culo y poder leerlo luego. Creo que esa funcionalidad es muy buena. Yo tengo un blog y no uso JS para nada, excepto para un SW. Y si te quedas sin conexi&#xF3;n puedes leer el post que estabas leyendo m&#xE1;s un par de enlaces m&#xE1;s que todo que tengo arriba en el men&#xFA;. Y ya est&#xE1;, no necesitas nada m&#xE1;s. Est&#xE1; muy bien darle al usuario la posibilidad de que si quieren puedan descargar el contenido online. Me parece s&#xFA;per bien y creo que &#xE9;se es el tipo de casos de uso que tenemos que intentar cubrir, y no intentar usarlo para todo s&#xF3;lo porque es nuevo.</p><blockquote><p>Mucha gente cree que esto de las PWA es s&#xF3;lo para sitios web grandes o de empresas importantes. En realidad puedes a&#xF1;adir un SW y manifest a cualquier web.</p></blockquote><p><strong>[I] Antes has hablado del Manifest. Aunque ya sabemos que es un JSON y que da ciertas funcionalidades como decir &#x201C;b&#xE1;jate este archivo, baja este otro&#x201D;. &#xBF;Para qu&#xE9; otras cosas se puede utilizar el Manifest?</strong></p><p>[J] Yo creo que estaban un poco hartos de a&#xF1;adir cabeceras &#x201C;meta&#x201D; dentro dentro de las p&#xE1;ginas y decidieron crear un fichero donde definir un JSON con un mont&#xF3;n de informaci&#xF3;n que queremos tener para esta integraci&#xF3;n. En Google lo llaman A2HS (Add to Home Screen) y es lo que va a utilizar el sistema operativo m&#xF3;vil para poder abrir la aplicaci&#xF3;n. T&#xFA; le dices con qu&#xE9; orientaci&#xF3;n quieres abrirla y qu&#xE9; iconos quieres utilizar. Cuando implementas una PWA puedes comprobar dentro de tu c&#xF3;digo si est&#xE1; corriendo en modo aplicaci&#xF3;n (lanzada desde la pantalla de inicio) o si est&#xE1; corriendo dentro del navegador, utilizando display-mode. Si es standalone significa que est&#xE1; instalada y corriendo desde la pantalla de inicio. Est&#xE1; bien para analytics, para saber cu&#xE1;nta gente ha instalado la aplicaci&#xF3;n y la est&#xE1; utilizando as&#xED;. Tambi&#xE9;n puedes utilizarlo para media-queries, para poder cambiar ligeramente en el estilo de la p&#xE1;gina dependiendo de si lo has lanzado desde la pantalla de inicio o no. Uno de los casos de uso ser&#xED;a mostrar botones de navegaci&#xF3;n cuando lo lanzas en fullscreen.</p><p>Mucha gente cree que esto de las PWA es s&#xF3;lo para sitios web grandes o de empresas importantes. En realidad puedes a&#xF1;adir un SW y manifest a cualquier web. Hay directorios de PWAs (por ejemplo <a href="https://pwa-directory.appspot.com/" target="_blank" rel="noopener">PWA Directory</a> o <a href="https://pwa.rocks" target="_blank" rel="noopener">PWA Rocks</a>) a poder descubrir dentro de Bing PWAs y te va a ofrecer la posibilidad de instalarlas. Es una especie de store pero en lugar de t&#xFA; publicar ah&#xED;, Microsoft va a utilizar el mismo crawler que usan para Bing y va a poder mostrar ah&#xED; directamente la web.</p><p>No creo que las PWAs est&#xE9;n restringidas a webs grandes y pienso que todo el mundo deber&#xED;a probarlas. Los desarrolladores deber&#xED;amos hacer pruebas con nuestras webs. Cuando empec&#xE9; a utilizar ServiceWorkers me di cabezazos contra el ordenador porque las herramientas de desarrollo no estaban muy desarrolladas, valga la redundancia. Cuando hac&#xED;a una petici&#xF3;n no sab&#xED;a si la respuesta estaba viniendo del ServiceWorker o de verdad estaba sirviendo el fichero del servidor. Ten&#xED;asque buscar por ah&#xED; un men&#xFA; hab&#xED;a muy oculto para activar la opci&#xF3;n de que todas las peticiones dentro de localhost fueran directamente al fichero y que no se cacheen. Esto ha mejorado much&#xED;simo.</p><p>Tenemos muchas estrategias sobre c&#xF3;mo hacer versionado de cach&#xE9;s. Cuando almacenas en ServiceWorker est&#xE1;s almacenando en la memoria del navegador. Si haces cambios en tu web y lanzas una nueva versi&#xF3;n y versionas de la misma forma que versionas otros scripts, deber&#xED;as ser un buen ciudadano, acceder a la versi&#xF3;n previa que ten&#xED;as cacheada y eliminarla del navegador. Si no al final vas a acumular un mont&#xF3;n de bundles de Javascript o templates que ya no se necesitan.</p><p>S&#xE9; que hay alguna pregunta sobre utilizar PWAs con React, Vue y otras librer&#xED;as. Si hab&#xE9;is utilizado alguna vez Create React App, que es una especie de boilerplate para crear aplicaciones React, tambi&#xE9;n existe la posibilidad de utilizar estas mismas herramientas para crear PWAs. Create React App va a crear directamente por defecto una PWAs y, si utiliz&#xE1;is Preact, lanzaron su CLI para crearlas con Preact, y Vue tambi&#xE9;n tiene su CLI con el que se generan PWAs por defecto.</p><p><strong>[C] Como has comentado antes, Apple no tiene soporte para para PWAs. &#xBF;Ves un poco de guerra entre Google y Apple?</strong></p><p>[J] A veces parece que s&#xED;, al igual que Internet Explorer no implementaba nada nuevo en su navegador y entonces sali&#xF3; Firefox que implementaba todo. Mucha gente se pas&#xF3; a Firefox y posteriormente a Chrome. Siempre existe esta guerra de navegadores y de las empresas que hay detr&#xE1;s. Me gusta mucho Google, que est&#xE1; empujando por estos est&#xE1;ndares. Si desarrollamos PWAs el usuario no necesitar&#xE1; ir a la Store a descargarse nada, y ahora mismo tanto puede Google com oApple se llevan un porcentaje cuando descargas aplicaciones de pago y tambi&#xE9;n de los pagos in-app. Al principio Apple s&#xF3;lo ofrec&#xED;a herramientas web para desarrollar &#x201C;aplicaciones&#x201D; para iPhone, no exist&#xED;a nada para hacer una aplicaci&#xF3;n nativa. Todo giraba en torno a crear webs que tuviera el mismo look&amp;feel. Luego descubrieron que ah&#xED; es donde estaba el negocio cuando empezaron a proporcionar estas herramientas para desarrollar aplicaciones nativas. Es dif&#xED;cil que vayas a ir en contra de tu principal fuente de ingresos. Google parece que tienen los ingresos m&#xE1;s diversificados. Al confiar en una plataforma de anuncios Google se va a llevar dinero por anuncio, que tambi&#xE9;n se muestran en la web (eg PWA).</p><p>Hay mucho trabajo para estandarizar estas APIs, implementarlas de una forma buena idea y de releasearlas. Pero estoy seguro de que tambi&#xE9;n hay decisiones de negocio. Google se ha posicionado claramente hacia promover esta serie de APIs, hacen workshops en varios sitios del mundo explicando c&#xF3;mo usarlas, muestran c&#xF3;mo diferentes webs est&#xE1;n implementando esta funcionalidad (qu&#xE9; problemas ten&#xED;an de rendimiento, c&#xF3;mo han a&#xF1;adido PWAs y han ido mejorando, cu&#xE1;les son las m&#xE9;tricas que se ha movido como mayor retenci&#xF3;n de usuarios o m&#xE1;s p&#xE1;ginas vistas). Trabajan codo con codo con empresas grandes como Flipkart - el &#x201C;Amazon&#x201D; de India - o ele.me, que es una empresa muy grande de China de venta de comida online.</p><p>Apple va un poco por su cuenta. Es verdad que Safari est&#xE1; cambiando, implementando mucha funcionalidad que faltaba, pero da la sensaci&#xF3;n de que son reacios a implementar PWAs. Para entender mejor las razones pienso que es &#xFA;til pensar c&#xF3;mo puede afectar a las fuentes de ingresos que los desarrolladores migren a web. Las empresas tienen un n&#xFA;mero limitado de trabajadores y muchas cosas que quieren hacer. Tienen que priorizar unas frente a otras y por lo que sea no est&#xE1;n priorizando los ServiceWorkers y toda la funcionalidad para a&#xF1;adir webs a pantalla de inicio para ejecutarlas de forma standalone.</p><p><strong>[I] Yo creo que en este caso Apple a lo mejor no tiene publicidad directa como hace Google, y le da un poco m&#xE1;s igual. Como tiene tant&#xED;simos beneficios a trav&#xE9;s de la App Store perder ese mercado, que es inmenso, es un peligro obviamente para ellos. Ahora mismo los que &#xFA;ltimamente llegan tarde son Edge y Safari (Edge est&#xE1; mejorando un mont&#xF3;n pero a&#xFA;n quedan algunas cosillas) y, en mi opini&#xF3;n, est&#xE1; claro por qu&#xE9; no lo est&#xE1;n implementando. Con la salida de Technology Preview, que es la versi&#xF3;n de desarrollador, s&#xED; est&#xE1; cambiando, pero le queda mucho para que, como pasa con Firefox y Chrome, se actualicen de forma constante.</strong></p><p>[J] Tambi&#xE9;n est&#xE1; la restricci&#xF3;n de que no puedes correr ning&#xFA;n navegador con otro motor. As&#xED; que aunque t&#xFA; instales Chrome o Firefox en iPhone est&#xE1;s corriendo Webkit por detr&#xE1;s, el motor de Safari. Puedes personalizar la experiencia alrededor del navegador pero no implementar PWAs. Eso es una decisi&#xF3;n de negocio, y ah&#xED; no hay ninguna excusa. No puedes decir &#x201C;queremos hacer el entorno m&#xE1;s seguro&#x201D;. Podr&#xED;an utilizar el proceso de env&#xED;o y revisi&#xF3;n de aplicaciones y que t&#xFA; pudieras ofrecer un motor de renderizado diferente. Es su ecosistema y controlan lo que ofrecen a los usuarios. El target de usuarios es diferente. Por ejemplo, en India o China el mercado de iOS es bastante m&#xE1;s peque&#xF1;o que en otros pa&#xED;ses de nuestro alrededor. Cada empresa juega sus cartas.</p><p>Como desarrolladores lo tenemos que ver como una funcionalidad a&#xF1;adida. Si lo soporta el navegador podemos utilizarlo y si no lo soporta, como hemos hecho bien nuestro trabajo, va a dar lo mismo porque el usuario va a poder disfrutar de nuestra web. Son APIs para mejorar nuestra web pero nunca tenemos que asumir que est&#xE1;n ah&#xED;. Y lo bueno de ServiceWorker es que no se puede asumir su soporte, dado que la primera vez que carga la p&#xE1;gina no se puede utilizar.</p><p><strong>[I] Si te parece pasamos las preguntas que nos han dejado por Twitter. Pregunta Manuel si has tocado Vue para las PWAs o si sabes alg&#xFA;n recurso sobre ServiceWorkers y notificaciones push en castellano.</strong></p><p>[J] No he usado Vue todav&#xED;a. He estado leyendo sobre Vue pero me he enfocado m&#xE1;s en React, que lo estoy utilizando en un proyecto grande, y probando Preact e Inferno por cuestiones de tama&#xF1;o. Afortunadamente no necesitamos utilizar ninguna de estas librer&#xED;as para crear PWAs. Como dije, mi blog s&#xF3;lo utiliza Javascript para crear un ServiceWorker y tener contenido offline. Las PWAs no requieren frameworks ni librer&#xED;as espec&#xED;ficos. Ni siquiera tienen que ser una SPA.</p><p>Recomiendo utilizar Vue CLI para crear PWAs con Vue. Habr&#xE1;n tomado algunas decisiones por ti, abstray&#xE9;ndote para bien o para mal de los detalles de implementaci&#xF3;n, pero te servir&#xE1; para crear un esqueleto para una aplicaci&#xF3;n.</p><p>Sobre recursos en espa&#xF1;ol hay una web que se llama &#x201C;<a href="https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/" target="_blank" rel="noopener">Tu primera Progressive Web App</a>&#x201D; y la escribi&#xF3; Pete LePage, que es un desarrollador de Google. Es una traducci&#xF3;n al espa&#xF1;ol de la documentaci&#xF3;n oficial. Es un muy buen recurso y es m&#xE1;s detallado que otros art&#xED;culos que se pueden encuentran en espa&#xF1;ol en Internet.</p><p><strong>[I] Fernando nos pregunta c&#xF3;mo encajan con las PWAs Que, React y Angular.</strong></p><p>[J] Recomiendo que cada uno escoja el framework/librer&#xED;a con la que se sientan m&#xE1;s a gusto. Todas estas soluciones son similares y se pueden crear PWAs con ellas.</p><p><strong>[I] Fernando nos deja una segunda pregunta. Quiere saber si se adaptan los servicios workers correctamente a las aplicaciones h&#xED;bridas Ionic o PhoneGap.</strong></p><p>[J] Es una buena pregunta. Es dif&#xED;cil saber d&#xF3;nde est&#xE1; la frontera entre entrar desarrollando una web que luego va a correr en una WebView, como en el caso de PhoneGap o Ionic. Tambi&#xE9;n hay alternativas nativas como ReactNative o NativeScript. Si est&#xE1;s desarrollando en iOS no vas a tener soporte para ServiceWorker independientemente de si es el navegador o si es una WebView porque no deja de ser el mismo navegador; no vas a tener soporte.</p><p>En el caso de Android no estoy seguro de c&#xF3;mo funcionan los ServiceWorkers dentro de las WebViews. Por ejemplo, quiz&#xE1;s se cachea, quiz&#xE1;s se mantiene en memoria s&#xF3;lo para esa WebView espec&#xED;fica. No he llegado a trabajar con PWAs dentro de una aplicaci&#xF3;n h&#xED;brida.</p><p><strong>[C] Vamos a pasar a la tanda de preguntas que hemos. Manuel pregunta si puedes recomendar alg&#xFA;n libro que hable sobre PWAs.</strong></p><p>[J] Hasta ahora no conoc&#xED;a ning&#xFA;n libro sobre PWAs y me he puesto a buscar. Casualmente acaba de salir un libro que est&#xE1; en Early Release y se llama &#x201C;<a href="http://shop.oreilly.com/product/0636920052067.do" target="_blank" rel="noopener">Building Progressive Web Apps: Bringing the Power of Native to the Browser</a>&#x201D; de O&#x2019;Reilly. El autor cre&#xF3; tambi&#xE9;n una librer&#xED;a que utilic&#xE9; para un proyecto llamada &#x201C;annyang&#x201D; para hacer reconocimiento de voz.</p><p>Es m&#xE1;s habitual encontrar informaci&#xF3;n sobre PWAs en posts (sobre todo los de Developer Relations de Google) y m&#xE1;s tarde llegan a libros.</p><p><strong>[C] A Manuel le gustar&#xED;a saber en qu&#xE9; orden se comienza a desarrollar este tipo de aplicaciones.</strong></p><p>[J] Primero haz una web bien y luego mej&#xF3;rala. Considera PWA como un a&#xF1;adido. No intentes utilizar PWAs desde el principio o como una forma de solucionar problemas. Por ejemplo, si tienes problemas de performance no es buena idea que intentes solucionarlos con PWAs diciendo &#x201C;s&#xED;, esto cacheo con un ServiceWorker y ya est&#xE1;&#x201D;. Hay otras cosas que vas a tener que mirar antes.</p><p>Busca otras soluciones como por ejemplo hacer split del bundle: en lugar de mandar 1MB manda 200kB y luego carga el resto de forma as&#xED;ncrona. No veas PWAs como el martillo y cualquier problema como un clavo.</p><p><strong>[C] David nos hace la &#xFA;ltima pregunta. Est&#xE1; interesado en saber que si el cliente sigue requiriendo una alternativa en forma de aplicaci&#xF3;n para tenerla en las stores, &#xBF;qu&#xE9; tecnolog&#xED;a utilizar&#xED;as? &#xBF;Cordova con React? &#xBF;React Native?</strong></p><p>Es un problema porque aunque tengas una PWA es probable que te digan que la quieren ver en la tienda. Hay dos alternativas. Puedes implementar una aplicaci&#xF3;n h&#xED;brida con Cordova o Ionic 2, que utiliza Angular, y la empaquetas dentro de un navegador. Tambi&#xE9;n puedes utilizar lo &#xFA;ltimo de lo &#xFA;ltimo y utilizar React Native. En este caso tienes que reescribir la vista porque los componentes van a ser diferentes. Lo bueno es que, si la has estructurado bien, puedes reutilizar toda la parte de negocio (por ejemplo Redux). Esta opci&#xF3;n es buena si quieres tener una aplicaci&#xF3;n con un muy buen rendimiento. Tambi&#xE9;n existe NativeScript, que se puede utilizar con Preact.</p><p>Independientemente de la soluci&#xF3;n trata de desacoplar el c&#xF3;digo. Intenta tener claro qu&#xE9; parte pertenece a la vista y cu&#xE1;l es l&#xF3;gica de negocio. Mueve c&#xF3;digo estable a una API, de forma que d&#xE9; igual cu&#xE1;l sea la interfaz que consume los datos. Esto te permite hacer cambios tanto en la API (por ejemplo reescribi&#xE9;ndola en otro lenguaje) como el front (por ejemplo, crear un nuevo cliente para otra plataforma o utilizar una librer&#xED;a diferente).</p><p>Lo que usas hoy se va a quedar &#x201C;anticuado&#x201D; en un par de a&#xF1;os, as&#xED; que siempre intenta modularizar el c&#xF3;digo y optimiza para el mantenimiento y migraci&#xF3;n del c&#xF3;digo m&#xE1;s que esforzarse en acoplar tu proyecto demasiado con un framework.</p><p><strong>[I] Si te parece con esto cerramos las preguntas de Twitter y pasamos a la m&#xE1;s dif&#xED;cil. Dinos c&#xF3;mo ves la web dentro de 5 &#xF3; 10 a&#xF1;os.</strong></p><p>[J] Pues es una pregunta dif&#xED;cil. Pienso en el desarrollo de los m&#xF3;viles y es impensable lo que hac&#xED;amos hace cinco a&#xF1;os comparado con lo que hacemos ahora. Hace poco estuve en una charla donde un ponente dijo que somos la &#xFA;ltima generaci&#xF3;n que sabr&#xE1; lo que es un navegador y creo que el futuro de la web es olvidarse del concepto &#x201C;navegador&#x201D;, o por lo menos como la &#xFA;nica forma de consumir contenidos en la web.</p><p>La web se integra ahora mismo en m&#xF3;viles utilizando PWAs, pero tambi&#xE9;n como una Webview en una aplicaci&#xF3;n nativa. Tenemos Chrome OS como el mejor ejemplo de c&#xF3;mo ejecutar sitios web que funcionan como aplicaciones. Y tenemos tambi&#xE9;n ejemplos como AMP de Google donde generas contenido que luego va a estar directamente embebido dentro del buscador, o Instant Articles para integrar contenido en Facebook, y Apple News.</p><p>En mi trabajo me doy cuenta de que muchas veces la web se utiliza como un gran backend. Por ejemplo, Google indexa el contenido de Spotify y utilizando la web en la que trabajo (open.spotify.com), extrayendo metadatos para su buscador, que se muestran en un lateral al buscar artistas. Tambi&#xE9;n se utiliza para Google Home o Alexa de Amazon para su integraci&#xF3;n con web. Y de forma similar, cuando compartes en Facebook o Twitter, sus bots utilizan metadatos extra&#xED;dos de la p&#xE1;gina para mostrar una previsualizaci&#xF3;n.</p><p>Tenemos que dejar de pensar que hacemos webs que s&#xF3;lo van a ser consumidas a trav&#xE9;s de un navegador. Creamos contenido utilizando herramientas web pero no tenemos ning&#xFA;n control sobre d&#xF3;nde se van a visualizar. Un ejemplo es WebVR, donde es dif&#xED;cil controlar el entorno, y no existe el concepto de &#x201C;p&#xE1;gina&#x201D;.</p><p>Tenemos que mirar m&#xE1;s all&#xE1;, pensar en nuevas interfaces y cu&#xE1;l va a ser el papel de la web ah&#xED; y olvidarse de controlar en entorno. Cuando llegaron los m&#xF3;viles con navegador fue un desaf&#xED;o crear webs. &#xBF;Un sitio aparte? &#xBF;Responsive? Este problema es f&#xE1;cil comparado con lo que viene ahora.</p><p><strong>[C] &#xA1;S&#xED; que est&#xE1; dif&#xED;cil saber lo que vendr&#xE1;! Si te parece entramos en las r&#xE1;fagas, y aqu&#xED; va la primera. Dinos alguien que te haya inspirado.</strong></p><p>Me gustar&#xED;a mencionar gente con la que he trabajado y me ha inspirado. Me gust&#xF3; mucho trabajar en Tuenti con <a href="https://twitter.com/OrteslaCano" target="_blank" rel="noopener">Alberto Grajera (@OrteslaCano)</a> que ahora est&#xE1; en Cabify, <a href="https://twitter.com/davideme" target="_blank" rel="noopener">Davide Mendolia (@davideme)</a> que est&#xE1; en Karumi, y <a href="https://twitter.com/felipernb" target="_blank" rel="noopener">Felipe Ribeiro (@felipernb)</a> con quien trabajo en Spotify. Son desarrolladores que sol&#xED;an hacer web, aunque algunos hacen ahora m&#xF3;vil, y te recuerdan qu&#xE9; es lo importante cuando est&#xE1;s trabajando. La toma de requisitos, evaluar el problema con una mente ingenieril y no dejarse llevar por modas (por ejemplo &#xFA;ltimas librer&#xED;as). A todos nos gusta utilizar lo &#xFA;ltimo pero tenemos que anteponer el hecho de que hay un usuario detr&#xE1;s, que necesita ese proyecto a tiempo y que funcione bien. Hay una empresa que te est&#xE1; pagando por hacer el trabajo, y va a haber un compa&#xF1;ero que va a entrar a tu equipo y tiene que heredar o trabajar contigo en ese c&#xF3;digo. Estas 3 personas me han ayudado mucho a centrarme en lo que de verdad es importante.</p><p>Hay gente conocida del mundo web que me gusta seguir, y que me han inspirado de una forma diferente. Steve Souders fue quien hizo reverse engineering de c&#xF3;mo el navegador hac&#xED;a peticiones y gestionaba las dependencias entre ellas. Fue quien puso las bases de lo que hoy se conoce como WPO (Optimizaci&#xF3;n de rendimiento web).</p><p><a href="https://twitter.com/slicknet" target="_blank" rel="noopener">Nicholas C. Zakas</a>, que trabaja en Yahoo, hablaba sobre patrones para escribir Javascript mantenible. Stoyan Stefanov, que trabaja en Facebook, es otro track de Javascript. Algunos m&#xE1;s &#x201C;recientes&#x201D; son Addy Osmani, que es un devrel de Google que da muchas charlas muy entretenidas. Y por &#xFA;ltimo <a href="https://twitter.com/dan_abramov" target="_blank" rel="noopener">Dan Abramov</a>, que quien haya trabajado con Redux sabr&#xE1; que es quien responde cualquier pregunta sobre el tema, y trabaja en Facebook.</p><p><strong>[I] Los dejamos todos anotados para que la gente conozca a gente nueva, aprenda cosas nuevas y ampl&#xED;e sus horizontes. Recomi&#xE9;ndanos ahora un recurso, una p&#xE1;gina web o un blog que consideres imprescindible.</strong></p><p>No pod&#xED;a elegir s&#xF3;lo uno, as&#xED; que he escogido varios. Me gustan mucho las newsletter y estoy suscrito a <a href="https://frontendfoc.us/" target="_blank" rel="noopener">Frontend Focus</a> y <a href="https://javascriptweekly.com" target="_blank" rel="noopener">Javascript Weekly</a>, que comparten muchos enlaces a posts y v&#xED;deos de conferencias.</p><p>Me gusta mucho ver v&#xED;deos de charlas, como por ejemplo los de las JSConf. Esta conferencia es de las principales en JS, las entradas son caras, pero publican todos los v&#xED;deos en Youtube, as&#xED; que es un buen recurso para ponerse al d&#xED;a. Google IO, el evento anual de Google, publican muchos v&#xED;deos de sus charlas. Hace un par de meses fue la edici&#xF3;n de 2017 y ya est&#xE1;n subidos.</p><p>Hay un par de webs que visito bastante: <a href="https://css-tricks.com/" target="_blank" rel="noopener">CSS-Tricks</a> y <a href="https://www.smashingmagazine.com/" target="_blank" rel="noopener">Smashing Magazine</a>, que hablan sobre frontend en general.</p><p>Un buen libro es &#x201C;High Performance Browser Networking&#x201D; de Ilya Grigorik, que es un ingeniero De Google. Te explica todo el stack, qu&#xE9; ocurre cuando se hace una petici&#xF3;n y todos los puntos en los que podemos trabajar para mejorar el rendimiento de una web.</p><p><strong>[I] Perfecto. Igualmente lo dejamos apuntado para que la gente los pueda ver.</strong></p><p><strong>[C] Recomi&#xE9;ndanos ahora a un invitado o invitada a quien te gustar&#xED;a que invit&#xE1;semos al programa.</strong></p><p>[J] Jaume Sanchez Elias (<a href="https://twitter.com/thespite" target="_blank" rel="noopener">@thespite en Twitter</a>) es un chico que hace WebGL, WebVR y cosas muy chulas. Hace poco coincid&#xED; con &#xE9;l en una charla y me encant&#xF3; conocerlo. Es muy enriquecedor cuando conoces a gente puntera que es capaz de inspirar tanto a los desarrolladores web. Es impresionante lo que puede conseguir con estas herramientas. Jaume hace que parezca f&#xE1;cil, pero en realidad hay mucho trabajo detr&#xE1;s. Me gustar&#xED;a escuchar a Jaume hablar de estos temas.</p><p><strong>[I] Perfecto, pues le haremos llegar desde aqu&#xED; la invitaci&#xF3;n. Por &#xFA;ltimo recomi&#xE9;ndanos un tema que te gustar&#xED;a tratar en el programa.</strong></p><p>[J] Soy un enamorado de mejorar la performance. Me gustar&#xED;a saber si le preocupa a los desarrolladores, si son capaces de convencer a la gente de producto de que es algo a lo que hay que dedicarle tiempo, y si se ve como una feature m&#xE1;s. Cu&#xE1;les son los casos pr&#xE1;cticos, si han introducido alguna mejora que se tradujera en m&#xE1;s usuarios u otras m&#xE9;tricas. Echo en falta ejemplos, sobre todo de empresas espa&#xF1;olas, donde se vean mejoras de rendimiento que hayan movido m&#xE9;tricas importantes para la empresa.</p><p><strong>[I] Muy bien, pues con esto cerramos el programa. La verdad es que ha sido un verdadero placer tenerte con nosotros. Hemos obtenido un mont&#xF3;n de informaci&#xF3;n y sobre temas &#xFA;tiles para que a la gente le pique el gusanillo y se ponga a investigar y a realmente implementarlo.</strong></p><p>[J] Lo divertido es que es f&#xE1;cil jugar con nuestras webs, e inspeccionar el c&#xF3;digo de cualquier web, aprendiendo de c&#xF3;mo han aplicado otros PWA.</p><p><strong>[C] Much&#xED;simas gracias Jos&#xE9; Manuel por haber aceptado nuestra invitaci&#xF3;n.</strong></p><p>[J] A vosotros, un honor.</p><p><strong>[I] Muchas gracias.</strong></p><p>[M&#xFA;sica] Recomendaciones. El espacio de sugerencias y recursos &#xFA;tiles para los dise&#xF1;adores y desarrolladores web.</p><p><strong>[I] En el programa de hoy os traemos cuatro links, as&#xED; que all&#xE1; van mis dos primeros. El primero de los links es <a href="https://cloudfour.com/thinks/progressive-web-app-questions/" target="_blank" rel="noopener">un art&#xED;culo que ha escrito Jason Grigsby de Cloudfour acerca de las PWAs</a>, explicando lo que significa y lo que hacen. Dec&#xED;a que hace unas semanas le escrib&#xED;a un estudiante en su proyecto final y quer&#xED;a preguntarle c&#xF3;mo funcionaban y para qu&#xE9; serv&#xED;an. El segundo link es una herramienta de auditor&#xED;a que se puede usar a trav&#xE9;s de terminal y a trav&#xE9;s de p&#xE1;gina web, y es <a href="https://github.com/GoogleChrome/lighthouse" target="_blank" rel="noopener">Lighthouse</a>. Es una herramienta que ha desarrollado Google, principalmente Paul Irish, para auditar y ver las m&#xE9;tricas de nuestras PWAs.</strong></p><p><strong>[C] El primero de mis links viene de la web de desarrolladores de Google, en la cual ten&#xE9;is <a href="https://developers.google.com/web/progressive-web-apps/checklist" target="_blank" rel="noopener">una checklist para poder testear y comprobar si cumple todos los requisitos necesarios</a> y adem&#xE1;s poder poner atenci&#xF3;n a los detalles y de esa manera mejorar la experiencia a nuestros usuarios. El segundo de mis links es <a href="https://www.timmykokke.com/2017/06/the-pwa-resource-list/" target="_blank" rel="noopener">un listado de recursos que Timmy ha colgado en su p&#xE1;gina web personal sobre las PWAs</a>.</strong></p>
+			  	</div>
+
+		  	</article>
+		</div>
+    <footer>
+        <section class="links">
+            <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter · <a href="https://github.com/JMPerez">GitHub</a> · <a href="http://www.linkedin.com/in/jmperezperez">LinkedIn</a>
+        </section>
+    </footer>
+
+	</div>
+  </article>
+
+  </body>
+</html>

@@ -41,17 +41,19 @@ description: I speak at conferences and meetups about web performance optimizati
   }
 </style>
 
-I speak at conferences and meetups about web performance optimization. If you think one of my talks could fit your event, <a href="mailto:jmperez1985@gmail.com">send me an email or <a href="https://twitter.com/jmperezperez">contact me on Twitter</a>.
+I speak at conferences and meetups about web performance optimization. If you think one of my talks could fit your event, <a href="mailto:jmperez1985@gmail.com">send me an email</a> or <a href="https://twitter.com/jmperezperez">contact me on Twitter</a>.
 
-Here you can find a list of my talks at web conferences and local meetups.
+Here you can find a list of my talks at web conferences and local meetups. You can also see my presentations on [notist](https://noti.st/jmperez).
 
 <hr/>
 <ul class="columns-2" class="talks">
 <li>
-<div class="intrinsic-ratio">
-  <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1543704714/speaking/codemotion-madrid-2018.jpg">
-</div>
-**[Codemotion — Madrid, SPA](https://madrid2018.codemotionworld.com/talk-detail/?detail=9225)**<br/>
+<a href="https://noti.st/jmperez/bSkEUc/better-performance-for-component-based-web-apps">
+  <div class="intrinsic-ratio">
+    <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1543704714/speaking/codemotion-madrid-2018.jpg">
+  </div>
+</a>
+**[Codemotion — Madrid, SPA](https://noti.st/jmperez/bSkEUc/better-performance-for-component-based-web-apps)**<br/>
 Better performance for component-based web apps<br/>
 Nov 2018
 </li>

@@ -58,7 +58,7 @@
       <address class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="/about-me/" itemprop="name">José M. Pérez</a></address>
       <meta class="post-data" itemprop="datePublished" content="{{ page.date.toISOString() }}">
           {{ date(page.date, 'MMMM D, YYYY') }}
-      </meta><span style="margin:0 .5rem;display:inline-block">|</span>~ Reading Time: <time>{{ readingTime(page.content, 'mins', 200) }}</time>
+      </meta><span style="margin:0 .5rem;display:inline-block">|</span> Reading Time: ~<time>{{ readingTime(page.content, 'mins', 200) }}</time>
     </div>
   </div>
   {% if page.url %}

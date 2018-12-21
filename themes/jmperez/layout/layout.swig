@@ -66,5 +66,6 @@
     }, 0);
    });
   </script>
+  <script src="/quicklink.js" async></script>
 </body>
 </html>

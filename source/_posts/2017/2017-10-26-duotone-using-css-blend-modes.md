@@ -12,7 +12,7 @@ tags:
 permalink: duotone-using-css-blend-modes
 ---
 
-In a past post I explained [how to use SVG and a `feColorMatrix` filter](/duotone-using-fecolormatrix) to apply a duotone effect to an image. This time I'm going to show how to achieve a similar effect with only CSS.
+In a past post I explained [how to use SVG and a `feColorMatrix` filter](/duotone-using-fecolormatrix/) to apply a duotone effect to an image. This time I'm going to show how to achieve a similar effect with only CSS.
 
 <!-- more -->
 Demo & Code: [https://codepen.io/jmperez/pen/wrVxga](http://codepen.io/jmperez/pen/wrVxga)
@@ -21,7 +21,7 @@ Demo & Code: [https://codepen.io/jmperez/pen/wrVxga](http://codepen.io/jmperez/p
 
 The code consists of a `<div/>` that has an image set as a background. Then, we add a `::before` and an `::after` pseudo-elements with the colours we want to apply and the right blend modes.
 
-Previously, my colleague Thodoris described how to achieve this effect [in JS using Canvas](http://blog.72lions.com/blog/2015/7/7/duotone-in-js) and [in iOS](http://blog.72lions.com/blog/2015/7/18/duotone-in-ios). I also reproduced it using [SVG and a `feColorMatrix` filter](/duotone-using-fecolormatrix).
+Previously, my colleague Thodoris described how to achieve this effect [in JS using Canvas](http://blog.72lions.com/blog/2015/7/7/duotone-in-js) and [in iOS](http://blog.72lions.com/blog/2015/7/18/duotone-in-ios). I also reproduced it using [SVG and a `feColorMatrix` filter](/duotone-using-fecolormatrix/).
 
 This version is based on the technique described by Una Kravets:
 

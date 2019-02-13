@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me
-description: Software Engineer and Web Performance Specialist based in Stockholm, Sweden. Google Developer Expert. Working at Spotify.
+description: Software Engineer and Web Performance Specialist based in Stockholm, Sweden. Google Developer Expert. Working at Facebook.
 i18n:
   en: about-me/
   es: es/about-me/
@@ -22,7 +22,7 @@ I am a Software Engineer who likes web development and performance optimization.
 
 I believe in the openness of the web and that everyone has the right to enjoy and access its content. I like working with companies to improve their sites, ensuring they load quickly regardless of device and network conditions. From the initial developing process to auditing and analysis.
 
-Currently I am working as a Technical Owner at [Spotify](https://spotify.com) in Stockholm, Sweden. Occasionally [I speak at web conferences and meetups](/talks/) and [work on side projects](/projects/). I'm also a [Google Developer Expert](https://developers.google.com/experts/people/jose-manuel-perez-perez) in Web Technologies.
+Currently I am working as a Solutions Engineer at Facebook in Stockholm, Sweden. Occasionally [I speak at web conferences and meetups](/talks/) and [work on side projects](/projects/). I'm also a [Google Developer Expert](https://developers.google.com/experts/people/jose-manuel-perez-perez) in Web Technologies.
 
 ## Contact
 

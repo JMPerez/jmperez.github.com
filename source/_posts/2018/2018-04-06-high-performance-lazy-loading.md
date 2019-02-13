@@ -162,7 +162,7 @@ Where to set the fold? This is tricky, and it will depend on the user's device, 
 
 ## A small component to detect when an area is visible
 
-I have talked in the past about [lazy-loading images](/lazy-loading-images). This is just a type of asset that we can lazy-load, but we can apply the technique to other elements.
+I have talked in the past about [lazy-loading images](/lazy-loading-images/). This is just a type of asset that we can lazy-load, but we can apply the technique to other elements.
 
 Let's build a simple component that will detect when the section is visible in the viewport. For brevity I will use the [Intersection Observer API](https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API), an experimental technology with [quite good support](https://caniuse.com/#search=intersectionobserver).
 

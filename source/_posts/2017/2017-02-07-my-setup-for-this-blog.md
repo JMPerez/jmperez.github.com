@@ -16,7 +16,7 @@ It is still [not very over-engineered](http://jlongster.com/Presenting-The-Most-
 
 ## Static Site
 
-The blog is a set of static pages. Before that it used to be a Wordpress site and eventually [I migrated to Jekyll and GitHub Pages](/migrating-wordpress-jekyll-github-pages). This worked really well because I could take advantage of GitHub's distributed storage to serve the assets, and there is nothing that can beat a static site in terms of performance, which I care about.
+The blog is a set of static pages. Before that it used to be a Wordpress site and eventually [I migrated to Jekyll and GitHub Pages](/migrating-wordpress-jekyll-github-pages/). This worked really well because I could take advantage of GitHub's distributed storage to serve the assets, and there is nothing that can beat a static site in terms of performance, which I care about.
 
 In October 2016 I migrated to [Hexo](https://hexo.io/). Hexo is fast, and the posts are written in the same Markdown format I like and I used with Jekyll, so moving to Hexo was really easy.
 
@@ -24,7 +24,7 @@ Migrating to Hexo was a bit of a trade-off. Now I need to generate the static si
 
 ## Progressive Images
 
-The few JPG images on this site are progressive JPGs, [generated using Jpeg.io](/ssim-jpeg-io). Having a more custom technique to load images, like [Medium's approach](/medium-image-progressive-loading-placeholder), is overkill. Progressive JPGs start rendering soon, and as the browser downloads more of the file it shows a better version of the image. You can see an example on [this WebPageTest run](https://www.webpagetest.org/result/170207_N3_1794c7ee69d5a1a3eb92842504f01a7b/).
+The few JPG images on this site are progressive JPGs, [generated using Jpeg.io](/ssim-jpeg-io/). Having a more custom technique to load images, like [Medium's approach](/medium-image-progressive-loading-placeholder/), is overkill. Progressive JPGs start rendering soon, and as the browser downloads more of the file it shows a better version of the image. You can see an example on [this WebPageTest run](https://www.webpagetest.org/result/170207_N3_1794c7ee69d5a1a3eb92842504f01a7b/).
 
 [![Filmstrip for jmperezperez.com](/assets/images/posts/jmperez-filmstrip.png)](/assets/images/posts/jmperez-filmstrip.png)
 
@@ -32,7 +32,7 @@ Something in my to-do list is to prevent [content jumping](https://css-tricks.co
 
 ## SSL and HTTP/2
 
-This site is served on HTTPS. I already talked about [how and why I migrated to SSL](/github-pages-ssl-custom-domain). A good thing about using Cloudflare for SSL is that I also get HTTP/2 support, so I can start investigating it a bit more. I would like to give Server Push a try though, but for that I would need to run my own server. Maybe some time in the future.
+This site is served on HTTPS. I already talked about [how and why I migrated to SSL](/github-pages-ssl-custom-domain/). A good thing about using Cloudflare for SSL is that I also get HTTP/2 support, so I can start investigating it a bit more. I would like to give Server Push a try though, but for that I would need to run my own server. Maybe some time in the future.
 
 Finally, Cloudflare also allows me to set the browser cache expiration, increasing the short one that GitHub Pages set by default.
 

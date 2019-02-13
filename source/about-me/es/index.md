@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Sobre mí
-description: Ingeniero informático y especialista en web performance. Google Developer Expert. Trabajo en Spotify en Estocolmo, Suecia.
+description: Ingeniero informático y especialista en web performance. Google Developer Expert. Trabajo en Facebook en Estocolmo, Suecia.
 language: es
 i18n:
   en: about-me/
@@ -23,7 +23,7 @@ Soy un ingeniero frontend. Me apasiona el desarrollo y la optimización web.
 
 Me gusta trabajar con empresas para mejorar sus webs, asegurándome de que se carguen rápidamente, independientemente del dispositivo y de las condiciones de la red. Desde el proceso de desarrollo inicial hasta su auditoría y análisis.
 
-Actualmente trabajo como Tech Leaden [Spotify](https://spotify.com) en Stockholm, Sweden. Ocasionalmente [participo como ponente en conferencias y meetups](/talks/) y [trabajo en proyectos personales](/projects/). También soy [Google Developer Expert](https://developers.google.com/experts/people/jose-manuel-perez-perez) en tecnologías web.
+Actualmente trabajo como Solutions Engineer en Facebook en Estocolmo, Suecia. Ocasionalmente [participo como ponente en conferencias y meetups](/talks/) y [trabajo en proyectos personales](/projects/). También soy [Google Developer Expert](https://developers.google.com/experts/people/jose-manuel-perez-perez) en tecnologías web.
 
 ## Contacto
 

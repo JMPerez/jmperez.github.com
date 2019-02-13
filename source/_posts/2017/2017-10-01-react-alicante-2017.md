@@ -81,7 +81,7 @@ Not only did she talked about how to use StoryBook, but also how it was the sour
 
 I was recently looking for tools to do visual regression testing to catch CSS issues, but in the end we decided to skip it. I liked that Marie-Laure talked about this and demoed [Loki](https://loki.js.org), which I didnt know about, that integrates with StoryBook and provides visual diffing. It looked easy to use and a great complement to unit tests and snapshot tests for components.
 
-#### A practical guide to Redux Form by [Erik Rasmussen](https://twitter.com/erikras) - [Slides](https://speakerdeck.com/erikras/a-practical-guide-to-redux-form) and [Code](//github.com/erikras/reactalicante2017)
+#### A practical guide to Redux Form by [Erik Rasmussen](https://twitter.com/erikras) - [Slides](https://speakerdeck.com/erikras/a-practical-guide-to-redux-form) and [Code](https://github.com/erikras/reactalicante2017)
 
 Im fortunate that I dont have to deal with forms that often. If I ever have to do it with React, I think I would go for [Redux Form](https://redux-form.com/).
 

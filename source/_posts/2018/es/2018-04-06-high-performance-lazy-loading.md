@@ -163,7 +163,7 @@ Como en todo, **hay pros y contras cuando se usa lazy-loading**. No queremos apl
 
 ## Un pequeño componente para detectar cuando una área es visible
 
-En el pasado hablé sobre [lazy-load de imágenes](/lazy-loading-images). La misma técnica se puede aplicar a otros elemetos.
+En el pasado hablé sobre [lazy-load de imágenes](/lazy-loading-images/). La misma técnica se puede aplicar a otros elemetos.
 
 Vamos a escribir un componente sencillo que detectará cuando una sección es visible en el viewport. Para hacerlo más breve usaré la [Intersection Observer API](https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API), una tecnología experimental con [bastante buen soporte](https://caniuse.com/#search=intersectionobserver).
 

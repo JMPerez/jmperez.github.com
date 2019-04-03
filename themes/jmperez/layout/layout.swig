@@ -4,14 +4,15 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
-  <title>{{ page.title }}{% if page.title %} - {% endif %}José M. Pérez</title>
+  {% set title = page.title or "Full-stack Engineer and Web Performance Expert" %}
+  <title>{{ title }} - José M. Pérez</title>
   {% if page.description or config.description %}<meta name="description" content="{{ page.description or config.description }}">{% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
   <link rel="author" href="https://plus.google.com/107456024651797783420" />
   <link rel="alternate" type="application/rss+xml" title="Jose M. Perez" href="https://jmperezperez.com/feed.xml">
   <meta name="twitter:card" content="{% if page.image %}summary_large_image{% else %}summary{% endif %}">
   <meta name="twitter:url" content="{{ page_url(config.url + '/' + page.path) }}" property="og:url">
-  <meta name="twitter:title" content="{{ page.title }}{% if page.title %} - {% endif %}José M. Pérez" property="og:title">
+  <meta name="twitter:title" content="{{ title }}" property="og:title">
   {% if page.description %}<meta name="twitter:description" content="{{ page.description }}" property="og:description">{% endif %}
   <meta name="twitter:site" content="@jmperezperez">
   {% if page.image %}

@@ -114,3 +114,11 @@ feed:
   path: feed.xml
   limit: 20
   ? hub
+
+tagFeed:
+  type: atom
+  path:
+    pre: tag
+    post: atom.xml
+  limit: 20
+  hub:

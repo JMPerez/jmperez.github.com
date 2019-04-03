@@ -5,7 +5,7 @@
       <img src="https://res.cloudinary.com/jmperez/image/upload/w_240,f_auto,c_scale/v1519156883/profile_ysrm5y.jpg" style="border-radius:100%" alt="José M. Pérez" sizes="120px" width="120" height="120">
     </div>
     <h1>José M. Pérez</h1>
-    <p>Engineer at Facebook and <abbr title="Google Developer Expert">GDE</abbr> in Web Techologies. Ex Spotify.
+    <p>Engineer at Facebook and <abbr title="Google Developer Expert">GDE</abbr> in Web Technologies. Ex Spotify.
   </div>
 </div>
 <div class="row posts-list">

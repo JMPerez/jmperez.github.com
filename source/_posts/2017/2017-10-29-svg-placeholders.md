@@ -19,7 +19,12 @@ I'm passionate about image performance optimisation and making images load fast 
 
 During the last days I have come across some loading techniques that use SVG, and I would like to describe them in this post.
 
-{% resp_image v1509278557/jmperez-composition-primitive_j8zyfn.jpg "Example of a SVG generated using 10 and 100 triangles based on a bitmap image" %}
+<img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1509278557/jmperez-composition-primitive_j8zyfn.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1509278557/jmperez-composition-primitive_j8zyfn.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1509278557/jmperez-composition-primitive_j8zyfn.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1509278557/jmperez-composition-primitive_j8zyfn.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1509278557/jmperez-composition-primitive_j8zyfn.jpg"
+    alt="Example of a SVG generated using 10 and 100 triangles based on a bitmap image" />
 
 <small class="caption">Generating SVGs from images can be used for placeholders. Keep reading!</small>
 
@@ -35,7 +40,12 @@ In this post we will go through these topics:
 
 In the past [I have written about placeholders and lazy-load of images](/lazy-loading-images), and also [talked about it](https://www.youtube.com/watch?v=szmVNOnkwoU). When doing lazy-loading of images it's a good idea to think about what to render as a placeholder, since it can have a big impact in user's perceived performance. In the past I described several options:
 
-{% resp_image v1509278557/placeholder-options_vtwp6b.png "Several strategies to fill the area of an image before it loads" %}
+<img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1509278557/placeholder-options_vtwp6b.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1509278557/placeholder-options_vtwp6b.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1509278557/placeholder-options_vtwp6b.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1509278557/placeholder-options_vtwp6b.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1509278557/placeholder-options_vtwp6b.png"
+    alt="Several strategies to fill the area of an image before it loads" />
 
 <small class="caption">Several strategies to fill the area of an image before it loads.</small>
 
@@ -48,7 +58,13 @@ Turns out there are many other variations and lots of smart people are developin
 
 One of them is having gradients instead of solid colours. The gradients can create a more accurate preview of the final image, with very little overhead (increase in payload).
 
-{% resp_image v1509278575/gradient-background_jyymty.jpg "Using gradients as backgrounds. Screenshot from Gradify" %}
+<img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1509278575/gradient-background_jyymty.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1509278575/gradient-background_jyymty.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1509278575/gradient-background_jyymty.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1509278575/gradient-background_jyymty.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1509278575/gradient-background_jyymty.jpg"
+    alt="Using gradients as backgrounds. Screenshot from Gradify" />
+
 <small class="caption">Using gradients as backgrounds. Screenshot from Gradify, which is not online anymore. Code [on GitHub](https://github.com/fraser-hemp/gradify).</small>
 
 Another technique is using SVGs based on the image, which is getting some traction with recent experiments and hacks.

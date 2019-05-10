@@ -133,7 +133,7 @@ Cuando envías código innecesario al usuario se desperdician tus recursos y los
 
 Un informe de cobertura de código, como [el que proporciona Google Chrome](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage) **no nos será de mucha ayuda**. El código JS será ejecutado y el CSS aplicado a elementos que no están visibles.
 
-{% resp_image v1522995652/observer/chrome-coverage.png "Code coverage tab on Google Chrome" %}
+{% resp_image v1522995652/observer/chrome-coverage.png "La pestaña de Cobertura en Google Chrome" %}
 <small class="caption">Pestaña de cobertura de código en Google Chrome ([fuente](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage))</small>
 
 Como en todo, **hay pros y contras cuando se usa lazy-loading**. No queremos aplicar lazy-loading a todos los elementos. Debemos tener en cuenta algunas cosas.

@@ -14,7 +14,12 @@ permalink: frontfest-moscow-2017
 
 A couple of weeks ago I attended [FrontFest 2017](https://2017.frontfest.ru/) in Moscow. There were around 200 attendees at Digital October, an impressive venue. I had a lot of fun and met many local developers.
 
-{% resp_image v1512318752/frontfest/frontfest-01.jpg "Jose M. Perez speaking at Frontfest Moscow 2017" %}
+<img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1512318752/frontfest/frontfest-01.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1512318752/frontfest/frontfest-01.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1512318752/frontfest/frontfest-01.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1512318752/frontfest/frontfest-01.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1512318752/frontfest/frontfest-01.jpg"
+    alt="Jose M. Perez speaking at Frontfest Moscow 2017" />
 
 <!-- more -->
 

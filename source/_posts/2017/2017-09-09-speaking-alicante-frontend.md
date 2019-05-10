@@ -14,7 +14,12 @@ tags:
 
 This week I had a blast speaking at [a meetup organised by Alicante Frontend](https://www.meetup.com/Alicante-Frontend/events/242461990/). To me this was really special. Alicante is my home town and it’s also where I studied Computer Science.
 
-{% resp_image v1510326708/alicante-frontend_anptgy.jpg "Alicante Frontend" %}
+<img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1510326708/alicante-frontend_anptgy.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1510326708/alicante-frontend_anptgy.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1510326708/alicante-frontend_anptgy.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1510326708/alicante-frontend_anptgy.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1510326708/alicante-frontend_anptgy.jpg"
+    alt="Alicante Frontend" />
 
 <!-- more -->
 
@@ -35,7 +40,13 @@ I was actually looking for a place like this. I have tried to work remotely spor
 
 ## Meeting the team behind Alicante Frontend
 
-{% resp_image v1523909911/alicante-frontend-organisers_rx52os.jpg "Alex Jover, me, Alex Mayol and Álvaro Yuste. The first ones arriving at ULab to prepare the meetup" %}
+<img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1523909911/alicante-frontend-organisers_rx52os.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1523909911/alicante-frontend-organisers_rx52os.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1523909911/alicante-frontend-organisers_rx52os.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1523909911/alicante-frontend-organisers_rx52os.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1523909911/alicante-frontend-organisers_rx52os.jpg"
+    alt="Alex Jover, me, Alex Mayol and Álvaro Yuste. The first ones arriving at ULab to prepare the meetup" />
+
 <small class="caption">Alex Jover, me, Alex Mayol and Álvaro Yuste. The first ones arriving at ULab to prepare the meetup. — <a href="https://twitter.com/alexjoverm/status/905118087648858112">Twitter</a></small>
 
 After attending JSDayES 2017 I came in contact with lots of web developers in Spain and got to join two large Slack channels where Frontend developers hang out, at a national (Frontaneros) regional level (Alicante Frontend).

@@ -160,6 +160,10 @@ Where to set the fold? This is tricky, and it will depend on the user's device, 
   </div>
   <small class="caption">Rendering [a test page](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) using Google Webmaster Tools' "Fetch as Google".</small>
 
+<div class="callout">
+<strong>Update May 10th 2019</strong>: Google announced during I/O 2019 that <a href="https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html">they will use an evergreen Googlebot</a>. This puts an end to using Chrome 41 to render pages and it adds support for IntersectionObserver. If you are using Google Search Console to test how Google renders one of your URLs, you will still get the Chrome 41 result. This is because <a href="https://youtu.be/Ey0N1Ry0BPM?t=381">Google hasn't updated their testing tools to use an evergreen Chrome</a>.
+</div>
+
 ## A small component to detect when an area is visible
 
 I have talked in the past about [lazy-loading images](/lazy-loading-images/). This is just a type of asset that we can lazy-load, but we can apply the technique to other elements.

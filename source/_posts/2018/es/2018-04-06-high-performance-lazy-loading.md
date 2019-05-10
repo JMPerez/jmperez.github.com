@@ -161,6 +161,10 @@ Como en todo, **hay pros y contras cuando se usa lazy-loading**. No queremos apl
   </div>
   <small class="caption">Renderizando [una página de prueba](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) usando "Fetch as Google" de Google Webmaster Tools.</small>
 
+<div class="callout">
+<strong>Actualización a 10 de mayo de 2019</strong>: Google anunció durante el I/O 2019 que <a href="https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html">actualizarán Googlebot para usar la última versión de Chrome</a>. Esto acaba con el problema de que Googlebot use Chrome 41 para renderizar páginas, y añade soporte para IntersectionObserver. Si utilizas Google Search Console para comprobar cómo Google renderiza una de tus URLs, todavía recibirás el resultado de renderizar usando Chrome 41. Esto es porque <a href="https://youtu.be/Ey0N1Ry0BPM?t=381">Google aún no ha actualizado sus herramientas de testeo para utilizar un Chrome <em>evergreen</em>.
+</div>
+
 ## Un pequeño componente para detectar cuando una área es visible
 
 En el pasado hablé sobre [lazy-load de imágenes](/lazy-loading-images/). La misma técnica se puede aplicar a otros elemetos.

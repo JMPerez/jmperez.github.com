@@ -41,7 +41,7 @@ Single Page Applications and the trend of moving most of the logic to the client
 
 While it can be difficult to keep track of every new tool and browser API, it's important to be aware of them. It wouldn't be smart to jump immediately on them and rewrite constantly our product on the latest and trendiest stack, but we can learn something from them.
 
-I get inspired by tools like [Gatsby](https://www.gatsby.org/) or [Next.js](https://nextjs.org/). They let us build sites that have a high performance out of the box. What they do is not black magic, but making a good job serving what is needed for the current page, and deferred the loading of the rest of the content. Nothing prevents us from adopting some of those techniques to our projects to give them a boost.
+I get inspired by tools like [Gatsby](https://www.gatsbyjs.org/) or [Next.js](https://nextjs.org/). They let us build sites that have a high performance out of the box. What they do is not black magic, but making a good job serving what is needed for the current page, and deferred the loading of the rest of the content. Nothing prevents us from adopting some of those techniques to our projects to give them a boost.
 
 ## The web that is coming
 The future looks bright. We are decoupling UI and data. We are creating sites that can be run on a laptop, phone, TV or [smartwatch](https://developer.apple.com/videos/play/wwdc2018/239/). We are building offline experiences and sites that synchronize in the background and handle push notifications. We are moving desktop applications to the web, seamlessly running [assembly code](https://developer.mozilla.org/docs/WebAssembly) in the browser.

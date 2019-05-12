@@ -82,7 +82,7 @@ More info:
 
   * [Google+ is Built Using Tools You Can Use Too: Closure, Java Servlets, JavaScript, BigTable, Colossus, Quick Turnaround](http://highscalability.com/blog/2011/7/12/google-is-built-using-tools-you-can-use-too-closure-java-ser.html)
 
-  * [I'm a technical lead on the Google+ team. Ask me anything.](http://anyasq.com/79-im-a-technical-lead-on-the-google+-team)
+  * [I'm a technical lead on the Google+ team. Ask me anything.](https://web.archive.org/web/20130118141404/http://anyasq.com/79-im-a-technical-lead-on-the-google+-team)
 
   * [Google+ social network in depth](http://stackoverflow.com/questions/6545811/google-social-network-in-depth)
 

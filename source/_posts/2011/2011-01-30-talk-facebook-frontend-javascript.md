@@ -25,7 +25,7 @@ They realized they had a problem with so much JS code and they worked at differe
 
 Haste is a package and dependency manager for CSS and JS files. In each file they specify the name of the package provided by the file and those files that are required to run the file. Thus, Haste can manage what files are needed to run a certain script.
 
-This helps managing how files are requested and even which sets of files should be merged. This system was further explained by [Xiaoliang "David" Wei](http://davidwei.org/cv/talks/) at his talk about [_Static resource management & optimization_](http://velocity.oreilly.com.cn/2010/ppts/VelocityChina2010Dec7StaticResource.pdf) that took place on December 2010 at Velocity China.
+This helps managing how files are requested and even which sets of files should be merged. This system was further explained by [Xiaoliang "David" Wei](https://www.linkedin.com/in/davidwei79/) at his talk about [_Static resource management & optimization_](http://velocity.oreilly.com.cn/2010/ppts/VelocityChina2010Dec7StaticResource.pdf) that took place on December 2010 at Velocity China.
 
 ## Bootloader
 

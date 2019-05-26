@@ -48,6 +48,16 @@ Here you can find a list of my talks at web conferences and local meetups. You c
 <hr/>
 <ul class="columns-2" class="talks">
 <li>
+<a href="https://noti.st/jmperez/nErUWP/finding-web-performance-issues-you-didnt-know-you-had">
+  <div class="intrinsic-ratio">
+    <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1542607868/speaking/gdg-stockholm.png">
+  </div>
+</a>
+**[Google Developer Group May 2019 — Stockholm, , SWE](https://noti.st/jmperez/nErUWP/finding-web-performance-issues-you-didnt-know-you-had)**<br/>
+Finding web performance issues you didn’t know you had<br/>
+May 2019
+</li>
+<li>
 <a href="https://noti.st/jmperez/bSkEUc/better-performance-for-component-based-web-apps">
   <div class="intrinsic-ratio">
     <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1543704714/speaking/codemotion-madrid-2018.jpg">

@@ -10,9 +10,9 @@ excerpt: This post shows a script to recursively optimize a set of JPG files usi
 permalink: jpegoptim-optimize-jpg-page-speed
 ---
 
-Image optimization is a big topic these days. The main culprit in site traffic are images, and [their transfer size is increasing over time](http://httparchive.org/trends.php#bytesImg&reqImg).
+Image optimization is a big topic these days. The main culprit in site traffic are images, and [their transfer size is increasing over time](https://httparchive.org/reports/state-of-the-web).
 
-You may have wondered how to optimize your images. First, check if there is room for improvement. For that I will be using [Google Page Speed](http://developers.google.com/speed/pagespeed), which offers several tools for analyzing your site. One of them is a handy [online analyzer](http://developers.google.com/speed/pagespeed/insights/). Type there the name of your site and click to analyze it.
+You may have wondered how to optimize your images. First, check if there is room for improvement. For that I will be using [Google Page Speed](https://developers.google.com/speed/), which offers several tools for analyzing your site. One of them is a handy [online analyzer](https://developers.google.com/speed/pagespeed/insights/). Type there the name of your site and click to analyze it.
 
 <!-- more -->
 I like the 'Optimize images' section. It tells you what resources can be optimized and how much traffic you can save, both in the mobile version of your site and the one served for desktop:

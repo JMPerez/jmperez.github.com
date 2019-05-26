@@ -5,9 +5,9 @@
   "@type": "BlogPosting",
   "headline": "{{ page.title }}",
   {% if page.description %}
-  "description": "{{ page.description }}",
+  "description": "{{ strip_html(page.description) }}",
   {% elseif page.excerpt %}
-  "description": "{{ page.excerpt }}",
+  "description": "{{ strip_html(page.excerpt) }}",
   {% endif %}
   "mainEntityOfPage":{
       "@type":"WebPage",

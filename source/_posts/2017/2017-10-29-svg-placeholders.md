@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using SVG as placeholders — More Image Loading Techniques
+title: How to use SVG as a Placeholder, and Other Image Loading Techniques
 date: 2017-10-29 23:30:00+01:00
 description: Web Performance Optimisation by lazy-loading images using SVGs as placeholders, representing edges, shapes and silhouettes.
 image:

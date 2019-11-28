@@ -7,7 +7,7 @@
   {% set title = page.title or "Full-stack Engineer and Web Performance Expert" %}
   <title>{{ title }} - José M. Pérez</title>
   {% if page.description or config.description %}<meta name="description" content="{{ page.description or config.description }}">{% endif %}
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <link rel="author" href="https://plus.google.com/107456024651797783420" />
   <link rel="alternate" type="application/rss+xml" title="Jose M. Perez" href="https://jmperezperez.com/feed.xml">
   <meta name="twitter:card" content="{% if page.image %}summary_large_image{% else %}summary{% endif %}">

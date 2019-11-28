@@ -16,6 +16,7 @@ Before joining Facebook as a Solutions Engineer I had many questions about what 
 
 <div style="position:relative;padding-bottom:56.25%;margin-bottom:1rem">
 <img
+    loading="lazy"
     style="max-width:100%; border: 0;position:absolute;top:0;left:0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1574089969/solutions-engineer-facebook_bke37d.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1574089969/solutions-engineer-facebook_bke37d.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1574089969/solutions-engineer-facebook_bke37d.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1574089969/solutions-engineer-facebook_bke37d.jpg 1400w"

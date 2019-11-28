@@ -16,6 +16,7 @@ permalink: medium-image-progressive-loading-placeholder
 Recently, I was browsing a post on Medium and I spotted a nice image loading effect. First, load a small blurry image, and then transition to the large image. I found it pretty neat and wanted to dissect how it was done.
 
 <img
+    loading="lazy"
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510693577/medium-placeholder_ciusf2.png"
     sizes="(max-width: 768px) 100vw, 684px" alt="A screenshot of a blurry placeholder while the image is loaded" style="margin: 0 auto "/>
 
@@ -118,7 +119,7 @@ This works both in Chrome, Safari and Firefox (I haven't tried on IE yet), thoug
 
 Note how the artefacts are smoothen. Keep in mind that the image is only 27px wide and has very low quality, which should result in an awful scaled-up version, but it isn't. If the above effect is enough for you, then you don't need to use more complicated alternatives.
 
-The blur effect can also be achieved using [CSS Filter Effects](http://codepen.io/aniketpant/pen/DsEve). [Its support is quite wide](http://caniuse.com/#feat=css-filters) aside from IE. I'm pretty sure Medium tried this before going to a canvas solution, which feels far too over-engineered, but for some reason they decided not to use it.
+The blur effect can also be achieved using [CSS Filter Effects](https://codepen.io/aniketpant/pen/DsEve). [Its support is quite wide](https://caniuse.com/#feat=css-filters) aside from IE. I'm pretty sure Medium tried this before going to a canvas solution, which feels far too over-engineered, but for some reason they decided not to use it.
 
 {% codepen jmperez PPOXzY 0 result 367 %}
 

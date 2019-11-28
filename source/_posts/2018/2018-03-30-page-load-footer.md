@@ -15,6 +15,7 @@ tags:
 I was browsing [Tim Kadlec's website](https://timkadlec.com) and I noticed he had added page load time metrics in the footer.
 
 <img
+    loading="lazy"
     style="max-width:100%; border: 0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522388675/load-time/tim-kadlec-load-time.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522388675/load-time/tim-kadlec-load-time.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522388675/load-time/tim-kadlec-load-time.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522388675/load-time/tim-kadlec-load-time.png 1400w"
@@ -60,6 +61,7 @@ window.addEventListener('load', () => {
 In the future I would like to extend the reported metrics to include [First Meaningful Paint](https://developers.google.com/web/tools/lighthouse/audits/first-meaningful-paint) (whenever it is implemented, see [a description of the heuristics here](https://docs.google.com/document/d/1BR94tJdZLsin5poeet0XoTW60M0SjvOJQttKT-JK8HI/view)) and [Time to Interactive](https://developers.google.com/web/tools/lighthouse/audits/first-interactive) (using [GoogleChromeLabs/tti-polyfill](https://github.com/GoogleChromeLabs/tti-polyfill)).
 
 <img
+    loading="lazy"
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1522388641/load-time/performance-metrics.jpg"
     sizes="(max-width: 768px) 100vw, 684px" />
 <small class="caption">Slide from [Web Performance: Leveraging the Metrics that Most Affect User Experience from Google I/O '17](https://www.youtube.com/watch?v=6Ljq-Jn-EgU) showing different key moments during a page load.</small>
@@ -79,6 +81,7 @@ Another caveat is that there doesn’t seem to be a way to know the transfer siz
 Let’s have a look at an example:
 
 <img
+    loading="lazy"
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale,dpr_auto/v1522831856/load-time/resource-timing-api-page-size.jpg"
     sizes="(max-width: 768px) 100vw, 684px"
     alt="Calculating the transferred size of the requests using Resource Timing API." />

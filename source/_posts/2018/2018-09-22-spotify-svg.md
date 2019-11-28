@@ -19,6 +19,7 @@ Scalable Vector Graphics (SVG) are ideal to show logos and drawings on the web d
 Even if we optimize our SVG assets, we can still make mistakes delivering those to the browser. In this post I am going to explain some issues I found on Spotify's website, where the same SVG is inlined several times and where a responsive SVG logo could save additional network requests.
 
 <img
+    loading="lazy"
     style="max-width:100%; border: 0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1537603259/spotify-svg/spotify-svg.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1537603259/spotify-svg/spotify-svg.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1537603259/spotify-svg/spotify-svg.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1537603259/spotify-svg/spotify-svg.png 1400w"

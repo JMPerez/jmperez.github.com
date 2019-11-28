@@ -16,11 +16,12 @@ Poor performance leads to exclusion. When we create heavy sites we limit what us
 
 <div style="position:relative;padding-bottom:66.6666%;margin-bottom:1rem">
 <img
+    loading="lazy"
     style="max-width:100%; border: 0;position:absolute;top:0;left:0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1549005393/android-apps-hand-15092_zj2jkp.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1549005393/android-apps-hand-15092_zj2jkp.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1549005393/android-apps-hand-15092_zj2jkp.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1549005393/android-apps-hand-15092_zj2jkp.jpg 1400w"
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1549005393/android-apps-hand-15092_zj2jkp.jpg"
-    alt="" />
+    alt="A user with a mobile phone on their hand" />
 </div>
 <!-- more -->
 

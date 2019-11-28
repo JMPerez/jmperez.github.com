@@ -19,6 +19,7 @@ i18n:
 Componentization has marked a before and after in web development. The main advantages that are usually mentioned is reusability and modularization. Well defined pieces that we can use to build our sites, like bricks of Legos. It turns out this component structure provides a great foundation to improve the performance of our sites.
 
 <img
+    loading="lazy"
     style="max-width:100%; border: 0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995807/high-performance_mbjoct.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995807/high-performance_mbjoct.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995807/high-performance_mbjoct.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995807/high-performance_mbjoct.jpg 1400w"
@@ -99,6 +100,7 @@ Imagine a typical web page. You can check [Website Sameness](https://css-tricks.
 
 <p style="max-width:300px;display:block;margin-left:auto;margin-right:auto">
 <img
+    loading="lazy"
     style="max-width:100%"
     sizes="300px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:300,f_auto/v1523084060/observer/site.png 300w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:600,f_auto/v1523084060/observer/site.png 600w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:900,f_auto/v1523084060/observer/site.png 900w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1523084060/observer/site.png 1400w"
@@ -133,6 +135,7 @@ What's the point in requesting resources that the user will not need, like image
 A code coverage report, like [the one Google Chrome provides](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage) **won't help us much**. The JS code will be executed and the CSS applied to elements that aren't visible.
 
 <img
+    loading="lazy"
     style="max-width:100%; border: 0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/chrome-coverage.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/chrome-coverage.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/chrome-coverage.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/chrome-coverage.png 1400w"
@@ -146,6 +149,7 @@ As with everything else, **there are trade-offs with lazy-loading**. We don't wa
 - **Don't lazy load above the fold**. In most cases we want the above-the-fold content to be rendered as soon as possible. Every lazy-loading technique will introduce a delay. The browser has to run the JS that injects the HTML to the document, parse it and start requesting the referenced assets.
 
 <img
+    loading="lazy"
     style="max-width:100%; border: 0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/fold.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/fold.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/fold.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/fold.png 1400w"
@@ -157,6 +161,7 @@ Where to set the fold? This is tricky, and it will depend on the user's device, 
 - **Lazy load a bit earlier than when it's needed**. You want to avoid showing void areas to the user. For this, you can load an asset that is needed when it's closed enough to the visible area. For instance, a user scrolls down and if the image to load is, let's say, 100px below the bottom of the viewport, start requesting it.
 
 <img
+    loading="lazy"
     style="max-width:100%; border: 0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/preloading.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/preloading.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/preloading.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/preloading.png 1400w"
@@ -172,7 +177,7 @@ Where to set the fold? This is tricky, and it will depend on the user's device, 
   Here I'm rendering [a test page](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) (you can see the source [here](https://github.com/JMPerez/lazy-load/blob/master/text-above-fold.js)) using Google Webmaster Tools' "Fetch as Google". Googlebot renders the content in the box shown within the viewport, but not the content below it.
 
   <div class="videoWrapper">
-    <iframe width="1764" height="1080" src="https://www.youtube.com/embed/YEWaufLXX_Q" frameborder="0" allowfullscreen></iframe>
+    <iframe width="1764" height="1080" src="https://www.youtube.com/embed/YEWaufLXX_Q" frameborder="0" allowfullscreen loading="lazy"></iframe>
   </div>
   <small class="caption">Rendering [a test page](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) using Google Webmaster Tools' "Fetch as Google".</small>
 
@@ -527,6 +532,7 @@ class Observer extends Component {
 You can see [a demo here](https://react-intersection-observer.stackblitz.io/) (check [the code source](https://stackblitz.com/edit/react-intersection-observer)). Safari will make an extra request to load the `intersection-observer` npm package, since it doesn't support IntersectionObserver.
 
 <img
+    loading="lazy"
     style="max-width:100%; border: 0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 1400w"

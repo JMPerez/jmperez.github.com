@@ -16,11 +16,12 @@ As Progressive Web Apps make their way on desktop I wanted to talk about why I c
 
 <div style="position:relative;padding-bottom:76.47%;margin-bottom:1rem">
 <img
+    loading="lazy"
     style="max-width:100%; border: 0;position:absolute;top:0;left:0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1552998597/spotify-pwa-mac_szshj0.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1552998597/spotify-pwa-mac_szshj0.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1552998597/spotify-pwa-mac_szshj0.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1552998597/spotify-pwa-mac_szshj0.png 1400w"
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1552998597/spotify-pwa-mac_szshj0.png"
-    alt="" />
+    alt="A screenshot of Spotify's Web Player running as Progressive Web App" />
 </div>
 
 The current version of Google Chrome stable is Chrome 73. This version [lets you install Progressive Web Apps natively on macOS](https://twitter.com/rauschma/status/1105599978880331777). You can find more information about the release on [Pete LePage's "New in Chrome 73" notes](https://developers.google.com/web/updates/2019/03/nic73#pwas-everywhere).

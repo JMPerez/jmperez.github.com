@@ -157,7 +157,7 @@ Como en todo, **hay pros y contras cuando se usa lazy-loading**. No queremos apl
   Aquí estoy cargando [una página de test](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) (puedes ver el código fuente [aquí](https://github.com/JMPerez/lazy-load/blob/master/text-above-fold.js)) usando la función "Fetch as Google" de Google Webmaster Tools. Googlebot renderiza el contenido que queda dentro del viewport, pero no el que se cargaría debajo.
 
   <div class="videoWrapper">
-    <iframe width="1764" height="1080" src="https://www.youtube.com/embed/YEWaufLXX_Q" frameborder="0" allowfullscreen></iframe>
+    <iframe width="1764" height="1080" src="https://www.youtube.com/embed/YEWaufLXX_Q" frameborder="0" allowfullscreen loading="lazy"></iframe>
   </div>
   <small class="caption">Renderizando [una página de prueba](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) usando "Fetch as Google" de Google Webmaster Tools.</small>
 

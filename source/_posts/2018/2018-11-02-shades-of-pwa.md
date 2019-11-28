@@ -16,6 +16,7 @@ Implementing a PWA or adapting an existing site to “become a PWA” can be dau
 
 <div style="position:relative;padding-bottom:66.6666%;margin-bottom:1rem">
 <img
+    loading="lazy"
     style="max-width:100%; border: 0;position:absolute;top:0;left:0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1541172389/shades-of-pwa/header.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1541172389/shades-of-pwa/header.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1541172389/shades-of-pwa/header.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1541172389/shades-of-pwa/header.jpg 1400w"
@@ -167,7 +168,7 @@ In web dev terms we are improving the [First Meaningful Paint](https://developer
 This short version of Addy Osmani’s “The cost of JavaScript“ explains it very well:
 
 <div class="videoWrapper">
-    <iframe width="1764" height="1080" src="https://www.youtube.com/embed/qUFA1pAMfj4" frameborder="0" allowfullscreen></iframe>
+    <iframe width="1764" height="1080" src="https://www.youtube.com/embed/qUFA1pAMfj4" frameborder="0" allowfullscreen loading="lazy"></iframe>
 </div>
 
 <small class="caption">“<a href="https://www.youtube.com/watch?v=qUFA1pAMfj4">The cost of JavaScript</a>” by Addy Osmani. If you like it, there is also <a href="https://www.youtube.com/watch?v=63I-mEuSvGA">a longer version of the talk.</small>
@@ -197,7 +198,7 @@ You might want to make your website installable, close to what everyone knows as
 Your site doesn’t need to be fully functional offline to make it installable. Take for instance Spotify’s Progressive Web App.
 
 <div class="videoWrapper">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/EvcjSldzQ1E" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/EvcjSldzQ1E" frameborder="0" allowfullscreen loading="lazy"></iframe>
 </div>
 
 <small class="caption">Spotify's Web Player works as an installable PWA.</small>
@@ -224,7 +225,7 @@ You can also use [background sync](https://developers.google.com/web/updates/201
 I love reading about real sites that have adopted PWAs and have shared their findings. I particularly like [Addy Osmani’s talk “Production Progressive Web Apps With JavaScript Frameworks”](https://www.youtube.com/watch?v=aCMbSyngXB4), showcasing some case studies from large web sites that have been integrating these technologies to improve their key metrics.
 
 <div class="videoWrapper">
-    <iframe width="1764" height="1080" src="https://www.youtube.com/embed/aCMbSyngXB4" frameborder="0" allowfullscreen></iframe>
+    <iframe width="1764" height="1080" src="https://www.youtube.com/embed/aCMbSyngXB4" frameborder="0" allowfullscreen loading="lazy"></iframe>
 </div>
 
 They are good examples to demonstrate that you don’t need to re-architecture an existing site to use PWA goodness, and that you can apply some of these concepts and see improvements in perceived performance very quickly.

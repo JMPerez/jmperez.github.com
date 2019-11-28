@@ -15,6 +15,7 @@ tags:
 Web Performance is not only about understanding what makes a site fast. It’s about creating awareness amongst both developers and non-developers. Performance is a feature and needs to be prioritized as such.
 
 <img
+    loading="lazy"
     style="max-width:100%; border: 0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1527949830/fostering-web-performance-culture/fostering-web-performance-culture.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1527949830/fostering-web-performance-culture/fostering-web-performance-culture.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1527949830/fostering-web-performance-culture/fostering-web-performance-culture.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1527949830/fostering-web-performance-culture/fostering-web-performance-culture.jpg 1400w"
@@ -112,7 +113,7 @@ Except for exceptionally few cases, the users of your product don’t have a sim
 And this is not about to change. Western web developers enjoy using the latest laptops and gadgets. And the chain goes up to pretty much any person responsible for prioritizing tasks and project are your company. Not only that, but in some cases we may prioritize top devices because those are the ones used by the users that are most likely to pay for our product. As [Bruce Lawson](http://www.brucelawson.co.uk/) put it, we should be building the “world-wide web, not the wealthy western web”.
 
 <div class="videoWrapper">
-<iframe src="https://player.vimeo.com/video/194968584?byline=0&portrait=0" width="684" height="385" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe src="https://player.vimeo.com/video/194968584?byline=0&portrait=0" width="684" height="385" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen loading="lazy"></iframe>
 </div>
 
 Ask yourself if having more users, even though they are _less worth_ economically, is better than having fewer potentially good ones.

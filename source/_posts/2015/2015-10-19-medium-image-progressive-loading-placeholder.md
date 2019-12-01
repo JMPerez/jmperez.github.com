@@ -153,7 +153,7 @@ As our pages load more and more images, it is good to think of their loading pro
 
 If you are generating several thumbnail sizes for your images, you can experiment using a very small one to use it as the background while the final image loads.
 
-<div class="read-next" style="padding:1em;background-color:#fdf6ea;margin:2rem 0">
+<div class="read-next">
 <p><strong>Related Posts</strong></p>
 <ul>
 <li>I gave a talk at CSSConf about progressive images. You can watch the video and slides on <a href="/cssconf-au-2016/">Speaking at CSSConf Australia 2016</a>.</li>

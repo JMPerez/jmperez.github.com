@@ -21,6 +21,7 @@ Recently, I was browsing a post on Medium and I spotted a nice image loading eff
     sizes="(max-width: 768px) 100vw, 684px" alt="A screenshot of a blurry placeholder while the image is loaded" style="margin: 0 auto "/>
 
 <!-- more -->
+
 ## Medium's technique
 
 To see how image loading works in Medium, it is best to see a demo:
@@ -33,27 +34,33 @@ I have performed a [WebPageTest test](http://www.webpagetest.org/video/compare.p
 
 Here is what is going on:
 
-  1. **Render a div where the image will be displayed**. Medium uses a `<div/>` with a `padding-bottom` set to a percentage, which corresponds to the aspect ratio of the image. Thus, they prevent reflows while the images are loaded since everything is rendered in its final position. This has also been referred to as [intrinsic placeholders](http://daverupert.com/2015/12/intrinsic-placeholders-with-picture/).
+1. **Render a div where the image will be displayed**. Medium uses a `<div/>` with a `padding-bottom` set to a percentage, which corresponds to the aspect ratio of the image. Thus, they prevent reflows while the images are loaded since everything is rendered in its final position. This has also been referred to as [intrinsic placeholders](http://daverupert.com/2015/12/intrinsic-placeholders-with-picture/).
 
-  2. **Load a tiny version of the image**. At the moment, they seem to be requesting small JPEG thumbnails with a very low quality (e.g. 20%). The markup for this small image is returned in the initial HTML as an `<img/>`, so the browser starts fetching them right away.
+2. **Load a tiny version of the image**. At the moment, they seem to be requesting small JPEG thumbnails with a very low quality (e.g. 20%). The markup for this small image is returned in the initial HTML as an `<img/>`, so the browser starts fetching them right away.
 
-  3. Once the image is loaded, **it is drawn in a `<canvas/>`**. Then, the image data is taken and passed through a custom `blur()` function You can see it, a bit scrambled, in the `main-base.bundle` JS file. This function is similar, though not identical, to [StackBlur](http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html)'s blur function. At the same time, **the main image is requested**.
+3. Once the image is loaded, **it is drawn in a `<canvas/>`**. Then, the image data is taken and passed through a custom `blur()` function You can see it, a bit scrambled, in the `main-base.bundle` JS file. This function is similar, though not identical, to [StackBlur](http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html)'s blur function. At the same time, **the main image is requested**.
 
-  4. Once the main image is loaded, **it is shown** and the `canvas` is hidden.
+4. Once the main image is loaded, **it is shown** and the `canvas` is hidden.
 
 All the transitions are quite smooth, thanks to the CSS animations applied.
 
 ## Markup
+
 A bird's eye view of the markup for an image:
 
 ```html
 <figure>
   <div>
-    <div/> <!-- this div keeps the aspect ratio so the placeholder doesn't collapse -->
-    <img/> <!-- this is a tiny image with a resolution of e.g. ~27x17 and low quality -->
-    <canvas/> <!-- takes the above image and applies a blur filter -->
-    <img/> <!-- the large image to be displayed -->
-    <noscript/> <!-- fallback for no JS -->
+    <div />
+    <!-- this div keeps the aspect ratio so the placeholder doesn't collapse -->
+    <img />
+    <!-- this is a tiny image with a resolution of e.g. ~27x17 and low quality -->
+    <canvas />
+    <!-- takes the above image and applies a blur filter -->
+    <img />
+    <!-- the large image to be displayed -->
+    <noscript />
+    <!-- fallback for no JS -->
   </div>
 </figure>
 ```
@@ -61,21 +68,45 @@ A bird's eye view of the markup for an image:
 And a concrete example, so you see what goes in those tags:
 
 ```html
-<figure name="7012" id="7012" class="graf--figure graf--layoutFillWidth graf-after--h4">
+<figure
+  name="7012"
+  id="7012"
+  class="graf--figure graf--layoutFillWidth graf-after--h4"
+>
   <div class="aspectRatioPlaceholder is-locked">
     <div class="aspect-ratio-fill" style="padding-bottom: 66.7%;"></div>
-    <div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*sg-uLNm73whmdOgKlrQdZA.jpeg" data-width="2000" data-height="1333" data-scroll="native">
-      <img src="https://cdn-images-1.medium.com/freeze/max/27/1*sg-uLNm73whmdOgKlrQdZA.jpeg?q=20" crossorigin="anonymous" class="progressiveMedia-thumbnail js-progressiveMedia-thumbnail">
-        <canvas class="progressiveMedia-canvas js-progressiveMedia-canvas" width="75" height="47"></canvas>
-        <img class="progressiveMedia-image js-progressiveMedia-image __web-inspector-hide-shortcut__" data-src="https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg" src="https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg">
-        <noscript class="js-progressiveMedia-inner">&lt;img class="progressiveMedia-noscript js-progressiveMedia-inner" src="https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg"&gt;</noscript>
+    <div
+      class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded"
+      data-image-id="1*sg-uLNm73whmdOgKlrQdZA.jpeg"
+      data-width="2000"
+      data-height="1333"
+      data-scroll="native"
+    >
+      <img
+        src="https://cdn-images-1.medium.com/freeze/max/27/1*sg-uLNm73whmdOgKlrQdZA.jpeg?q=20"
+        crossorigin="anonymous"
+        class="progressiveMedia-thumbnail js-progressiveMedia-thumbnail"
+      />
+      <canvas
+        class="progressiveMedia-canvas js-progressiveMedia-canvas"
+        width="75"
+        height="47"
+      ></canvas>
+      <img
+        class="progressiveMedia-image js-progressiveMedia-image __web-inspector-hide-shortcut__"
+        data-src="https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg"
+        src="https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg"
+      />
+      <noscript class="js-progressiveMedia-inner"
+        >&lt;img class="progressiveMedia-noscript js-progressiveMedia-inner"
+        src="https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg"&gt;</noscript
+      >
     </div>
   </div>
 </figure>
 ```
 
 _Note that the actual image sizes requested depend on the device._
-
 
 ## An attempt to reproduce the effect
 
@@ -91,6 +122,7 @@ This filmstrip view shows the above codepen when disabling cache and throttling 
 ![Chrome Inspector Timeline Capture](/assets/images/posts/medium-codepen.png)
 
 ## Is it worth it?
+
 Clearly, there is a lot of things going on to be able to render an image this way, and it can be discouraging to do something similar on your site. A few years ago it would have been impossible to do this animations and blur effects in a performant way, but the truth is that most of the times the latency is the bottleneck, not the device capabilities, and we can play with these visual explorations.
 
 Having full control of the loading of images has some advantages:
@@ -102,16 +134,18 @@ Having full control of the loading of images has some advantages:
 - **Tailored image sizes**. Medium serves different images sizes depending on the device that makes the requests, which optimises the weight of the page.
 
 ## Variants
+
 Before finding out about this technique, I thought of using a similar approach for a site I'm working on.
 
 ### Inlining image data
+
 Instead of making a request for the small thumbnails, it is possible to inline them using data URIs. This increases the size of the HTML, but accelerates the rendering of the placeholder, which is immediate one the markup is downloaded. The blur effect allows these images to be really small. I did some tests with 0.5kB size images, and the result was similar to using a 4x larger image.
 
 ### Blur effect
 
 By default, when a browser renders a small image scaled up, it applies a light blur effect to smooth the artefacts of the image. The effect can also be [turned off](http://superuser.com/questions/530317/how-to-prevent-chrome-from-blurring-small-images-when-zoomed-in) for images like QR codes.
 
->[...]the browser would render it in a way that didn’t make it look blocky[...] from [Google Developers](https://developers.google.com/web/updates/2015/01/pixelated).
+> [...]the browser would render it in a way that didn’t make it look blocky[...] from [Google Developers](https://developers.google.com/web/updates/2015/01/pixelated).
 
 This works both in Chrome, Safari and Firefox (I haven't tried on IE yet), though the smoothing effect is more prominent in Chrome. Here is a demo, but you can see it better [in full screen](http://codepen.io/jmperez/full/Xmzobe/):
 
@@ -145,7 +179,7 @@ In any case, it seems a bit overkilling for the web, but I wanted to include it 
 
 ### LQIP: Low Quality Image Placeholders
 
-Instead of waiting for the final image to be rendered, we can serve a highly compressed image first, and then switch to the large one. This is what  [Low Quality Image Placeholders (LQIP)](http://www.guypo.com/introducing-lqip-low-quality-image-placeholders/) consists of. The idea is similar to Medium's, but serving an image with the same dimensions but higher compression.
+Instead of waiting for the final image to be rendered, we can serve a highly compressed image first, and then switch to the large one. This is what [Low Quality Image Placeholders (LQIP)](http://www.guypo.com/introducing-lqip-low-quality-image-placeholders/) consists of. The idea is similar to Medium's, but serving an image with the same dimensions but higher compression.
 
 ## Conclusion
 
@@ -157,8 +191,8 @@ If you are generating several thumbnail sizes for your images, you can experimen
 <p><strong>Related Posts</strong></p>
 <ul>
 <li>I gave a talk at CSSConf about progressive images. You can watch the video and slides on <a href="/cssconf-au-2016/">Speaking at CSSConf Australia 2016</a>.</li>
-<li>I collected more examples of sites using a similar technique on <a href="/more-progressive-image-loading/">More examples of Progressive Image Loading</a> and <a href="/svg-placeholders">How to use SVG as a Placeholder</a>.</li>
-<li>Interested in other image tips and tricks? Check out <a href="/image-optimization-lossy-lossless-techniques">Image optimization: Lossy, lossless and other techniques</a>.
+<li>I collected more examples of sites using a similar technique on <a href="/more-progressive-image-loading/">More examples of Progressive Image Loading</a> and <a href="/svg-placeholders/">How to use SVG as a Placeholder</a>.</li>
+<li>Interested in other image tips and tricks? Check out <a href="/image-optimization-lossy-lossless-techniques/">Image optimization: Lossy, lossless and other techniques</a>.
 </li>
 </ul>
 </div>

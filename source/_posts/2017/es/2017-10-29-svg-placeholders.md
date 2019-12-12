@@ -65,7 +65,7 @@ Sabemos que los SVGs son ideales para imágenes vectoriales. En la mayoría de c
 
 #### Contornos
 
-En [un post anterior](/drawing-edges-svg) expliqué cómo calcular los contornos de una imagen y animarlos. Mi objetivo inicial era intentar dibujar regiones, vectorizando la imagen, pero no sabía cómo hacerlo. Me di cuenta de que usando los contornos también podía ser innovador y decidí animarlos para crear un efecto de "dibujado".
+En [un post anterior](/drawing-edges-svg/) expliqué cómo calcular los contornos de una imagen y animarlos. Mi objetivo inicial era intentar dibujar regiones, vectorizando la imagen, pero no sabía cómo hacerlo. Me di cuenta de que usando los contornos también podía ser innovador y decidí animarlos para crear un efecto de "dibujado".
 
 <div class="codepen-aspect-ratio" style="margin-bottom: 10px; padding-bottom: 100%; position: relative; width: 100%">
 {% codepen jmperez oogqdp 0 result 600 600 %}
@@ -120,7 +120,21 @@ Para comprender cómo funciona Primitive lo ejecuté tomando un par de imágenes
 Usando 10 triángulos las imágenes empiezan a parecerse a la versión original. Estas imágenes SVG pueden ser adecuadas como placeholders. De hecho el código del SVG de 10 triángulos es muy pequeño, unos 1.030 bytes, que pueden reducirse hasta unos 640 bytes si pasamos la salida por SVGO.
 
 ```html
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024"><path fill="#817c70" d="M0 0h1024v1024H0z"/><g fill-opacity=".502"><path fill="#03020f" d="M178 994l580 92L402-62"/><path fill="#f2e2ba" d="M638 894L614 6l472 440"/><path fill="#fff8be" d="M-62 854h300L138-62"/><path fill="#76c2d9" d="M410-62L154 530-62 38"/><path fill="#62b4cf" d="M1086-2L498-30l484 508"/><path fill="#010412" d="M430-2l196 52-76 356"/><path fill="#eb7d3f" d="M598 594l488-32-308 520"/><path fill="#080a18" d="M198 418l32 304 116-448"/><path fill="#3f201d" d="M1086 1062l-344-52 248-148"/><path fill="#ebd29f" d="M630 658l-60-372 516 320"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024">
+  <path fill="#817c70" d="M0 0h1024v1024H0z" />
+  <g fill-opacity=".502">
+    <path fill="#03020f" d="M178 994l580 92L402-62" />
+    <path fill="#f2e2ba" d="M638 894L614 6l472 440" />
+    <path fill="#fff8be" d="M-62 854h300L138-62" />
+    <path fill="#76c2d9" d="M410-62L154 530-62 38" />
+    <path fill="#62b4cf" d="M1086-2L498-30l484 508" />
+    <path fill="#010412" d="M430-2l196 52-76 356" />
+    <path fill="#eb7d3f" d="M598 594l488-32-308 520" />
+    <path fill="#080a18" d="M198 418l32 304 116-448" />
+    <path fill="#3f201d" d="M1086 1062l-344-52 248-148" />
+    <path fill="#ebd29f" d="M630 658l-60-372 516 320" />
+  </g>
+</svg>
 ```
 
 Las imágenes generadas con 100 triángulos son más grandes, en kB, como es de esperar. En esta prueba las imágenes ocupan unos 5kB tras aplicar SVGO (8kB antes). Tienen un gran nivel de detalle en un tamaño comedido. La decisión de cuántos triángulos usar depende mucho del tipo de imagen (por ejemplo contraste, cantidad de colores, complejidad de la forma) y el nivel de detalle deseado.
@@ -152,13 +166,56 @@ Si ejecutamos SQIP con las imágenes originales obtenemos esto:
 El SVG resultante ocupa ~900 bytes. Inspeccionando el código podemos observar el filtro `feGaussianBlur` aplicado al grupo de formas:
 
 ```html
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000"><filter id="b"><feGaussianBlur stdDeviation="12" /></filter><path fill="#817c70" d="M0 0h2000v2000H0z"/><g filter="url(#b)" transform="translate(4 4) scale(7.8125)" fill-opacity=".5"><ellipse fill="#000210" rx="1" ry="1" transform="matrix(50.41098 -3.7951 11.14787 148.07886 107 194.6)"/><ellipse fill="#eee3bb" rx="1" ry="1" transform="matrix(-56.38179 17.684 -24.48514 -78.06584 205 110.1)"/><ellipse fill="#fff4bd" rx="1" ry="1" transform="matrix(35.40604 -5.49219 14.85017 95.73337 16.4 123.6)"/><ellipse fill="#79c7db" cx="21" cy="39" rx="65" ry="65"/><ellipse fill="#0c1320" cx="117" cy="38" rx="34" ry="47"/><ellipse fill="#5cb0cd" rx="1" ry="1" transform="matrix(-39.46201 77.24476 -54.56092 -27.87353 219.2 7.9)"/><path fill="#e57339" d="M271 159l-123-16 43 128z"/><ellipse fill="#47332f" cx="214" cy="237" rx="242" ry="19"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000">
+  <filter id="b"><feGaussianBlur stdDeviation="12" /></filter>
+  <path fill="#817c70" d="M0 0h2000v2000H0z" />
+  <g
+    filter="url(#b)"
+    transform="translate(4 4) scale(7.8125)"
+    fill-opacity=".5"
+  >
+    <ellipse
+      fill="#000210"
+      rx="1"
+      ry="1"
+      transform="matrix(50.41098 -3.7951 11.14787 148.07886 107 194.6)"
+    />
+    <ellipse
+      fill="#eee3bb"
+      rx="1"
+      ry="1"
+      transform="matrix(-56.38179 17.684 -24.48514 -78.06584 205 110.1)"
+    />
+    <ellipse
+      fill="#fff4bd"
+      rx="1"
+      ry="1"
+      transform="matrix(35.40604 -5.49219 14.85017 95.73337 16.4 123.6)"
+    />
+    <ellipse fill="#79c7db" cx="21" cy="39" rx="65" ry="65" />
+    <ellipse fill="#0c1320" cx="117" cy="38" rx="34" ry="47" />
+    <ellipse
+      fill="#5cb0cd"
+      rx="1"
+      ry="1"
+      transform="matrix(-39.46201 77.24476 -54.56092 -27.87353 219.2 7.9)"
+    />
+    <path fill="#e57339" d="M271 159l-123-16 43 128z" />
+    <ellipse fill="#47332f" cx="214" cy="237" rx="242" ry="19" />
+  </g>
+</svg>
 ```
 
 SQIP también puede imprimir como resultado una etiqueta `img` con el contenido del SVG codificado en Base 64:
 
 ```html
-<img width="640" height="640" src="example.jpg" alt="Add descriptive alt text" style="background-size: cover; background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAw...<stripped base 64>...PjwvZz48L3N2Zz4=);">
+<img
+  width="640"
+  height="640"
+  src="example.jpg"
+  alt="Add descriptive alt text"
+  style="background-size: cover; background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAw...<stripped base 64>...PjwvZz48L3N2Zz4=);"
+/>
 ```
 
 #### Siluetas

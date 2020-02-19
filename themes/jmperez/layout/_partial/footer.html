@@ -1,20 +1,23 @@
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js').then(function (registration) {
-        // Successfully registered the Service Worker
-        //console.log('Service Worker registration successful with scope: ', registration.scope);
-      }).catch(function (err) {
-        // Failed to register the Service Worker
-        //console.log('Service Worker registration failed: ', err);
-      });
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function() {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then(function(registration) {
+          // Successfully registered the Service Worker
+          //console.log('Service Worker registration successful with scope: ', registration.scope);
+        })
+        .catch(function(err) {
+          // Failed to register the Service Worker
+          //console.log('Service Worker registration failed: ', err);
+        });
     });
   }
 </script>
 <footer>
   <section class="links">
-    <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter ·
-    <a href="https://github.com/JMPerez">GitHub</a> ·
+    <a href="https://twitter.com/jmperezperez" rel="me">@jmperezperez</a> on
+    Twitter · <a href="https://github.com/JMPerez" rel="me">GitHub</a> ·
     <a href="https://www.linkedin.com/in/jmperezperez">LinkedIn</a> ·
     <a href="https://medium.com/@jmperezperez">Medium</a>
   </section>

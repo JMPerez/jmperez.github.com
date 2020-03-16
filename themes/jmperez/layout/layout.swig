@@ -31,6 +31,8 @@
   {% if (is_post() && config.generator_amp) %}
   <link rel="amphtml" href="{{ url_for(page.path + 'amp/') }}">
   {% endif %}
+  <link rel="webmention" href="https://webmention.io/jmperezperez.com/webmention" />
+  <link rel="pingback" href="https://webmention.io/jmperezperez.com/xmlrpc" />
   <meta name="theme-color" content="#005689">
   <link rel="manifest" href="/manifest.json">
   {% for url in page.i18n %}

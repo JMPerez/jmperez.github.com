@@ -287,7 +287,7 @@ You will want to automate the reports to detect issues without having to rely on
 
 The MVP is to set a [performance budget](https://infrequently.org/2017/10/can-you-afford-it-real-world-web-performance-budgets/), run performance audits on your production site on a daily basis, and be notified when those budgets aren’t met. This will help you catching issues and narrow down what deployments might have caused it, and you barely need to set it up.
 
-If you want to go beyond, run the tests as part of your pull-request checks. That way you won’t merge nor deploy code that decreases the performance. This type of testing is called [syntethic](https://www.oreilly.com/ideas/web-performance-tools-synthetic-vs-rum), since it’s performed automatically by a script with a predefined environment (device, network speed, location…).
+If you want to go beyond, run the tests as part of your pull-request checks. That way you won’t merge nor deploy code that decreases the performance. This type of testing is called [synthetic](https://www.oreilly.com/ideas/web-performance-tools-synthetic-vs-rum), since it’s performed automatically by a script with a predefined environment (device, network speed, location…).
 
 A complement to synthetic tests are RUM tests. These are based on real users browsing your site. The idea is to collect some metrics like load time or [first-paint](https://medium.com/@jmperezperez/performanceobserver-and-paint-timing-api-72d3e5b384ea), and post them to some service that you can use to visualize and compare them.
 

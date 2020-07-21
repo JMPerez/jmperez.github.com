@@ -23,7 +23,7 @@ Companies exposing their data through public APIs benefit from interesting integ
 
 [Twitter](http://thatmikeflynn.com/2012/08/17/oh-twitter/), [Netflix](http://techcrunch.com/2014/06/13/netflix-api-shutdown/) or [LinkedIn](http://thenextweb.com/dd/2015/02/12/linkedin-takes-aim-developers-plans-lock-apis/) are some well known cases of APIs that have introduced changes to become more restrictive. These changes are never welcome by developers, but nevertheless applications relying on any 3rd party API will always be prone to break.
 
-So yes, the [the LinkedIn to JSON Resume exporter](https://github.com/JMPerez/linkedin-to-json-resume) broke because LinkedIn only allows apps access to a user's full profile if those apps are used as part of a "apply for this position" section of a company's site. That's even though the user is always in control of what data an application can access, using a permission dialog (OAuth scopes).
+So yes, the [LinkedIn to JSON Resume exporter](https://github.com/JMPerez/linkedin-to-json-resume) broke because LinkedIn only allows apps access to a user's full profile if those apps are used as part of a "apply for this position" section of a company's site. That's even though the user is always in control of what data an application can access, using a permission dialog (OAuth scopes).
 
 Luckily there is a way for users to export their LinkedIn data, and that's what the exporter tool is using. It was also my first project written using ES6 / ES.netxt / ES2015, which uses browserify + babelify to run the code on a browser.
 

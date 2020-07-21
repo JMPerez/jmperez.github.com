@@ -19,7 +19,7 @@ However, there are some advantages when taking a webapp first approach for mobil
 Some UI designers are so familiar with web that they use HTML+CSS to implement native apps mockups. Then, this mockups are used by iOS or Android developers to implement the app UI. Why don't take advantage of that web mockup and use it for a web app?
 
 ## <a name="hybrid"></a>Hybrid application
-Your web development can be easily reused to make a hybrid application. Your native app can be a wrapper of your webapp, and you can use PhoneGap or Titanium to to access hardware through JS bridges. In addition, you can iterate and port parts of your application to native controls if you realize it is more suitable. You don't lose your previous development, since you can reuse them in your mobile site.
+Your web development can be easily reused to make a hybrid application. Your native app can be a wrapper of your webapp, and you can use PhoneGap or Titanium to access hardware through JS bridges. In addition, you can iterate and port parts of your application to native controls if you realize it is more suitable. You don't lose your previous development, since you can reuse them in your mobile site.
 
 Take Google+ iPhone app as an example:
 ![Google+ iPhone app](/assets/images/posts/google-plus-hybrid.jpg)

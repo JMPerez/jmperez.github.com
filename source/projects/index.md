@@ -53,7 +53,7 @@ I like trying out "the last new thing" in a small project and publish it [on Git
     <div class="description">
       <p>A <a href="http://www.hemingwayapp.com/">Hemingway editor</a>-like for text in Spanish language. Get hints as you write to improve your text readability.</p>
       <p>This project is built as a PWA with offline support. It uses React and DraftJS.</p>
-      <div class="project-links"><a href="https://abrev.io">Website</a></div>
+      <div class="project-links"><a href="https://abrevio.netlify.app/">Website</a></div>
     </div>
   </li>
   <li>

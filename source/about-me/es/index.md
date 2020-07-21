@@ -13,12 +13,14 @@ permalink: es/about-me/
 
 Soy un ingeniero frontend. Me apasiona el desarrollo y la optimización web.
 
+<div style="position:relative;padding-bottom:66.5%;margin-bottom:0.5rem">
 <img
-    style="max-width:100%; border: 0"
+    style="max-width:100%; border: 0;position:absolute;top:0;left:0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1529411366/jose-perez-pitercss_fa1qly.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1529411366/jose-perez-pitercss_fa1qly.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1529411366/jose-perez-pitercss_fa1qly.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1529411366/jose-perez-pitercss_fa1qly.jpg 1400w"
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1529411366/jose-perez-pitercss_fa1qly.jpg"
     alt="José M. Pérez en la conferencia frontend PiterCSS." />
+</div>
 <small class="caption">Q&A con Vitaly Friedman después de mi presentación en [PiterCSS 2018](https://pitercss.com/) ([fuente](https://www.instagram.com/p/Bj0RVZGAvtw/))</small>
 
 Me gusta trabajar con empresas para mejorar sus webs, asegurándome de que se carguen rápidamente, independientemente del dispositivo y de las condiciones de la red. Desde el proceso de desarrollo inicial hasta su auditoría y análisis.

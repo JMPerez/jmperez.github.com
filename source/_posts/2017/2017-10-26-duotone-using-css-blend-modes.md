@@ -14,7 +14,18 @@ permalink: duotone-using-css-blend-modes
 
 In a past post I explained [how to use SVG and a `feColorMatrix` filter](/duotone-using-fecolormatrix/) to apply a duotone effect to an image. This time I'm going to show how to achieve a similar effect with only CSS.
 
+<div style="position:relative;padding-bottom:56.25%;margin-bottom:1rem">
+<img
+    loading="lazy"
+    style="max-width:100%; border: 0;position:absolute;top:0;left:0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1587066714/duotone.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1587066714/duotone.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1587066714/duotone.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1587066714/duotone.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1587066714/duotone.png"
+    alt="Duotone effect on image using CSS blend modes" />
+</div>
+
 <!-- more -->
+
 Demo & Code: [https://codepen.io/jmperez/pen/wrVxga](http://codepen.io/jmperez/pen/wrVxga)
 
 {% codepen jmperez wrVxga 0 result 367 %}

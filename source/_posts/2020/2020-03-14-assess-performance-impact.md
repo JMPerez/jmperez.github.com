@@ -2,7 +2,7 @@
 layout: post
 title: How to Estimate Web Performance Impact Before Making Fixes
 date: 2020-03-14 08:15:00+01:00
-description: In this post I present several ways of assessing the potential performance gains before implementing improvements. This will help building the case and prioritizing performance work.
+description: Learn about several ways of assessing the potential performance gains before implementing improvements. This will help building the case and prioritizing performance work.
 image:
   url: /assets/images/posts/assess-performance-impact/performance-is-money.png
   width: 2073

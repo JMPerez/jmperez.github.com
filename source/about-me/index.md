@@ -12,12 +12,14 @@ permalink: about-me/
 
 I am a Software Engineer who likes web development and performance optimization.
 
+<div style="position:relative;padding-bottom:66.5%;margin-bottom:0.5rem">
 <img
-    style="max-width:100%; border: 0"
+    style="max-width:100%; border: 0;position:absolute;top:0;left:0"
     sizes="(max-width: 768px) 100vw, 684px"
     srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1529411366/jose-perez-pitercss_fa1qly.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1529411366/jose-perez-pitercss_fa1qly.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1529411366/jose-perez-pitercss_fa1qly.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1529411366/jose-perez-pitercss_fa1qly.jpg 1400w"
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1529411366/jose-perez-pitercss_fa1qly.jpg"
     alt="José M. Pérez at PiterCSS frontend conference." />
+</div>
 <small class="caption">Q&amp;A with Vitaly Friedman after talking at [PiterCSS 2018](https://pitercss.com/) ([source](https://www.instagram.com/p/Bj0RVZGAvtw/))</small>
 
 I believe in the openness of the web and that everyone has the right to enjoy and access its content. I like working with companies to improve their sites, ensuring they load quickly regardless of device and network conditions. From the initial developing process to auditing and analysis.

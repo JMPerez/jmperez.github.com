@@ -72,5 +72,6 @@
    });
   </script>
   <script src="/quicklink.js" async></script>
+  <script src="https://unpkg.com/turbolinks@5.2.0/dist/turbolinks.js" async data-turbolinks-suppress-warning></script>
 </body>
 </html>

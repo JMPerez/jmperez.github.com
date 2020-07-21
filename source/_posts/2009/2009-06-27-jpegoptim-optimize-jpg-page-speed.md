@@ -60,9 +60,9 @@ If you are interested in image optimization, I recommend you having a look at:
 I have been using image optimization actively for a long time. Depending on your needs, I recommend you one of these methods:
 
 * **Optimization of a few files through a desktop app (on Mac)**: Use [ImageOptim](http://imageoptim.com). Drag and drop JPG and PNG files and you are goo to go.
-* **Optimization of images on Wordpress**: Use [Smush.it](http://wordpress.org/plugins/wp-smushit/). It optimizes uploaded images automatically, and you can also run the plug-in against the existing images.
+* **Optimization of images on Wordpress**: Use [Smush.it](http://wordpress.org/plugins/wp-smushit/). It optimizes uploaded images automatically, and you can also run the plug-in against the existing images. Check out [Best Image Optimization Plugins for WordPress](https://10web.io/blog/the-best-image-optimization-solutions-in-wordpress/) to read about different options to optimize images on this platform.
 * **Optimizing PNG files using lossy compression**: Use [TinyPNG](https://tinypng.com). It can reduce PNG images size a lot, but double check the result before, since sometimes you can notice the difference in the colours.
-
+* **Best Image Optimization Plugins for WordPress**: Read [this article](https://10web.io/blog/the-best-image-optimization-solutions-in-wordpress/) that
 ##  Read also
 
 I wrote a post about [Image optimization: Lossy, lossless and other techniques](/image-optimization-lossy-lossless-techniques/) in which I explain some tools and considerations when compressing images.

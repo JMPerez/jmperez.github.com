@@ -9,6 +9,8 @@ description: Some projects in which I have been working on
 These are some personal projects I have been working on to learn more about certain libraries and browser APIs.
 
 I like trying out "the last new thing" in a small project and publish it [on GitHub](https://github.com/JMPerez), both as a personal reminder of what I did, and to help people looking for examples.
+
+I'm also trying to keep [a list of things I'm exploring at the moment](/wip).
 {% raw %}
 
 <h2>Music/Audio Projects</h2>

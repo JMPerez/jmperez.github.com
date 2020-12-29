@@ -35,7 +35,7 @@ I wanted to apply technology to solve business problems, and move away from seei
 I had never heard of the "Solutions Engineer" role, but when people at Facebook described it to me it was clear what gaps it was trying to solve.
 
 <div style="text-align:center; border: 1px solid #aaa; padding: 1em; margin: 1em">
-👉 [We have open positions for Solutions Engineers](https://www.facebook.com/careers/life/solutions-engineering-at-facebook/). [Reach out to me if you want to know more](/about-me/#Contact).
+👉 We have <a href="https://www.facebook.com/careers/jobs/?sub_teams[0]=Solutions%20Engineering">open positions, both full-time and internships</a>, for <a href="https://www.facebook.com/careers/life/solutions-engineering-at-facebook/">Solutions Engineers</a>. Do you want to know more? <a href="/about-me/#Contact">Reach out to me</a>.
 </div>
 
 ## What is a Solutions Engineer at Facebook
@@ -62,7 +62,7 @@ Each company has their own unique challenges, and the goal is to identify how ou
 
 ## Want to apply or know more?
 
-If this sounds interesting, please reach out on Twitter or email. **[We have open positions for the role](https://www.facebook.com/careers/life/solutions-engineering-at-facebook/)**, including [one based in Stockholm](https://www.facebook.com/careers/jobs/566055030811900/) where you would work side by side with me. I'm also genuinely **interested in talking with colleagues working at companies that could benefit from having a similar role**, so [reach out if you want to have a chat](/about-me/#Contact).
+If this sounds interesting, please reach out on Twitter or email. **[We have open positions for the role](https://www.facebook.com/careers/life/solutions-engineering-at-facebook/)**. I'm also genuinely **interested in talking with colleagues working at companies that could benefit from having a similar role**, so [reach out if you want to have a chat](/about-me/#Contact).
 
 ---
 

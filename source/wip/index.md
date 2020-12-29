@@ -8,9 +8,26 @@ description: Work In Progress
 
 These are some projects I'm exploring to keep myself busy.
 
+#### 2020-08-19
+
+- Purchased the domain [spotify-dedup.com](https://spotify-dedup.com) and redirected from `jmperezperez.com/spotify-dedup`
+
+#### 2020-08-07
+
+- Set up automatic deployment to GitHub pages for Spotify Dedup
+- Created [Stats page](https://jmperezperez.com/spotify-dedup/stats) for Spotify Dedup
+
+#### 2020-08-06
+
+- Clean up PRs for [spotify-web-api-js](https://github.com/JMPerez/spotify-web-api-js/), including updating dependencies, adding endpoint for queueing tracks and episodes, and improving TypeScript
+
+jmperezperez.com/spotify-dedup/stats
+
 #### 2020-08-03
 
 - Clean up PRs for [spotify-web-api-js](https://github.com/JMPerez/spotify-web-api-js/), including updating dependencies, adding endpoint for queueing tracks and episodes, and improving TypeScript
+- Created [@spotifydedup](https://twitter.com/spotifydedup)
+- Set up [Buy Me a Coffee auto-tweet](https://help.buymeacoffee.com/en/articles/4217669-setting-up-auto-tweets-with-zapier) to create tweets automatically when getting new ☕️ contributions
 
 #### 2020-08-02
 

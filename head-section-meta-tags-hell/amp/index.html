@@ -1,0 +1,927 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://jmperezperez.com/head-section-meta-tags-hell/" >
+    <title>Polluting the head section for the sake of adding 3rd party services - Web development, performance, and some other good practices.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="Polluting the head section for the sake of adding 3rd party services - José M. Pérez" property="og:title">
+		
+		<meta name="twitter:site" content="@jmperezperez">
+		
+		<meta property="og:image" content="https://res.cloudinary.com/jmperez/image/upload/f_auto,c_scale/v1519156883/profile_ysrm5y.jpg">
+		<meta name="twitter:image" content="https://res.cloudinary.com/jmperez/image/upload/f_auto,c_scale/v1519156883/profile_ysrm5y.jpg">
+		
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    
+
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "Polluting the head section for the sake of adding 3rd party services",
+			
+			"description": "&lt;p&gt;&lt;img src=&#34;/assets/images/posts/head-meta-tags.png&#34; alt=&#34;Meta tags hell&#34;&gt; The head section of a page is becoming the place to include information for integrating your page with external services. Thus, if you want to include support for &lt;a href=&#34;http://developers.facebook.com/docs/opengraphprotocol/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Facebook’s Open Graph Protocol&lt;/a&gt; or &lt;a href=&#34;https://dev.twitter.com/docs/cards&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Twitter Cards&lt;/a&gt;, you need to include some custom meta tags inside the head section. This also applies to iOS large app icons or Microsoft shortcut integration.&lt;/p&gt;",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"head-section-meta-tags-hell/"
+			},
+			"datePublished": "2013-04-04T13:09:47.000Z",
+			"dateModified": "2018-12-16T17:51:46.000Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Jose M. Perez"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Jose M. Perez&#39;s Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "https://jmperezperez.com/amp-dist/logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	<style amp-custom>
+		
+			/*--RESET--*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+input,
+button {
+  background: none;
+}
+
+html {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/*--BODY--*/
+
+body {
+  background: #fff;
+  color: #555;
+  font-family: Georgia, Times;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%; /* fixes a too large font issue in horizontally scrollable <pre> on webkit */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #212121;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+#menu a,
+.button {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+p,
+.post ul,
+.post ol,
+iframe,
+video,
+amp-video,
+amp-vimeo,
+amp-youtube {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+twitterwidget {
+  margin-bottom: 1em ;
+}
+
+a {
+  color: #2a7cb2;
+  font-weight: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease-out, border-bottom-color 0.15s ease-out;
+}
+
+a:hover {
+  color: #2a7cb2;
+}
+
+abbr {
+  border-bottom: 1px dashed #ccc;
+  text-decoration: none;
+}
+
+p a {
+  border-bottom: 1px solid #eee;
+}
+
+p a:hover {
+  border-bottom-color: #212121;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 1.7rem;
+}
+
+h2 {
+  color: #444;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h3 {
+  color: #666;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h4 {
+  font-size: 1.18rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+a h1,
+a h2,
+a h3,
+a h4,
+a h5 {
+  transition: color 0.15s ease-out;
+}
+
+a:hover h1,
+a:hover h2,
+a:hover h3,
+a:hover h4,
+a:hover h5 {
+  color: #3498db;
+}
+
+.quote {
+  margin: 0 0 15px 0;
+}
+
+blockquote {
+  border-left: 2px solid #ccc;
+  font-style: italic;
+  margin: 0 0 15px 0;
+  padding-left: 20px;
+}
+
+ul,
+ol {
+  margin: 0 0 15px 0;
+  padding-left: 25px;
+}
+
+ul {
+  list-style: square;
+}
+
+ol {
+  list-style: decimal;
+}
+
+hr {
+  background: #eee;
+  color: #eee;
+  clear: both;
+  display: block;
+  height: 2px;
+  margin: 30px auto;
+  width: 50%;
+}
+
+pre,
+code {
+  color: #333;
+  font-family: Courier, Menlo, Monaco;
+  font-size: 0.8em;
+  letter-spacing: 0px;
+  overflow-x: auto;
+}
+
+pre {
+  padding: 0.8em 1em;
+  white-space: pre-wrap;
+}
+
+code {
+  margin: 0;
+}
+
+/*--CLEARFIXES--*/
+
+.post::after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
+/*--HEADER--*/
+
+.main-header {
+  background-color: #005689;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+/*--MENU--*/
+
+#menu {
+  display: inline-block;
+  line-height: 2rem;
+}
+
+#menu a {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  padding: 1rem 0.5rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 500px) {
+  #menu a {
+    margin-left: 0.5rem;
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+#menu a:first-child {
+  margin-left: 0;
+}
+
+#menu a[aria-current] {
+  font-weight: bold;
+}
+
+/*--PAGE--*/
+
+#page {
+  margin: 0 auto;
+  max-width: 41rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+.videoWrapper {
+  height: 0;
+  margin-bottom: 1em;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  position: relative;
+}
+
+.videoWrapper iframe,
+.videoWrapper amp-youtube {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/*--WRAPPER--*/
+
+.wrapper {
+  border-top: 2px solid #eee;
+  padding-top: 2rem;
+}
+
+.wrapper:first-child {
+  border-top: none;
+  padding-top: 1rem;
+}
+
+.posts-list h2 {
+  margin-top: 0;
+}
+
+/*--POSTS--*/
+
+.post {
+  display: block;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.post div[itemprop='articleBody'] > p:first-child {
+  color: #333;
+}
+
+.post li {
+  margin-bottom: 0.5rem;
+}
+
+.post p + img {
+  margin-bottom: 1rem;
+}
+
+.post p img {
+  border: 1px solid #eee;
+  display: block;
+  max-width: 100%;
+}
+
+.post img + .caption {
+  padding-top: 0.5rem;
+}
+
+.post .svg-container {
+  margin-bottom: 5%;
+  max-width: 100%;
+  text-align: center;
+}
+
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+.post .svg-container object {
+  width: 100%;
+}
+
+.tag-list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+.tag-list-item {
+  display: inline-block;
+  margin-left: 0.8em;
+}
+
+/*--PAGINATION--*/
+
+.pagination {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.pagination a {
+  min-width: 30px;
+  max-height: 30px;
+  text-align: center;
+}
+
+/*--FOOTER--*/
+
+footer {
+  border-top: 1px dashed #ddd;
+  padding: 2em;
+  text-align: center;
+}
+
+.timing-stats {
+  font-size: 0.7em;
+  padding: 0.35em;
+}
+
+/*--BUTTONS--*/
+
+.button {
+  background-color: #fff;
+  border: 1px solid #555;
+  border-radius: 2rem;
+  color: #555;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s ease-out;
+}
+
+.button:hover {
+  background-color: #3498db;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.inactive {
+  background-color: #ccc;
+  color: #fff;
+}
+
+/*--404--*/
+.search-goog input {
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+
+.search-goog input[type='submit'] {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /*--PAGE--*/
+
+  #page,
+  .wrapper {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /*--WRAPPER--*/
+
+  .wrapper {
+    padding-top: 2rem;
+  }
+
+  .wraper::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+}
+
+/*--ACCESSIBILITY--*/
+.outscreen {
+  height: 1px;
+  left: -1000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+/*--CALLOUT--*/
+.callout {
+  border: 1px solid #eee;
+  border-left-color: #777;
+  border-left-width: 5px;
+  border-radius: 3px;
+  font-size: .9rem;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.author {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.author .name {
+  line-height: 1rem;
+  padding-top: 0.5rem;
+}
+
+.media,
+.bd {
+  overflow: hidden;
+  _overflow: visible;
+  
+}
+
+.media .img {
+  float: left;
+}
+
+.avatar-img {
+  border-radius: 100%;
+  height: 3rem;
+  margin-right: 0.5rem;
+  width: 3rem;
+}
+
+/* SYNTAX HIGHLIGHTING */
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #393a34;
+  font-family: 'Consolas', 'Bitstream Vera Sans Mono', 'Courier New', Courier,
+    monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 0.85em;
+  line-height: 1.2em;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+  background: #b3d4fc;
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+  background: #b3d4fc;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  padding: 0.2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999988;
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.string,
+.token.attr-value {
+  color: #e3116c;
+}
+.token.punctuation,
+.token.operator {
+  color: #393a34; /* no highlight */
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted {
+  color: #005cc5;
+}
+
+.token.keyword {
+  color: #d73a49;
+}
+
+.token.atrule,
+.token.attr-name {
+  color: #6f42c1;
+}
+
+.token.function,
+.token.deleted {
+  color: #6f42c1;
+}
+
+.token.selector {
+  color: #00009f;
+}
+
+.token.tag {
+  color: #22863a;
+}
+
+.token.class-name {
+  color: #6f42c1;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.caption {
+  display: block;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.codepen-aspect-ratio > iframe {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.twitter-tweet {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.twitter-tweet::after {
+  content: '';
+  display: block;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.me {
+  max-width: 22rem;
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
+.me > div {
+  height: 8rem;
+  margin: 0 auto;
+  position: relative;
+  width: 8rem;
+}
+
+.me svg {
+  border-radius: 100%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.me img {
+  border-radius: 100%;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.me h1 {
+  font-size: 1.7rem;
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #38444c;
+    color: #eee;
+  }
+  a {
+    color: #9dcae8;
+  }
+  a:hover {
+    color: #fff;
+  }
+  p a {
+    border-bottom: 1px solid #6d7a82;
+  }
+  p a:hover {
+    border-bottom: 1px solid #fff;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #eee;
+  }
+  a:hover h1,
+  a:hover h2,
+  a:hover h3,
+  a:hover h4,
+  a:hover h5 {
+    color: #4b89b1;
+  }
+  .button:hover {
+    background-color: #4b89b1;
+  }
+  code,
+  pre {
+    color: #ddd;
+  }
+  .main-header {
+    background-color: #4b89b1;
+  }
+}
+
+		
+		amp-iframe {
+			margin-bottom: 10px;
+		}
+	</style>
+  </head>
+  <body>
+
+  	<!-- google analytics -->
+  	
+  	<amp-analytics type="googleanalytics" id="google-analytics">
+		<script type="application/json">
+		{
+		  "vars": {
+		    "account": "UA-39254352-1"
+		  },
+		  "triggers": {
+		    "trackPageview": {
+		      "on": "visible",
+		      "request": "pageview"
+		    }
+		  }
+		}
+		</script>
+	</amp-analytics>
+	
+
+  <header class="main-header">
+      <nav id="menu">
+          <a href="/">JMPerez Blog</a>
+          <a href="/projects/">Projects</a>
+          <a href="/talks/">Speaking</a>
+          <a href="/about-me/">About</a>
+      </nav>
+  </header>
+
+  <article>
+  	<div class="post">
+	  	<div id="page">
+
+		    <article id="post-head-section-meta-tags-hell" class="post wrapper">
+
+        <div class="media author">
+          <div class="img">
+            <a href="/about-me/">
+              <amp-img src="/assets/images/jmperez.jpg" class="avatar-img" alt="" height="53" width="53">
+            </a>
+          </div>
+          <div class="bd">
+            <address class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="/about-me/" itemprop="name">José M. Pérez</a></address>
+            <meta class="post-data" itemprop="datePublished" content="2013-04-04T13:09:47.000Z">
+              April 04 2013
+            </meta>
+          </div>
+        </div>
+
+				<!-- entry title -->
+				<header class="entry-header">
+					
+					  <h1 class="article-title entry-title" itemprop="name">
+					    Polluting the head section for the sake of adding 3rd party services
+					  </h1>
+					
+				</header>
+
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			  		<div class="amp-img-wrapper"><amp-img src="/assets/images/posts/head-meta-tags.png" width="300" height="219" layout="responsive"></amp-img></div> The head section of a page is becoming the place to include information for integrating your page with external services. Thus, if you want to include support for <a href="http://developers.facebook.com/docs/opengraphprotocol/" target="_blank" rel="noopener">Facebook&#x2019;s Open Graph Protocol</a> or <a href="https://dev.twitter.com/docs/cards" target="_blank" rel="noopener">Twitter Cards</a>, you need to include some custom meta tags inside the head section. This also applies to iOS large app icons or Microsoft shortcut integration.<a id="more"></a><p>Have a look at a page such as <a href="http://www.theverge.com/2013/4/3/4179236/the-facebook-phone-is-coming-and-its-already-in-your-pocket/" target="_blank" rel="noopener">this news on The Verge</a> and view its source HTML code. Removing common meta tags such as content type, favicon, RSS or description, we have this:</p><pre class=" language-html"><code class="language-html"><span class="token comment">&lt;!-- Apple Touch Icon --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>apple-touch-icon<span class="token punctuation">&quot;</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/images/verge/apple-touch-icon.png<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+
+<span class="token comment">&lt;!-- Windows 8 Pinned sites --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>application-name<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>The Verge<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>msapplication-starturl<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>name<span class="token punctuation">=</span>Products; action-uri<span class="token punctuation">=</span>/products; icon-uri<span class="token punctuation">=</span>http://cdn2.sbnation.com/images/verge/favicon.vc44a54f.ico<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>msapplication-task<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>name<span class="token punctuation">=</span>Reviews; action-uri<span class="token punctuation">=</span>/reviews; icon-uri<span class="token punctuation">=</span>http://cdn2.sbnation.com/images/verge/favicon.vc44a54f.ico<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>msapplication-task<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>name<span class="token punctuation">=</span>Features; action-uri<span class="token punctuation">=</span>/features; icon-uri<span class="token punctuation">=</span>http://cdn2.sbnation.com/images/verge/favicon.vc44a54f.ico<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>msapplication-task<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>name<span class="token punctuation">=</span>Show; action-uri<span class="token punctuation">=</span>/on-the-verge; icon-uri<span class="token punctuation">=</span>http://cdn2.sbnation.com/images/verge/favicon.vc44a54f.ico<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>msapplication-task<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>name<span class="token punctuation">=</span>Forums; action-uri<span class="token punctuation">=</span>/forums; icon-uri<span class="token punctuation">=</span>http://cdn2.sbnation.com/images/verge/favicon.vc44a54f.ico<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>msapplication-task<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>msapplication-TileColor<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>#666666<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>msapplication-TileImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>http://cdn3.sbnation.com/images/verge/windows8-pinned-icon.ve36f4a6.png<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+
+<span class="token comment">&lt;!-- Google Site Verification, used for Analytics and Webmaster Tools --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>google-site-verification<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>TYyhlycNMOtUSht2aoB7heWTK8m-H45_YJizKavkO8s<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>google-site-verification<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>IucFf_TKtbFFH8_YeFyEteQIwYPdANM1R46_U9DpAr4<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>google-site-verification<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>TYyhlycNMOtUSht2aoB7heWTK8m-H45_YJizKavkO8s<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>google-site-verification<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tDoQLOfV4VmPZrTuSNDQnSyTfhgDRlOMaXgYQ0Bb9Bc<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+
+<span class="token comment">&lt;!-- Verification for Bing --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>msvalidate.01<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>D385D0326A3AE144205C298DB34B4E94<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+
+<span class="token comment">&lt;!-- Verification for Yahoo! Site Explorer --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>META</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>y_key<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>0184e2558f89b639<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+
+<span class="token comment">&lt;!-- Facebook integration --&gt;</span>
+<span class="token comment">&lt;!-- Note, same one as &lt;meta name=&quot;description&quot;&gt; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>og:description<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>After a years-long lead up of false starts, half-measures, and rumors, Facebook&amp;amp;#39;s phone plans will finally be revealed tomorrow. The event, in which Facebook promises to show off its &amp;amp;quot;new home on...<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>fb:app_id<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>179668695452017<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>og:image<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>http://cdn0.sbnation.com/entry_photo_images/7969055/20121213-DSC_8473-3VERGE_large_large.jpg<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>og:site_name<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>The Verge<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token comment">&lt;!-- Note, same one as &lt;title&gt; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>og:title<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>The Facebook phone is coming, and it&amp;amp;#39;s already in your pocket<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>og:type<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>article<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>og:url<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>http://www.theverge.com/2013/4/3/4179236/the-facebook-phone-is-coming-and-its-already-in-your-pocket<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+
+<span class="token comment">&lt;!-- Twitter integration --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>twitter:card<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>summary<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>twitter:url<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>http://www.theverge.com/2013/4/3/4179236/the-facebook-phone-is-coming-and-its-already-in-your-pocket<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token comment">&lt;!-- Note, same one as &lt;title&gt; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>twitter:title<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>The Facebook phone is coming, and it&amp;amp;#39;s already in your pocket<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token comment">&lt;!-- Note, same one as &lt;meta name=&quot;description&quot;&gt; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>twitter:description<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>After a years-long lead up of false starts, half-measures, and rumors, Facebook&amp;amp;#39;s phone plans will finally be revealed tomorrow. The event, in which Facebook promises to show off its &amp;amp;quot;new home on...<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>twitter:image<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>http://cdn0.sbnation.com/entry_photo_images/7969055/20121213-DSC_8473-3VERGE_large_large.jpg<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>twitter:site<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>verge<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>twitter:creator<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>backlon<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+
+<span class="token comment">&lt;!-- Sailthru integration --&gt;</span>
+<span class="token comment">&lt;!-- Note, same one as &lt;title&gt; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>sailthru.title<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>The Facebook phone is coming, and it&amp;amp;#39;s already in your pocket<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>sailthru.tags<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>general,general,the-verge<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>sailthru.date<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>2013-04-03<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token comment">&lt;!-- Note, same one as &lt;meta name=&quot;description&quot;&gt; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>sailthru.description<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>After a years-long lead up of false starts, half-measures, and rumors, Facebook&amp;amp;#39;s phone plans will finally be revealed tomorrow. The event, in which Facebook promises to show off its &amp;amp;quot;new home on...<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+
+<span class="token comment">&lt;!-- Facebook shared/liked image --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>image_src<span class="token punctuation">&quot;</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>http://cdn0.sbnation.com/entry_photo_images/7969055/20121213-DSC_8473-3VERGE_large_large.jpg<span class="token punctuation">&quot;</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>image/jpeg<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>300<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>250<span class="token punctuation">&quot;</span></span>  <span class="token punctuation">/&gt;</span></span>
+</code></pre><p>Of course, it is up to you to include this, and they may improve your user experience or increase the click-through rate. But I sometimes feel we are doing it wrong, and we shouldn&#x2019;t be including data for every request, just in case it is needed.</p><p><em>Update 29 nov 2015: There is a way of reducing the amount of meta tags by combining some of them, and moving some others to a <code>manifest.json</code> file. You can read about this on <a href="https://adactio.com/journal/9881" target="_blank" rel="noopener">Metadata markup</a>.</em></p><p>For validating services, I think it is more sensible to just upload a file, instead of adding a meta tag that is served to everyone (and no one needs except for the validation service). For structured content I would personally prefer services to use a standard like <a href="http://microformats.org/wiki/microdata" target="_blank" rel="noopener">microdata</a>/<a href="http://microformats.org/wiki/microformats" target="_blank" rel="noopener">microformats</a> (which <a href="http://support.google.com/webmasters/bin/answer.py?hl=en&amp;answer=99170" target="_blank" rel="noopener">Google Rich Snippets</a> has proved to be very useful). In fact, <a href="http://www.schema.org/docs/schemas.html" target="_blank" rel="noopener">Schema.org</a> already covers some of the most popular types of content, adding structure and semantics.</p><p>Take this as a piece of information, so you can realize that adding this to every response, only for a few browsers/robots to understand, looks like a waste of bandwidth. Think it twice before blindly adding meta tags if you are going to make use of these services. And if you are a developer of these services, try to default to the <code>title</code> and <code>meta description</code> already provided by the page, instead of forcing the page to duplicate these values for your service.</p><p>If you need to include those tags, you have little room for savings. You can still save some bytes checking if it makes sense to include that data depending on the information we get from the request. Note that this often involves server-side user agent sniffing, which is pretty discouraged.</p><h2 id="Facebook&#x2019;s-Open-Graph-Protocol"><a href="#Facebook&#x2019;s-Open-Graph-Protocol" class="headerlink" title="Facebook&#x2019;s Open Graph Protocol"></a>Facebook&#x2019;s Open Graph Protocol</h2><p>There doesn&#x2019;t seem to be a way of detecting whether the request is coming from a Facebook fetcher at the moment.</p><h2 id="Twitter-Cards"><a href="#Twitter-Cards" class="headerlink" title="Twitter Cards"></a>Twitter Cards</h2><p>Twitter uses Twitterbot to fetch the contents of your site when someone tweets a link to one of your pages, and they have just released <a href="https://dev.twitter.com/docs/cards/types/product-card" target="_blank" rel="noopener">new card types</a>. They used to have information about the user agent used when scrawling Twitter Cards on <a href="https://dev.twitter.com/docs/cards#crawling" target="_blank" rel="noopener">https://dev.twitter.com/docs/cards#crawling</a> but it seems to have disappeared after the launch of new Cards and the changes on their documentation site.</p><h2 id="Other-service-specific-content-that-is-added-in-the-header"><a href="#Other-service-specific-content-that-is-added-in-the-header" class="headerlink" title="Other service-specific content that is added in the header"></a>Other service-specific content that is added in the header</h2><h3 id="iOS-Web-Applications"><a href="#iOS-Web-Applications" class="headerlink" title="iOS Web Applications"></a>iOS Web Applications</h3><p>There is a well-known way of <a href="http://developer.apple.com/library/ios/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html" target="_blank" rel="noopener">adding some features to iOS web apps</a>, so when they are added to the Home Screen, they show a specific icon and they mimic a native application. Detecting this is reduced to check whether the device is an iOS device by looking at its user agent.</p><h3 id="IE9-pinned-tags-on-Windows-8"><a href="#IE9-pinned-tags-on-Windows-8" class="headerlink" title="IE9+ pinned tags on Windows 8+"></a>IE9+ pinned tags on Windows 8+</h3><p>You can integrate your website with <a href="http://msdn.microsoft.com/en-us/library/gg131029.aspx" target="_blank" rel="noopener">Windows 7 using Internet Explorer 9 creating pinned sites</a>. Detect whether the user is using IE9 or a more recent one. You can skip OS check, so the only ones that will receive these without understanding it will be IE9 on Windows Vista.</p>
+			  	</div>
+
+		  	</article>
+		</div>
+    <footer>
+        <section class="links">
+            <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter · <a href="https://github.com/JMPerez">GitHub</a> · <a href="http://www.linkedin.com/in/jmperezperez">LinkedIn</a>
+        </section>
+    </footer>
+
+	</div>
+  </article>
+
+  </body>
+</html>

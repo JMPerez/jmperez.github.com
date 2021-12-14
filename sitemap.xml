@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jmperezperez.com/assess-performance-impact</loc>
+    
+    <lastmod>2021-12-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jmperezperez.com/es/about-me/index.html</loc>
     
     <lastmod>2021-12-14</lastmod>
@@ -39,15 +48,6 @@
   
   <url>
     <loc>https://jmperezperez.com/projects/index.html</loc>
-    
-    <lastmod>2021-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/assess-performance-impact</loc>
     
     <lastmod>2021-12-14</lastmod>
     

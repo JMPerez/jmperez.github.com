@@ -31,7 +31,7 @@
 			    "@id":"/assess-performance-impact"
 			},
 			"datePublished": "2020-03-14T06:15:00.000Z",
-			"dateModified": "2021-12-14T07:52:53.545Z",
+			"dateModified": "2021-12-14T11:39:25.603Z",
 			
 			"image": {
 				"@type": "ImageObject",
@@ -886,15 +886,15 @@ figcaption {
 <div id="hexo-amp-id-3">
 <div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584185288/assess-performance-impact/assess-performance-impact_simplified-first-paint-cr_obhsnn.png" width="700" height="366" layout="responsive"></amp-img></div>
 </div>
-<figcaption>Plotting Conversion Rate for each First Paint Category (good, average, slow) ([source](https://simplified.dev/performance/impact-of-web-performance))</figcaption>
+<figcaption>Plotting Conversion Rate for each First Paint Category (good, average, slow) (<a href="https://simplified.dev/performance/impact-of-web-performance">source</a>)</figcaption>
 </figure>
-One could wonder if users having a better performance and spending more because they are using better devices (ie the latest iPhone), which have better CPUs and their users have likely a higher purchase power.
 
+<p>One could wonder if users having a better performance and spending more because they are using better devices (ie the latest iPhone), which have better CPUs and their users have likely a higher purchase power.</p>
 <figure>
 <div id="hexo-amp-id-4">
 <div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584185288/assess-performance-impact/assess-performance-impact_simplified-iphone8-dollar-per-session_zdvrlm.png" width="700" height="286" layout="responsive"></amp-img></div>
 </div>
-<figcaption>Plotting Revenue per session for a specific device (iPhone 8) depending on FPS after click ([source](https://simplified.dev/performance/impact-of-web-performance))</figcaption>
+<figcaption>Plotting Revenue per session for a specific device (iPhone 8) depending on FPS after click (<a href="https://simplified.dev/performance/impact-of-web-performance">source</a>)</figcaption>
 </figure>
 
 <p>Using Google Analytics you can see what type of device the user is using and plot results by specific models to get an answer.</p>
@@ -919,11 +919,12 @@ One could wonder if users having a better performance and spending more because 
 
 <p>In this case the Rel mCvR is 40%.</p>
 <p>Google says that <strong>a good target for Rel mCvR is 70%</strong>, meaning that mobile conversion rates are 30% lower than desktop. The reason why Rel mCvR can be a good metric is that it is not influenced by changes in traffic (eg seasonality or promotional campaigns). The following diagram explains it in more detail:</p>
+<figure>
 <div id="hexo-amp-id-10">
 <div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584185288/assess-performance-impact/assess-performance-impact_rel-mcvr_jgbeqo.png" width="700" height="351" layout="responsive"></amp-img></div>
 </div>
-<figcaption>Explanation of Relative mobile conversion rate and its components ([source](https://www.blog.google/products/marketingplatform/analytics/mobile-challenge-and-how-measure-it/))</figcaption>
-
+<figcaption>Explanation of Relative mobile conversion rate and its components (<a href="https://www.blog.google/products/marketingplatform/analytics/mobile-challenge-and-how-measure-it/">source</a>)</figcaption>
+</figure>
 
 <p>Note that Rel mCvR is influenced by UX too, since a bad UX on mobile will hurt mobile conversion rates. <strong>You should use <a href="https://web.dev/measure">Lighthouse</a> or <a href="https://www.webpagetest.org/">WebPageTest</a> to ensure that there are performance issues and speed is the main contributor in Rel mCvR, and not usability.</strong></p>
 <p>The key question is: <em>what’s the target Rel mCvR?</em> If we knew it we could assess the revenue that an increase in conversion rates would represent. For this we can use a similar approach to the first technique we described, clustering conversion rates based on performance metrics and calculating how many user could be “upgraded” to the following cluster (eg from slow to average experience and from average to fast).</p>
@@ -934,7 +935,7 @@ On <a href="https://web.dev/value-of-speed/">their post “Value of Speed”</a>
 <div id="hexo-amp-id-11">
 <a href="https://www.thinkwithgoogle.com/feature/testmysite/"><div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584185288/assess-performance-impact/assess-performance-impact_test-my-site_yxsqan.png" width="700" height="446" layout="responsive"></amp-img></div></a>
 </div>
-<figcaption>Screenshot of [Google's Test My Site page](https://www.thinkwithgoogle.com/feature/testmysite/)</figcaption>
+<figcaption>Screenshot of <a href="https://www.thinkwithgoogle.com/feature/testmysite/">Google's Test My Site page</a></figcaption>
 </figure>
 
 <p>To calculate the potential increase in revenue you only need to provide your average monthly visitors, conversion rate, and average order value.</p>
@@ -942,7 +943,7 @@ On <a href="https://web.dev/value-of-speed/">their post “Value of Speed”</a>
 <div id="hexo-amp-id-12">
 <div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584185288/assess-performance-impact/assess-performance-impact_test-my-site-potential-revenue_meu5vx.png" width="700" height="341" layout="responsive"></amp-img></div>
 </div>
-<figcaption>Calculating potential increase in annual revenue using [Google's Test My Site page](https://www.thinkwithgoogle.com/feature/testmysite/)</figcaption>
+<figcaption>Calculating potential increase in annual revenue using <a href="https://www.thinkwithgoogle.com/feature/testmysite/">Google's Test My Site page</a></figcaption>
 </figure>
 
 <p>Behind the scenes it is powered by data from the Chrome User Experience report database or HTTP Archive, which contains performance metrics gathered from real users that have visited your site (if you are interested in this data I recommend checking <a href="https://crux.run/">CRUX.RUN</a>). It also uses Lighthouse to calculate the potential savings in loading time.</p>

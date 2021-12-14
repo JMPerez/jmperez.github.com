@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/animations/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Subtle animations to improve the user experience</title>
+    <link href="https://jmperezperez.com//animations-improve-ux"/>
+    <id>https://jmperezperez.com//animations-improve-ux</id>
+    <published>2014-05-01T07:30:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I have just come across the post <a href="https://medium.com/p/3d1b0a9b810e">Improve the payment experience with animations - Behind the scenes of Stripe Checkout
+</a>. I must say that I don’t usually take into account animations when building a UI, since the priority is always the layout and I seldom have time to enhance the interface with subtle animations.</p>
+<p>After reading the article one starts appreciating those transitions that became a thing when the iPhone went out (maybe <a href="http://www.theguardian.com/technology/2013/sep/27/ios-7-motion-sickness-nausea">too much on iOS7?</a>. The good thing is that good animations make the interface look smoother and more professional, and it just feels great to use it. However, it is very easy to end up overusing animations and applying them to lots of elements just because it is possible.</p>
+<span id="more"></span>
+<blockquote>
+<p>If you disable animations, the flow should feel broken; if it is not, this might mean your animations are superfluous.
+— <em><a href="https://medium.com/p/3d1b0a9b810e">Michaël Villar</a></em></p>
+</blockquote>
+<p>On the web, it is sometimes difficult to create proper animations without lots of hacks like duplicating elements and setting fixed dimensions and absolute positioning. And this, together with responsive design, makes it a real challenge.</p>
+<p>There are many websites for getting inspired and seeing how animations are used in practice. Many of those sites are listed on  <a href="https://blog.stephaniewalter.fr/en/interface-animations-and-transitions-where-to-get-inspiration/">Interface Animations and Transitions: where to get inspiration</a>.</p>
+<h2 id="Practical-example"><a href="#Practical-example" class="headerlink" title="Practical example"></a>Practical example</h2><p>I would like to save a form and give feedback to the user. One possibility is to click on save and then show an <a href="http://getbootstrap.com/components/#alerts">alert</a> on top of the form. However, what should we do when the user starts modifying the form again? One possibility is to remove the alert. Collapsing the alert would reflow the form and would look a bit ugly. Another possibility is to use something like the notifications shown on Gmail on top of the page, fixed positioned.</p>
+<p>If the user continues editing and we didn’t remove the alert, then when she saves again she doesn’t get any feedback about the most recent saving action. Does that alert refer to this save or to the previous one?</p>
+<p>Then I thought it would be useful to have the Save button change between Save - Saving - Saved, similar to <a href="https://medium.com/p/3d1b0a9b810e">the example on the post</a>. A first draft was this:</p>
+<iframe src="https://jsfiddle.net/JMPerez/khjs3x9x/show/" width="100%" height="150px"></iframe>
+
+<p>After that, I found <a href="http://minimalmonkey.com/fun-animations-with-css3/">this post</a> and applied some transitions:</p>
+<iframe src="https://jsfiddle.net/JMPerez/kbtr8mqs/show/" width="100%" height="170px"></iframe>
+
+<p>Even though I’m not super happy with the result I think that a button like that with some animation can be very useful when saving data in a form.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I have just come across the post &lt;a href=&quot;https://medium.com/p/3d1b0a9b810e&quot;&gt;Improve the payment experience with animations - Behind the scenes of Stripe Checkout
+&lt;/a&gt;. I must say that I don’t usually take into account animations when building a UI, since the priority is always the layout and I seldom have time to enhance the interface with subtle animations.&lt;/p&gt;
+&lt;p&gt;After reading the article one starts appreciating those transitions that became a thing when the iPhone went out (maybe &lt;a href=&quot;http://www.theguardian.com/technology/2013/sep/27/ios-7-motion-sickness-nausea&quot;&gt;too much on iOS7?&lt;/a&gt;. The good thing is that good animations make the interface look smoother and more professional, and it just feels great to use it. However, it is very easy to end up overusing animations and applying them to lots of elements just because it is possible.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="animations" scheme="https://jmperezperez.com/tags/animations/"/>
+    
+  </entry>
+  
+</feed>

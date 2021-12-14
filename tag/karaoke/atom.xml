@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/karaoke/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Removing voice from songs using Javascript</title>
+    <link href="https://jmperezperez.com//javascript-karaoke-remove-voice"/>
+    <id>https://jmperezperez.com//javascript-karaoke-remove-voice</id>
+    <published>2013-07-17T15:41:54.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>These days I have been playing with the Web Audio API in <a href="/karaoke/">a small pet project</a>. It consists on a web page where you can drag and drop an audio file and play it removing the vocals. Perfect for a basic karaoke!
+And it even works on mobile!</p>
+<span id="more"></span>
+<p>You can check out <a href="https://github.com/JMPerez/karaoke">the code on Github</a>.</p>
+<p>It is exciting to see how powerful it can be, making it super easy to manipulate sound client-side.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;These days I have been playing with the Web Audio API in &lt;a href=&quot;/karaoke/&quot;&gt;a small pet project&lt;/a&gt;. It consists on a web page where you can drag and drop an audio file and play it removing the vocals. Perfect for a basic karaoke!
+And it even works on mobile!&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+      <category term="web audio api" scheme="https://jmperezperez.com/tags/web-audio-api/"/>
+    
+      <category term="karaoke" scheme="https://jmperezperez.com/tags/karaoke/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/progressive%20enhancement/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2021-12-14T07:52:53.526Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Webapp first: An approach to developing for mobile</title>
+    <link href="https://jmperezperez.com//developing-mobile-webapp-first"/>
+    <id>https://jmperezperez.com//developing-mobile-webapp-first</id>
+    <published>2012-05-21T05:21:17.000Z</published>
+    <updated>2021-12-14T07:52:53.526Z</updated>
+    
+    <content type="html"><![CDATA[<p>Mobile web apps are not at the same level of native ones. Until browsers don’t implement HTML5 API specifications to access device hardware (device API, audio, video), implement push notifications, and improve general performance (animations, scroll) web apps will not be able to deliver the experience that can’t be reach through native development.</p>
+<p>However, there are some advantages when taking a webapp first approach for mobile development.</p>
+<span id="more"></span>
+<h2 id="UI-mocking"><a href="#UI-mocking" class="headerlink" title="UI mocking"></a>UI mocking</h2><p>Some UI designers are so familiar with web that they use HTML+CSS to implement native apps mockups. Then, this mockups are used by iOS or Android developers to implement the app UI. Why don’t take advantage of that web mockup and use it for a web app?</p>
+<h2 id="Hybrid-application"><a href="#Hybrid-application" class="headerlink" title="Hybrid application"></a><a name="hybrid"></a>Hybrid application</h2><p>Your web development can be easily reused to make a hybrid application. Your native app can be a wrapper of your webapp, and you can use PhoneGap or Titanium to access hardware through JS bridges. In addition, you can iterate and port parts of your application to native controls if you realize it is more suitable. You don’t lose your previous development, since you can reuse them in your mobile site.</p>
+<p>Take Google+ iPhone app as an example:
+<img src="/assets/images/posts/google-plus-hybrid.jpg" alt="Google+ iPhone app"></p>
+<p>The Google+ iPhone app was basically a wrapper around their mobile webapp. From there, they have evolve it to a much richer one. However, certain features like the login page remain the same. And there is the mobile site, that looks a lot like the ‘old’ iPhone app.</p>
+<h2 id="Testing-new-features"><a href="#Testing-new-features" class="headerlink" title="Testing new features"></a>Testing new features</h2><p>Deploying changes in a webapp is easier than building and distributing an app. Thus, you can easily perform A/B testing or introduce new features on your webapp and use it as a way to get feedback before porting those changes to native apps.</p>
+<h2 id="Defensive-development-Future-Friendly"><a href="#Defensive-development-Future-Friendly" class="headerlink" title="Defensive development - Future Friendly"></a>Defensive development - Future Friendly</h2><p>Having a webapp makes your solution compatible with future devices, no matter what OS they are running. Your users will be able to use your application on their mobile phones through their browser. <a href="http://www.openwebdevice.com/">Open Web Device</a> gaining traction? You are ready. <a href="http://www.slashgear.com/intels-first-medfield-phone-coming-this-week-claims-ceo-17223318/">Intel Mobile phone</a>? You are ready too. E-book reader? Of course! And take into account that your application wouldn’t be compatible with these devices if you had chosen any of current ‘native’ environments.</p>
+<p>In addition, as OS software updates are being released and more powerful browsers are available, our web apps will behave better. If we have embraced progressive enhancement, our apps will be able to take advantage of most recent HTML5 APIs as soon as the browser in which they are running supports them.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Mobile web apps are not at the same level of native ones. Until browsers don’t implement HTML5 API specifications to access device hardware (device API, audio, video), implement push notifications, and improve general performance (animations, scroll) web apps will not be able to deliver the experience that can’t be reach through native development.&lt;/p&gt;
+&lt;p&gt;However, there are some advantages when taking a webapp first approach for mobile development.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="progressive enhancement" scheme="https://jmperezperez.com/tags/progressive-enhancement/"/>
+    
+      <category term="mobile" scheme="https://jmperezperez.com/tags/mobile/"/>
+    
+      <category term="future friendly" scheme="https://jmperezperez.com/tags/future-friendly/"/>
+    
+      <category term="webapp" scheme="https://jmperezperez.com/tags/webapp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Using HTML5 features today</title>
+    <link href="https://jmperezperez.com//progressively-using-html5-features"/>
+    <id>https://jmperezperez.com//progressively-using-html5-features</id>
+    <published>2010-07-02T09:17:27.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I have already started to use different HTML5 features to progressive
+enhance web applications developed in my current job. HTML5 has a good
+thing: users with modern browsers can enjoy enhancements without harming
+those who use older ones. This allows you integrate new features
+provided by HTML5 and don’t worry about incompatibilities.</p>
+<span id="more"></span>
+<p>So far we are using:</p>
+<ul>
+<li><strong>New input types</strong>: though currently our customers use desktop
+  browsers above all, these new input types degrade gracefully to
+  typical input texts while showing a custom keyboard when you focus
+  them using a mobile browser (ie: mobile safari). Thus, specific
+  keyboard optimized to numerical, email address or url inputs
+  provides a better experience if supported by the browser.</li>
+<li><strong>Placeholder</strong> attribute: Placeholder provides a straightforward
+  way to show a hint to inform the users about the content the have to
+  provide inside an input element (for instance you can place the
+  label text or a date format). This is nicely supported in webkit
+  browsers and can be easily implemented using javascript as a
+  fallback.</li>
+<li><strong>LocalStorage</strong> vs cookies: LocalStorage is great to store current
+  user browsing preferences like expanded/collapsed menus or selected
+  tabs. It is much better than using cookies if you do not need to
+  read their content in your server. This reduces data traffic in
+  every request for resources residing in the same domain you set he
+  cookie. A nice example is <a href="http://jqueryui.com/demos/tabs/#cookie">the jQuery UI tabs plugin</a>, which has
+  an option to remember the selected tab using a cookie. This cookie
+  would have to contain every selected tab in each of your pages.
+  Another example is <a href="https://github.com/jzaefferer/jquery-treeview/blob/master/jquery.treeview.js#L191">the persistence approach that TreeView plugin
+  takes</a>,
+  also based on cookies. Why don’t just use localStorage to
+  keep that information? In addition, taking into account graceful
+  degradation, cookies approximation can be used if localStorage is
+  not supported by the browser (although even IE8 supports it
+  currently).</li>
+</ul>
+<p>HTML5 provides a bunch of other features you should be taking into
+account in your projects. Maybe you don’t find them useful at all, but
+they can be the solution to problems you may encounter. Until IE9 starts
+to take off and replaces IE8 (and especially, please, IE6 and IE7) we
+will have to adopt HTML5 features progressively, trying to offer an
+alternative implementation to those older browsers.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      You can already use different HTML5 to improve your websites. These are some that I have already started to use in several web applications, offering an equivalent functionality in older browsers.
+    
+    </summary>
+    
+    
+      <category term="cookies" scheme="https://jmperezperez.com/tags/cookies/"/>
+    
+      <category term="html5" scheme="https://jmperezperez.com/tags/html5/"/>
+    
+      <category term="localstorage" scheme="https://jmperezperez.com/tags/localstorage/"/>
+    
+      <category term="progressive enhancement" scheme="https://jmperezperez.com/tags/progressive-enhancement/"/>
+    
+  </entry>
+  
+</feed>

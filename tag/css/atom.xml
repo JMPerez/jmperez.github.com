@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/css/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Line-height, multiline ellipsis and responsiveness</title>
+    <link href="https://jmperezperez.com//line-height-mutiple-line-ellipsis-responsiveness"/>
+    <id>https://jmperezperez.com//line-height-mutiple-line-ellipsis-responsiveness</id>
+    <published>2013-07-09T19:03:12.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Recently I was implementing a pinterest-ish layout in which the elements have a specific height. These elements contain a title that can expand multiple lines, and an additional text to which I would like to apply a multi-line ellipsis. Initially, I don’t know how many lines of text the title will take. The text can be arbitrarily long, and depending on the screen width this number will vary.</p>
+<span id="more"></span>
+<h2 id="Multiline-ellipsis"><a href="#Multiline-ellipsis" class="headerlink" title="Multiline ellipsis"></a>Multiline ellipsis</h2><p>There are <a href="http://css-tricks.com/line-clampin/">many</a> <a href="http://www.mobify.com/blog/multiline-ellipsis-in-pure-css/">ways</a> of achieving multiline ellipsis or line clamping. However, I wanted to use an approach that didn’t need javascript and could work not knowing in advance how many lines of text are available.</p>
+<h2 id="Line-height-to-the-rescue"><a href="#Line-height-to-the-rescue" class="headerlink" title="Line-height to the rescue"></a>Line-height to the rescue</h2><p>I have coded <a href="http://jsfiddle.net/vEvbG/5/">a jsfiddle</a> that helps to visualise how this works. Try
+changing the width of the “Result” window dragging the vertical separator.</p>
+<iframe src="https://jsfiddle.net/vEvbG/5/embedded/result,html,css" height="300" width="100%" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>And a screenshot, in case you have problems visualising the jsfiddle:
+<img src="/assets/images/posts/line-height-responsive-01.png" alt="Same line-height (small items)">
+<em>Using the same line-height for the text. Notice that the title can take a different amount of lines but the text underneath is not cropped.</em></p>
+<p>The best thing is that you can change the available space, and the image (represented with a grey square) will scale properly, the title will adapt to the available room and the text underneath will try to fill the available space. Check <a href="/assets/images/posts/line-height-responsive-02.png">this example</a> that shows the same items when the width increases. I found this out having a look at the Discover feature on the <a href="https://play.spotify.com/">Spotify Web Player</a>, I realized that even though the images were scaled when changing the screen width, the text underneath was never cropped. It turns out that every line of text has the same height, regardless of the font size. Thus, the title can expand multiple lines and will push the rest of the text. The lack of ellipsis is solved by adding a “More” link:
+<img src="/assets/images/posts/discover-item-hover.jpg" alt="Detail of an item in the Spotify Discover feature. When hovering, the &quot;More&quot; link is shown">
+<em>Detail of an item in the Spotify Discover feature. When hovering, the “More” link is shown.</em></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Recently I was implementing a pinterest-ish layout in which the elements have a specific height. These elements contain a title that can expand multiple lines, and an additional text to which I would like to apply a multi-line ellipsis. Initially, I don’t know how many lines of text the title will take. The text can be arbitrarily long, and depending on the screen width this number will vary.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="responsive" scheme="https://jmperezperez.com/tags/responsive/"/>
+    
+      <category term="css" scheme="https://jmperezperez.com/tags/css/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/browser%20apis/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Using MediaRecorder API for screen recording on the web</title>
+    <link href="https://jmperezperez.com//mediarecorder-api-screenflow"/>
+    <id>https://jmperezperez.com//mediarecorder-api-screenflow</id>
+    <published>2016-12-08T23:05:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>At <a href="/cssconf-au-2016/">CSSConf AU 2016</a>, <a href="https://soledadpenades.com/">Soledad Penadés</a> gave a talk called “<a href="https://soledadpenades.com/files/t/2016_rtalchemy/">Real time front-end alchemy</a>“. It was full of examples of combining <a href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API">MediaStreams</a> with audio and video manipulation.</p>
+<p>Something I didn’t know was that you can record audio and video on the browser without any plugins. You can combine audio from the microphone, video from a canvas, dynamically generated content… you name it. Even recording a window or the entire screen and exporting it as a video.</p>
+<span id="more"></span>
+
+<p>The best way to learn is by practising and, <a href="https://soledadpenades.com/files/t/2016_rtalchemy/#65">quoting Soledad</a>, “we need you to play with it, contribute and help us make it better”. By trying these new APIs out we let browser-vendors know that these tools are useful, and we can test and provide early feedback.</p>
+<h2 id="The-project"><a href="#The-project" class="headerlink" title="The project"></a>The project</h2><div class="videoWrapper">
+<iframe width="720" height="450" src="https://www.youtube.com/embed/tOWwV8ZRn3g" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p>I had this idea about creating a <a href="http://www.telestream.net/screenflow/overview.htm">ScreenFlow</a>-like prototype. I would show my webcam in a corner of the screen and I would generate a video combining audio from the mic and the image from the screen.</p>
+<p>I Googled a bit, and found very few sites talking about these APIs. Pretty much only <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API">MDN</a> and <a href="https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/">other post by Sole</a>. I thought this small experiment would also help those searching for some examples.</p>
+<p><em>Note: As of December 2016 this demo is only supported on Firefox. Chrome is not supported out of the box, needing an extension and lots of custom code (see this WebRTC experiment for more information. It will show your camera, but won’t record anything.</em></p>
+<h3 id="The-code"><a href="#The-code" class="headerlink" title="The code"></a>The code</h3><p>The code for the project is at <a href="https://github.com/JMPerez/screenflow">JMPerez/screenflow on GitHub</a> and a demo is available on <a href="https://jmperezperez.com/screenflow/">jmperezperez.com/screenflow</a>.</p>
+<p>Let’s have a look at the most important code fragments. First of all, we define functions to request access to the different media sources:</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// we ask for permission to record the window</span>
+<span class="token comment" spellcheck="true">// mediaSource could also be 'screen' if we wanted</span>
+<span class="token comment" spellcheck="true">// to record the entire screen</span>
+<span class="token keyword">const</span> getStreamForWindow <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">getUserMedia</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  video<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    mediaSource<span class="token punctuation">:</span> <span class="token string">'window'</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// we ask for permission to record the audio and video from the camera</span>
+<span class="token keyword">const</span> getStreamForCamera <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">getUserMedia</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   audio<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Now, we execute them, one after the other one. I tried to execute both in parallel, believing that the browser would combine both requests in the permission dialog, but that didn’t work. So the idea is to request access to the webcam, insert a <code>&lt;video&gt;</code> element with the media from the camera and then request access to the screen and record it.</p>
+<pre class=" language-js"><code class="language-js"><span class="token function">getStreamForCamera</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>streamCamera <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// we know have access to the camera, let's append it to the DOM</span>
+    <span class="token function">appendCamera</span><span class="token punctuation">(</span>streamCamera<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">getStreamForWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>streamWindow <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+      <span class="token comment" spellcheck="true">// we now have access to the screen too</span>
+      <span class="token comment" spellcheck="true">// we generate a combined stream with the video from the</span>
+      <span class="token comment" spellcheck="true">// screen and the audio from the camera</span>
+      <span class="token keyword">var</span> finalStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MediaStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> videoTrack <span class="token operator">=</span> streamWindow<span class="token punctuation">.</span><span class="token function">getVideoTracks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      finalStream<span class="token punctuation">.</span><span class="token function">addTrack</span><span class="token punctuation">(</span>videoTrack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> audioTrack <span class="token operator">=</span> streamCamera<span class="token punctuation">.</span><span class="token function">getAudioTracks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      finalStream<span class="token punctuation">.</span><span class="token function">addTrack</span><span class="token punctuation">(</span>audioTrack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>recorder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MediaRecorder</span><span class="token punctuation">(</span>finalStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment" spellcheck="true">// we subscribe to 'ondataavailable'.</span>
+      <span class="token comment" spellcheck="true">// this gets called when the recording is stopped.</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>recorder<span class="token punctuation">.</span>ondataavailable <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// let's create a blob with e.data which has the</span>
+        <span class="token comment" spellcheck="true">// contents of the video in webm</span>
+        <span class="token keyword">var</span> link <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        link<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">,</span> window<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        link<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'download'</span><span class="token punctuation">,</span> <span class="token string">'video_'</span> <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">999999</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'.webm'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        link<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>link<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        link<span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">removeChild</span><span class="token punctuation">(</span>link<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+      <span class="token comment" spellcheck="true">// start recording</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>recorder<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Now, we finally need to call <code>this.recorder.stop()</code> whenever we want to stop the recording, which will make the browser save the file automatically. In my example, I’m attaching a key event listener for the “escape” key.</p>
+<h3 id="A-note-about-permissions"><a href="#A-note-about-permissions" class="headerlink" title="A note about permissions"></a>A note about permissions</h3><p>In order to make this work you will need to whitelist the domain trying to record your screen. On Firefox, <code>localhost</code> will work out of the box. If you want to publish the code somewhere else, like GitHub Pages, make sure you whitelist it.</p>
+<p>On Firefox, navigate to <code>about:config</code> and look for the key <code>media.getusermedia.screensharing.allowed_domains</code>. Add your domain to the list and restart the browser. Then, when you are running the code, the user will be able to grant access for both the webcam and the screen.</p>
+<p>It is unclear whether this will be how a user lets a site record their screen, but it is how this works at the moment.</p>
+<h3 id="A-step-further-making-this-embeddable"><a href="#A-step-further-making-this-embeddable" class="headerlink" title="A step further, making this embeddable"></a>A step further, making this embeddable</h3><p>The example code worked fine, but I wanted to take it a bit further. What if I wanted to use this “recording” functionality in more than one project? Also, given that the user has to whitelist a domain, we could serve the code from an <code>iframe</code> on that domain, so we wouldn’t need to add more domains to the <code>about:config</code>.</p>
+<p>The final version of the prototype is based now on a script that you include on a page. The script appends an <code>iframe</code>, which executes the code we saw above and shows the output from the webcam at full size. Apart from the <code>iframe</code>, it also binds several key event listeners to toggle the visibility and size of the <code>iframe</code>.</p>
+<p>These are the keys you can press to perform some actions:</p>
+<ul>
+<li>Escape: finishes the recording and saves the file</li>
+<li>s: Switches the camera between full page and picture-in-picture</li>
+<li>a: Toggles the visibility of the camera</li>
+</ul>
+<p>You can then include the script to any page to get this screen recording functionality. For instance, we can include <code>https://jmperezperez.com/screenflow/lib/embed.js</code> on a codepen and record a screencast.</p>
+<h3 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h3><p>Keep in mind this is only a proof of concept and doesn’t have any real utility. If you are serious about recording a screencast, don’t use this hack :)</p>
+<p>There are, of course, some limitations:</p>
+<ul>
+<li>The iframe with the camera is shown on top of the hosting page, but it will be hidden if we put some other window on top.</li>
+<li>If we navigate from the hosting page to somewhere else we will lose the recording. This can be workaround by having, in the hosting page, an iframe for the camera and another iframe for the page we are recording, in full screen</li>
+<li>If we click on the iframe with the camera, the key events will stop working because the hosting page doesn’t receive those. This can be solved sending <code>postMessage</code>s from the iframe to the hosting page.</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      Record your webcam and screen using Javascript to create screencast from your browser.
+    
+    </summary>
+    
+    
+      <category term="browser apis" scheme="https://jmperezperez.com/tags/browser-apis/"/>
+    
+  </entry>
+  
+</feed>

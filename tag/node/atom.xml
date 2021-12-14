@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/node/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Some things I learned implementing Data Fetching for Universal Web Apps</title>
+    <link href="https://jmperezperez.com//data-fetching-universal-apps"/>
+    <id>https://jmperezperez.com//data-fetching-universal-apps</id>
+    <published>2016-07-16T15:40:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Javascript is not just a language for the browser. Node.JS is becoming popular as a platform to run JS on the server. We are learning how to build modular websites where business logic and state are not coupled with the markup. And finally we are getting the tools to build universal web apps. But what are universal apps, and why should we care about data fetching?</p>
+<span id="more"></span>
+<h2 id="Universal-Isomorphic-apps"><a href="#Universal-Isomorphic-apps" class="headerlink" title="Universal/Isomorphic apps"></a>Universal/Isomorphic apps</h2><p>The community hasn’t decided on what to call them yet, but for the sake of consistency I’ll be referring to them as <em>universal</em> web apps. These projects have 2 main features:</p>
+<ul>
+<li>The server runs JS</li>
+<li>Most of the code of the project is shared between browser and server.</li>
+</ul>
+<p>For a long time we tangled business logic with markup. We would generate some HTML in the server and JS would run in the client to make AJAX requests and changes in the DOM.</p>
+<p>This worked for most websites, but today lots of projects start as a SPA. Their state is managed in a single place and the server just provides the initial page and a set of endpoints that return data to the view. But this approach has caused <a href="https://blog.twitter.com/2012/improving-performance-on-twittercom">long page load times</a> and bad SEO forced rethinking the web.</p>
+<p>The best way to provide fast-loading pages is to server-side render them. Though service workers might help eventually, the initial request needs to reach the server. To compose the page, the server needs to identify the user, fetch some data and generate the markup through some template system. After the initial load, JS comes in and replaces full page loads with some data fetching and markup composition.</p>
+<p>Here we can see that some code will be duplicated, especially in SPAs. A way to improve this is by running JS in the server and trying to write code that is decoupled from the DOM. Server-side rendering can be seen these days as an enhancement for SPAs.</p>
+<h2 id="Data-fetching-in-universal-apps"><a href="#Data-fetching-in-universal-apps" class="headerlink" title="Data fetching in universal apps"></a>Data fetching in universal apps</h2><p>In universal apps, most of the code can be shared between browser and server. One of the pieces that differs is data fetching. Node.JS has its own way to make requests, and neither <code>XMLHttpRequest</code> nor <code>fetch</code> is supported.
+<img src="/assets/images/posts/universal-data-fetching.png" alt="Universal request libraries abstract your code from how a request is made."></p>
+<p>There exists many libraries that will perform the async requests using the mechanism available in the platform running the code. Some of them try to polyfill <code>fetch</code> in Node, others polyfill <code>http</code> in the browser. In our code we <code>require</code>/<code>import</code> them, and then the code is included in the bundle served to the browser using browserify or webpack.</p>
+<h3 id="Choosing-a-universal-request-package"><a href="#Choosing-a-universal-request-package" class="headerlink" title="Choosing a universal request package"></a>Choosing a universal request package</h3><p>Regardless of which request library one you choose, <strong>be aware of how they contribute to the bundle size</strong>. Ideally, these libraries should represent a rather small chunk of the bundle, but I have been doing some tests and the results are pretty interesting.</p>
+<p>I have used browserify to create a bundle just requiring each of there libraries separately, and then uglified the output. The size shown is minified, not gzipped:</p>
+<ul>
+<li><a href="https://github.com/jedmao/iso-http">iso-http 0.0.5</a>: 4kB</li>
+<li><a href="https://github.com/matthew-andrews/isomorphic-fetch">isomorphic-fetch 2.2.1</a>: 9kB</li>
+<li><a href="https://github.com/visionmedia/superagent">superagent 2.0.0</a>: 9kB</li>
+<li><a href="https://github.com/mzabriskie/axios">axios 0.13.0</a>: 20kB</li>
+<li><a href="https://registry.npmjs.org/isomorphic-request">isomorphic-request 1.0.0</a>: 240kB</li>
+<li><a href="https://github.com/bitinn/node-fetch">node-fetch 1.5.3</a>: 489kB</li>
+</ul>
+<p>Note that these packages might not have the same features, and I haven’t tried most of them myself. In some cases it might be worth creating your custom request library accesses the endpoints you are using. But all in all these libraries should generate code that wraps <code>XMLHttpRequest</code> and its response.</p>
+<p>Notice the big difference in size between them, all the way from 4kB to 489kB. How can that be? For that we need to understand what is going on when our code is bundled.</p>
+<h3 id="Bundling-of-Node’s-APIs"><a href="#Bundling-of-Node’s-APIs" class="headerlink" title="Bundling of Node’s APIs"></a>Bundling of Node’s APIs</h3><p>Something I learnt while creating those bundles is that it is very useful to double check the generated code. <strong>If the required code includes some feature only available in Node, the bundler will add the JS code for it in the output bundle.</strong></p>
+<p>An example is <code>Buffer</code>, which <a href="https://github.com/thelinmichael/spotify-web-api-node/blob/cf9b5834b828b38b659afd82fb85ae742d5ea0eb/src/spotify-web-api.js#L1241">I was using in a wrapper for the Spotify Web API</a>. Since <code>Buffer</code> is not supported in the browser environment, which accounts to 44kB of JS (minified).</p>
+<p>Same thing can happen with these request libraries when they include code that is supposed to be only run in Node.JS and not on the browser.</p>
+<h3 id="The-browser-field"><a href="#The-browser-field" class="headerlink" title="The browser field"></a>The <code>browser</code> field</h3><p>When you are bundling some JS code that is going to be run only on the server, do not include it in the bundle that is going to be run on the browser. This applies both if you are writing a site and if you are writing a library that will be used by another project.</p>
+<p>For this, use the <a href="https://github.com/defunctzombie/package-browser-field-spec"><code>browser</code> field</a> in the <code>package.json</code> file. It is used, amongst others, to define what file needs to be replaced by other when bundling. When using webpack, make sure <a href="https://webpack.github.io/docs/configuration.html#target"><code>target</code></a> is not set or set to <code>&#39;web&#39;</code>.</p>
+<p>You can see an example <a href="https://github.com/visionmedia/superagent/blob/83892f35fe15676a4567a0eb51eecd096939ad36/package.json#L54">in the superagent source code</a>:</p>
+<pre class=" language-js"><code class="language-js"><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"superagent"</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>
+  <span class="token string">"browser"</span><span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token string">"./lib/node/index.js"</span><span class="token punctuation">:</span> <span class="token string">"./lib/client.js"</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>
+  <span class="token string">"main"</span><span class="token punctuation">:</span> <span class="token string">"./lib/node/index.js"</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>or <a href="https://github.com/jedmao/iso-http/blob/33870ab0ee79d93e73ad55d787c99c5f5e07f936/package.json#L6">iso-http</a>:</p>
+<pre class=" language-js"><code class="language-js"><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"iso-http"</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>
+  <span class="token string">"main"</span><span class="token punctuation">:</span> <span class="token string">"js/node/Http.js"</span><span class="token punctuation">,</span>
+  <span class="token string">"browser"</span><span class="token punctuation">:</span> <span class="token string">"js/browser/Http.js"</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>From the libraries I tested, 4 of them were using <code>browser</code> and 2 of them not. These 2 are precisely the ones that generate the largest bundle files.</p>
+<h3 id="Getting-stats-about-a-bundle"><a href="#Getting-stats-about-a-bundle" class="headerlink" title="Getting stats about a bundle"></a>Getting stats about a bundle</h3><p>It is not straightforward to know what modules are contributing the most size to the output bundle. One way you can try is by creating an entry JS file that only includes the module you are interested in, which is what I did when comparing request libraries. But if you are using webpack, a better way is to use <a href="https://github.com/chrisbateman/webpack-visualizer">webpack-visualizer</a>.</p>
+<p>This tool generates a pie chart with all the required dependencies and makes it straightforward to find the culprit.
+<img src="/assets/images/posts/node-fetch-webpack-stats.png" alt="iconv-lite and pako are the main contributors to node-fetch bundle size">
+<em>^ iconv-lite and pako are the main contributors to node-fetch bundle size</em></p>
+<h3 id="One-more-thing-ES6-imports"><a href="#One-more-thing-ES6-imports" class="headerlink" title="One more thing: ES6 imports"></a>One more thing: ES6 imports</h3><p>A great way to reduce the footprint of a library is by exporting it in pieces. Thanks to ES6 and tree-shaking, one can import a subset of functions and symbols from a library, which can reduce largely the size of the output bundle.</p>
+<p>This is really useful if you are implementing a wrapper for your API endpoints. It is convenient to support all the endpoints, but an app might only be interesting in using a few of those.</p>
+<p>I have started experimenting with this building <a href="https://github.com/JMPerez/spotify-web-api-js-poc">a new wrapper for the Spotify Web API</a> that exposes each endpoint as an exported function, so that the unused endpoints are not part of the generated code.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Universal apps are great, and so is sharing lots of code between server and client. As important as a fast rendering time is the time it takes the browser to download, parse and execute the JS that provides the client-side functionality. Keep an eye on your imports, and prevent including code that is not intended to be run on the browser.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Webpack and Browserify generate large bundles if we include Node.JS code to be run on the browser. In this post you will learn how to prevent this issue.
+    
+    </summary>
+    
+    
+      <category term="isomorphic" scheme="https://jmperezperez.com/tags/isomorphic/"/>
+    
+      <category term="universal" scheme="https://jmperezperez.com/tags/universal/"/>
+    
+      <category term="webpack" scheme="https://jmperezperez.com/tags/webpack/"/>
+    
+      <category term="browserify" scheme="https://jmperezperez.com/tags/browserify/"/>
+    
+      <category term="node" scheme="https://jmperezperez.com/tags/node/"/>
+    
+  </entry>
+  
+</feed>

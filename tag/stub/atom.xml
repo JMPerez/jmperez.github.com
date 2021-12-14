@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/stub/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Lazy loading Javascript: On-demand scripts to faster load times</title>
+    <link href="https://jmperezperez.com//ondemand-javascript-lazy-loading-stubs"/>
+    <id>https://jmperezperez.com//ondemand-javascript-lazy-loading-stubs</id>
+    <published>2010-11-13T15:14:34.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Loading on-demand code can boost website performance in the sense that the browser does not need to request and execute Javascript code that is not needed. Depending on the script, a different approach can be taken to lazy load it.</p>
+<span id="more"></span>
+<h2 id="Progressive-enhancement-Javascript"><a href="#Progressive-enhancement-Javascript" class="headerlink" title="Progressive enhancement Javascript"></a>Progressive enhancement Javascript</h2><p>This is by far the best scenario. Javascript is used to improve user experience but the web page can work without Javascript (in example, browsers with Javascript disabled). In this case, script loading can be delayed to the very moment it is needed or it can be loaded after some timeout.</p>
+<p>An example would be a form used to post a comment. This form could be ajaxify using a script that is requested when the textarea is focused. This way, this script would just be downloaded when potentially needed. Another example would be an input search that is improved using autocompletion once it is focused.</p>
+<h2 id="Using-mocks-stubs-for-Javascript-only-functionality"><a href="#Using-mocks-stubs-for-Javascript-only-functionality" class="headerlink" title="Using mocks/stubs for Javascript-only functionality"></a>Using mocks/stubs for Javascript-only functionality</h2><p>Some times Javascript is used to allow functionality that cannot implemented other way. In this case, a mockup approach can be taken.</p>
+<p>Mockup Javascript only defines the signatures of the functions and as
+little functionality as possible. We can use mocks to load the “real”
+Javascript and avoid calls to non-declared functions. This is similar to
+how <a href="http://www.stevesouders.com/blog/2009/09/08/doloto-javascript-download-optimizer/">Microsoft Doloto</a> works. Stub functions can make as little as
+just preventing undefined symbols, or as much as loading real script and
+re-execute the javascript call so that the real script (that has
+just overridden the stub function) executes. Steve Souders explains this
+technique in his <a href="http://books.google.es/books?id=E7p-07kNfXYC&lpg=PA24&ots=ULjpQKecMk&dq=souders%20doloto&pg=PA24#v=onepage&q&f=false"><em>Even faster web sites</em> book</a>.</p>
+<p>We would have one file to functions declarations (mockup) and another file that will override mockup:</p>
+<p><strong>functions_mock.js</strong></p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">loadJs</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> cb<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> script <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  script<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'src'</span><span class="token punctuation">,</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  script<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'type'</span><span class="token punctuation">,</span> <span class="token string">'text/javascript'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> loaded <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> loadFunction <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>loaded<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    loaded <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    cb <span class="token operator">&amp;</span>amp<span class="token punctuation">;</span> <span class="token function">cb</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+  script<span class="token punctuation">.</span>onload <span class="token operator">=</span> loadFunction<span class="token punctuation">;</span>
+  script<span class="token punctuation">.</span>onreadystatechange <span class="token operator">=</span> loadFunction<span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"head"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>script<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token function">loadJs</span><span class="token punctuation">(</span><span class="token string">'functions.js'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>functions.js</strong></p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>n<span class="token operator">></span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> n<span class="token operator">*</span><span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>index.html</strong></p>
+<pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!doctype html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>functions_mock.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(factorial(10));<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Factorial!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Maybe the <code>factorial</code> function is not the best one. In fact, the size of mock file is greater than the “real” JavaScript file, but the idea is that mock file would replace large functions, achieving smaller files and faster execution times, especially if we use stubs to only prevent undefined symbols and load real scripts after some delay.</p>
+<p>In the case of stub loading real script we should take into account that some functions may need synchronous downloading of real script file. This is the case of functions that return a value that is used later. In our example, if we change the button call function to something like:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>var f <span class="token punctuation">=</span> factorial(10); alert(f);<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Factorial!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>we will get an undefined value because factorial stub function returns before calling real function. This can be solved by loading functions.js in a blocking way, though this can affect user experience.</p>
+<p>In conclusion, we should consider what is the best way to defer JavaScript execution (and if it is worth). Personally I think that it can be useful in the case of large JavaScript files with few global variables that we can manage properly.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      How to load JavaScript on-demand using stub functions and progressive enhancements
+    
+    </summary>
+    
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+      <category term="lazy loading" scheme="https://jmperezperez.com/tags/lazy-loading/"/>
+    
+      <category term="stub" scheme="https://jmperezperez.com/tags/stub/"/>
+    
+  </entry>
+  
+</feed>

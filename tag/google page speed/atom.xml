@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/google%20page%20speed/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2021-12-14T07:52:53.525Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Optimizing images for web with Google Page Speed and jpegoptim</title>
+    <link href="https://jmperezperez.com//jpegoptim-optimize-jpg-page-speed"/>
+    <id>https://jmperezperez.com//jpegoptim-optimize-jpg-page-speed</id>
+    <published>2009-06-27T13:42:44.000Z</published>
+    <updated>2021-12-14T07:52:53.525Z</updated>
+    
+    <content type="html"><![CDATA[<p>Image optimization is a big topic these days. The main culprit in site traffic are images, and <a href="https://httparchive.org/reports/state-of-the-web">their transfer size is increasing over time</a>.</p>
+<p>You may have wondered how to optimize your images. First, check if there is room for improvement. For that I will be using <a href="https://developers.google.com/speed/">Google Page Speed</a>, which offers several tools for analyzing your site. One of them is a handy <a href="https://developers.google.com/speed/pagespeed/insights/">online analyzer</a>. Type there the name of your site and click to analyze it.</p>
+<!-- more -->
+<p>I like the ‘Optimize images’ section. It tells you what resources can be optimized and how much traffic you can save, both in the mobile version of your site and the one served for desktop:
+<a href="/assets/images/posts/google-pagespeed-insights-report.png"><img src="/assets/images/posts/google-pagespeed-insights-report-thumb.jpg" alt="Analyzing a site using Google PageSpeed Insights online"></a>
+<em>Analyzing the analyzer: Here you can see the ‘Optimize images’ section for the Google PageSpeed Insights page. Notice the it reports the optimizable images and how much size you can save.</em></p>
+<h2 id="Optimizing-your-JPG-images-with-Jpegoptim"><a href="#Optimizing-your-JPG-images-with-Jpegoptim" class="headerlink" title="Optimizing your JPG images with Jpegoptim"></a>Optimizing your JPG images with Jpegoptim</h2><p>The truth is that when you save a JPG image, you don’t know exactly how much compression level you should apply. Sometimes we try different values until we find the best balance between quality and size. Google Page Speed must be using an algorithm that optimizes this relationship, performing a lossless compression to JPG and PNG files.</p>
+<p>As mentioned in the <a href="http://code.google.com/speed/page-speed/docs/payload.html#CompressImages">section on optimization of images</a>, we can use tools like <a href="http://jpegclub.org/">jpegtran</a> and <a href="http://freshmeat.net/projects/jpegoptim/">jpegoptim</a></p>
+<p>You can install jpegoptim in GNU / Linux easily. If you are an Ubuntu user, it is included in the section on Graphics (universe) and simply run:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> jpegoptim
+</code></pre>
+<p>If you want to make the optimization of images across your website, or simply reduce the size of your photo albums, you can run this script, that will recursively scan folders to optimize every JPG file. The files will be overwritten with the optimized version.</p>
+<pre class=" language-bash"><code class="language-bash">optimize<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+  jpegoptim *.jpg --strip-all
+  <span class="token keyword">for</span> i <span class="token keyword">in</span> *
+  <span class="token keyword">do</span>
+    <span class="token keyword">if</span> <span class="token function">test</span> -d <span class="token variable">$i</span>
+    <span class="token keyword">then</span>
+      <span class="token function">cd</span> <span class="token variable">$i</span>
+      <span class="token keyword">echo</span> <span class="token variable">$i</span>
+      optimize
+      <span class="token function">cd</span> <span class="token punctuation">..</span>
+    <span class="token keyword">fi</span>
+  <span class="token keyword">done</span>
+  <span class="token keyword">echo</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+optimize
+</code></pre>
+<p>This script uses the option <code>--strip-all</code> to strip out the text information contained in the file (comments and EXIF data) that are not necessary on web images (for your own pictures you’d better keep them).</p>
+<p>If you are interested in image optimization, I recommend you having a look at:</p>
+<h2 id="Other-tools-for-optimizing-images"><a href="#Other-tools-for-optimizing-images" class="headerlink" title="Other tools for optimizing images"></a>Other tools for optimizing images</h2><p>I have been using image optimization actively for a long time. Depending on your needs, I recommend you one of these methods:</p>
+<ul>
+<li><strong>Optimization of a few files through a desktop app (on Mac)</strong>: Use <a href="http://imageoptim.com/">ImageOptim</a>. Drag and drop JPG and PNG files and you are goo to go.</li>
+<li><strong>Optimization of images on Wordpress</strong>: Use <a href="http://wordpress.org/plugins/wp-smushit/">Smush.it</a>. It optimizes uploaded images automatically, and you can also run the plug-in against the existing images. Check out <a href="https://10web.io/blog/the-best-image-optimization-solutions-in-wordpress/">Best Image Optimization Plugins for WordPress</a> to read about different options to optimize images on this platform.</li>
+<li><strong>Optimizing PNG files using lossy compression</strong>: Use <a href="https://tinypng.com/">TinyPNG</a>. It can reduce PNG images size a lot, but double check the result before, since sometimes you can notice the difference in the colours.</li>
+<li><strong>Best Image Optimization Plugins for WordPress</strong>: Read <a href="https://10web.io/blog/the-best-image-optimization-solutions-in-wordpress/">this article</a> that<h2 id="Read-also"><a href="#Read-also" class="headerlink" title="Read also"></a>Read also</h2></li>
+</ul>
+<p>I wrote a post about <a href="/image-optimization-lossy-lossless-techniques/">Image optimization: Lossy, lossless and other techniques</a> in which I explain some tools and considerations when compressing images.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      This post shows a script to recursively optimize a set of JPG files using jpegoptim
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="google page speed" scheme="https://jmperezperez.com/tags/google-page-speed/"/>
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+  </entry>
+  
+</feed>

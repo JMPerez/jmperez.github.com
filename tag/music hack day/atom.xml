@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/music%20hack%20day/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Music Hack Day Paris 2014 and other projects</title>
+    <link href="https://jmperezperez.com//mhd-paris-deezer-other-projects"/>
+    <id>https://jmperezperez.com//mhd-paris-deezer-other-projects</id>
+    <published>2014-04-20T06:20:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>It’s been some time since my previous post and I wanted to write a short one telling what has been going on.</p>
+<h2 id="Personal-projects"><a href="#Personal-projects" class="headerlink" title="Personal projects"></a>Personal projects</h2><p>I have several small personal projects around Spotify in which I am working in my free time. I recently attended the Music Hack Day Paris 2014, where I coded <a href="http://jmperezperez.com/hacks/iquiz/">Spotify iQuiz</a>, an iQuiz-like web app that uses your Spotify playlists and to create some questions about albums and tracks you saved. I think the most fun part is the Speech Synthesis API, which provides a very easy to use text-to-voice feature, right on your browser.</p>
+<span id="more"></span>
+<p>For these hack projects I definitely need some framework on which build quickly a project. I always try to avoid it at first, and end up using a template engine (when I’m fed up of generating markup using JS), plus too many DOM manipulations and a bad time fixing small issues. This time I started from <a href="https://github.com/JMPerez/grunt-template">this template I built</a>, which was helpful for combining and minimizing all the small JS modules I created, and generate the files that I would deploy.</p>
+<p>I’m also starting to take into account tests and code coverage earlier in the development process. I am applying it to the <a href="https://github.com/JMPerez/spotify-web-api-js">spotify-web-api-js</a> project using grunt with mocha and blanket. I am running tests and checking the coverage from the console as I save files. I have unsuccessfully tried to generate LCOV that I can report to <a href="https://coveralls.io/">Coveralls</a>, and I think that having the output in the console is good so far.</p>
+<h2 id="Paris"><a href="#Paris" class="headerlink" title="Paris"></a>Paris</h2><p>Well, and apart from that I got the change of visiting Paris again after 14 years!
+<a href="/assets/images/posts/mhd-paris.jpg"><img src="/assets/images/posts/mhd-paris.jpg" alt="Eiffel Tower"></a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;It’s been some time since my previous post and I wanted to write a short one telling what has been going on.&lt;/p&gt;
+&lt;h2 id=&quot;Personal-projects&quot;&gt;&lt;a href=&quot;#Personal-projects&quot; class=&quot;headerlink&quot; title=&quot;Personal projects&quot;&gt;&lt;/a&gt;Personal projects&lt;/h2&gt;&lt;p&gt;I have several small personal projects around Spotify in which I am working in my free time. I recently attended the Music Hack Day Paris 2014, where I coded &lt;a href=&quot;http://jmperezperez.com/hacks/iquiz/&quot;&gt;Spotify iQuiz&lt;/a&gt;, an iQuiz-like web app that uses your Spotify playlists and to create some questions about albums and tracks you saved. I think the most fun part is the Speech Synthesis API, which provides a very easy to use text-to-voice feature, right on your browser.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="music hack day" scheme="https://jmperezperez.com/tags/music-hack-day/"/>
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Music Hack Day Stockholm 2013</title>
+    <link href="https://jmperezperez.com//music-hack-day-stockholm-2013"/>
+    <id>https://jmperezperez.com//music-hack-day-stockholm-2013</id>
+    <published>2013-01-21T06:47:22.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Last weekend Spotify hosted the <a href="http://stockholm.musichackday.org/2013/">Music Hack Day Stockholm 2013</a> at their office in Stockholm. In the end, <a href="https://www.hackerleague.org/hackathons/music-hack-day-stockholm-13/hacks">65 projects</a> were built by 162 participants, using APIs from a variety of music services such as Echonest, Musixmatch, Soundcloud, Radio and Spotify among others.
+<img src="/assets/images/posts/music-hack-day-stockholm-300x225.jpg" alt="Music Hack Day Stockholm"></p>
+<span id="more"></span>
+<p>Overall it was a great experience. This was my first hacking event where people from outside my company participated. My project was Extendify, a Chrome Extension that injects Spotify Play Buttons in pages where it detects info related to a track, album or artist. You can <a href="https://github.com/JMPerez/extendify">check it out on Github</a>.</p>
+<p>You can find nice pictures of the event on <a href="http://www.flickr.com/photos/jcb1973/">this set of Flickr</a> and <a href="http://eventifier.co/event/musichackday13">Eventifier</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Last weekend Spotify hosted the &lt;a href=&quot;http://stockholm.musichackday.org/2013/&quot;&gt;Music Hack Day Stockholm 2013&lt;/a&gt; at their office in Stockholm. In the end, &lt;a href=&quot;https://www.hackerleague.org/hackathons/music-hack-day-stockholm-13/hacks&quot;&gt;65 projects&lt;/a&gt; were built by 162 participants, using APIs from a variety of music services such as Echonest, Musixmatch, Soundcloud, Radio and Spotify among others.
+&lt;img src=&quot;/assets/images/posts/music-hack-day-stockholm-300x225.jpg&quot; alt=&quot;Music Hack Day Stockholm&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="music hack day" scheme="https://jmperezperez.com/tags/music-hack-day/"/>
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+  </entry>
+  
+</feed>

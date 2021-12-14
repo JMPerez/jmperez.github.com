@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/patterns/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Recommended Reading: J2EE AntiPatterns</title>
+    <link href="https://jmperezperez.com//recommended-reading-j2ee-antipatterns"/>
+    <id>https://jmperezperez.com//recommended-reading-j2ee-antipatterns</id>
+    <published>2009-05-24T12:32:20.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>J2EE AntiPatterns is a book that teaches design patterns using a different approach.
+<img src="/assets/images/posts/j2ee-antipatterns.jpg" alt="j2ee-antipatterns"></p>
+<span id="more"></span>
+<p>Accustomed to the descriptions of design patterns based on the famous <a href="https://en.wikipedia.org/wiki/Design_Patterns">Design Patterns: Elements of Reusable Object-Oriented Software</a> book, which was the first one in classifying and studying techniques to solve recurring problems in programming, <em>J2EE AntiPatterns</em>, rather than listing various design patterns and explaining in what scenarios each one might be applied (it is true that some are applicable only when using certain languages or in very specific cases), begins showing the problems that we can face when writing code in an object oriented language like Java, and explains how to solve them by proposing a design pattern.</p>
+<p>Thus, the reader can see some problems they have faced by writing code or designing an application (repetition of code, copy and paste, lack of flexibility, refactoring, hardcoded content, etc). In the same way design patterns are given a name by which we identify and refer them universally, anti-patterns are also named (Localizing Data, Misunderstanding Data Requirements…).</p>
+<p>Although Java is used in the examples to illustrate the cases, the fact is that the content of the book is easily applicable to any object-oriented programming language.</p>
+<p>In short, a book that is recommended for those who want to find a way to better understand the design patterns and how they can improve their developments.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;J2EE AntiPatterns is a book that teaches design patterns using a different approach.
+&lt;img src=&quot;/assets/images/posts/j2ee-antipatterns.jpg&quot; alt=&quot;j2ee-antipatterns&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="book" scheme="https://jmperezperez.com/tags/book/"/>
+    
+      <category term="anti patterns" scheme="https://jmperezperez.com/tags/anti-patterns/"/>
+    
+      <category term="java" scheme="https://jmperezperez.com/tags/java/"/>
+    
+      <category term="patterns" scheme="https://jmperezperez.com/tags/patterns/"/>
+    
+  </entry>
+  
+</feed>

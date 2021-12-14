@@ -45,7 +45,7 @@ h3,
 h4,
 h5 {
   color: #212121;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
   line-height: 2rem;
   margin-bottom: 1.5rem;
@@ -207,14 +207,14 @@ code {
 .post::after {
   display: block;
   clear: both;
-  content: '';
+  content: "";
 }
 
 /*--HEADER--*/
 
 .main-header {
   background-color: #005689;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow: hidden;
   margin-bottom: 1.5rem;
   padding: 1rem;
@@ -304,7 +304,7 @@ code {
   width: 100%;
 }
 
-.post div[itemprop='articleBody'] > p:first-child {
+.post div[itemprop="articleBody"] > p:first-child {
   color: #333;
 }
 
@@ -322,7 +322,8 @@ code {
   max-width: 100%;
 }
 
-.post img + .caption {
+.post img + .caption,
+.post img + figcaption {
   padding-top: 0.5rem;
 }
 
@@ -330,6 +331,10 @@ code {
   margin-bottom: 5%;
   max-width: 100%;
   text-align: center;
+}
+
+figure {
+  padding-bottom: 1em;
 }
 
 video {
@@ -409,7 +414,7 @@ footer {
   padding: 10px;
 }
 
-.search-goog input[type='submit'] {
+.search-goog input[type="submit"] {
   background-color: #ddd;
   cursor: pointer;
 }
@@ -432,7 +437,7 @@ footer {
 
   .wraper::after {
     clear: both;
-    content: '';
+    content: "";
     display: block;
   }
 }
@@ -453,13 +458,13 @@ footer {
   border-left-color: #777;
   border-left-width: 5px;
   border-radius: 3px;
-  font-size: .9rem;
+  font-size: 0.9rem;
   padding: 20px;
   margin: 20px 0;
 }
 
 .author {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.8rem;
   margin-bottom: 1rem;
 }
@@ -489,10 +494,10 @@ footer {
 
 /* SYNTAX HIGHLIGHTING */
 
-code[class*='language-'],
-pre[class*='language-'] {
+code[class*="language-"],
+pre[class*="language-"] {
   color: #393a34;
-  font-family: 'Consolas', 'Bitstream Vera Sans Mono', 'Courier New', Courier,
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier,
     monospace;
   direction: ltr;
   text-align: left;
@@ -512,22 +517,22 @@ pre[class*='language-'] {
   hyphens: none;
 }
 
-pre[class*='language-']::-moz-selection,
-pre[class*='language-'] ::-moz-selection,
-code[class*='language-']::-moz-selection,
-code[class*='language-'] ::-moz-selection {
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
   background: #b3d4fc;
 }
 
-pre[class*='language-']::selection,
-pre[class*='language-'] ::selection,
-code[class*='language-']::selection,
-code[class*='language-'] ::selection {
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
   background: #b3d4fc;
 }
 
 /* Code blocks */
-pre[class*='language-'] {
+pre[class*="language-"] {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
@@ -535,12 +540,12 @@ pre[class*='language-'] {
   background-color: white;
 }
 
-:not(pre) > code[class*='language-'],
-pre[class*='language-'] {
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
 }
 
 /* Inline code */
-:not(pre) > code[class*='language-'] {
+:not(pre) > code[class*="language-"] {
   padding: 0.2em;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -617,7 +622,8 @@ pre[class*='language-'] {
   font-style: italic;
 }
 
-.caption {
+.caption,
+figcaption {
   display: block;
   font-size: 0.8rem;
   text-align: center;
@@ -635,7 +641,7 @@ pre[class*='language-'] {
 }
 
 .twitter-tweet::after {
-  content: '';
+  content: "";
   display: block;
   padding-bottom: 20px;
   width: 100%;
@@ -674,6 +680,12 @@ pre[class*='language-'] {
   font-size: 1.7rem;
   line-height: 2rem;
   margin-bottom: 0.5rem;
+}
+
+.read-next {
+  background-color: #fdf6ea;
+  margin: 2rem 0;
+  padding: 1em;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -717,4 +729,13 @@ pre[class*='language-'] {
   .main-header {
     background-color: #4b89b1;
   }
+  .read-next {
+    background-color: #020915;
+  }
+}
+
+.amp-img-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }

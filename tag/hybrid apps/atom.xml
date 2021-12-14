@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/hybrid%20apps/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Facebook for iOS: From HTML5 to native</title>
+    <link href="https://jmperezperez.com//facebook-ios-html5-native"/>
+    <id>https://jmperezperez.com//facebook-ios-html5-native</id>
+    <published>2012-08-26T08:07:43.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This week Facebook <a href="http://web.archive.org/web/20121019162440/http://newsroom.fb.com/News/A-Faster-Facebook-for-iOS-1b4.aspx">announced an update for their iOS app</a> whose main change is a faster overall experience. Going deeper into technical details, we have “<a href="https://www.facebook.com/notes/facebook-engineering/under-the-hood-rebuilding-facebook-for-ios/10151036091753920">Under the hood: Rebuilding Facebook for iOS</a>“, a nice post explaining what changes have been done.</p>
+<span id="more"></span>
+<h2 id="Lessons-learned-from-HTML5"><a href="#Lessons-learned-from-HTML5" class="headerlink" title="Lessons learned from HTML5"></a>Lessons learned from HTML5</h2><p>I really recommend reading “<a href="http://readwrite.com/2011/12/27/redux_how_facebook_mobile_was_designed_to_write_once_run/">How Facebook Mobile Was Designed to Write Once, Run Everywhere</a>“ since it provides a better understanding about how Facebook mobile development has evolved. They found HTML5 to be the answer to share code between their mobile site and iOS app, developed as a hybrid app. After their experience on iOS, they decided to do the same with their Android app:</p>
+<blockquote>
+<p>But, this worked well enough that we said we are going to put the Android app on this party train too. So, we were actually able to write something like the m.site news feed once. Any time you change a news feed story or add a news feed story or add commenting and Liking or whatever, that is going to show up on low-end m.site, high-end m.site, Facebook for iPhone and Facebook for Android the very next day, or whenever we push, which is actually pretty awesome. - Dan Rowinski</p>
+</blockquote>
+<p>This also worked for their iPad app, which was basically the iPhone app with a chat column on landscape mode. Relying on apps that were the glue between the hardware and a webview, made it possible to release minor changes often without the need of releasing a whole app update. So, even though now they have moved to a more native app, they still have provided ways to perform small changes transparently:</p>
+<blockquote>
+<p>[…] news feed is constantly evolving, and building more in Objective-C creates new challenges when we add in new features. To solve this, we came up with a different plan to let you use the newest features without requiring you to update the entire app: a “fallback” renderer. - <a href="https://www.facebook.com/notes/facebook-engineering/under-the-hood-rebuilding-facebook-for-ios/10151036091753920">Jonathan Dann</a></p>
+</blockquote>
+<p>and they will still be using HTML5 in certain parts:</p>
+<blockquote>
+<p>For areas within the app where we anticipate making changes more often, we will continue to utilize HTML5 code, as we can push updates server side without requiring people to download a new version of the app. - <a href="https://www.facebook.com/notes/facebook-engineering/under-the-hood-rebuilding-facebook-for-ios/10151036091753920">Jonathan Dann</a></p>
+</blockquote>
+<p>In fact Facebook has always defended HTML5 in order to circumvent application stores approval processes and offer a more unified experience across devices, with projects such as <a href="http://techcrunch.com/2011/06/15/facebook-project-spartan/">Spartan</a>, and pushing to create a benchmark showing mobile browsers capabilities with <a href="https://developers.facebook.com/blog/post/2012/02/27/announcing-ringmark--a-mobile-browser-test-suite/">Ringmark</a>.</p>
+<h2 id="Rewriting-the-app-from-HTML5-to-native-code"><a href="#Rewriting-the-app-from-HTML5-to-native-code" class="headerlink" title="Rewriting the app from HTML5 to native code"></a>Rewriting the app from HTML5 to native code</h2><p>Facebook’s decision is similar to the one <a href="/developing-mobile-webapp-first/">using web technologies</a> in those stages where changes are frequent is a nice idea. Once they knew how they wanted their app to look like and were confident enough, they moved to native, to offer a better user experience to user’s of a certain platform. Thus, HTML5 version is still available for many other platforms, both as a website and as hybrid apps (for instance, iOS lower than 4.3) and is doing the job well.</p>
+<p>A hybrid app can’t offer the same performance as a native app. This is a matter of taking into consideration the pros and cons in terms of code reuse and best experience in every platform. Web implementations run on top of an additional layer, so native code is more likely to have a better performance to achieve the same result. That is why projects such as <a href="/boot-to-gecko-html5/">Boot to Gecko</a> pretend to set an environment that exposes access to native hardware using Javascript.</p>
+<p>There is an ongoing discussion about a deliberately decision from Apple and Google on <a href="https://web.archive.org/web/20150516201644/http://branch.com/b/a-blow-to-html5">not making more efforts on improving Javascript performance on hybrid apps</a>. Though it could make sense, I’d rather think this is not the case.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Facebook has rewritten their iOS app from HTML5 to native code to provide a faster user experience. Having actively promoted HTML5 development, this shows hybrid apps performance is still not good enough, but some ideas can be taken from this decision.
+    
+    </summary>
+    
+    
+      <category term="html5" scheme="https://jmperezperez.com/tags/html5/"/>
+    
+      <category term="facebook" scheme="https://jmperezperez.com/tags/facebook/"/>
+    
+      <category term="hybrid apps" scheme="https://jmperezperez.com/tags/hybrid-apps/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hybrid apps: It&#39;s not only about mobile</title>
+    <link href="https://jmperezperez.com//desktop-hybrid-apps-not-only-mobile"/>
+    <id>https://jmperezperez.com//desktop-hybrid-apps-not-only-mobile</id>
+    <published>2012-07-22T16:20:17.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>One month ago I moved to Stockholm to start working at <a href="http://www.spotify.com/">Spotify</a>. For those of you who don’t know what Spotify is about, I will tell you Spotify is a service that offers you legal and free access to a huge library of music. There are Spotify clients for a lot of different platforms, and right now I am working on the desktop one as a web developer.
+<img src="/assets/images/posts/spotify-apps-html5.jpg" alt="Spotify desktop client showing its HTML5 support"></p>
+<span id="more"></span>
+<h2 id="Hybrid-mobile-apps"><a href="#Hybrid-mobile-apps" class="headerlink" title="Hybrid mobile apps"></a>Hybrid mobile apps</h2><p>I already talked about <a href="/developing-mobile-webapp-first/#hybrid">hybrid applications</a>. By hybrid apps we usually mean hybrid mobile apps, since it is normally used when describing the approach of building an application for a mobile device that includes content that is generated using web technologies. In fact, I had the change of working on hybrid mobile applications when working at Tuenti. Both <a href="https://play.google.com/store/apps/details?id=com.tuenti.android.client">Tuenti Classic</a> and <a href="https://play.google.com/store/apps/details?id=com.tuenti.messenger">Tuenti Social Messenger</a> include content that is loaded in a WebView.</p>
+<p><strong>Update 2014-05-12</strong>: It is interesting to see that the hybrid app development is still a thing. Take a look to <a href="http://signalvnoise.com/posts/3743-hybrid-sweet-spot-native-navigation-web-content">Hybrid sweet spot: Native navigation, web content</a> which summarises some of the advantages of the hybrid approach.</p>
+<h2 id="Hybrid-desktop-apps"><a href="#Hybrid-desktop-apps" class="headerlink" title="Hybrid desktop apps"></a>Hybrid desktop apps</h2><p>But hybrid apps are also present in desktop. And that’s the magic of web development, where I can use web technologies to provide content to a large amount of devices, and as a developer use the very same tools and techniques that I used to build websites. Being abstracted from the underlying operating system, the browser embedded in the client allows you implement once and have it available across Windows, Mac and Linux. It’s a nice way for developers to <a href="https://developer.spotify.com/technologies/apps/">write apps</a> without having to learn a different stack of technologies.</p>
+<h2 id="More-web-content-for-desktop"><a href="#More-web-content-for-desktop" class="headerlink" title="More web content for desktop"></a>More web content for desktop</h2><p>Web is used more and more when applications want developers to create content for it. Think of <a href="https://chrome.google.com/webstore/category/extensions">Google Chrome Extensions</a> or <a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/APP-162T">Metro Apps on Windows 8</a>. So when working with web technologies, try to write reusable code or libraries that can be shared across platforms and embrace feature detection whenever your code needs to be aware of what environment it is being running on.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;One month ago I moved to Stockholm to start working at &lt;a href=&quot;http://www.spotify.com/&quot;&gt;Spotify&lt;/a&gt;. For those of you who don’t know what Spotify is about, I will tell you Spotify is a service that offers you legal and free access to a huge library of music. There are Spotify clients for a lot of different platforms, and right now I am working on the desktop one as a web developer.
+&lt;img src=&quot;/assets/images/posts/spotify-apps-html5.jpg&quot; alt=&quot;Spotify desktop client showing its HTML5 support&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="hybrid apps" scheme="https://jmperezperez.com/tags/hybrid-apps/"/>
+    
+  </entry>
+  
+</feed>

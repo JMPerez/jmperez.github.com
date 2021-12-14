@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/meetups/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Meetups in Stockholm - Web and Startups</title>
+    <link href="https://jmperezperez.com//stockholm-meetups-startups-web-development"/>
+    <id>https://jmperezperez.com//stockholm-meetups-startups-web-development</id>
+    <published>2014-04-21T06:10:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<div class="svg-container">
+  <object data="/assets/images/posts/meetups-stickers.svg" type="image/svg+xml" class="svg-content"></object>
+</div>
+I am becoming a **Meetup** addict, especially those around web development. In Stockholm there are plenty of them, as everywhere else, and you can find one that covers the area in which you are interested, without any doubts.
+
+<p>I have attended many meetups since I arrived in Stockholm almost 2 years ago. The ones I like the most are those that deal with real situations and experience from startups and other companies.</p>
+<span id="more"></span>
+<p>Some meetups are based on talks about a specific language or platform. <a href="http://www.meetup.com/sthlm-js/">sthml.js</a> is by far the one that raises more expectation. Every time they announce a new event they run out of seats in just a few seconds.</p>
+<p>These are the meetups I attend regularly are:</p>
+<ul>
+<li><a href="http://www.meetup.com/sthlm-js/">sthlm.js</a></li>
+<li><a href="http://www.meetup.com/Meteor-Stockholm/">Meteor Stockholm</a></li>
+<li><a href="http://www.meetup.com/Spotify/">Sthlm Spotify Tech Group
+</a></li>
+<li><a href="http://www.meetup.com/Stockholm-AngularJS/">Stockholm AngularJS</a></li>
+<li><a href="http://www.meetup.com/Sthlm-Startups/">Sthlm Startups</a></li>
+<li><a href="http://www.meetup.com/STHLM-Tech-Meetup/">Sthlm Tech Meetup</a></li>
+</ul>
+<p>Not only can you learn something new when going to these events, but you also get to meet people who shares interests with you and  you visit companies headquarters. I really like seeing what other workplaces look like.</p>
+<p>Depending on the venue there is a variable number of seats available. The biggest ones are hosted at the Hilton Auditorium, and at worplaces like the Spotify HQ. The coziest host as few as 10 people.</p>
+<p>Go and have a look at the meetup pages and do not hesitate to attend a few of them and mingle with the people there.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;svg-container&quot;&gt;
+  &lt;object data=&quot;/assets/images/posts/meetups-stickers.svg&quot; type=&quot;image/svg+xml&quot; class=&quot;svg-content&quot;&gt;&lt;/object&gt;
+&lt;/div&gt;
+I am becoming a **Meetup** addict, especially those around web development. In Stockholm there are plenty of them, as everywhere else, and you can find one that covers the area in which you are interested, without any doubts.
+
+&lt;p&gt;I have attended many meetups since I arrived in Stockholm almost 2 years ago. The ones I like the most are those that deal with real situations and experience from startups and other companies.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="meetups" scheme="https://jmperezperez.com/tags/meetups/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/conference/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-22T08:32:52.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React Alicante 2017 - A summary of the talks</title>
+    <link href="https://jmperezperez.com//react-alicante-2017"/>
+    <id>https://jmperezperez.com//react-alicante-2017</id>
+    <published>2017-10-01T16:00:00.000Z</published>
+    <updated>2018-12-22T08:32:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This weekend I have been in Spain to attend <a href="http://reactalicante.es/">React Alicante</a>. This is the first edition of this conference, focused in React and React Native.</p>
+<p>Continue reading to know more about the event and its contents.</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510326427/react-alicante-glenn-reyes_kokxlw.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Glenn Reyes speaking at React Alicante" />
+<small class="caption">Glenn Reyes speaking at React Alicante</small></p>
+<span id="more"></span>
+
+<p>The conference was 3-day long, one day with workshops introducing React and React Native, and 2 days for talks in a single track.</p>
+<p>It’s the first edition of the conference, and I believe it’s also the first React conference arranged in Spain. It was truly international, with all talks delivered in English (something unusual in Spain) and 250 attendees from 25+ countries.</p>
+<p>The most impressive is that <strong>it was arranged by 2 Spanish expats who form the company <a href="https://limenius.com/">Limenius</a>, based in Munich</strong>. <a href="https://twitter.com/nacmartin">Nacho</a> and <a href="https://twitter.com/vicqr">Victoria</a> did an impressive job, putting together a top-level conference with a great line-up and contents. They managed to prove that its possible to arrange a good conference in a well-communicated location like Alicante, with good weather and interesting attractions, while making it affordable (the regular tickets for the talks were 99).</p>
+<img
+      style="max-width:100%"
+      sizes="(max-width: 768px) 100vw, 684px"
+      loading=lazy
+      srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1510331531/react-alicante-nacho-martin_wzczdx.jpg 400w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1510331531/react-alicante-nacho-martin_wzczdx.jpg 800w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1510331531/react-alicante-nacho-martin_wzczdx.jpg 1200w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1510331531/react-alicante-nacho-martin_wzczdx.jpg 1400w"
+        src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1510331531/react-alicante-nacho-martin_wzczdx.jpg"
+        alt="Nacho Martín speaking at React Alicante" />
+<p><small class="caption">Nacho Martín speaking at React Alicante</small></p>
+<img
+      style="max-width:100%"
+      sizes="(max-width: 768px) 100vw, 684px"
+      loading=lazy
+      srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1510331531/react-alicante-flavio-corpa_tg37vj.jpg 400w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1510331531/react-alicante-flavio-corpa_tg37vj.jpg 800w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1510331531/react-alicante-flavio-corpa_tg37vj.jpg 1200w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1510331531/react-alicante-flavio-corpa_tg37vj.jpg 1400w"
+        src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1510331531/react-alicante-flavio-corpa_tg37vj.jpg"
+        alt="Flavio Corpa during his talk" />
+<p><small class="caption">Flavio Corpa during his talk</small></p>
+<img
+      style="max-width:100%"
+      sizes="(max-width: 768px) 100vw, 684px"
+      loading=lazy
+      srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1510331531/react-alicante-overview_hncowx.jpg 400w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1510331531/react-alicante-overview_hncowx.jpg 800w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1510331531/react-alicante-overview_hncowx.jpg 1200w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1510331531/react-alicante-overview_hncowx.jpg 1400w"
+        src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1510331531/react-alicante-overview_hncowx.jpg"
+        alt="Overview of React Alicante" />
+<p><small class="caption">General overview of the full room</small></p>
+<p>There were several talks touching on style guides and the difficult world of creating UI components that can be customisable in options and theming. Other topics were forms, CSS in JS, Redux/Mobx, code splitting, GraphQL, and React Native.</p>
+<p>They covered pretty well the current ecosystem of tools when working with React, and they shared learnings that can be applied to our daily jobs.</p>
+<p>Do you want more details about the talks? Continue reading for a short description of each of them and links to their slides.</p>
+<h3 id="Talks-—-Conference-Day-1"><a href="#Talks-—-Conference-Day-1" class="headerlink" title="Talks — Conference Day 1"></a>Talks — Conference Day 1</h3><h4 id="The-effect-of-React-on-web-standards-by-Karl-Horky-Slides"><a href="#The-effect-of-React-on-web-standards-by-Karl-Horky-Slides" class="headerlink" title="The effect of React on web standards by Karl Horky - Slides"></a>The effect of React on web standards by <a href="https://twitter.com/karlhorky">Karl Horky</a> - <a href="https://work.karlhorky.com/talks/packages/2017-09-28-react-alicante-the-effect-of-react-on-web-standards/">Slides</a></h4><p>An overview of how the Web Standards committees work and how libraries (jQuery, Dojo, Angular, Knockout, Ember, React) and languages (CoffeeScript) have helped to introduce changes in the DOM and browser APIs.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">&quot;React - Not just a library&quot; indeed!<a href="https://twitter.com/karlhorky?ref_src=twsrc%5Etfw">@karlhorky</a> opening the <a href="https://twitter.com/ReactAlicante?ref_src=twsrc%5Etfw">@ReactAlicante</a> conference by talking about webstandards 🙌 <a href="https://t.co/4tnVZoyn79">pic.twitter.com/4tnVZoyn79</a></p>&mdash; React Vienna Meetup (@ReactVienna) <a href="https://twitter.com/ReactVienna/status/913665862829297665?ref_src=twsrc%5Etfw">29 September 2017</a></blockquote>
+
+<p>It also included a summary of the current TC39 standards proposals and their stage in the specification process.</p>
+<h4 id="Modular-CSS-by-Andrey-Okonetch-Slides"><a href="#Modular-CSS-by-Andrey-Okonetch-Slides" class="headerlink" title="Modular CSS by Andrey Okonetch - Slides"></a>Modular CSS by <a href="https://twitter.com/okonetchnikov">Andrey Okonetch</a> - <a href="https://speakerdeck.com/okonet/modular-css-v2-css-in-js-edition">Slides</a></h4><p>This was a fantastic talk taking us through how we used to build sites and the challenges to keep CSS maintainable. It goes through all the stages from pre-BEM, BEM, CSS modules and JSS (CSS in JS).</p>
+<p>Andrey explains how CSS in JS is not such a bad idea, the same way JSX broke the separation of concerns by getting closer to the components logic.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Gmail and Google Maps in the history of CSS with <a href="https://twitter.com/okonetchnikov?ref_src=twsrc%5Etfw">@okonetchnikov</a> at <a href="https://twitter.com/ReactAlicante?ref_src=twsrc%5Etfw">@ReactAlicante</a> <a href="https://t.co/3zfpAp2WqS">pic.twitter.com/3zfpAp2WqS</a></p>&mdash; Karl Horky (@karlhorky) <a href="https://twitter.com/karlhorky/status/913683058594902017?ref_src=twsrc%5Etfw">29 September 2017</a></blockquote>
+
+<p>At the end, he talks about the ecosystem of tools to help us either inlining CSS in JS or creating optimised CSS rules that reduce code duplication. In short, it lets machines do what they are best at.</p>
+<p>The talk covers a topic that is really hot at the moment. In fact several other talks also brought up the idea of moving the styles within the components to help with maintainability, theming and critical css rendering. If you like these topics I recommend you to check <a href="https://www.youtube.com/watch?v=MT4D_DioYC8">Mark Dalgleishs talk at CSSConf EU 2017</a>.</p>
+<h4 id="React-gt-gt-Redux-a-development-workflow-by-Braulio-Diez"><a href="#React-gt-gt-Redux-a-development-workflow-by-Braulio-Diez" class="headerlink" title="React &gt;&gt; Redux a development workflow by Braulio Diez"></a>React &gt;&gt; Redux a development workflow by <a href="https://twitter.com/braulio_sl">Braulio Diez</a></h4><p>Braulio was really energetic and gave a talk about how you might not always need Redux when working with React. I couldn’t find tweets nor slides from the talk, so I’ll wait for the videos to add more content.</p>
+<h4 id="React-Storybook-Design-Develop-Document-and-Debug-your-React-UI-components-by-Marie-Laure-Thuret-Slides"><a href="#React-Storybook-Design-Develop-Document-and-Debug-your-React-UI-components-by-Marie-Laure-Thuret-Slides" class="headerlink" title="React-Storybook: Design, Develop, Document and Debug your React UI components by Marie-Laure Thuret - Slides"></a>React-Storybook: Design, Develop, Document and Debug your React UI components by <a href="https://twitter.com/mlthuret">Marie-Laure Thuret</a> - <a href="https://speakerdeck.com/mlthuret/storybook-dev-design-debug-and-document-your-ui-components">Slides</a></h4><p>I loved this talk! Do you know that feeling when you are listening someone explaining all your current pains and provides you with great solutions? That’s how I felt.</p>
+<p>Not only did she talked about how to use StoryBook, but also how it was the source of truth and a communication tool with designers and between developers. You send a PR that makes a change in a component? Link directly to the story for that component so the reviewer sees the result without having to browse through the site.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr"><a href="https://twitter.com/mlthuret?ref_src=twsrc%5Etfw">@mlthuret</a> talking about documentation and Visual Regression Testing with StoryBook <a href="https://twitter.com/hashtag/ReactAlicante?src=hash&amp;ref_src=twsrc%5Etfw">#ReactAlicante</a> <a href="https://twitter.com/hashtag/NiceTalk?src=hash&amp;ref_src=twsrc%5Etfw">#NiceTalk</a> <a href="https://t.co/3trWkSmlIK">pic.twitter.com/3trWkSmlIK</a></p>&mdash; Gabriel Garcia Seco (@GGarciaSeco10) <a href="https://twitter.com/GGarciaSeco10/status/913712092900843521?ref_src=twsrc%5Etfw">29 September 2017</a></blockquote>
+
+<p>I was recently looking for tools to do visual regression testing to catch CSS issues, but in the end we decided to skip it. I liked that Marie-Laure talked about this and demoed <a href="https://loki.js.org/">Loki</a>, which I didnt know about, that integrates with StoryBook and provides visual diffing. It looked easy to use and a great complement to unit tests and snapshot tests for components.</p>
+<h4 id="A-practical-guide-to-Redux-Form-by-Erik-Rasmussen-Slides-and-Code"><a href="#A-practical-guide-to-Redux-Form-by-Erik-Rasmussen-Slides-and-Code" class="headerlink" title="A practical guide to Redux Form by Erik Rasmussen - Slides and Code"></a>A practical guide to Redux Form by <a href="https://twitter.com/erikras">Erik Rasmussen</a> - <a href="https://speakerdeck.com/erikras/a-practical-guide-to-redux-form">Slides</a> and <a href="https://github.com/erikras/reactalicante2017">Code</a></h4><p>Im fortunate that I dont have to deal with forms that often. If I ever have to do it with React, I think I would go for <a href="https://redux-form.com/">Redux Form</a>.</p>
+<p>Creating a form involves having multiple fields with a similar logic. It’s easy to end up duplicating code and dealing with unmaintainable code that only works for a given form. Redux Form helps removing boilerplate code and integrates beautifully with Redux.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">.<a href="https://twitter.com/erikras?ref_src=twsrc%5Etfw">@erikras</a> on the difficulties of using forms, including use in environments with unidirectional data flow such as React. <a href="https://t.co/qSteZV458r">pic.twitter.com/qSteZV458r</a></p>&mdash; Karl Horky (@karlhorky) <a href="https://twitter.com/karlhorky/status/913717121032519681?ref_src=twsrc%5Etfw">29 September 2017</a></blockquote>
+
+<p>Erik did a ver smooth live demo, going from a simple form as we would implement it, and showing how to add more functionality through Redux Form while refactoring the code.</p>
+<p>I personally love it when I see examples of Higher-Order Components that simplify the code. It’s usually not obvious how they can solve some patterns, and it’s one of the most powerful features of functional programming applied to React.</p>
+<h4 id="React-Native-Case-study-From-zero-to-a-super-hero-app-by-Ferran-Negre-Slides"><a href="#React-Native-Case-study-From-zero-to-a-super-hero-app-by-Ferran-Negre-Slides" class="headerlink" title="React Native  Case study: From zero to a super hero app by Ferran Negre - Slides"></a>React Native  Case study: From zero to a super hero app by <a href="https://twitter.com/ferrannp">Ferran Negre</a> - <a href="https://ferrannp.github.io/slides/react-native-zero-to-superhero/">Slides</a></h4><p>Ferran ent through some features that most mobile applications need to deal with, and explained the challenges to implement them using React Native. He applied it to an application he had developed to follow TV Series (it reminded me to <a href="https://itunes.apple.com/us/app/ishows-tv-powered-by-trakt-tv/id992387872">iShows</a>).</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">So happy to have talked in front of such a huge audience (250) in the sunny and beautiful Alicante! <a href="https://twitter.com/hashtag/reactnative?src=hash&amp;ref_src=twsrc%5Etfw">#reactnative</a> <a href="https://twitter.com/hashtag/react?src=hash&amp;ref_src=twsrc%5Etfw">#react</a> <a href="https://twitter.com/ReactAlicante?ref_src=twsrc%5Etfw">@ReactAlicante</a> <a href="https://t.co/crlrB1ungY">pic.twitter.com/crlrB1ungY</a></p>&mdash; Ferran Negre (@ferrannp) <a href="https://twitter.com/ferrannp/status/913774705521430529?ref_src=twsrc%5Etfw">29 September 2017</a></blockquote>
+
+<p>It turns out developing React Native applications is not as straightforward as it seems, especially if you want to mimic exactly how a native application behaves in some cases. Some examples are the lack of automatic refresh of the app when changing the system language, or doing data synchronisation when the app is in the background. Ferran has been documenting lots of tips to solve this issues on his <a href="https://medium.com/@ferrannp">Medium</a>, and contributed with Java bridges to expose native functionality to React.</p>
+<h4 id="Mutable-or-Immutable-Lets-do-both-by-Mattia-Manzati-Slides"><a href="#Mutable-or-Immutable-Lets-do-both-by-Mattia-Manzati-Slides" class="headerlink" title="Mutable or Immutable? Lets do both! by Mattia Manzati - Slides"></a>Mutable or Immutable? Lets do both! by <a href="https://twitter.com/MattiaManzati">Mattia Manzati</a> - <a href="https://mattiamanzati.github.io/slides-react-alicante-2017/">Slides</a></h4><p>Mattia compares MobX and Redux showing their pros and cons and then introduces <a href="https://github.com/mobxjs/mobx-state-tree">mobx-state-tree</a> which aims to combine the best of MobXs mutability and Reduxs immutability.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">.<a href="https://twitter.com/MattiaManzati?ref_src=twsrc%5Etfw">@MattiaManzati</a> blowing people’s minds at <a href="https://twitter.com/hashtag/ReactAlicante?src=hash&amp;ref_src=twsrc%5Etfw">#ReactAlicante</a>. 👍 <a href="https://t.co/vD7Cbjm8yP">pic.twitter.com/vD7Cbjm8yP</a></p>&mdash; Erik Rasmussen (@erikras) <a href="https://twitter.com/erikras/status/913784924485844994?ref_src=twsrc%5Etfw">29 September 2017</a></blockquote>
+
+<p>Not having used myself MobX, and being comfortable with the simplicity of React, it was a bit difficult to wrap my head around the problems solved by the library.</p>
+<h4 id="Why-I-Love-Create-React-App-by-Valerii-Sorokobatko-Write-up"><a href="#Why-I-Love-Create-React-App-by-Valerii-Sorokobatko-Write-up" class="headerlink" title="Why I Love Create React App by Valerii Sorokobatko - Write up"></a>Why I Love Create React App by <a href="https://twitter.com/tuchk4">Valerii Sorokobatko</a> - <a href="https://medium.com/@tuchk4/react-alicante-2017-why-i-love-create-react-app-ed2670b03cc3">Write up</a></h4><p>Valerii explains how they used create-react-app at his company to provide a unified developer experience and avoid dealing with config and setup, focusing on building features instead. I like how he shows that even though you might be tempted to eject, it might be better to find an alternative that keeps you using create-react-app and getting its updates.</p>
+<p>I love that the talk is supported by <a href="https://medium.com/@tuchk4/why-i-love-create-react-app-e63b1be689a3">a write up on Medium</a>, which makes it easily digestible for someone that doesnt have time to go through the video.</p>
+<h4 id="Custom-CSS-is-the-path-to-inconsistent-UI-by-Artem-Sapegin-Slides"><a href="#Custom-CSS-is-the-path-to-inconsistent-UI-by-Artem-Sapegin-Slides" class="headerlink" title="Custom CSS is the path to inconsistent UI by Artem Sapegin - Slides"></a>Custom CSS is the path to inconsistent UI by <a href="https://twitter.com/iamsapegin">Artem Sapegin</a> - <a href="https://sapegin.github.io/slides/inconsistent-styles">Slides</a></h4><p>The title of this lightning talk is a strong statement, and Artem explains during his talk that we should avoid magic numbers and use components to solve typography and spacing in CSS.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">.<a href="https://twitter.com/iamsapegin?ref_src=twsrc%5Etfw">@iamsapegin</a> about standard UI design and solutions for this at <a href="https://twitter.com/ReactAlicante?ref_src=twsrc%5Etfw">@ReactAlicante</a> <a href="https://t.co/eB5NDnHsme">pic.twitter.com/eB5NDnHsme</a></p>&mdash; Karl Horky (@karlhorky) <a href="https://twitter.com/karlhorky/status/913745863297683456?ref_src=twsrc%5Etfw">29 September 2017</a></blockquote>
+
+<p>To solve spacing specifically he developed <a href="https://github.com/sapegin/react-spaceman">react-spaceman</a> (see <a href="https://sapegin.github.io/react-spaceman/">the demo</a>), inspired by <a href="https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62">Nathan Curtis’ framework</a>.</p>
+<p>Artem is also the author of <a href="https://react-styleguidist.js.org/">Styleguidist</a>, which was subject of <a href="https://twitter.com/NikkitaFTW">Sara Vieira’s</a> talk the day after (read more below).</p>
+<h4 id="Beyond-JavaScript-The-Real-Benefit-of-React-Native-by-Wojciech-Ogrodowczyk"><a href="#Beyond-JavaScript-The-Real-Benefit-of-React-Native-by-Wojciech-Ogrodowczyk" class="headerlink" title="Beyond JavaScript: The Real Benefit of React Native by Wojciech Ogrodowczyk"></a>Beyond JavaScript: The Real Benefit of React Native by <a href="https://twitter.com/sharnik">Wojciech Ogrodowczyk</a></h4><p>This lightning talk tried to make us developers more critic about what languages we use.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">.<a href="https://twitter.com/sharnik?ref_src=twsrc%5Etfw">@sharnik</a> teaching about language choices, using an example of the Pirahã People in the Amazon <a href="https://t.co/PFd22TQnxF">pic.twitter.com/PFd22TQnxF</a></p>&mdash; Karl Horky (@karlhorky) <a href="https://twitter.com/karlhorky/status/913752918091866113?ref_src=twsrc%5Etfw">29 September 2017</a></blockquote>
+
+<p>Instead of saying we are JS developers we should consider ourselves developers and see the good and bad points of the different languages. Use the best tool for the job.</p>
+<h4 id="How-to-make-React-applications-really-reactive-with-Focal-by-Gregory-Shehet-Slides"><a href="#How-to-make-React-applications-really-reactive-with-Focal-by-Gregory-Shehet-Slides" class="headerlink" title="How to make React applications really reactive with Focal? by Gregory Shehet - Slides"></a>How to make React applications really reactive with Focal? by <a href="https://twitter.com/AGambit95">Gregory Shehet</a> - <a href="https://www.dropbox.com/sh/hnbra4ezcj72jj2/AAAHVE9lrkusriYtDsTyCr7Ga?dl=0">Slides</a></h4><p>Gregory went through an example application using Reactive Programming and Observables in his lightning talk, and showed how <a href="https://github.com/grammarly/focal">Focal</a> can overcome the limitations of React for rendering Observables.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">.<a href="https://twitter.com/AGambit95?ref_src=twsrc%5Etfw">@AGambit95</a> on rendering observables within React using Focal at <a href="https://twitter.com/ReactAlicante?ref_src=twsrc%5Etfw">@ReactAlicante</a> <a href="https://t.co/LhmOofGgmj">pic.twitter.com/LhmOofGgmj</a></p>&mdash; Karl Horky (@karlhorky) <a href="https://twitter.com/karlhorky/status/913791213681115137?ref_src=twsrc%5Etfw">29 September 2017</a></blockquote>
+
+<h3 id="Talks-—-Conference-Day-2"><a href="#Talks-—-Conference-Day-2" class="headerlink" title="Talks — Conference Day 2"></a>Talks — Conference Day 2</h3><h4 id="End-to-End-testing-React-applications-by-Forbes-Lindesay-Repo-with-slides"><a href="#End-to-End-testing-React-applications-by-Forbes-Lindesay-Repo-with-slides" class="headerlink" title="End to End testing React applications by Forbes Lindesay - Repo (with slides)"></a>End to End testing React applications by <a href="https://twitter.com/ForbesLindesay">Forbes Lindesay</a> - <a href="https://github.com/ForbesLindesay/end-to-end-testing-react-applications">Repo (with slides)</a></h4><p>Forbes, who ran the <a href="https://github.com/ForbesLindesay/intro-to-react">React workshop</a> at the conference, also gave a talk. Forbes used to work in the Ads team at Facebook London, and a very active programmer with many projects on GitHub.</p>
+<p>In his talk he presented an alternative Testing Pyramid compose by static analysis + javascript unit tests + end to end tests, describing tools to use and the limitations of every step. Lots of these tools like Flow, Jest or Prettier have actually been created at Facebook and now for part of the workflow of many of us.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Starting this second day of talks with End to end testing React applications by <a href="https://twitter.com/ForbesLindesay?ref_src=twsrc%5Etfw">@ForbesLindesay</a> <a href="https://twitter.com/hashtag/ReactAlicante?src=hash&amp;ref_src=twsrc%5Etfw">#ReactAlicante</a> <a href="https://t.co/h414HbNAqO">pic.twitter.com/h414HbNAqO</a></p>&mdash; ReactAlicante ⚛️🌞🥘 (@ReactAlicante) <a href="https://twitter.com/ReactAlicante/status/914025944855334912?ref_src=twsrc%5Etfw">30 September 2017</a></blockquote>
+
+<p>End to end tests usually present problems, being slow, unreliable and expensive. Forbes has worked on <a href="https://github.com/ForbesLindesay/cabbie">cabbie</a> and <a href="https://github.com/ForbesLindesay/taxi-rank">taxi-rank</a> to make this easier. Cabbie is a webdriver client for Node.js. With it you can control Chrome through chromedriver, but also run the tests using JSDom through taxi-rank, which can run way faster than controlling a real browser, and could be a good alternative in some cases.</p>
+<h4 id="Writing-highly-reusable-React-components-by-Javi-Velasco"><a href="#Writing-highly-reusable-React-components-by-Javi-Velasco" class="headerlink" title="Writing highly reusable React components by Javi Velasco"></a>Writing highly reusable React components by <a href="https://twitter.com/javivelasco">Javi Velasco</a></h4><p>Javi is the author of <a href="http://react-toolbox.com/">react-toolbox</a>, a suite of React components that use Material Design. The project started back in October 2015 and Javi explained some architectural decisions that were taken and he would address now in a different way.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">.<a href="https://twitter.com/javivelasco?ref_src=twsrc%5Etfw">@javivelasco</a> about to start showing us how to write highly reusable React components <a href="https://t.co/Iy0nzkP3Dx">pic.twitter.com/Iy0nzkP3Dx</a></p>&mdash; ReactAlicante ⚛️🌞🥘 (@ReactAlicante) <a href="https://twitter.com/ReactAlicante/status/914037890828718080?ref_src=twsrc%5Etfw">30 September 2017</a></blockquote>
+
+<p>I like these talks that show the evolution of a project since that’s what we live everyday with. We build for what’s needed today and try to make it last, but 2 years in a web project are very long and we quickly find better ways of dealing with past issues.</p>
+<p>Javi explained the theming and customizable constraints imposed by those components, and how he was thinking of isolating the functionality in a <a href="https://www.npmjs.com/package/react-toolbox-core">react-toolbox-core package</a> (<a href="https://github.com/react-toolbox/react-toolbox/tree/agnostic-components">here the branch</a> and <a href="https://github.com/javivelasco/react-toolbox-airbnb">demo</a>), and make it easy to use any CSS-in-JS (aka JSS) method for styling.</p>
+<h4 id="The-Dream-of-Styleguide-Driven-Development-by-Sara-Vieira-Slides-and-Repo"><a href="#The-Dream-of-Styleguide-Driven-Development-by-Sara-Vieira-Slides-and-Repo" class="headerlink" title="The Dream of Styleguide Driven Development by Sara Vieira - Slides and Repo"></a>The Dream of Styleguide Driven Development by <a href="https://twitter.com/NikkitaFTW">Sara Vieira</a> - <a href="https://styleguide-driven-development-anvohjeduy.now.sh/">Slides</a> and <a href="https://github.com/SaraVieira/styleguide-driven-development">Repo</a></h4><p>Sara talked about how to split a design into smaller chunks (eg typography, buttons, icons and cards) and isolate them in a style guide that serves to communicate with the designers.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">React <a href="https://twitter.com/styleguidist?ref_src=twsrc%5Etfw">@styleguidist</a> at <a href="https://twitter.com/hashtag/reactalicante?src=hash&amp;ref_src=twsrc%5Etfw">#reactalicante</a> by <a href="https://twitter.com/NikkitaFTW?ref_src=twsrc%5Etfw">@NikkitaFTW</a> 🥘🛥🌅<a href="https://t.co/r7pbggUMag">https://t.co/r7pbggUMag</a> <a href="https://t.co/E2F0QlSnh8">pic.twitter.com/E2F0QlSnh8</a></p>&mdash; Artem Sapegin ☕ (@iamsapegin) <a href="https://twitter.com/iamsapegin/status/914057821397897216?ref_src=twsrc%5Etfw">30 September 2017</a></blockquote>
+
+<p>Creating new pages is a matter of putting those components together, instead of coming up with new ways to codify the style needed for each page. Sara showed 2 tools for creating style guides: <a href="https://github.com/styleguidist/react-styleguidist">Styleguidist</a> and <a href="https://storybook.js.org/">Storybook</a>.</p>
+<p>Storybook had been covered at the first day of the conference, so Sara focused on demoing Styleguidist and showing the differences between the two.</p>
+<p>Regardless of the tool, I really think we should componentise early and evolve the design based on the components.</p>
+<h4 id="Building-a-Realtime-Chat-with-GraphQL-Subscriptions-by-Nikolas-Burk-Slides-and-Demo-code"><a href="#Building-a-Realtime-Chat-with-GraphQL-Subscriptions-by-Nikolas-Burk-Slides-and-Demo-code" class="headerlink" title="Building a Realtime Chat with GraphQL Subscriptions by Nikolas Burk - Slides and Demo code"></a>Building a Realtime Chat with GraphQL Subscriptions by <a href="https://twitter.com/nikolasburk">Nikolas Burk</a> - <a href="https://www.slideshare.net/nburk/building-a-realtime-chat-with-react-graphql-subscriptions">Slides</a> and <a href="https://github.com/nikolasburk/graphql-chat">Demo code</a></h4><p>Many of us have heard about GraphQL but arent using it in production. Nikolas gave a quick overview about GraphQL and coded a chat application based on React + <a href="http://dev.apollodata.com/">Apollo</a>. For the backend he used <a href="http://graph.cool/">graphcool</a>, a hosted GraphQL service.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr"><a href="https://twitter.com/nikolasburk?ref_src=twsrc%5Etfw">@nikolasburk</a> speaking on GraphQL subscriptions <a href="https://twitter.com/ReactAlicante?ref_src=twsrc%5Etfw">@ReactAlicante</a> <a href="https://t.co/tmqHVJSTG3">pic.twitter.com/tmqHVJSTG3</a></p>&mdash; Shawn Leberknight (@shawns_beard) <a href="https://twitter.com/shawns_beard/status/914070758892163072?ref_src=twsrc%5Etfw">30 September 2017</a></blockquote>
+
+<p>Nikolas made it look really easy, and thanks to the tools we have today at reach using GraphQL is not a daunting task anymore.</p>
+<h4 id="Code-splitting-in-React-apps-by-Glenn-Reyes-Slides"><a href="#Code-splitting-in-React-apps-by-Glenn-Reyes-Slides" class="headerlink" title="Code-splitting in React apps by Glenn Reyes - Slides"></a>Code-splitting in React apps by <a href="https://twitter.com/glnnrys">Glenn Reyes</a> - <a href="https://speakerdeck.com/glennreyes/code-splitting-in-react-apps">Slides</a></h4><p>I was hoping someone would bring up the topic of performance, and that was Glenn. He address the topic of code splitting, generating several bundles out of the JS and CSS code in our React apps.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Our own <a href="https://twitter.com/glnnrys?ref_src=twsrc%5Etfw">@glnnrys</a> is kicking off with code splitting in <a href="https://twitter.com/reactjs?ref_src=twsrc%5Etfw">@reactjs</a> apps <a href="https://twitter.com/ReactAlicante?ref_src=twsrc%5Etfw">@ReactAlicante</a> 👏👏👏 <a href="https://t.co/pvHAUU0JrX">pic.twitter.com/pvHAUU0JrX</a></p>&mdash; React Vienna Meetup (@ReactVienna) <a href="https://twitter.com/ReactVienna/status/914078814342467584?ref_src=twsrc%5Etfw">30 September 2017</a></blockquote>
+
+<p>Using <code>import()</code>, a higher-order component and Webpack we can easilly split our bundles in vendor + app chunks, but also at a path or a component level. Thus the browsers requests the bundles needed for the views as we browse them (or we let the browser preload them when it’s idle).</p>
+<p>I liked the mention to <a href="https://github.com/zeit/next.js/">Next.js</a>, which has built-in lots of these concepts, and the idea of using <a href="https://github.com/aweary/react-perimeter">react-perimeter</a> to lazy load components as the user moved the cursor close to an element.</p>
+<h4 id="Redux-Saga-the-Viking-way-to-manage-side-effects-by-Nacho-Martin-Slides"><a href="#Redux-Saga-the-Viking-way-to-manage-side-effects-by-Nacho-Martin-Slides" class="headerlink" title="Redux Saga, the Viking way to manage side effects by Nacho Martín - Slides"></a>Redux Saga, the Viking way to manage side effects by <a href="https://twitter.com/nacmartin">Nacho Martín</a> - <a href="https://www.slideshare.net/nachomartin/redux-sagas-react-alicante">Slides</a></h4><p>Nacho was one of the organisers and apart from the React Native workshop he also presented a talk. He described Redux Saga as a way to manage side-effects.</p>
+<p>If you have ever tried to get promises back from dispatching actions or orchestrate other sub-actions as a result of actions, youre likely to have used sagas or something like <a href="https://github.com/gaearon/redux-thunk">redux-thunk</a>.</p>
+<p>He started the talk in the best possible way, by saying:</p>
+<blockquote>
+<p>Maybe you don’t need redux-saga</p>
+</blockquote>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">.<a href="https://twitter.com/nacmartin?ref_src=twsrc%5Etfw">@nacmartin</a> about to start his talk, showing how to manage side-effects with Redux Saga <a href="https://twitter.com/hashtag/ReactAlicante?src=hash&amp;ref_src=twsrc%5Etfw">#ReactAlicante</a> <a href="https://t.co/C9egYqumQp">pic.twitter.com/C9egYqumQp</a></p>&mdash; ReactAlicante ⚛️🌞🥘 (@ReactAlicante) <a href="https://twitter.com/ReactAlicante/status/914114831367725058?ref_src=twsrc%5Etfw">30 September 2017</a></blockquote>
+
+<p>More often than not we like to pull more and more tooling when developing React applications just because we think we need them. Nacho explained where Sagas fit and how the use generators underneath, which makes writing async code always as easy as writing synchronous one.</p>
+<p>I think it’s a good library when thunks fail short.</p>
+<h4 id="The-Road-to-a-Statically-Typed-Future-by-Patrick-Stapfer-Slides"><a href="#The-Road-to-a-Statically-Typed-Future-by-Patrick-Stapfer-Slides" class="headerlink" title="The Road to a Statically Typed Future by Patrick Stapfer - Slides"></a>The Road to a Statically Typed Future by <a href="https://twitter.com/ryyppy">Patrick Stapfer</a> - <a href="https://speakerdeck.com/ryyppy/the-road-to-a-statically-typed-future-reactalicante-2017">Slides</a></h4><p>Patrick talked about typing (eg using Typescript or Flow) and how it improves functional patterns writing JS apps, but also as contracts communications client and server to accomplish fully-typed architectures.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">The evolution of static type systems with <a href="https://twitter.com/ryyppy?ref_src=twsrc%5Etfw">@ryyppy</a> at <a href="https://twitter.com/ReactAlicante?ref_src=twsrc%5Etfw">@ReactAlicante</a> <a href="https://t.co/8wW5MGlrAA">pic.twitter.com/8wW5MGlrAA</a></p>&mdash; Karl Horky (@karlhorky) <a href="https://twitter.com/karlhorky/status/914125965390905344?ref_src=twsrc%5Etfw">30 September 2017</a></blockquote>
+
+<p>Finally, Patrick shows how ReasonML and BuckleScript can enforce code correctness even more with an example of a Tic Tac Toe game implementation.</p>
+<h4 id="Case-study-Lucentum-creating-our-own-React-component-library-by-Flavio-Corpa"><a href="#Case-study-Lucentum-creating-our-own-React-component-library-by-Flavio-Corpa" class="headerlink" title="Case study: Lucentum, creating our own React component library by Flavio Corpa"></a>Case study: Lucentum, creating our own React component library by <a href="https://twitter.com/FlavioCorpa">Flavio Corpa</a></h4><p>Flavio talked about Lucentum, a component library he developed for a client. He shared his learnings and challenges theming and creating awefully complex components, while keeping everything working.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr"><a href="https://twitter.com/FlavioCorpa?ref_src=twsrc%5Etfw">@FlavioCorpa</a> speaking on React component library: case study <a href="https://twitter.com/ReactAlicante?ref_src=twsrc%5Etfw">@ReactAlicante</a> <a href="https://t.co/Rk59QaLBge">pic.twitter.com/Rk59QaLBge</a></p>&mdash; Shawn Leberknight (@shawns_beard) <a href="https://twitter.com/shawns_beard/status/914144631495041024?ref_src=twsrc%5Etfw">30 September 2017</a></blockquote>
+
+<p>It was a down-to-earth talk in which most of us felt identified with. It was also a nice way to link back to Javi Velasco’s talk about UI components, and how difficult it is to build them to be flexible and accommodate for any imaginable situation.</p>
+<h4 id="Deploying-atomic-design-system-at-scale-by-Nick-Balestra-Slides"><a href="#Deploying-atomic-design-system-at-scale-by-Nick-Balestra-Slides" class="headerlink" title="Deploying atomic design system at scale by Nick Balestra - Slides"></a>Deploying atomic design system at scale by <a href="https://twitter.com/nickbalestra">Nick Balestra</a> - <a href="https://speakerdeck.com/nickbalestra/deploying-atomic-design-system-at-scale">Slides</a></h4><p>Nick talked about scaling websites through <a href="https://github.com/opentable/oc">OpenComponents</a>. Think of the microservice approach taken all the way till the frontend.</p>
+<img
+      style="max-width:100%"
+      sizes="(max-width: 768px) 100vw, 684px"
+      loading=lazy
+      srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1510331530/react-alicante-nick-balestra_gzaig6.jpg 400w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1510331530/react-alicante-nick-balestra_gzaig6.jpg 800w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1510331530/react-alicante-nick-balestra_gzaig6.jpg 1200w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1510331530/react-alicante-nick-balestra_gzaig6.jpg 1400w"
+        src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1510331530/react-alicante-nick-balestra_gzaig6.jpg"
+        alt="Nick Balestra speaking at React Alicante" />
+
+<p>I liked his presentation very much. We have been trying to solve some of these issues at Spotify for years, in creative ways like <a href="https://speakerdeck.com/jmperez/cross-platform-web-development">pushing the boundaries of what iframes can do</a>.</p>
+<p>OC’s approach (and thus OpenTable’s, the company that built it) is to have parts of the UI served my different services, that can be written in different languages, and maintained/versioned/deployed by a certain team without dependencies on others. The same services can be used to compose email messages or create embeddable widgets.</p>
+<p>I still wonder how everything can be put in place without breaking anything, and where shared state is stored. Still, this architecture seems to work OpenTable.</p>
+<h3 id="Videos"><a href="#Videos" class="headerlink" title="Videos"></a>Videos</h3><p>The videos for the talks are expected to be published in the coming weeks. I’ll link to them when they are live.</p>
+<p>I really hope the conference will be back next year. I think these initiatives help showing that there is a lot of talent in Alicante and it can be a very good destination for remote workers and companies.</p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+]]></content>
+    
+    <summary type="html">
+    
+      First React conference in Spain, covering React and React Native. An international event with workshops and talks.
+    
+    </summary>
+    
+    
+      <category term="conference" scheme="https://jmperezperez.com/tags/conference/"/>
+    
+      <category term="react" scheme="https://jmperezperez.com/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Web Performance talk in Stockholm - Internet Days</title>
+    <link href="https://jmperezperez.com//internetdagarna-2015"/>
+    <id>https://jmperezperez.com//internetdagarna-2015</id>
+    <published>2015-11-23T18:00:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Today I have had the chance of attending the <a href="https://internetdagarna.se/arkiv/2015/internetdagarna.se/index.html%3Fp=17396.html">Faster than lightning track</a> of <a href="https://internetdagarna.se/arkiv/2015/internetdagarna.se/index.html">Internetdagarna 2015</a>. There have been talks about web performance, and some broader topics like big data and UI, how data is important for large companies offering free services, and the need for public Governments to build compelling competitive services. <a href="https://www.youtube.com/watch?v=7G0Xz0JsiFg&index=1&list=PLtDs7N_g_eiZ5ag.e-xntFYydij0xSPL42">The videos are already online</a>.<img src="/assets/images/posts/internetdagarna-logo.jpg" alt="The Heart logo @ Internetdagarna 2015"></p>
+<span id="more"></span>
+<h2 id="Internetdagarna"><a href="#Internetdagarna" class="headerlink" title="Internetdagarna"></a>Internetdagarna</h2><p>A couple of weeks ago I attended <a href="http://www.meetup.com/es/Stockholm-Web-Performance-Group/events/226316269/">Monitoring web performance using Open Source tools and AMP</a> by the <a href="http://www.meetup.com/es/Stockholm-Web-Performance-Group/">Stockholm Web Performance Group</a>. I was lucky and got a ticket at a raffle where they gave out a couple of tickets to Internetdagarna.</p>
+<p>I have only attended the first of the two days of the conference. It has been very well organized, and the quality of the talks very high. Well, I pretty much every talk about web performance :) Also, I love their 8-bit theme and the <a href="https://www.youtube.com/watch?v=sQvgCPNtSGk#t=01h26m36s">looping animations with the logo</a>.
+<a href="/assets/images/posts/internetdagarna-hall.jpg"><img src="/assets/images/posts/internetdagarna-hall.jpg" alt="Main room at Internetdagarna 2015"></a></p>
+<h2 id="Talks"><a href="#Talks" class="headerlink" title="Talks"></a>Talks</h2><h3 id="High-Performance-Images-by-Tobias-Baldauf"><a href="#High-Performance-Images-by-Tobias-Baldauf" class="headerlink" title="High Performance Images, by Tobias Baldauf"></a>High Performance Images, by Tobias Baldauf</h3><p>Great talk! If you care about images, their size and format, please watch this. Instead of just explaining the typical tips about resizing and optimising images, Tobias focuses on formats and compression.</p>
+<p>He goes through the history of formats, and the multiple formats that have tried to replace JPEG (WebP and JPEG-XR). Then, he goes back to JPEG demoing <a href="https://github.com/mozilla/mozjpeg">mozjpeg</a> as an enhancement for encoding JPEGs. The question is “what quality to use?”</p>
+<p>The answer is measuring image dissimilarity, to find out how much different is the compressed version compared to the original one. Good news: there is a tool for that, called <a href="https://github.com/pornel/dssim">dssim</a>. Then, one can run a script that compresses an image with different values until it reaches a certain dissimilarity threshold, like <a href="https://github.com/technopagan/cjpeg-dssim">Tobias’ cjpeg-dssim</a>.</p>
+<p>Tobias goes beyond this, and explains <a href="https://github.com/technopagan/adept-jpg-compressor">his Adept script</a>, based on the idea of using different compression levels for different areas of the image, aka adaptive JPEG compression. The script takes a long time, but it can be worth it for doing one-shot optimisations for important assets like a hero image.
+<a href="/assets/images/posts/internetdagarna-tobias-baldauf.jpg"><img src="/assets/images/posts/internetdagarna-tobias-baldauf.jpg" alt="Tobias Baldauf presenting in Internetdagarna 2015"></a>
+<em>&uarr; Tobias Baldauf about to talk about mozjpeg</em></p>
+<p><a href="https://www.youtube.com/watch?v=j5sRzAOt4nE">Video on Youtube</a></p>
+<h3 id="Cheat-Sheet-To-A-Lean-Website-by-Barbara-Bermes"><a href="#Cheat-Sheet-To-A-Lean-Website-by-Barbara-Bermes" class="headerlink" title="Cheat Sheet To A Lean Website, by Barbara Bermes"></a>Cheat Sheet To A Lean Website, by Barbara Bermes</h3><p>Barbara talks about performance culture, and the need to feel empowered and encouraged to say “no” when implementing features or designs that affect performance.</p>
+<p>This is something I have been hearing lately, especially around the ad-blocker and bloated sites topic. I wish all developers could feel free to discuss decisions that affect user’s experience.</p>
+<p>And when it comes to performance culture, it’s almost impossible not to mention Etsy.</p>
+<p>Barbara then goes through some good ideas, like having a performance budget, or defining mockups of the important areas that need to be rendered quickly, being aware of the critical rendering path, and the rest of Steve Souders’s principles.
+<a href="/assets/images/posts/internetdagarna-barbara-bermes.jpg"><img src="/assets/images/posts/internetdagarna-barbara-bermes.jpg" alt="Barbara Bermes presenting in Internetdagarna 2015"></a>
+<em>&uarr; Barbara Bermes talking about performance culture</em></p>
+<p><a href="https://www.youtube.com/watch?v=QQZigZiQ9Gg">Video on Youtube</a></p>
+<h3 id="The-Case-for-HTTP-2-by-Andy-Davies"><a href="#The-Case-for-HTTP-2-by-Andy-Davies" class="headerlink" title="The Case for HTTP/2, by Andy Davies"></a>The Case for HTTP/2, by Andy Davies</h3><p>Andy explains the history of HTTP 1.1, its limitations and the workarounds we came up with to overcome its limitations. I find particularly interesting how inlining critical CSS in the HTML or inlining images in CSS using data URIs means that we are overriding browser’s priorities, based on heuristics to determine what resources should be downloaded first. I had never thought about it from this perspective.</p>
+<p>But Andy doesn’t try to just sell HTTP/2. He explains HTTP/2 through some real examples applied to real sites. In some cases there is almost no improvement in loading time, and it is still difficult to implement a server push approach that takes into account whether the browser already has the filed being pushed. He also shows some issues in some server implementations that developers need to be aware of.
+<a href="/assets/images/posts/internetdagarna-andy-davies.jpg"><img src="/assets/images/posts/internetdagarna-andy-davies.jpg" alt="Andy Davies presenting in Internetdagarna 2015"></a>
+<em>&uarr; Andy Davies showing how to debug HTTP/2 connections with Chrome tools</em></p>
+<p><a href="https://www.youtube.com/watch?v=m1b_VQk73SI">Video on Youtube</a></p>
+<h3 id="Working-with-performance-by-Tobias-J-228-rlund"><a href="#Working-with-performance-by-Tobias-J-228-rlund" class="headerlink" title="Working with performance, by Tobias J&#228;rlund"></a>Working with performance, by Tobias J&#228;rlund</h3><p>Tobias explains how Aftonbladet.se, the main news site in Sweden, approaches web performance, and what problems they have faced when trying to make everyone aware of the performance implications of the content (ads, large images…).
+<a href="/assets/images/posts/internetdagarna-tobias-jarlund.jpg"><img src="/assets/images/posts/internetdagarna-tobias-jarlund.jpg" alt="Tobias Järlund presenting in Internetdagarna 2015"></a>
+<em>&uarr; Tobias Järlund talking about blocking 3rd party content. I personally don’t like the quote depicted in that slide, since I think Aftonbladet’s most important content should be, of course, news.</em></p>
+<p><em>No video available yet</em></p>
+<h3 id="Baking-in-Performance-with-Agile-by-Meri-Williams"><a href="#Baking-in-Performance-with-Agile-by-Meri-Williams" class="headerlink" title="Baking in Performance with Agile, by Meri Williams"></a>Baking in Performance with Agile, by Meri Williams</h3><p>Meri goes through some ideas to implement performance culture within teams. Also, she encourages everyone to similar devices and network connections to those from real users browsing our site. This can also help out when taking into account performance in other teams within the company.
+<a href="/assets/images/posts/internetdagarna-meri-williams.jpg"><img src="/assets/images/posts/internetdagarna-meri-williams.jpg" alt="Meri Williams presenting in Internetdagarna 2015"></a>
+<em>&uarr; Meri Williams about unexpected events that can affect your traffic</em></p>
+<p><em>No video available yet</em></p>
+]]></content>
+    
+    <summary type="html">
+    
+      Faster than lightning was a set of talks around web performance during Internetdagarna 2015 in Stockholm, Sweden
+    
+    </summary>
+    
+    
+      <category term="conference" scheme="https://jmperezperez.com/tags/conference/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fronteers 2015 - A wrap up</title>
+    <link href="https://jmperezperez.com//fronteers-2015"/>
+    <id>https://jmperezperez.com//fronteers-2015</id>
+    <published>2015-10-11T16:35:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This was my first time in Fronteers, surrounded by lots of frontend developers and designers in an amazing venue in Amsterdam. Here I have a quick review of its talks.</p>
+<p>The conference covered frontend development from several views. There were talks about interesting browser APIs, accessibility, developer tools, build tools, progressive enhancement, design guidelines, open data, how to structure teams or how to deal with projects and clients. It was very well organised, with good food, coffee and other snacks, as well as after-talk mingling.</p>
+<span id="more"></span>
+<p>You can find the <a href="https://vimeo.com/fronteers/videos">Fronteers 2015 videos on Vimeo</a>, and <a href="http://lanyrd.com/2015/fronteersconf/">the slides on Lanyrd</a>, which I collected from the speakers presentations and tweets.</p>
+<h2 id="Things-I-learned"><a href="#Things-I-learned" class="headerlink" title="Things I learned"></a>Things I learned</h2><ul>
+<li><p>I love <a href="https://www.filamentgroup.com/">Filament Group</a>. I started following <a href="https://www.filamentgroup.com/lab/">their blog</a> after coming across some of their posts focused on progressive enhancement and responsive design. They are great sharing real use cases and open sourcing their solutions. <a href="http://scottjehl.com/">Scott Jehl</a> did a great talk about performance optimisation for all kind of assets (images, fonts, CSS, JS) and the future (almost present) HTTP 2.</p>
+</li>
+<li><p>UK is full of great agencies and people who care about the web. The guys from <a href="http://primate.co.uk/">Primate</a> talked about how they started with their company and how they have dealt with projects and clients. It’s always great seeing talks about real experiences. <a href="http://maban.co.uk/">Anna Debenham</a> talked about design guidelines and <a href="http://alicebartlett.co.uk/">Alice Bartlett</a> about accessibility and her past work in Government Digital Service (part of gov.uk).</p>
+<p>There is something especial in the UK, in how private and public companies are building websites in the right way and how well they share their findings. Take for instance <a href="http://responsivenews.co.uk/">BBC and their Responsive News</a>, <a href="https://www.gov.uk/service-manual">Gov.uk and their amazing guides on design, development and testing amongst others</a> and <a href="http://next.theguardian.com/">The Guardian’s take on responsive web</a>. I can’t but regret not seeing similar efforts from other web sites.</p>
+</li>
+<li><p>Good speakers are even better in person. I have seen numerous recorded talks by Christian Heilmann and Jake Archibald, and seeing them right there is even better. They definitely excel at speaking and delivering their message, are really fun and true to their principles.</p>
+</li>
+</ul>
+<h2 id="Sessions"><a href="#Sessions" class="headerlink" title="Sessions"></a>Sessions</h2><h3 id="Day-1-Thursday-8th-October-2015"><a href="#Day-1-Thursday-8th-October-2015" class="headerlink" title="Day 1 Thursday 8th October 2015"></a>Day 1 Thursday 8th October 2015</h3><h3 id="Delivering-Responsibly-by-Scott-Jehl"><a href="#Delivering-Responsibly-by-Scott-Jehl" class="headerlink" title="Delivering Responsibly, by Scott Jehl"></a>Delivering Responsibly, by Scott Jehl</h3><p>Very good talk about progressive enhancement, responsive design, resource delivering optimisation (HTTP2, Critical + async CSS, async JS, non blocking fonts, responsive images).</p>
+<p>Scott works for Filament Group, and they post great articles about how these topics, as well as open source tools like polyfills for responsive images, async CSS loaders or custom font loaders.</p>
+<p>He also talked about the content blockers that are becoming popular and how we, as developers, should not take for granted that certain resources will be loaded, having to develop defensively.</p>
+<p><em>Update 2015-10-28: Scott has published a write-up about the presentation on <a href="https://www.filamentgroup.com/lab/delivering-responsibly.html">Filament Group’s site</a>.</em></p>
+<h3 id="Digital-Governance-by-Lisa-Welchman"><a href="#Digital-Governance-by-Lisa-Welchman" class="headerlink" title="Digital Governance, by Lisa Welchman"></a>Digital Governance, by Lisa Welchman</h3><p>This was the least technical talk, touching topics like team organization and communication.</p>
+<h3 id="Lightning-Fast-Sass-by-Chris-Eppstein"><a href="#Lightning-Fast-Sass-by-Chris-Eppstein" class="headerlink" title="Lightning Fast Sass, by Chris Eppstein"></a>Lightning Fast Sass, by Chris Eppstein</h3><p>Chris talked about why and how they reimplemented the Sass library from Ruby to C (libSass). He went through the different modules that compose it and how to include them in your project.</p>
+<p>Although useful, to me it looked over complicated and I wondered whether using these tools is worth it, or the stylesheets should be as simple and close to CSS as possible.</p>
+<h3 id="Walking-the-tightrope-between-mediocrity-and-bankruptcy-by-Bartlomiej-Oleszczyk-Gordon-McLachlan-and-Espen-Brunborg"><a href="#Walking-the-tightrope-between-mediocrity-and-bankruptcy-by-Bartlomiej-Oleszczyk-Gordon-McLachlan-and-Espen-Brunborg" class="headerlink" title="Walking the tightrope between mediocrity and bankruptcy by Bartlomiej Oleszczyk, Gordon McLachlan and Espen Brunborg"></a>Walking the tightrope between mediocrity and bankruptcy by Bartlomiej Oleszczyk, Gordon McLachlan and Espen Brunborg</h3><p>Awesome talk! These guys work in Primate, a small agency from Edinburgh, and explained how they deal with clients and projects, trying to keep a good quality while surviving as a company.</p>
+<p>It’s always good to see people telling about real stories and cases, instead of just some crazy library or prototype.</p>
+<h3 id="jsmpeg-Why-a-Javascript-video-decoder-actually-makes-sense-by-Dominic-Szablewski"><a href="#jsmpeg-Why-a-Javascript-video-decoder-actually-makes-sense-by-Dominic-Szablewski" class="headerlink" title="jsmpeg: Why a Javascript video decoder actually makes sense, by Dominic Szablewski"></a>jsmpeg: Why a Javascript video decoder actually makes sense, by Dominic Szablewski</h3><p>Dominic built one of the first HTML5 games in 2010 (Biolab Disaster) and likes to hack porting Quake to the Oculus to be played on the browser, or play GTA V from the phone using a browser that decodes MPEG1 that comes is sent from a Windows application… well, <a href="http://phoboslab.org/log/2015/07/play-gta-v-in-your-browser-sort-of">better see the demo</a>.</p>
+<p>He explained how he had implemented an MPEG1 video decoder using Javascript, how the format works, what problems he found while implementing it and possible applications.</p>
+<p>He blow everyone away.
+<a href="/assets/images/posts/fronteers-2015-phoboslab.jpg"><img src="/assets/images/posts/fronteers-2015-phoboslab.jpg" alt="Phoboslab presenting in Fronteers 2015"></a>
+<em>&uarr; Dominic Szablewski talking about how (and why) he built an MPEG1 Video Decoder in JavaScript</em></p>
+<h3 id="Front-End-Style-Guides-by-Anna-Debenham"><a href="#Front-End-Style-Guides-by-Anna-Debenham" class="headerlink" title="Front-End Style Guides, by Anna Debenham"></a>Front-End Style Guides, by Anna Debenham</h3><p>Anna went through lots of frontend guidelines, both from public and private companies, and explained why all sites should have one, how one should start building it and some tips to prevent them from becoming out of sync.</p>
+<h3 id="What-is-the-business-case-for-accessibility-by-Alice-Bartlett"><a href="#What-is-the-business-case-for-accessibility-by-Alice-Bartlett" class="headerlink" title="What is the business case for accessibility? by Alice Bartlett"></a>What is the business case for accessibility? by Alice Bartlett</h3><p>Alice has worked for gov.uk and explained why accessibility is important. In brief, users can sue websites in certain countries if the sites don’t offer a certain level of accessibility, and this is usually enough reason to take care about this. Also, by making a site more accessible there are some side advantages, like reaching more users, and improving a site’s image.</p>
+<h3 id="Modern-Progressive-Enhancement-by-Jake-Archibald"><a href="#Modern-Progressive-Enhancement-by-Jake-Archibald" class="headerlink" title="Modern Progressive Enhancement, by Jake Archibald"></a>Modern Progressive Enhancement, by Jake Archibald</h3><p>You might have seen this one in Nordic.JS or Brazil.JS, and it’s really fun.</p>
+<p>The topic of progressive enhancement has been covered for a long time, but it’s good to remind it from now and then, especially when we start using big JS frameworks to build upon our sites.</p>
+<p>Jake talks about critical CSS and service workers as two ways of improving how our sites are delivered to users.
+<a href="/assets/images/posts/fronteers-2015-jake-archibald.jpg"><img src="/assets/images/posts/fronteers-2015-jake-archibald.jpg" alt="Jake Archibald presenting in Fronteers 2015"></a>
+<em>&uarr; Jake Archibald talking about Web Performance Optimization, Critical CSS and Service Workers</em></p>
+<h2 id="Day-2-Friday-9th-October-2015"><a href="#Day-2-Friday-9th-October-2015" class="headerlink" title="Day 2 Friday 9th October 2015"></a>Day 2 Friday 9th October 2015</h2><h3 id="Static-Sites-Go-All-Hollywood-by-Phil-Hawksworth"><a href="#Static-Sites-Go-All-Hollywood-by-Phil-Hawksworth" class="headerlink" title="Static Sites Go All Hollywood, by Phil Hawksworth"></a>Static Sites Go All Hollywood, by Phil Hawksworth</h3><p>I’m personally a big fan of static sites, and it’s interesting to see a talk about them. Phil talks about some scenarios in which a static site makes completely sense, and how they can cope with a big amount of traffic.</p>
+<p>He also talks about different strategies that can be followed to generate the content, and different tools and providers to host them.</p>
+<h3 id="Modern-Workflow-Tooling-for-Front-end-Developers-by-Wes-Bos"><a href="#Modern-Workflow-Tooling-for-Front-end-Developers-by-Wes-Bos" class="headerlink" title="Modern Workflow + Tooling for Front-end Developers, by Wes Bos"></a>Modern Workflow + Tooling for Front-end Developers, by Wes Bos</h3><p>Wes explained why we need to have a build script in our projects.</p>
+<p>Most of this talk was about tools and techniques that we are already familiar with. Grunt, Gulp or NPM as build systems, or bower, npm and jspm as dependency managers. CSS and JS minifiers, image optimizers… they usual suspects.</p>
+<p>There was one tool I really liked and hadn’t used before: browsersync. It runs a local server with SSL integration and can be used to synchronize several devices screens (synchronizing scrolls, clicks and requests) and also to expose a server accessible from within the local network.
+Wes also went through some new features in ES6, and how these build systems allow us to use the new JS specifications today.
+<a href="/assets/images/posts/fronteers-2015-wes-bos.jpg"><img src="/assets/images/posts/fronteers-2015-wes-bos.jpg" alt="Wes Bos presenting in Fronteers 2015"></a>
+<em>&uarr; Wes Bos going through the myriad of dependency management systems and build tools for web projects</em></p>
+<h3 id="An-Introduction-to-Open-Data-by-Sally-Jenkinson"><a href="#An-Introduction-to-Open-Data-by-Sally-Jenkinson" class="headerlink" title="An Introduction to Open Data, by Sally Jenkinson"></a>An Introduction to Open Data, by Sally Jenkinson</h3><p>Sally talked about how useful open data is and its applications. She went through some APIs and explained how the use of their data is very limited due to its Terms of Use, as opposed to other sets of data that are free to use.</p>
+<p>A good example was MusicBrainz, that I’ve seen myself used by lots of hackers in the music hack events we use to attend.</p>
+<h3 id="Freedom-Can-Be-Designed-by-Rejo-Zenger"><a href="#Freedom-Can-Be-Designed-by-Rejo-Zenger" class="headerlink" title="Freedom Can Be Designed, by Rejo Zenger"></a>Freedom Can Be Designed, by Rejo Zenger</h3><p>Rejo explained how large companies are getting more and more data from users and what we can do to limit it. He encouraged developers to ask for as few data as it’s needed in our websites and applications.</p>
+<h3 id="Hands-On-Web-Audio-by-Soledad-Penad-233-s"><a href="#Hands-On-Web-Audio-by-Soledad-Penad-233-s" class="headerlink" title="Hands-On Web Audio, by Soledad Penad&#233;s"></a>Hands-On Web Audio, by Soledad Penad&#233;s</h3><p>Soledad explained how the Web Audio API works and combined it with WebGL to make some futuristic visualizations. She also used the microphone and mouse to interact with sound waves, which were displayed using WebGL.
+<a href="/assets/images/posts/fronteers-2015-soledad-penades.jpg"><img src="/assets/images/posts/fronteers-2015-soledad-penades.jpg" alt="Soledad Penadés presenting in Fronteers 2015"></a>
+<em>&uarr; Soledad Penadés talking about Audio API and WebGL</em></p>
+<h3 id="But-What-About-Old-Browsers-Embracing-New-CSS-When-Your-Users-Are-Stuck-in-the-Past-by-Rachel-Andrew"><a href="#But-What-About-Old-Browsers-Embracing-New-CSS-When-Your-Users-Are-Stuck-in-the-Past-by-Rachel-Andrew" class="headerlink" title="But What About Old Browsers?!? Embracing New CSS When Your Users Are Stuck in the Past by Rachel Andrew"></a>But What About Old Browsers?!? Embracing New CSS When Your Users Are Stuck in the Past by Rachel Andrew</h3><p>Rachel went through the Flexbox and CSS Grid specifications and encouraged everyone to start using them, even in small components, as a way to increase awareness and make browser vendors continue implementing the specs.
+<a href="/assets/images/posts/fronteers-2015-rachel-andrew.jpg"><img src="/assets/images/posts/fronteers-2015-rachel-andrew.jpg" alt="Rachel Andrew presenting in Fronteers 2015"></a>
+<em>&uarr; Rachel Andrew going through some aspects of the CSS Flexbox and Grid specification</em></p>
+<h3 id="The-Art-of-Debugging-by-Remy-Sharp"><a href="#The-Art-of-Debugging-by-Remy-Sharp" class="headerlink" title="The Art of Debugging by Remy Sharp"></a>The Art of Debugging by Remy Sharp</h3><p>This was a very practical talk, in which Remy explained he approached to debugging websites. Although this is something that we do ourselves everyday, it was good to see him using Chrome’s Developer Tools to find a memory leak, or use commands like <code>$</code>, <code>$_</code>, <code>$$</code> or <code>copy()</code> in the console as handy helpers.</p>
+<p>He also showed network throttling and screen capture in the timeline.
+<a href="/assets/images/posts/fronteers-2015-remy-sharp.jpg"><img src="/assets/images/posts/fronteers-2015-remy-sharp.jpg" alt="Remy Sharp presenting in Fronteers 2015"></a>
+<em>&uarr; Remy Sharp explaining how he approaches debugging. Good overview of several developer tools and widely unknown features of Chrome’s developer tools</em></p>
+<p><em>Update 2015-10-15: Remy has published <a href="https://remysharp.com/2015/10/14/the-art-of-debugging">an accompanying article for this talk</a>.</em></p>
+<h3 id="Of-Gaps-Fillers-and-Empty-Spaces-by-Christian-Heilmann"><a href="#Of-Gaps-Fillers-and-Empty-Spaces-by-Christian-Heilmann" class="headerlink" title="Of Gaps, Fillers and Empty Spaces by Christian Heilmann"></a>Of Gaps, Fillers and Empty Spaces by Christian Heilmann</h3><p>Christian reminded us how fortunate we were to be able to attend these conferences, and encouraged developers to embrace progressive enhancement, starting from the basis, and helping other developers who wanted to start in web development world.
+<a href="/assets/images/posts/fronteers-2015-christian-heilmann.jpg"><img src="/assets/images/posts/fronteers-2015-christian-heilmann.jpg" alt="Christian Heilmann presenting in Fronteers 2015"></a>
+<em>&uarr; Christian Heilmann during his presentation in Fronteers</em></p>
+]]></content>
+    
+    <summary type="html">
+    
+      Fronteers 2015 - Some notes about the conference in Amsterdam.
+    
+    </summary>
+    
+    
+      <category term="conference" scheme="https://jmperezperez.com/tags/conference/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spain.js 2013</title>
+    <link href="https://jmperezperez.com//spain-js-2013"/>
+    <id>https://jmperezperez.com//spain-js-2013</id>
+    <published>2013-07-07T16:53:42.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>During these days I have been attending <a href="http://spainjs.org/">Spain.js 2013</a> in Madrid. For me, it has been a beautiful experience.
+<img src="/assets/images/posts/tomas-jose-spotify-spainjs-2013.jpg" alt="Tomás Pérez and José M. Pérez in Spain.js 2013"></p>
+<p>I was looking forward to visit Madrid, and it didn’t let me down. It had been one year since I left Madrid to move to Sweden. Since then I have tried to keep in contact with some of my ex-workmates in my previous company, <a href="http://tuenti.com/">Tuenti</a>, and have been following many talented Spanish developers on Twitter.</p>
+<span id="more"></span>
+<p>During the conference I gave a talk together with my Spotify colleague <a href="https://twitter.com/tomasperezv">Tomás Pérez</a> about “Cross-platform application development using web technologies”. We had been planning giving a talk in Spain for some time, sharing some ideas and experience we have learned as developers in Spotify. We have little experience as speakers, but the desire of spreading our knowledge was powerful.</p>
+<p>Unfortunately, the talk was not recorded, but you can find <a href="https://github.com/tomasperezv/spainjs-2013">the slides on Github</a>. And some extra material. Tomás has been contrasting thoroughly all the data that supported the talk, and you can find the source for the examples, links to jsPerf and other references in that repo on Github.</p>
+<div style="text-align: center;">
+
+<iframe style="border: 1px solid #CCC; border-width: 1px 1px 0; margin-bottom: 5px;" src="https://www.slideshare.net/slideshow/embed_code/23939975" height="356" width="427" allowfullscreen="" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<div style="margin-bottom: 5px;"><strong> <a title="Cross platform web app development" href="https://www.slideshare.net/tomasperezv/spotify-presentation-spainjs2013" target="_blank">Cross platform web app development</a> </strong> from <strong><a href="https://www.slideshare.net/tomasperezv" target="_blank">tomasperezv</a></strong></div>
+</div>
+
+<p>I loved that we got feedback about people struggling for solving similar problems to ours, and I hope that our talk helped them.</p>
+<p>There were many interesting talks. I like those that show real cases of people trying to push the web forward, and share what they learned. Those that help you structure your code and improve your flow so you don’t make the same mistakes other people made.</p>
+<p>My favourite ones where these ones (in no particular order):</p>
+<p><strong>Martin Naumann (<a href="https://twitter.com/avgp">@avgp</a>): From web apps to hybrid mobile apps - Leveraging web technologies for making “native” mobile applications</strong>
+Martin explained what framweworks and libraries were available for building web apps and hybrid apps. And, most importantly, what criteria you should take into account when choosing one or the other.</p>
+<p><strong>Jakob Mattsson (<a href="https://twitter.com/jakobmattsson">@jakobmattsson</a>): Manage those dependencies!</strong>
+I met Jakob the day before the conference and he was super kind. He is super fun and has always a big smile on his face. Jakob explained in his talk different libraries for managing and loading dependencies and the criteria for deciding on one.</p>
+<p><strong>Tom Buchok (<a href="https://twitter.com/tbuchok">@tbuchok</a>): A history: Node.js and serving billions of requests in the real world!</strong>
+Tom showed a real example of a system that uses node.js in production and explained some decisions they took when scaling it.</p>
+<p>You can check out the available material for the conference <a href="http://lanyrd.com/2013/spainjs/">on Lanyrd</a>. If you attended the talk and know of missing resources, try to add them. It is very easy: create an account, and you are safe to make changes.</p>
+<p>I couldn’t attend the workshops, but I am definitely going to check the material that the developers that run them have posted. I could meet the organizers and the rest of speakers the evening before the event, and it was really fun.</p>
+<p>As a teenager, my father told me not to forget who I was and my origins. I should always be humble. This talk was my way of giving back, and not forget where I was few months ago, especially now that the situation in my country is not as good as I would like. And reencountering with old friends from Tuenti and meeting lots of great and skilled developers I just knew of from tweets and posts has made me feel great.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;During these days I have been attending &lt;a href=&quot;http://spainjs.org/&quot;&gt;Spain.js 2013&lt;/a&gt; in Madrid. For me, it has been a beautiful experience.
+&lt;img src=&quot;/assets/images/posts/tomas-jose-spotify-spainjs-2013.jpg&quot; alt=&quot;Tomás Pérez and José M. Pérez in Spain.js 2013&quot;&gt;&lt;/p&gt;
+&lt;p&gt;I was looking forward to visit Madrid, and it didn’t let me down. It had been one year since I left Madrid to move to Sweden. Since then I have tried to keep in contact with some of my ex-workmates in my previous company, &lt;a href=&quot;http://tuenti.com/&quot;&gt;Tuenti&lt;/a&gt;, and have been following many talented Spanish developers on Twitter.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="conference" scheme="https://jmperezperez.com/tags/conference/"/>
+    
+      <category term="talk" scheme="https://jmperezperez.com/tags/talk/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mloc.js conference in Budapest</title>
+    <link href="https://jmperezperez.com//mlocjs-conference-budapest"/>
+    <id>https://jmperezperez.com//mlocjs-conference-budapest</id>
+    <published>2013-02-17T15:05:54.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>These days I have been attending the <a href="http://mloc-js.com/">mloc.js conference</a> in Budapest. It was a nice experience with a great organisation and good speakers working around Javascript limitations (more about that below).
+<img src="/assets/images/posts/design-terminal-welcome-heroes-300x171.jpg" alt="Welcome our heroes! at Terminal Building, Budapest"></p>
+<p><em>Welcome our heroes! at Terminal Building, Budapest</em></p>
+<span id="more"></span>
+<p>The mloc.js conference was quite focused on generating JS from compiled languages and programming paradigms for safer, faster, more productive development tools. Initially it also included multiplatform development using JS as a runtime environment.</p>
+<p>Not much information about large scale applications on JS, and a lot about generating JS from compiled languages, often functional ones, to work-around the lack of static typing in JS. To name some of them: Scala, Haskell, F# and C#.</p>
+<p>Lots of speakers were pointing out the limitation of Javascript in regards of typing, but instead of using what the language provides or extending it somehow, they encouraged developers to use a completely different language to generate Javascript. Then, it was needed to mock the interface of popular JS libraries so their code could still refer to these libraries and not break.</p>
+<p>Even though I find this interesting, sometimes it became a bit too dense. I wondered many times the real application of such compilers, how they could help out when developing a large code base, and if it was really worth it trying to introduce them in a project.
+<a href="/assets/images/posts/nick-fisher-soundcloud.jpg"><img src="/assets/images/posts/nick-fisher-soundcloud-300x234.jpg" alt="Nick Fisher talking about the new design of Soundcloud"></a>
+<em>Nick Fisher talking about the new design of Soundcloud</em></p>
+<p>I did like a lot talks around solving the so-called callback hell, improvements in Mozilla’s SpiderMonkey, information about Bacon.js, a new compiler for CoffeeScript, and insights on how the new Soundcloud site was implemented.</p>
+<p>The conference also included some 4-minute long lightning talks, and I gave one of them about web development in Spotify (<a href="https://speakerdeck.com/jmperez/x-platform-web-dev-in-spotify">slides here</a>).</p>
+<p><a href="http://lanyrd.com/2013/mlocjs/">On Lanyrd</a> you can find the whole list of talks and slides.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;These days I have been attending the &lt;a href=&quot;http://mloc-js.com/&quot;&gt;mloc.js conference&lt;/a&gt; in Budapest. It was a nice experience with a great organisation and good speakers working around Javascript limitations (more about that below).
+&lt;img src=&quot;/assets/images/posts/design-terminal-welcome-heroes-300x171.jpg&quot; alt=&quot;Welcome our heroes! at Terminal Building, Budapest&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Welcome our heroes! at Terminal Building, Budapest&lt;/em&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+      <category term="conference" scheme="https://jmperezperez.com/tags/conference/"/>
+    
+  </entry>
+  
+</feed>

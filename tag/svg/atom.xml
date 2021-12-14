@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/svg/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2021-12-14T07:52:53.536Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Common Pitfalls when Serving SVGs and How to Solve Them</title>
+    <link href="https://jmperezperez.com//spotify-svg"/>
+    <id>https://jmperezperez.com//spotify-svg</id>
+    <published>2018-09-22T06:20:00.000Z</published>
+    <updated>2021-12-14T07:52:53.536Z</updated>
+    
+    <content type="html"><![CDATA[<p>Optimizing SVGs is great for performance, but can we go beyond? In this post I will show some common issues with inlined and responsive SVGs applied to a real website.</p>
+<p>Scalable Vector Graphics (SVG) are ideal to show logos and drawings on the web due to their small size. SVGs also have other useful applications, such as <a href="/svg-placeholders/">placeholders for lazy loaded images</a> and <a href="/drawing-edges-svg/">animations</a>. In a past post I also explained <a href="/optimising-svgs/">how to optimize a SVG</a> with several tools that remove unneeded code and simplify shapes.</p>
+<p>Even if we optimize our SVG assets, we can still make mistakes delivering those to the browser. In this post I am going to explain some issues I found on Spotify’s website, where the same SVG is inlined several times and where a responsive SVG logo could save additional network requests.</p>
+<p><img
+    loading="lazy"
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1537603259/spotify-svg/spotify-svg.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1537603259/spotify-svg/spotify-svg.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1537603259/spotify-svg/spotify-svg.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1537603259/spotify-svg/spotify-svg.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1537603259/spotify-svg/spotify-svg.png"
+    alt="Spotify SVG logo showing its arcs and points" /></p>
+<span id="more"></span>
+
+<p>If there is something that all Spotify sites have in common, it’s the Spotify logo. It is usually shown in the header of the page, and also in the footer. In addition the Spotify circle logo might appear somewhere in the middle.</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1537603261/spotify-svg/spotify-logos.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1537603261/spotify-svg/spotify-logos.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1537603261/spotify-svg/spotify-logos.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1537603261/spotify-svg/spotify-logos.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1537603261/spotify-svg/spotify-logos.png"
+    alt="Spotify's home page on www.spotify.com. The logo is shown in the header and the footer" />
+<small class="caption">Spotify’s home page on <a href="http://www.spotify.com/">www.spotify.com</a>. The logo is shown in the header and the footer.</small></p>
+<p>Spotify’s logo is served using SVG. This vector format is ideal for drawings and icons. They look crisp on every screen, are usually small in bytes, are compressible, stylable through CSS, scriptable through JS… What’s not to like?</p>
+<p>There are still ways to misuse SVGs or not take advantage of its capabilities. In this post I want to explain some improvements that can be applied to the Spotify logo and the way it is served.</p>
+<h3 id="Tip-1-Include-it-once"><a href="#Tip-1-Include-it-once" class="headerlink" title="Tip 1: Include it once"></a>Tip 1: Include it once</h3><p>SVGs can be inserted on web pages in different ways. In the case of the Spotify logo above it is inlined in CSS, setting it as a <code>background-image</code>:</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1537603267/spotify-svg/spotify-logo-header.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1537603267/spotify-svg/spotify-logo-header.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1537603267/spotify-svg/spotify-logo-header.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1537603267/spotify-svg/spotify-logo-header.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1537603267/spotify-svg/spotify-logo-header.jpg"
+    alt="Inspecting the Spotify logo in the header" />
+<small class="caption">Inspecting the Spotify logo in the header.</small></p>
+<p>Chrome Developer Tools doesn’t show the whole code for the logo. If we inspect it we get this not showing the whole code for the logo, which is this:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span>
+  <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Layer_1<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name">
+  <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">enable-background</span><span class="token punctuation">:</span>new <span class="token number">0</span> <span class="token number">0</span> <span class="token number">566.93</span> <span class="token number">170.04</span></span><span class="token punctuation">"</span></span>
+  <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span>
+  <span class="token attr-name"><span class="token namespace">xml:</span>space</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>preserve<span class="token punctuation">"</span></span>
+  <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0 0 566.93 170.04<span class="token punctuation">"</span></span>
+  <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1.1<span class="token punctuation">"</span></span>
+  <span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0px<span class="token punctuation">"</span></span>
+  <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0px<span class="token punctuation">"</span></span>
+  <span class="token attr-name"><span class="token namespace">xmlns:</span>xlink</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/xlink<span class="token punctuation">"</span></span>
+  <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>567<span class="token punctuation">"</span></span>
+  <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>171<span class="token punctuation">"</span></span>
+  <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#FFF<span class="token punctuation">"</span></span>
+<span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+    <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m87.996 1.277c-46.249 0-83.743 37.493-83.743 83.742 0 46.254 37.494 83.745 83.743 83.745 46.251 0 83.743-37.491 83.743-83.745 0-46.246-37.49-83.738-83.744-83.738zm38.404 120.78c-1.504 2.467-4.718 3.24-7.177 1.737-19.665-12.019-44.417-14.734-73.567-8.075-2.809 0.644-5.609-1.117-6.249-3.925-0.643-2.809 1.11-5.609 3.926-6.249 31.9-7.293 59.263-4.154 81.336 9.334 2.46 1.51 3.24 4.72 1.73 7.18zm10.25-22.799c-1.894 3.073-5.912 4.037-8.981 2.15-22.505-13.834-56.822-17.841-83.447-9.759-3.453 1.043-7.1-0.903-8.148-4.35-1.04-3.453 0.907-7.093 4.354-8.143 30.413-9.228 68.221-4.758 94.071 11.127 3.07 1.89 4.04 5.91 2.15 8.976zm0.88-23.744c-26.994-16.031-71.52-17.505-97.289-9.684-4.138 1.255-8.514-1.081-9.768-5.219-1.254-4.14 1.08-8.513 5.221-9.771 29.581-8.98 78.756-7.245 109.83 11.202 3.722 2.209 4.943 7.016 2.737 10.733-2.2 3.722-7.02 4.949-10.73 2.739z<span class="token punctuation">"</span></span>
+  <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+    <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m232.09 78.586c-14.459-3.448-17.033-5.868-17.033-10.953 0-4.804 4.523-8.037 11.249-8.037 6.52 0 12.985 2.455 19.763 7.509 0.205 0.153 0.462 0.214 0.715 0.174 0.253-0.038 0.477-0.177 0.625-0.386l7.06-9.952c0.29-0.41 0.211-0.975-0.18-1.288-8.067-6.473-17.151-9.62-27.769-9.62-15.612 0-26.517 9.369-26.517 22.774 0 14.375 9.407 19.465 25.663 23.394 13.836 3.187 16.171 5.857 16.171 10.63 0 5.289-4.722 8.577-12.321 8.577-8.44 0-15.324-2.843-23.025-9.512-0.191-0.165-0.453-0.24-0.695-0.226-0.255 0.021-0.488 0.139-0.65 0.334l-7.916 9.421c-0.332 0.391-0.29 0.975 0.094 1.313 8.96 7.999 19.98 12.224 31.872 12.224 16.823 0 27.694-9.192 27.694-23.419 0.03-12.01-7.16-18.66-24.77-22.944z<span class="token punctuation">"</span></span>
+  <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+    <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m294.95 64.326c-7.292 0-13.273 2.872-18.205 8.757v-6.624c0-0.523-0.424-0.949-0.946-0.949h-12.947c-0.523 0-0.946 0.426-0.946 0.949v73.602c0 0.523 0.423 0.949 0.946 0.949h12.947c0.522 0 0.946-0.426 0.946-0.949v-23.233c4.933 5.536 10.915 8.241 18.205 8.241 13.549 0 27.265-10.43 27.265-30.368 0.02-19.943-13.7-30.376-27.25-30.376zm12.21 30.375c0 10.153-6.254 17.238-15.209 17.238-8.853 0-15.531-7.407-15.531-17.238 0-9.83 6.678-17.238 15.531-17.238 8.81-0.001 15.21 7.247 15.21 17.237z<span class="token punctuation">"</span></span>
+  <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+    <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m357.37 64.326c-17.449 0-31.119 13.436-31.119 30.592 0 16.969 13.576 30.264 30.905 30.264 17.511 0 31.223-13.391 31.223-30.481 0-17.031-13.62-30.373-31.01-30.373zm0 47.714c-9.281 0-16.278-7.457-16.278-17.344 0-9.929 6.755-17.134 16.064-17.134 9.341 0 16.385 7.457 16.385 17.351 0 9.927-6.8 17.127-16.17 17.127z<span class="token punctuation">"</span></span>
+  <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+    <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m425.64 65.51h-14.247v-14.566c0-0.522-0.422-0.948-0.945-0.948h-12.945c-0.524 0-0.949 0.426-0.949 0.948v14.566h-6.225c-0.521 0-0.943 0.426-0.943 0.949v11.127c0 0.522 0.422 0.949 0.943 0.949h6.225v28.791c0 11.635 5.791 17.534 17.212 17.534 4.644 0 8.497-0.959 12.128-3.018 0.295-0.165 0.478-0.483 0.478-0.821v-10.596c0-0.327-0.17-0.636-0.45-0.807-0.282-0.177-0.633-0.186-0.922-0.043-2.494 1.255-4.905 1.834-7.6 1.834-4.154 0-6.007-1.886-6.007-6.113v-26.756h14.247c0.523 0 0.944-0.426 0.944-0.949v-11.126c0.02-0.523-0.4-0.949-0.93-0.949z<span class="token punctuation">"</span></span>
+  <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+    <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m475.28 65.567v-1.789c0-5.263 2.018-7.61 6.544-7.61 2.699 0 4.867 0.536 7.295 1.346 0.299 0.094 0.611 0.047 0.854-0.132 0.25-0.179 0.391-0.466 0.391-0.77v-10.91c0-0.417-0.268-0.786-0.67-0.909-2.565-0.763-5.847-1.546-10.761-1.546-11.958 0-18.279 6.734-18.279 19.467v2.74h-6.22c-0.522 0-0.95 0.426-0.95 0.948v11.184c0 0.522 0.428 0.949 0.95 0.949h6.22v44.409c0 0.523 0.422 0.949 0.944 0.949h12.947c0.523 0 0.949-0.426 0.949-0.949v-44.406h12.088l18.517 44.398c-2.102 4.665-4.169 5.593-6.991 5.593-2.281 0-4.683-0.681-7.139-2.025-0.231-0.127-0.505-0.148-0.754-0.071-0.247 0.087-0.455 0.271-0.56 0.511l-4.388 9.627c-0.209 0.455-0.03 0.989 0.408 1.225 4.581 2.481 8.716 3.54 13.827 3.54 9.56 0 14.844-4.453 19.502-16.433l22.461-58.04c0.113-0.292 0.079-0.622-0.1-0.881-0.178-0.257-0.465-0.412-0.779-0.412h-13.478c-0.404 0-0.765 0.257-0.897 0.636l-13.807 39.438-15.123-39.464c-0.138-0.367-0.492-0.61-0.884-0.61h-22.12z<span class="token punctuation">"</span></span>
+  <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+    <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m446.5 65.51h-12.947c-0.523 0-0.949 0.426-0.949 0.949v56.485c0 0.523 0.426 0.949 0.949 0.949h12.947c0.522 0 0.949-0.426 0.949-0.949v-56.481c0-0.523-0.42-0.949-0.95-0.949z<span class="token punctuation">"</span></span>
+  <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+    <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m440.1 39.791c-5.129 0-9.291 4.152-9.291 9.281 0 5.132 4.163 9.289 9.291 9.289 5.127 0 9.285-4.157 9.285-9.289 0-5.128-4.16-9.281-9.28-9.281z<span class="token punctuation">"</span></span>
+  <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+    <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m553.52 83.671c-5.124 0-9.111-4.115-9.111-9.112s4.039-9.159 9.159-9.159c5.124 0 9.111 4.114 9.111 9.107 0 4.997-4.04 9.164-9.16 9.164zm0.05-17.365c-4.667 0-8.198 3.71-8.198 8.253 0 4.541 3.506 8.201 8.151 8.201 4.666 0 8.201-3.707 8.201-8.253 0-4.541-3.51-8.201-8.15-8.201zm2.02 9.138l2.577 3.608h-2.173l-2.32-3.31h-1.995v3.31h-1.819v-9.564h4.265c2.222 0 3.683 1.137 3.683 3.051 0.01 1.568-0.9 2.526-2.21 2.905zm-1.54-4.315h-2.372v3.025h2.372c1.184 0 1.891-0.579 1.891-1.514 0-0.984-0.71-1.511-1.89-1.511z<span class="token punctuation">"</span></span>
+  <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>The size of the image, not compressed, is 4,960 bytes. It’s not huge for an image, but we’ll see there are ways to improve it.</p>
+<p>The screenshot shows the style applied to <code>.navbar-logo</code>, which is the one shown in the header. The same logo is inlined a second time for the footer, applied to the <code>.footer .footer-logo&gt;a</code> CSS rule:</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1537603267/spotify-svg/spotify-logo-footer.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1537603267/spotify-svg/spotify-logo-footer.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1537603267/spotify-svg/spotify-logo-footer.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1537603267/spotify-svg/spotify-logo-footer.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1537603267/spotify-svg/spotify-logo-footer.jpg"
+    alt="Inspecting the Spotify logo in the header" />
+<small class="caption">Inspecting the Spotify logo in the footer.</small></p>
+<p>If that wasn’t enough, it is inlined a third time in the <code>.navbar-transparent-signup-b .navbar-logo</code> CSS rule, which is not being applied to this specific page.</p>
+<p>Even though gzip helps with the size of the CSS, <strong>a better way would be to include it just once in a CSS class that can be reused as needed</strong>. Stylesheets are part of the critical path, so any savings here means that the page will render faster.</p>
+<h3 id="Tip-2-Optimize-the-logo"><a href="#Tip-2-Optimize-the-logo" class="headerlink" title="Tip 2) Optimize the logo"></a>Tip 2) Optimize the logo</h3><p>If you take a close look at the SVG code for the Spotify logo you will see an id and style that are not needed. Optimizing SVGs by hand can be tricky, but fortunately there are tools like <a href="https://jakearchibald.github.io/svgomg/">SVGOMG</a> that will make these and more changes for us.</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1537603266/spotify-svg/spotify-logo-svgomg.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1537603266/spotify-svg/spotify-logo-svgomg.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1537603266/spotify-svg/spotify-logo-svgomg.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1537603266/spotify-svg/spotify-logo-svgomg.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1537603266/spotify-svg/spotify-logo-svgomg.jpg"
+    alt="Spotify logo on SVGMOMG" /></p>
+<p>Passing the image through the tool, keeping the same shape precision, gives us this code:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#FFF<span class="token punctuation">"</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0 0 566.93 170.04<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+    <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M87.996 1.277c-46.249 0-83.743 37.493-83.743 83.742 0 46.254 37.494 83.745 83.743 83.745 46.251 0 83.743-37.491 83.743-83.745 0-46.246-37.49-83.738-83.744-83.738zm38.404 120.78c-1.504 2.467-4.718 3.24-7.177 1.737-19.665-12.019-44.417-14.734-73.567-8.075-2.809.644-5.609-1.117-6.249-3.925-.643-2.809 1.11-5.609 3.926-6.249 31.9-7.293 59.263-4.154 81.336 9.334 2.46 1.51 3.24 4.72 1.73 7.18zm10.25-22.799c-1.894 3.073-5.912 4.037-8.981 2.15-22.505-13.834-56.822-17.841-83.447-9.759-3.453 1.043-7.1-.903-8.148-4.35-1.04-3.453.907-7.093 4.354-8.143 30.413-9.228 68.221-4.758 94.071 11.127 3.07 1.89 4.04 5.91 2.15 8.976zm.88-23.744c-26.994-16.031-71.52-17.505-97.289-9.684-4.138 1.255-8.514-1.081-9.768-5.219-1.254-4.14 1.08-8.513 5.221-9.771 29.581-8.98 78.756-7.245 109.83 11.202 3.722 2.209 4.943 7.016 2.737 10.733-2.2 3.722-7.02 4.949-10.73 2.739zM232.09 78.586c-14.459-3.448-17.033-5.868-17.033-10.953 0-4.804 4.523-8.037 11.249-8.037 6.52 0 12.985 2.455 19.763 7.509.205.153.462.214.715.174.253-.038.477-.177.625-.386l7.06-9.952c.29-.41.211-.975-.18-1.288-8.067-6.473-17.151-9.62-27.769-9.62-15.612 0-26.517 9.369-26.517 22.774 0 14.375 9.407 19.465 25.663 23.394 13.836 3.187 16.171 5.857 16.171 10.63 0 5.289-4.722 8.577-12.321 8.577-8.44 0-15.324-2.843-23.025-9.512-.191-.165-.453-.24-.695-.226-.255.021-.488.139-.65.334l-7.916 9.421c-.332.391-.29.975.094 1.313 8.96 7.999 19.98 12.224 31.872 12.224 16.823 0 27.694-9.192 27.694-23.419.03-12.01-7.16-18.66-24.77-22.944zM294.95 64.326c-7.292 0-13.273 2.872-18.205 8.757v-6.624c0-.523-.424-.949-.946-.949h-12.947c-.523 0-.946.426-.946.949v73.602c0 .523.423.949.946.949h12.947c.522 0 .946-.426.946-.949v-23.233c4.933 5.536 10.915 8.241 18.205 8.241 13.549 0 27.265-10.43 27.265-30.368.02-19.943-13.7-30.376-27.25-30.376zm12.21 30.375c0 10.153-6.254 17.238-15.209 17.238-8.853 0-15.531-7.407-15.531-17.238 0-9.83 6.678-17.238 15.531-17.238 8.81-.001 15.21 7.247 15.21 17.237zM357.37 64.326c-17.449 0-31.119 13.436-31.119 30.592 0 16.969 13.576 30.264 30.905 30.264 17.511 0 31.223-13.391 31.223-30.481 0-17.031-13.62-30.373-31.01-30.373zm0 47.714c-9.281 0-16.278-7.457-16.278-17.344 0-9.929 6.755-17.134 16.064-17.134 9.341 0 16.385 7.457 16.385 17.351 0 9.927-6.8 17.127-16.17 17.127zM425.64 65.51h-14.247V50.944c0-.522-.422-.948-.945-.948h-12.945c-.524 0-.949.426-.949.948V65.51h-6.225c-.521 0-.943.426-.943.949v11.127c0 .522.422.949.943.949h6.225v28.791c0 11.635 5.791 17.534 17.212 17.534 4.644 0 8.497-.959 12.128-3.018.295-.165.478-.483.478-.821v-10.596c0-.327-.17-.636-.45-.807-.282-.177-.633-.186-.922-.043-2.494 1.255-4.905 1.834-7.6 1.834-4.154 0-6.007-1.886-6.007-6.113V78.54h14.247c.523 0 .944-.426.944-.949V66.465c.02-.523-.4-.949-.93-.949zM475.28 65.567v-1.789c0-5.263 2.018-7.61 6.544-7.61 2.699 0 4.867.536 7.295 1.346.299.094.611.047.854-.132.25-.179.391-.466.391-.77v-10.91c0-.417-.268-.786-.67-.909-2.565-.763-5.847-1.546-10.761-1.546-11.958 0-18.279 6.734-18.279 19.467v2.74h-6.22c-.522 0-.95.426-.95.948v11.184c0 .522.428.949.95.949h6.22v44.409c0 .523.422.949.944.949h12.947c.523 0 .949-.426.949-.949V78.538h12.088l18.517 44.398c-2.102 4.665-4.169 5.593-6.991 5.593-2.281 0-4.683-.681-7.139-2.025-.231-.127-.505-.148-.754-.071-.247.087-.455.271-.56.511l-4.388 9.627c-.209.455-.03.989.408 1.225 4.581 2.481 8.716 3.54 13.827 3.54 9.56 0 14.844-4.453 19.502-16.433l22.461-58.04c.113-.292.079-.622-.1-.881-.178-.257-.465-.412-.779-.412h-13.478c-.404 0-.765.257-.897.636l-13.807 39.438-15.123-39.464c-.138-.367-.492-.61-.884-.61h-22.12zM446.5 65.51h-12.947c-.523 0-.949.426-.949.949v56.485c0 .523.426.949.949.949H446.5c.522 0 .949-.426.949-.949V66.463c0-.523-.42-.949-.95-.949zM440.1 39.791c-5.129 0-9.291 4.152-9.291 9.281 0 5.132 4.163 9.289 9.291 9.289 5.127 0 9.285-4.157 9.285-9.289 0-5.128-4.16-9.281-9.28-9.281zM553.52 83.671c-5.124 0-9.111-4.115-9.111-9.112s4.039-9.159 9.159-9.159c5.124 0 9.111 4.114 9.111 9.107 0 4.997-4.04 9.164-9.16 9.164zm.05-17.365c-4.667 0-8.198 3.71-8.198 8.253 0 4.541 3.506 8.201 8.151 8.201 4.666 0 8.201-3.707 8.201-8.253 0-4.541-3.51-8.201-8.15-8.201zm2.02 9.138l2.577 3.608h-2.173l-2.32-3.31h-1.995v3.31h-1.819v-9.564h4.265c2.222 0 3.683 1.137 3.683 3.051.01 1.568-.9 2.526-2.21 2.905zm-1.54-4.315h-2.372v3.025h2.372c1.184 0 1.891-.579 1.891-1.514 0-.984-.71-1.511-1.89-1.511z<span class="token punctuation">"</span></span>
+  <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>That is 4,383 bytes, amounting to 11,6% savings respect the original image.</p>
+<p>We can achieve further improvements by simplifying paths and rounding the numbers. For example, instead of having a viewbox of 566.93 x 170.04 we could convert it to 567 x 170. Same thing with the position of the points in the paths.</p>
+<p>If you are interested in this topic, I recommend you to read this series of posts by <a href="https://twitter.com/larsenwork">Andreas Larsen</a>:</p>
+<ul>
+<li><a href="https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-1-67e8f2d4035">Optimising SVGs for Web Use - Part 1</a></li>
+<li><a href="https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-6711cc15df46">Optimising SVGs for Web Use - Part 2</a></li>
+<li><a href="https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-1-598815d74f9c">Optimising SVGs for Web Use - Part 2½</a></li>
+</ul>
+<p>I spent some time optimizing the Spotify logo following Andreas’ tips. You can read more about it <a href="/optimising-svgs/">on a post I wrote</a>. I managed to get the logo down to 1,859 bytes, or 62,7% reduction from the original image. The resulting image is visually almost identical to the original one.</p>
+<p><a href="https://codepen.io/jmperez/pen/BjYaKg">I created a codepen</a> so you can switch between the 2 versions and see it more clearly.</p>
+<iframe id="cp_embed_BjYaKg" src="//codepen.io/jmperez/embed/BjYaKg?height=400&theme-id=0&slug-hash=BjYaKg&default-tab=result" scrolling="no" frameborder="no" height="400" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+
+<h3 id="Tip-3-Responsive-logo"><a href="#Tip-3-Responsive-logo" class="headerlink" title="Tip 3: Responsive logo!"></a>Tip 3: Responsive logo!</h3><p>SVG is really powerful and people are discovering more use cases every day. We can use SVG to create a responsive logo that changes its contents depending on the size of the image. That’s right, the size of the image, not the viewport. This is similar to what container queries are supposed to do, but we can do it today.</p>
+<p>Take for example the <a href="https://artists.spotify.com/">Spotify for Artists site</a>. On narrow windows it shows the Spotify logo + “for Artists”.</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1537603269/spotify-svg/spotify-artists-logo-header.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1537603269/spotify-svg/spotify-artists-logo-header.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1537603269/spotify-svg/spotify-artists-logo-header.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1537603269/spotify-svg/spotify-artists-logo-header.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1537603269/spotify-svg/spotify-artists-logo-header.jpg"
+    alt="Spotify logo on Spotify's Artists page" /></p>
+<p>On wider windows it overrides the logo, using a wider one composed of the Spotify logo with “Spotify” + “for Artists”.</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1537603271/spotify-svg/spotify-artists-logo-header-wide.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1537603271/spotify-svg/spotify-artists-logo-header-wide.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1537603271/spotify-svg/spotify-artists-logo-header-wide.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1537603271/spotify-svg/spotify-artists-logo-header-wide.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1537603271/spotify-svg/spotify-artists-logo-header-wide.jpg"
+    alt="Spotify logo on Spotify's Artists page (wide version)" /></p>
+<p>Instead of serving 2 different SVGs it’s possible to serve a single one. Then we define the width and height for the logo and let the logo render one of the versions. The advantage is a smaller payload since we can reuse elements like the Spotify circle logo inside the SVG.</p>
+<p>“<a href="https://medium.com/9elements/building-a-responsive-image-e4c6229fa1f6">Building a responsive image</a>” is a post that explains how to achieve this. It shows how to create a responsive logo with 4 different versions, including a rotated/vertical one. You can see <a href="https://codepen.io/enbee81/full/QrNRdm/">a demo on codepen</a>.</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1537603825/spotify-svg/9elements.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1537603825/spotify-svg/9elements.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1537603825/spotify-svg/9elements.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1537603825/spotify-svg/9elements.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1537603825/spotify-svg/9elements.jpg"
+    alt="Responsive logo for 9elements" />
+<small class="caption">Taken from <a href="https://medium.com/9elements/building-a-responsive-image-e4c6229fa1f6">Building a responsive image</a></small></p>
+<p>I thought I would do the same for the Spotify logo, switching between the “circle” and the “circle + Spotify” versions. I created <a href="https://codepen.io/jmperez/pen/ERMxmZ">a codepen to demo it</a>.</p>
+<iframe id="cp_embed_ERMxmZ" src="//codepen.io/jmperez/embed/ERMxmZ?height=400&theme-id=0&slug-hash=ERMxmZ&default-tab=result" scrolling="no" frameborder="no" height="400" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+
+<p>The code for the responsive Spotify logo looks like this:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span>
+  <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span>
+  <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span>
+  <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span>
+  <span class="token attr-name"><span class="token namespace">xmlns:</span>xlink</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/xlink<span class="token punctuation">"</span></span>
+<span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+    <span class="token number">.</span>square &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+      <span class="token property">visibility</span><span class="token punctuation">:</span> visible<span class="token punctuation">;</span>
+    &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+    <span class="token number">.</span>landscape &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+      <span class="token property">visibility</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+    &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+    <span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-aspect-ratio</span><span class="token punctuation">:</span> 1118/335<span class="token punctuation">)</span> &amp;#123<span class="token punctuation">;</span></span>
+      <span class="token number">.</span>square &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+        <span class="token property">visibility</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+      &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+      <span class="token number">.</span>landscape &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+        <span class="token property">visibility</span><span class="token punctuation">:</span> visible<span class="token punctuation">;</span>
+      &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+    &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>symbol</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>c<span class="token punctuation">"</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0 0 335 335<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+      <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M0 167C0 259 75.7738 335 167.5 335C259.226 335 335 259 335 167C335 75 259.226 0 167.5 0C75.7738 0 0 75 0 167ZM229.315 245C190.432 221 140.58 215 82.753 228C68.7946 230 66.8006 210 78.7649 208C142.574 193 196.414 200 240.283 227C251.25 234 240.283 251 229.315 245ZM246.265 200C201.399 172 132.604 164 79.7619 180C62.8125 185 56.8304 159 72.7827 155C133.601 137 208.378 146 260.223 178C274.182 187 260.223 209 246.265 200ZM71.7857 129C54.8363 135 43.869 106 62.8125 99C121.637 81 221.339 84 283.155 121C300.104 130 284.152 158 266.205 148C212.366 116 122.634 113 71.7857 129Z<span class="token punctuation">"</span></span>
+      <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>black<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>symbol</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>symbol</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>s<span class="token punctuation">"</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0 0 732 203<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span>
+      <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M64.75 143C47.75 143 31.75 137 17.75 123C16.75 123 16.75 124 16.75 124L0.75 143C-0.25 144 -0.25 145 0.75 146C18.75 162 40.75 170 64.75 170C98.75 170 119.75 151 119.75 123C119.75 99 104.75 86 69.75 77C40.75 70 35.75 65 35.75 55C35.75 45 45.75 39 58.75 39C71.75 39 83.75 44 97.75 54C97.75 54 98.75 55 99.75 55C100.75 55 100.75 54 100.75 54L114.75 34C115.75 33 115.75 33 114.75 32C98.75 19 79.75 12 58.75 12C27.75 12 5.75 31 5.75 58C5.75 87 25.75 96 57.75 104C85.75 110 89.75 116 89.75 126C89.75 137 79.75 143 64.75 143ZM159.75 66V53C159.75 52 158.75 51 157.75 51H131.75C130.75 51 129.75 52 129.75 53V200C129.75 201 130.75 202 131.75 202H157.75C158.75 202 159.75 201 159.75 200V154C169.75 165 180.75 170 195.75 170C222.75 170 249.75 149 249.75 109C249.75 69 222.75 49 195.75 49C180.75 49 169.75 54 159.75 66ZM189.75 144C171.75 144 158.75 129 158.75 109C158.75 89 171.75 75 189.75 75C207.75 75 219.75 89 219.75 109C219.75 129 207.75 144 189.75 144ZM257.75 110C257.75 144 284.75 170 319.75 170C354.75 170 381.75 143 381.75 109C381.75 75 355.75 49 320.75 49C285.75 49 257.75 76 257.75 110ZM287.75 109C287.75 89 300.75 75 319.75 75C338.75 75 352.75 90 352.75 110C352.75 130 339.75 144 320.75 144C301.75 144 287.75 129 287.75 109ZM427.75 51V22C427.75 21 427.75 20 426.75 20H400.75C399.75 20 398.75 21 398.75 22V51H385.75C384.75 51 383.75 52 383.75 53V75C383.75 76 384.75 77 385.75 77H398.75V135C398.75 158 409.75 170 432.75 170C441.75 170 450.75 168 457.75 164C458.75 164 458.75 163 458.75 162V141C458.75 140 458.75 139 457.75 139H455.75C450.75 142 444.75 143 439.75 143C431.75 143 427.75 139 427.75 131V77H457.75C458.75 77 459.75 76 459.75 75V53C459.75 52 458.75 51 457.75 51H427.75ZM556.75 48C556.75 37 560.75 33 569.75 33C574.75 33 579.75 33 584.75 35H585.75C585.75 35 586.75 34 586.75 33V12C586.75 11 586.75 10 585.75 10C580.75 8 573.75 7 563.75 7C539.75 7 527.75 21 527.75 46V51H514.75C513.75 51 512.75 52 512.75 53V75C512.75 76 513.75 77 514.75 77H527.75V166C527.75 167 528.75 168 529.75 168H555.75C556.75 168 556.75 167 556.75 166V77H581.75L618.75 166C614.75 175 610.75 177 604.75 177C599.75 177 594.75 176 589.75 173H588.75L587.75 174L578.75 193C578.75 194 578.75 196 579.75 196C588.75 201 596.75 203 606.75 203C625.75 203 636.75 194 645.75 170L690.75 54V52C690.75 51 689.75 51 688.75 51H661.75C660.75 51 660.75 52 660.75 53L632.75 131L602.75 53C602.75 52 601.75 51 600.75 51H556.75V48ZM473.75 51C472.75 51 471.75 52 471.75 53V166C471.75 167 472.75 168 473.75 168H499.75C500.75 168 500.75 167 500.75 166V53C500.75 52 500.75 51 499.75 51H473.75ZM467.75 18C467.75 28 476.75 37 486.75 37C496.75 37 504.75 28 504.75 18C504.75 8 496.75 0 486.75 0C476.75 0 467.75 8 467.75 18ZM712.75 87C722.75 87 731.75 79 731.75 69C731.75 59 722.75 51 712.75 51C702.75 51 694.75 59 694.75 69C694.75 79 702.75 87 712.75 87ZM712.75 53C721.75 53 729.75 60 729.75 69C729.75 78 721.75 85 712.75 85C703.75 85 696.75 78 696.75 69C696.75 60 703.75 53 712.75 53ZM716.75 71C719.75 70 721.75 68 721.75 65C721.75 61 717.75 59 713.75 59H705.75V78H709.75V72H713.75L717.75 78H722.75L716.75 71ZM713.75 62C715.75 62 717.75 63 717.75 65C717.75 67 715.75 68 713.75 68H709.75V62H713.75Z<span class="token punctuation">"</span></span>
+      <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>black<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>symbol</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>symbol</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>landscape<span class="token punctuation">"</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0 0 1118 335<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>use</span> <span class="token attr-name"><span class="token namespace">xlink:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#c<span class="token punctuation">"</span></span> <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>335<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>335<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>use</span> <span class="token attr-name"><span class="token namespace">xlink:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#s<span class="token punctuation">"</span></span> <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>386<span class="token punctuation">"</span></span> <span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>77<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>732<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>203<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>symbol</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>use</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>square<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xlink:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#c<span class="token punctuation">"</span></span> <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>use</span>
+    <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>landscape<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">xlink:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#landscape<span class="token punctuation">"</span></span>
+    <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span>
+    <span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span>
+    <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span>
+    <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span>
+  <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
+</code></pre>
+<p><a href="/demos/svg-logo/logo.min.svg">After minification</a>, the logo weights 4,423 bytes, which is still smaller than the original logo (4,960 bytes).</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>There are many ways we can optimize the delivery of SVGs. Even though they are highly compressible and usually small, there is usually room for delivering them better.</p>
+<p>I hope this post has showed you some ways to optimize SVGs and some of its capabilities.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Some ways to reduce the payload of the Spotify logo on their website, which can be applied to other SVGs.
+    
+    </summary>
+    
+    
+      <category term="svg" scheme="https://jmperezperez.com/tags/svg/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sketchy SVGs with RoughJS</title>
+    <link href="https://jmperezperez.com//roughjs"/>
+    <id>https://jmperezperez.com//roughjs</id>
+    <published>2018-03-25T20:50:00.000Z</published>
+    <updated>2021-12-14T07:52:53.531Z</updated>
+    
+    <content type="html"><![CDATA[<p>I love hand-drawn graphs and I have always fantasized about applying it to
+vector images. That’s why I was very happy to find out about
+<a href="https://roughjs.com/">RoughJS</a>, a library that draws SVG primitives like lines,
+curves, arcs, polygons, circles, ellipses and paths on a Canvas in a hand-drawn
+style.</p>
+<span id="more"></span>
+<div class="codepen-aspect-ratio" style="margin-bottom: 10px; padding-bottom: 75%; position: relative; width: 100%">
+<iframe id="cp_embed_RMVGbd" src="//codepen.io/milesmanners/embed/RMVGbd?height=513&theme-id=0&slug-hash=RMVGbd&default-tab=full" scrolling="no" frameborder="no" height="513" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="684" style="width: 684; overflow: hidden;"></iframe>
+</div>
+
+<p><small class="caption">Applying RoughJS to some icons from <a href="https://fontawesome.com/">Font Awesome</a></small></p>
+<p>The tool can be very handy for given an informal look to diagrams and charts in
+some slides or presentations. Do check their <a href="https://github.com/pshihn/rough/wiki/Examples">examples
+page</a>, which is very impressive.</p>
+<p>If you have a SVG you can draw the primitives that compose it. In the
+next example I’m applying RoughJS to <a href="https://twitter.com/javivelasco">Javi
+Velasco</a>‘s SF Palace of Fine Arts SVG from
+<a href="https://zeit.co/day">Zeit’s Day</a>, going through its paths.</p>
+<div class="codepen-aspect-ratio" style="margin-bottom: 10px; padding-bottom:75%; position: relative; width: 100%">
+<iframe id="cp_embed_QmqdwQ" src="//codepen.io/jmperez/embed/QmqdwQ?height=513&theme-id=0&slug-hash=QmqdwQ&default-tab=full" scrolling="no" frameborder="no" height="513" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="684" style="width: 684; overflow: hidden;"></iframe>
+</div>
+
+<p><small class="caption">RoughJS applied to a SVG of the Palace of Fine Arts in San Francisco created by
+Zeit (<a href="https://zeit.co/day">source</a>).</small></p>
+<h4 id="Contour-RoughJS"><a href="#Contour-RoughJS" class="headerlink" title="Contour + RoughJS"></a>Contour + RoughJS</h4><p>In the past I worked on a tool called
+<a href="https://github.com/JMPerez/contour">Contour</a>  that creates a SVG based on the
+edges detected on a bitmap image (more info on <a href="/drawing-edges-svg/">this blog
+post</a>).</p>
+<p>I wanted to test the combination of Contour and RoughJS, so I took the output of Contour for 3 music album artworks. Contour outputs a SVG with polylines, which doesn’t seem to be supported by
+RoughJS at the moment, but <a href="https://codepen.io/jakealbaugh/pen/GZwgzV">it’s straightforward to convert to
+paths</a>.</p>
+<div class="codepen-aspect-ratio" style="margin-bottom: 10px; padding-bottom: 100%; position: relative; width: 100%">
+<iframe id="cp_embed_dmzdeb" src="//codepen.io/jmperez/embed/dmzdeb?height=684&theme-id=0&slug-hash=dmzdeb&default-tab=full" scrolling="no" frameborder="no" height="684" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="684" style="width: 684; overflow: hidden;"></iframe>
+</div>
+
+<p><small class="caption">RoughJS drawing the above SVGs with some custom options</small></p>
+<p>The effect is very subtle, in part because Contour generates lots of short
+lines, but gives the drawing a sketchy style in some traces. Changing the
+“simplification” and “roughness” <a href="https://github.com/pshihn/rough/wiki">options</a>
+allows to tweak the result.</p>
+<h4 id="Related-Content"><a href="#Related-Content" class="headerlink" title="Related Content"></a>Related Content</h4><p>If you have read this far you probably like vector images and hand drawing.
+<a href="https://twitter.com/etportis">Eric Portis</a> shared with me recently a SIGGRAPH
+2011 paper called “<a href="http://graphics.stanford.edu/~niloy/research/animated_construction_line_drawing/animatedConstructionLineDrawing_sigga11.html">Animated Construction of Line
+Drawings</a>”,
+where they infer a plausible stroke order of a static input drawing.</p>
+<div class="videoWrapper">
+  <iframe width="720" height="405" src="https://www.youtube.com/embed/kme8xbb0sug" frameborder="0" allowfullscreen loading="lazy"></iframe>
+</div>
+
+<p>The predicted stroke is comparable to the order used by human artists. I think
+it’s really interesting, though I haven’t found any actual implementation of the
+algorithm on a website.</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>RoughJS is another tool that pushes vector images forward, adding an artistic
+hand-drawn touch to them. I’m looking forward to see how the project evolves and
+how it is applied in different use cases.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Applying RoughJS to vector images to get a hand-drawn effect.
+    
+    </summary>
+    
+    
+      <category term="svg" scheme="https://jmperezperez.com/tags/svg/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to use SVG as a Placeholder, and Other Image Loading Techniques</title>
+    <link href="https://jmperezperez.com//svg-placeholders"/>
+    <id>https://jmperezperez.com//svg-placeholders</id>
+    <published>2017-10-29T21:30:00.000Z</published>
+    <updated>2021-12-14T07:52:53.529Z</updated>
+    
+    <content type="html"><![CDATA[<p>I’m passionate about image performance optimisation and making images load fast on the web. One of the most interesting areas of exploration is placeholders: what to show when the image hasn’t loaded yet.</p>
+<p>During the last days I have come across some loading techniques that use SVG, and I would like to describe them in this post.</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1509278557/jmperez-composition-primitive_j8zyfn.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1509278557/jmperez-composition-primitive_j8zyfn.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1509278557/jmperez-composition-primitive_j8zyfn.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1509278557/jmperez-composition-primitive_j8zyfn.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1509278557/jmperez-composition-primitive_j8zyfn.jpg"
+    alt="Example of a SVG generated using 10 and 100 triangles based on a bitmap image" /></p>
+<p><small class="caption">Generating SVGs from images can be used for placeholders. Keep reading!</small></p>
+<span id="more"></span>
+
+<p>In this post we will go through these topics:</p>
+<ul>
+<li>Overview of different types of placeholders</li>
+<li>SVG-based placeholders (edges, shapes and silhouettes)</li>
+<li>Automating the process.</li>
+</ul>
+<h3 id="Overview-of-different-types-of-placeholders"><a href="#Overview-of-different-types-of-placeholders" class="headerlink" title="Overview of different types of placeholders"></a>Overview of different types of placeholders</h3><p>In the past <a href="/lazy-loading-images">I have written about placeholders and lazy-load of images</a>, and also <a href="https://www.youtube.com/watch?v=szmVNOnkwoU">talked about it</a>. When doing lazy-loading of images it’s a good idea to think about what to render as a placeholder, since it can have a big impact in user’s perceived performance. In the past I described several options:</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1509278557/placeholder-options_vtwp6b.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1509278557/placeholder-options_vtwp6b.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1509278557/placeholder-options_vtwp6b.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1509278557/placeholder-options_vtwp6b.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1509278557/placeholder-options_vtwp6b.png"
+    alt="Several strategies to fill the area of an image before it loads" /></p>
+<p><small class="caption">Several strategies to fill the area of an image before it loads.</small></p>
+<ul>
+<li><strong>Keeping the space empty for the image</strong>: In a world of responsive design, this prevents content from jumping around. Those layout changes are bad from a user’s experience point of view, but also for performance. The browser is forced to do layout re calculations every time it fetches the dimensions of an image, leaving space for it.</li>
+<li><strong>Placeholder</strong>: Imagine that we are displaying a user’s profile image. We might want to display a silhouette in the background. This is shown while the main image is loaded, but also when that request failed or when the user didn’t set any profile picture at all. These images are usually vector-based, and due to their small size are a good candidate to be inlined.</li>
+<li><strong>Solid colour</strong>: Take a colour from the image and use it as the background colour for the placeholder. This can be the dominant colour, the most vibrant… The idea is that it is based on the image you are loading and should help making the transition between no image to image loaded smoother.</li>
+<li><strong>Blurry image</strong>: Also called blur-up technique. You render a tiny version of the image and then transition to the full one. The initial image is tiny both in pixels and kBs. To remove artifacts the image is scaled up and blurred. I have written previously about this on <a href="/medium-image-progressive-loading-placeholder">How Medium does progressive image loading</a>, <a href="/webp-placeholder-images">Using WebP to create tiny preview images</a>, and <a href="/more-progressive-image-loading">More examples of Progressive Image Loading</a>.</li>
+</ul>
+<p>Turns out there are many other variations and lots of smart people are developing other techniques to create placeholders.</p>
+<p>One of them is having gradients instead of solid colours. The gradients can create a more accurate preview of the final image, with very little overhead (increase in payload).</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1509278575/gradient-background_jyymty.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1509278575/gradient-background_jyymty.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1509278575/gradient-background_jyymty.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1509278575/gradient-background_jyymty.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1509278575/gradient-background_jyymty.jpg"
+    alt="Using gradients as backgrounds. Screenshot from Gradify" /></p>
+<p><small class="caption">Using gradients as backgrounds. Screenshot from Gradify, which is not online anymore. Code <a href="https://github.com/fraser-hemp/gradify">on GitHub</a>.</small></p>
+<p>Another technique is using SVGs based on the image, which is getting some traction with recent experiments and hacks.</p>
+<h3 id="SVG-based-placeholders"><a href="#SVG-based-placeholders" class="headerlink" title="SVG-based placeholders"></a>SVG-based placeholders</h3><p>We know SVGs are ideal for vector images. In most cases we want to load a bitmap one, so the question is how to vectorise an image. Some options are using edges, shapes and areas.</p>
+<h4 id="Edges"><a href="#Edges" class="headerlink" title="Edges"></a>Edges</h4><p>In <a href="/drawing-edges-svg/">a previous post</a> I explained how to find out the edges of an image and create an animation. My initial goal was to try to draw regions, vectorising the image, but I didn’t know how to do it. I realised that using the edges could also be innovative and I decided to animate them creating a “drawing” effect.</p>
+<div class="codepen-aspect-ratio" style="margin-bottom: 10px; padding-bottom: 100%; position: relative; width: 100%">
+<iframe id="cp_embed_oogqdp" src="//codepen.io/jmperez/embed/oogqdp?height=600&theme-id=0&slug-hash=oogqdp&default-tab=result" scrolling="no" frameborder="no" height="600" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="600" style="width: 600; overflow: hidden;"></iframe>
+</div>
+
+<h4 id="Shapes"><a href="#Shapes" class="headerlink" title="Shapes"></a>Shapes</h4><p>SVG can also be used to draw areas from the image instead of edges/borders. In a way, we would vectorise a bitmap image to create a placeholder.</p>
+<p>Back in the days I tried to do something similar with triangles. You can see the result in my talks <a href="/cssconfau16/#/45">at CSSConf</a> and <a href="/renderconf17/#/46">Render Conf</a>.</p>
+<div class="codepen-aspect-ratio" style="margin-bottom: 10px; padding-bottom: 74%; position: relative; width: 100%">
+<iframe id="cp_embed_BmaWmQ" src="//codepen.io/jmperez/embed/BmaWmQ?height=444&theme-id=0&slug-hash=BmaWmQ&default-tab=result" scrolling="no" frameborder="no" height="444" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="600" style="width: 600; overflow: hidden;"></iframe>
+</div>
+
+<p>The codepen above is a proof of concept of a SVG-based placeholder composed of 245 triangles. The generation of the triangles is based on <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay triangulation</a> using <a href="https://github.com/possan/polyserver">Possan’s polyserver</a>. As expected, the more triangles the SVG uses, the bigger the file size.</p>
+<h4 id="Primitive-and-SQIP-a-SVG-based-LQIP-technique"><a href="#Primitive-and-SQIP-a-SVG-based-LQIP-technique" class="headerlink" title="Primitive and SQIP, a SVG-based LQIP technique"></a>Primitive and SQIP, a SVG-based LQIP technique</h4><p>Tobias Baldauf has been working on another Low-Quality Image Placeholder technique using SVGs called <a href="https://github.com/technopagan/sqip">SQIP</a>. Before digging into SQIP itself I will give an overview of <a href="https://github.com/fogleman/primitive">Primitive</a>, a library on which SQIP is based.</p>
+<p>Primitive is quite fascinating and I definitely recommend you to check it out. It converts a bitmap image into a SVG composed of overlapping shapes. Its small size makes it suitable for inlining it straight into the page. One less roundtrip, and a meaningful placeholder within the initial HTML payload.</p>
+<p>Primitive generates an image based on shapes like triangles, rectangles and circles (and a few others). In every step it adds a new one. The more steps, the resulting image looks closer to the original one. If your output is SVG it also means the size of the output code will be larger.</p>
+<p>In order to understand how Primitive works, I ran it through a couple of images. I generated SVGs for the pictures using 10 shapes and 100 shapes:</p>
+<div>
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367394/pexels-photo-281184-square-10.svg_ifiu2z.png"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 10 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367394/pexels-photo-281184-square-100.svg_tkr8el.png"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 100 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367395/pexels-photo-281184-square_tuhvso.jpg"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Original picture" style="width:32%;float:left;padding-bottom:10px" />
+</div>
+
+<p><small class="caption">Processing <a href="/assets/images/posts/svg-placeholders/pexels-photo-281184-square.jpg">this picture</a> using Primitive, using <a href="/assets/images/posts/svg-placeholders/pexels-photo-281184-square-10.svg">10 shapes</a> and <a href="/assets/images/posts/svg-placeholders/pexels-photo-281184-square-100.svg">100 shapes</a>.</small></p>
+<div>
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367394/pexels-photo-618463-square-10.svg_aeonon.png"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picture through Primitive using 10 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367394/pexels-photo-618463-square-100.svg_t6pwcv.png"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Processing a picturethrough Primitive using 100 shapes" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367395/pexels-photo-618463-square_pmbi9x.jpg"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Original picture" style="width:32%;float:left;padding-bottom:10px" />
+</div>
+
+<p><small class="caption">Processing <a href="/assets/images/posts/svg-placeholders/pexels-photo-618463-square.jpg">this picture</a> using Primitive, using <a href="/assets/images/posts/svg-placeholders/pexels-photo-618463-square-10.svg">10 shapes</a> and <a href="/assets/images/posts/svg-placeholders/pexels-photo-618463-square-100.svg">100 shapes</a>.</small></p>
+<p>When using 10 shapes the images we start getting a grasp of the original image. In the context of image placeholders there is potential to use this SVG as the placeholder. Actually, the code for the SVG with 10 shapes is really small, around 1030 bytes, which goes down to ~640 bytes when passing the output through SVGO.</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1024<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1024<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#817c70<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M0 0h1024v1024H0z<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span> <span class="token attr-name">fill-opacity</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>.502<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#03020f<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M178 994l580 92L402-62<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#f2e2ba<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M638 894L614 6l472 440<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#fff8be<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M-62 854h300L138-62<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#76c2d9<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M410-62L154 530-62 38<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#62b4cf<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M1086-2L498-30l484 508<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#010412<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M430-2l196 52-76 356<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#eb7d3f<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M598 594l488-32-308 520<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#080a18<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M198 418l32 304 116-448<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#3f201d<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M1086 1062l-344-52 248-148<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#ebd29f<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M630 658l-60-372 516 320<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>The images generated with 100 shapes are larger, as expected, weighting ~5kB after SVGO (8kB before). They have a great level of detail with a still small payload. The decision of how many triangles to use will depend largely on the type of image (eg contrast, amount of colours, complexity) and level of detail.</p>
+<p>It would be possible to create a script similar to <a href="https://github.com/technopagan/cjpeg-dssim">cpeg-dssim</a> that tweaks the amount of shapes used until a <a href="https://en.wikipedia.org/wiki/Structural_similarity">structural similarity</a> threshold is met (or a maximum number of shapes in the worst case).</p>
+<p>These resulting SVGs are great also to use as background images. Being size-constrained and vector-based they are a good candidate for hero images and large backgrounds that otherwise would show artifacts.</p>
+<h4 id="SQIP"><a href="#SQIP" class="headerlink" title="SQIP"></a>SQIP</h4><p>In <a href="https://github.com/technopagan/sqip">Tobias’ own words</a>:</p>
+<blockquote>
+<p>SQIP is an attempt to find a balance between these two extremes: it makes use of <a href="https://github.com/fogleman/primitive">Primitive</a> to generate a SVG consisting of several simple shapes that approximate the main features visible inside the image, optimizes the SVG using <a href="https://github.com/svg/svgo">SVGO</a> and adds a Gaussian Blur filter to it. This produces a SVG placeholder which weighs in at only ~800–1000 bytes, looks smooth on all screens and provides an visual cue of image contents to come.</p>
+</blockquote>
+<p>The result is similar to using a tiny placeholder image for the blur-up technique (what <a href="/medium-image-progressive-loading-placeholder">Medium</a> and <a href="/more-progressive-image-loading">other sites</a> do). The difference is that instead of using a bitmap image, eg JPG or WebP, the placeholder is SVG.</p>
+<p>If we run SQIP against the original images we’ll get this:</p>
+<div>
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:342,f_auto,c_scale,w_670/v1509370309/pexels-photo-281184-square-sqip.svg_zspgb0.png"
+    sizes="(max-width: 768px) 50vw, 342px" alt="SQIP applied to an image" style="width:49%;float:left;margin-right:2%;padding-bottom:10px" /><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:342,f_auto,c_scale,w_670/v1509370308/pexels-photo-618463-square-sqip.svg_qjrexh.png"
+    sizes="(max-width: 768px) 50vw, 342px" alt="SQIP applied to an image" style="width:49%;float:left;padding-bottom:10px" />
+</div>
+
+<p><small class="caption">The output images using SQIP for <a href="/assets/images/posts/svg-placeholders/pexels-photo-281184-square-sqip.svg">the first picture</a> and <a href="/assets/images/posts/svg-placeholders/pexels-photo-618463-square-sqip.svg">the second one</a>.</small></p>
+<p>The output SVG is ~900 bytes, and inspecting the code we can spot the <code>feGaussianBlur</code> filter applied to the group of shapes:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0 0 2000 2000<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>b<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>feGaussianBlur</span> <span class="token attr-name">stdDeviation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>12<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#817c70<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M0 0h2000v2000H0z<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span>
+    <span class="token attr-name">filter</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>url(#b)<span class="token punctuation">"</span></span>
+    <span class="token attr-name">transform</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>translate(4 4) scale(7.8125)<span class="token punctuation">"</span></span>
+    <span class="token attr-name">fill-opacity</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>.5<span class="token punctuation">"</span></span>
+  <span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span>
+      <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#000210<span class="token punctuation">"</span></span>
+      <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">transform</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>matrix(50.41098 -3.7951 11.14787 148.07886 107 194.6)<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span>
+      <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#eee3bb<span class="token punctuation">"</span></span>
+      <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">transform</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>matrix(-56.38179 17.684 -24.48514 -78.06584 205 110.1)<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span>
+      <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#fff4bd<span class="token punctuation">"</span></span>
+      <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">transform</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>matrix(35.40604 -5.49219 14.85017 95.73337 16.4 123.6)<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#79c7db<span class="token punctuation">"</span></span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>21<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>39<span class="token punctuation">"</span></span> <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>65<span class="token punctuation">"</span></span> <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>65<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#0c1320<span class="token punctuation">"</span></span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>117<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>38<span class="token punctuation">"</span></span> <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>34<span class="token punctuation">"</span></span> <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>47<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span>
+      <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#5cb0cd<span class="token punctuation">"</span></span>
+      <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">transform</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>matrix(-39.46201 77.24476 -54.56092 -27.87353 219.2 7.9)<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#e57339<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M271 159l-123-16 43 128z<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#47332f<span class="token punctuation">"</span></span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>214<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>237<span class="token punctuation">"</span></span> <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>242<span class="token punctuation">"</span></span> <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>19<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>SQIP can also output an image tag with the SVG contents Base 64 encoded:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+  <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>640<span class="token punctuation">"</span></span>
+  <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>640<span class="token punctuation">"</span></span>
+  <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>example.jpg<span class="token punctuation">"</span></span>
+  <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Add descriptive alt text<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name">
+  <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">background-size</span><span class="token punctuation">:</span> cover<span class="token punctuation">;</span> <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token url">url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAw...&lt;stripped base 64>...PjwvZz48L3N2Zz4=)</span><span class="token punctuation">;</span></span><span class="token punctuation">"</span></span>
+<span class="token punctuation">/></span></span>
+</code></pre>
+<h4 id="Silhouettes"><a href="#Silhouettes" class="headerlink" title="Silhouettes"></a>Silhouettes</h4><p>We just had a look at using SVGs for edges and primitive shapes. Another possibility is to vectorise the images “tracing” them. <a href="https://twitter.com/mikaelainalem">Mikael Ainalem</a> shared <a href="https://codepen.io/ainalem/full/aLKxjm/">a codepen</a> a few days ago showing how to use a 2-colour silhouette as a placeholder. The result is really pretty:</p>
+<video controls style="max-width:100%" width="690" height="459">
+  <source src="https://res.cloudinary.com/jmperez/video/upload/dpr_auto,f_auto,q_auto,c_scale/v1509278615/silhouette-lazy-loading_evq9xq.mp4" type="video/mp4">
+</video>
+
+<p>The SVGs in this case were hand drawn, but the technique quickly spawned integrations with tools to automate the process.</p>
+<ul>
+<li><a href="https://www.gatsbyjs.org/">Gatsby</a>, a static site generator using React supports these traced SVGs now. It uses <a href="https://www.npmjs.com/package/potrace">a JS port of potrace</a> to vectorise the images.</li>
+</ul>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Excited to announce that Gatsby now has super simple support for traced SVG!<br><br>Thanks to <a href="https://twitter.com/fk?ref_src=twsrc%5Etfw">@fk</a> for his great work!<a href="https://t.co/XfgEDbSILA">https://t.co/XfgEDbSILA</a> <a href="https://t.co/wTwOgT8C5V">pic.twitter.com/wTwOgT8C5V</a></p>&mdash; Gatsby (@gatsbyjs) <a href="https://twitter.com/gatsbyjs/status/923304195666485248?ref_src=twsrc%5Etfw">25 October 2017</a></blockquote>
+
+<ul>
+<li><a href="https://craftcms.com/">Craft 3 CMS</a>, which also added support for silhouettes. It uses <a href="https://github.com/nystudio107/craft3-imageoptimize/blob/master/src/lib/Potracio.php">a PHP port of potrace</a>.</li>
+</ul>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Cool video of using inline SVG images as lazy loading placeholders w/ ImageOptimize &amp; Craft 3 from <a href="https://twitter.com/slebbo?ref_src=twsrc%5Etfw">@slebbo</a> <a href="https://t.co/E1dYA4ayow">https://t.co/E1dYA4ayow</a> <a href="https://twitter.com/hashtag/craftcms?src=hash&amp;ref_src=twsrc%5Etfw">#craftcms</a> <a href="https://t.co/ruf8i6URCT">pic.twitter.com/ruf8i6URCT</a></p>&mdash; nystudio107 (@nystudio107) <a href="https://twitter.com/nystudio107/status/920673966091534338?ref_src=twsrc%5Etfw">18 October 2017</a></blockquote>
+
+<ul>
+<li><a href="https://github.com/EmilTholin/image-trace-loader">image-trace-loader</a>, a Webpack loader that uses potrace to process the images.</li>
+</ul>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">I just released image-trace-loader, a <a href="https://twitter.com/hashtag/webpack?src=hash&amp;ref_src=twsrc%5Etfw">#webpack</a> loader that exports traced outlines as image/svg+xml data.<a href="https://t.co/2VZaKVaE4p">https://t.co/2VZaKVaE4p</a> <a href="https://t.co/vRma67R7zb">pic.twitter.com/vRma67R7zb</a></p>&mdash; Emil Tholin (@Tholle1234) <a href="https://twitter.com/Tholle1234/status/920423596346019840?ref_src=twsrc%5Etfw">17 October 2017</a></blockquote>
+
+<p>It’s also interesting to see a comparison of the output between Emil’s webpack loader (based on potrace) and Mikael’s hand-drawn SVGs.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Comparison of <a href="https://twitter.com/mikaelainalem?ref_src=twsrc%5Etfw">@mikaelainalem</a> &#39;s SVG lazy-loading technique <a href="https://t.co/mbqVpxzn72">https://t.co/mbqVpxzn72</a> with @Tholle123&#39;s webpack loader <a href="https://t.co/3jxjtNP8dm">https://t.co/3jxjtNP8dm</a> <a href="https://t.co/tChcPK0mIK">pic.twitter.com/tChcPK0mIK</a></p>&mdash; Yuriy Nemtsov (@nemtsovy) <a href="https://twitter.com/nemtsovy/status/920647706799955970?ref_src=twsrc%5Etfw">18 October 2017</a></blockquote>
+
+<p>I assume the output generated by potrace is using the default options. However, it’s possible to tweak them. Check <a href="https://github.com/EmilTholin/image-trace-loader#options">the options for image-trace-loader</a>, which are pretty much <a href="https://www.npmjs.com/package/potrace#parameters">the ones passed down to potrace</a>.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We have seen different tools and techniques to generate SVGs from images and use them as placeholders. The same way <a href="/webp-placeholder-images/">WebP is a fantastic format for thumbnails</a>, SVG is also an interesting format to use in placeholders. We can control the level of detail (and thus, size), it’s highly compressible and easy to manipulate with CSS and JS.</p>
+<h2 id="Extra-Resources"><a href="#Extra-Resources" class="headerlink" title="Extra Resources"></a>Extra Resources</h2><p>This post made it to <a href="https://news.ycombinator.com/item?id=15696596">the top of Hacker News and got a lot of points and comments</a>. I’m very grateful for that, and for all the links to other resources that have been shared in the comments on that page. Here are a few of them!</p>
+<ul>
+<li><a href="https://github.com/Tw1ddle/geometrize-haxe">Geometrize</a> is a port of Primitive written in Haxe. There is also <a href="https://github.com/Tw1ddle/geometrize-haxe-web">a JS implementation</a> that you can try out directly <a href="http://www.samcodes.co.uk/project/geometrize-haxe-web/">on your browser</a>.</li>
+<li><a href="https://github.com/ondras/primitive.js">Primitive.js</a>, which is a port of Primitive in JS. Also, <a href="https://github.com/cielito-lindo-productions/primitive.nextgen">primitive.nextgen</a>, which is a port of the Primitive desktop app using Primitive.js and Electron.</li>
+<li>There are a couple of Twitter accounts where you can see examples of images generated with Primitive and Geometrize. Check out <a href="https://twitter.com/PrimitivePic">@PrimitivePic</a> and <a href="https://twitter.com/Geometrizer">@Geometrizer</a>.</li>
+<li><a href="https://github.com/jankovicsandras/imagetracerjs">imagetracerjs</a>, which is a raster image tracer and vectorizer written in JavaScript. There are also ports for <a href="https://github.com/jankovicsandras/imagetracerjava">Java</a> and <a href="https://github.com/jankovicsandras/imagetracerandroid">Android</a>.</li>
+</ul>
+<h2 id="Related-Posts"><a href="#Related-Posts" class="headerlink" title="Related Posts"></a>Related Posts</h2><p>If you have enjoyed this post, check out these other posts I have written about techniques loading images:</p>
+<ul>
+<li><a href="/medium-image-progressive-loading-placeholder">How Medium does progressive image loading</a></li>
+<li><a href="/webp-placeholder-images">Using WebP to create tiny preview images</a></li>
+<li><a href="/more-progressive-image-loading">More examples of Progressive Image Loading</a></li>
+</ul>
+<p><em>This post is also available <a href="/es/svg-placeholders/">in Spanish</a></em></p>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+]]></content>
+    
+    <summary type="html">
+    
+      Web Performance Optimisation by lazy-loading images using SVGs as placeholders, representing edges, shapes and silhouettes.
+    
+    </summary>
+    
+    
+      <category term="svg" scheme="https://jmperezperez.com/tags/svg/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Usando SVG como placeholders — Más técnicas de carga de imágenes</title>
+    <link href="https://jmperezperez.com//es/svg-placeholders"/>
+    <id>https://jmperezperez.com//es/svg-placeholders</id>
+    <published>2017-10-29T21:30:00.000Z</published>
+    <updated>2021-12-14T07:52:53.531Z</updated>
+    
+    <content type="html"><![CDATA[<p>Me apasiona la optimización del rendimiento de imágenes y hacer que las imágenes carguen rápido. Una de las áreas de estudio más interesantes es el placeholder: qué mostrar cuando la imagen todavía no se ha cargado.</p>
+<p>Durante los últimos días me he encontrado con algunas técnicas de carga que usan SVG, y me gustaría describirlas en este post.</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1509278557/jmperez-composition-primitive_j8zyfn.jpg"
+    sizes="(max-width: 768px) 100vw, 684px"
+    alt="Ejemplo de un SVG generado utilizando 10 y 100 triángulos basado en una imagen de mapa de bits" />
+<small class="caption">Los SVGs generados a partir de imágenes pueden ser usados como placeholders. ¡Sigue leyendo!</small></p>
+<span id="more"></span>
+
+<p>En esta publicación hablaré sobre estos temas:</p>
+<ul>
+<li>Descripción general de los diferentes tipos de placeholders</li>
+<li>Placeholders basados en SVG (contornos, formas y siluetas)</li>
+<li>Automatización del proceso.</li>
+</ul>
+<h3 id="Descripcion-general-de-los-diferentes-tipos-de-placeholders"><a href="#Descripcion-general-de-los-diferentes-tipos-de-placeholders" class="headerlink" title="Descripción general de los diferentes tipos de placeholders"></a>Descripción general de los diferentes tipos de placeholders</h3><p>En el pasado <a href="/lazy-loading-images">he escrito sobre placeholders y lazy-load de imágenes</a>, y también <a href="https://www.youtube.com/watch?v=szmVNOnkwoU">he dado charlas sobre ello</a>. Cuando se hace lazy-load de imágenes es conveniente pensar en qué renderizar como placeholder, dado que puede tener un gran impacto en el rendimiento percibido por el usuario. Hace un tiempo describí algunas opciones:</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1509278557/placeholder-options_vtwp6b.png"
+    sizes="(max-width: 768px) 100vw, 684px" />
+<small class="caption">Diferentes estrategias para rellenar el área de una imagen mientras ésta carga.</small></p>
+<ul>
+<li><strong>Mantener el espacio vacío para las imágenes</strong>: En un mundo de diseño responsive, reservar el área para la imagen evita que el contenido salte. Los cambios de layout son malos desde el punto de vista de la experiencia de usuario, pero también son nefastos en cuanto al rendimiento. El navegador debe recalcular el layout cada vez que obtiene las dimensiones de una imagen, para dejar espacio para la misma.</li>
+<li><strong>Placeholder</strong>: Imagina que estamos mostrando la imagen de perfil de un usuario. Quizás queremos mostrar una silueta como imagen de background. Esta imagen se muestra mientras la imagen principal está cargando, pero también si la petición falla o si el usuario no ha establecido ninguna imagen de perfil. Habitualmente estas imágenes son vectoriales, y dado su pequeño tamaño son excelentes candidatas para ser servidas inline.</li>
+<li><strong>Color sólido</strong>: Podemos tomar un color de la imagen y usarlo como color de fondo en el placeholder. Puede ser el color dominante, el más vibrante… La idea es que está basado o extraído de la imagen que se desea cargar, y el resultado debería ayudar a suavizar la transición entre “no imagen” e “imagen cargada”.</li>
+<li><strong>Imagen desenfocada</strong>: También llamada técnica <em>blur up</em>. Se renderiza una versión muy pequeña de la imagen y se hace la transición a la imagen completa. La imagen inicial es pequeña tanto en píxeles como en kBs. Para eliminar artefactos de compresión la imagen se amplía y se desenfoca. He escrito previamente sobre este tema en <a href="/medium-image-progressive-loading-placeholder">Cómo Medium hacer carga progresiva de imágenes</a>, <a href="/webp-placeholder-images">Usando WebP para crear previsualizaciones pequeñas</a>, y <a href="/more-progressive-image-loading">Más ejemplos de carga progresiva de imágenes</a>.</li>
+</ul>
+<p>Resulta que hay muchas otras variaciones y mucha gente inteligente desarrollando otras técnicas para crear placeholders.</p>
+<p>Una de ellas es generar gradientes o degradados en vez de colores sólidos. Los gradientes pueden crear una previsualización de la imagen final más precisa, con unos pocos bytes extra.</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale,w_1368/v1509278575/gradient-background_jyymty.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Usando gradientes como fondos. Captura tomada de Gradify"/>
+<small class="caption">Usando gradientes como fondos. Captura de Gradify, que ya no está disponible on-line. El código <a href="https://github.com/fraser-hemp/gradify">está en GitHub</a>.</small></p>
+<p>Otra técnica consiste en utilizar SVGs basados en la imagen, que está popularizándose gracias a algunos hacks y experimentos recientes.</p>
+<h3 id="Placeholders-basados-en-SVG"><a href="#Placeholders-basados-en-SVG" class="headerlink" title="Placeholders basados en SVG"></a>Placeholders basados en SVG</h3><p>Sabemos que los SVGs son ideales para imágenes vectoriales. En la mayoría de casos queremos cargar una imagen de mapa de bits (JPG, PNG…), así que la cuestión es cómo vectorizar la imagen. Podemos utilizar contornos, formas y áreas.</p>
+<h4 id="Contornos"><a href="#Contornos" class="headerlink" title="Contornos"></a>Contornos</h4><p>En <a href="/drawing-edges-svg/">un post anterior</a> expliqué cómo calcular los contornos de una imagen y animarlos. Mi objetivo inicial era intentar dibujar regiones, vectorizando la imagen, pero no sabía cómo hacerlo. Me di cuenta de que usando los contornos también podía ser innovador y decidí animarlos para crear un efecto de “dibujado”.</p>
+<div class="codepen-aspect-ratio" style="margin-bottom: 10px; padding-bottom: 100%; position: relative; width: 100%">
+<iframe id="cp_embed_oogqdp" src="//codepen.io/jmperez/embed/oogqdp?height=600&theme-id=0&slug-hash=oogqdp&default-tab=result" scrolling="no" frameborder="no" height="600" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="600" style="width: 600; overflow: hidden;"></iframe>
+</div>
+
+<h4 id="Formas"><a href="#Formas" class="headerlink" title="Formas"></a>Formas</h4><p>También podemos usar SVG para dibujar áreas de la imagen en lugar de contornos o bordes. De alguna manera estaríamos vectorizando una imagen de mapa de bits para crear un placeholder.</p>
+<p>En su día intenté hacer algo similar con triángulos. Puedes ver el resultado en mis charlas <a href="/cssconfau16/#/45">en CSSConf</a> y <a href="/renderconf17/#/46">Render Conf</a>.</p>
+<div class="codepen-aspect-ratio" style="margin-bottom: 10px; padding-bottom: 74%; position: relative; width: 100%">
+<iframe id="cp_embed_BmaWmQ" src="//codepen.io/jmperez/embed/BmaWmQ?height=444&theme-id=0&slug-hash=BmaWmQ&default-tab=result" scrolling="no" frameborder="no" height="444" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="600" style="width: 600; overflow: hidden;"></iframe>
+</div>
+
+<p>Este codepen es una prueba de concepto de un placeholder basado en SVG compuesto por 245 triángulos. La generación de los triángulos utiliza la <a href="https://es.wikipedia.org/wiki/Triangulaci%C3%B3n_de_Delaunay">triangulación de Delaunay</a> a partir del proyecto <a href="https://github.com/possan/polyserver">polyserver de Possan</a>. Como es de esperar, a mayor número de triángulos, mayor es el tamaño del fichero resultante.</p>
+<h4 id="Primitive-y-SQIP-una-tecnica-LQIP-basada-en-SVG"><a href="#Primitive-y-SQIP-una-tecnica-LQIP-basada-en-SVG" class="headerlink" title="Primitive y SQIP, una técnica LQIP basada en SVG"></a>Primitive y SQIP, una técnica LQIP basada en SVG</h4><p>Tobias Baldauf ha estado trabajando en otra técnica LQIP (<em>Low-Quality Image Placeholder</em>) usando SVGs llamada <a href="https://github.com/technopagan/sqip">SQIP</a>. Antes de adentrarnos en SQIP, me gustaría describir <a href="https://github.com/fogleman/primitive">Primitive</a>, una librería que SQIP utiliza internamente.</p>
+<p>Primitive es fascinante y recomiendo definitivamente que le eches un ojo. Convierte una imagen de mapa de bits en un SVG compuesto por formas que se solapan. Su pequeño tamaño lo hace ideal para incluirlo de forma inline en la página. Así se consigue reducir una petición, a la vez que se renderiza un placeholder bastante cercano a la imagen final incrustada en el cuerpo del HTML inicial.</p>
+<p>Primitive genera una imagen basada en figuras como triángulos, rectángulos y círculos entre otros. En cada paso añade una figura. A más pasos, la imagen resultante se va pareciendo más a la imagen original. Si el formato de salida elegido es SVG, también significa que el fichero será más grande cuantas más figuras contenga.</p>
+<p>Para comprender cómo funciona Primitive lo ejecuté tomando un par de imágenes de prueba. Generé SVGs a partir de las imágenes usando 10 y 100 triángulos:</p>
+<div>
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367394/pexels-photo-281184-square-10.svg_ifiu2z.png"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Procesando una imagen usando Primitive con 10 triángulos" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367394/pexels-photo-281184-square-100.svg_tkr8el.png"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Procesando una imagen usando Primitive con 100 triángulos" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367395/pexels-photo-281184-square_tuhvso.jpg"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Imagen original" style="width:32%;float:left;padding-bottom:10px" />
+</div>
+
+<p><small class="caption">Procesando <a href="/assets/images/posts/svg-placeholders/pexels-photo-281184-square.jpg">esta imagen</a> con Primitive, usando <a href="/assets/images/posts/svg-placeholders/pexels-photo-281184-square-10.svg">10 triángulos</a> y <a href="/assets/images/posts/svg-placeholders/pexels-photo-281184-square-100.svg">100 triángulos</a>.</small></p>
+<div>
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367394/pexels-photo-618463-square-10.svg_aeonon.png"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Procesando una imagen usando Primitive con 10 triángulos" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367394/pexels-photo-618463-square-100.svg_t6pwcv.png"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Procesando una imagen usando Primitive con 100 triángulos" style="width:32%;float:left;margin-right:2%;padding-bottom:10px" /><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:228,f_auto,c_scale,w_500/v1509367395/pexels-photo-618463-square_pmbi9x.jpg"
+    sizes="(max-width: 768px) 33vw, 228px" alt="Imagen original" style="width:32%;float:left;padding-bottom:10px" />
+</div>
+
+<p><small class="caption">Procesando <a href="/assets/images/posts/svg-placeholders/pexels-photo-618463-square.jpg">esta imagen</a> con Primitive, usando <a href="/assets/images/posts/svg-placeholders/pexels-photo-618463-square-10.svg">10 triángulos</a> y <a href="/assets/images/posts/svg-placeholders/pexels-photo-618463-square-100.svg">100 triángulos</a>.</small></p>
+<p>Usando 10 triángulos las imágenes empiezan a parecerse a la versión original. Estas imágenes SVG pueden ser adecuadas como placeholders. De hecho el código del SVG de 10 triángulos es muy pequeño, unos 1.030 bytes, que pueden reducirse hasta unos 640 bytes si pasamos la salida por SVGO.</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1024<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1024<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#817c70<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M0 0h1024v1024H0z<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span> <span class="token attr-name">fill-opacity</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>.502<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#03020f<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M178 994l580 92L402-62<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#f2e2ba<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M638 894L614 6l472 440<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#fff8be<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M-62 854h300L138-62<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#76c2d9<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M410-62L154 530-62 38<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#62b4cf<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M1086-2L498-30l484 508<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#010412<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M430-2l196 52-76 356<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#eb7d3f<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M598 594l488-32-308 520<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#080a18<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M198 418l32 304 116-448<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#3f201d<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M1086 1062l-344-52 248-148<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#ebd29f<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M630 658l-60-372 516 320<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Las imágenes generadas con 100 triángulos son más grandes, en kB, como es de esperar. En esta prueba las imágenes ocupan unos 5kB tras aplicar SVGO (8kB antes). Tienen un gran nivel de detalle en un tamaño comedido. La decisión de cuántos triángulos usar depende mucho del tipo de imagen (por ejemplo contraste, cantidad de colores, complejidad de la forma) y el nivel de detalle deseado.</p>
+<p>Sería posible crear un script similar a <a href="https://github.com/technopagan/cjpeg-dssim">cpeg-dssim</a> que ajusta la cantidad de formas hasta llegar a un umbral de <a href="https://en.wikipedia.org/wiki/Structural_similarity">similaridad estructural</a>, o un máximo número de formas en el peor caso.</p>
+<p>Los SVGs resultantes son una buena opción también como imágenes de fondo. Dado que son vectoriales y tienen un tamaño limitado, son un buen candidato para imágenes <em>hero</em> y fondos de gran tamaño que de otro modo mostrarían artefactos de compresión.</p>
+<h4 id="SQIP"><a href="#SQIP" class="headerlink" title="SQIP"></a>SQIP</h4><p>En <a href="https://github.com/technopagan/sqip">palabras de Tobias</a>:</p>
+<blockquote>
+<p>SQIP es un intento de encontrar un balance entre estos dos extremos: hace uso de <a href="https://github.com/fogleman/primitive">Primitive</a> para generar un SVG consistente en varias formas sencillas que aproximan las principales características visibles dentro de la imagen, optimiza el SVG utilizando <a href="https://github.com/svg/svgo">SVGO</a> y le añade un filtro de desenfoque gaussiano. Esto produce un placeholder SVG que pesa sólo ~800–1000 bytes, se ve bien en todas las pantallas y proporciona una pista visual del contenido de la imagen que se va a cargar.</p>
+</blockquote>
+<p>El resultado es similar a utilizar una imagen pequeña como placeholder en la técnica blur-up (lo que <a href="/medium-image-progressive-loading-placeholder">Medium</a> y <a href="/more-progressive-image-loading">otros sitios</a> hacen). La diferencia es que, en lugar de utilizar una imagen bitmap como JPG o WebP, el placeholder usa SVG.</p>
+<p>Si ejecutamos SQIP con las imágenes originales obtenemos esto:</p>
+<div>
+<img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:342,f_auto,c_scale,w_670/v1509370309/pexels-photo-281184-square-sqip.svg_zspgb0.png"
+    sizes="(max-width: 768px) 50vw, 342px" alt="SQIP aplicado a una imagen" style="width:49%;float:left;margin-right:2%;padding-bottom:10px" /><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:342,f_auto,c_scale,w_670/v1509370308/pexels-photo-618463-square-sqip.svg_qjrexh.png"
+    sizes="(max-width: 768px) 50vw, 342px" alt="SQIP aplicado a una imagen" style="width:49%;float:left;padding-bottom:10px" />
+</div>
+
+<p><small class="caption">Las imágenes resultantes tras aplicar SQIP sobre <a href="/assets/images/posts/svg-placeholders/pexels-photo-281184-square-sqip.svg">la primera imagen</a> y <a href="/assets/images/posts/svg-placeholders/pexels-photo-618463-square-sqip.svg">la segunda</a>.</small></p>
+<p>El SVG resultante ocupa ~900 bytes. Inspeccionando el código podemos observar el filtro <code>feGaussianBlur</code> aplicado al grupo de formas:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0 0 2000 2000<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>b<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>feGaussianBlur</span> <span class="token attr-name">stdDeviation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>12<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#817c70<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M0 0h2000v2000H0z<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span>
+    <span class="token attr-name">filter</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>url(#b)<span class="token punctuation">"</span></span>
+    <span class="token attr-name">transform</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>translate(4 4) scale(7.8125)<span class="token punctuation">"</span></span>
+    <span class="token attr-name">fill-opacity</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>.5<span class="token punctuation">"</span></span>
+  <span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span>
+      <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#000210<span class="token punctuation">"</span></span>
+      <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">transform</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>matrix(50.41098 -3.7951 11.14787 148.07886 107 194.6)<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span>
+      <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#eee3bb<span class="token punctuation">"</span></span>
+      <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">transform</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>matrix(-56.38179 17.684 -24.48514 -78.06584 205 110.1)<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span>
+      <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#fff4bd<span class="token punctuation">"</span></span>
+      <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">transform</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>matrix(35.40604 -5.49219 14.85017 95.73337 16.4 123.6)<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#79c7db<span class="token punctuation">"</span></span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>21<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>39<span class="token punctuation">"</span></span> <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>65<span class="token punctuation">"</span></span> <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>65<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#0c1320<span class="token punctuation">"</span></span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>117<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>38<span class="token punctuation">"</span></span> <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>34<span class="token punctuation">"</span></span> <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>47<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span>
+      <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#5cb0cd<span class="token punctuation">"</span></span>
+      <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span>
+      <span class="token attr-name">transform</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>matrix(-39.46201 77.24476 -54.56092 -27.87353 219.2 7.9)<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#e57339<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M271 159l-123-16 43 128z<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ellipse</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#47332f<span class="token punctuation">"</span></span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>214<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>237<span class="token punctuation">"</span></span> <span class="token attr-name">rx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>242<span class="token punctuation">"</span></span> <span class="token attr-name">ry</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>19<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>SQIP también puede imprimir como resultado una etiqueta <code>img</code> con el contenido del SVG codificado en Base 64:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+  <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>640<span class="token punctuation">"</span></span>
+  <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>640<span class="token punctuation">"</span></span>
+  <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>example.jpg<span class="token punctuation">"</span></span>
+  <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Add descriptive alt text<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name">
+  <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">background-size</span><span class="token punctuation">:</span> cover<span class="token punctuation">;</span> <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token url">url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAw...&lt;stripped base 64>...PjwvZz48L3N2Zz4=)</span><span class="token punctuation">;</span></span><span class="token punctuation">"</span></span>
+<span class="token punctuation">/></span></span>
+</code></pre>
+<h4 id="Siluetas"><a href="#Siluetas" class="headerlink" title="Siluetas"></a>Siluetas</h4><p>Acabamos de ver cómo usar SVGs para contornos y formas básicas. Otra posibilidad es vectorizar las imágenes “trazándolas”. <a href="https://twitter.com/mikaelainalem">Mikael Ainalem</a> compartió <a href="https://codepen.io/ainalem/full/aLKxjm/">un codepen</a> hace unos días mostrando cómo usar una silueta con 2 colores como placeholder. El resultado es muy bonito:</p>
+<video controls style="max-width:100%" width="690" height="459">
+  <source src="https://res.cloudinary.com/jmperez/video/upload/dpr_auto,f_auto,q_auto,c_scale/v1509278615/silhouette-lazy-loading_evq9xq.mp4" type="video/mp4">
+</video>
+
+<p>En este caso los SVGs están dibujados a mano, pero la técnica inspiró rápidamente a desarrolladores que crearon integraciones con herramientas que automatizaban el proceso.</p>
+<ul>
+<li><a href="https://www.gatsbyjs.org/">Gatsby</a>, un generador de sitios estáticos basado en React, soporta estos SVGs trazados. Utiliza <a href="https://www.npmjs.com/package/potrace">un port de potrace a JavaScript</a> para vectorizar las imágenes.</li>
+</ul>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Excited to announce that Gatsby now has super simple support for traced SVG!<br><br>Thanks to <a href="https://twitter.com/fk?ref_src=twsrc%5Etfw">@fk</a> for his great work!<a href="https://t.co/XfgEDbSILA">https://t.co/XfgEDbSILA</a> <a href="https://t.co/wTwOgT8C5V">pic.twitter.com/wTwOgT8C5V</a></p>&mdash; Gatsby (@gatsbyjs) <a href="https://twitter.com/gatsbyjs/status/923304195666485248?ref_src=twsrc%5Etfw">25 October 2017</a></blockquote>
+
+<ul>
+<li><a href="https://craftcms.com/">Craft 3 CMS</a>, que también añadió soporte para siluetas. Utiliza <a href="https://github.com/nystudio107/craft3-imageoptimize/blob/master/src/lib/Potracio.php">un port de potrace a PHP</a>.</li>
+</ul>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Cool video of using inline SVG images as lazy loading placeholders w/ ImageOptimize &amp; Craft 3 from <a href="https://twitter.com/slebbo?ref_src=twsrc%5Etfw">@slebbo</a> <a href="https://t.co/E1dYA4ayow">https://t.co/E1dYA4ayow</a> <a href="https://twitter.com/hashtag/craftcms?src=hash&amp;ref_src=twsrc%5Etfw">#craftcms</a> <a href="https://t.co/ruf8i6URCT">pic.twitter.com/ruf8i6URCT</a></p>&mdash; nystudio107 (@nystudio107) <a href="https://twitter.com/nystudio107/status/920673966091534338?ref_src=twsrc%5Etfw">18 October 2017</a></blockquote>
+
+<ul>
+<li><a href="https://github.com/EmilTholin/image-trace-loader">image-trace-loader</a>, un loader de Webpack que utiliza potrace para procesar las imágenes.</li>
+</ul>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">I just released image-trace-loader, a <a href="https://twitter.com/hashtag/webpack?src=hash&amp;ref_src=twsrc%5Etfw">#webpack</a> loader that exports traced outlines as image/svg+xml data.<a href="https://t.co/2VZaKVaE4p">https://t.co/2VZaKVaE4p</a> <a href="https://t.co/vRma67R7zb">pic.twitter.com/vRma67R7zb</a></p>&mdash; Emil Tholin (@Tholle1234) <a href="https://twitter.com/Tholle1234/status/920423596346019840?ref_src=twsrc%5Etfw">17 October 2017</a></blockquote>
+
+<p>También es interesante ver una comparación de la salida obtenida por el loader de webpack de Emil (basado en potrace) y los SVGs dibujados a mano de Mikael.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Comparison of <a href="https://twitter.com/mikaelainalem?ref_src=twsrc%5Etfw">@mikaelainalem</a> &#39;s SVG lazy-loading technique <a href="https://t.co/mbqVpxzn72">https://t.co/mbqVpxzn72</a> with @Tholle123&#39;s webpack loader <a href="https://t.co/3jxjtNP8dm">https://t.co/3jxjtNP8dm</a> <a href="https://t.co/tChcPK0mIK">pic.twitter.com/tChcPK0mIK</a></p>&mdash; Yuriy Nemtsov (@nemtsovy) <a href="https://twitter.com/nemtsovy/status/920647706799955970?ref_src=twsrc%5Etfw">18 October 2017</a></blockquote>
+
+<p>Asumo que la salida generada por potrace utiliza las opciones por defecto. Adicionalmente, es posible ajustarlas. Lee <a href="https://github.com/EmilTholin/image-trace-loader#options">las opciones para image-trace-loader</a>, que son prácticamente <a href="https://www.npmjs.com/package/potrace#parameters">las que se pasan a potrace</a>.</p>
+<h2 id="Resumen"><a href="#Resumen" class="headerlink" title="Resumen"></a>Resumen</h2><p>Hemos visto diferentes herramientas y técnicas para generar SVGs basados en imágenes bitmap y utilizarlos como placeholders. De la misma forma que <a href="/webp-placeholder-images/">WebP es un formato fantástico para previsualizaciones</a>, SVG es también un formato interesante para aplicar en los placeholders. Podemos controlar el nivel de detalle (y por consiguiente, su tamaño), es altamente comprimible y es fácil de manipular con CSS y JS.</p>
+<h2 id="Recursos-extra"><a href="#Recursos-extra" class="headerlink" title="Recursos extra"></a>Recursos extra</h2><p>Este post llegó a <a href="https://news.ycombinator.com/item?id=15696596">lo alto de Hacker News, consiguiendo muchos puntos y comentarios</a>. Me siento orgulloso por ello, y por todos los enlaces a otros recursos que han sido compartidos en los comentarios de esa página. Aquí tienes algunos de ellos:</p>
+<ul>
+<li><a href="https://github.com/Tw1ddle/geometrize-haxe">Geometrize</a> es un port de Primitive escrito en Haxe. También hay <a href="https://github.com/Tw1ddle/geometrize-haxe-web">una implementación en JavaScript</a> que puedes probar directamente <a href="http://www.samcodes.co.uk/project/geometrize-haxe-web/">en tu navegador</a>.</li>
+<li><a href="https://github.com/ondras/primitive.js">Primitive.js</a>, que es un port de Primitive en JavaScript. También, <a href="https://github.com/cielito-lindo-productions/primitive.nextgen">primitive.nextgen</a>, que es un port de la aplicación de escritorio de Primitive utilizando Primitive.js y Electron.</li>
+<li>Hay un par de cuentas de Twitter donde puedes ver ejemplos de imágenes generadas con Primitive y Geometrize: <a href="https://twitter.com/PrimitivePic">@PrimitivePic</a> y <a href="https://twitter.com/Geometrizer">@Geometrizer</a>.</li>
+<li><a href="https://github.com/jankovicsandras/imagetracerjs">imagetracerjs</a>, que es un tracer de imágenes ráster y vectorizador escrito en JavaScript. También hay ports para <a href="https://github.com/jankovicsandras/imagetracerjava">Java</a> y <a href="https://github.com/jankovicsandras/imagetracerandroid">Android</a>.</li>
+</ul>
+<h2 id="Posts-relacionados"><a href="#Posts-relacionados" class="headerlink" title="Posts relacionados"></a>Posts relacionados</h2><p>Si te ha gustado este post, echa un vistazo a estos otros en los que he escrito sobre técnicas para cargar imágenes:</p>
+<ul>
+<li><a href="/medium-image-progressive-loading-placeholder">Cómo Medium carga imágenes de forma progresiva</a></li>
+<li><a href="/webp-placeholder-images">Usando WebP para crear pequeñas previsualizaciones</a></li>
+<li><a href="/more-progressive-image-loading">Más ejemplos de carga de imágenes progresiva</a></li>
+</ul>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+]]></content>
+    
+    <summary type="html">
+    
+      Optimización del rendimiento web utilizando carga diferida de imágenes con SVGs como placeholders, representando contornos, formas y siluetas.
+    
+    </summary>
+    
+    
+      <category term="svg" scheme="https://jmperezperez.com/tags/svg/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Duotone using CSS blend modes</title>
+    <link href="https://jmperezperez.com//duotone-using-css-blend-modes"/>
+    <id>https://jmperezperez.com//duotone-using-css-blend-modes</id>
+    <published>2017-10-26T04:15:00.000Z</published>
+    <updated>2021-12-14T07:52:53.529Z</updated>
+    
+    <content type="html"><![CDATA[<p>In a past post I explained <a href="/duotone-using-fecolormatrix/">how to use SVG and a <code>feColorMatrix</code> filter</a> to apply a duotone effect to an image. This time I’m going to show how to achieve a similar effect with only CSS.</p>
+<div style="position:relative;padding-bottom:56.25%;margin-bottom:1rem">
+<img
+    loading="lazy"
+    style="max-width:100%; border: 0;position:absolute;top:0;left:0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1587066714/duotone.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1587066714/duotone.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1587066714/duotone.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1587066714/duotone.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1587066714/duotone.png"
+    alt="Duotone effect on image using CSS blend modes" />
+</div>
+
+<span id="more"></span>
+
+<p>Demo &amp; Code: <a href="http://codepen.io/jmperez/pen/wrVxga">https://codepen.io/jmperez/pen/wrVxga</a></p>
+<iframe id="cp_embed_wrVxga" src="//codepen.io/jmperez/embed/wrVxga?height=367&theme-id=0&slug-hash=wrVxga&default-tab=result" scrolling="no" frameborder="no" height="367" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+
+<p>The code consists of a <code>&lt;div/&gt;</code> that has an image set as a background. Then, we add a <code>::before</code> and an <code>::after</code> pseudo-elements with the colours we want to apply and the right blend modes.</p>
+<p>Previously, my colleague Thodoris described how to achieve this effect <a href="http://blog.72lions.com/blog/2015/7/7/duotone-in-js">in JS using Canvas</a> and <a href="http://blog.72lions.com/blog/2015/7/18/duotone-in-ios">in iOS</a>. I also reproduced it using <a href="/duotone-using-fecolormatrix/">SVG and a <code>feColorMatrix</code> filter</a>.</p>
+<p>This version is based on the technique described by Una Kravets:</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Duotone images are so <a href="https://twitter.com/hashtag/trendy?src=hash&amp;ref_src=twsrc%5Etfw">#trendy</a> right now 😎<br><br>Had some airport time so I drew out how to get this effect w/one div in CSS 😊 <a href="https://twitter.com/hashtag/devdoodles?src=hash&amp;ref_src=twsrc%5Etfw">#devdoodles</a> <a href="https://t.co/WENOWlwcUY">pic.twitter.com/WENOWlwcUY</a></p>&mdash; Una Kravets 👩🏻‍💻 (@Una) <a href="https://twitter.com/Una/status/923231326420922368?ref_src=twsrc%5Etfw">25 October 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>which is also what the <a href="http://lukyvj.github.io/colofilter.css/">colofilter.css</a> library is based on to achieve the duotone effect.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Using CSS blend modes to apply a duotone effect to an image.
+    
+    </summary>
+    
+    
+      <category term="svg" scheme="https://jmperezperez.com/tags/svg/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>More examples of Progressive Image Loading</title>
+    <link href="https://jmperezperez.com//more-progressive-image-loading"/>
+    <id>https://jmperezperez.com//more-progressive-image-loading</id>
+    <published>2017-03-05T17:45:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>In <a href="/medium-image-progressive-loading-placeholder">a past post</a> I dissected a technique used by Medium to display images, transitioning from a blurry image to the final one. Since then I have found some more sites following a similar approach. Let’s see how Quora, Quartz and Clicktorelease do it.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Introduction"><a href="#Quick-Introduction" class="headerlink" title="Quick Introduction"></a>Quick Introduction</h2><p>Images are the largest assets on web pages and they account for two thirds of the bytes. Image optimisation and choosing the right image format is paramount. In addition, some sites are also using small thumbnails as placeholders while the final image hasn’t loaded yet. This technique is also called <em>“<a href="https://css-tricks.com/the-blur-up-technique-for-loading-background-images/">blur-up</a>“</em>. It basically tries to improve user’s perceived performance while also saving data traffic when combined with lazy-loading.</p>
+<p>There are other alternatives to this approach. One of them consists of using a single JPEG image, tweaking its scan script to quickly render an initial pixelated version of the image and progressively load the final image in several scans. I recommend you having a look at <a href="http://cloudinary.com/blog/progressive_jpegs_and_green_martians">Progressive JPEGs and green Martians</a> to know more about this.</p>
+<p>Also, if you like images optimisation, follow <a href="http://cloudinary.com/blog">Cloudinary’s Blog</a>, full with useful posts on this topic.</p>
+<h3 id="Quartz"><a href="#Quartz" class="headerlink" title="Quartz"></a>Quartz</h3><p>Take a look at the following video, recorded when accessing <a href="https://qz.com/894001/theres-a-wrong-and-a-right-way-to-talk-to-your-dog-according-to-science/">a page on QZ.com</a> with a throttled connection:</p>
+<figure class="videoWrapper"><iframe src="https://www.youtube.com/embed/Cbz3V4FGCE4" allowfullscreen="" width="720" height="393" frameborder="0"></iframe></figure>
+
+<p>Quartz’s implementation follows this steps:</p>
+<ol>
+<li> Request a small <code>&lt;img/&gt;</code> that will be blurred. In their case, they use 50px width images, with a 80% quality.</li>
+<li> Apply blur effect using a CSS filter.</li>
+<li> Request the large image.</li>
+</ol>
+<p>One of the interesting points about Quartz is that their markup specifies the large image using the syntax for responsive images. The main difference is that they use a <code>data-srcset</code> attribute, so they control when to make the request and prevent the browser from requesting the large version of the image when the markup is parsed.</p>
+<p>I find this approach very neat since they try to follow the “standard” way to serve images, adding extra bits to lazy load and animate the transition.</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>progressive-image featured-image size-extra-large<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token comment" spellcheck="true">&lt;!-- a picture element with intrinsic ratio --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>picture</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">padding-bottom</span><span class="token punctuation">:</span> <span class="token number">56.1875%</span><span class="token punctuation">;</span> <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token url">url(https://qzprod.files.wordpress.com/2017/01/fish.jpg?quality=80&amp;strip=all&amp;w=50)</span><span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- the small image that will be blurred --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://qzprod.files.wordpress.com/2017/01/fish.jpg?quality<span class="token punctuation">=</span>80&amp;strip<span class="token punctuation">=</span>all&amp;w<span class="token punctuation">=</span>50<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>progressive-image-thumbnail<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- a lazy responsive image with data-srcset --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+      <span class="token attr-name">itemprop</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>image<span class="token punctuation">"</span></span>
+      <span class="token attr-name">data-srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://qzprod.files.wordpress.com/2017/01/fish.jpg?quality<span class="token punctuation">=</span>80&amp;strip<span class="token punctuation">=</span>all&amp;w<span class="token punctuation">=</span>320 320w, https://qzprod.files.wordpress.com/2017/01/fish.jpg?quality<span class="token punctuation">=</span>80&amp;strip<span class="token punctuation">=</span>all&amp;w<span class="token punctuation">=</span>640 640w, https://qzprod.files.wordpress.com/2017/01/fish.jpg?quality<span class="token punctuation">=</span>80&amp;strip<span class="token punctuation">=</span>all&amp;w<span class="token punctuation">=</span>940 940w, https://qzprod.files.wordpress.com/2017/01/fish.jpg?quality<span class="token punctuation">=</span>80&amp;strip<span class="token punctuation">=</span>all&amp;w<span class="token punctuation">=</span>1600 1600w, https://qzprod.files.wordpress.com/2017/01/fish.jpg?quality<span class="token punctuation">=</span>80&amp;strip<span class="token punctuation">=</span>all&amp;w<span class="token punctuation">=</span>3200 3200w<span class="token punctuation">"</span></span>
+      <span class="token attr-name">data-src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://qzprod.files.wordpress.com/2017/01/fish.jpg?quality<span class="token punctuation">=</span>80&amp;strip<span class="token punctuation">=</span>all&amp;w<span class="token punctuation">=</span>320<span class="token punctuation">"</span></span>
+      <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>progressive-image-large<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>INDIA-fishermen<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- a noscript fallback --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>noscript</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+        <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://qzprod.files.wordpress.com/2017/01/fish.jpg?quality<span class="token punctuation">=</span>80&amp;strip<span class="token punctuation">=</span>all&amp;w<span class="token punctuation">=</span>320<span class="token punctuation">"</span></span>
+        <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>INDIA-fishermen<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>noscript</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>picture</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">></span></span>
+</code></pre>
+<h3 id="Quora"><a href="#Quora" class="headerlink" title="Quora"></a>Quora</h3><p>Quora also implements a blur-up technique for the images in their posts. To see an example <a href="https://www.quora.com/How-does-Quora-pre-load-images">head to this page</a>.</p>
+<p>Here we see what the page looks like when displaying the blurry placeholder:</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510477139/quora-progressive-image-loading_fze0za.png"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Screenshot from Quora showing the blurry placeholder"/></p>
+<p>Let’s dive into the code to see what’s going on. First of all, let’s focus on the HTML markup:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>qtext_image_wrapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- a canvas with a data-uri containing the thumbnail --></span>
+    <span class="token comment" spellcheck="true">&lt;!-- which is in PNG format and very small (in this page 6x10 px) --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>qtext_image_placeholder portrait qtext_image zoomable_in zoomable_in_feed<span class="token punctuation">"</span></span>
+        <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>499<span class="token punctuation">"</span></span>
+        <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>874<span class="token punctuation">"</span></span>
+        <span class="token attr-name">data-src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>data:image/PNG;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAQCdASoGAAoAAUAmJYgCdEf/g…iD0z/yA/5ipcuk5xHSdrS38j8CkH7s+vKeZu9EwRy0f/KPIlo/+UifdfcpiRcJiRnXXAAAAA<span class="token punctuation">=</span><span class="token punctuation">=</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- a lazy image with src set as data-src and master_src --></span>
+    <span class="token comment" spellcheck="true">&lt;!-- data-src is a webp image (at least when requested using Chrome). --></span>
+    <span class="token comment" spellcheck="true">&lt;!-- the size for data-src in this page is ~34kB --></span>
+    <span class="token comment" spellcheck="true">&lt;!-- master_src is a png image. Its size in this page is ~177kB --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>portrait qtext_image zoomable_in zoomable_in_feed lazy_loaded lazy_loading<span class="token punctuation">"</span></span>
+        <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span>
+        <span class="token attr-name">data-src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://qph.ec.quoracdn.net/main-qimg-f35a9a38e575bfbe76806b7838eba025-p<span class="token punctuation">"</span></span>
+        <span class="token attr-name">master_src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://qph.ec.quoracdn.net/main-qimg-f35a9a38e575bfbe76806b7838eba025<span class="token punctuation">"</span></span>
+        <span class="token attr-name">master_w</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>499<span class="token punctuation">"</span></span>
+        <span class="token attr-name">master_h</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>874<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Why to use both <code>data-src</code> and <code>master-src</code>? The <code>master_src</code> image is the one requested when clicking on the image to get a larger view.</p>
+<p>In Quora there is no blur effect applied. They use <a href="https://developer.mozilla.org/en/docs/Web/API/CanvasRenderingContext2D/drawImage"><code>canvas.drawImage()</code></a> to render the tiny thumbnail in the canvas. You can see this by inspecting their code, that lives in the <code>shared/lazy_load_images</code> module that gets bundled in the main JS file:</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// draw the data-uri image on the canvas</span>
+<span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"data-src"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> t <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">;</span>
+        t<span class="token punctuation">.</span>src <span class="token operator">=</span> e<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"data-src"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> i <span class="token operator">=</span> e<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"width"</span><span class="token punctuation">)</span>
+          <span class="token punctuation">,</span> n <span class="token operator">=</span> e<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"height"</span><span class="token punctuation">)</span>
+          <span class="token punctuation">,</span> o <span class="token operator">=</span> e<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">"2d"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"load"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            o<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> n<span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// go through all canvas on the page with a data-src</span>
+<span class="token keyword">function</span> <span class="token function">r</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> e <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">"canvas[data-src]"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    d<span class="token punctuation">.</span><span class="token function">insertionQ</span><span class="token punctuation">(</span><span class="token string">"canvas[data-src]"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">every</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token function">a</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span>forEach<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>e<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>In short, Quora’s technique consists of:</p>
+<ol>
+<li>Draw an inlined tiny PNG in a canvas</li>
+<li>Request the large image using WebP (if supported) or other format.</li>
+<li>Set the large image as source for the <code>&lt;img/&gt;</code> element, animate its opacity and hide the canvas.</li>
+</ol>
+<h3 id="Clicktorelease"><a href="#Clicktorelease" class="headerlink" title="Clicktorelease"></a>Clicktorelease</h3><p><a href="https://www.clicktorelease.com/">Clicktorelease.com</a>, <a href="https://twitter.com/thespite">@thespite</a>’s website, has just been redesigned and he has also added lazy-loading of images.</p>
+<video width="1616" height="1204" controls>
+  <source src="/assets/images/posts/clicktorelease.webm" type="video/webm">
+  <source src="/assets/images/posts/clicktorelease.mp4" type="video/mp4">
+</video>
+
+<p>The most interesting bit here is that the thumbnail is not the image itself, but the values <a href="https://twitter.com/thespite/status/827110706642305024">of the DCT matrix for the thumbnail</a>, which makes the payload really small.</p>
+<p>These are the steps to load an image:</p>
+<ol>
+<li>Make a request for the <code>thumb-src</code> image. It is a 16x4 PNG thumbnail whose size is usually in the 300B.</li>
+<li>Create a <code>&lt;canvas/&gt;</code> and draw the image resulting from the calculation the inverse DCT of the thumbnail.</li>
+<li>Request the large image using the <code>original-src</code> url. If the browser supports the webp image format, then “.webp” is appended to the src and a webp image is requested.</li>
+</ol>
+<p>The initial markup looks like this:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hero image<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- the lazy loaded image --></span>
+    <span class="token comment" spellcheck="true">&lt;!-- thumb-src is a matrix of DCT coefficients --></span>
+    <span class="token comment" spellcheck="true">&lt;!-- note that a background-color is also set so --></span>
+    <span class="token comment" spellcheck="true">&lt;!-- it is rendered while the image is fetched --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">thumb-lazy</span>
+      <span class="token attr-name">original-src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/images/graphical-web-2016.jpg<span class="token punctuation">"</span></span>
+      <span class="token attr-name">thumb-src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/images/graphical-web-2016-thumb.png<span class="token punctuation">"</span></span>
+      <span class="token attr-name">thumb-width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2880<span class="token punctuation">"</span></span> <span class="token attr-name">thumb-height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1800<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name">
+      <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">background-color</span><span class="token punctuation">:</span><span class="token hexcode">#121513</span><span class="token punctuation">;</span><span class="token property">width</span><span class="token punctuation">:</span><span class="token number">100%</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- a div with intrinsic ratio --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">padding-bottom</span><span class="token punctuation">:</span><span class="token number">62.5%</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token comment" spellcheck="true">&lt;!-- fallback for browsers not using JS / bots --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>noscript</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/images/graphical-web-2016.jpg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>noscript</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>I think it is a very good example of progressive enhancement, providing a <code>&lt;noscript&gt;</code> alternative, and going all the way up from a solid background-color, to a blurry gradient and finally the large image with support for webp.</p>
+<h2 id="Wrapping-Up"><a href="#Wrapping-Up" class="headerlink" title="Wrapping Up"></a>Wrapping Up</h2><p>It’s very interesting seeing these slightly variations for implementing progressive image loading. Some of them work without Javascript, some others are built on responsive images, some use CSS filters and others canvas.</p>
+<p>If you want to follow a basic example, check <a href="http://codepen.io/jmperez/pen/yYjPER">my “Reproducing Medium loading image effect” pen</a>. Let me know if you come across any other site implementing these techniques.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Medium is not the only site using blurry placeholders. Let&#39;s look at how Quora and Quartz implement a similar technique.
+    
+    </summary>
+    
+    
+      <category term="svg" scheme="https://jmperezperez.com/tags/svg/"/>
+    
+      <category term="image performance" scheme="https://jmperezperez.com/tags/image-performance/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spotify&#39;s new brand identity using feColorMatrix SVG filters</title>
+    <link href="https://jmperezperez.com//duotone-using-fecolormatrix"/>
+    <id>https://jmperezperez.com//duotone-using-fecolormatrix</id>
+    <published>2016-02-14T10:40:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is a short post where I show how to use SVG and a <code>feColorMatrix</code> filter to apply a duotone effect to an image.</p>
+<span id="more"></span>
+<p>Demo &amp; Code: <a href="http://codepen.io/jmperez/pen/LGqaxQ">http://codepen.io/jmperez/pen/LGqaxQ</a></p>
+<p>You may have seen that the <a href="http://www.fastcodesign.com/3043547/spotifys-new-look-signals-its-identity-shift">Spotify’s new brand identity</a> is full of duotone images. My colleague Thodoris described how to achieve this effect <a href="http://blog.72lions.com/blog/2015/7/7/duotone-in-js">in JS</a> and <a href="http://blog.72lions.com/blog/2015/7/18/duotone-in-ios">in iOS</a>.</p>
+<p>The JS version uses <code>&lt;canvas&gt;</code>, and after reading <a href="http://alistapart.com/article/finessing-fecolormatrix">A List Apart’s Finessing feColorMatrix</a>, where they also mention the duotone images used in <a href="https://yearinmusic.spotify.com/">Spotify’s Year in Music</a>, I forked <a href="http://codepen.io/72lions/pen/jPzLJX">Thodoris’ pen</a> and used <code>feColorMatrix</code> instead:</p>
+<iframe id="cp_embed_LGqaxQ" src="//codepen.io/jmperez/embed/LGqaxQ?height=367&theme-id=0&slug-hash=LGqaxQ&default-tab=result" scrolling="no" frameborder="no" height="367" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+
+<p>The code consists of a <code>&lt;svg/&gt;</code> that has an <code>&lt;image/&gt;</code> to which we apply a <code>&lt;filter /&gt;</code>. The filter uses a <code>feColorMatrix</code>, and its values are calculated using JS, though if you already know the range of colours you want to apply there is no need to run JS, just set them in the markup. If you have any issues understanding how the matrix is calculated, check <a href="http://stackoverflow.com/questions/21977929/match-colors-in-fecolormatrix-filter">this question on StackOverflow</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Using feColorMatrix SVG filters to apply a duotone effect to an image.
+    
+    </summary>
+    
+    
+      <category term="svg" scheme="https://jmperezperez.com/tags/svg/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SVG Optimisation using SVGOMG and FontForge</title>
+    <link href="https://jmperezperez.com//optimising-svgs"/>
+    <id>https://jmperezperez.com//optimising-svgs</id>
+    <published>2016-01-30T07:40:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<style>.language-xml{white-space: normal}</style>
+
+<p>Lots of websites have started replacing their icon fonts and small icons with SVGs. They support CSS manipulations, animations and are great for responsive sites. But it is important to keep an eye on their size.</p>
+<span id="more"></span>
+
+<h2 id="How-SVGs-are-included-in-a-page"><a href="#How-SVGs-are-included-in-a-page" class="headerlink" title="How SVGs are included in a page"></a>How SVGs are included in a page</h2><p>Since the SVGs are usually small in size, lots of developers decide to inline them. Especially when replacing a web icon font, which can be fetch in a single request.</p>
+<p>Some sites inline the SVGs as part of their CSS file. This can be done uri-encoding the SVG data, or converting it to base 64, but <a href="https://css-tricks.com/probably-dont-base64-svg/">this one results in a larger payload</a>.</p>
+<div style="text-align:center">
+[![Including SVGs in the markup](/assets/images/posts/svg-inline-html-use.png)](/assets/images/posts/svg-inline-html-use.png)
+</div>
+
+<p>Some other sites include them as part of the markup, defining them as <code>&lt;symbol /&gt;</code>s, and adding a reference to them where they should be rendered through the <code>&lt;use /&gt;</code> tag. I like this one because it is easier to just serve the SVGs used in that page. If you use this, remember to define the symbols above the reference to them, or some browsers (e.g. Safari on iPhone) will not render the SVGs.</p>
+<div style="text-align:center">
+[![Including SVGs inlined in the CSS](/assets/images/posts/svg-inline-css.png)](/assets/images/posts/svg-inline-css.png)
+</div>
+
+<p>In any case, the SVGs are making their way to the critical path, and saving bytes won’t result in a worse experience.</p>
+<h2 id="Next-step-optimise-the-SVGs"><a href="#Next-step-optimise-the-SVGs" class="headerlink" title="Next step, optimise the SVGs"></a>Next step, optimise the SVGs</h2><p>So far we have our SVGs on the page and they are rendered. SVGs are text-based and they compress really well. However, there is normally room for improvement and we can shave some bytes using an optimiser.</p>
+<p>If you have used ImageOptim to optimise bitmap images, then you will love this one. <a href="https://jakearchibald.github.io/svgomg/">SVGOMG</a> is a website where you drag&amp;drop your SVG and get an optimised version. It uses <a href="https://github.com/svg/svgo">svgo</a>, which you can also use from the console or as part of your build process.</p>
+<p>SVGO will optimise paths and merge layers. If you want to be able to open the optimised SVG and edit in in some tool like Inkscape, remember to save the original one somewhere else.</p>
+<h2 id="Going-beyond-more-optimisations"><a href="#Going-beyond-more-optimisations" class="headerlink" title="Going beyond, more optimisations"></a>Going beyond, more optimisations</h2><p>If you have read this far, you will welcome ideas to further optimise your SVGs. A few weeks ago I came across a series of posts by <a href="https://twitter.com/larsenwork">Andreas Larsen</a> on Medium that I strongly recommend checking out:</p>
+<ul>
+<li><a href="https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-1-67e8f2d4035#.2bnvih6cw">Optimising SVGs for Web Use - Part 1</a></li>
+<li><a href="https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-6711cc15df46#.al4v73web">Optimising SVGs for Web Use - Part 2</a></li>
+<li><a href="https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-1-598815d74f9c#.rv7i93abh">Optimising SVGs for Web Use - Part 2½</a></li>
+</ul>
+<p>Optimising SVGs “by hand” might look a bit tedious and only at reach of a few ones, but the gains are big.</p>
+<h2 id="An-example-Spotify-logo"><a href="#An-example-Spotify-logo" class="headerlink" title="An example: Spotify logo"></a>An example: Spotify logo</h2><p>I decided to try to use some of Andreas’ ideas and try to optimise the Spotify logo.</p>
+<div style="text-align:center">
+[![Editing the Spotify logo in fontForge](/assets/images/posts/spotify-fontforge.png)](/assets/images/posts/spotify-fontforge.png)
+</div>
+
+<p>This is what I did:</p>
+<ol>
+<li> Install fontForge: I had to install X11 and then fontForge. fontForge can be used to create and edit fonts, so the grid and rules have been thought for that use case. Still, it can be used for a regular SVG.</li>
+<li> Import the SVG that you want to optimise.</li>
+<li> Scale it up using Element &gt; Transformations &gt; Transform. We will be rounding the values to integers, so try to find a multiplier that will reduce the <em>error</em> when rounding. Rounding the numbers means that we remove the decimal part, but be careful not to scale the SVG up a lot, or the integer part will also grow.</li>
+<li> Simplify the path using <code>Element &gt; Simplify &gt; Simplify</code>. If you see some path being oversimplified, undo and simplify the rest.</li>
+<li> Round to integer using <code>Element &gt; Round &gt; To Int</code>.</li>
+<li> In my case, I had to tweak the position of the SVG. It might be because I was using wrong values for ascent, descent, underline and height. You can use <code>Element &gt; Font Info &gt; General</code> to modify these values.</li>
+<li> Export it as SVG.</li>
+<li> Open <a href="https://jakearchibald.github.io/svgomg/">SVGOMG</a>, import the resulting SVG and download the optimised one.</li>
+</ol>
+<p>In my case it went down from 2.24kB to 915 bytes, both compressed as reported by SVGOMG.</p>
+<p>Original:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Layer_1<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">enable-background</span><span class="token punctuation">:</span>new <span class="token number">0</span> <span class="token number">0</span> <span class="token number">566.93</span> <span class="token number">170.04</span></span><span class="token punctuation">"</span></span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xml:</span>space</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>preserve<span class="token punctuation">"</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0 0 566.93 170.04<span class="token punctuation">"</span></span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1.1<span class="token punctuation">"</span></span> <span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0px<span class="token punctuation">"</span></span> <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0px<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xlink</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/xlink<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>567<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>171<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#000000<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m87.996 1.277c-46.249 0-83.743 37.493-83.743 83.742 0 46.254 37.494 83.745 83.743 83.745 46.251 0 83.743-37.491 83.743-83.745 0-46.246-37.49-83.738-83.744-83.738zm38.404 120.78c-1.504 2.467-4.718 3.24-7.177 1.737-19.665-12.019-44.417-14.734-73.567-8.075-2.809 0.644-5.609-1.117-6.249-3.925-0.643-2.809 1.11-5.609 3.926-6.249 31.9-7.293 59.263-4.154 81.336 9.334 2.46 1.51 3.24 4.72 1.73 7.18zm10.25-22.799c-1.894 3.073-5.912 4.037-8.981 2.15-22.505-13.834-56.822-17.841-83.447-9.759-3.453 1.043-7.1-0.903-8.148-4.35-1.04-3.453 0.907-7.093 4.354-8.143 30.413-9.228 68.221-4.758 94.071 11.127 3.07 1.89 4.04 5.91 2.15 8.976zm0.88-23.744c-26.994-16.031-71.52-17.505-97.289-9.684-4.138 1.255-8.514-1.081-9.768-5.219-1.254-4.14 1.08-8.513 5.221-9.771 29.581-8.98 78.756-7.245 109.83 11.202 3.722 2.209 4.943 7.016 2.737 10.733-2.2 3.722-7.02 4.949-10.73 2.739z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m232.09 78.586c-14.459-3.448-17.033-5.868-17.033-10.953 0-4.804 4.523-8.037 11.249-8.037 6.52 0 12.985 2.455 19.763 7.509 0.205 0.153 0.462 0.214 0.715 0.174 0.253-0.038 0.477-0.177 0.625-0.386l7.06-9.952c0.29-0.41 0.211-0.975-0.18-1.288-8.067-6.473-17.151-9.62-27.769-9.62-15.612 0-26.517 9.369-26.517 22.774 0 14.375 9.407 19.465 25.663 23.394 13.836 3.187 16.171 5.857 16.171 10.63 0 5.289-4.722 8.577-12.321 8.577-8.44 0-15.324-2.843-23.025-9.512-0.191-0.165-0.453-0.24-0.695-0.226-0.255 0.021-0.488 0.139-0.65 0.334l-7.916 9.421c-0.332 0.391-0.29 0.975 0.094 1.313 8.96 7.999 19.98 12.224 31.872 12.224 16.823 0 27.694-9.192 27.694-23.419 0.03-12.01-7.16-18.66-24.77-22.944z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m294.95 64.326c-7.292 0-13.273 2.872-18.205 8.757v-6.624c0-0.523-0.424-0.949-0.946-0.949h-12.947c-0.523 0-0.946 0.426-0.946 0.949v73.602c0 0.523 0.423 0.949 0.946 0.949h12.947c0.522 0 0.946-0.426 0.946-0.949v-23.233c4.933 5.536 10.915 8.241 18.205 8.241 13.549 0 27.265-10.43 27.265-30.368 0.02-19.943-13.7-30.376-27.25-30.376zm12.21 30.375c0 10.153-6.254 17.238-15.209 17.238-8.853 0-15.531-7.407-15.531-17.238 0-9.83 6.678-17.238 15.531-17.238 8.81-0.001 15.21 7.247 15.21 17.237z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m357.37 64.326c-17.449 0-31.119 13.436-31.119 30.592 0 16.969 13.576 30.264 30.905 30.264 17.511 0 31.223-13.391 31.223-30.481 0-17.031-13.62-30.373-31.01-30.373zm0 47.714c-9.281 0-16.278-7.457-16.278-17.344 0-9.929 6.755-17.134 16.064-17.134 9.341 0 16.385 7.457 16.385 17.351 0 9.927-6.8 17.127-16.17 17.127z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m425.64 65.51h-14.247v-14.566c0-0.522-0.422-0.948-0.945-0.948h-12.945c-0.524 0-0.949 0.426-0.949 0.948v14.566h-6.225c-0.521 0-0.943 0.426-0.943 0.949v11.127c0 0.522 0.422 0.949 0.943 0.949h6.225v28.791c0 11.635 5.791 17.534 17.212 17.534 4.644 0 8.497-0.959 12.128-3.018 0.295-0.165 0.478-0.483 0.478-0.821v-10.596c0-0.327-0.17-0.636-0.45-0.807-0.282-0.177-0.633-0.186-0.922-0.043-2.494 1.255-4.905 1.834-7.6 1.834-4.154 0-6.007-1.886-6.007-6.113v-26.756h14.247c0.523 0 0.944-0.426 0.944-0.949v-11.126c0.02-0.523-0.4-0.949-0.93-0.949z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m475.28 65.567v-1.789c0-5.263 2.018-7.61 6.544-7.61 2.699 0 4.867 0.536 7.295 1.346 0.299 0.094 0.611 0.047 0.854-0.132 0.25-0.179 0.391-0.466 0.391-0.77v-10.91c0-0.417-0.268-0.786-0.67-0.909-2.565-0.763-5.847-1.546-10.761-1.546-11.958 0-18.279 6.734-18.279 19.467v2.74h-6.22c-0.522 0-0.95 0.426-0.95 0.948v11.184c0 0.522 0.428 0.949 0.95 0.949h6.22v44.409c0 0.523 0.422 0.949 0.944 0.949h12.947c0.523 0 0.949-0.426 0.949-0.949v-44.406h12.088l18.517 44.398c-2.102 4.665-4.169 5.593-6.991 5.593-2.281 0-4.683-0.681-7.139-2.025-0.231-0.127-0.505-0.148-0.754-0.071-0.247 0.087-0.455 0.271-0.56 0.511l-4.388 9.627c-0.209 0.455-0.03 0.989 0.408 1.225 4.581 2.481 8.716 3.54 13.827 3.54 9.56 0 14.844-4.453 19.502-16.433l22.461-58.04c0.113-0.292 0.079-0.622-0.1-0.881-0.178-0.257-0.465-0.412-0.779-0.412h-13.478c-0.404 0-0.765 0.257-0.897 0.636l-13.807 39.438-15.123-39.464c-0.138-0.367-0.492-0.61-0.884-0.61h-22.12z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m446.5 65.51h-12.947c-0.523 0-0.949 0.426-0.949 0.949v56.485c0 0.523 0.426 0.949 0.949 0.949h12.947c0.522 0 0.949-0.426 0.949-0.949v-56.481c0-0.523-0.42-0.949-0.95-0.949z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m440.1 39.791c-5.129 0-9.291 4.152-9.291 9.281 0 5.132 4.163 9.289 9.291 9.289 5.127 0 9.285-4.157 9.285-9.289 0-5.128-4.16-9.281-9.28-9.281z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>m553.52 83.671c-5.124 0-9.111-4.115-9.111-9.112s4.039-9.159 9.159-9.159c5.124 0 9.111 4.114 9.111 9.107 0 4.997-4.04 9.164-9.16 9.164zm0.05-17.365c-4.667 0-8.198 3.71-8.198 8.253 0 4.541 3.506 8.201 8.151 8.201 4.666 0 8.201-3.707 8.201-8.253 0-4.541-3.51-8.201-8.15-8.201zm2.02 9.138l2.577 3.608h-2.173l-2.32-3.31h-1.995v3.31h-1.819v-9.564h4.265c2.222 0 3.683 1.137 3.683 3.051 0.01 1.568-0.9 2.526-2.21 2.905zm-1.54-4.315h-2.372v3.025h2.372c1.184 0 1.891-0.579 1.891-1.514 0-0.984-0.71-1.511-1.89-1.511z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Optimised:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1134<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>340<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>%23fff<span class="token punctuation">"</span></span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M8 171c0 92 76 168 168 168s168-76 168-168S268 4 176 4 8 79 8 171zm230 78c-39-24-89-30-147-17-14 2-16-18-4-20 64-15 118-8 162 19 11 7 0 24-11 18zm17-45c-45-28-114-36-167-20-17 5-23-21-7-25 61-18 136-9 188 23 14 9 0 31-14 22zM80 133c-17 6-28-23-9-30 59-18 159-15 221 22 17 9 1 37-17 27-54-32-144-35-195-19zm379 91c-17 0-33-6-47-20-1 0-1 1-1 1l-16 19c-1 1-1 2 0 3 18 16 40 24 64 24 34 0 55-19 55-47 0-24-15-37-50-46-29-7-34-12-34-22s10-16 23-16 25 5 39 15c0 0 1 1 2 1s1-1 1-1l14-20c1-1 1-1 0-2-16-13-35-20-56-20-31 0-53 19-53 46 0 29 20 38 52 46 28 6 32 12 32 22 0 11-10 17-25 17zm95-77v-13c0-1-1-2-2-2h-26c-1 0-2 1-2 2v147c0 1 1 2 2 2h26c1 0 2-1 2-2v-46c10 11 21 16 36 16 27 0 54-21 54-61s-27-60-54-60c-15 0-26 5-36 17zm30 78c-18 0-31-15-31-35s13-34 31-34 30 14 30 34-12 35-30 35zm68-34c0 34 27 60 62 60s62-27 62-61-26-60-61-60-63 27-63 61zm30-1c0-20 13-34 32-34s33 15 33 35-13 34-32 34-33-15-33-35zm140-58v-29c0-1 0-2-1-2h-26c-1 0-2 1-2 2v29h-13c-1 0-2 1-2 2v22c0 1 1 2 2 2h13v58c0 23 11 35 34 35 9 0 18-2 25-6 1 0 1-1 1-2v-21c0-1 0-2-1-2h-2c-5 3-11 4-16 4-8 0-12-4-12-12v-54h30c1 0 2-1 2-2v-22c0-1-1-2-2-2h-30zm129-3c0-11 4-15 13-15 5 0 10 0 15 2h1s1-1 1-2V93c0-1 0-2-1-2-5-2-12-3-22-3-24 0-36 14-36 39v5h-13c-1 0-2 1-2 2v22c0 1 1 2 2 2h13v89c0 1 1 2 2 2h26c1 0 1-1 1-2v-89h25l37 89c-4 9-8 11-14 11-5 0-10-1-15-4h-1l-1 1-9 19c0 1 0 3 1 3 9 5 17 7 27 7 19 0 30-9 39-33l45-116v-2c0-1-1-1-2-1h-27c-1 0-1 1-1 2l-28 78-30-78c0-1-1-2-2-2h-44v-3zm-83 3c-1 0-2 1-2 2v113c0 1 1 2 2 2h26c1 0 1-1 1-2V134c0-1 0-2-1-2h-26zm-6-33c0 10 9 19 19 19s18-9 18-19-8-18-18-18-19 8-19 18zm245 69c10 0 19-8 19-18s-9-18-19-18-18 8-18 18 8 18 18 18zm0-34c9 0 17 7 17 16s-8 16-17 16-16-7-16-16 7-16 16-16zm4 18c3-1 5-3 5-6 0-4-4-6-8-6h-8v19h4v-6h4l4 6h5zm-3-9c2 0 4 1 4 3s-2 3-4 3h-4v-6h4z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>You can see how the multiple <code>&lt;path /&gt;</code>s have been merged into one and the values are now integers.</p>
+<p>In this pen I have included both the original and the optimised logo:</p>
+<iframe id="cp_embed_BjYaKg" src="//codepen.io/jmperez/embed/BjYaKg?height=367&theme-id=0&slug-hash=BjYaKg&default-tab=result" scrolling="no" frameborder="no" height="367" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+]]></content>
+    
+    <summary type="html">
+    
+      How to optimise your SVGs rounding values and using SVGOMG
+    
+    </summary>
+    
+    
+      <category term="svg" scheme="https://jmperezperez.com/tags/svg/"/>
+    
+  </entry>
+  
+</feed>

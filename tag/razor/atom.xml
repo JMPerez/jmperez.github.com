@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/razor/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BigPipe in ASP.Net MVC using Razor</title>
+    <link href="https://jmperezperez.com//bigpipe-in-asp-net-mvc-using-razor"/>
+    <id>https://jmperezperez.com//bigpipe-in-asp-net-mvc-using-razor</id>
+    <published>2011-05-22T09:55:24.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>It’s been some time since I posted the tutorial to implement <a href="/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-1">Facebook’s BigPipe using Microsoft ASP.Net MVC</a>. And since then, Razor view engine has increased its presence for providing a way to implement cleaner views and make it easy to avoid ending up with spaghetti code.</p>
+<p>Though now I am focused on PHP, in my previous job we decided to migrate to Razor as soon as possible since it is a more convenient way to implement ASP.NET MVC views, while you can keep your models and controllers code the same. However, Razor does not behave well with the proposed BigPipe solution due to its way of managing the partial views code. You can’t write to the output in your inner views using Response.Write() nor flush because Razor renders pages from inside out. Thus, the inner most view is rendered and written to a buffer, and then the partial view / content place holder where it is defined, and so, until the outer most layout is reached. Then, the content of the buffer is written and flushed to the browser.</p>
+<span id="more"></span>
+<p>This provides the developer interesting new patterns. For instance, you can import JavaScript or CSS files depending on the content rendered in the views, and import them in the head section of your page, since when the layout is reached, we already know which dependencies to load to provide the functionality needed by the different elements of the page. Some days ago I received a message from <strong>James Hull</strong> (<a href="http://twitter.com/bigfellahull">@bigfellahull on twitter</a>) explaining a way to achieve BigPipe using Razor.</p>
+<h2 id="Pagelets-containers"><a href="#Pagelets-containers" class="headerlink" title="Pagelets containers"></a>Pagelets containers</h2><p>The way to define a pagelet container is the same. Just write the container out to the buffer and all is well.</p>
+<pre class=" language-csharp"><code class="language-csharp">helper<span class="token punctuation">.</span>ViewContext<span class="token punctuation">.</span>Writer<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"div id=\""</span> <span class="token operator">+</span> pagelet<span class="token punctuation">.</span>Container <span class="token operator">+</span> <span class="token string">"\"&lt;/div>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="Early-flushing"><a href="#Early-flushing" class="headerlink" title="Early flushing"></a>Early flushing</h2><p>However, to perform the early flush and flushing each pagelet required a little thinking. James has been looking for a solution and he found out that the best approach is to manually write the buffer to the response.</p>
+<p>So, in the layout (master) page, we can cast the ViewContext.Writer buffer to a string writer and then get the underlining string builder. Then you can write this string builder to the response, flush it and set the string builder’s length to 0. This seems to be what razor does under the covers so we are just doing it a little earlier.</p>
+<pre class=" language-csharp"><code class="language-csharp"><span class="token keyword">var</span> sb <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>StringWriter<span class="token punctuation">)</span>ViewContext<span class="token punctuation">.</span>Writer<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetStringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Response<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>sb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Response<span class="token punctuation">.</span><span class="token function">Flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sb<span class="token punctuation">.</span>Length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+Html<span class="token punctuation">.</span><span class="token function">ExecutePagelets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>We can do the same with the pagelets,</p>
+<pre class=" language-csharp"><code class="language-csharp"><span class="token keyword">lock</span> <span class="token punctuation">(</span>_locker<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  helper<span class="token punctuation">.</span>ViewContext<span class="token punctuation">.</span>Writer<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>pagelet<span class="token punctuation">.</span><span class="token function">Serialise</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> sb <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>StringWriter<span class="token punctuation">)</span>helper<span class="token punctuation">.</span>ViewContext<span class="token punctuation">.</span>Writer<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetStringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  helper<span class="token punctuation">.</span>ViewContext<span class="token punctuation">.</span>HttpContext<span class="token punctuation">.</span>Response<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>sb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  helper<span class="token punctuation">.</span>ViewContext<span class="token punctuation">.</span>HttpContext<span class="token punctuation">.</span>Response<span class="token punctuation">.</span><span class="token function">Flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  sb<span class="token punctuation">.</span>Length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>And now it works fine in razor!</p>
+<p>I am really happy that James (<a href="http://twitter.com/bigfellahull">@bigfellahull</a>) has been researching a way to port this technique to Razor, that is called to be the <em>de facto</em> ASP.Net view engine.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Razor to implement BigPipe using ASP.Net MVC. You can use the new view engine to early flush pagelets content and mimic this technique created by Facebook.
+    
+    </summary>
+    
+    
+      <category term="asp net mvc" scheme="https://jmperezperez.com/tags/asp-net-mvc/"/>
+    
+      <category term="bigpipe" scheme="https://jmperezperez.com/tags/bigpipe/"/>
+    
+      <category term="razor" scheme="https://jmperezperez.com/tags/razor/"/>
+    
+  </entry>
+  
+</feed>

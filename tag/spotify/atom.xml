@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/spotify/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2021-12-14T07:52:53.543Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Building Spotify’s New Web Player</title>
+    <link href="https://jmperezperez.com//building-spotify-new-web-player"/>
+    <id>https://jmperezperez.com//building-spotify-new-web-player</id>
+    <published>2019-03-25T05:00:00.000Z</published>
+    <updated>2021-12-14T07:52:53.543Z</updated>
+    
+    <content type="html"><![CDATA[<p>Spotify’s tech blog has just published my post <a href="https://labs.spotify.com/2019/03/25/building-spotifys-new-web-player/">Building Spotify’s New Web Player</a>. I explain why we decided to start from scratch and write a brand new Spotify experience on the web, and how the team is thinking about the future of the project.</p>
+<div style="position:relative;padding-bottom:75%;margin-bottom:1rem">
+<a href="https://labs.spotify.com/2019/03/25/building-spotifys-new-web-player/"><img
+    loading="lazy"
+    style="max-width:100%; border: 0;position:absolute;top:0;left:0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1554482735/spotify-new-web-player_wynfik.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1554482735/spotify-new-web-player_wynfik.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1554482735/spotify-new-web-player_wynfik.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1554482735/spotify-new-web-player_wynfik.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1554482735/spotify-new-web-player_wynfik.jpg"
+    alt="A picture of a laptop showing Spotify's Web Player" /></a>
+</div>
+
+<p>Replacing a working product with a new one is a though decision, and doing it from scratch instead of iteratively always raises red flags. However, sometimes it’s the best option in order to move forward.</p>
+<p>Spotify’s web player has been my biggest challenge at Spotify. The most difficult one but the most rewarding.</p>
+<p><a href="https://labs.spotify.com/2019/03/25/building-spotifys-new-web-player/">Read article on Spotify’s tech blog</a>.</p>
+<span id="more"></span>
+]]></content>
+    
+    <summary type="html">
+    
+      A story on why and how we built a new Web Player at Spotify. Or how re-writing can be a good decision if risks are minimized and solutions properly validated.
+    
+    </summary>
+    
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Collaborative listening on Spotify using Connect endpoints</title>
+    <link href="https://jmperezperez.com//collaborative-listening-spotify"/>
+    <id>https://jmperezperez.com//collaborative-listening-spotify</id>
+    <published>2017-08-21T15:50:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is a post about a hack project I have been working on lately, and I wanted to share some information about why and how I built it.</p>
+<p>tl;dr <a href="https://c-spotify.herokuapp.com/">Here is <strong>the demo</strong></a> and <a href="https://github.com/JMPerez/c"><strong>the project on GitHub</strong></a>.</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510476635/c-collaborative_k8kxsa.png"
+    sizes="(max-width: 768px) 100vw, 684px" alt="C, collaborative room to listen to Spotify"/></p>
+<span id="more"></span>
+
+<p><small class="caption">A screenshot of C, a simple collaborative room built using Spotify’s Web API.</small></p>
+<h3 id="Collaborative-listening"><a href="#Collaborative-listening" class="headerlink" title="Collaborative listening"></a>Collaborative listening</h3><p>The idea is basic. You go to a page where you can propose songs to listen to, and other people do the same thing. The playback is synchronised for all users that are connected in that moment.</p>
+<p>These pages are called “rooms”, and are normally based on some genre, to guide users when proposing songs. You don’t want to hear “Despacito” in a the latest rock album in a “80s Classic Hits“ room. The songs that are going to play next, which are in a queue, can also be voted up (sometimes down too). Great if you don’t feel like proposing new songs but you see one you like in the proposed ones.</p>
+<p>As I said, this is not new at all, and in fact it was part of Spotify’s desktop application since <a href="https://www.youtube.com/watch?v=apvqiFsJcas">end of 2011</a>, as an app called Soundrop:</p>
+<div class="videoWrapper">
+  <iframe width="720" height="405" src="https://www.youtube.com/embed/cavizRODpL0" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p><small class="caption">Video showing the Soundrop Spotify App.</small></p>
+<p>The app was based on the now defunct <a href="https://developer.spotify.com/technologies/apps/">Spotify Apps API</a>. This set of tools allowed custom web apps to run in an isolated view on Spotify’s desktop application, being able to control playback and user’s library.</p>
+<p>Soundrop as a collaborative app is no more. After the removal of the Apps API <a href="http://www.show.co/blog/heavy-hearts">they pivoted to a different product</a>.</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510495292/spotify-app-finder_lfgest.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Spotify App Finder"/>
+<small class="caption">List of the initial Spotify Apps. Source: <a href="http://evolver.fm/2011/12/02/spotify-apps-slated-to-roll-out-next-week/">evolver.fm</a></small></p>
+<p>The Apps API was the first project I worked on when I joined in Spotify in 2012. I would review submissions, support developers that had questions about how to use it, and create example apps.</p>
+<p>The project <a href="https://techcrunch.com/2014/11/13/rip-spotify-apps-rip-soundrop/">was discontinued end of 2014</a>, and with it these integrations. The Apps API were replaced by mobile SDKs (<a href="https://developer.spotify.com/technologies/spotify-ios-sdk/">iOS</a> and <a href="https://developer.spotify.com/technologies/spotify-android-sdk/">Android</a>) and a <a href="https://developer.spotify.com/web-api/">REST API</a>, which we called Web API. The Web API had endpoints for fetching metadata and managing the user’s library through some scopes. If you have ever consumed any other API using OAuth 2.0, this one follows the same approach.</p>
+<p>Though there were many endpoints added through the time, it was still impossible to control the playback through the API. This changed recently with the release of <a href="https://developer.spotify.com/web-api/web-api-connect-endpoint-reference/">the Connect endpoints</a>.</p>
+<h3 id="Spotify-Connect"><a href="#Spotify-Connect" class="headerlink" title="Spotify Connect"></a>Spotify Connect</h3><p>Say you are playing music on your phone. You arrive home and want to start playing on your desktop application. You can transfer the playback from the phone to the desktop, which will pick it up from that moment. The combination phone ↔ desktop works also with speakers, video consoles and the Web Player, which makes this very powerful. These capabilities are called <a href="https://www.spotify.com/connect/">Connect</a>.</p>
+<p>The Connect endpoints allow you to list the devices available for the user and transfer the playback between them. The set of endpoints is still in beta and subject to change, but it’s handy to work on a few hacks.</p>
+<h4 id="Now-Playing"><a href="#Now-Playing" class="headerlink" title="Now Playing"></a>Now Playing</h4><p>A few weeks ago <a href="/spotify-connect-api">I published a post talking about a small library I built to fetch what you are playing on Spotify</a>. The library is handy for not having to deal with the authorisation flow, and makes it easy to crease visualisations such as <a href="https://codepen.io/jmperez/full/MmwObE">this one</a>:</p>
+<iframe id="cp_embed_MmwObE" src="//codepen.io/jmperez/embed/MmwObE?height=389&theme-id=0&slug-hash=MmwObE&default-tab=result" scrolling="no" frameborder="no" height="389" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+
+<p>I created some other visualisations and organised them on <a href="https://codepen.io/collection/AyVBYB">this Codepen collection</a>.</p>
+<h3 id="Implementing-basic-collaborative-listening-with-Connect"><a href="#Implementing-basic-collaborative-listening-with-Connect" class="headerlink" title="Implementing basic collaborative listening with Connect"></a>Implementing basic collaborative listening with Connect</h3><p>Now that we’ve gone through an overview of what we want to accomplish and what tools we have available, let’s go for it.</p>
+<p>When you log in with your Spotify account you will enter a room where y<strong>ou can add songs and let the website control your playback</strong> (you should have a Spotify application opened, like the mobile app, desktop app or <a href="https://open.spotify.com/">web player</a>)</p>
+<p>If you think about it, <strong>a room for adding songs is basically a chat room</strong>. Instead of sending regular text messages you send commands like “add song” or “remove song” and the server makes sure all connected users get the updates and are kept in sync.</p>
+<p>One use case is using the demo only as a controller, and not a speaker. Imagine that we have a speaker at work. We might want to queue songs but not having them playing from our computer. That’s what the mute/unmute button does. It will mute or stop syncing your playback with the room’s playback.</p>
+<p>Another feature, or lack of it, is that the controller is the web site and not the server. <strong>Your playback will be synced with the room as long as you have the website open</strong>. This could be changed by letting the server make these requests on your behalf. After all, it has access to your refresh token when logging in. However, it’s easy to forget that you didn’t log out from the demo and freak out when something is changing your playback randomly, so that’s why I didn’t take this approach.</p>
+<p>A limitation is that the project only works with Spotify Premium accounts, <a href="https://developer.spotify.com/web-api/working-with-connect/#Premium%20Only">due to this restriction on the Connect endpoints</a>. You can still add songs, but the “play” command won’t work if your account is a free one.</p>
+<p><strong>The Robot</strong></p>
+<p>You are not alone in the room. <strong>A bot called “Robot” is always online</strong>, taking care of adding songs to the queue when it gets empty, based on previous submitted songs by users.</p>
+<p>The data is provided by the Web API through its <a href="https://developer.spotify.com/web-api/get-recommendations/">Get Recommendations Based on Seeds</a> endpoint. This endpoint returns a list of tracks that are based on a list of artists, genres and tracks, and you can set constraints on many music attributes.</p>
+<p>Thus, you could want the Robot to put more energetic music on Fridays. Or have a robot adding recommendations based on Rock music in a Rock room. For this one, check out <a href="https://developer.spotify.com/web-api/get-recommendations/#available-genre-seeds">the list of available genre seeds</a>. At the moment there are 126 genres of them. Not bad!</p>
+<p><strong>Future?</strong></p>
+<p>The demo is basic. The design is unpolished and the site is limited to a single room. However, it’s easy to deploy on a custom instance and the main goal is to serve to others that want to integrate with Spotify’s APIs. It’s open source, so you can fork it and do as you wish.</p>
+<p>The project would be easy to tweak to cover other use cases. One of them would be <strong>synchronised sessions</strong>. Say I listen to great music (no, I don’t) and someone wants to tune in and listen exactly to what I’m listening to. You <em>just</em> need to assume every publishing user is a room, listen to changes in user’s playback and publish them, synchronising the subscribed users.</p>
+<h3 id="Nerdy-details"><a href="#Nerdy-details" class="headerlink" title="Nerdy details"></a>Nerdy details</h3><p>The project uses React + Redux for rendering, and Node in the backend,this is all done using <a href="https://github.com/zeit/next.js/">Next.js</a>, which also make Server-Side Rendering easy. An additional tweak is that React is replaced with Preact in production for a smaller payload. The whole thing is deployed on a Heroku instance.</p>
+<p>One of the reasons I wanted to hack on Next.js was to have a better picture of its overhead. For this hack, the main page loads a bundle for the index page that is ~2.8kB minified &amp; gzipped, and the common bundle which is 80.6kB minified &amp; gzipped. It’s not the lightest alternative, but <strong>Next.js is designed to scale well as you add more pages to your site</strong>, due to how the bundles are split per page out of the box. Adding a large component to one page will not have an impact in the JS loaded for another page.</p>
+<p>I have played with several ideas in the code base, that’s why it’s not very uniform and you’ll see, for example, several ways of doing CSS-in-JS.</p>
+<p>I use this kind of hacks to give some new libraries and techniques a try, making them part of my tool belt and maybe using them in some real project. It’s also good to give Spotify’s Web API folks some feedback about the endpoints.</p>
+<p>Regarding Next.js this project was pretty much an excuse to try out this library/framework. Yes, I could have picked any other project but my ideas always gravitate around Spotify-stuff. I wanted to see how opinionated it was, how SSR worked in that page-component pattern they use, and how it feels working with it.</p>
+<h4 id="Why-Next-js"><a href="#Why-Next-js" class="headerlink" title="Why Next.js"></a>Why Next.js</h4><p>If you’ve ever tried to set up your own React.JS + ES6 + Webpack + react-intl + whatnot and have succeed without sweating, I’m your fan. Whenever I try, I always end up using some boilerplate project with everything in place.</p>
+<p>I like <a href="https://github.com/facebookincubator/create-react-app">create-react-app</a>. It makes everything so easier, and you can always go leave the wizard mode by eject-ing. No lock-in.</p>
+<p>I have been following Next.js from the distance. I would read about it, but never had the time nor the energy to give it a try. I decided it was about time I put it in practice.</p>
+<p><img src="/assets/images/posts/learn-nextjs.png" alt="Learn Next.js"></p>
+<p><small class="caption"><a href="https://learnnextjs.com/">learnnext.js</a> is a great interactive step-by-step tutorial. If I ever write a library I’ll make sure the tutorial is as great as the library itself, so it’s easy to learn and adopt.</small></p>
+<p>I started reading a bit and followed <a href="https://learnnextjs.com/">LearnNext.js</a>. I found it too basic at first, then I jumped to the code, but quickly had to go back to the tutorial. It’s good not to take shortcuts. Their tutorial might seem easy but there are some concepts that are important, or you face problems soon.</p>
+<p>The best resource I found for Next.js is <a href="https://github.com/zeit/next.js/tree/master/examples">the examples folder in their repo</a>. It’s pure gold. Lots of concise examples of how to use Next.js with pretty much anything. Pick ’n’ mix. I wanted to combine express + preact + redux + socket.io, and I had examples there for all of this.</p>
+<p>I would say the most difficult part is when you realise that part of your code is running on the server. It’s quite surprising, but it’s what SSR is about. <code>localStorage</code> and <code>fetch</code> would fail, and other browser-only properties we are used to access when working with JS.</p>
+<p>Overall I’m really happy. Most of your code is the same and you only need to adapt a bit to their routing. That’s what I like the most. It gives you the glue to put everything together, but you can still use the tools you are used to.</p>
+<p>Zeit’s project are really awesome. Simple but extremely useful.</p>
+<p>If you haven’t done it yet, have a look at <a href="https://c-spotify.herokuapp.com/"><strong>the demo</strong></a> and <a href="https://github.com/JMPerez/c"><strong>the project on GitHub</strong></a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      A project to create a collaborative room to listen to songs in sync using Next.JS and Spotify&#39;s Connect Web API endpoints.
+    
+    </summary>
+    
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Playing with the Spotify Connect API</title>
+    <link href="https://jmperezperez.com//spotify-connect-api"/>
+    <id>https://jmperezperez.com//spotify-connect-api</id>
+    <published>2017-04-21T20:10:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Spotify <a href="https://developer.spotify.com/news-stories/2017/04/10/new-endpoints-beta-web-api-connect/">released recently a set of endpoints</a> in beta to fetch information of what is playing and send playback commands. This allows for a wide range of integrations and I wanted to hack a bit with it.</p>
+<p><img src="/assets/images/posts/spotify-connect.jpg" alt="Spotify Connect"></p>
+<span id="more"></span>
+
+<h4 id="What-is-Spotify-Connect"><a href="#What-is-Spotify-Connect" class="headerlink" title="What is Spotify Connect"></a>What is Spotify Connect</h4><p><a href="https://www.spotify.com/connect/">Spotify Connect</a> is a way to transmit the
+playback from one device to another one without having to use a physical
+connection like a cable or bluetooth. You can send the music from your Spotify
+desktop client to a speaker, from the Spotify app on mobile to Spotify for
+PlayStation, from the Spotify web player to Chromecast… In short, you have
+controllers and devices that can play music.</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510477863/spotify-web-player_k5sx2j.png"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Spotify Web Player"/>
+<small class="caption">Spotify’s Web Player (zoomed in). Clicking on the icon next to the volume we get a list of connected devices (FireTV, desktop client, speakers and the web player).</small></p>
+<p>Your application can become a controller through the Web API endpoints, getting
+information about what is playing currently and from where, being able to
+transmit the playback to another connected device or interact with the current
+context (pausing, changing the volume, skipping, playing something else…).</p>
+<h4 id="How-to-use-the-endpoints"><a href="#How-to-use-the-endpoints" class="headerlink" title="How to use the endpoints"></a>How to use the endpoints</h4><p>Before using the Connect endpoints we need to obtain an access token on behalf of the user with certain permissions. There is more information about what scopes are needed in the documentation for each endpoint.</p>
+<p>You don’t need to have a premium account to get the playback status, a free account is alright. You will do need a premium one if you want to <a href="https://developer.spotify.com/web-api/working-with-connect/#premium-only">send commands to change the playback</a>.</p>
+<p>A caveat at the moment is that the endpoints don’t support any kind of web socket connection nor long polling. Thus, if you want to get updates on the position of the current playing track or any other change in the context, you need to poll every few seconds.</p>
+<h4 id="A-small-library-to-make-it-easier-to-use-the-endpoints"><a href="#A-small-library-to-make-it-easier-to-use-the-endpoints" class="headerlink" title="A small library to make it easier to use the endpoints"></a>A small library to make it easier to use the endpoints</h4><p>The trickiest part of using the Spotify Web API is to implement the authorization flow. <a href="https://developer.spotify.com/web-api/authorization-guide/">The Authorization Guide</a> does a good job explaining it, but I thought I could do something so developers wouldn’t need to worry about setting up the whole flow, hiding away the authentication and just getting.</p>
+<p>That’s why I have created <a href="https://github.com/JMPerez/spotify-player">spotify-player</a>. It’s both a server and a library that you use to communicate with it. To use it, you just need to include a script, call login() and subscribe to the updates:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://spotify-player.herokuapp.com/spotify-player.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+</code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> spotifyPlayer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SpotifyPlayer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+spotifyPlayer<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'update'</span><span class="token punctuation">,</span> response <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// render the track received</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+spotifyPlayer<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'login'</span><span class="token punctuation">,</span> user <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>user <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// no user</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// say hello to the user, and tell them to play something!</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+spotifyPlayer<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+spotifyPlayer<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>You can forget about <a href="https://developer.spotify.com/my-applications">setting up a Spotify application</a> and a server, carrying out the token exchange, token refresh, and persisting the current user, <strong>so you can focus on the fun part</strong>.</p>
+<p>Other methods include a function to make calls to other Spotify endpoints reusing the same access token, so you can fetch other data that can help you creating a more complete visualisation.</p>
+<p>Let’s have a look at <a href="https://codepen.io/jmperez/full/MmwObE">this pen</a> as an example of a basic visualisation:</p>
+<iframe id="cp_embed_MmwObE" src="//codepen.io/jmperez/embed/MmwObE?height=389&theme-id=0&slug-hash=MmwObE&default-tab=result" scrolling="no" frameborder="no" height="389" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+
+<p>And in case you can’t try it or don’t have a Spotify account this is pretty much
+what it looks like:</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510476629/spotify-connect-api-visualisation-example_hwu7uw.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Example of a visualisation of Spotify"/>
+<small class="caption">See <a href="https://codepen.io/jmperez/full/MmwObE">the Pen on Codepen</a></small></p>
+<p>I have kept the example very basic since the point is understanding the usage of
+the library. If you are into performance and UX you’ll see there is room for
+improvement, but as a front-end developer I know an example can get out of hand
+very easily when adding things.</p>
+<p>I encourage you to fork it and start making your own visualisation. And once you
+do it, ping me so I include it in <a href="https://codepen.io/collection/AyVBYB">this Codepen collection</a>.</p>
+<h3 id="Possible-applications"><a href="#Possible-applications" class="headerlink" title="Possible applications"></a>Possible applications</h3><p><em>Disclaimer: This is a list of some use cases. You still need to comply with <a href="https://developer.spotify.com/developer-terms-of-use/">Spotify’s terms of use</a> when implementing
+an application that uses Spotify’sWeb API. This might mean adding certain
+messaging and link to the song in Spotify.</em></p>
+<h4 id="Dynamic-visualisations"><a href="#Dynamic-visualisations" class="headerlink" title="Dynamic visualisations"></a>Dynamic visualisations</h4><p>You could combine the playback position with <a href="https://developer.spotify.com/web-api/get-audio-analysis/">the audio analysis of the track</a> to generate dynamic visualisations using loudness, tempo, key, timbre or pitch of the segments that compose the track. You can also use <a href="https://developer.spotify.com/web-api/get-audio-features/">the endpoint to fetch audio features of a track</a>, which gives you high level information about characteristics of the song.</p>
+<div class="videoWrapper">
+  <iframe width="720" height="405" src="https://www.youtube.com/embed/KO9huh-Y03g" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p><small class="caption">See <a href="https://codepen.io/jmperez/full/GmJOMJ">the Pen on Codepen</a>
+and <a href="https://github.com/possan/webgl-spotify-connect-now-playing-screen-example">Possan’s original visualisation on GitHub</a></small></p>
+<h4 id="Now-playing-view"><a href="#Now-playing-view" class="headerlink" title="Now playing view"></a>Now playing view</h4><p>Are you a coffee-shop owner and people always wonder what song is playing? You could have a TV showing a branded now playing view. You could even have a widget on your website, or a script posting to a social network what is currently playing so your customers know. Or a small browser extension showing what is playing and/or <a href="https://developer.chrome.com/extensions/notifications">showing desktop notifications</a> when the track changes.</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510477615/spotify-connect-api-visualisation-notification_mgxad5.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Spotify Visualisation showing Web Notifications when the track changes"/>
+<small class="caption">See <a href="https://codepen.io/jmperez/full/VbvPbR">the Pen on Codepen</a>. When the track changes the browser shows a Web Notification.</small></p>
+<p>Or if you are at home hosting a dinner or party, show on the TV or computer what is playing.</p>
+<p>You can combine other Spotify Web API endpoints too. Eg you could <a href="https://developer.spotify.com/web-api/get-artist/">fetch the artists info</a> to show the artist profile image in the background:</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510477674/spotify-connect-api-visualisation-artist_ebk7cc.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Spotify Visualisation showing the artist profile image in the background"/>
+<small class="caption">See <a href="https://codepen.io/jmperez/full/YVXEaz">the Pen on Codepen</a>.
+    A simple visualisation of what’s playing in Spotify rendering the artist profile image as the background.</small></p>
+<p>You could use an API like <a href="https://developer.musixmatch.com/">Musixmatch</a>’s and create an app or a website showing the lyrics for the current song, synchronised with the playback position.</p>
+<p>And your imagination is the limit. Use <a href="https://genius.com/developers">Genius’ API</a> to get <a href="https://docs.genius.com/#annotations-h2">annotations</a> about a song, or search for trivia and more info about the song or artist using <a href="https://www.mediawiki.org/wiki/API:Main_page">Wikipedia’s API</a>. And if you don’t want to miss what’s happening in the world, implement a news ticker in your view using <a href="https://newsapi.org/">News API</a>.</p>
+<div class="videoWrapper">
+  <iframe width="720" height="405" src="https://www.youtube.com/embed/q4I3ymLgewE" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p><small class="caption">See <a href="https://codepen.io/jmperez/full/OmVKOO">the Pen on Codepen</a><small class="caption"></p>
+<h4 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h4><p><a href="https://github.com/JMPerez/spotify-player">The library</a> is really small and it only supports <em>reading</em> the playback state and not send commands. Let’s call it an MVP. I might work on adding more features in the future.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      The new Web API endpoints let you show what is playing in your Spotify account. It is easy to create views that update in real time.
+    
+    </summary>
+    
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Detecting tempo of a song using browser&#39;s Audio API</title>
+    <link href="https://jmperezperez.com//bpm-detection-javascript"/>
+    <id>https://jmperezperez.com//bpm-detection-javascript</id>
+    <published>2014-08-09T04:40:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This article explains some ideas behind a small project to detect the tempo of a song using the Audio API. I recommend you to have a look at these links before reading the rest of the article: <a href="http://jmperezperez.com/beats-audio-api/">Demo</a> and <a href="https://github.com/JMPerez/beats-audio-api">Code on GitHub</a>.
+<img src="/assets/images/posts/bpm-detection-example.png" alt="Beat Detection Algorithm Example"></p>
+<span id="more"></span>
+<h2 id="Beat-detection-using-Audio-API"><a href="#Beat-detection-using-Audio-API" class="headerlink" title="Beat detection using Audio API"></a>Beat detection using Audio API</h2><p>A couple of days ago I came across <a href="http://joesul.li/van/beat-detection-using-web-audio/">Beat Detection Using Web Audio</a>, a blog post by <strong>Joe Sullivan</strong> where he explained a simple algorithm to calculate the tempo of a song using the Audio API. After reading it, I was curious about how well the algorithm would work for other tracks.</p>
+<p>So I sat down and coded a small project using his algorithms and adding a search box to search for songs, and display the result for them.</p>
+<p>The algorithm is supposed to work better with the central fragment of a song. This avoids the parts with lower volume and fewer signals we can take to detect the beats.</p>
+<h2 id="Searching-songs-and-obtaining-a-preview-MP3"><a href="#Searching-songs-and-obtaining-a-preview-MP3" class="headerlink" title="Searching songs and obtaining a preview MP3"></a>Searching songs and obtaining a preview MP3</h2><p>The APIs of some music streaming services provide a sample of 30 seconds of every song in their catalog. We can’t choose what 30 seconds of a track we want (i.e. what the starting point of the chunk is), but they will usually be a fragment of the most representative part of the song, and this is a good candidate for the algorithm.</p>
+<p>The bitrate of the samples is rather low, around 96 kb/s according to my tests. I have tried to use them previously for my <a href="http://jmperezperez.com/karaoke/">karaoke project</a>, but the result was very noisy.</p>
+<p>Since I’m more than familiar with the <a href="https://developer.spotify.com/web-api/">Spotify Web API</a>, I have chosen it for <a href="https://developer.spotify.com/web-api/search-item/">searching tracks</a>. The search is also quite flexible and normally is enough with the track name (without artist name) to find the song we want.</p>
+<p>The Search endpoint returns a list of tracks, and their <code>preview_url</code> property points to an MP3 file that we can plug in straight to an <code>AudioContext</code> to process it.</p>
+<h2 id="Calculating-the-tempo"><a href="#Calculating-the-tempo" class="headerlink" title="Calculating the tempo"></a>Calculating the tempo</h2><p>I am following the algorithm described (in great detail) by Joe Sullivan. I have tweaked it a bit to:</p>
+<ol>
+<li><p><strong>Dynamically adjust the threshold to identify peaks</strong>: In some cases a threshold of 0.8 was simply too much and the amount of representative peaks returned too low for doing a proper guess. Thus, I lower the threshold until I have a few more peaks for the given sample.</p>
+</li>
+<li><p><strong>Round the theoretical tempo to the closest integer</strong>. Otherwise it is rather impossible to get multiple intervals with the same value. At first sight we lose precision, but tempos are usually integers anyway.</p>
+</li>
+</ol>
+<p>To check how well the algorithm works I wanted to know the BPM of the song, calculated by some trustable source. Luckily enough, the same Spotify API provides an endpoint to <a href="https://developer.spotify.com/web-api/get-audio-features/">get Audio Features for a Track</a>. The first version of this project used The Echo Nest API to obtain the tempo of a song. Some time ago this API was discontinued, and this and other endpoints were merged into Spotify’s Web API. That means we don’t need to match track identifiers from different music services, making everything easier.</p>
+<p>The endpoint returns a JSON object with several features of the track, including its <code>tempo</code>.</p>
+<h2 id="Rendering-the-peaks-and-playing-the-track"><a href="#Rendering-the-peaks-and-playing-the-track" class="headerlink" title="Rendering the peaks and playing the track"></a>Rendering the peaks and playing the track</h2><p>From Joe’s post, I really liked the simple graphs showing the peaks of a song as a way of representing what the algorithm was doing. I decided to do the same, and also add a button to play the track along with an indicator that goes through the graph and helps us see what peaks were detected by the algorithm.</p>
+<h2 id="Enhancements"><a href="#Enhancements" class="headerlink" title="Enhancements?"></a>Enhancements?</h2><p>I’m sure there must be better algorithms to find out the tempo of a song, but this one has proven to be very simple and effective for most of the “danceable” tracks, between 90 and 180 BPM. And I think it’s a fun way to use the modern browser’s recent APIs.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Article about project for detecting BPM of a track using the Audio API, in combination with the Spotify Web API.
+    
+    </summary>
+    
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+      <category term="bpm" scheme="https://jmperezperez.com/tags/bpm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Music Hack Day Paris 2014 and other projects</title>
+    <link href="https://jmperezperez.com//mhd-paris-deezer-other-projects"/>
+    <id>https://jmperezperez.com//mhd-paris-deezer-other-projects</id>
+    <published>2014-04-20T06:20:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>It’s been some time since my previous post and I wanted to write a short one telling what has been going on.</p>
+<h2 id="Personal-projects"><a href="#Personal-projects" class="headerlink" title="Personal projects"></a>Personal projects</h2><p>I have several small personal projects around Spotify in which I am working in my free time. I recently attended the Music Hack Day Paris 2014, where I coded <a href="http://jmperezperez.com/hacks/iquiz/">Spotify iQuiz</a>, an iQuiz-like web app that uses your Spotify playlists and to create some questions about albums and tracks you saved. I think the most fun part is the Speech Synthesis API, which provides a very easy to use text-to-voice feature, right on your browser.</p>
+<span id="more"></span>
+<p>For these hack projects I definitely need some framework on which build quickly a project. I always try to avoid it at first, and end up using a template engine (when I’m fed up of generating markup using JS), plus too many DOM manipulations and a bad time fixing small issues. This time I started from <a href="https://github.com/JMPerez/grunt-template">this template I built</a>, which was helpful for combining and minimizing all the small JS modules I created, and generate the files that I would deploy.</p>
+<p>I’m also starting to take into account tests and code coverage earlier in the development process. I am applying it to the <a href="https://github.com/JMPerez/spotify-web-api-js">spotify-web-api-js</a> project using grunt with mocha and blanket. I am running tests and checking the coverage from the console as I save files. I have unsuccessfully tried to generate LCOV that I can report to <a href="https://coveralls.io/">Coveralls</a>, and I think that having the output in the console is good so far.</p>
+<h2 id="Paris"><a href="#Paris" class="headerlink" title="Paris"></a>Paris</h2><p>Well, and apart from that I got the change of visiting Paris again after 14 years!
+<a href="/assets/images/posts/mhd-paris.jpg"><img src="/assets/images/posts/mhd-paris.jpg" alt="Eiffel Tower"></a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;It’s been some time since my previous post and I wanted to write a short one telling what has been going on.&lt;/p&gt;
+&lt;h2 id=&quot;Personal-projects&quot;&gt;&lt;a href=&quot;#Personal-projects&quot; class=&quot;headerlink&quot; title=&quot;Personal projects&quot;&gt;&lt;/a&gt;Personal projects&lt;/h2&gt;&lt;p&gt;I have several small personal projects around Spotify in which I am working in my free time. I recently attended the Music Hack Day Paris 2014, where I coded &lt;a href=&quot;http://jmperezperez.com/hacks/iquiz/&quot;&gt;Spotify iQuiz&lt;/a&gt;, an iQuiz-like web app that uses your Spotify playlists and to create some questions about albums and tracks you saved. I think the most fun part is the Speech Synthesis API, which provides a very easy to use text-to-voice feature, right on your browser.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="music hack day" scheme="https://jmperezperez.com/tags/music-hack-day/"/>
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spotify Hack Week 2014</title>
+    <link href="https://jmperezperez.com//spotify-hack-week-2014"/>
+    <id>https://jmperezperez.com//spotify-hack-week-2014</id>
+    <published>2014-02-03T05:15:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>We have just finished the second edition of the <strong>Spotify Hack Week</strong>. Like <a href="/spotify-hack-week-2013/">the previous one</a>, the whole company has been hacking for a whole week lots of different projects. We have played with Raspberry Pi, 3D printers, and even stationary bicycles.</p>
+<span id="more"></span>
+<p>I worked on a project involving the <a href="http://www.spotify.com/">Spotify website</a> and the <a href="http://play.spotify.com/">web player</a>. It was a good chance to get familiar with some code I hadn’t worked with yet.
+<a href="/assets/images/posts/spotify-hack-week-2014-presentation.jpg"><img src="/assets/images/posts/spotify-hack-week-2014-presentation-sm.jpg" alt="Spotify Hack Week 2014 presentation"></a></p>
+<p>It is a pleasure to be able to work on something different for a week. There were great projects and I am very excited after having seen what my colleagues built.</p>
+<p>You have some pictures of the <a href="http://www.flickr.com/search/?q=%22Spotify+Hackweek+2014%22">Spotify Hack Week 2014 on Flickr</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;We have just finished the second edition of the &lt;strong&gt;Spotify Hack Week&lt;/strong&gt;. Like &lt;a href=&quot;/spotify-hack-week-2013/&quot;&gt;the previous one&lt;/a&gt;, the whole company has been hacking for a whole week lots of different projects. We have played with Raspberry Pi, 3D printers, and even stationary bicycles.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spotify Apps Development</title>
+    <link href="https://jmperezperez.com//developing-spotify-apps"/>
+    <id>https://jmperezperez.com//developing-spotify-apps</id>
+    <published>2013-09-09T16:35:37.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I have been working for some time with <a href="https://developer.spotify.com/technologies/apps/">Spotify Apps</a>. Creating them is a great way to extend the Spotify client with extra features using web technologies. As it exposes a Chrome-ish browser, you can tweak your apps and take advantage of running on a well-known environment.</p>
+<span id="more"></span>
+<h2 id="Developing-apps-for-Spotify"><a href="#Developing-apps-for-Spotify" class="headerlink" title="Developing apps for Spotify"></a>Developing apps for Spotify</h2><p>Spotify desktop client includes a CEF engine that allows HTML5 web apps to interact through a JS API with the native layer. You can find more info on how to develop an app <a href="https://github.com/spotify/apps-tutorial">on this tutorial</a>.</p>
+<h2 id="Optimizing-apps"><a href="#Optimizing-apps" class="headerlink" title="Optimizing apps"></a>Optimizing apps</h2><p>When your app is published, users can find it and add it to their desktop client. During installation, the app is downloaded and saved in the user’s computer, while showing a loading bar. After being installed, users can open the app and make use of it.</p>
+<p>In order to offer the best experience, there are some points that should be taken into account.</p>
+<h3 id="Bundle-size"><a href="#Bundle-size" class="headerlink" title="Bundle size"></a>Bundle size</h3><p>It makes sense to try to optimize the size of the bundle so that it takes less time for the user to download it. Also, the less JS code to execute, the better.</p>
+<p>In addition, since we know about the environment on which our app will run, we can take advantage of it in several ways. As of September 2013, Spotify 0.9.3 uses a Chrome v.27 browser.</p>
+<h3 id="Javascript-code"><a href="#Javascript-code" class="headerlink" title="Javascript code"></a>Javascript code</h3><p>Of course it is a personal preference, but many developers don’t conceive a web app without libraries such as jQuery. Amongst the reasons, we don’t like to deal with incompatibilities on the targeted browsers. That is true when you need to take into account browsers like IE6/7, but in this case, the browser on which our web app will run is known and finite.</p>
+<p>Thus, you can safely use a webkit-only library if you want an easier to use API, or you can even use Vanilla JS. I really recommend having a look at <a href="http://vimeo.com/40873227">Christian Heilmann’s talk <em>Embracing and celebrating redundancy</em></a> and <a href="http://sharedfil.es/js-48hIfQE4XK.html">this conversion table from jQuery to Javascript</a>.</p>
+<h3 id="CSS-code"><a href="#CSS-code" class="headerlink" title="CSS code"></a>CSS code</h3><p>You can safely skip most browser prefixes. In this case, it doesn’t make sense to include <code>-moz</code> or <code>-o</code> prefixes, since they will be skipped by CEF. Some CSS properties are supported with no prefix (i.e. <code>border-radius</code>), although some others aren’t (<code>transition</code>). Thus, to make sure you are specifying the right rule, take a look at <a href="http://caniuse.com/">caniuse.com</a>. For instance, <a href="http://caniuse.com/#search=transition">this is the page for the transition property</a>.</p>
+<p>I recommend you to use a CSS processor such as LESS, so you only define what rules are needed in one specific place.</p>
+<h3 id="Further-optimizations"><a href="#Further-optimizations" class="headerlink" title="Further optimizations"></a>Further optimizations</h3><p>Good web performance practices are quite well known and are the base for the emerging Web Performance Optimization techniques. Additionally, we could write about the best way to architect an app, with lazily loaded resources. Why load resources for every tab in a certain app, and not only the active one?</p>
+<p>Ideally, an app should load the required content as fast as possible, and lazy load the rest as it is needed. Avoid loading bars, which are usually a smell of a bigger problem underneath, which is the one that should be targeted.</p>
+<p>All in all, developing a Spotify app is quite similar to developing a web app, except that most assets are bundled in a package.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I have been working for some time with &lt;a href=&quot;https://developer.spotify.com/technologies/apps/&quot;&gt;Spotify Apps&lt;/a&gt;. Creating them is a great way to extend the Spotify client with extra features using web technologies. As it exposes a Chrome-ish browser, you can tweak your apps and take advantage of running on a well-known environment.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+      <category term="spotify apps" scheme="https://jmperezperez.com/tags/spotify-apps/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spotify Hack Week 2013</title>
+    <link href="https://jmperezperez.com//spotify-hack-week-2013"/>
+    <id>https://jmperezperez.com//spotify-hack-week-2013</id>
+    <published>2013-02-22T12:05:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/assets/images/posts/spotify-hackweek-logo.png" alt="Spotify Hack Week">This week almost the whole Spotify company have been working on hack projects. Having 5 days to implement your project is a nice thing, especially after having participated in many 24h ones, and encourage you to come up with more complex projects that otherwise wouldn’t be possible to implement.</p>
+<p>On the <a href="http://labs.spotify.com/">Spotify Labs blog</a> there is <a href="http://labs.spotify.com/2013/02/15/organizing-a-hack-week/">a post on how the hack week was organized</a>, and you have <a href="http://kitchen-tv.com/2013/projects/spotify-hack-week/">a video by Kitchen TV</a>.
+<a href="/assets/images/posts/spotify-trends-hackweek.jpg"><img src="/assets/images/posts/spotify-trends-hackweek-300x237.jpg" alt="Spotify Trends Project"></a></p>
+<span id="more"></span>
+<p>The project is a website showing real-time information about tracks being played, skipped and shared by country through Spotify. We even develop a trending-tracks algorithm.
+The thing I enjoyed the most was developing using the same language both client-side and server-side. Not switching once and again really decreases your task-switching headaches.</p>
+<p>In my case this was the first time I played around with node.js and socket.io. I also wanted to have a look at CoffeeScript, Less and Angular.js, but in the end I didn’t. In short, all those libraries and frameworks I always want to give a try but I never find a project in which to apply it.</p>
+<p>There have been a bunch of really cool projects and I hope some of these hack projects can make it into a real product.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/assets/images/posts/spotify-hackweek-logo.png&quot; alt=&quot;Spotify Hack Week&quot;&gt;This week almost the whole Spotify company have been working on hack projects. Having 5 days to implement your project is a nice thing, especially after having participated in many 24h ones, and encourage you to come up with more complex projects that otherwise wouldn’t be possible to implement.&lt;/p&gt;
+&lt;p&gt;On the &lt;a href=&quot;http://labs.spotify.com/&quot;&gt;Spotify Labs blog&lt;/a&gt; there is &lt;a href=&quot;http://labs.spotify.com/2013/02/15/organizing-a-hack-week/&quot;&gt;a post on how the hack week was organized&lt;/a&gt;, and you have &lt;a href=&quot;http://kitchen-tv.com/2013/projects/spotify-hack-week/&quot;&gt;a video by Kitchen TV&lt;/a&gt;.
+&lt;a href=&quot;/assets/images/posts/spotify-trends-hackweek.jpg&quot;&gt;&lt;img src=&quot;/assets/images/posts/spotify-trends-hackweek-300x237.jpg&quot; alt=&quot;Spotify Trends Project&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Charlando sobre Desarrollo Web en Spotify - HTML5Spain</title>
+    <link href="https://jmperezperez.com//charla-desarrollo-web-spotify"/>
+    <id>https://jmperezperez.com//charla-desarrollo-web-spotify</id>
+    <published>2013-02-07T12:29:12.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>El pasado 7 de febrero hablé sobre Desarrollo Web en Spotify en <a href="http://html5spain.wordpress.com/2013/02/03/evento-online-desarrollo-web-en-spotify/">un hangout con los compañeros de HTML5Spain</a>. Aquí está la presentación:</p>
+<span id="more"></span>
+<script async class="speakerdeck-embed" data-id="9a7600c053260130765612313d18c439" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>y el vídeo:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PRIBtJxdQoM" frameborder="0" allowfullscreen></iframe>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;El pasado 7 de febrero hablé sobre Desarrollo Web en Spotify en &lt;a href=&quot;http://html5spain.wordpress.com/2013/02/03/evento-online-desarrollo-web-en-spotify/&quot;&gt;un hangout con los compañeros de HTML5Spain&lt;/a&gt;. Aquí está la presentación:&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+      <category term="spotify apps" scheme="https://jmperezperez.com/tags/spotify-apps/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Music Hack Day Stockholm 2013</title>
+    <link href="https://jmperezperez.com//music-hack-day-stockholm-2013"/>
+    <id>https://jmperezperez.com//music-hack-day-stockholm-2013</id>
+    <published>2013-01-21T06:47:22.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Last weekend Spotify hosted the <a href="http://stockholm.musichackday.org/2013/">Music Hack Day Stockholm 2013</a> at their office in Stockholm. In the end, <a href="https://www.hackerleague.org/hackathons/music-hack-day-stockholm-13/hacks">65 projects</a> were built by 162 participants, using APIs from a variety of music services such as Echonest, Musixmatch, Soundcloud, Radio and Spotify among others.
+<img src="/assets/images/posts/music-hack-day-stockholm-300x225.jpg" alt="Music Hack Day Stockholm"></p>
+<span id="more"></span>
+<p>Overall it was a great experience. This was my first hacking event where people from outside my company participated. My project was Extendify, a Chrome Extension that injects Spotify Play Buttons in pages where it detects info related to a track, album or artist. You can <a href="https://github.com/JMPerez/extendify">check it out on Github</a>.</p>
+<p>You can find nice pictures of the event on <a href="http://www.flickr.com/photos/jcb1973/">this set of Flickr</a> and <a href="http://eventifier.co/event/musichackday13">Eventifier</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Last weekend Spotify hosted the &lt;a href=&quot;http://stockholm.musichackday.org/2013/&quot;&gt;Music Hack Day Stockholm 2013&lt;/a&gt; at their office in Stockholm. In the end, &lt;a href=&quot;https://www.hackerleague.org/hackathons/music-hack-day-stockholm-13/hacks&quot;&gt;65 projects&lt;/a&gt; were built by 162 participants, using APIs from a variety of music services such as Echonest, Musixmatch, Soundcloud, Radio and Spotify among others.
+&lt;img src=&quot;/assets/images/posts/music-hack-day-stockholm-300x225.jpg&quot; alt=&quot;Music Hack Day Stockholm&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="music hack day" scheme="https://jmperezperez.com/tags/music-hack-day/"/>
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+  </entry>
+  
+</feed>

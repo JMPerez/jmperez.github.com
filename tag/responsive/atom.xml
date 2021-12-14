@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/responsive/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Line-height, multiline ellipsis and responsiveness</title>
+    <link href="https://jmperezperez.com//line-height-mutiple-line-ellipsis-responsiveness"/>
+    <id>https://jmperezperez.com//line-height-mutiple-line-ellipsis-responsiveness</id>
+    <published>2013-07-09T19:03:12.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Recently I was implementing a pinterest-ish layout in which the elements have a specific height. These elements contain a title that can expand multiple lines, and an additional text to which I would like to apply a multi-line ellipsis. Initially, I don’t know how many lines of text the title will take. The text can be arbitrarily long, and depending on the screen width this number will vary.</p>
+<span id="more"></span>
+<h2 id="Multiline-ellipsis"><a href="#Multiline-ellipsis" class="headerlink" title="Multiline ellipsis"></a>Multiline ellipsis</h2><p>There are <a href="http://css-tricks.com/line-clampin/">many</a> <a href="http://www.mobify.com/blog/multiline-ellipsis-in-pure-css/">ways</a> of achieving multiline ellipsis or line clamping. However, I wanted to use an approach that didn’t need javascript and could work not knowing in advance how many lines of text are available.</p>
+<h2 id="Line-height-to-the-rescue"><a href="#Line-height-to-the-rescue" class="headerlink" title="Line-height to the rescue"></a>Line-height to the rescue</h2><p>I have coded <a href="http://jsfiddle.net/vEvbG/5/">a jsfiddle</a> that helps to visualise how this works. Try
+changing the width of the “Result” window dragging the vertical separator.</p>
+<iframe src="https://jsfiddle.net/vEvbG/5/embedded/result,html,css" height="300" width="100%" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>And a screenshot, in case you have problems visualising the jsfiddle:
+<img src="/assets/images/posts/line-height-responsive-01.png" alt="Same line-height (small items)">
+<em>Using the same line-height for the text. Notice that the title can take a different amount of lines but the text underneath is not cropped.</em></p>
+<p>The best thing is that you can change the available space, and the image (represented with a grey square) will scale properly, the title will adapt to the available room and the text underneath will try to fill the available space. Check <a href="/assets/images/posts/line-height-responsive-02.png">this example</a> that shows the same items when the width increases. I found this out having a look at the Discover feature on the <a href="https://play.spotify.com/">Spotify Web Player</a>, I realized that even though the images were scaled when changing the screen width, the text underneath was never cropped. It turns out that every line of text has the same height, regardless of the font size. Thus, the title can expand multiple lines and will push the rest of the text. The lack of ellipsis is solved by adding a “More” link:
+<img src="/assets/images/posts/discover-item-hover.jpg" alt="Detail of an item in the Spotify Discover feature. When hovering, the &quot;More&quot; link is shown">
+<em>Detail of an item in the Spotify Discover feature. When hovering, the “More” link is shown.</em></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Recently I was implementing a pinterest-ish layout in which the elements have a specific height. These elements contain a title that can expand multiple lines, and an additional text to which I would like to apply a multi-line ellipsis. Initially, I don’t know how many lines of text the title will take. The text can be arbitrarily long, and depending on the screen width this number will vary.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="responsive" scheme="https://jmperezperez.com/tags/responsive/"/>
+    
+      <category term="css" scheme="https://jmperezperez.com/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Image optimization: Lossy, lossless and other techniques</title>
+    <link href="https://jmperezperez.com//image-optimization-lossy-lossless-techniques"/>
+    <id>https://jmperezperez.com//image-optimization-lossy-lossless-techniques</id>
+    <published>2013-01-04T20:44:57.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>During last days I have come across interesting articles about images optimization. Images are currently the largest average payload in web sites, meaning a <a href="http://httparchive.org/interesting.php">62%</a> of all the bytes. With the increasingly importance of responsive design, <a href="http://css-tricks.com/which-responsive-images-solution-should-you-use/">responsive images</a> are becoming a challenge to face.</p>
+<p>I have already talked about image optimization in my <a href="/techniques-optimize-web-sites/#images-optimization">list of optimization techniques</a> and my short <a href="/jpegoptim-optimize-jpg-page-speed/">post about using jpegoptim</a>. But recently I have read about highly compressed JPG to target high-res screens and progressive JPG images, and I thought it would worth sharing.</p>
+<span id="more"></span>
+<h2 id="Highly-compressed-JPG-images-and-high-resolution-screens"><a href="#Highly-compressed-JPG-images-and-high-resolution-screens" class="headerlink" title="Highly compressed JPG images and high resolution screens"></a>Highly compressed JPG images and high resolution screens</h2><p><a href="https://www.filamentgroup.com/lab/compressive-images.html">Compressive Images</a> is a post by Filament Group where they show a way to target responsive images. Instead of using multiple copies of an image with different sizes, you can generate a large JPG image with a compression of 0 quality. That way, not only one single copy can be used to target different screen sizes and resolutions, but there are even large savings in file size comparing to normal 1:1 images.</p>
+<p>I have prepared <a href="/demos/compressive-images/">a demo of the Compressive Images technique</a> where you can test your own images.</p>
+<div class="callout">
+<strong>Info</strong>: Note that this technique might have a high impact on decoding + resizing, especially on mobile. Tim Kadlec explained it at Velocity SC 2015 in his <a href="https://www.youtube.com/watch?v=jP68rCjSSjM&t=10m56s">Mobile Image Processing talk</a>.
+</div>
+
+<h2 id="Progressive-JPEGs"><a href="#Progressive-JPEGs" class="headerlink" title="Progressive JPEGs"></a>Progressive JPEGs</h2><p>Thanks to <a href="http://calendar.perfplanet.com/2012/progressive-jpegs-a-new-best-practice/">Progressive jpegs: a new best practice</a> I have learnt that progressive JPGs normally weight less than baseline ones. Not only that, but they make some browsers start rendering the image sooner, preventing showing a white chunk until the full image is downloaded. By using tools such as imageoptim, which runs jpegtran behind the scenes, you can make sure the smallest file is chosen.</p>
+<p>That post also links to <a href="http://www.bookofspeed.com/chapter5.html">Optimizing Images</a>, a chapter from Stoyan Stefanov’s <a href="http://www.bookofspeed.com/">Book of Speed</a>. In that chapter, Stoyan compiles the main tools to achieve lossless compression of JPG, PNG and GIF images.</p>
+<p>If you want to see progressive images in action, check <a href="http://www.patrickmeenan.com/progressive/view.php?img=http://i2.cdn.turner.com/cnn/dam/assets/121205093053-leweb-cyborg-c1-main.jpg">this demo</a> made by <a href="https://twitter.com/patmeenan">@patmeenan</a> that showing how a JPG is rendered in progressive and baseline mode, and the resulting image of every scan. You can even try with your own image.</p>
+<h2 id="Lossy-techniques"><a href="#Lossy-techniques" class="headerlink" title="Lossy techniques"></a>Lossy techniques</h2><p>To end with, in <a href="http://calendar.perfplanet.com/2012/giving-your-images-an-extra-squeeze/">Giving Your Images An Extra Squeeze</a> you can see how lossy compression tools can help go the extra mile and reduce even more the size of your images, while keeping quality. It is a nice read about tools such as pngquant and imgmin, as well as the WebP format.</p>
+<h2 id="More-resources"><a href="#More-resources" class="headerlink" title="More resources"></a>More resources</h2><p>If you are interested in image optimization, I recommend you to have a look at <a href="http://addyosmani.com/blog/image-optimization-tools/">Image Optimization Tools</a>, an article by Addy Osmani.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;During last days I have come across interesting articles about images optimization. Images are currently the largest average payload in web sites, meaning a &lt;a href=&quot;http://httparchive.org/interesting.php&quot;&gt;62%&lt;/a&gt; of all the bytes. With the increasingly importance of responsive design, &lt;a href=&quot;http://css-tricks.com/which-responsive-images-solution-should-you-use/&quot;&gt;responsive images&lt;/a&gt; are becoming a challenge to face.&lt;/p&gt;
+&lt;p&gt;I have already talked about image optimization in my &lt;a href=&quot;/techniques-optimize-web-sites/#images-optimization&quot;&gt;list of optimization techniques&lt;/a&gt; and my short &lt;a href=&quot;/jpegoptim-optimize-jpg-page-speed/&quot;&gt;post about using jpegoptim&lt;/a&gt;. But recently I have read about highly compressed JPG to target high-res screens and progressive JPG images, and I thought it would worth sharing.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+      <category term="responsive" scheme="https://jmperezperez.com/tags/responsive/"/>
+    
+  </entry>
+  
+</feed>

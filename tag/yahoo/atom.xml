@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/yahoo/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>The not so good web performance tips</title>
+    <link href="https://jmperezperez.com//yahoo-tips-website-performance-flush-bottom"/>
+    <id>https://jmperezperez.com//yahoo-tips-website-performance-flush-bottom</id>
+    <published>2010-12-28T18:46:41.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Yesterday I was reading <a href="http://www.slideshare.net/nzakas/performance-yahoohomepage">Zakas’ Performance on the Yahoo! Homepage slideshare presentation</a>, and I got very surprised when I saw that Yahoo had realised that two of the wide accepted tips for improving website performance had not work so well for them.
+<img src="/assets/images/posts/yahoo-homepage.jpg" alt="Yahoo&#39;s Home page"></p>
+<span id="more"></span>
+<p><strong>1) Put scripts at the bottom</strong> (slide 37)
+Or at least that is <a href="http://developer.yahoo.com/performance/rules.html#js_bottom">what Yahoo recommends</a>, and it contributes as one of the indicators to calculate YSlow score. But they found out that page would stay frozen while fetching, executing and parsing Javascript and this was worse over slow connections.</p>
+<p>The solution was loading Javascript using dynamic <code>script</code> tags. This solution is better applied when using progressive enhancement because users can try to perform actions that are provided by this non-blocking javascript.</p>
+<p><strong>2) Flush after head</strong> (slide 51)
+This is another <a href="http://developer.yahoo.com/performance/rules.html#flush">recommended practice by Yahoo</a>. They found out that the best solution was to flush at different points, especially when a block of a considerable size had been output. They also recommend to avoid having a big external <code>div</code> containing the different sections, and place directly the sections as <code>body</code> children.</p>
+<p>In conclusion, the best you can do is test the different alternatives, especially when trying to find the one the provides the best user’s perceived page load time.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Yesterday I was reading &lt;a href=&quot;http://www.slideshare.net/nzakas/performance-yahoohomepage&quot;&gt;Zakas’ Performance on the Yahoo! Homepage slideshare presentation&lt;/a&gt;, and I got very surprised when I saw that Yahoo had realised that two of the wide accepted tips for improving website performance had not work so well for them.
+&lt;img src=&quot;/assets/images/posts/yahoo-homepage.jpg&quot; alt=&quot;Yahoo&amp;#39;s Home page&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="flush" scheme="https://jmperezperez.com/tags/flush/"/>
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+      <category term="yahoo" scheme="https://jmperezperez.com/tags/yahoo/"/>
+    
+  </entry>
+  
+</feed>

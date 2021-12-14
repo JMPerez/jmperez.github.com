@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/future%20friendly/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2021-12-14T07:52:53.526Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Webapp first: An approach to developing for mobile</title>
+    <link href="https://jmperezperez.com//developing-mobile-webapp-first"/>
+    <id>https://jmperezperez.com//developing-mobile-webapp-first</id>
+    <published>2012-05-21T05:21:17.000Z</published>
+    <updated>2021-12-14T07:52:53.526Z</updated>
+    
+    <content type="html"><![CDATA[<p>Mobile web apps are not at the same level of native ones. Until browsers don’t implement HTML5 API specifications to access device hardware (device API, audio, video), implement push notifications, and improve general performance (animations, scroll) web apps will not be able to deliver the experience that can’t be reach through native development.</p>
+<p>However, there are some advantages when taking a webapp first approach for mobile development.</p>
+<span id="more"></span>
+<h2 id="UI-mocking"><a href="#UI-mocking" class="headerlink" title="UI mocking"></a>UI mocking</h2><p>Some UI designers are so familiar with web that they use HTML+CSS to implement native apps mockups. Then, this mockups are used by iOS or Android developers to implement the app UI. Why don’t take advantage of that web mockup and use it for a web app?</p>
+<h2 id="Hybrid-application"><a href="#Hybrid-application" class="headerlink" title="Hybrid application"></a><a name="hybrid"></a>Hybrid application</h2><p>Your web development can be easily reused to make a hybrid application. Your native app can be a wrapper of your webapp, and you can use PhoneGap or Titanium to access hardware through JS bridges. In addition, you can iterate and port parts of your application to native controls if you realize it is more suitable. You don’t lose your previous development, since you can reuse them in your mobile site.</p>
+<p>Take Google+ iPhone app as an example:
+<img src="/assets/images/posts/google-plus-hybrid.jpg" alt="Google+ iPhone app"></p>
+<p>The Google+ iPhone app was basically a wrapper around their mobile webapp. From there, they have evolve it to a much richer one. However, certain features like the login page remain the same. And there is the mobile site, that looks a lot like the ‘old’ iPhone app.</p>
+<h2 id="Testing-new-features"><a href="#Testing-new-features" class="headerlink" title="Testing new features"></a>Testing new features</h2><p>Deploying changes in a webapp is easier than building and distributing an app. Thus, you can easily perform A/B testing or introduce new features on your webapp and use it as a way to get feedback before porting those changes to native apps.</p>
+<h2 id="Defensive-development-Future-Friendly"><a href="#Defensive-development-Future-Friendly" class="headerlink" title="Defensive development - Future Friendly"></a>Defensive development - Future Friendly</h2><p>Having a webapp makes your solution compatible with future devices, no matter what OS they are running. Your users will be able to use your application on their mobile phones through their browser. <a href="http://www.openwebdevice.com/">Open Web Device</a> gaining traction? You are ready. <a href="http://www.slashgear.com/intels-first-medfield-phone-coming-this-week-claims-ceo-17223318/">Intel Mobile phone</a>? You are ready too. E-book reader? Of course! And take into account that your application wouldn’t be compatible with these devices if you had chosen any of current ‘native’ environments.</p>
+<p>In addition, as OS software updates are being released and more powerful browsers are available, our web apps will behave better. If we have embraced progressive enhancement, our apps will be able to take advantage of most recent HTML5 APIs as soon as the browser in which they are running supports them.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Mobile web apps are not at the same level of native ones. Until browsers don’t implement HTML5 API specifications to access device hardware (device API, audio, video), implement push notifications, and improve general performance (animations, scroll) web apps will not be able to deliver the experience that can’t be reach through native development.&lt;/p&gt;
+&lt;p&gt;However, there are some advantages when taking a webapp first approach for mobile development.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="progressive enhancement" scheme="https://jmperezperez.com/tags/progressive-enhancement/"/>
+    
+      <category term="mobile" scheme="https://jmperezperez.com/tags/mobile/"/>
+    
+      <category term="future friendly" scheme="https://jmperezperez.com/tags/future-friendly/"/>
+    
+      <category term="webapp" scheme="https://jmperezperez.com/tags/webapp/"/>
+    
+  </entry>
+  
+</feed>

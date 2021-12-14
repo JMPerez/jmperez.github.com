@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/bpm/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Detecting tempo of a song using browser&#39;s Audio API</title>
+    <link href="https://jmperezperez.com//bpm-detection-javascript"/>
+    <id>https://jmperezperez.com//bpm-detection-javascript</id>
+    <published>2014-08-09T04:40:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This article explains some ideas behind a small project to detect the tempo of a song using the Audio API. I recommend you to have a look at these links before reading the rest of the article: <a href="http://jmperezperez.com/beats-audio-api/">Demo</a> and <a href="https://github.com/JMPerez/beats-audio-api">Code on GitHub</a>.
+<img src="/assets/images/posts/bpm-detection-example.png" alt="Beat Detection Algorithm Example"></p>
+<span id="more"></span>
+<h2 id="Beat-detection-using-Audio-API"><a href="#Beat-detection-using-Audio-API" class="headerlink" title="Beat detection using Audio API"></a>Beat detection using Audio API</h2><p>A couple of days ago I came across <a href="http://joesul.li/van/beat-detection-using-web-audio/">Beat Detection Using Web Audio</a>, a blog post by <strong>Joe Sullivan</strong> where he explained a simple algorithm to calculate the tempo of a song using the Audio API. After reading it, I was curious about how well the algorithm would work for other tracks.</p>
+<p>So I sat down and coded a small project using his algorithms and adding a search box to search for songs, and display the result for them.</p>
+<p>The algorithm is supposed to work better with the central fragment of a song. This avoids the parts with lower volume and fewer signals we can take to detect the beats.</p>
+<h2 id="Searching-songs-and-obtaining-a-preview-MP3"><a href="#Searching-songs-and-obtaining-a-preview-MP3" class="headerlink" title="Searching songs and obtaining a preview MP3"></a>Searching songs and obtaining a preview MP3</h2><p>The APIs of some music streaming services provide a sample of 30 seconds of every song in their catalog. We can’t choose what 30 seconds of a track we want (i.e. what the starting point of the chunk is), but they will usually be a fragment of the most representative part of the song, and this is a good candidate for the algorithm.</p>
+<p>The bitrate of the samples is rather low, around 96 kb/s according to my tests. I have tried to use them previously for my <a href="http://jmperezperez.com/karaoke/">karaoke project</a>, but the result was very noisy.</p>
+<p>Since I’m more than familiar with the <a href="https://developer.spotify.com/web-api/">Spotify Web API</a>, I have chosen it for <a href="https://developer.spotify.com/web-api/search-item/">searching tracks</a>. The search is also quite flexible and normally is enough with the track name (without artist name) to find the song we want.</p>
+<p>The Search endpoint returns a list of tracks, and their <code>preview_url</code> property points to an MP3 file that we can plug in straight to an <code>AudioContext</code> to process it.</p>
+<h2 id="Calculating-the-tempo"><a href="#Calculating-the-tempo" class="headerlink" title="Calculating the tempo"></a>Calculating the tempo</h2><p>I am following the algorithm described (in great detail) by Joe Sullivan. I have tweaked it a bit to:</p>
+<ol>
+<li><p><strong>Dynamically adjust the threshold to identify peaks</strong>: In some cases a threshold of 0.8 was simply too much and the amount of representative peaks returned too low for doing a proper guess. Thus, I lower the threshold until I have a few more peaks for the given sample.</p>
+</li>
+<li><p><strong>Round the theoretical tempo to the closest integer</strong>. Otherwise it is rather impossible to get multiple intervals with the same value. At first sight we lose precision, but tempos are usually integers anyway.</p>
+</li>
+</ol>
+<p>To check how well the algorithm works I wanted to know the BPM of the song, calculated by some trustable source. Luckily enough, the same Spotify API provides an endpoint to <a href="https://developer.spotify.com/web-api/get-audio-features/">get Audio Features for a Track</a>. The first version of this project used The Echo Nest API to obtain the tempo of a song. Some time ago this API was discontinued, and this and other endpoints were merged into Spotify’s Web API. That means we don’t need to match track identifiers from different music services, making everything easier.</p>
+<p>The endpoint returns a JSON object with several features of the track, including its <code>tempo</code>.</p>
+<h2 id="Rendering-the-peaks-and-playing-the-track"><a href="#Rendering-the-peaks-and-playing-the-track" class="headerlink" title="Rendering the peaks and playing the track"></a>Rendering the peaks and playing the track</h2><p>From Joe’s post, I really liked the simple graphs showing the peaks of a song as a way of representing what the algorithm was doing. I decided to do the same, and also add a button to play the track along with an indicator that goes through the graph and helps us see what peaks were detected by the algorithm.</p>
+<h2 id="Enhancements"><a href="#Enhancements" class="headerlink" title="Enhancements?"></a>Enhancements?</h2><p>I’m sure there must be better algorithms to find out the tempo of a song, but this one has proven to be very simple and effective for most of the “danceable” tracks, between 90 and 180 BPM. And I think it’s a fun way to use the modern browser’s recent APIs.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Article about project for detecting BPM of a track using the Audio API, in combination with the Spotify Web API.
+    
+    </summary>
+    
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+      <category term="bpm" scheme="https://jmperezperez.com/tags/bpm/"/>
+    
+  </entry>
+  
+</feed>

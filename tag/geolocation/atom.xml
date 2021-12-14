@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/geolocation/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Google Maps Geolocation and Directions to a Specific Destination</title>
+    <link href="https://jmperezperez.com//google-maps-geolocation-directions-specific-destination"/>
+    <id>https://jmperezperez.com//google-maps-geolocation-directions-specific-destination</id>
+    <published>2010-07-16T16:50:57.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>While helping in the redesign of Signum’s website I took a look at Google Maps. It’s been almost 2 years since I last used the API for my end career project.</p>
+<p>Now I wanted to know if I could make use of geolocalization and directions to show a visitor the way to get to our headquarters from wherever he/she is, instead of just showing with a marker where we are. Thanks to geolocation we can find out with precision the position coordinates of the visitor.
+<a href="/assets/images/posts/google-maps-geolocation-directions.jpg"><img src="/assets/images/posts/google-maps-geolocation-directions-300x187.jpg" alt="Geolocation to guide visitor&#39;s to a specific place"></a>
+<a href="/demos/geoposition">View demo</a></p>
+<span id="more"></span>
+<p>The code makes use of HTML5 and Google geolocation services, as well as the new Google Maps API v3.</p>
+<p>Some time ago I would have done this (in fact in the project I did this way) querying an IP address to Location database to get the position, having to update data almost every month, as IP addresses were reassigned.</p>
+<p>Now you can get it done by using HTML5 geolocation feature primarily an then use an alternative service as a fallback in case the browser does not support HTML5 or it throws an error when getting the location.</p>
+<p>Here is the JS code (also as <a href="https://gist.github.com/4587682">a Gist on Github</a>). To see a complete working sample <a href="/demos/geoposition">visit the demo</a>:</p>
+<pre class=" language-js"><code class="language-js"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> map<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//the google map</span>
+  directionsService<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//service that provides directions to reach our destination</span>
+  directionsDisplay<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//renderer that draws directions on map</span>
+  destinationName <span class="token operator">=</span> <span class="token string">'Ventorro del Cano, Madrid'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//our destination. Set yours!</span>
+
+  <span class="token comment" spellcheck="true">// providers</span>
+  <span class="token keyword">var</span> html5Provider <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'HTML5'</span><span class="token punctuation">,</span>
+      <span class="token string">'getPosition'</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>onSuccess<span class="token punctuation">,</span> onError<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>geolocation<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+          navigator<span class="token punctuation">.</span>geolocation<span class="token punctuation">.</span><span class="token function">getCurrentPosition</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>position<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token function">onSuccess</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+              <span class="token string">'lat'</span><span class="token punctuation">:</span> position<span class="token punctuation">.</span>coords<span class="token punctuation">.</span>latitude<span class="token punctuation">,</span>
+              <span class="token string">'lng'</span><span class="token punctuation">:</span> position<span class="token punctuation">.</span>coords<span class="token punctuation">.</span>longitude
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">switch</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>code<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+              <span class="token keyword">case</span> error<span class="token punctuation">.</span>TIMEOUT<span class="token punctuation">:</span>
+                <span class="token function">onError</span><span class="token punctuation">(</span><span class="token string">'Timeout'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+              <span class="token keyword">case</span> error<span class="token punctuation">.</span>POSITION_UNAVAILABLE<span class="token punctuation">:</span>
+                <span class="token function">onError</span><span class="token punctuation">(</span><span class="token string">'Position unavailable'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+              <span class="token keyword">case</span> error<span class="token punctuation">.</span>PERMISSION_DENIED<span class="token punctuation">:</span>
+                <span class="token function">onError</span><span class="token punctuation">(</span><span class="token string">'Permission denied'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+              <span class="token keyword">case</span> error<span class="token punctuation">.</span>UNKNOWN_ERROR<span class="token punctuation">:</span>
+                <span class="token function">onError</span><span class="token punctuation">(</span><span class="token string">'Unknown error'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+          <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+          <span class="token function">onError</span><span class="token punctuation">(</span><span class="token string">'HTML5 navigator is not supported'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// have a look at this StackOverflow thread, since it seems Google Geocoder is no longer active</span>
+  <span class="token comment" spellcheck="true">// http://stackoverflow.com/questions/14195837/is-google-loader-clientlocation-still-supported</span>
+  <span class="token keyword">var</span> googleGeocoderProvider <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'Google Geocoder'</span><span class="token punctuation">,</span>
+      <span class="token string">'getPosition'</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>onSuccess<span class="token punctuation">,</span> onError<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> google <span class="token operator">===</span> <span class="token string">'object'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+          <span class="token keyword">var</span> location <span class="token operator">=</span> google<span class="token punctuation">.</span>loader<span class="token punctuation">.</span>ClientLocation<span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>location<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token function">onSuccess</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+              <span class="token string">'lat'</span><span class="token punctuation">:</span> location<span class="token punctuation">.</span>latitude<span class="token punctuation">,</span>
+              <span class="token string">'lng'</span><span class="token punctuation">:</span> location<span class="token punctuation">.</span>longitude
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token function">onError</span><span class="token punctuation">(</span><span class="token string">'Google Geocoder was unable to get the client position'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// register providers</span>
+  <span class="token keyword">var</span> providers <span class="token operator">=</span> <span class="token punctuation">[</span>html5Provider<span class="token punctuation">,</span> googleGeocoderProvider<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">function</span> <span class="token function">testProvider</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> provider <span class="token operator">=</span> providers<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      provider<span class="token punctuation">.</span><span class="token function">getPosition</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>position<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token function">showMapAndRoute</span><span class="token punctuation">(</span>provider<span class="token punctuation">.</span>type<span class="token punctuation">,</span> position<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        i<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">&amp;</span>lt<span class="token punctuation">;</span> providers<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+          <span class="token function">testProvider</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token function">testProvider</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">showMapAndRoute</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> coordinates<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'method'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'Location obtained using '</span> <span class="token operator">+</span> method<span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> myOptions <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      zoom<span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
+      mapTypeId<span class="token punctuation">:</span> google<span class="token punctuation">.</span>maps<span class="token punctuation">.</span>MapTypeId<span class="token punctuation">.</span>ROADMAP
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+
+    map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">google<span class="token punctuation">.</span>maps<span class="token punctuation">.</span>Map</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'map'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> myOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    directionsDisplay <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">google<span class="token punctuation">.</span>maps<span class="token punctuation">.</span>DirectionsRenderer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    directionsDisplay<span class="token punctuation">.</span><span class="token function">setMap</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    directionsDisplay<span class="token punctuation">.</span><span class="token function">setPanel</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'route'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> request <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      origin<span class="token punctuation">:</span> coordinates<span class="token punctuation">.</span>lat <span class="token operator">+</span> <span class="token string">','</span> <span class="token operator">+</span> coordinates<span class="token punctuation">.</span>lng<span class="token punctuation">,</span>
+      destination<span class="token punctuation">:</span> destinationName<span class="token punctuation">,</span>
+      travelMode<span class="token punctuation">:</span> google<span class="token punctuation">.</span>maps<span class="token punctuation">.</span>DirectionsTravelMode<span class="token punctuation">.</span>DRIVING
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+    directionsService <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">google<span class="token punctuation">.</span>maps<span class="token punctuation">.</span>DirectionsService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    directionsService<span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> status<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>status <span class="token operator">===</span> google<span class="token punctuation">.</span>maps<span class="token punctuation">.</span>DirectionsStatus<span class="token punctuation">.</span>OK<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        directionsDisplay<span class="token punctuation">.</span><span class="token function">setDirections</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+  window<span class="token punctuation">.</span>onload <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The code is mostly self-explanatory. We need to show the map, obtain the visitor’s position, ask for the directions and render them over the map. You can easily add more geolocation providers, and run them by priority changing they order in the providers array.</p>
+<p>In my tests I have seen that I get <em>null</em> when checking <code>google.loader.ClientLocation</code>. It means that Google couldn’t retrieve a position to the IP that it has detected, so in this case the fallback can fail some times (maybe we should use a second fallback?).</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Have you ever wondered how to show a google map showing instructions on how to get to your business? You can do it easily detecting your visitor&#39;s position and then provide directions to get to a specific destination.
+    
+    </summary>
+    
+    
+      <category term="html5" scheme="https://jmperezperez.com/tags/html5/"/>
+    
+      <category term="geolocation" scheme="https://jmperezperez.com/tags/geolocation/"/>
+    
+      <category term="maps" scheme="https://jmperezperez.com/tags/maps/"/>
+    
+  </entry>
+  
+</feed>

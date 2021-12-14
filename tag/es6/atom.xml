@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/es6/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Using ES6 today</title>
+    <link href="https://jmperezperez.com//use-es6-today"/>
+    <id>https://jmperezperez.com//use-es6-today</id>
+    <published>2015-07-20T06:20:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Yesterday I was reading <a href="https://medium.com/javascript-scene/how-to-use-es6-for-isomorphic-javascript-apps-2a9c3abe5ea2">How to Use ES6 for Universal JavaScript Apps</a> and decided to create <a href="https://github.com/JMPerez/es6-template">a small template</a> from which I can start a project using ES6 both client and server-side. <em>Note: You can replace the term “ES6” with ES2015, ES.next or whatever it’s called today, you get the idea.</em></p>
+<span id="more"></span>
+<p>Although everyone is promoting ES6 nowadays, the truth is that using it in a real project is not that straightforward. I spent some time with <a href="https://github.com/JMPerez/linkedin-to-json-resume">LinkedIn to JSON Résumé</a> trying to figure out how to easily compile to ES5 and how to import modules as defined in ES6 instead of NodeJS’s <code>require</code>.</p>
+<p>Generally speaking I haven’t been a big fan of CoffeeScript. Nor LESS nor SASS. I could use them in a small project to understand their reason to be, but I haven’t enough reasons to sell it to my colleagues when building or rewriting a real project.</p>
+<p>It’s not that it doesn’t have its advantages, it’s that today the hot thing is X and tomorrow is Y. I’m even using <code>Makefile</code> in some projects just to not have to decide between <code>grunt</code> and <code>gulp</code>.</p>
+<p>Sticking to the standard does make sense. And using tools to polyfill it until it becomes a reality in all modern browsers.</p>
+<p>So I can’t but recommend you start to get familiar with ES6 and try to apply it in small projects first, to get used to it and be better prepared for the coming ES7.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Setting up ES6 in your next web project isn&#39;t that difficult... if you know how.
+    
+    </summary>
+    
+    
+      <category term="es6" scheme="https://jmperezperez.com/tags/es6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>What I&#39;ve been up to recently</title>
+    <link href="https://jmperezperez.com//what-i-have-been-up-to"/>
+    <id>https://jmperezperez.com//what-i-have-been-up-to</id>
+    <published>2015-06-27T09:55:00.000Z</published>
+    <updated>2021-12-14T07:52:53.526Z</updated>
+    
+    <content type="html"><![CDATA[<p>Yes! It’s been a while since I last posted on this blog. I haven’t come up with new ideas for some time, but I do have been working on some projects I had on GitHub and needed a revisit.</p>
+<span id="more"></span>
+<h2 id="Calculating-tempo-of-a-song-using-Javascript"><a href="#Calculating-tempo-of-a-song-using-Javascript" class="headerlink" title="Calculating tempo of a song using Javascript"></a>Calculating tempo of a song using Javascript</h2><p>I recently realised the <a href="https://github.com/JMPerez/beats-audio-api">site for calculating the BPM for a song</a> didn’t work on iPhone. After some research it turned out that the audio <code>OfflineContext</code> behaviour is different on iOS mobile than in the rest of platforms. Also, I was composing a dynamic SVG that result in the browser rendering an empty SVG, ignoring its contents. Hopefully that’s fixed now too.</p>
+<h2 id="LinkedIn-to-JSON-Resume"><a href="#LinkedIn-to-JSON-Resume" class="headerlink" title="LinkedIn to JSON Resume"></a>LinkedIn to JSON Resume</h2><p>I am a big fan of APIs. Ever since I started using them for my end career project at University, I have worked both on implementing and consuming them.</p>
+<p>Companies exposing their data through public APIs benefit from interesting integrations, expanding the platforms and use cases they have presence. But they are also afraid of giving out business core data for free.</p>
+<p><a href="http://thatmikeflynn.com/2012/08/17/oh-twitter/">Twitter</a>, <a href="http://techcrunch.com/2014/06/13/netflix-api-shutdown/">Netflix</a> or <a href="http://thenextweb.com/dd/2015/02/12/linkedin-takes-aim-developers-plans-lock-apis/">LinkedIn</a> are some well known cases of APIs that have introduced changes to become more restrictive. These changes are never welcome by developers, but nevertheless applications relying on any 3rd party API will always be prone to break.</p>
+<p>So yes, the <a href="https://github.com/JMPerez/linkedin-to-json-resume">LinkedIn to JSON Resume exporter</a> broke because LinkedIn only allows apps access to a user’s full profile if those apps are used as part of a “apply for this position” section of a company’s site. That’s even though the user is always in control of what data an application can access, using a permission dialog (OAuth scopes).</p>
+<p>Luckily there is a way for users to export their LinkedIn data, and that’s what the exporter tool is using. It was also my first project written using ES6 / ES.netxt / ES2015, which uses browserify + babelify to run the code on a browser.</p>
+<p>The code is similar to <em>regular</em> Javascript, with some syntactic sugar, but I think it was a good opportunity to get used to the new syntax and get on board with the latest additions to the language.</p>
+<h2 id="RAML-to-Swagger"><a href="#RAML-to-Swagger" class="headerlink" title="RAML to Swagger"></a>RAML to Swagger</h2><p>I have been exploring API specification languages for the creation of wrappers and documentation. <a href="http://www.michaelthelin.se/?p=861">Michael Thelin</a> writes about how we are using RAML in Spotify for building the <a href="https://developer.spotify.com/web-api/console/">Spotify Web API Console</a>, which has results in open-sourcing <a href="https://github.com/spotify/ramlfications">the RAML python parser</a> that <a href="https://github.com/econchick">Lynn Root</a> developed as part of the console.</p>
+<p>There are lots of tools built around RAML and Swagger for creating documentation, libraries, visualisations or even mock servers.</p>
+<p>I didn’t like the very few converters from RAML to Swagger, so I decided to start mine. Even though they are not fully equivalent, the <a href="https://github.com/JMPerez/raml2swagger">raml2swagger</a> script does a decent job, and will allow us (and hopefully whoever needs it) explore the whole myriad of tools for API specifications, starting from a RAML spec.</p>
+<hr>
+<p>That’s all for now!</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Some open-source projects I have been working on recently. Rest APIs, ES6 and Audio API.
+    
+    </summary>
+    
+    
+      <category term="es6" scheme="https://jmperezperez.com/tags/es6/"/>
+    
+  </entry>
+  
+</feed>

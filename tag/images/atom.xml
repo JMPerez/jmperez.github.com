@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/images/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2021-12-14T07:52:53.527Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JPG compression level, SSIM and Jpeg.io</title>
+    <link href="https://jmperezperez.com//ssim-jpeg-io"/>
+    <id>https://jmperezperez.com//ssim-jpeg-io</id>
+    <published>2016-10-14T15:43:00.000Z</published>
+    <updated>2021-12-14T07:52:53.527Z</updated>
+    
+    <content type="html"><![CDATA[<p>The size of images in JPG varies a lot based on the compression level we choose when saving them. Often, we tweak this level by hand until we consider we don’t have too many artifacts and the resulting image is close enough to the original one.</p>
+<p>The same compression level doesn’t generate the same amount of artifacts in two different images. We need to find an automated approach that measures how different (or similar) two images are, and loop through several compression levels to find the most suitable one.</p>
+<span id="more"></span>
+
+<h2 id="Structural-similarity"><a href="#Structural-similarity" class="headerlink" title="Structural similarity"></a>Structural similarity</h2><p>Some time ago I discovered <a href="https://github.com/technopagan/cjpeg-dssim">cjpeg-ddsim</a> at <a href="/internetdagarna-2015/#High-Performance-Images-by-Tobias-Baldauf">a talk </a> by <a href="http://tobias.is/about/">Tobias Baldauf</a> who works at Akamai and has written several tools for optimising images.</p>
+<p><a href="https://en.wikipedia.org/wiki/Structural_similarity">Structural similarity</a> is used for measuring the similarity between two images, which can be applied to our use case. Tobias himself has <a href="https://github.com/technopagan/adept-jpg-compressor">a script</a> that goes through the whole process of applying SSIM to an image, though you will need to install some libraries to run it.</p>
+<h2 id="ImageOptim-and-JPEG-io"><a href="#ImageOptim-and-JPEG-io" class="headerlink" title="ImageOptim and JPEG.io"></a>ImageOptim and JPEG.io</h2><p>I’m a big fan of automated tools like <a href="https://imageoptim.com/">ImageOptim</a>. Since I normally have full control on the assets of my projects, I can pass the images through it once and commit them optimised.</p>
+<p>ImageOptim performs a <a href="/image-optimization-lossy-lossless-techniques/">lossless optimisation</a> by default, removing EXIF data and preview images that are not needed. A lossy mode is available and can be enabled from the app’s preferences panel. Lossy presents the same problem, though. What compression level is the right one?</p>
+<p><img src="/assets/images/posts/imageoptim-lossy.png" alt="Imageoptim&#39;s Preferences"></p>
+<p>Reading <a href="http://frontendfocus.co/issues/261">this week’s FrontEnd Focus (formerly HTML5 Weekly) newsletter</a> I found out about <a href="https://www.jpeg.io/">Jpeg.io</a>. This site claims to convert any image into a highly Optimized JPEG, so I decided to give it a try.</p>
+<p>I run it through all JPG images on this blog, and I liked seeing that there were savings even though the images had already been optimised:</p>
+<p><img src="/assets/images/posts/jpeg-io-results.png" alt="Jpeg.io results for some of the images of this blog"></p>
+<p>Some images were left untouched, while others reduced their size as much as 70% (<a href="/assets/images/posts/spotify-hack-week-2014-presentation-before.jpg">before 236kB</a>, <a href="/assets/images/posts/spotify-hack-week-2014-presentation.jpg">after 71kB</a>).</p>
+<h3 id="Progressive-JPEGs"><a href="#Progressive-JPEGs" class="headerlink" title="Progressive JPEGs"></a>Progressive JPEGs</h3><p>Another advantage is that it generates <a href="http://blog.patrickmeenan.com/2013/06/progressive-jpegs-ftw.html">progressive JPGs</a>. Compared to baseline JPGs, progressive ones will render a larger area of the image earlier, though more <em>pixelated</em>. It provides a standard way to progressive load images without having to do something as fancy as <a href="/medium-image-progressive-loading-placeholder/">Medium’s technique</a>.</p>
+<p>Note, however, that users might prefer baseline images, <a href="http://www.webperformancetoday.com/2014/09/17/progressive-image-rendering-good-evil/">according to a study</a>, which was later <a href="http://conferences.oreilly.com/velocity/velocityny2014/public/schedule/detail/35658">presented at Velocity</a>:</p>
+<blockquote>
+<p>When, as with the Progressive JPEG method, image rendition is a two-stage process in which an initially coarse image snaps into sharp focus, cognitive fluency is inhibited and the brain has to work slightly harder to make sense of what is being displayed</p>
+</blockquote>
+<h3 id="Customisation"><a href="#Customisation" class="headerlink" title="Customisation"></a>Customisation</h3><p>Jpeg.io doesn’t have any customisation options like image quality or compression. They don’t give too many details about the process they apply <a href="https://www.jpeg.io/about">on their site</a>, but they do seem to do some kind of SSIM processing:</p>
+<blockquote>
+<p>Jpeg.io is a free online interface for rapidly and conveniently converting your images into highly optimized JPEGs using Kraken.io’s proprietary JPEG optimization algorithms. […] you’ll get a progressive JPEG compressed to the smallest possible size without perceptible quality loss.</p>
+</blockquote>
+<p>Kraken.io also offers <a href="https://kraken.io/web-interface">an alternative web interface</a> where they do have some level of customisation, and show the percentage of savings per file.</p>
+<h2 id="Future-of-SSIM-based-optimisation-tools"><a href="#Future-of-SSIM-based-optimisation-tools" class="headerlink" title="Future of SSIM-based optimisation tools"></a>Future of SSIM-based optimisation tools</h2><p>I do hope that we see more libraries that make use of image similarity and we can be easily used in our build pipelines and CMSs.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      It&#39;s difficult to select the best compression level for JPG images. SSIM helps measuring image similarity, and tools like Jpeg.io makes it easier.
+    
+    </summary>
+    
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to lazy-load images to improve loading time and save bandwidth</title>
+    <link href="https://jmperezperez.com//lazy-loading-images"/>
+    <id>https://jmperezperez.com//lazy-loading-images</id>
+    <published>2016-07-31T05:30:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>tl;dr: Don’t load images that the user doesn’t see on screen. It is easier than you think.</p>
+<span id="more"></span>
+<h2 id="What-is-lazy-loading"><a href="#What-is-lazy-loading" class="headerlink" title="What is lazy loading"></a>What is lazy loading</h2><p>Everyone has seen lazy loading content on web sites and mobile apps. You start seeing some content, and as you scroll, more content gets loaded.</p>
+<h2 id="A-web-page-and-all-its-requests"><a href="#A-web-page-and-all-its-requests" class="headerlink" title="A web page and all its requests"></a>A web page and all its requests</h2><p>In the case of web pages, it hasn’t been that easy for developers to find the balance between creating many small resources or serving a big one. A trend these days consist of inlining critical resources, the ones needed to render content above the fold, and load the rest of CSS and JS asynchronously. This is easy to do in small static sites, but more difficult for larger sites with dynamic content.</p>
+<p>Delaying the request to some assets has lots of benefits:</p>
+<ul>
+<li>Less data usage for the user. This is especially important on mobile, where lots of users have poor network connections and restrictive data plans.</li>
+<li>The server or CDN has to serve less data, which translates to a cheaper bill for the site.</li>
+<li>Important content gets prioritised. The same bandwidth is used by fewer requests in parallel, so it is more likely that they are solved faster.</li>
+<li>Less work for the browser. The browser doesn’t need to parse nor decode assets that are not requested.</li>
+</ul>
+<p>As with everything, this technique also comes with some disadvantages. Let’s focus on lazy loading of images.</p>
+<h2 id="Lazy-loading-images"><a href="#Lazy-loading-images" class="headerlink" title="Lazy loading images"></a>Lazy loading images</h2><p>I will talk about how we can get big wins focusing on delaying the load of images.</p>
+<p>We can have a quick look at <a href="https://spotify.com/">spotify.com home page</a>:</p>
+<video width="1194" height="798" controls>
+  <source src="/assets/images/posts/spotify-com-loading-images.webm" type="video/webm">
+  <source src="/assets/images/posts/spotify-com-loading-images.mp4" type="video/mp4">
+</video>
+
+<p>We load the page, then clear the network tab, which is filtered to show only requests for images. As we scroll down the page, more images are requested, accounting for ~1.1MB.</p>
+<p>Lazy loading images gives full control to select what image needs to be loaded (eg a 2x version for a retina display, or a 1x when in slower connections). It is also possible to create smooth transitions of opacity or blurriness to create nice effects. I recommend you to read <a href="/medium-image-progressive-loading-placeholder/">a previous post about progressive image rendering</a> to see some examples.</p>
+<p>Despite is advantages, this technique also has its drawbacks.</p>
+<h2 id="Drawbacks-of-lazy-loading-images"><a href="#Drawbacks-of-lazy-loading-images" class="headerlink" title="Drawbacks of lazy loading images"></a>Drawbacks of lazy loading images</h2><h3 id="JavaScript-based"><a href="#JavaScript-based" class="headerlink" title="JavaScript based"></a>JavaScript based</h3><p>So far, browsers don’t support a native way of marking a certain image to be lazy loaded. The solutions are JavaScript-based, which means that it won’t work if the browser has JS disabled or the request for the JS snippet fails.</p>
+<p><a href="https://gds.blog.gov.uk/2013/10/21/how-many-people-are-missing-out-on-javascript-enhancement/">This is not so unlikely</a>, and content-blockers are becoming more widespread used, both on desktop and mobile. For JS disabled browsers, it is possible to implement a fallback using <code>&lt;noscript&gt;</code>, although this won’t work if the browser uses some kind of content blocker for JS files.</p>
+<h3 id="Scroll-listeners-and-relayouts"><a href="#Scroll-listeners-and-relayouts" class="headerlink" title="Scroll listeners and relayouts"></a>Scroll listeners and relayouts</h3><p>When doing lazy load, we want to detect when the page is scrolled, and then check whether the placeholder for our image is within the rendered section of the page. And this needs to be performed for all the images we want to lazy load.</p>
+<p>Scroll listeners can have a negative impact in scrolling performance. During the scroll movement, the browser triggers many scroll events, and finding out the position and dimension of our images causes <a href="https://gist.github.com/paulirish/5d52fb081b3570c81e3a">a layout recalculation</a>. This is an expensive operation that makes the browser spend too long drawing frames, producing <a href="http://jankfree.org/">stuttering when scrolling</a>.</p>
+<p>To avoid it, JS developers usually cache dimensions and positions of some elements, and use throttling and debouncing to execute the scroll callback fewer times.</p>
+<h4 id="IntersectionObserver"><a href="#IntersectionObserver" class="headerlink" title="IntersectionObserver"></a>IntersectionObserver</h4><p>There is an experimental API called <a href="https://developers.google.com/web/updates/2016/04/intersectionobserver">IntersectionObserver</a> that suits very well this use case. Instead of subscribing to the scroll event, and then go through the lazy-loaded images, IntersectionObserver allows us to subscribe to an event triggered when the image enters the rendered area (viewport).</p>
+<p><img src="/assets/images/posts/intersectionobserver.gif" alt="IntersectionObserver">
+<em>Source: <a href="https://developers.google.com/web/updates/2016/04/intersectionobserver">IntersectionObserver’s Coming into View</a>.</em></p>
+<p>The API is fully supported on Chrome, Opera and MS Edge. It’s <a href="http://caniuse.com/intersectionobserver">also enabled in Firefox</a>, behind the <code>dom.IntersectionObserver.enabled</code> preference.</p>
+<p>IntersectionObserver has also other interesting applications. The main one is probable a more fine control on ads, to make sure impressions are tracked for ads that the user actually sees. Another one is infinite scrolling lists, that can be implemented as sets of <em>pages</em> (top, current, bottom) that we can listen to for visibility events and load/unload rows or change the height of the pages.</p>
+<h3 id="Fallback-content-and-viewport"><a href="#Fallback-content-and-viewport" class="headerlink" title="Fallback content and viewport"></a>Fallback content and viewport</h3><p>When an image is displayed within the rendered area, we know it needs to be fetched. But we could also fetch it when, not being strictly within the rendered area, it is very close to it. This reduces the likeliness that a placeholder is rendered without its image, but can also mean requesting images that will never be displayed.</p>
+<p>Finally, we need to think of what will be rendered in the placeholder while the images are fetched. A possibility is to show an empty area. Why not an area filled with a dominant colour? You can revisit <a href="/medium-image-progressive-loading-placeholder/">the post about progressive image rendering</a> to get some ideas.</p>
+<h3 id="Browser-limitations"><a href="#Browser-limitations" class="headerlink" title="Browser limitations"></a>Browser limitations</h3><p>Some browsers may limit how much work is done while scrolling. WebKit on iOS 7 scroll event change <a href="http://developer.telerik.com/featured/scroll-event-change-ios-8-big-deal/">used to be fired when the scroll gesture stopped</a>, making it impossible to load. Fortunately, most used browsers today don’t present this limitation.</p>
+<h2 id="An-example-Spotify-Open-pages"><a href="#An-example-Spotify-Open-pages" class="headerlink" title="An example: Spotify Open pages"></a>An example: Spotify Open pages</h2><p>The <a href="https://open.spotify.com/">Spotify’s Open site</a>, where it shows information about Spotify catalogue, have been using lazy loading for the images for more than a year. Let’s use <a href="https://open.spotify.com/track/7oSUp4yZ0FbuSvVmCxH2ty?noredir=1">a track page</a> as an example.</p>
+<p>The main goal of the page is for the user to have information about the track, and click the Call to Action button (green button) to open the track in a Spotify client or sign up. That’s why it’s crucial that these elements are shown above the fold.</p>
+<p>The main image is not lazy loaded. Doing so would delay its rendering since the browser would need to first parse and execute the JS code that does the lazy loading, and then the image would be requested. However, the rest of the images below the fold, like the ones showing more albums by the same artist, don’t need to be fetched until the user scrolls down and they enter the screen.
+<img src="/assets/images/posts/open-pages-structure.png" alt="Structure of a Spotify Open page."></p>
+<p>The Open site uses a small library that provides lazy loading. Due to its small size, it can also be inlined in the markup, so there is no need to make a request for the script and images are requested a bit earlier.</p>
+<p>Instead of using the src attribute of an <code>&lt;img/&gt;</code> to point to the image file, we use data-src. We can also add 2x versions of the images, that will get loaded if the browser screen is a retina display.</p>
+<p>Internally, the library makes sure the scrolling performance is not affected when using lazy load. It uses passive event listeners,  throttles scroll events, caches image dimensions, and don’t process images already loaded. Finally, it uses IntersectionObserver on supported browsers, avoiding listening to the scroll event and asking for properties from the images.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>When building a website, consider lazy loading the assets when they are needed. This is both good for the user and the site’s servers and CDNs.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      When building a website, consider lazy loading the assets when they are needed. This post will focus in the specific case of lazy loading images.
+    
+    </summary>
+    
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+      <category term="lazy-loading" scheme="https://jmperezperez.com/tags/lazy-loading/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Drawing images using edge detection and SVG animation</title>
+    <link href="https://jmperezperez.com//drawing-edges-svg"/>
+    <id>https://jmperezperez.com//drawing-edges-svg</id>
+    <published>2015-12-18T08:42:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Back in the days SVG was barely used and supported. Some time after we started using them as an alternative to classic bitmaps for some icons, and finally we discovered it was the holy grail for providing responsive graphics. The flat and clean design trends have also make SVG as a very useful image format.</p>
+<p>But SVG allows for even cooler features, thanks to the ability of modifying it using CSS and JS. And with some clever techniques we can make fun things, like <em>drawing</em> the borders of an image.</p>
+<span id="more"></span>
+<p>If you are like me and like to see the final result before going through a wall of text, here is a video that shows the result of applying this effect to a couple of images:</p>
+<video controls style="max-width:100%" width="718" height="756">
+  <source src="/assets/images/posts/contour.mp4" type="video/mp4">
+</video>
+
+<h2 id="Animate-SVGs-to-achieve-a-drawing-effect"><a href="#Animate-SVGs-to-achieve-a-drawing-effect" class="headerlink" title="Animate SVGs to achieve a drawing effect"></a>Animate SVGs to achieve a <em>drawing</em> effect</h2><p>One of the applications I like is path animation. This draws slowly the lines that compose the SVG. If you don’t know what this is about, please check <a href="http://www.polygon.com/a/ps4-review">Polygon’s reviews for PS4</a> and <a href="http://www.polygon.com/a/xbox-one-review">Xbox One</a>. The effect is achieved by applying transitions to the <code>stroke-dashoffset</code> of SVG polylines.</p>
+<p>Some time ago I played with <a href="https://github.com/JMPerez/spotify-logo-svg-drawing-animation">this technique and the vector version of the Spotify logo</a>:</p>
+<iframe id="cp_embed_rxxRRg" src="//codepen.io/jmperez/embed/rxxRRg?height=403&theme-id=0&slug-hash=rxxRRg&default-tab=result" scrolling="no" frameborder="no" height="403" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+
+<p>This was based on <a href="http://codepen.io/derekjp/pen/KIGFe/">the SVG Animation (Polygon.com PS4 Review) pen by Derek Palladino</a>, who reproduced Polygon’s drawings.</p>
+<h2 id="Applying-the-technique-to-bitmap-images"><a href="#Applying-the-technique-to-bitmap-images" class="headerlink" title="Applying the technique to bitmap images"></a>Applying the technique to bitmap images</h2><p>Then one day I started thinking of drawing the contours of bitmap images. I would detect the contours of an image using canvas, and then I would create segments of adjacent points. As expected, some smart people have already worked on these things before, and I pretty much just had to put it together.</p>
+<p>That’s how I created Contour. The project is <a href="https://github.com/JMPerez/contour">on GitHub</a>, so feel free to clone it and tweak it. And if you want to try it out right now, I have embedded it right here:</p>
+<iframe src="https://jmperezperez.com/contour/" width="100%" height="500"></iframe>
+
+<p>You can drag and drop any image. It will work better with images with areas with high contrast.</p>
+<p>You may wonder how this works, who doesn’t?</p>
+<h3 id="Canvas"><a href="#Canvas" class="headerlink" title="Canvas"></a>Canvas</h3><p>First, the image that you drop is drawn into a canvas that has a maximum size. If the image exceeds that size, it is downscaled. This allows us to process larger images without making the browser become super slow. The smallest the canvas, the fastest, but also the less accurate would be the SVG lines.</p>
+<p>Then, there is the core process: detecting edges and creating SVG lines out of them.</p>
+<h3 id="Canny-edge-detector"><a href="#Canny-edge-detector" class="headerlink" title="Canny edge detector"></a>Canny edge detector</h3><p>I read about the <a href="https://en.wikipedia.org/wiki/Canny_edge_detector">Canny edge detector</a> trying to find an algorithm that detected the edges from an image, and then found a JS implementation. <a href="https://github.com/yuta1984/CannyJS">Canny JS</a> is one of them, and performs well. However, in the end I chose <a href="https://github.com/cmisenas/canny-edge-detection">Jade Misenas’s project</a> because I could visualise better the steps of the algorithm and it resulted in longer lines with fewer gaps. This is important, since we need to be able to generate SVG lines by following the pixels that are part of the edge.</p>
+<p>By the way, if you want to learn more about edge detection, I recommend you to have a look at <a href="https://www.youtube.com/watch?v=uihBwtPIBxM">the video Finding the Edges (Sobel Operator)</a>, that explains one of the operators that can be used when performing edge detection.</p>
+<h3 id="Tracing-the-edge"><a href="#Tracing-the-edge" class="headerlink" title="Tracing the edge"></a>Tracing the edge</h3><p>To obtain the SVG lines I used <a href="https://github.com/Doodle3D/Contour-finding-experiment">Doodle3D’s Contour finding experiment</a>, which I eventually simplified a bit. The idea is to traverse the canvas and, once we find a white pixel (edge), we follow the nearby pixels to compose the line.</p>
+<p>One we have a set of lines, we create one SVG polyline per contour, using the pixels as points. There are some improvements we can do here:</p>
+<ul>
+<li><p>Simplify polyline to remove points that don’t contribute to the line, that is, they can fall behind a longer segment. An example is having a horizontal line spanning through several pixels, that can be defined by 2 points instead of a line with 1 point per pixel. Doing this saves potentially lots of points, especially if there are lots of vertical or horizontal lines.</p>
+</li>
+<li><p>Smooth the polyline to match better arcs or diagonal lines that produce a stairstep-like line. In the project this is achieved by using half of the points to draw the image. The result is not that close to the border, but helps reducing those stairstep-like lines.</p>
+</li>
+<li><p>Use web workers to do the detection of the contour. This would prevent the browser from freezing for a few milliseconds.</p>
+</li>
+</ul>
+<h2 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h2><p>The effect is cool by itself and doesn’t take long to compute. The browser needs the image to create the SVG lines, but this could be stored somewhere and be served as inlined SVG or a standalone SVG file. And doing this we suddenly have found a way to start <em>rendering</em> an image without having downloaded it yet. Also, note that SVG is highly compressible and we have full control of how many lines and points we want to use to represent the image.</p>
+<p>If you have been following this blog, I have been talking lately about techniques to load images in a progressive way, with the <a href="/medium-image-progressive-loading-placeholder/"><em>blur up</em> technique used by Medium</a> and the use of <a href="/webp-placeholder-images/">WebP as placeholders</a>.</p>
+<p>So I see this drawing effect as not only a fun thing to do with images, but also a way to provide a <em>placeholder</em> while the final image is downloaded.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Using SVGs to achieve a cool drawing effect
+    
+    </summary>
+    
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+      <category term="ux" scheme="https://jmperezperez.com/tags/ux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Using WebP to create tiny preview images</title>
+    <link href="https://jmperezperez.com//webp-placeholder-images"/>
+    <id>https://jmperezperez.com//webp-placeholder-images</id>
+    <published>2015-11-28T10:30:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Following with the image optimization topic, I am going to have a deeper look to <a href="https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/">Facebook’s technique to create <em>preview</em> photos</a>, and will show how WebP can simplify their solution.</p>
+<p><img src="/assets/images/posts/webp-vs-jpeg-preview-photos.jpg" alt="WebP vs JPEG when encoding tiny images"></p>
+<p><strong>tl;dr</strong> WebP produces tiny files when compressing small images. This makes it ideal for implementing <em>preview photos</em>. <a href="/demos/webp-preview/">Check the demo</a>.</p>
+<span id="more"></span>
+<p>In a recent article I talked about <a href="/medium-image-progressive-loading-placeholder/">an image loading technique used by Medium</a> that combined a small blurry preview plus a transition to the final image. This approach has been used for some time by other sites and mobile applications, and it is getting even more focus these days as major websites try to expand in countries with very slow internet connections.</p>
+<p>Facebook is one of them and explained some months ago <a href="https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/">how they inlined preview photos</a>.</p>
+<h2 id="Finding-out-the-right-image-dimensions"><a href="#Finding-out-the-right-image-dimensions" class="headerlink" title="Finding out the right image dimensions"></a>Finding out the right image dimensions</h2><p>There is a direct relation between the dimensions of the image, its size in bytes, and the radius for the blur effect that needs to be applied to smooth the big upscaled pixels. In addition, we need to take into account the rendered dimensions of the image: we will want a larger preview the larger the rendered size is.</p>
+<p>Facebook found that, for their mobile client, the sweet spot for the preview size was 42×42px. Then, they tried to generate the smallest (in bytes) image that they could serve with those dimensions. JPEG was the winning format, and they worked on reducing the file size even further by making the mobile client prepend a common header image and only transmit the basic image data.</p>
+<h2 id="Taking-this-approach-to-the-web"><a href="#Taking-this-approach-to-the-web" class="headerlink" title="Taking this approach to the web"></a>Taking this approach to the web</h2><p>If we want to use the same technique on a website, we need to:</p>
+<ol>
+<li>Send image data.</li>
+<li>Send the header.</li>
+<li>Send the JS code that will glue the header and the data together.</li>
+</ol>
+<p>In the case of a mobile app, the code for (2) and (3) is shipped as part of the app. But in a website we need to send it as part of the response. This means that, at least the first time the user visits our page, there won’t be large savings using this technique. For subsequent requests, we could use cached JS or a Service Worker to do the glueing process.</p>
+<p>But not everything is lost.</p>
+<h2 id="Using-a-different-image-format"><a href="#Using-a-different-image-format" class="headerlink" title="Using a different image format"></a>Using a different image format</h2><p>I wondered how other format files performed in file size when saving small files. I tried with PNG and GIF, and both of them were larger than JPG. Then I have it a try to WebP and I was surprised on how well it compresses images.</p>
+<h3 id="How-I-resized-and-compressed-the-images"><a href="#How-I-resized-and-compressed-the-images" class="headerlink" title="How I resized and compressed the images"></a>How I resized and compressed the images</h3><p><strong><a href="/demos/webp-preview/">In this page</a> you can see the demo and all the source images generated</strong></p>
+<p>First, I downloaded some 64×64px cover art images using the <a href="https://developer.spotify.com/web-api/console/get-artist-albums/?id=61C3cEhdoJ9YiQSQSwYB4K">Spotify Web API</a>. I wanted to use square images with a consistent small size.</p>
+<p>Then I used Photoshop to create a 42×42px JPEG version of the files, with the minimum quality settings (that is, max compression). Then I passed them through <a href="https://imageoptim.com/">ImageOptim</a>, that saved around 66% of the file size using a lossless optimization. The final average file size is 478 bytes.
+<a href="/assets/images/posts/imageoptim-jpg-optimization.png"><img src="/assets/images/posts/imageoptim-jpg-optimization.png" alt="ImageOptim squeezing JPGs"></a></p>
+<p>Note that Facebook don’t mention what the size for their images was:</p>
+<blockquote>
+<p>“Unfortunately, the standard JPEG header is hundreds of bytes in size. In fact, the JPEG header alone is several times bigger than our entire 200-byte budget. However, excluding the JPEG header, the encoded data payload itself was approaching our 200 bytes” - taken from <a href="https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/">The technology behind preview photos</a>.</p>
+</blockquote>
+<p>For the WebP version I used Photoshop to create a 42×42 px JPEG version of the files, but this time with the maximum quality settings. This is to make sure that I didn’t introduce artifacts that WebP had to encode. Then again, I passed the files through ImageOptim, reducing the file size around 25%, to an average of 2.5kB.</p>
+<p>Finally, I run <a href="https://developers.google.com/speed/webp/docs/using"><code>cwebp</code></a> to generate WebP images from the JPEG version, with the minimum quality:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">for</span> f <span class="token keyword">in</span> *.jpg<span class="token punctuation">;</span> <span class="token keyword">do</span> cwebp -q 0 <span class="token variable">$f</span> -o <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">basename</span> $f .jpg<span class="token variable">)</span></span>"</span>.webp<span class="token punctuation">;</span> <span class="token keyword">done</span>
+</code></pre>
+<p>The resulting WebP images have a file size between 90 and 202 bytes, with an average of 121 bytes. That is <strong>25% of an equivalent JPG image</strong>.
+<a href="/assets/images/posts/webp-vs-jpeg-preview-photos.jpg"><img src="/assets/images/posts/webp-vs-jpeg-preview-photos.jpg" alt="WebP vs JPEG encoding tiny placeholder images"></a></p>
+<p>The artifacts generated by JPEG and WebP are quite different, but in any case, when smoothed using blur, they look almost identical:
+<a href="/assets/images/posts/webp-vs-jpeg-preview-photos-blur.jpg"><img src="/assets/images/posts/webp-vs-jpeg-preview-photos-blur.jpg" alt="WebP vs JPEG encoding tiny placeholder images after applying a small blur effect"></a></p>
+<p>Remember that these images are always shown with a blur effect, to smooth artifacts and pixels.</p>
+<h3 id="Medium’s-Progressive-Loading-Inlined-WebP"><a href="#Medium’s-Progressive-Loading-Inlined-WebP" class="headerlink" title="Medium’s Progressive Loading + Inlined WebP"></a>Medium’s Progressive Loading + Inlined WebP</h3><p>I have forked the CodePen I created on <a href="/medium-image-progressive-loading-placeholder/">How Medium does progressive image loading</a> to show how it works with WebP. You will need a browser that supports WebP to see the full effect. Otherwise, you can <a href="/assets/images/posts/webp-progressive-image-loading.mp4">watch this video</a> showing the effect.</p>
+<p>I have resized the original image to a 42×28px thumbnail, converted to WebP and generated its Data URI:</p>
+<pre><code>data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoqABwAP/3+/3+/urWyMBVYA/A/iWIAAR7p/Y3etgh4KD8QqXEZj6waibITSIAA/cndnUz4/z4LEgByYUql75Cq/12W33KFIKQpc8L0Dt19C7NFXin0tKlxd70dzSF978msbuqLjDgAAA==
+</code></pre>
+<p>That’s 199 characters. And this is the result:</p>
+<iframe id="cp_embed_QjeWVv" src="//codepen.io/jmperez/embed/QjeWVv?height=403&theme-id=0&slug-hash=QjeWVv&default-tab=result" scrolling="no" frameborder="no" height="403" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+
+<p>You can see it better <a href="http://codepen.io/jmperez/full/QjeWVv/">in full screen</a>. I recommend that you use network throttling and disable cache to notice the full animation.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>We have managed to create a file within the 200 bytes budget without having to mess with the headers nor fancy low-level hacks. <em>Here’s when I wonder if it would be possible to strip the header of the WebP files and get even higher savings</em>.</p>
+<p>For the web, <a href="http://caniuse.com/#feat=webp">WebP can only be used in Chrome and Opera</a>, which limits its applicability in the real world. Interestingly for Facebook’s use case, WebP is supported on native mobile apps on <a href="https://github.com/carsonmcdonald/WebP-iOS-example">iOS</a> and <a href="https://github.com/EverythingMe/webp-android">Android</a>, so they could well use WebP as an alternative to their <em>technology</em>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Following with the image optimization topic, I am going to have a deeper look to Facebook&#39;s technique to create preview photos, and will show how WebP can simplify their solution.
+    
+    </summary>
+    
+    
+      <category term="facebook" scheme="https://jmperezperez.com/tags/facebook/"/>
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+      <category term="ux" scheme="https://jmperezperez.com/tags/ux/"/>
+    
+      <category term="webp" scheme="https://jmperezperez.com/tags/webp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How Medium does progressive image loading</title>
+    <link href="https://jmperezperez.com//medium-image-progressive-loading-placeholder"/>
+    <id>https://jmperezperez.com//medium-image-progressive-loading-placeholder</id>
+    <published>2015-10-18T20:05:00.000Z</published>
+    <updated>2021-12-14T07:52:53.526Z</updated>
+    
+    <content type="html"><![CDATA[<p>Recently, I was browsing a post on Medium and I spotted a nice image loading effect. First, load a small blurry image, and then transition to the large image. I found it pretty neat and wanted to dissect how it was done.</p>
+<p><img
+    loading="lazy"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale/v1510693577/medium-placeholder_ciusf2.png"
+    sizes="(max-width: 768px) 100vw, 684px" alt="A screenshot of a blurry placeholder while the image is loaded" style="margin: 0 auto "/></p>
+<span id="more"></span>
+
+<h2 id="Medium’s-technique"><a href="#Medium’s-technique" class="headerlink" title="Medium’s technique"></a>Medium’s technique</h2><p>To see how image loading works in Medium, it is best to see a demo:</p>
+<video controls style="max-width:100%" width="854" height="480">
+  <source src="/assets/images/posts/medium-progressive-loading.mp4" type="video/mp4">
+</video>
+
+<p>I have performed a <a href="http://www.webpagetest.org/video/compare.php?tests=151018_XD_KDF-r:1-c:0">WebPageTest test</a> against <a href="https://medium.com/backchannel/exclusive-why-apple-is-still-sweating-the-details-on-imac-531a95e50c91">this page on Medium</a> where you can see how it loads too. And if you want to see it by yourself, open Medium’s post in your browser, disable the cache and throttle the response so it takes longer to fetch the images and you can see the effect.</p>
+<p>Here is what is going on:</p>
+<ol>
+<li><p><strong>Render a div where the image will be displayed</strong>. Medium uses a <code>&lt;div/&gt;</code> with a <code>padding-bottom</code> set to a percentage, which corresponds to the aspect ratio of the image. Thus, they prevent reflows while the images are loaded since everything is rendered in its final position. This has also been referred to as <a href="http://daverupert.com/2015/12/intrinsic-placeholders-with-picture/">intrinsic placeholders</a>.</p>
+</li>
+<li><p><strong>Load a tiny version of the image</strong>. At the moment, they seem to be requesting small JPEG thumbnails with a very low quality (e.g. 20%). The markup for this small image is returned in the initial HTML as an <code>&lt;img/&gt;</code>, so the browser starts fetching them right away.</p>
+</li>
+<li><p>Once the image is loaded, <strong>it is drawn in a <code>&lt;canvas/&gt;</code></strong>. Then, the image data is taken and passed through a custom <code>blur()</code> function You can see it, a bit scrambled, in the <code>main-base.bundle</code> JS file. This function is similar, though not identical, to <a href="http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html">StackBlur</a>‘s blur function. At the same time, <strong>the main image is requested</strong>.</p>
+</li>
+<li><p>Once the main image is loaded, <strong>it is shown</strong> and the <code>canvas</code> is hidden.</p>
+</li>
+</ol>
+<p>All the transitions are quite smooth, thanks to the CSS animations applied.</p>
+<h2 id="Markup"><a href="#Markup" class="headerlink" title="Markup"></a>Markup</h2><p>A bird’s eye view of the markup for an image:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token punctuation">/></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- this div keeps the aspect ratio so the placeholder doesn't collapse --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token punctuation">/></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- this is a tiny image with a resolution of e.g. ~27x17 and low quality --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token punctuation">/></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- takes the above image and applies a blur filter --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token punctuation">/></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- the large image to be displayed --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>noscript</span> <span class="token punctuation">/></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- fallback for no JS --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>And a concrete example, so you see what goes in those tags:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
+  <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>7012<span class="token punctuation">"</span></span>
+  <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>7012<span class="token punctuation">"</span></span>
+  <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>graf--figure graf--layoutFillWidth graf-after--h4<span class="token punctuation">"</span></span>
+<span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>aspectRatioPlaceholder is-locked<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>aspect-ratio-fill<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">padding-bottom</span><span class="token punctuation">:</span> <span class="token number">66.7%</span><span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span>
+      <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded<span class="token punctuation">"</span></span>
+      <span class="token attr-name">data-image-id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1*sg-uLNm73whmdOgKlrQdZA.jpeg<span class="token punctuation">"</span></span>
+      <span class="token attr-name">data-width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2000<span class="token punctuation">"</span></span>
+      <span class="token attr-name">data-height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1333<span class="token punctuation">"</span></span>
+      <span class="token attr-name">data-scroll</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>native<span class="token punctuation">"</span></span>
+    <span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+        <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://cdn-images-1.medium.com/freeze/max/27/1*sg-uLNm73whmdOgKlrQdZA.jpeg?q<span class="token punctuation">=</span>20<span class="token punctuation">"</span></span>
+        <span class="token attr-name">crossorigin</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>anonymous<span class="token punctuation">"</span></span>
+        <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>progressiveMedia-thumbnail js-progressiveMedia-thumbnail<span class="token punctuation">"</span></span>
+      <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span>
+        <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>progressiveMedia-canvas js-progressiveMedia-canvas<span class="token punctuation">"</span></span>
+        <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>75<span class="token punctuation">"</span></span>
+        <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>47<span class="token punctuation">"</span></span>
+      <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+        <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>progressiveMedia-image js-progressiveMedia-image __web-inspector-hide-shortcut__<span class="token punctuation">"</span></span>
+        <span class="token attr-name">data-src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg<span class="token punctuation">"</span></span>
+        <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg<span class="token punctuation">"</span></span>
+      <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>noscript</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>js-progressiveMedia-inner<span class="token punctuation">"</span></span>
+        <span class="token punctuation">></span></span><span class="token entity" title="&lt;">&amp;lt;</span>img class="progressiveMedia-noscript js-progressiveMedia-inner"
+        src="https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg"<span class="token entity" title="&gt;">&amp;gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>noscript</span>
+      <span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">></span></span>
+</code></pre>
+<p><em>Note that the actual image sizes requested depend on the device.</em></p>
+<h2 id="An-attempt-to-reproduce-the-effect"><a href="#An-attempt-to-reproduce-the-effect" class="headerlink" title="An attempt to reproduce the effect"></a>An attempt to reproduce the effect</h2><p>I have prepared <a href="http://codepen.io/jmperez/pen/yYjPER">this CodePen</a> where I have implemented the same effect, though using CSS filters for the blur instead of a canvas (see below more info about this variant).</p>
+<p>Here is a demo (click ‘Run Pen’ to run it):</p>
+<iframe id="cp_embed_yYjPER" src="//codepen.io/jmperez/embed/preview/yYjPER?height=403&theme-id=0&slug-hash=yYjPER&default-tab=result" scrolling="no" frameborder="no" height="403" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+
+<p>You can see it better <a href="http://codepen.io/jmperez/full/Xmzobe/">in full screen</a>. I recommend that you use network throttling and disable cache to notice the full animation.</p>
+<p>This filmstrip view shows the above codepen when disabling cache and throttling to “Good 3G”:
+<img src="/assets/images/posts/medium-codepen.png" alt="Chrome Inspector Timeline Capture"></p>
+<h2 id="Is-it-worth-it"><a href="#Is-it-worth-it" class="headerlink" title="Is it worth it?"></a>Is it worth it?</h2><p>Clearly, there is a lot of things going on to be able to render an image this way, and it can be discouraging to do something similar on your site. A few years ago it would have been impossible to do this animations and blur effects in a performant way, but the truth is that most of the times the latency is the bottleneck, not the device capabilities, and we can play with these visual explorations.</p>
+<p>Having full control of the loading of images has some advantages:</p>
+<ul>
+<li><p><strong>Lazy loading</strong>. Using JS for making the requests allows them to be in control of what images are requested. While all the small thumbnails are requested, the large images are only requests when they are within the viewport.</p>
+</li>
+<li><p><strong>Better placeholder</strong>. The thumbnails are very small, barely 2kB, which combined with the blurry effect allows for a better placeholder than a solid colour, without sacrificing payload.</p>
+</li>
+<li><p><strong>Tailored image sizes</strong>. Medium serves different images sizes depending on the device that makes the requests, which optimises the weight of the page.</p>
+</li>
+</ul>
+<h2 id="Variants"><a href="#Variants" class="headerlink" title="Variants"></a>Variants</h2><p>Before finding out about this technique, I thought of using a similar approach for a site I’m working on.</p>
+<h3 id="Inlining-image-data"><a href="#Inlining-image-data" class="headerlink" title="Inlining image data"></a>Inlining image data</h3><p>Instead of making a request for the small thumbnails, it is possible to inline them using data URIs. This increases the size of the HTML, but accelerates the rendering of the placeholder, which is immediate one the markup is downloaded. The blur effect allows these images to be really small. I did some tests with 0.5kB size images, and the result was similar to using a 4x larger image.</p>
+<h3 id="Blur-effect"><a href="#Blur-effect" class="headerlink" title="Blur effect"></a>Blur effect</h3><p>By default, when a browser renders a small image scaled up, it applies a light blur effect to smooth the artefacts of the image. The effect can also be <a href="http://superuser.com/questions/530317/how-to-prevent-chrome-from-blurring-small-images-when-zoomed-in">turned off</a> for images like QR codes.</p>
+<blockquote>
+<p>[…]the browser would render it in a way that didn’t make it look blocky[…] from <a href="https://developers.google.com/web/updates/2015/01/pixelated">Google Developers</a>.</p>
+</blockquote>
+<p>This works both in Chrome, Safari and Firefox (I haven’t tried on IE yet), though the smoothing effect is more prominent in Chrome. Here is a demo, but you can see it better <a href="http://codepen.io/jmperez/full/Xmzobe/">in full screen</a>:</p>
+<iframe id="cp_embed_Xmzobe" src="//codepen.io/jmperez/embed/Xmzobe?height=367&theme-id=0&slug-hash=Xmzobe&default-tab=result" scrolling="no" frameborder="no" height="367" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+
+<p>Note how the artefacts are smoothen. Keep in mind that the image is only 27px wide and has very low quality, which should result in an awful scaled-up version, but it isn’t. If the above effect is enough for you, then you don’t need to use more complicated alternatives.</p>
+<p>The blur effect can also be achieved using <a href="https://codepen.io/aniketpant/pen/DsEve">CSS Filter Effects</a>. <a href="https://caniuse.com/#feat=css-filters">Its support is quite wide</a> aside from IE. I’m pretty sure Medium tried this before going to a canvas solution, which feels far too over-engineered, but for some reason they decided not to use it.</p>
+<iframe id="cp_embed_PPOXzY" src="//codepen.io/jmperez/embed/PPOXzY?height=367&theme-id=0&slug-hash=PPOXzY&default-tab=result" scrolling="no" frameborder="no" height="367" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" data-amp-width="100%" style="width: 100%; overflow: hidden;"></iframe>
+
+<p>The advantage of this technique is that you can easily tweak how much blur you want and everything is achieved using CSS.</p>
+<p>Another option is to use a SVG filter, as explained in <a href="https://css-tricks.com/the-blur-up-technique-for-loading-background-images/">The “Blur Up” Technique for Loading Background Images</a> and <a href="http://rentafounder.com/textured-gradients-in-pure-css/">Textured Gradients in Pure CSS</a>.</p>
+<h3 id="Other-ways-of-improving-placeholders-Google-Images-Search"><a href="#Other-ways-of-improving-placeholders-Google-Images-Search" class="headerlink" title="Other ways of improving placeholders: Google Images Search"></a>Other ways of improving placeholders: Google Images Search</h3><p>A simpler technique is used by Google Search when searching for images from a smartphone:
+<a href="/assets/images/posts/google-images-placeholder.png"><img src="/assets/images/posts/google-images-placeholder.png" alt="Searching on Google Images from the phone"></a>
+<em>&uarr; Google Images Search shows a solid background as placeholder (left image is while loading, right when already loaded).</em></p>
+<p>They pick a colour (maybe the dominant colour of the picture?) and they use it a solid colour background. It gives the user the feeling that images loads faster.</p>
+<h3 id="An-even-more-advanced-one-Facebook’s-200-byte-technique"><a href="#An-even-more-advanced-one-Facebook’s-200-byte-technique" class="headerlink" title="An even more advanced one: Facebook’s 200 byte technique"></a>An even more advanced one: Facebook’s 200 byte technique</h3><p>Earlier this year Facebook posted “<a href="https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/">The technology behind preview photos</a>“, an interesting article about serving 42 x 42px image previews without the JPEG header.</p>
+<p>The scenario is a bit different, since these “images” are served to the Facebook mobile client, which knows how to prepend the header to compose a valid JPEG image. In the case of a website, we would need to compose this using Javascript, which would probably remove most of the savings. A solution would be to use a Service Worker to do the composition, though we would still need some Javascript to send a “request” with the image contents.</p>
+<p>In any case, it seems a bit overkilling for the web, but I wanted to include it as a reference. <a href="/webp-placeholder-images/">Using WebP for generating this preview images</a> can lead to similar savings without having to resort to “creative” solutions.</p>
+<h3 id="LQIP-Low-Quality-Image-Placeholders"><a href="#LQIP-Low-Quality-Image-Placeholders" class="headerlink" title="LQIP: Low Quality Image Placeholders"></a>LQIP: Low Quality Image Placeholders</h3><p>Instead of waiting for the final image to be rendered, we can serve a highly compressed image first, and then switch to the large one. This is what <a href="http://www.guypo.com/introducing-lqip-low-quality-image-placeholders/">Low Quality Image Placeholders (LQIP)</a> consists of. The idea is similar to Medium’s, but serving an image with the same dimensions but higher compression.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>As our pages load more and more images, it is good to think of their loading process on our pages, since it affects performance and user experience.</p>
+<p>If you are generating several thumbnail sizes for your images, you can experiment using a very small one to use it as the background while the final image loads.</p>
+<div class="read-next">
+<p><strong>Related Posts</strong></p>
+<ul>
+<li>I gave a talk at CSSConf about progressive images. You can watch the video and slides on <a href="/cssconf-au-2016/">Speaking at CSSConf Australia 2016</a>.</li>
+<li>I collected more examples of sites using a similar technique on <a href="/more-progressive-image-loading/">More examples of Progressive Image Loading</a> and <a href="/svg-placeholders/">How to use SVG as a Placeholder</a>.</li>
+<li>Interested in other image tips and tricks? Check out <a href="/image-optimization-lossy-lossless-techniques/">Image optimization: Lossy, lossless and other techniques</a>.
+</li>
+</ul>
+</div>
+]]></content>
+    
+    <summary type="html">
+    
+      This post explains how Medium renders an image placeholder using low-res thumbnails and canvas
+    
+    </summary>
+    
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+      <category term="ux" scheme="https://jmperezperez.com/tags/ux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Image optimization: Lossy, lossless and other techniques</title>
+    <link href="https://jmperezperez.com//image-optimization-lossy-lossless-techniques"/>
+    <id>https://jmperezperez.com//image-optimization-lossy-lossless-techniques</id>
+    <published>2013-01-04T20:44:57.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>During last days I have come across interesting articles about images optimization. Images are currently the largest average payload in web sites, meaning a <a href="http://httparchive.org/interesting.php">62%</a> of all the bytes. With the increasingly importance of responsive design, <a href="http://css-tricks.com/which-responsive-images-solution-should-you-use/">responsive images</a> are becoming a challenge to face.</p>
+<p>I have already talked about image optimization in my <a href="/techniques-optimize-web-sites/#images-optimization">list of optimization techniques</a> and my short <a href="/jpegoptim-optimize-jpg-page-speed/">post about using jpegoptim</a>. But recently I have read about highly compressed JPG to target high-res screens and progressive JPG images, and I thought it would worth sharing.</p>
+<span id="more"></span>
+<h2 id="Highly-compressed-JPG-images-and-high-resolution-screens"><a href="#Highly-compressed-JPG-images-and-high-resolution-screens" class="headerlink" title="Highly compressed JPG images and high resolution screens"></a>Highly compressed JPG images and high resolution screens</h2><p><a href="https://www.filamentgroup.com/lab/compressive-images.html">Compressive Images</a> is a post by Filament Group where they show a way to target responsive images. Instead of using multiple copies of an image with different sizes, you can generate a large JPG image with a compression of 0 quality. That way, not only one single copy can be used to target different screen sizes and resolutions, but there are even large savings in file size comparing to normal 1:1 images.</p>
+<p>I have prepared <a href="/demos/compressive-images/">a demo of the Compressive Images technique</a> where you can test your own images.</p>
+<div class="callout">
+<strong>Info</strong>: Note that this technique might have a high impact on decoding + resizing, especially on mobile. Tim Kadlec explained it at Velocity SC 2015 in his <a href="https://www.youtube.com/watch?v=jP68rCjSSjM&t=10m56s">Mobile Image Processing talk</a>.
+</div>
+
+<h2 id="Progressive-JPEGs"><a href="#Progressive-JPEGs" class="headerlink" title="Progressive JPEGs"></a>Progressive JPEGs</h2><p>Thanks to <a href="http://calendar.perfplanet.com/2012/progressive-jpegs-a-new-best-practice/">Progressive jpegs: a new best practice</a> I have learnt that progressive JPGs normally weight less than baseline ones. Not only that, but they make some browsers start rendering the image sooner, preventing showing a white chunk until the full image is downloaded. By using tools such as imageoptim, which runs jpegtran behind the scenes, you can make sure the smallest file is chosen.</p>
+<p>That post also links to <a href="http://www.bookofspeed.com/chapter5.html">Optimizing Images</a>, a chapter from Stoyan Stefanov’s <a href="http://www.bookofspeed.com/">Book of Speed</a>. In that chapter, Stoyan compiles the main tools to achieve lossless compression of JPG, PNG and GIF images.</p>
+<p>If you want to see progressive images in action, check <a href="http://www.patrickmeenan.com/progressive/view.php?img=http://i2.cdn.turner.com/cnn/dam/assets/121205093053-leweb-cyborg-c1-main.jpg">this demo</a> made by <a href="https://twitter.com/patmeenan">@patmeenan</a> that showing how a JPG is rendered in progressive and baseline mode, and the resulting image of every scan. You can even try with your own image.</p>
+<h2 id="Lossy-techniques"><a href="#Lossy-techniques" class="headerlink" title="Lossy techniques"></a>Lossy techniques</h2><p>To end with, in <a href="http://calendar.perfplanet.com/2012/giving-your-images-an-extra-squeeze/">Giving Your Images An Extra Squeeze</a> you can see how lossy compression tools can help go the extra mile and reduce even more the size of your images, while keeping quality. It is a nice read about tools such as pngquant and imgmin, as well as the WebP format.</p>
+<h2 id="More-resources"><a href="#More-resources" class="headerlink" title="More resources"></a>More resources</h2><p>If you are interested in image optimization, I recommend you to have a look at <a href="http://addyosmani.com/blog/image-optimization-tools/">Image Optimization Tools</a>, an article by Addy Osmani.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;During last days I have come across interesting articles about images optimization. Images are currently the largest average payload in web sites, meaning a &lt;a href=&quot;http://httparchive.org/interesting.php&quot;&gt;62%&lt;/a&gt; of all the bytes. With the increasingly importance of responsive design, &lt;a href=&quot;http://css-tricks.com/which-responsive-images-solution-should-you-use/&quot;&gt;responsive images&lt;/a&gt; are becoming a challenge to face.&lt;/p&gt;
+&lt;p&gt;I have already talked about image optimization in my &lt;a href=&quot;/techniques-optimize-web-sites/#images-optimization&quot;&gt;list of optimization techniques&lt;/a&gt; and my short &lt;a href=&quot;/jpegoptim-optimize-jpg-page-speed/&quot;&gt;post about using jpegoptim&lt;/a&gt;. But recently I have read about highly compressed JPG to target high-res screens and progressive JPG images, and I thought it would worth sharing.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+      <category term="responsive" scheme="https://jmperezperez.com/tags/responsive/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Optimizing images for web with Google Page Speed and jpegoptim</title>
+    <link href="https://jmperezperez.com//jpegoptim-optimize-jpg-page-speed"/>
+    <id>https://jmperezperez.com//jpegoptim-optimize-jpg-page-speed</id>
+    <published>2009-06-27T13:42:44.000Z</published>
+    <updated>2021-12-14T07:52:53.525Z</updated>
+    
+    <content type="html"><![CDATA[<p>Image optimization is a big topic these days. The main culprit in site traffic are images, and <a href="https://httparchive.org/reports/state-of-the-web">their transfer size is increasing over time</a>.</p>
+<p>You may have wondered how to optimize your images. First, check if there is room for improvement. For that I will be using <a href="https://developers.google.com/speed/">Google Page Speed</a>, which offers several tools for analyzing your site. One of them is a handy <a href="https://developers.google.com/speed/pagespeed/insights/">online analyzer</a>. Type there the name of your site and click to analyze it.</p>
+<!-- more -->
+<p>I like the ‘Optimize images’ section. It tells you what resources can be optimized and how much traffic you can save, both in the mobile version of your site and the one served for desktop:
+<a href="/assets/images/posts/google-pagespeed-insights-report.png"><img src="/assets/images/posts/google-pagespeed-insights-report-thumb.jpg" alt="Analyzing a site using Google PageSpeed Insights online"></a>
+<em>Analyzing the analyzer: Here you can see the ‘Optimize images’ section for the Google PageSpeed Insights page. Notice the it reports the optimizable images and how much size you can save.</em></p>
+<h2 id="Optimizing-your-JPG-images-with-Jpegoptim"><a href="#Optimizing-your-JPG-images-with-Jpegoptim" class="headerlink" title="Optimizing your JPG images with Jpegoptim"></a>Optimizing your JPG images with Jpegoptim</h2><p>The truth is that when you save a JPG image, you don’t know exactly how much compression level you should apply. Sometimes we try different values until we find the best balance between quality and size. Google Page Speed must be using an algorithm that optimizes this relationship, performing a lossless compression to JPG and PNG files.</p>
+<p>As mentioned in the <a href="http://code.google.com/speed/page-speed/docs/payload.html#CompressImages">section on optimization of images</a>, we can use tools like <a href="http://jpegclub.org/">jpegtran</a> and <a href="http://freshmeat.net/projects/jpegoptim/">jpegoptim</a></p>
+<p>You can install jpegoptim in GNU / Linux easily. If you are an Ubuntu user, it is included in the section on Graphics (universe) and simply run:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> jpegoptim
+</code></pre>
+<p>If you want to make the optimization of images across your website, or simply reduce the size of your photo albums, you can run this script, that will recursively scan folders to optimize every JPG file. The files will be overwritten with the optimized version.</p>
+<pre class=" language-bash"><code class="language-bash">optimize<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+  jpegoptim *.jpg --strip-all
+  <span class="token keyword">for</span> i <span class="token keyword">in</span> *
+  <span class="token keyword">do</span>
+    <span class="token keyword">if</span> <span class="token function">test</span> -d <span class="token variable">$i</span>
+    <span class="token keyword">then</span>
+      <span class="token function">cd</span> <span class="token variable">$i</span>
+      <span class="token keyword">echo</span> <span class="token variable">$i</span>
+      optimize
+      <span class="token function">cd</span> <span class="token punctuation">..</span>
+    <span class="token keyword">fi</span>
+  <span class="token keyword">done</span>
+  <span class="token keyword">echo</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+optimize
+</code></pre>
+<p>This script uses the option <code>--strip-all</code> to strip out the text information contained in the file (comments and EXIF data) that are not necessary on web images (for your own pictures you’d better keep them).</p>
+<p>If you are interested in image optimization, I recommend you having a look at:</p>
+<h2 id="Other-tools-for-optimizing-images"><a href="#Other-tools-for-optimizing-images" class="headerlink" title="Other tools for optimizing images"></a>Other tools for optimizing images</h2><p>I have been using image optimization actively for a long time. Depending on your needs, I recommend you one of these methods:</p>
+<ul>
+<li><strong>Optimization of a few files through a desktop app (on Mac)</strong>: Use <a href="http://imageoptim.com/">ImageOptim</a>. Drag and drop JPG and PNG files and you are goo to go.</li>
+<li><strong>Optimization of images on Wordpress</strong>: Use <a href="http://wordpress.org/plugins/wp-smushit/">Smush.it</a>. It optimizes uploaded images automatically, and you can also run the plug-in against the existing images. Check out <a href="https://10web.io/blog/the-best-image-optimization-solutions-in-wordpress/">Best Image Optimization Plugins for WordPress</a> to read about different options to optimize images on this platform.</li>
+<li><strong>Optimizing PNG files using lossy compression</strong>: Use <a href="https://tinypng.com/">TinyPNG</a>. It can reduce PNG images size a lot, but double check the result before, since sometimes you can notice the difference in the colours.</li>
+<li><strong>Best Image Optimization Plugins for WordPress</strong>: Read <a href="https://10web.io/blog/the-best-image-optimization-solutions-in-wordpress/">this article</a> that<h2 id="Read-also"><a href="#Read-also" class="headerlink" title="Read also"></a>Read also</h2></li>
+</ul>
+<p>I wrote a post about <a href="/image-optimization-lossy-lossless-techniques/">Image optimization: Lossy, lossless and other techniques</a> in which I explain some tools and considerations when compressing images.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      This post shows a script to recursively optimize a set of JPG files using jpegoptim
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="google page speed" scheme="https://jmperezperez.com/tags/google-page-speed/"/>
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+  </entry>
+  
+</feed>

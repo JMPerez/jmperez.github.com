@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/favicon/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Printing a message in the browser console with a favicon</title>
+    <link href="https://jmperezperez.com//console-log-favicon"/>
+    <id>https://jmperezperez.com//console-log-favicon</id>
+    <published>2013-09-26T09:40:14.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I recently read <a href="https://twitter.com/souders/status/378587712543944704/photo/1">this Steve Souder’s tweet</a> about a <code>console.log()</code> message that Etsy is printing out to catch developer’s attention. You can see it by visiting <a href="http://www.etsy.com/">Etsy.com</a> and opening the console from the developer tools. Another good one is <a href="https://twitter.com/rosariomgomez/status/466254762367655936">Pinterest</a>.</p>
+<p>But I thought it would be even better to show the logo of the site next to the message.</p>
+<span id="more"></span>
+<h2 id="What-we-will-be-achieving"><a href="#What-we-will-be-achieving" class="headerlink" title="What we will be achieving"></a>What we will be achieving</h2><p><img src="/assets/images/posts/console-log-favicon-final.jpg" alt="Final result showing a console.log message together with a favicon"></p>
+<p>Continue reading to know how to achieve it, or have a look <a href="http://jsfiddle.net/J3yZP/">at this jsFiddle</a>.</p>
+<h2 id="Basic-idea-compatibility-and-limitations-of-the-different-consoles"><a href="#Basic-idea-compatibility-and-limitations-of-the-different-consoles" class="headerlink" title="Basic idea, compatibility and limitations of the different consoles"></a>Basic idea, compatibility and limitations of the different consoles</h2><p>You can use styles in the printed messages in the console, at least on Google Chrome and Firebug (support in Firefox is limited, see below). Each of them have a limitation when trying to render the favicon. The idea is to use a style that sets the logo as the background image. Then, set its size and add some margin between the logo and the text.</p>
+<h3 id="Google-Chrome"><a href="#Google-Chrome" class="headerlink" title="Google Chrome"></a>Google Chrome</h3><p>You can check out the <a href="https://developers.google.com/chrome-developer-tools/docs/console#styling_console_output_with_css">section about styling the console</a> on Google Chrome. It works, but <a href="https://plus.google.com/+AddyOsmani/posts/TanDFKEN9Kn#z12wstwg0wr5g1xoy04cepzz1lamdxbqjjg#1365803568707861">it doesn’t seem to support <code>background-repeat: no-repeat</code></a>. So if we use <code>&quot;%c text&quot;</code>, the logo repeats all the way until the end of the string. Thus, we have to place the logo on the right side by doing <code>&quot;text %c&quot;</code>.
+<img src="/assets/images/posts/console-log-favicon-repeat-chrome.jpg" alt="Chrome doesn&#39;t interpret &quot;background-repeat: no-repeat&quot;"></p>
+<h3 id="Firebug"><a href="#Firebug" class="headerlink" title="Firebug"></a>Firebug</h3><p>Firebug, however, doesn’t support custom styles using <code>%c</code> in a position other than the start of the string, so we need to use <code>&quot;%c text&quot;</code>. In addition, neither margin-left, padding-left or text-indent push the string towards the right side to leave place to the logo, rendering the text on top of the logo. The hacky solution is to add whitespaces between the style and the text: <code>&quot;%c   text&quot;</code>.</p>
+<h2 id="A-solution-that-works-on-both-browsers"><a href="#A-solution-that-works-on-both-browsers" class="headerlink" title="A solution that works on both browsers"></a>A solution that works on both browsers</h2><p>I haven’t found a proper way to detect that the browser is using Firebug. Even if there was, we don’t know whether the user opened the Firebug console or the built-in one. Although Firebug also runs on Chrome, most developers use Chrome Developer Tools on Chrome, so with some user agent sniffing (I hate it, but I can’t find a more suitable way) we can use one or the other version depending on whether the browser is Chrome or not.</p>
+<p>Final result showing a console.log message together with a favicon:
+<img src="/assets/images/posts/console-log-favicon-final.jpg" alt="Final result showing a console.log message together with a favicon"></p>
+<p>In Firebug, the image needs to be left-aligned:
+<img src="/assets/images/posts/console-log-favicon-firebug.jpg" alt="In Firebug, the image needs to be left-aligned"></p>
+<p>Below is the code I am using to render the message together with a favicon, in this case Spotify’s. You can see it in action <a href="http://jsfiddle.net/J3yZP/">in this jsFiddle</a>.</p>
+<pre class=" language-js"><code class="language-js"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> faviconUrl <span class="token operator">=</span> <span class="token string">"http://d2c87l0yth4zbw.cloudfront.net/i/_global/favicon.png"</span><span class="token punctuation">,</span>
+      css <span class="token operator">=</span> <span class="token string">"background-image: url('"</span> <span class="token operator">+</span> faviconUrl <span class="token operator">+</span> <span class="token string">"');"</span> <span class="token operator">+</span>
+            <span class="token string">"background-repeat: no-repeat;"</span> <span class="token operator">+</span>
+            <span class="token string">"display: block;"</span> <span class="token operator">+</span>
+            <span class="token string">"background-size: 13px 13px;"</span> <span class="token operator">+</span>
+            <span class="token string">"padding-left: 13px;"</span> <span class="token operator">+</span>
+            <span class="token string">"margin-left: 5px;"</span><span class="token punctuation">,</span>
+      text <span class="token operator">=</span> <span class="token string">"Do you like coding? Visit www.spotify.com/jobs"</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>userAgent<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/chrome/i</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>text <span class="token operator">+</span> <span class="token string">'%c'</span><span class="token punctuation">,</span> css<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'%c   '</span> <span class="token operator">+</span> text<span class="token punctuation">,</span> css<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>Update May 8th 2014</strong>: <a href="https://developer.mozilla.org/en/docs/Tools/Web_Console#Styling_messages">Firefox 31 supports basic styling</a> in its console, without the need of using Firebug. However, it only allows a <a href="https://bugzilla.mozilla.org/attachment.cgi?id=8404667&action=diff#a/browser/devtools/webconsole/console-output.js_sec2">subset of CSS rules</a> that doesn’t include <code>background-image</code>. However, even though <code>background</code> is supported, <code>url()</code> <a href="https://bugzilla.mozilla.org/attachment.cgi?id=8404667&action=diff#a/browser/devtools/webconsole/test/browser_webconsole_console_custom_styles.js_sec1">is not supported</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      How to use custom styles in console.log to render a favicon with some text in the developer tools console.
+    
+    </summary>
+    
+    
+      <category term="console" scheme="https://jmperezperez.com/tags/console/"/>
+    
+      <category term="favicon" scheme="https://jmperezperez.com/tags/favicon/"/>
+    
+      <category term="firebug" scheme="https://jmperezperez.com/tags/firebug/"/>
+    
+  </entry>
+  
+</feed>

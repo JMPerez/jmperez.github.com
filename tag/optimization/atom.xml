@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/optimization/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Proxy mobile browsers are coming back</title>
+    <link href="https://jmperezperez.com//mobile-proxy-browsers-back"/>
+    <id>https://jmperezperez.com//mobile-proxy-browsers-back</id>
+    <published>2013-03-08T08:08:24.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Mobile proxy browsers are coming back. For a long time we had Opera Mini. And these days we have seen the release of Opera Beta for Android and an update to Chrome Beta for Android, both highlighting data compression features. And they are not the only ones. About a year ago Amazon introduced their Silk browser with a similar proxy solution to Google’s.</p>
+<p>On desktop, although this feature hasn’t become that popular due to the higher bandwidth that is usually available, Opera also had presence with their <a href="http://www.opera.com/turbo">Opera Turbo</a> feature.</p>
+<span id="more"></span>
+<h2 id="Opera’s-Off-Road-Mode"><a href="#Opera’s-Off-Road-Mode" class="headerlink" title="Opera’s Off-Road Mode"></a>Opera’s Off-Road Mode</h2><p><a href="http://www.opera.com/mobile/android">Opera Beta for Android</a> is a webkit browser with an “Off-Road mode”, which is not more than an Opera Mini embedded. In fact, it states it uses Presto in its User Agent. In practice, this means they use different browser engine for the compressed and not-compressed modes, resulting in different user experiences when browser the same site depending on this mode. You can check it accessing sites like Google or Facebook.</p>
+<h2 id="Data-Compression-Proxy-in-Chrome-Beta"><a href="#Data-Compression-Proxy-in-Chrome-Beta" class="headerlink" title="Data Compression Proxy in Chrome Beta"></a>Data Compression Proxy in Chrome Beta</h2><p>Meanwhile, <a href="http://blog.chromium.org/2013/03/data-compression-in-chrome-beta-for.html">Chrome Beta connects through SPDY</a> to a proxy server that carries out a myriad of optimizations, such as converting images to WebP, minifying HTML, Javascript and CSS and adding gzip compression (info about <a href="http://googlesystem.blogspot.ca/2013/03/try-chromes-data-compression-proxy.html">how to enable it here</a>). In short, instead of waiting for developers to optimize their sites, Google is applying transparently some well-known techniques to improve website performance, similar to those they apply in their <a href="https://developers.google.com/speed/pagespeed/mod">mod_pagespeed Apache module</a>.</p>
+<h2 id="What-you-as-developer-can-do"><a href="#What-you-as-developer-can-do" class="headerlink" title="What you, as developer, can do"></a>What you, as developer, can do</h2><p>It is tempting to just forget about <a href="/techniques-optimize-web-sites/">optimization techniques</a>, leaving
+the hard work to these proxies. The truth is that we should be the ones that optimize by default our sites to provide the best experience regardless of user’s browsers. These tools are showing us how important good performance is, especially when using mobile devices.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Mobile proxy browsers are coming back. For a long time we had Opera Mini. And these days we have seen the release of Opera Beta for Android and an update to Chrome Beta for Android, both highlighting data compression features. And they are not the only ones. About a year ago Amazon introduced their Silk browser with a similar proxy solution to Google’s.&lt;/p&gt;
+&lt;p&gt;On desktop, although this feature hasn’t become that popular due to the higher bandwidth that is usually available, Opera also had presence with their &lt;a href=&quot;http://www.opera.com/turbo&quot;&gt;Opera Turbo&lt;/a&gt; feature.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="mobile" scheme="https://jmperezperez.com/tags/mobile/"/>
+    
+      <category term="proxy-browsers" scheme="https://jmperezperez.com/tags/proxy-browsers/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Image optimization: Lossy, lossless and other techniques</title>
+    <link href="https://jmperezperez.com//image-optimization-lossy-lossless-techniques"/>
+    <id>https://jmperezperez.com//image-optimization-lossy-lossless-techniques</id>
+    <published>2013-01-04T20:44:57.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>During last days I have come across interesting articles about images optimization. Images are currently the largest average payload in web sites, meaning a <a href="http://httparchive.org/interesting.php">62%</a> of all the bytes. With the increasingly importance of responsive design, <a href="http://css-tricks.com/which-responsive-images-solution-should-you-use/">responsive images</a> are becoming a challenge to face.</p>
+<p>I have already talked about image optimization in my <a href="/techniques-optimize-web-sites/#images-optimization">list of optimization techniques</a> and my short <a href="/jpegoptim-optimize-jpg-page-speed/">post about using jpegoptim</a>. But recently I have read about highly compressed JPG to target high-res screens and progressive JPG images, and I thought it would worth sharing.</p>
+<span id="more"></span>
+<h2 id="Highly-compressed-JPG-images-and-high-resolution-screens"><a href="#Highly-compressed-JPG-images-and-high-resolution-screens" class="headerlink" title="Highly compressed JPG images and high resolution screens"></a>Highly compressed JPG images and high resolution screens</h2><p><a href="https://www.filamentgroup.com/lab/compressive-images.html">Compressive Images</a> is a post by Filament Group where they show a way to target responsive images. Instead of using multiple copies of an image with different sizes, you can generate a large JPG image with a compression of 0 quality. That way, not only one single copy can be used to target different screen sizes and resolutions, but there are even large savings in file size comparing to normal 1:1 images.</p>
+<p>I have prepared <a href="/demos/compressive-images/">a demo of the Compressive Images technique</a> where you can test your own images.</p>
+<div class="callout">
+<strong>Info</strong>: Note that this technique might have a high impact on decoding + resizing, especially on mobile. Tim Kadlec explained it at Velocity SC 2015 in his <a href="https://www.youtube.com/watch?v=jP68rCjSSjM&t=10m56s">Mobile Image Processing talk</a>.
+</div>
+
+<h2 id="Progressive-JPEGs"><a href="#Progressive-JPEGs" class="headerlink" title="Progressive JPEGs"></a>Progressive JPEGs</h2><p>Thanks to <a href="http://calendar.perfplanet.com/2012/progressive-jpegs-a-new-best-practice/">Progressive jpegs: a new best practice</a> I have learnt that progressive JPGs normally weight less than baseline ones. Not only that, but they make some browsers start rendering the image sooner, preventing showing a white chunk until the full image is downloaded. By using tools such as imageoptim, which runs jpegtran behind the scenes, you can make sure the smallest file is chosen.</p>
+<p>That post also links to <a href="http://www.bookofspeed.com/chapter5.html">Optimizing Images</a>, a chapter from Stoyan Stefanov’s <a href="http://www.bookofspeed.com/">Book of Speed</a>. In that chapter, Stoyan compiles the main tools to achieve lossless compression of JPG, PNG and GIF images.</p>
+<p>If you want to see progressive images in action, check <a href="http://www.patrickmeenan.com/progressive/view.php?img=http://i2.cdn.turner.com/cnn/dam/assets/121205093053-leweb-cyborg-c1-main.jpg">this demo</a> made by <a href="https://twitter.com/patmeenan">@patmeenan</a> that showing how a JPG is rendered in progressive and baseline mode, and the resulting image of every scan. You can even try with your own image.</p>
+<h2 id="Lossy-techniques"><a href="#Lossy-techniques" class="headerlink" title="Lossy techniques"></a>Lossy techniques</h2><p>To end with, in <a href="http://calendar.perfplanet.com/2012/giving-your-images-an-extra-squeeze/">Giving Your Images An Extra Squeeze</a> you can see how lossy compression tools can help go the extra mile and reduce even more the size of your images, while keeping quality. It is a nice read about tools such as pngquant and imgmin, as well as the WebP format.</p>
+<h2 id="More-resources"><a href="#More-resources" class="headerlink" title="More resources"></a>More resources</h2><p>If you are interested in image optimization, I recommend you to have a look at <a href="http://addyosmani.com/blog/image-optimization-tools/">Image Optimization Tools</a>, an article by Addy Osmani.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;During last days I have come across interesting articles about images optimization. Images are currently the largest average payload in web sites, meaning a &lt;a href=&quot;http://httparchive.org/interesting.php&quot;&gt;62%&lt;/a&gt; of all the bytes. With the increasingly importance of responsive design, &lt;a href=&quot;http://css-tricks.com/which-responsive-images-solution-should-you-use/&quot;&gt;responsive images&lt;/a&gt; are becoming a challenge to face.&lt;/p&gt;
+&lt;p&gt;I have already talked about image optimization in my &lt;a href=&quot;/techniques-optimize-web-sites/#images-optimization&quot;&gt;list of optimization techniques&lt;/a&gt; and my short &lt;a href=&quot;/jpegoptim-optimize-jpg-page-speed/&quot;&gt;post about using jpegoptim&lt;/a&gt;. But recently I have read about highly compressed JPG to target high-res screens and progressive JPG images, and I thought it would worth sharing.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+      <category term="responsive" scheme="https://jmperezperez.com/tags/responsive/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Revisitando la nueva web del Senado</title>
+    <link href="https://jmperezperez.com//revisitando-nueva-web-senado"/>
+    <id>https://jmperezperez.com//revisitando-nueva-web-senado</id>
+    <published>2012-12-03T20:20:16.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hace unos días hacía un <a href="/estudiando-el-rediseno-de-la-web-del-senado-de-espana/">análisis del rediseño de la web del Senado</a>, justo tras su lanzamiento, desde el punto de vista de rendimiento web y mejores prácticas a la hora de desarrollar sitios web. La nueva web del Senado sufría múltiples problemas poco más que inaceptables para un proyecto tan reciente y con tal presupuesto.</p>
+<span id="more"></span>
+<p>Pero al igual que destacaba dichos problemas, unas semanas después debo mencionar que varios de ellos han sido resueltos. Aunque aún quedan algunos por resolver, es de destacar que hayan seguido trabajando en el sitio.
+<img src="/assets/images/posts/web-senado.jpg" alt="Web del Senado de España"></p>
+<h2 id="Mejoras"><a href="#Mejoras" class="headerlink" title="Mejoras"></a>Mejoras</h2><h3 id="Senado-es-ya-funciona-sin-www"><a href="#Senado-es-ya-funciona-sin-www" class="headerlink" title="Senado.es ya funciona sin www"></a>Senado.es ya funciona sin www</h3><p>Ahora, la URL <a href="http://senado.es/">senado.es</a> redirecciona a <a href="http://www.senado.es/">www.senado.es</a> (<a href="http://www.webpagetest.org/result/121203_ZZ_4QD/1/details/">fuente</a>)</p>
+<h3 id="Indexable-por-robots"><a href="#Indexable-por-robots" class="headerlink" title="Indexable por robots"></a>Indexable por robots</h3><p>Su <a href="http://www.senado.es/robots.txt">robots.txt</a> ha cambiado y ahora permite a los buscadores indexar el contenido del sitio.</p>
+<h3 id="Compresi-243-n-Gzip"><a href="#Compresi-243-n-Gzip" class="headerlink" title="Compresi&#243;n Gzip"></a>Compresi&#243;n Gzip</h3><p>Ahora los recursos se sirven con compresión GZIP habilitada (<a href="http://gtmetrix.com/compare/BN8ZgvCB/3gwi5Qp4">fuente</a>). Entre otras mejoras, la página principal <em>pesa</em> ahora menos de la mitad, y han mejorado considerablemente el índica PageSpeed y YSlow (<a href="http://gtmetrix.com/reports/www.senado.es/eS68ECWL">fuente</a>).</p>
+<h3 id="Errores-404"><a href="#Errores-404" class="headerlink" title="Errores 404"></a>Errores 404</h3><p>Ahora en la página principal, ya sólo hay 1 request que da error 404 (<a href="http://www.webpagetest.org/result/121203_ZZ_4QD/1/details/">fuente</a>).</p>
+<h2 id="Todav-237-a-hay-algunos-problemas-que-solucionar"><a href="#Todav-237-a-hay-algunos-problemas-que-solucionar" class="headerlink" title="Todav&#237;a hay algunos problemas que solucionar"></a>Todav&#237;a hay algunos problemas que solucionar</h2><p>Pese a todo, aún quedan mejoras por hacer, como la minificación de ficheros, optimización de imágenes, tratar de reducir el número de peticiones y corregir el Mime Type devuelto por el servidor.</p>
+<p>Además, con la modificación del fichero <a href="http://www.senado.es/robots.txt">robots.txt</a> existen detalles dignos de mención. El fichero actual tiene este contenido:</p>
+<pre><code>User-agent: *
+Disallow: /cgi-bin/
+Disallow: /detalleiniciativa/
+Disallow: /expedientappendixblobservlet/
+Disallow: /expedientdocblobservlet/
+Disallow: /fichasenador/
+Disallow: /resultadobuscador/
+Disallow: /senstream/
+Disallow: /*senstream*
+Disallow: /legis9/publicaciones/html/textos/CG_B015.html
+Disallow: /legis9/publicaciones/pdf/cortes/bocg/CG_B015.PDF
+Disallow: /legis9/publicaciones/html/textos/CG_B100.html
+Disallow: /legis9/publicaciones/pdf/cortes/bocg/CG_B100.PDF
+Disallow: /legis4/publicaciones/pdf/senado/bocg/l0019.PDF
+Disallow: /legis3/publicaciones/pdf/senado/bocg/l0342.PDF
+Disallow: /legis3/publicaciones/pdf/senado/bocg/l0347.PDF
+Disallow: /legis2/publicaciones/pdf/senado/bocg/l0140.PDF
+Visit-time: 0200-0600
+</code></pre>
+<p>Si lo comparamos con <a href="/estudiando-el-rediseno-de-la-web-del-senado-de-espana/#no-indexable">la versión del mismo fichero</a> cuando publicaron el rediseño, ahora vemos nuevas direcciones bloqueadas.</p>
+<p>Que se pretenda evitar el indexado de las iniciativas parlamentarias y fichas de los senadores atenta directamente contra la transparencia de información y el servicio que pretende dar esta web. Además, el bloqueo se realiza sobre una dirección que ni siquiera es la dirección donde está dicho contenido.</p>
+<p>¿Por qué se evita el indexado del contenido más útil para el ciudadano?</p>
+<p>Aunque en ese caso, en lugar de restringir /detalleiniciativa/, /web/actividadparlamentaria/iniciativas/detalleiniciativa/</p>
+<p>Y en vez de /fichasenador/ deberían haber restringido algo como /web/composicionorganizacion/senadores/composicionsenado/fichasenador/</p>
+<p>Por otra parte, se evita el indexado de una serie de documentos PDF y páginas HTML, también por alguna razón que me supera. Pero es casi peor el hecho de que de los 6 documentos, sólo 2 existen y las 2 páginas HTML tampoco existen.</p>
+<p>Por último, han introducido la limitación del indexado de páginas para que se haga entre las 02:00 y 06:00 AM GMT.  A mí me parece un poco extraño querer limitar el rastreo a las horas de menos tráfico. Un documento creado durante el día no podrá aparecer en los resultados de búsqueda hasta el día siguiente como mínimo. Y no deja de ser una señal de que el sitio no se comporta bien con un tráfico normal más el tráfico que puedan generar los bots de los buscadores.</p>
+<h2 id="Conclusiones"><a href="#Conclusiones" class="headerlink" title="Conclusiones"></a>Conclusiones</h2><p>En general, está bien que hayan continuado haciendo mejoras en el sitio, aunque por el camino han tomado decisiones ciertamente discutibles.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hace unos días hacía un &lt;a href=&quot;/estudiando-el-rediseno-de-la-web-del-senado-de-espana/&quot;&gt;análisis del rediseño de la web del Senado&lt;/a&gt;, justo tras su lanzamiento, desde el punto de vista de rendimiento web y mejores prácticas a la hora de desarrollar sitios web. La nueva web del Senado sufría múltiples problemas poco más que inaceptables para un proyecto tan reciente y con tal presupuesto.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Estudiando el rediseño de la web del Senado de España</title>
+    <link href="https://jmperezperez.com//estudiando-el-rediseno-de-la-web-del-senado-de-espana"/>
+    <id>https://jmperezperez.com//estudiando-el-rediseno-de-la-web-del-senado-de-espana</id>
+    <published>2012-11-12T17:17:35.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Echa un vistazo al <a href="/revisitando-nueva-web-senado">análisis más reciente que he hecho de la web del Senado</a>, donde hablo sobre algunos cambios que han llevado a cabo desde que publicó el nuevo sitio.
+<a href="/assets/images/posts/senado-es-portada.jpg"><img src="/assets/images/posts/senado-es-portada-300x175.jpg" alt="Portada de Senado.es"></a></p>
+<span id="more"></span>
+<p>Hoy se ha presentado el rediseño de la web del Senado de España. Sin entrar a valorar su coste o la necesidad, quería analizarla desde el punto de vista de implementación frontend.</p>
+<p>Particularmente, me gustan los análisis que hacen webs como <a href="http://zoompf.com/blog">zoompf</a> sobre distintos sitios web, presentando los problemas encontrados y ofreciendo soluciones.</p>
+<p>Aquí hablaré sobre algunos problemas de ámbito general y otros específicos sobre rendimiento web.</p>
+<h2 id="Problemas-generales"><a href="#Problemas-generales" class="headerlink" title="Problemas generales"></a>Problemas generales</h2><p>Hay algunos problemas relacionados con XSS (que parece que ya se ha resuelto), indexado y navegación.</p>
+<h3 id="senado-es-no-funciona-sin-www"><a href="#senado-es-no-funciona-sin-www" class="headerlink" title="senado.es no funciona sin www"></a>senado.es no funciona sin www</h3><p><a href="/assets/images/posts/www-senado.png"><img src="/assets/images/posts/www-senado-300x153.png" alt="Conversación en Twitter sobre redirección de la web del Senado"></a></p>
+<p>Al igual que en la anterior versión de la web, la dirección <a href="http://senado.es/">senado.es</a> no funciona. Es necesario acceder a <a href="http://www.senado.es/">www.senado.es</a> para poder ver el contenido. Aunque se puede solucionar fácilmente, es un pena que se les haya pasado por alto.</p>
+<p>Pese <a href="https://twitter.com/jmperezperez/status/267910552288911360">haber sido notificados</a>, 2 días después del lanzamiento, el problema persistía.</p>
+<h3 id="No-indexable"><a href="#No-indexable" class="headerlink" title="No indexable"></a>No indexable</h3><p>Por alguna razón, han decidido que su <a href="http://www.senado.es/robots.txt">robots.txt</a> indique a los buscadores que su contenido no se indexe (<a href="https://twitter.com/polpitart/status/267930153592709120">fuente</a>).</p>
+<pre><code>#No permitimos acceso a todos los robots de indexación
+User-agent: Oracle Secure Enterprise Search
+Disallow:
+User-agent: *
+Disallow: /
+Disallow: /legis9/publicaciones/html/textos/CG_B015.html
+Disallow: /legis9/publicaciones/pdf/cortes/bocg/CG_B015.PDF
+Disallow: /legis9/publicaciones/html/textos/CG_B100.html
+Disallow: /legis9/publicaciones/pdf/cortes/bocg/CG_B100.PDF
+# No limitamos la hora de indexación
+#Visit-time: 0300-0400
+</code></pre>
+<p>Además, no se ha implementado ningún tipo de redirección para mantener el acceso a las páginas de la antigua web que estaban indexadas en los motores de búsqueda (<a href="http://formatinternet.wordpress.com/2012/11/12/los-problemas-del-desarrollo-web-en-espana-resumidos-en-senado-es/">fuente</a>).</p>
+<h3 id="Problemas-de-conexi-243-n"><a href="#Problemas-de-conexi-243-n" class="headerlink" title="Problemas de conexi&#243;n"></a>Problemas de conexi&#243;n</h3><p>Desde que se publicó, el nuevo sitio web ha estado sin funcionar varias veces, ya sea por supuestos ataques DOS o por cualquier otra causa. Esto muestra que la infraestructura no es adecuada o no se han previsto mecanismos para mantener la web operativa en situaciones de mucho tráfico.</p>
+<h3 id="Selecci-243-n-de-idioma"><a href="#Selecci-243-n-de-idioma" class="headerlink" title="Selecci&#243;n de idioma"></a>Selecci&#243;n de idioma</h3><p>Aunque el sitio soporta múltiples idiomas, al cambiar el idioma se hace un envío de un formulario POST, se establece el idioma pero la URL se mantiene. Esto, unido a la política de indexación, hace imposible indexar el contenido en los distintos idiomas soportados por la web.</p>
+<h3 id="No-responsive-ni-m-243-vil"><a href="#No-responsive-ni-m-243-vil" class="headerlink" title="No responsive ni m&#243;vil"></a>No responsive ni m&#243;vil</h3><p>La verdad es que es difícil justificar la inexistencia de un sitio móvil o soporte de responsive design cuando se lleva a cabo un sitio completamente nuevo. Unido al poco cuidado en la carga de los distintos componentes de la página, se hace poco recomendable utilizar el sitio desde un dispositivo móvil (<a href="http://mobitest.akamai.com/m/results.cgi?testid=121114_K2_5">fuente</a>).</p>
+<h2 id="Rendimiento-web"><a href="#Rendimiento-web" class="headerlink" title="Rendimiento web"></a>Rendimiento web</h2><p>Si entramos a valorar el rendimiento web tenemos bastantes puntos que tratar. Puedes echar un vistazo a <a href="http://gtmetrix.com/reports/www.senado.es/cCUUkJUm">las puntuaciones Page Speed y YSlow de la página principal en GTmetrix</a>, el resultado de <a href="http://www.webpagetest.org/result/121112_7M_DP6/">WebPageTest usando Chrome desde París</a> y <a href="http://www.webpagetest.org/result/121112_RQ_F0H/">IE8 desde Madrid</a>, y el <a href="http://scans.zoompf.com/s/e2b8609e20721c1548291f3fd94acaed/report.html">análisis de zoompf</a>, este último teniendo en cuenta 146 páginas de la web del Senado.
+<img src="/assets/images/posts/gtmetrix-senado-es.jpg" alt="Puntuación Page Speed y YSlow de www.senado.es">
+<em>Puntuación Page Speed y YSlow de <a href="http://www.senado.es/">www.senado.es</a></em></p>
+<h3 id="Compresi-243-n-gzip"><a href="#Compresi-243-n-gzip" class="headerlink" title="Compresi&#243;n gzip"></a>Compresi&#243;n gzip</h3><p>Sólo en la página principal se podría ahorrar 476.6KiB (un 30% del total) habilitando la compresión gzip (<a href="http://gtmetrix.com/reports/www.senado.es/cCUUkJUm">fuente</a>).</p>
+<h3 id="Falta-de-cacheo"><a href="#Falta-de-cacheo" class="headerlink" title="Falta de cacheo"></a>Falta de cacheo</h3><p>No se especifica política alguna de cacheo de los distintos recursos (JS, PNG, JPG) por lo que el navegador decide si los cachea o no y por cuánto tiempo. Además, los recursos no especifican correctamente su tipo Mime (<a href="http://gtmetrix.com/reports/www.senado.es/cCUUkJUm">fuente</a>).</p>
+<h3 id="Errores-404"><a href="#Errores-404" class="headerlink" title="Errores 404"></a>Errores 404</h3><p>Al menos en la página principal, hay 2 requests que resultan en errores 404 (<a href="http://www.webpagetest.org/result/121112_7M_DP6/1/details/">fuente</a>).
+<img src="/assets/images/posts/404-senado-es.jpg" alt="Errores 404 en la web del Senado">
+<em>Errores 404 en la web del Senado</em></p>
+<h3 id="Im-225-genes-no-optimizadas"><a href="#Im-225-genes-no-optimizadas" class="headerlink" title="Im&#225;genes no optimizadas"></a>Im&#225;genes no optimizadas</h3><p>Las imágenes GIF, PNG y JPG pueden ser optimizadas ahorrando una cantidad valiosa de tráfico (<a href="http://scans.zoompf.com/s/e2b8609e20721c1548291f3fd94acaed/report.html#187">fuente</a>).</p>
+<h3 id="No-sprites"><a href="#No-sprites" class="headerlink" title="No sprites"></a>No sprites</h3><p>Hay 51 peticiones a imágenes en la página principal (de las 66 que hay en total). Muchas de ellas se corresponden con pequeños iconos que podrían fácilmente formar parte de un sprite. Y, mejor aún, algunas imágenes podrían reemplazarse utilizando CSS3.</p>
+<h3 id="Minificaci-243-n-de-ficheros"><a href="#Minificaci-243-n-de-ficheros" class="headerlink" title="Minificaci&#243;n de ficheros"></a>Minificaci&#243;n de ficheros</h3><p>El único CSS o JS minificado es la librería jQuery. Todo el resto de ficheros, incluida <a href="http://www.senado.es/web/js/jquery-ui-1.8-custom-v.js">una versión personalizada de jQuery UI</a>, está sin minificar. Claramente, no existe un proceso de <em>build</em> que tenga en cuenta la minificación de estos ficheros antes de subirlos al sitio web.</p>
+<h3 id="Malas-pr-225-cticas-de-Javascript"><a href="#Malas-pr-225-cticas-de-Javascript" class="headerlink" title="Malas pr&#225;cticas de Javascript"></a>Malas pr&#225;cticas de Javascript</h3><p>Echando un vistazo a ficheros como <a href="http://www.senado.es/web/js/funciones.js">funciones.js</a>, vemos como se repiten una y otra vez los mismos selectores de elementos del DOM.</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">inicializarVariablesGenerales</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// No lleva el var por eso son globales</span>
+    globales <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        monthNames<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        resultAjax<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token number">31</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        dateFormat<span class="token punctuation">:</span> <span class="token string">'ddmmyy'</span><span class="token punctuation">,</span>
+        firstDay<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                <span class="token operator">...</span>
+</code></pre>
+<h2 id="Otros-sitios-cubriendo-detalles-de-implementaci-243-n"><a href="#Otros-sitios-cubriendo-detalles-de-implementaci-243-n" class="headerlink" title="Otros sitios cubriendo detalles de implementaci&#243;n"></a>Otros sitios cubriendo detalles de implementaci&#243;n</h2><p>Otras webs están recogiendo también algunos problemas a nivel técnico:</p>
+<ul>
+<li><a href="http://formatinternet.wordpress.com/2012/11/12/los-problemas-del-desarrollo-web-en-espana-resumidos-en-senado-es/">Los problemas del desarrollo web en España resumidos en senado.es</a> en format internet</li>
+<li><a href="http://www.pedroventura.com/desarrollo-web/la-nueva-timo-web-del-senado-que-cuesta-medio-millon-de-euros/">La nueva timo web del Senado que cuesta medio millón de euros</a> en pedroventura.com</li>
+<li><a href="http://www.social4u.es/analisis-de-la-web-del-senado/">Análisis de la web del Senado</a> en social4u.es</li>
+</ul>
+<h2 id="M-225-s-problemas"><a href="#M-225-s-problemas" class="headerlink" title="M&#225;s problemas"></a>M&#225;s problemas</h2><p>Si sabes de algún problema más o alguna posible mejora, añádelo en los comentarios. El propósito de este post es promover las mejores prácticas en cuanto a desarrollo web se refiere.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Echa un vistazo al &lt;a href=&quot;/revisitando-nueva-web-senado&quot;&gt;análisis más reciente que he hecho de la web del Senado&lt;/a&gt;, donde hablo sobre algunos cambios que han llevado a cabo desde que publicó el nuevo sitio.
+&lt;a href=&quot;/assets/images/posts/senado-es-portada.jpg&quot;&gt;&lt;img src=&quot;/assets/images/posts/senado-es-portada-300x175.jpg&quot; alt=&quot;Portada de Senado.es&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tutorial: Implementing Facebook&#39;s BigPipe Using ASP.Net MVC - Part 1</title>
+    <link href="https://jmperezperez.com//tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-1"/>
+    <id>https://jmperezperez.com//tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-1</id>
+    <published>2010-09-18T07:37:07.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Parts of the tutorial</p>
+<ol>
+<li> Introduction to BigPipe</li>
+<li><a href="/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-2">How ASP.Net MVC fits in the model. Registering and generating
+ pagelets</a></li>
+<li><a href="/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-3">Browser implementation of BigPipe. Loading pagelets and their
+ resources effectively</a></li>
+<li> <a href="https://github.com/JMPerez/BigPipe">Check out the demo Visual Studio solution</a></li>
+</ol>
+<p>Through a series of posts I will explain how we can implement BigPipe Facebook using ASP.Net MVC.</p>
+<!-- more -->
+<p>In this first post I will describe what BigPipe is and sketch how we can make a similar implementation using ASP.Net MVC.</p>
+<p>You can clone the code from <a href="https://github.com/JMPerez/BigPipe">the BigPipe project on GitHub</a>  that includes all the source code needed to run the sample.</p>
+<h2 id="What-is-BigPipe"><a href="#What-is-BigPipe" class="headerlink" title="What is BigPipe"></a>What is BigPipe</h2><p>BigPipe is a <a href="/techniques-optimize-web-sites">website performance technique</a> used and coined by Facebook to serve web pages improving user’s perceived load speed. In general, it consists of serving quickly the main content of the page, and then serve the content from other regions of the page called pagelets.</p>
+<p>The implementation of these pagelets is performed in parallel on the server and served to the browser as soon as they are generated. This allows:</p>
+<ol>
+<li>Browser can start rendering the page content earlier (early
+ flushing)</li>
+<li>Pagelets are served as soon as they are ready and the browser can
+ render them in their container.</li>
+<li>If one pagelet takes longer to run, it will not delay the generation
+ of the rest of pagelets.</li>
+<li>Pagelets are generated in several concurrent asynchronous threads
+ and when a thread finishes its execution, it flushes the content so
+ the browser can start rendering.</li>
+</ol>
+<p>Sequence of the different stages during a pagelet generation:</p>
+<p><img src="/assets/images/posts/bigpipe-sequence.svg" alt="Sequence of the different stages during a pagelet generation"></p>
+<p>Apart from the pagelet generation, parallelism is also applied during the processing of the pagelet by the browser. Each pagelet can define a set of CSS and JS files that it needs to work properly. These files are requested in such a way that it keeps a good performance.</p>
+<p>Graph showing how pagelets resources are requested:</p>
+<p><img src="/assets/images/posts/bigpipe-pagelet-process.svg" alt="Graph showing how pagelets resources are requested"></p>
+<ol>
+<li> For each pagelet, request in parallel every necessary CSS resource</li>
+<li>Once a pagelet has the necessary CSS files, inject the HTML code
+ inside its container.</li>
+<li>When every pagelet has finished request its CSS files and is
+ inserted in the document, proceed to request in parallel the JS
+ files needed by the whole set of pagelets.</li>
+</ol>
+<p>By keeping these steps we make sure that the pagelets are appended to
+the document and set their style, avoiding a FUOC (Flash Of Unstyled
+Content). By delaying the download of JS resources we are prioritizing
+CSS requests for content be shown earlier, as well as other pagelets to
+be downloaded.</p>
+<h3 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h3><p>Your browser must support Javascript, since the content is embedded
+using Javascript. Our implementation takes into account progressive
+enhancement to serve pages not using BigPipe for browsers without
+Javascript or search engine bots (keeping SEO and accessibility).</p>
+<h3 id="Benefits"><a href="#Benefits" class="headerlink" title="Benefits"></a>Benefits</h3><ul>
+<li>Load time perceived by the user is better. Rendering earlier the
+  main content of the page, browser starts making requests for
+  resources CSS and Javascript earluer, as well as inerpreting the DOM
+  tree.</li>
+<li>We take advantage of the parallelism in the server side,  running
+  simultaneously multiple pagelets.</li>
+<li>In general, improving the parallelism of the system. As the browser
+  renders a region, some others are being transmitted through the wire
+  and some other being built in the server.</li>
+<li>Everything is done in a single request by the client. You could
+  implement BigPipe using Ajax calls from the browser to generate the
+  pagelets, but at the expense of a greater number of requests (this
+  will be covered in another post).</li>
+</ul>
+<h3 id="Disadvantages"><a href="#Disadvantages" class="headerlink" title="Disadvantages"></a>Disadvantages</h3><ul>
+<li>When you flush each pagelet more packets are sent from server to
+  client (however we can always decide to send more than one pagelet
+  in each flushing).</li>
+<li>Browser has to interpret the code and insert pagelets in their
+  containers. This causes repaintings and reflows which can be
+  annoying to the user.</li>
+</ul>
+<p><a href="/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-2">In part 2 of the tutorial</a> I explain how to use ASP.Net MVC to implement BigPipe, using RenderActions and threads pool to execute the pagelets.</p>
+<h4 id="Other-resources"><a href="#Other-resources" class="headerlink" title="Other resources"></a>Other resources</h4><p>Some other people have implemented the basics of this technique using Java (<a href="http://www.olympum.com/java/facebook-bigpipe-in-an-async-servlet">Bruno Fernandez-Ruiz</a> and <a href="http://codemonkeyism.com/facebook-bigpipe-java/">Stephan Schmidt</a>) and using Node.js (<a href="http://www.subbu.org/blog/2010/07/bigpipe-done-in-node-js">Subbu Allamaraju</a>).</p>
+]]></content>
+    
+    <summary type="html">
+    
+      First part of the tutorial to implement Facebook&#39;s BigPipe using ASP.Net MVC. BigPipe improves pages loading time dividing them into regions that are generated on the server concurrently.
+    
+    </summary>
+    
+    
+      <category term="flush" scheme="https://jmperezperez.com/tags/flush/"/>
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="bigpipe" scheme="https://jmperezperez.com/tags/bigpipe/"/>
+    
+      <category term="facebook" scheme="https://jmperezperez.com/tags/facebook/"/>
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Website optimization checklist</title>
+    <link href="https://jmperezperez.com//techniques-optimize-web-sites"/>
+    <id>https://jmperezperez.com//techniques-optimize-web-sites</id>
+    <published>2010-07-10T16:39:58.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>The contents of this post have been moved to my repo <a href="https://github.com/JMPerez/wpo-book">WPO Book</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      A compilation of known techniques to improve your website performance, both client-side and server-side.
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Optimizing images for web with Google Page Speed and jpegoptim</title>
+    <link href="https://jmperezperez.com//jpegoptim-optimize-jpg-page-speed"/>
+    <id>https://jmperezperez.com//jpegoptim-optimize-jpg-page-speed</id>
+    <published>2009-06-27T13:42:44.000Z</published>
+    <updated>2021-12-14T07:52:53.525Z</updated>
+    
+    <content type="html"><![CDATA[<p>Image optimization is a big topic these days. The main culprit in site traffic are images, and <a href="https://httparchive.org/reports/state-of-the-web">their transfer size is increasing over time</a>.</p>
+<p>You may have wondered how to optimize your images. First, check if there is room for improvement. For that I will be using <a href="https://developers.google.com/speed/">Google Page Speed</a>, which offers several tools for analyzing your site. One of them is a handy <a href="https://developers.google.com/speed/pagespeed/insights/">online analyzer</a>. Type there the name of your site and click to analyze it.</p>
+<!-- more -->
+<p>I like the ‘Optimize images’ section. It tells you what resources can be optimized and how much traffic you can save, both in the mobile version of your site and the one served for desktop:
+<a href="/assets/images/posts/google-pagespeed-insights-report.png"><img src="/assets/images/posts/google-pagespeed-insights-report-thumb.jpg" alt="Analyzing a site using Google PageSpeed Insights online"></a>
+<em>Analyzing the analyzer: Here you can see the ‘Optimize images’ section for the Google PageSpeed Insights page. Notice the it reports the optimizable images and how much size you can save.</em></p>
+<h2 id="Optimizing-your-JPG-images-with-Jpegoptim"><a href="#Optimizing-your-JPG-images-with-Jpegoptim" class="headerlink" title="Optimizing your JPG images with Jpegoptim"></a>Optimizing your JPG images with Jpegoptim</h2><p>The truth is that when you save a JPG image, you don’t know exactly how much compression level you should apply. Sometimes we try different values until we find the best balance between quality and size. Google Page Speed must be using an algorithm that optimizes this relationship, performing a lossless compression to JPG and PNG files.</p>
+<p>As mentioned in the <a href="http://code.google.com/speed/page-speed/docs/payload.html#CompressImages">section on optimization of images</a>, we can use tools like <a href="http://jpegclub.org/">jpegtran</a> and <a href="http://freshmeat.net/projects/jpegoptim/">jpegoptim</a></p>
+<p>You can install jpegoptim in GNU / Linux easily. If you are an Ubuntu user, it is included in the section on Graphics (universe) and simply run:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> jpegoptim
+</code></pre>
+<p>If you want to make the optimization of images across your website, or simply reduce the size of your photo albums, you can run this script, that will recursively scan folders to optimize every JPG file. The files will be overwritten with the optimized version.</p>
+<pre class=" language-bash"><code class="language-bash">optimize<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+  jpegoptim *.jpg --strip-all
+  <span class="token keyword">for</span> i <span class="token keyword">in</span> *
+  <span class="token keyword">do</span>
+    <span class="token keyword">if</span> <span class="token function">test</span> -d <span class="token variable">$i</span>
+    <span class="token keyword">then</span>
+      <span class="token function">cd</span> <span class="token variable">$i</span>
+      <span class="token keyword">echo</span> <span class="token variable">$i</span>
+      optimize
+      <span class="token function">cd</span> <span class="token punctuation">..</span>
+    <span class="token keyword">fi</span>
+  <span class="token keyword">done</span>
+  <span class="token keyword">echo</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+optimize
+</code></pre>
+<p>This script uses the option <code>--strip-all</code> to strip out the text information contained in the file (comments and EXIF data) that are not necessary on web images (for your own pictures you’d better keep them).</p>
+<p>If you are interested in image optimization, I recommend you having a look at:</p>
+<h2 id="Other-tools-for-optimizing-images"><a href="#Other-tools-for-optimizing-images" class="headerlink" title="Other tools for optimizing images"></a>Other tools for optimizing images</h2><p>I have been using image optimization actively for a long time. Depending on your needs, I recommend you one of these methods:</p>
+<ul>
+<li><strong>Optimization of a few files through a desktop app (on Mac)</strong>: Use <a href="http://imageoptim.com/">ImageOptim</a>. Drag and drop JPG and PNG files and you are goo to go.</li>
+<li><strong>Optimization of images on Wordpress</strong>: Use <a href="http://wordpress.org/plugins/wp-smushit/">Smush.it</a>. It optimizes uploaded images automatically, and you can also run the plug-in against the existing images. Check out <a href="https://10web.io/blog/the-best-image-optimization-solutions-in-wordpress/">Best Image Optimization Plugins for WordPress</a> to read about different options to optimize images on this platform.</li>
+<li><strong>Optimizing PNG files using lossy compression</strong>: Use <a href="https://tinypng.com/">TinyPNG</a>. It can reduce PNG images size a lot, but double check the result before, since sometimes you can notice the difference in the colours.</li>
+<li><strong>Best Image Optimization Plugins for WordPress</strong>: Read <a href="https://10web.io/blog/the-best-image-optimization-solutions-in-wordpress/">this article</a> that<h2 id="Read-also"><a href="#Read-also" class="headerlink" title="Read also"></a>Read also</h2></li>
+</ul>
+<p>I wrote a post about <a href="/image-optimization-lossy-lossless-techniques/">Image optimization: Lossy, lossless and other techniques</a> in which I explain some tools and considerations when compressing images.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      This post shows a script to recursively optimize a set of JPG files using jpegoptim
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="google page speed" scheme="https://jmperezperez.com/tags/google-page-speed/"/>
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Let&#39;s make the web faster - Tips from Google</title>
+    <link href="https://jmperezperez.com//google-make-web-faster"/>
+    <id>https://jmperezperez.com//google-make-web-faster</id>
+    <published>2009-06-25T06:37:27.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Through <a href="http://meneame.net/story/google-hagamos-web-sea-mas-rapida-ing">menéame</a> (a digg-like site) I have arrived to <a href="https://developers.google.com/speed/">a website from Google Code</a> where Google gives some tips and advices to make your site work faster, especially about loading time. Many of the tips are easy to apply thanks to the Firefox extension <a href="https://dl-ssl.google.com/page-speed/current/page-speed.xpi">Google Page Speed</a> that expands the features provided by Firebug.</p>
+<span id="more"></span>
+<p>The tips range from images optimization (choosing the right format and color palette, cropping the images to remove blank areas…) to the proper management of javascript and css scripts so that they can be downloaded in parallel and processed more quickly by the browser. Some features are to be implemented at the “server side” (as the cache, gzip compression and distribution of resources according to the necessity of cookies or not) and they are also explained accompanied by several examples and videos.</p>
+<p>In addition, you can find technical lectures shown as Youtube videos which provide more information about the optimum development of websites.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Through &lt;a href=&quot;http://meneame.net/story/google-hagamos-web-sea-mas-rapida-ing&quot;&gt;menéame&lt;/a&gt; (a digg-like site) I have arrived to &lt;a href=&quot;https://developers.google.com/speed/&quot;&gt;a website from Google Code&lt;/a&gt; where Google gives some tips and advices to make your site work faster, especially about loading time. Many of the tips are easy to apply thanks to the Firefox extension &lt;a href=&quot;https://dl-ssl.google.com/page-speed/current/page-speed.xpi&quot;&gt;Google Page Speed&lt;/a&gt; that expands the features provided by Firebug.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="google" scheme="https://jmperezperez.com/tags/google/"/>
+    
+  </entry>
+  
+</feed>

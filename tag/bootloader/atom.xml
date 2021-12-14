@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/bootloader/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2021-12-14T07:52:53.525Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Front End Tech Talk - Facebook</title>
+    <link href="https://jmperezperez.com//facebook-frontend-javascript"/>
+    <id>https://jmperezperez.com//facebook-frontend-javascript</id>
+    <published>2011-01-30T16:29:22.000Z</published>
+    <updated>2021-12-14T07:52:53.525Z</updated>
+    
+    <content type="html"><![CDATA[<p>Yesterday I watched this <a href="http://www.facebook.com/video/video.php?v=596368660334">Front End Tech Talk by Facebook</a>. I found it very interesting because they explained how they faced the problem of having a lot of javascript code and how they managed to reduce it. I think this can be applied not only to a website of the size of Facebook’s, but also any other project where we could refactor existing code.</p>
+<blockquote>
+<p>We had about 1MB of JS on the homepage</p>
+</blockquote>
+<p>They realized they had a problem with so much JS code and they worked at different levels to shrink it.
+<a href="/assets/images/posts/facebook-1mb-javascript.jpg"><img src="/assets/images/posts/facebook-1mb-javascript-1024x574.jpg" alt="We had about of 1MB of JS on the homepage"></a></p>
+<span id="more"></span>
+<h2 id="Haste"><a href="#Haste" class="headerlink" title="Haste"></a>Haste</h2><p>Haste is a package and dependency manager for CSS and JS files. In each file they specify the name of the package provided by the file and those files that are required to run the file. Thus, Haste can manage what files are needed to run a certain script.</p>
+<p>This helps managing how files are requested and even which sets of files should be merged. This system was further explained by <a href="https://www.linkedin.com/in/davidwei79/">Xiaoliang “David” Wei</a> at his talk about <a href="http://velocity.oreilly.com.cn/2010/ppts/VelocityChina2010Dec7StaticResource.pdf"><em>Static resource management &amp; optimization</em></a> that took place on December 2010 at Velocity China.</p>
+<h2 id="Bootloader"><a href="#Bootloader" class="headerlink" title="Bootloader"></a>Bootloader</h2><p>Bootloader consists of a JS library that helps loading and unloading static resources on demand. Not too far of RequireJS or LabJS. It uses dynamic script injection and executes a callback function once the resource is loaded.</p>
+<p>The good point is that you can even suggest static resources that are not immediately needed but could be prefetched at background.</p>
+<h2 id="Primer"><a href="#Primer" class="headerlink" title="Primer"></a>Primer</h2><p>Makinde Adeagbo <a href="http://jsconf.blip.tv/file/3839676/">already talked about Primer at JSConf 2010</a> (<a href="http://www.slideshare.net/makinde/javascript-primer">slides</a>).</p>
+<p>A waterfall analysis showed that CSS resources where requested quite at the bottom and a lot of javascript on the head. Moving Javascript code to the bottom showed that the user interface would freeze while downloading/parsing/executing this code and that would provide a bad user experience. In some way, this is quite similar to what Yahoo! also found out, and I explained on my <em><a href="/yahoo-tips-website-performance-flush-bottom/">The not so good performance tips</a></em> post.</p>
+<p>They decided to rewrite their JS code so that they could load a small file at the top that would provide the common functionality needed (about 80% of the interactions). And they moved Javascript client code to PHP code on the server. Instead of calling to a function like this one:
+<a href="/assets/images/posts/prev-dialog-code.jpg"><img src="/assets/images/posts/prev-dialog-code-1024x574.jpg" alt="Before Primer"></a>
+<em>Javascript code to build a dialog</em></p>
+<p>they rewrote dialogs as anchors with a rel=”dialog” attribute:
+<a href="/assets/images/posts/after-dialog-code.jpg"><img src="/assets/images/posts/after-dialog-code-1024x574.jpg" alt="Dialog link using Primer"></a> <em>Simplified code to mark a link as a dialog</em></p>
+<p>Basically they embraced progressive enhancement. This dialog links would be ajaxified later using a common Javascript code:
+<a href="/assets/images/posts/after-dialog-code-common.jpg"><img src="/assets/images/posts/after-dialog-code-common-1024x573.jpg" alt="Adding dialog behavior using Javascript"></a>
+<em>Adding a listener to manage click events on links marked as dialogs</em></p>
+<p>And instead of letting Javascript set the title, content and the rest of dialog properties, it is the server the one that serves the dialog formatted as needed.
+<a href="/assets/images/posts/dialog-server-code.jpg"><img src="/assets/images/posts/dialog-server-code-1024x574.jpg" alt="PHP code to generate a dialog"></a>
+<em>PHP chainable code to create a dialog and set different properties</em></p>
+<p>It is like converting a jQuery widget plugin into an ajax call and let the server generate the widget content.</p>
+<p>They used this same approach to replace chunks of similar Javascript code. In async calls that retrieved html to replace existing markup, they are now generating javascript code (using PHP) on the server side and executing it in the async response. And if the url that should be requested when clicking an ajaxified link is a different one, they specify it using a custom <code>ajaxify</code> attribute. They also use this <code>ajaxify</code> attribute to specify that a form should be ajaxified.</p>
+<p>Like Makindo says,</p>
+<blockquote>
+<p>if you are writing a site with tons and tons of Javascript it is very easy to forget about actual forms</p>
+</blockquote>
+<p>All this common interactions are shown in the comments form:
+<a href="/assets/images/posts/application-comment-form.jpg"><img src="/assets/images/posts/application-comment-form-1024x573.jpg" alt="Facebook&#39;s comment form"></a>
+<em>An example of common interactions that in their comment form</em></p>
+<p>The top red arrow indicates that Comment is a label, so clicking on it focuses the comment textarea.</p>
+<p>Some sample Javascript code is available on <a href="https://gist.github.com/376039">https://gist.github.com/376039</a>.</p>
+<p>They managed to not only reduce Javascript size, but loading CSS on the top and being able to load Javascript at the bottom in an async mode.</p>
+<p>This talk shows that sometimes it is necessary to return to the basic elements and build interactions from there, trying to find common functionality to reduce the code needed, and embracing progressive enhancement as a way to achieve it.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Nice ideas taken from Facebook&#39;s Front End Tech Talk about implementing common interactions and patterns to reduce Javascript file size and use progressive enhancement.
+    
+    </summary>
+    
+    
+      <category term="facebook" scheme="https://jmperezperez.com/tags/facebook/"/>
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+      <category term="bootloader" scheme="https://jmperezperez.com/tags/bootloader/"/>
+    
+      <category term="frontend" scheme="https://jmperezperez.com/tags/frontend/"/>
+    
+      <category term="haste" scheme="https://jmperezperez.com/tags/haste/"/>
+    
+      <category term="primer" scheme="https://jmperezperez.com/tags/primer/"/>
+    
+  </entry>
+  
+</feed>

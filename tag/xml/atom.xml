@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/xml/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Generating google images sitemap with C#</title>
+    <link href="https://jmperezperez.com//google-images-sitemap-c-asp-net"/>
+    <id>https://jmperezperez.com//google-images-sitemap-c-asp-net</id>
+    <published>2010-07-24T07:02:20.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Today I have implemented an action in ASP.Net MVC that generates a sitemap containing the images of a website we are developing, just to check how this affects to the amount of images indexed in google images.</p>
+<p>The XML structure, as well as the optional parameters, are defined on <a href="http://www.google.com/support/webmasters/bin/answer.py?answer=178636">Adding image information to a Sitemap</a> on Google Webmaster central.</p>
+<span id="more"></span>
+<p>The code I use is the following one:</p>
+<pre class=" language-csharp"><code class="language-csharp">XNamespace ns <span class="token operator">=</span> <span class="token string">"http://www.sitemaps.org/schemas/sitemap/0.9"</span><span class="token punctuation">;</span>
+XNamespace nsImage <span class="token operator">=</span> <span class="token string">"http://www.google.com/schemas/sitemap-image/1.1"</span><span class="token punctuation">;</span>
+XDocument xmlDoc <span class="token operator">=</span>
+  <span class="token keyword">new</span> <span class="token class-name">XDocument</span><span class="token punctuation">(</span>
+    <span class="token keyword">new</span> <span class="token class-name">XDeclaration</span><span class="token punctuation">(</span><span class="token string">"1.0"</span><span class="token punctuation">,</span> <span class="token string">"UTF-8"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">new</span> <span class="token class-name">XElement</span><span class="token punctuation">(</span>ns <span class="token operator">+</span> <span class="token string">"urlset"</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">XAttribute</span><span class="token punctuation">(</span>XNamespace<span class="token punctuation">.</span>Xmlns <span class="token operator">+</span> <span class="token string">"image"</span><span class="token punctuation">,</span> nsImage<span class="token punctuation">.</span>NamespaceName<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword">from</span> image <span class="token keyword">in</span> images
+        <span class="token keyword">select</span>
+          <span class="token keyword">new</span> <span class="token class-name">XElement</span><span class="token punctuation">(</span>ns <span class="token operator">+</span> <span class="token string">"url"</span><span class="token punctuation">,</span>
+            <span class="token keyword">new</span> <span class="token class-name">XElement</span><span class="token punctuation">(</span>ns <span class="token operator">+</span> <span class="token string">"loc"</span><span class="token punctuation">,</span> image<span class="token punctuation">.</span>UrlImage<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token keyword">new</span> <span class="token class-name">XElement</span><span class="token punctuation">(</span>nsImage <span class="token operator">+</span> <span class="token string">"image"</span><span class="token punctuation">,</span>
+              <span class="token keyword">new</span> <span class="token class-name">XElement</span><span class="token punctuation">(</span>nsImage <span class="token operator">+</span> <span class="token string">"loc"</span><span class="token punctuation">,</span> image<span class="token punctuation">.</span>UrlPage<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token function">Content</span><span class="token punctuation">(</span>xmlDoc<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>where <strong>images</strong> is a list of objects that contains the url of the page where the image appears (UrlPage) as well as the url for the source image file (UrlImage). In this example, each page would contain just one image.</p>
+<p>Optional parameters can be added:</p>
+<ul>
+<li><strong>Title</strong>: It would be equivalent to the alt text of the image</li>
+<li><strong>Caption</strong>: A brief description of the image</li>
+<li><strong>Geo_location</strong>: From the documentation, it seems it is the name of the place / city depicted in the picture or where it was taken, and not the geo coordinates.</li>
+<li><strong>License</strong></li>
+</ul>
+<p>I hope this can help those people willing to try this feature from Google.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      This is the C# code to generate a XML images sitemap to let Google Images Bot index more easily the pictures of your site.
+    
+    </summary>
+    
+    
+      <category term="google" scheme="https://jmperezperez.com/tags/google/"/>
+    
+      <category term="sitemap" scheme="https://jmperezperez.com/tags/sitemap/"/>
+    
+      <category term="xml" scheme="https://jmperezperez.com/tags/xml/"/>
+    
+  </entry>
+  
+</feed>

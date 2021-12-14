@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/cross-platform/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Facebook news feed: Unifying mobile and desktop</title>
+    <link href="https://jmperezperez.com//facebook-news-feed-redesign"/>
+    <id>https://jmperezperez.com//facebook-news-feed-redesign</id>
+    <published>2013-03-08T11:51:05.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>You probably know already about <a href="http://www.engadget.com/2013/03/07/facebook-freshens-up-news-feed/">the redesign Facebook will be carrying out to their News Feed</a>. After reading some articles covering their presentation, there are lots of mentions to “clutter reduction”, “more space for pictures”, “more info about check-ins”, etc. What I personally think is that Facebook has decided, simply, to unify their layout across devices.
+<img src="/assets/images/posts/facebook-news-feed.jpg" alt="Facebook News Feed Update"></p>
+<span id="more"></span>
+<p>And that is clearly visible when you have a look at their page about the redesigned news feed. They show, side by side, the same news feed as seen on the desktop website and an Android phone, iPhone and iPad mini. Unifying the design provides lots of advantages. On one side, users don’t need to adapt to a different experience when they browse Facebook, regardless of the device they are using. On the other, it highly simplifies the different content formats, what makes it easier for partners (apps, ads…) to provide content that will behave the same way in every device.</p>
+<p>This movement shows how Facebook really thinks about mobile devices, and how they put them at the same level as their main desktop site. It is a step beyond responsive design. It is more how the layout used for smartphones and tablets has conditioned their desktop site.</p>
+<p>Anyway, I am looking forward to see how the new layout performs, and I am very excited to see a unified cross-platform layout such as this being released.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;You probably know already about &lt;a href=&quot;http://www.engadget.com/2013/03/07/facebook-freshens-up-news-feed/&quot;&gt;the redesign Facebook will be carrying out to their News Feed&lt;/a&gt;. After reading some articles covering their presentation, there are lots of mentions to “clutter reduction”, “more space for pictures”, “more info about check-ins”, etc. What I personally think is that Facebook has decided, simply, to unify their layout across devices.
+&lt;img src=&quot;/assets/images/posts/facebook-news-feed.jpg&quot; alt=&quot;Facebook News Feed Update&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="facebook" scheme="https://jmperezperez.com/tags/facebook/"/>
+    
+      <category term="cross-platform" scheme="https://jmperezperez.com/tags/cross-platform/"/>
+    
+  </entry>
+  
+</feed>

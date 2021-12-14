@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/google/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2021-12-14T07:52:53.525Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Web technologies behind Google+</title>
+    <link href="https://jmperezperez.com//google-plus-technology-overview"/>
+    <id>https://jmperezperez.com//google-plus-technology-overview</id>
+    <published>2011-07-02T16:59:19.000Z</published>
+    <updated>2021-12-14T07:52:53.525Z</updated>
+    
+    <content type="html"><![CDATA[<p>We are all excited about the Google+ release, and this is a nice opportunity for web developers to find out how some of its more interesting features have been implemented.</p>
+<p>I am trying to collect information about implementation details for every innovative functionality that makes Google+ push the limits of web development.</p>
+<span id="more"></span>
+<p>Meanwhile I am trying to get useful conclusions by seeing their CSS and JavaScript code and the flow of HTTP requests. Until now I haven’t seen especial things involving static resources like images (not using <a href="http://code.google.com/speed/webp/">WebP</a>), CSS or JavaScript files. I can only say that CSS and JavaScript files are greatly minified, squishing their content to the last byte.</p>
+<p>Feedback system</p>
+<p>Google Plus feedback system is brilliant. It is very easy to use for low-tech users thanks to their highlight / black out feature and area selection, and useful for Google due to the information they retrieve from the browser, HTML structure and javascript log.
+<a href="/assets/images/posts/feedback-test.jpg"><img src="/assets/images/posts/feedback-test-1024x572.jpg" alt="Creating a feedback message in Google+, blacking out and highlighting certain areas"></a>
+<em>Creating a feedback message in Google+, blacking out and highlighting certain areas</em></p>
+<p>I find it very interesting how they are taking a screenshot of the web page when you preview the feedback message:
+<a href="/assets/images/posts/feedback-test-preview.jpg"><img src="/assets/images/posts/feedback-test-preview.jpg" alt="Preview of a feedback message in Google+, showing a screenshot of the web page"></a>
+<em>Preview of a feedback message in Google+, showing a screenshot of the web page</em></p>
+<p>There exist tools like <a href="http://html2canvas.hertzen.com/">html2canvas</a> that allows the creation of screenshots by reading the DOM tree and applying CSS rules.</p>
+<p>More info:</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/6527742/how-does-the-screenshot-part-of-the-google-feedback-system-work">How does the Screenshot part of the Google+ Feedback system work?</a></li>
+</ul>
+<h2 id="Google-Circle-animation"><a href="#Google-Circle-animation" class="headerlink" title="Google Circle animation"></a>Google Circle animation</h2><p>It is nice how fluid the interface is when creating circles and dragging people into them. The animations are very smooth and it is a pleasure to use it, making something that was tedious a fun experience.</p>
+<p>More info:</p>
+<ul>
+<li><a href="https://www.quora.com/Is-the-Google+-circle-animation-implemented-in-JavaScript-or-Flash">Is the Google+ circle animation implemented in JavaScript or Flash?</a></li>
+</ul>
+<h2 id="Google-Hangout"><a href="#Google-Hangout" class="headerlink" title="Google Hangout"></a>Google Hangout</h2><p>This is a feature that extends Google Talk video chat to make it possible to video chat with up to 10 people. This represents a big effort in terms of bandwidth and lag avoidance.</p>
+<p>More info:</p>
+<ul>
+<li><a href="http://gigaom.com/video/google-hangouts-technology">The technology behind Google+ Hangouts</a></li>
+</ul>
+<h2 id="Accessibility"><a href="#Accessibility" class="headerlink" title="Accessibility"></a>Accessibility</h2><p>The use of ARIA attributes in the HTML code (aria-haspopup, aria-owns, aria-owner) makes me thing they have take accessibility as a priority. This is in line with their effort for spreading the word about developing accessible websites, as they explained in their talk <a href="https://www.youtube.com/watch?v=lMrkCoqgoxw">Creating Accessible Interactive Web Apps using HTML5</a> in the recent Google I/O 2011 conference.</p>
+<h2 id="JSON-responses-forcing-AJAX-calls"><a href="#JSON-responses-forcing-AJAX-calls" class="headerlink" title="JSON responses forcing AJAX calls"></a>JSON responses forcing AJAX calls</h2><p>If you inspect the JSON responses content, you will see that they start with</p>
+<blockquote>
+<p>)]}’</p>
+</blockquote>
+<p>This seems a way to force requests to be made using Ajax calls and avoid retrieving data using script tags, that would result in a error being thrown. This is similar as how facebook adds an infinite loop to their JSON responses using</p>
+<blockquote>
+<p>for (;;);</p>
+</blockquote>
+<p>More info:</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/6618441/strange-json-response-in-google-plus">Strange JSON response in Google Plus</a></li>
+</ul>
+<h2 id="Indexability"><a href="#Indexability" class="headerlink" title="Indexability"></a>Indexability</h2><p>Try to disable JavaScript and you’ll see that you can’t even log in Google+. However, public profiles (make a <a href="http://www.google.es/search?q=site:plus.google.com">basic search for site:plus.google.com</a>) work quite well when disabling JavaScript. Tabs link to pages where content is loaded correctly, except for Photos and Videos tabs, so that search engines can view and index the most important part of the profile information.</p>
+<p>Google has even add <a href="http://searchenginewatch.com/article/2082771/Deconstructing-Google">a parameter to look for Google+ profile pages</a>.</p>
+<h2 id="Tools-used-to-implement-Google"><a href="#Tools-used-to-implement-Google" class="headerlink" title="Tools used to implement Google+"></a>Tools used to implement Google+</h2><p>Google+ has been implemented using a set of tools that are mostly open source. In the server side, they use Java Servlets, <a href="http://en.wikipedia.org/wiki/BigTable">BigTable</a> and <a href="http://www.cs.cornell.edu/projects/ladis2009/talks/dean-keynote-ladis2009.pdf">Colossus</a>. Google+ seems to be using GSE (<a href="http://code.google.com/p/opengse/">Google Servlet Engine</a>) according to the ‘Server’ response header when requesting the root page.</p>
+<p>And in the client side, they use <a href="http://code.google.com/closure/">Closure</a>.</p>
+<p>More info:</p>
+<ul>
+<li><p><a href="http://highscalability.com/blog/2011/7/12/google-is-built-using-tools-you-can-use-too-closure-java-ser.html">Google+ is Built Using Tools You Can Use Too: Closure, Java Servlets, JavaScript, BigTable, Colossus, Quick Turnaround</a></p>
+</li>
+<li><p><a href="https://web.archive.org/web/20130118141404/http://anyasq.com/79-im-a-technical-lead-on-the-google+-team">I’m a technical lead on the Google+ team. Ask me anything.</a></p>
+</li>
+<li><p><a href="http://stackoverflow.com/questions/6545811/google-social-network-in-depth">Google+ social network in depth</a></p>
+</li>
+</ul>
+<p>Have you come across some Google+ implementation detail that should be highlighted? Don’t hesitate to comment to this post!</p>
+]]></content>
+    
+    <summary type="html">
+    
+      What web technologies are behind Google+ website? This is a collection of links to posts explaining interesting features of this brand new network site.
+    
+    </summary>
+    
+    
+      <category term="google" scheme="https://jmperezperez.com/tags/google/"/>
+    
+      <category term="google plus" scheme="https://jmperezperez.com/tags/google-plus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Generating google images sitemap with C#</title>
+    <link href="https://jmperezperez.com//google-images-sitemap-c-asp-net"/>
+    <id>https://jmperezperez.com//google-images-sitemap-c-asp-net</id>
+    <published>2010-07-24T07:02:20.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Today I have implemented an action in ASP.Net MVC that generates a sitemap containing the images of a website we are developing, just to check how this affects to the amount of images indexed in google images.</p>
+<p>The XML structure, as well as the optional parameters, are defined on <a href="http://www.google.com/support/webmasters/bin/answer.py?answer=178636">Adding image information to a Sitemap</a> on Google Webmaster central.</p>
+<span id="more"></span>
+<p>The code I use is the following one:</p>
+<pre class=" language-csharp"><code class="language-csharp">XNamespace ns <span class="token operator">=</span> <span class="token string">"http://www.sitemaps.org/schemas/sitemap/0.9"</span><span class="token punctuation">;</span>
+XNamespace nsImage <span class="token operator">=</span> <span class="token string">"http://www.google.com/schemas/sitemap-image/1.1"</span><span class="token punctuation">;</span>
+XDocument xmlDoc <span class="token operator">=</span>
+  <span class="token keyword">new</span> <span class="token class-name">XDocument</span><span class="token punctuation">(</span>
+    <span class="token keyword">new</span> <span class="token class-name">XDeclaration</span><span class="token punctuation">(</span><span class="token string">"1.0"</span><span class="token punctuation">,</span> <span class="token string">"UTF-8"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">new</span> <span class="token class-name">XElement</span><span class="token punctuation">(</span>ns <span class="token operator">+</span> <span class="token string">"urlset"</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">XAttribute</span><span class="token punctuation">(</span>XNamespace<span class="token punctuation">.</span>Xmlns <span class="token operator">+</span> <span class="token string">"image"</span><span class="token punctuation">,</span> nsImage<span class="token punctuation">.</span>NamespaceName<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword">from</span> image <span class="token keyword">in</span> images
+        <span class="token keyword">select</span>
+          <span class="token keyword">new</span> <span class="token class-name">XElement</span><span class="token punctuation">(</span>ns <span class="token operator">+</span> <span class="token string">"url"</span><span class="token punctuation">,</span>
+            <span class="token keyword">new</span> <span class="token class-name">XElement</span><span class="token punctuation">(</span>ns <span class="token operator">+</span> <span class="token string">"loc"</span><span class="token punctuation">,</span> image<span class="token punctuation">.</span>UrlImage<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token keyword">new</span> <span class="token class-name">XElement</span><span class="token punctuation">(</span>nsImage <span class="token operator">+</span> <span class="token string">"image"</span><span class="token punctuation">,</span>
+              <span class="token keyword">new</span> <span class="token class-name">XElement</span><span class="token punctuation">(</span>nsImage <span class="token operator">+</span> <span class="token string">"loc"</span><span class="token punctuation">,</span> image<span class="token punctuation">.</span>UrlPage<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token function">Content</span><span class="token punctuation">(</span>xmlDoc<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>where <strong>images</strong> is a list of objects that contains the url of the page where the image appears (UrlPage) as well as the url for the source image file (UrlImage). In this example, each page would contain just one image.</p>
+<p>Optional parameters can be added:</p>
+<ul>
+<li><strong>Title</strong>: It would be equivalent to the alt text of the image</li>
+<li><strong>Caption</strong>: A brief description of the image</li>
+<li><strong>Geo_location</strong>: From the documentation, it seems it is the name of the place / city depicted in the picture or where it was taken, and not the geo coordinates.</li>
+<li><strong>License</strong></li>
+</ul>
+<p>I hope this can help those people willing to try this feature from Google.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      This is the C# code to generate a XML images sitemap to let Google Images Bot index more easily the pictures of your site.
+    
+    </summary>
+    
+    
+      <category term="google" scheme="https://jmperezperez.com/tags/google/"/>
+    
+      <category term="sitemap" scheme="https://jmperezperez.com/tags/sitemap/"/>
+    
+      <category term="xml" scheme="https://jmperezperez.com/tags/xml/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Let&#39;s make the web faster - Tips from Google</title>
+    <link href="https://jmperezperez.com//google-make-web-faster"/>
+    <id>https://jmperezperez.com//google-make-web-faster</id>
+    <published>2009-06-25T06:37:27.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Through <a href="http://meneame.net/story/google-hagamos-web-sea-mas-rapida-ing">menéame</a> (a digg-like site) I have arrived to <a href="https://developers.google.com/speed/">a website from Google Code</a> where Google gives some tips and advices to make your site work faster, especially about loading time. Many of the tips are easy to apply thanks to the Firefox extension <a href="https://dl-ssl.google.com/page-speed/current/page-speed.xpi">Google Page Speed</a> that expands the features provided by Firebug.</p>
+<span id="more"></span>
+<p>The tips range from images optimization (choosing the right format and color palette, cropping the images to remove blank areas…) to the proper management of javascript and css scripts so that they can be downloaded in parallel and processed more quickly by the browser. Some features are to be implemented at the “server side” (as the cache, gzip compression and distribution of resources according to the necessity of cookies or not) and they are also explained accompanied by several examples and videos.</p>
+<p>In addition, you can find technical lectures shown as Youtube videos which provide more information about the optimum development of websites.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Through &lt;a href=&quot;http://meneame.net/story/google-hagamos-web-sea-mas-rapida-ing&quot;&gt;menéame&lt;/a&gt; (a digg-like site) I have arrived to &lt;a href=&quot;https://developers.google.com/speed/&quot;&gt;a website from Google Code&lt;/a&gt; where Google gives some tips and advices to make your site work faster, especially about loading time. Many of the tips are easy to apply thanks to the Firefox extension &lt;a href=&quot;https://dl-ssl.google.com/page-speed/current/page-speed.xpi&quot;&gt;Google Page Speed&lt;/a&gt; that expands the features provided by Firebug.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="google" scheme="https://jmperezperez.com/tags/google/"/>
+    
+  </entry>
+  
+</feed>

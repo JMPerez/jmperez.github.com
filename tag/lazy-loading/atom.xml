@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/lazy-loading/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2021-12-14T07:52:53.533Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Increase the Performance of your Site with Lazy-Loading and Code-Splitting</title>
+    <link href="https://jmperezperez.com//high-performance-lazy-loading"/>
+    <id>https://jmperezperez.com//high-performance-lazy-loading</id>
+    <published>2018-04-06T04:00:00.000Z</published>
+    <updated>2021-12-14T07:52:53.533Z</updated>
+    
+    <content type="html"><![CDATA[<p>Componentization has marked a before and after in web development. The main advantages that are usually mentioned is reusability and modularization. Well defined pieces that we can use to build our sites, like bricks of Legos. It turns out this component structure provides a great foundation to improve the performance of our sites.</p>
+<p><img
+    loading="lazy"
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995807/high-performance_mbjoct.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995807/high-performance_mbjoct.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995807/high-performance_mbjoct.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995807/high-performance_mbjoct.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995807/high-performance_mbjoct.jpg"
+    alt="" /></p>
+<p>We are explicit about our dependencies, so we know what code we need to run to run a specific component. Lazy-loading and bundle splitting can have a huge impact on page performance: less code requested, parsed, and executed. And this not only applies to JavaScript, but every type of asset.</p>
+<p>I see many sites that could take advantage of this, and I wanted to show how some basic techniques to load content as needed.</p>
+<span id="more"></span>
+
+<p>The article will be using Preact/React, yet the ideas can be applied to any other component library.</p>
+<p>We are going to cover several topics:</p>
+<ol>
+<li> <a href="#Compositional-Patterns">Compositional Patterns</a>: Overview of a couple of patterns that we can use to build complex components.</li>
+<li> <a href="#Improving-performance-of-our-sites-by-loading-only-what-is-needed">Improving performance of our sites by loading only what is needed</a>: A practical case where we will apply lazy-loading.</li>
+<li> <a href="#A-small-component-to-detect-when-an-area-is-visible">A small component to detect visibility</a>: A simple component that wraps the logic to notify when an element appears on screen.</li>
+<li> <a href="#More-use-cases">More use cases</a>: We will see that a component to detect visibility can also be useful in other situations.</li>
+<li> <a href="#Polyfilling-IntersectionObserver-on-demand">Polyfilling IntersectionObserver on-demand</a>: How we can include a polyfill only when needed.</li>
+<li> <a href="#Code-Splitting-and-CSS-in-JS">Code Splitting and CSS-in-JS</a>: How CSS-in-JS extends code-splitting and lazy-loading to CSS, SVGs and other resources.</li>
+<li> <a href="#Useful-implementations">Useful implementations</a>: Existing npm libraries that implement the pattern we have gone through.</li>
+</ol>
+<p>Let’s start!</p>
+<h2 id="Compositional-Patterns"><a href="#Compositional-Patterns" class="headerlink" title="Compositional Patterns"></a>Compositional Patterns</h2><p>In a component world components aren’t only used for rendering actual pixels on the screen. They can also wrap functionality that is passed to children components.</p>
+<p>This is usually achieved using <a href="https://reactjs.org/docs/higher-order-components.html">High Order Components (HOC)</a>. These components receive another component and add some functionality, like a behavior.</p>
+<p>If you have used redux, the <code>connect</code> function is a HOC that receives your not-connected component. You can find more examples on “<a href="https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e">React Higher Order Components in depth</a>“ by Fran Guijarro.</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> MyComponent <span class="token operator">=</span> props <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token entity" title="&#123;">&amp;#123;</span>props<span class="token punctuation">.</span>id<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token operator">-</span> <span class="token entity" title="&#123;">&amp;#123;</span>props<span class="token punctuation">.</span>name<span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// ...</span>
+
+<span class="token keyword">const</span> ConnectedComponent <span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span>
+  mapStateToProps<span class="token punctuation">,</span>
+  mapDispatchToProps
+<span class="token punctuation">)</span><span class="token punctuation">(</span>MyComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Function as Child Component (also known as “<a href="https://reactpatterns.com/#render-callback">Render Callback</a>“) is another pattern used in similar scenarios. It is getting quite popular these days. You might have come across them in <a href="https://github.com/ReactTraining/react-media">react-media</a> or <a href="https://github.com/jamiebuilds/unstated">unstated</a>.</p>
+<p>Look at this example taken from react-media:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> MyComponent <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Media</span> <span class="token attr-name">query</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(max-width:</span> <span class="token attr-name">599px)"</span><span class="token punctuation">></span></span>
+    <span class="token entity" title="&#123;">&amp;#123;</span>matches <span class="token operator">=</span><span class="token operator">></span>
+      matches <span class="token operator">?</span> <span class="token punctuation">(</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>The document is less than 600px wide<span class="token punctuation">.</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>The document is at least 600px wide<span class="token punctuation">.</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token punctuation">)</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Media</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The <code>Media</code> component calls its children passing a <code>matches</code> argument. This way, the children components don’t need to know about the media query. Componentizing generally makes testing and maintenance easier.</p>
+<h2 id="Improving-performance-of-our-sites-by-loading-only-what-is-needed"><a href="#Improving-performance-of-our-sites-by-loading-only-what-is-needed" class="headerlink" title="Improving performance of our sites by loading only what is needed"></a>Improving performance of our sites by loading only what is needed</h2><p>Imagine a typical web page. You can check <a href="https://css-tricks.com/website-sameness/">Website Sameness</a> or <a href="https://www.friday.ie/journal/why-do-all-websites-look-the-same/">Web Design Trends: Why Do All Websites Look The Same?</a> for some inspiration :) . The example page we are going to use contains several sections or blocks:</p>
+<ul>
+<li>a header (these days, a large hero image taking the whole above-the-fold area)</li>
+<li>a section with a few images</li>
+<li>another section with a heavy component like a map</li>
+<li>a footer</li>
+</ul>
+<p style="max-width:300px;display:block;margin-left:auto;margin-right:auto">
+<img
+    loading="lazy"
+    style="max-width:100%"
+    sizes="300px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:300,f_auto/v1523084060/observer/site.png 300w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:600,f_auto/v1523084060/observer/site.png 600w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:900,f_auto/v1523084060/observer/site.png 900w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1523084060/observer/site.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:300,f_auto/v1523084060/observer/site.png"
+    alt="A typical website" />
+<small class="caption">The basic structure of a page we will be using as example.</small>
+</p>
+
+<p>This, mapped into React components, would be something like this:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> Page <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Header</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Gallery</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Map</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Footer</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+</code></pre>
+<p>When the user visits the page, it is highly likely that they will see the header on screen. After all, it’s the top most component. It is less likely that they see the gallery, map and footer, unless they scroll.</p>
+<p>Most times you would include all the scripts and CSS needed to render all sections as soon as the user visits the page. Until recently it was difficult to define a module’s dependencies, and load what was needed.</p>
+<p>Years ago, pre-ES6, large companies came up with their own solutions to define dependencies and load them as needed. Yahoo built <a href="https://books.google.com/books?id=E7p-07kNfXYC&pg=PA65&lpg=PA65&dq=yahoo+yui+loader&source=bl&ots=UOcpQHdaRp&sig=AGTHNZvPYXWdU9lkj9klzTEa3ys&hl=en&sa=X&ved=0ahUKEwjn26Wti8PZAhUJDSwKHQOsCbIQ6AEIVDAG#v=onepage&q=yahoo%20yui%20loader&f=false">YUI Loader</a> and Facebook wrote <a href="/facebook-frontend-javascript/">Haste, Bootloader and Primer</a>.</p>
+<p>When you send the user code that is not needed, you waste resources from your end, and from the user’s end. More bandwidth to transfer the data, more CPU to parse and execute them, and more memory to keep around. And those assets will steal the limited resources from other critical assets that need it more urgently.</p>
+<p>What’s the point in requesting resources that the user will not need, like images that the user won’t reach? Or loading a 3rd party component like a Google Map, with all its additional assets needed to render the thing?</p>
+<p>A code coverage report, like <a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage">the one Google Chrome provides</a> <strong>won’t help us much</strong>. The JS code will be executed and the CSS applied to elements that aren’t visible.</p>
+<p><img
+    loading="lazy"
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/chrome-coverage.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/chrome-coverage.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/chrome-coverage.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/chrome-coverage.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/chrome-coverage.png"
+    alt="Code coverage tab on Google Chrome" /></p>
+<p><small class="caption">Code coverage tab on Google Chrome (<a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage">source</a>)</small></p>
+<p>As with everything else, <strong>there are trade-offs with lazy-loading</strong>. We don’t want to apply lazy-loading to everything. Here are some points to take into account.</p>
+<ul>
+<li><strong>Don’t lazy load above the fold</strong>. In most cases we want the above-the-fold content to be rendered as soon as possible. Every lazy-loading technique will introduce a delay. The browser has to run the JS that injects the HTML to the document, parse it and start requesting the referenced assets.</li>
+</ul>
+<p><img
+    loading="lazy"
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/fold.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/fold.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/fold.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/fold.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/fold.png"
+    alt="Don't lazy load above the fold" /></p>
+<p>Where to set the fold? This is tricky, and it will depend on the user’s device, which varies greatly, and your layout.</p>
+<ul>
+<li><strong>Lazy load a bit earlier than when it’s needed</strong>. You want to avoid showing void areas to the user. For this, you can load an asset that is needed when it’s closed enough to the visible area. For instance, a user scrolls down and if the image to load is, let’s say, 100px below the bottom of the viewport, start requesting it.</li>
+</ul>
+<p><img
+    loading="lazy"
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/preloading.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/preloading.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/preloading.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/preloading.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/preloading.png"
+    alt="Lazy load a bit earlier than when it's needed" /></p>
+<ul>
+<li><p>**Invisible content in some scenarios**. You need to take into account that lazy-loaded content won't be shown in some situations:</p>
+ - If the lazy-loaded content hasn't been loaded it won't show up when printing the page.
+ - The same can happen when the page is shown in RSS readers that might not execute the Javascript needed to load the content.
+ - When it comes to SEO, you might have issues indexing lazy-loaded content on Google. At the time of writing this article, Googlebot supports IntersectionObserver and it invokes its callback with changes in the viewport above the fold. However, **it won't trigger the callback for content below the fold**. Thus, **that content won't be seen nor indexed by Google**.
+   If you content is important you can, for instance, render the text and lazy-load components like images and other widgets (eg maps).
+
+<p>Here I’m rendering <a href="https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html">a test page</a> (you can see the source <a href="https://github.com/JMPerez/lazy-load/blob/master/text-above-fold.js">here</a>) using Google Webmaster Tools’ “Fetch as Google”. Googlebot renders the content in the box shown within the viewport, but not the content below it.</p>
+<div class="videoWrapper">
+  <iframe width="1764" height="1080" src="https://www.youtube.com/embed/YEWaufLXX_Q" frameborder="0" allowfullscreen loading="lazy"></iframe>
+</div>
+<small class="caption">Rendering [a test page](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) using Google Webmaster Tools' "Fetch as Google".</small></li>
+</ul>
+<div class="callout">
+<strong>Update May 10th 2019</strong>: Google announced during I/O 2019 that <a href="https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html">they will use an evergreen Googlebot</a>. This puts an end to using Chrome 41 to render pages and it adds support for IntersectionObserver. If you are using Google Search Console to test how Google renders one of your URLs, you will still get the Chrome 41 result. This is because <a href="https://youtu.be/Ey0N1Ry0BPM?t=381">Google hasn't updated their testing tools to use an evergreen Chrome</a>.
+</div>
+
+<h2 id="A-small-component-to-detect-when-an-area-is-visible"><a href="#A-small-component-to-detect-when-an-area-is-visible" class="headerlink" title="A small component to detect when an area is visible"></a>A small component to detect when an area is visible</h2><p>I have talked in the past about <a href="/lazy-loading-images/">lazy-loading images</a>. This is just a type of asset that we can lazy-load, but we can apply the technique to other elements.</p>
+<p>Let’s build a simple component that will detect when the section is visible in the viewport. For brevity I will use the <a href="https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API">Intersection Observer API</a>, an experimental technology with <a href="https://caniuse.com/#search=intersectionobserver">quite good support</a>.</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">Observer</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> isVisible<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>container <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">IntersectionObserver</span><span class="token punctuation">(</span><span class="token punctuation">[</span>entry<span class="token punctuation">]</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> isVisible<span class="token punctuation">:</span> entry<span class="token punctuation">.</span>isIntersecting <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">,</span> <span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token comment" spellcheck="true">// we create a div to get a reference.</span>
+      <span class="token comment" spellcheck="true">// It's possible to use findDOMNode() to avoid</span>
+      <span class="token comment" spellcheck="true">// creating extra elements, but findDOMNode is discouraged</span>
+      <span class="token operator">&lt;</span>div
+        ref<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span>div <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>container <span class="token operator">=</span> div<span class="token punctuation">;</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token operator">></span>
+        <span class="token entity" title="&#123;">&amp;#123;</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">)</span>
+          <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>child <span class="token operator">=</span><span class="token operator">></span> <span class="token function">child</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">children</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<p>The component uses IntersectionObserver to detect that the container intersects with the viewport, that is, it’s visible. We take advantage of React’s lifecycle methods to clean up the IntersectionObserver <a href="https://developer.mozilla.org/docs/Web/API/IntersectionObserver/disconnect">disconnecting it</a> when unmounting.</p>
+<p>This basic component could be extended with extra properties passed as <a href="https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API#Intersection_observer_options">options to IntersectionObserver</a> like margins or thresholds, so we can detect elements close to but not intersecting with the viewport. The options are set in the constructor, and they are read-only. Thus, adding support for options means that we would need to reinstantiate the IntersectionObserver with new options when they change, adding some extra logic in <code>componentWillReceiveProps</code> that we are not going to cover here.</p>
+<p>Now, we can use this component to lazy load two of our components, <code>Gallery</code> and <code>Map</code>:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> Page <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Header</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Observer</span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span>isVisible <span class="token operator">=</span><span class="token operator">></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Gallery</span> <span class="token attr-name">isVisible</span> <span class="token punctuation">/></span></span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Observer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Observer</span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span>isVisible <span class="token operator">=</span><span class="token operator">></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Map</span> <span class="token attr-name">isVisible</span> <span class="token punctuation">/></span></span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Observer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Footer</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+</code></pre>
+<p>In the code above I’m just passing the <code>isVisible</code> property to the <code>Gallery</code> and <code>Map</code> components so they handle it. Alternatively we could return the component if visible, or an empty element otherwise.</p>
+<p>In any case <strong>make sure that you reserve the area for the lazy-loaded component</strong>. You don’t want content to jump around, so if you know that your <code>Map</code> is 400px height, render a 400px height empty container before the map is rendered.</p>
+<p>How do the <code>Map</code> and <code>Gallery</code> components use the <code>isVisible</code> property? Let’s take a look at the <code>Map</code>:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">Map</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> initialized<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>map <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token function">initializeMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> initialized<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// loadScript loads an external script, its definition is not included here.</span>
+    <span class="token function">loadScript</span><span class="token punctuation">(</span><span class="token string">'https://maps.google.com/maps/api/js?key=&lt;your_key>'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">const</span> latlng <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">google<span class="token punctuation">.</span>maps<span class="token punctuation">.</span>LatLng</span><span class="token punctuation">(</span><span class="token number">38.34</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0.48</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> myOptions <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> zoom<span class="token punctuation">:</span> <span class="token number">15</span><span class="token punctuation">,</span> center<span class="token punctuation">:</span> latlng <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">google<span class="token punctuation">.</span>maps<span class="token punctuation">.</span>Map</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>map<span class="token punctuation">,</span> myOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initializeMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span>nextProps<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>initialized <span class="token operator">&amp;&amp;</span> nextProps<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initializeMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div
+        ref<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span>div <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>map <span class="token operator">=</span> div<span class="token punctuation">;</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<p>When the container is displayed in the viewport we make a request to inject Google Map’s script, and once loaded we create the map. This is a good example of lazy-loading JavaScript that is not needed from the beginning, and the rest of resources needed to display the map.</p>
+<p>The component has a state to avoid reinjecting the Google Map’s script.</p>
+<p>Let’s have a look at the <code>Gallery</code> component:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">Gallery</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> hasBeenVisible<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> hasBeenVisible<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span>nextProps<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>hasBeenVisible <span class="token operator">&amp;&amp;</span> nextProps<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> hasBeenVisible<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Some pictures<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+        Picture <span class="token number">1</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>hasBeenVisible <span class="token operator">?</span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://example.com/image01.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>placeholder<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+        Picture <span class="token number">2</span>
+        <span class="token entity" title="&#123;">&amp;#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>hasBeenVisible <span class="token operator">?</span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://example.com/image02.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>placeholder<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<p>The above example defines another stateful component. In fact, we are storing in the state the same information as we did with the <code>Map</code>.</p>
+<p>If the Gallery is shown within the viewport, and afterwards it is outside the viewport, the images will remain in the DOM. In most cases this is what we want when working with images.</p>
+<h3 id="Stateless-Child-Components"><a href="#Stateless-Child-Components" class="headerlink" title="Stateless Child Components"></a>Stateless Child Components</h3><p>A stateless component could also be interesting. It would allow us to unload images that are not visible anymore, showing back the placeholders:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> Gallery <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> isVisible <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Some pictures<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+    Picture <span class="token number">1</span><span class="token entity" title="&#123;">&amp;#123;</span>isVisible <span class="token operator">?</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://example.com/image01.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>placeholder<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+    Picture <span class="token number">2</span>
+    <span class="token entity" title="&#123;">&amp;#123;</span>isVisible <span class="token operator">?</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://example.com/image02.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>placeholder<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>If you do this, <strong>make sure that the images have the right cache response headers</strong> so subsequent requests from the browser hit the cache and it doesn’t download the images again.</p>
+<p>If you see yourself making your lazy-loaded components stateful only to track that they have been visible at least once, you can add this logic to the <code>Observer</code> component. After all, <code>Observer</code> is already stateful and it can easily call its children with an additional <code>hasBeenVisible</code> argument.</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> Page <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token operator">...</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Observer</span><span class="token punctuation">></span></span>
+    <span class="token entity" title="&#123;">&amp;#123;</span><span class="token punctuation">(</span>isVisible<span class="token punctuation">,</span> hasBeenVisible<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Gallery</span> <span class="token attr-name">hasBeenVisible</span> <span class="token punctuation">/></span></span> <span class="token comment" spellcheck="true">// Gallery can be now stateless</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Observer</span><span class="token punctuation">></span></span>
+  <span class="token operator">...</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<p>Another option is to have a variant of the <code>Observer</code> component that only passes a prop like <code>hasBeenVisible</code>. This has the advantage that we can disconnect the IntersectionObserver as soon as the element is in view, since we are not going to change its value. We will call this component <code>ObserverOnce</code>:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">ObserverOnce</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> hasBeenVisible<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>container <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">IntersectionObserver</span><span class="token punctuation">(</span>entries <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      entries<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>entry <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>entry<span class="token punctuation">.</span>isIntersecting<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> hasBeenVisible<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">,</span> <span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div
+        ref<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span>div <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>container <span class="token operator">=</span> div<span class="token punctuation">;</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token operator">></span>
+        <span class="token entity" title="&#123;">&amp;#123;</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">)</span>
+          <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>child <span class="token operator">=</span><span class="token operator">></span> <span class="token function">child</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>hasBeenVisible<span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">children</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>hasBeenVisible<span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<h2 id="More-use-cases"><a href="#More-use-cases" class="headerlink" title="More use cases"></a>More use cases</h2><p>We have used the <code>Observer</code> component to load resources on-demand. We can also use it to start animating a component as soon as a user sees it.</p>
+<p>Here is an example taken from the React Alicante website. It animates some conference numbers as soon as the user scrolls to that section.</p>
+<div style="text-align:center">
+  <video width="1064" height="618" controls src="https://res.cloudinary.com/jmperez/video/upload/dpr_auto,f_auto,q_auto/v1522995652/observer/react-alicante.mp4" />
+</div>
+
+<p>We could recreate it like this (see <a href="https://codepen.io/jmperez/pen/LQXjYv">example on Codepen</a>):</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">ConferenceData</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> progress<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>interval <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>animationDuration <span class="token operator">=</span> <span class="token number">2000</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>startAnimation <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span>nextProps<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>
+      <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>isVisible <span class="token operator">&amp;&amp;</span>
+      nextProps<span class="token punctuation">.</span>isVisible <span class="token operator">&amp;&amp;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>progress <span class="token operator">!==</span> <span class="token number">1</span>
+    <span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>startAnimation <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> tick <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+        <span class="token keyword">const</span> progress <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>
+          <span class="token number">1</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>startAnimation<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">this</span><span class="token punctuation">.</span>animationDuration
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> progress<span class="token punctuation">:</span> progress <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>progress <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+          <span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>tick<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+      <span class="token function">tick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token entity" title="&#123;">&amp;#123;</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>progress <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span> days ·
+        <span class="token entity" title="&#123;">&amp;#123;</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>progress <span class="token operator">*</span> <span class="token number">21</span><span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span> talks ·
+        <span class="token entity" title="&#123;">&amp;#123;</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>progress <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span> workshops ·
+        <span class="token entity" title="&#123;">&amp;#123;</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>progress <span class="token operator">*</span> <span class="token number">350</span><span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span> attendees
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<p>Then, we would use it exactly as the rest of components. This shows the power of abstracting the visibility detection logic outside the components that need them.</p>
+<h2 id="Polyfilling-IntersectionObserver-on-demand"><a href="#Polyfilling-IntersectionObserver-on-demand" class="headerlink" title="Polyfilling IntersectionObserver on-demand"></a>Polyfilling IntersectionObserver on-demand</h2><p>So far we have been using IntersectionObserver to detect when an element becomes visible. At the time of this writing some browsers (eg Safari) don’t have support for it, so the instantiation of IntersectionObserver will fail.</p>
+<p>An option would be to set <code>isVisible</code> to <code>true</code> when IntersectionObserver is not available, which in practice would disable lazy-loading. In a way we would consider lazy-loading as a progressive enhancement:</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Observer</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// isVisible is initialized to true if the browser</span>
+    <span class="token comment" spellcheck="true">// does not support IntersectionObserver API</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> isVisible<span class="token punctuation">:</span> <span class="token operator">!</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>IntersectionObserver<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>container <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// only initialize the IntersectionObserver if supported</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>IntersectionObserver<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">IntersectionObserver</span><span class="token punctuation">(</span>entries <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token operator">...</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Another option, which I prefer, is to include a polyfill like <a href="https://github.com/w3c/IntersectionObserver/tree/master/polyfill">w3c’s IntersectionObserver polyfill</a>. This way IntersectionObserver will work in all browsers.</p>
+<p>Following with the topic of loading resources on demand, and to lead by example, we will take advantage of code-splitting to only request the polyfill if needed. That way browsers supporting the API don’t need to fetch the polyfill:</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Observer</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">(</span>window<span class="token punctuation">.</span>IntersectionObserver
+      <span class="token operator">?</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">:</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'intersection-observer'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">window<span class="token punctuation">.</span>IntersectionObserver</span><span class="token punctuation">(</span>entries <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        entries<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>entry <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> isVisible<span class="token punctuation">:</span> entry<span class="token punctuation">.</span>isIntersecting <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>You can see <a href="https://react-intersection-observer.stackblitz.io/">a demo here</a> (check <a href="https://stackblitz.com/edit/react-intersection-observer">the code source</a>). Safari will make an extra request to load the <code>intersection-observer</code> npm package, since it doesn’t support IntersectionObserver.</p>
+<p><img
+    loading="lazy"
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg"
+    alt="Screenshot of the network panel in Safari, displaying a request for the polyfill" /></p>
+<p><small class="caption">Safari requests the polyfill for intersection-observer on demand. No need to ship it to browsers that support it natively.</small></p>
+<p>This is achieved thanks to code splitting. There are tools like <a href="https://parceljs.org/code_splitting.html">Parcel</a> or <a href="https://webpack.js.org/guides/code-splitting/">Webpack</a> that will create a bundle for that imported package, and the logic needed to request the file.</p>
+<h2 id="Code-Splitting-and-CSS-in-JS"><a href="#Code-Splitting-and-CSS-in-JS" class="headerlink" title="Code Splitting and CSS-in-JS"></a>Code Splitting and CSS-in-JS</h2><p>So far we have seen how to use a HOC to detect that an element is within the viewport. We have also seen how to load extra JavaScript when needed.</p>
+<p>Code-splitting is quite common and straightforward to implement at route level, so the browser loads additional bundles as the user navigates across different URLs on the site. Tools like <a href="https://github.com/ReactTraining/react-router">react-router</a> and <a href="https://github.com/zeit/next.js/">Next.js</a> have made this straightforward to implement.</p>
+<p>Through the examples on this post we have seen that the same can be achieved within the same route, loading the code for components on-demand. This is very useful if we have components that need a lot of specific code, not only JavaScript.</p>
+<p>A component could link to other resources or even inline them. Think of SVGs or CSS styles.</p>
+<p>There is no point in requesting styles that aren’t going to be applied to any element. Dynamically requesting and injecting CSS causes a FOUC (Flash of Unstyled Content). The browser shows the HTML elements with the existing style, and once the additional styles are injected it re-styles the content. With the advent of CSS-in-JS (or JSS) solutions this is no longer a problem. CSS is inlined within the component, and we get true code splitting for our components. <strong>With CSS-in-JS we take code splitting further, loading CSS on demand.</strong></p>
+<h2 id="Useful-implementations"><a href="#Useful-implementations" class="headerlink" title="Useful implementations"></a>Useful implementations</h2><p>In this post I have explained how to implement a basic Observer component. There are existing implementations of similar components that have been more battle-tested, support more options and extra ways to integrate in your project.</p>
+<p>I definitely recommend you to check out these 2 libraries:</p>
+<ul>
+<li><a href="https://github.com/thebuilder/react-intersection-observer">thebuilder/react-intersection-observer</a></li>
+<li><a href="https://github.com/researchgate/react-intersection-observer">researchgate/react-intersection-observer</a></li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Hopefully I have shown how componentization can make code-splitting and loading resources on demand easier than ever. Define what your code depends on and leverage bundlers and modern tools to request the dependencies as needed when the user navigates to new paths or new components are shown on the page.</p>
+<hr>
+<p>I would like to thank <a href="https://twitter.com/alexjoverm">@alexjoverm</a>, <a href="https://twitter.com/aarongarciah">@aarongarciah</a> and <a href="https://twitter.com/FlavioCorpa">@FlavioCorpa</a> for reviewing the post, researching similar topics and recommending tools to provide the examples on the page.</p>
+<p><em>This post is also available <a href="/es/high-performance-lazy-loading/">in Spanish</a></em></p>
+<p>Did you see any typo or wrong information? In that case, <a href="https://twitter.com/jmperezperez">drop me a line</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Using a High Order Component to detect visibility and lazy-load components and sections on our pages. Just serve what is needed.
+    
+    </summary>
+    
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+      <category term="lazy-loading" scheme="https://jmperezperez.com/tags/lazy-loading/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Cómo mejorar la performance de una web usando lazy-loading y code-splitting</title>
+    <link href="https://jmperezperez.com//es/high-performance-lazy-loading"/>
+    <id>https://jmperezperez.com//es/high-performance-lazy-loading</id>
+    <published>2018-04-06T04:00:00.000Z</published>
+    <updated>2021-12-14T07:52:53.541Z</updated>
+    
+    <content type="html"><![CDATA[<p>El desarrollo basado en componentes ha marcado un antes y un después en el desarrollo web. Las principales ventajas que suelen mencionarse son la reutilización y la modularización. Componentes bien definidos y encapsulados que podemos usar para construir nuestros sitios, como ladrillos de Legos. Una ventaja adicional es que esta estructura de componentes proporciona una base sólida para mejorar la performance de nuestras webs.</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995807/high-performance_mbjoct.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995807/high-performance_mbjoct.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995807/high-performance_mbjoct.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995807/high-performance_mbjoct.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995807/high-performance_mbjoct.jpg"
+    alt="" /></p>
+<p>Nuestras dependencias son explícitas, por lo que sabemos qué código necesitamos ejecutar para cargar un componente específico. Lazy-loading y bundle-splitting pueden tener un gran impacto en el rendimiento de la página: requests con menos payload, código parseado y ejecutado. Y esto no solo se aplica a JavaScript, sino a cualquier tipo de asset.</p>
+<p>Creo que muchas webs pueden aprovecharse de estas técnicas, y me gustaría mostrar algunos ejemplos básicos para solicitar recursos cuando sean necesarios.</p>
+<span id="more"></span>
+
+<p>En este post usaremos Preact/React, pero la idea se puede aplicar a cualquier otra librería basada en componentes.</p>
+<p>Vamos a cubrir varios temas:</p>
+<ol>
+<li> <a href="#Patrones-de-composicion">Patrones de composición</a>: Descripción general de dos patrones que podemos usar para construir componentes complejos.</li>
+<li> <a href="#Mejorando-el-rendimiento-de-nuestras-webs-cargando-solo-lo-necesario">Mejorando el rendimiento de nuestras webs cargando sólo lo necesario</a>: Un caso práctico donde aplicaremos lazy-loading.</li>
+<li> <a href="#Un-pequeno-componente-para-detectar-cuando-una-area-es-visible">Un pequeño componente para detectar visibilidad</a>: Un componente sencillo que contiene la lógica para notificar cuándo aparece un elemento en la pantalla.</li>
+<li> <a href="#Mas-casos-de-uso">Más casos de uso</a>: Veremos que un componente para detectar la visibilidad también puede ser útil en otras situaciones.</li>
+<li> <a href="#Haciendo-polyfill-de-IntersectionObserver-bajo-demanda">Haciendo un polyfill de IntersectionObserver bajo demanda</a>: cómo podemos incluir un polyfill solo cuando sea necesario.</li>
+<li> <a href="#Code-Splitting-y-CSS-in-JS">Code Splitting y CSS-in-JS</a>: cómo CSS-in-JS nos permite extender el code-splitting y lazy-loading a CSS, SVGs y otros recursos.</li>
+<li> <a href="#Implementaciones-utiles">Implementaciones útiles</a>: librerías npm existentes que implementan el patrón que hemos explicado.</li>
+</ol>
+<p>¡Comencemos!</p>
+<h2 id="Patrones-de-composicion"><a href="#Patrones-de-composicion" class="headerlink" title="Patrones de composición"></a>Patrones de composición</h2><p>En el desarrollo web basado en componentes éstos no se usan sólo para renderizar píxeles en la pantalla. También pueden encapsular una funcionalidad o comportamiento que se pasa a los componentes hijo.</p>
+<p>Para esto se suelen utilizar <a href="https://reactjs.org/docs/higher-order-components.html">High Order Components (HOC)</a>. Estos componentes reciben otro componente y aumentan su funcionalidad.</p>
+<p>Si has usado redux, la función <code>connect</code> es un HOC que recibe otro componente. Puedes encontrar más ejemplos en “<a href="https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e">React Higher Order Components in depth</a>“ de Fran Guijarro.</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> MyComponent <span class="token operator">=</span> props <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token entity" title="&#123;">&amp;#123;</span>props<span class="token punctuation">.</span>id<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token operator">-</span> <span class="token entity" title="&#123;">&amp;#123;</span>props<span class="token punctuation">.</span>name<span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// ...</span>
+
+<span class="token keyword">const</span> ConnectedComponent <span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span>
+  mapStateToProps<span class="token punctuation">,</span>
+  mapDispatchToProps
+<span class="token punctuation">)</span><span class="token punctuation">(</span>MyComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Function as Child Component (también llamado “<a href="https://reactpatterns.com/#render-callback">Render Callback</a>“) es otro patrón que se usa en situaciones similares. Cada vez es más popular, y puede que lo hayas visto en librerías como <a href="https://github.com/ReactTraining/react-media">react-media</a> o <a href="https://github.com/jamiebuilds/unstated">unstated</a>.</p>
+<p>Veamos este ejemplo tomado de react-media:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> MyComponent <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Media</span> <span class="token attr-name">query</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(max-width:</span> <span class="token attr-name">599px)"</span><span class="token punctuation">></span></span>
+    <span class="token entity" title="&#123;">&amp;#123;</span>matches <span class="token operator">=</span><span class="token operator">></span>
+      matches <span class="token operator">?</span> <span class="token punctuation">(</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>The document is less than 600px wide<span class="token punctuation">.</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>The document is at least 600px wide<span class="token punctuation">.</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token punctuation">)</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Media</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>El componente <code>Media</code> llama a sus hijos pasando un argumento <code>matches</code>. De esta forma los componentes hijos no necesitan saber sobre la media query. La componentización suele hacer más fácil el testeo y mantenimiento del código.</p>
+<h2 id="Mejorando-el-rendimiento-de-nuestras-webs-cargando-solo-lo-necesario"><a href="#Mejorando-el-rendimiento-de-nuestras-webs-cargando-solo-lo-necesario" class="headerlink" title="Mejorando el rendimiento de nuestras webs cargando sólo lo necesario"></a>Mejorando el rendimiento de nuestras webs cargando sólo lo necesario</h2><p>Imagina una página web típica. Puedes echar un ojo a <a href="https://css-tricks.com/website-sameness/">Website Sameness</a> o <a href="https://www.friday.ie/journal/why-do-all-websites-look-the-same/">Web Design Trends: Why Do All Websites Look The Same?</a> para más inspiración :) . La página de ejemplo que vamos a usar contiene varias secciones o bloques:</p>
+<ul>
+<li>una cabecera (estos días, una imagen grande o “hero image” que ocupa toda el área por encima del fold)</li>
+<li>una sección con algunas imágenes</li>
+<li>otra sección con un componente pesado como un mapa</li>
+<li>un footer</li>
+</ul>
+<p style="max-width:300px;display:block;margin-left:auto;margin-right:auto">
+<img
+    style="max-width:100%"
+    sizes="300px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:300,f_auto/v1523084060/observer/site.png 300w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:600,f_auto/v1523084060/observer/site.png 600w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:900,f_auto/v1523084060/observer/site.png 900w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1523084060/observer/site.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:300,f_auto/v1523084060/observer/site.png"
+    alt="Una web típica" />
+<small class="caption">La estructura básica de una página que estaremos usando como ejemplo.</small>
+</p>
+
+<p>Mapeado a componentes React sería algo como esto:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> Page <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Header</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Gallery</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Map</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Footer</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Cuando el usuario visita la página, es muy probable que vea la cabecera en la pantalla. Es menos probable que vea la galería, el mapa y el pie de página, a menos que haga scroll.</p>
+<p>Seguramente sueles incluir todos los scripts y CSS necesarios para renderizar todas las secciones cuando el usuario carga la página. Hasta hace poco, era difícil definir las dependencias de un módulo y cargar sólo lo que se necesitaba.</p>
+<p>Hace años, antes de ES6, algunas empresas con webs grandes crearon soluciones propias para definir dependencias y cargarlas bajo demanda. Yahoo creó <a href="https://books.google.com/books?id=E7p-07kNfXYC&pg=PA65&lpg=PA65&dq=yahoo+yui+loader&source=bl&ots=UOcpQHdaRp&sig=AGTHNZvPYXWdU9lkj9klzTEa3ys&hl=en&sa=X&ved=0ahUKEwjn26Wti8PZAhUJDSwKHQOsCbIQ6AEIVDAG#v=onepage&q=yahoo%20yui%20loader&f=false">YUI Loader</a> y Facebook hizo lo propio con <a href="/facebook-frontend-javascript/">Haste, Bootloader y Primer</a>.</p>
+<p>Cuando envías código innecesario al usuario se desperdician tus recursos y los suyos. Más ancho de banda para transferir los datos, más CPU para parsearlos y ejecutarlos, y más memoria utilizada. Y esos assets robarán los recursos limitados de otros assets críticos que lo necesitan con más urgencia.</p>
+<p>¿De qué sirve hacer peticiones innecesarias, como imágenes que el usuario nunca verá? ¿O cargar un componente de terceros como un mapa de Google, con todas sus peticiones adicionales necesarias para procesar?</p>
+<p>Un informe de cobertura de código, como <a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage">el que proporciona Google Chrome</a> <strong>no nos será de mucha ayuda</strong>. El código JS será ejecutado y el CSS aplicado a elementos que no están visibles.</p>
+<img
+      style="max-width:100%"
+      sizes="(max-width: 768px) 100vw, 684px"
+      loading=lazy
+      srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/chrome-coverage.png 400w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/chrome-coverage.png 800w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/chrome-coverage.png 1200w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/chrome-coverage.png 1400w"
+        src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/chrome-coverage.png"
+        alt="La pestaña de Cobertura en Google Chrome" />
+<p><small class="caption">Pestaña de cobertura de código en Google Chrome (<a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage">fuente</a>)</small></p>
+<p>Como en todo, <strong>hay pros y contras cuando se usa lazy-loading</strong>. No queremos aplicar lazy-loading a todos los elementos. Debemos tener en cuenta algunas cosas.</p>
+<ul>
+<li><strong>No usar lazy-loading por encima del fold</strong>. En la mayoría de casos queremos que el contenido por encima del fold se renderice tan pronto como sea posible. Todas las técnicas de lazy-loading introducen un retraso. El navegador tiene que ejecutar el JS que inyecta el HTML en el documento, parsearlo y comenzar a pedir los assets referenciados.</li>
+</ul>
+<img
+      style="max-width:100%"
+      sizes="(max-width: 768px) 100vw, 684px"
+      loading=lazy
+      srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/fold.png 400w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/fold.png 800w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/fold.png 1200w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/fold.png 1400w"
+        src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/fold.png"
+        alt="No hagas lazy-loading por encima del fold" />
+
+<p>¿Cómo sabemos dónde queda el fold? La verdad es que es difícil y depende del dispositivo del usuario y de tu layout.</p>
+<ul>
+<li><strong>Si usas lazy-loading, carga los elementos un poco antes de cuando se necesitan</strong>. Es buena idea evitar mostrar áreas vacías en tu web. Para ello, puedes cargar un elemento cuando esté lo suficientemente cerca del área visible. Por ejemplo, cuando el usuario hace scroll hacia abajo y la imagen a cargar está 100px más abajo, empieza a solicitarla.</li>
+</ul>
+<img
+      style="max-width:100%"
+      sizes="(max-width: 768px) 100vw, 684px"
+      loading=lazy
+      srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/preloading.png 400w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/preloading.png 800w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/preloading.png 1200w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/preloading.png 1400w"
+        src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/preloading.png"
+        alt="Comienza a cargar un poco antes de cuando se necesite" />
+
+<ul>
+<li><p>**Contenido invisible en algunos casos**. Debes tener en cuenta que el contenido cargado usando lazy-loading no se mostrará en estas situaciones:</p>
+ - Si el contenido cargado lazy-loading no se ha cargado no se mostrará al intentar imprimir la página.
+ - Lo mismo ocurre cuando la página se muestra en lectores RSS que no ejecuten el JS necesario para cargar el contenido.
+ - Puedes tener problemas con SEO al indexar contenido cargado con lazy-loading en Google. En el momento de escribir este artículo, Googlebot soporta IntersectionObserver e invoca su callback con cambios en el viewport por encima del fold. Sin embargo, **no invoca el callback para contenido por debajo del fold**. Por lo tanto, **ese contenido no será visto ni indexado por Google**.
+   Si tu contenido es importante puedes renderizar el texto y dejar lazy-loading para componentes como imágenes y otros widgets (por ejemplo mapas).
+
+<p>Aquí estoy cargando <a href="https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html">una página de test</a> (puedes ver el código fuente <a href="https://github.com/JMPerez/lazy-load/blob/master/text-above-fold.js">aquí</a>) usando la función “Fetch as Google” de Google Webmaster Tools. Googlebot renderiza el contenido que queda dentro del viewport, pero no el que se cargaría debajo.</p>
+<div class="videoWrapper">
+  <iframe width="1764" height="1080" src="https://www.youtube.com/embed/YEWaufLXX_Q" frameborder="0" allowfullscreen loading="lazy"></iframe>
+</div>
+<small class="caption">Renderizando [una página de prueba](https://jmperezperez.com/lazy-load/89b6f20e1d79e9fb902242ab84217b12.html) usando "Fetch as Google" de Google Webmaster Tools.</small></li>
+</ul>
+<div class="callout">
+<strong>Actualización a 10 de mayo de 2019</strong>: Google anunció durante el I/O 2019 que <a href="https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html">actualizarán Googlebot para usar la última versión de Chrome</a>. Esto acaba con el problema de que Googlebot use Chrome 41 para renderizar páginas, y añade soporte para IntersectionObserver. Si utilizas Google Search Console para comprobar cómo Google renderiza una de tus URLs, todavía recibirás el resultado de renderizar usando Chrome 41. Esto es porque <a href="https://youtu.be/Ey0N1Ry0BPM?t=381">Google aún no ha actualizado sus herramientas de testeo para utilizar un Chrome <em>evergreen</em>.
+</div>
+
+<h2 id="Un-pequeno-componente-para-detectar-cuando-una-area-es-visible"><a href="#Un-pequeno-componente-para-detectar-cuando-una-area-es-visible" class="headerlink" title="Un pequeño componente para detectar cuando una área es visible"></a>Un pequeño componente para detectar cuando una área es visible</h2><p>En el pasado hablé sobre <a href="/lazy-loading-images/">lazy-load de imágenes</a>. La misma técnica se puede aplicar a otros elemetos.</p>
+<p>Vamos a escribir un componente sencillo que detectará cuando una sección es visible en el viewport. Para hacerlo más breve usaré la <a href="https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API">Intersection Observer API</a>, una tecnología experimental con <a href="https://caniuse.com/#search=intersectionobserver">bastante buen soporte</a>.</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">Observer</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> isVisible<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>container <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">IntersectionObserver</span><span class="token punctuation">(</span><span class="token punctuation">[</span>entry<span class="token punctuation">]</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> isVisible<span class="token punctuation">:</span> entry<span class="token punctuation">.</span>isIntersecting <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">,</span> <span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token comment" spellcheck="true">// creamos un div para obtener una referencia.</span>
+      <span class="token comment" spellcheck="true">// Es posible usar findDOMNode() para evitar</span>
+      <span class="token comment" spellcheck="true">// crear elementos extras, pero findDOMNode está desaconsejado</span>
+      <span class="token operator">&lt;</span>div
+        ref<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span>div <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>container <span class="token operator">=</span> div<span class="token punctuation">;</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token operator">></span>
+        <span class="token entity" title="&#123;">&amp;#123;</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">)</span>
+          <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>child <span class="token operator">=</span><span class="token operator">></span> <span class="token function">child</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">children</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<p>El componente usa IntersectionObserver para detectar si el contenedor intersecta con el viewport, es decir, si está visible. Aprovechamos los métodos del lifecycle de React para limpiar el IntersectionObserver <a href="https://developer.mozilla.org/docs/Web/API/IntersectionObserver/disconnect">desconectándolo</a> al desmontar.</p>
+<p>Este componente básico puede extenderse con propiedades adicionales pasadas como <a href="https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API#Intersection_observer_options">opciones para el IntersectionObserver</a> como márgenes o umbrales. Así, podríamos detectar elementos cercanos pero que no intersectan con el viewport. Las opciones se establecen en el constructor y son de sólo lectura. Añadir soporte para opciones requeriría reinstanciar el IntersectionObserver con nuevas opciones cuando cambien, añadiendo lógica extra en <code>componentWillReceiveProps</code> que no vamos a cubrir aquí.</p>
+<p>Podemos usar este componente para hacer lazy-loading de dos de nuestros componentes, <code>Gallery</code> y <code>Map</code>:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> Page <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Header</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Observer</span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span>isVisible <span class="token operator">=</span><span class="token operator">></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Gallery</span> <span class="token attr-name">isVisible</span> <span class="token punctuation">/></span></span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Observer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Observer</span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span>isVisible <span class="token operator">=</span><span class="token operator">></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Map</span> <span class="token attr-name">isVisible</span> <span class="token punctuation">/></span></span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Observer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Footer</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+</code></pre>
+<p>En el código anterior paso la propiedad <code>isVisible</code> a los componentes <code>Gallery</code> y <code>Map</code> para que ellos la gestionen. Otra forma de hacerlo es devolver el componente si está visible, o un elemento vacío en caso contrario.</p>
+<p>En cualquier caso <strong>asegúrate de que reservas el área para el componente</strong>. No es buena idea que el contenido “salte” cuando el componente se carga, así que si sabes que tu <code>Map</code> tiene un alto de 400px, renderiza un contenedor vacío de 400px de altura antes de que el mapa se cargue.</p>
+<p>¿Cómo usan los componentes <code>Map</code> y <code>Gallery</code> la propiedad <code>isVisible</code>? Veamos el componente <code>Map</code>:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">Map</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> initialized<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>map <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token function">initializeMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> initialized<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// loadScript carga un script externo, su definición no se incluye aquí.</span>
+    <span class="token function">loadScript</span><span class="token punctuation">(</span><span class="token string">'https://maps.google.com/maps/api/js?key=&lt;your_key>'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">const</span> latlng <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">google<span class="token punctuation">.</span>maps<span class="token punctuation">.</span>LatLng</span><span class="token punctuation">(</span><span class="token number">38.34</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0.48</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> myOptions <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> zoom<span class="token punctuation">:</span> <span class="token number">15</span><span class="token punctuation">,</span> center<span class="token punctuation">:</span> latlng <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">google<span class="token punctuation">.</span>maps<span class="token punctuation">.</span>Map</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>map<span class="token punctuation">,</span> myOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initializeMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span>nextProps<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>initialized <span class="token operator">&amp;&amp;</span> nextProps<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initializeMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div
+        ref<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span>div <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>map <span class="token operator">=</span> div<span class="token punctuation">;</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<p>Cuando se muestra el contenedor en el viewport, hacemos una petición para inyectar el script de Google Maps, y una vez cargado instanciamos el mapa. Éste es un buen ejemplo de código JavaScript que no se necesita al principio y podemos cargar bajo demanda, y por consiguiente el resto de recursos necesarios para mostrar el mapa.</p>
+<p>El componente tiene estado propio para evitar volver a inyectar el script de Google Maps.</p>
+<p>Veamos el componente <code>Gallery</code>:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">Gallery</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> hasBeenVisible<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> hasBeenVisible<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span>nextProps<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>hasBeenVisible <span class="token operator">&amp;&amp;</span> nextProps<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> hasBeenVisible<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Some pictures<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+        Picture <span class="token number">1</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>hasBeenVisible <span class="token operator">?</span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://example.com/image01.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>placeholder<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+        Picture <span class="token number">2</span>
+        <span class="token entity" title="&#123;">&amp;#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>hasBeenVisible <span class="token operator">?</span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://example.com/image02.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>placeholder<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<p>El ejemplo anterior define otro componente con estado. De hecho, estamos almacenando en el estado la misma información que almacena <code>Map</code>.</p>
+<p>Si la galería se muestra dentro del viewport y más tarde el usuario hace scroll y la galería deja de estar visible, las imágenes permanecerán en el DOM. En la mayoría de los casos, esto es lo que queremos cuando trabajamos con imágenes.</p>
+<h3 id="Componentes-hijo-sin-estado"><a href="#Componentes-hijo-sin-estado" class="headerlink" title="Componentes hijo sin estado"></a>Componentes hijo sin estado</h3><p>Un componente sin estado (stateless) también resulta interesante. Nos permitiría quitar de la memoria las imágenes que ya no estén visibles, mostrando placeholders:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> Gallery <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> isVisible <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Some pictures<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+    Picture <span class="token number">1</span><span class="token entity" title="&#123;">&amp;#123;</span>isVisible <span class="token operator">?</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://example.com/image01.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>placeholder<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+    Picture <span class="token number">2</span>
+    <span class="token entity" title="&#123;">&amp;#123;</span>isVisible <span class="token operator">?</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://example.com/image02.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>placeholder<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Si haces esto, <strong>asegúrate de que las imágenes tienen las cabeceras de respuesta adecuadas</strong> para que las peticiones subsecuentes usen la caché y no descarguen las imágenes otra vez.</p>
+<p>Puedes mover la lógica al componente <code>Observer</code> si ves que creas componentes con estado sólo para almacenar si se han mostrado al menos una vez. <code>Observer</code> ya tiene estado y puede llamar a sus hijos fácilmente con un argumento adicional <code>hasBeenVisible</code>.</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> Page <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token operator">...</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Observer</span><span class="token punctuation">></span></span>
+    <span class="token entity" title="&#123;">&amp;#123;</span><span class="token punctuation">(</span>isVisible<span class="token punctuation">,</span> hasBeenVisible<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Gallery</span> <span class="token attr-name">hasBeenVisible</span> <span class="token punctuation">/></span></span> <span class="token comment" spellcheck="true">// Gallery ya no necesita estado</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Observer</span><span class="token punctuation">></span></span>
+  <span class="token operator">...</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<p>Otra opción es tener una variación del componente <code>Observer</code> que sólo pase una prop como <code>hasBeenVisible</code>. Esto tiene la ventaja de que podemos desconectar el IntersectionObserver tan pronto como el elemento se muestre, ya que no vamos a cambiar su valor. Llamaremos a este componente <code>ObserverOnce</code>:</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">ObserverOnce</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> hasBeenVisible<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>container <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">IntersectionObserver</span><span class="token punctuation">(</span>entries <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      entries<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>entry <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>entry<span class="token punctuation">.</span>isIntersecting<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> hasBeenVisible<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">,</span> <span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div
+        ref<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span>div <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>container <span class="token operator">=</span> div<span class="token punctuation">;</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token operator">></span>
+        <span class="token entity" title="&#123;">&amp;#123;</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">)</span>
+          <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>child <span class="token operator">=</span><span class="token operator">></span> <span class="token function">child</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>hasBeenVisible<span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">children</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>hasBeenVisible<span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<h2 id="Mas-casos-de-uso"><a href="#Mas-casos-de-uso" class="headerlink" title="Más casos de uso"></a>Más casos de uso</h2><p>Hemos utilizado el componente <code>Observer</code> para cargar recursos bajo demanda. También lo podemos utilizar para comenzar la animación de un componente cuando se muestre en pantalla.</p>
+<p>En este ejemplo tomado de la web de React Alicante se animan unas cifras cuando el usuario hace scroll hasta esa sección.</p>
+<div style="text-align:center">
+  <video width="1064" height="618" controls src="https://res.cloudinary.com/jmperez/video/upload/dpr_auto,f_auto,q_auto/v1522995652/observer/react-alicante.mp4" />
+</div>
+
+<p>Podemos recrearlo con este código (puedes verlo y editarlo <a href="https://codepen.io/jmperez/pen/LQXjYv">en Codepen</a>):</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">ConferenceData</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> progress<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>interval <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>animationDuration <span class="token operator">=</span> <span class="token number">2000</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>startAnimation <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span>nextProps<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>
+      <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>isVisible <span class="token operator">&amp;&amp;</span>
+      nextProps<span class="token punctuation">.</span>isVisible <span class="token operator">&amp;&amp;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>progress <span class="token operator">!==</span> <span class="token number">1</span>
+    <span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>startAnimation <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> tick <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+        <span class="token keyword">const</span> progress <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>
+          <span class="token number">1</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>startAnimation<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">this</span><span class="token punctuation">.</span>animationDuration
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> progress<span class="token punctuation">:</span> progress <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>progress <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+          <span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>tick<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span>
+      <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+      <span class="token function">tick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token entity" title="&#123;">&amp;#123;</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>progress <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span> days ·
+        <span class="token entity" title="&#123;">&amp;#123;</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>progress <span class="token operator">*</span> <span class="token number">21</span><span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span> talks ·
+        <span class="token entity" title="&#123;">&amp;#123;</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>progress <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span> workshops ·
+        <span class="token entity" title="&#123;">&amp;#123;</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>progress <span class="token operator">*</span> <span class="token number">350</span><span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span> attendees
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<p>Una vez definido podemos utilizarlo de la misma forma que el resto de componentes. Esta es una muestra del potencial de abstraer la lógica para detectar la visibilidad fuera de los componentes que la necesitan.</p>
+<h2 id="Haciendo-polyfill-de-IntersectionObserver-bajo-demanda"><a href="#Haciendo-polyfill-de-IntersectionObserver-bajo-demanda" class="headerlink" title="Haciendo polyfill de IntersectionObserver bajo demanda"></a>Haciendo polyfill de IntersectionObserver bajo demanda</h2><p>Hasta ahora hemos utilizado IntersectionObserver para detectar cuándo un elemento se muestra en pantalla. En el momento de escribir este artículo algunos navegadores, como Safari, no soportan IntersecionObserver. Si lo intentamos instanciar el navegador lanzará un error.</p>
+<p>Podríamos establecer <code>isVisible</code> a <code>true</code> cuando IntersectionObserver no esté disponible, lo que en la práctica desactivaría el lazy-loading. En cierta manera consideraríamos lazy-loading como un progressive enhancement:</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Observer</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// isVisible se inicializa a true si el</span>
+    <span class="token comment" spellcheck="true">// navegador no soporta IntersectionObserver</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> isVisible<span class="token punctuation">:</span> <span class="token operator">!</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>IntersectionObserver<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>container <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// sólo inicializamos IntersectionObserver si está soportado</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>IntersectionObserver<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">IntersectionObserver</span><span class="token punctuation">(</span>entries <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token operator">...</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Mi opción favorita es incluir un polyfill como el <a href="https://github.com/w3c/IntersectionObserver/tree/master/polyfill">polyfill para IntersectionObserver de w3c</a>. Así, IntersectionObserver funciona en todos los navegadores.</p>
+<p>Como estamos hablando de cargar assets bajo demanda, qué mejor que aplicarlo a este caso. Usaremos code-splitting para hacer la petición del polyfill sólo si nos hace falta, es decir, si el navegador no tiene soporte para IntersectionObserver:</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Observer</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">(</span>window<span class="token punctuation">.</span>IntersectionObserver
+      <span class="token operator">?</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">:</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'intersection-observer'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>io <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">window<span class="token punctuation">.</span>IntersectionObserver</span><span class="token punctuation">(</span>entries <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        entries<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>entry <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> isVisible<span class="token punctuation">:</span> entry<span class="token punctuation">.</span>isIntersecting <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Puedes ver <a href="https://react-intersection-observer.stackblitz.io/">una demostración aquí</a> (<a href="https://stackblitz.com/edit/react-intersection-observer">código fuente</a>). Safari hará una petición extra para cargar el paquete npm <code>intersection-observer</code> dado que no soporta IntersectionObserver.</p>
+<img
+      style="max-width:100%"
+      sizes="(max-width: 768px) 100vw, 684px"
+      loading=lazy
+      srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 400w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 800w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 1200w,
+        https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg 1400w"
+        src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1522995652/observer/safari-intersection-observer-2.jpg"
+        alt="Captura de pantalla del panel de Red en Safari, mostrando la petición para el polyfill" />
+
+<p><small class="caption">Safari hace una request para el polyfill de intersection-observer bajo demanda. No necesitamos cargarlo en navegadores que lo soportan nativamente.</small></p>
+<p>La solución se basa en code splitting. Hay herramientas como <a href="https://parceljs.org/code_splitting.html">Parcel</a> o <a href="https://webpack.js.org/guides/code-splitting/">Webpack</a> que crearán un bundle para ese paquete importado, así como la lógica para hacer la petición para ese fichero.</p>
+<h2 id="Code-Splitting-y-CSS-in-JS"><a href="#Code-Splitting-y-CSS-in-JS" class="headerlink" title="Code Splitting y CSS-in-JS"></a>Code Splitting y CSS-in-JS</h2><p>Hasta ahora hemos visto cómo usar un HOC para detectar que un elemento está en el viewport. También hemos aprendido cómo cargar JavaScript adicional cuando hace falta.</p>
+<p>Code-splitting es bastante común y fácil de implementar a nivel de ruta. El navegador carga bundles adicionales cuando el usuario va navegando a través de diferentes URLs de la web. Herramientas como <a href="https://github.com/ReactTraining/react-router">react-router</a> y <a href="https://github.com/zeit/next.js/">Next.js</a> han popularizado code-splitting, integrándolo como parte de dynamic imports.</p>
+<p>A través de varios ejemplos hemos visto que se puede implementar code-splitting dentro de una misma ruta, cargando el código para los componentes bajo demanda. Esto es muy útil si tenemos componentes que necesitan mucho código específico, no sólo JavaScript.</p>
+<p>Un componente puede referenciar otros recursos o incluso contenerlos “inline”. Un ejemplo son SVGs o estilos CSS.</p>
+<p>No tiene sentido solicitar estilos que no se van a aplicar a ningún elemento. Solicitar estilos e inyectarlos dinámicamente causa un FOUC (Flash of Unstyled Content). El navegador muestra los elementos HTML con el estilo existente, y una vez que los estilos adicionales son inyectados re-estila el contenido. Con la aparición de soluciones CSS-in-KS (o JSS) esto ya no es un problema. El CSS se incluye inline en el componente, y conseguimos code-splitting verdadero para nuestros componentes. <strong>Con CSS-in-JS llevamos code-splitting más allá, cargando CSS bajo demanda.</strong></p>
+<h2 id="Implementaciones-utiles"><a href="#Implementaciones-utiles" class="headerlink" title="Implementaciones útiles"></a>Implementaciones útiles</h2><p>En este post he explicado cómo implementar un componente Observer básico. Existing implementaciones de componentes similares que han sido probadas en muchas aplicaciones y soportan más opciones y formas de integrarse en tu proyecto.</p>
+<p>Recomiendo echar un vistazo a estas dos librerías:</p>
+<ul>
+<li><a href="https://github.com/thebuilder/react-intersection-observer">thebuilder/react-intersection-observer</a></li>
+<li><a href="https://github.com/researchgate/react-intersection-observer">researchgate/react-intersection-observer</a></li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusión"></a>Conclusión</h2><p>La componentización hace el code-splitting y la carga de recursos bajo demanda más fácil que nunca. Define las dependencias de tu código y usa los bundlers y otras herramientas modernas para hacer peticiones para las dependencias cuando el usuario navegue a nuevas rutas o se muestren nuevos componentes en la página.</p>
+<hr>
+<p>Me gustaría dar las gracias a <a href="https://twitter.com/alexjoverm">@alexjoverm</a>, <a href="https://twitter.com/aarongarciah">@aarongarciah</a> y <a href="https://twitter.com/FlavioCorpa">@FlavioCorpa</a> por revisar este artículo, investigar lazy-loading desde varios puntos de vista, y recomendar herramientas para crear los ejemplos.</p>
+<p>Si encuentras alguna errata o información errónea, <a href="https://twitter.com/jmperezperez">no dudes en escribirme</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Cómo usar un High Order Component para detectar cuándo un elemento está visible y hacer lazy-loading de componentes y secciones de nuestras páginas. Manda al navegador sólo lo que es necesario.
+    
+    </summary>
+    
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+      <category term="lazy-loading" scheme="https://jmperezperez.com/tags/lazy-loading/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to lazy-load images to improve loading time and save bandwidth</title>
+    <link href="https://jmperezperez.com//lazy-loading-images"/>
+    <id>https://jmperezperez.com//lazy-loading-images</id>
+    <published>2016-07-31T05:30:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>tl;dr: Don’t load images that the user doesn’t see on screen. It is easier than you think.</p>
+<span id="more"></span>
+<h2 id="What-is-lazy-loading"><a href="#What-is-lazy-loading" class="headerlink" title="What is lazy loading"></a>What is lazy loading</h2><p>Everyone has seen lazy loading content on web sites and mobile apps. You start seeing some content, and as you scroll, more content gets loaded.</p>
+<h2 id="A-web-page-and-all-its-requests"><a href="#A-web-page-and-all-its-requests" class="headerlink" title="A web page and all its requests"></a>A web page and all its requests</h2><p>In the case of web pages, it hasn’t been that easy for developers to find the balance between creating many small resources or serving a big one. A trend these days consist of inlining critical resources, the ones needed to render content above the fold, and load the rest of CSS and JS asynchronously. This is easy to do in small static sites, but more difficult for larger sites with dynamic content.</p>
+<p>Delaying the request to some assets has lots of benefits:</p>
+<ul>
+<li>Less data usage for the user. This is especially important on mobile, where lots of users have poor network connections and restrictive data plans.</li>
+<li>The server or CDN has to serve less data, which translates to a cheaper bill for the site.</li>
+<li>Important content gets prioritised. The same bandwidth is used by fewer requests in parallel, so it is more likely that they are solved faster.</li>
+<li>Less work for the browser. The browser doesn’t need to parse nor decode assets that are not requested.</li>
+</ul>
+<p>As with everything, this technique also comes with some disadvantages. Let’s focus on lazy loading of images.</p>
+<h2 id="Lazy-loading-images"><a href="#Lazy-loading-images" class="headerlink" title="Lazy loading images"></a>Lazy loading images</h2><p>I will talk about how we can get big wins focusing on delaying the load of images.</p>
+<p>We can have a quick look at <a href="https://spotify.com/">spotify.com home page</a>:</p>
+<video width="1194" height="798" controls>
+  <source src="/assets/images/posts/spotify-com-loading-images.webm" type="video/webm">
+  <source src="/assets/images/posts/spotify-com-loading-images.mp4" type="video/mp4">
+</video>
+
+<p>We load the page, then clear the network tab, which is filtered to show only requests for images. As we scroll down the page, more images are requested, accounting for ~1.1MB.</p>
+<p>Lazy loading images gives full control to select what image needs to be loaded (eg a 2x version for a retina display, or a 1x when in slower connections). It is also possible to create smooth transitions of opacity or blurriness to create nice effects. I recommend you to read <a href="/medium-image-progressive-loading-placeholder/">a previous post about progressive image rendering</a> to see some examples.</p>
+<p>Despite is advantages, this technique also has its drawbacks.</p>
+<h2 id="Drawbacks-of-lazy-loading-images"><a href="#Drawbacks-of-lazy-loading-images" class="headerlink" title="Drawbacks of lazy loading images"></a>Drawbacks of lazy loading images</h2><h3 id="JavaScript-based"><a href="#JavaScript-based" class="headerlink" title="JavaScript based"></a>JavaScript based</h3><p>So far, browsers don’t support a native way of marking a certain image to be lazy loaded. The solutions are JavaScript-based, which means that it won’t work if the browser has JS disabled or the request for the JS snippet fails.</p>
+<p><a href="https://gds.blog.gov.uk/2013/10/21/how-many-people-are-missing-out-on-javascript-enhancement/">This is not so unlikely</a>, and content-blockers are becoming more widespread used, both on desktop and mobile. For JS disabled browsers, it is possible to implement a fallback using <code>&lt;noscript&gt;</code>, although this won’t work if the browser uses some kind of content blocker for JS files.</p>
+<h3 id="Scroll-listeners-and-relayouts"><a href="#Scroll-listeners-and-relayouts" class="headerlink" title="Scroll listeners and relayouts"></a>Scroll listeners and relayouts</h3><p>When doing lazy load, we want to detect when the page is scrolled, and then check whether the placeholder for our image is within the rendered section of the page. And this needs to be performed for all the images we want to lazy load.</p>
+<p>Scroll listeners can have a negative impact in scrolling performance. During the scroll movement, the browser triggers many scroll events, and finding out the position and dimension of our images causes <a href="https://gist.github.com/paulirish/5d52fb081b3570c81e3a">a layout recalculation</a>. This is an expensive operation that makes the browser spend too long drawing frames, producing <a href="http://jankfree.org/">stuttering when scrolling</a>.</p>
+<p>To avoid it, JS developers usually cache dimensions and positions of some elements, and use throttling and debouncing to execute the scroll callback fewer times.</p>
+<h4 id="IntersectionObserver"><a href="#IntersectionObserver" class="headerlink" title="IntersectionObserver"></a>IntersectionObserver</h4><p>There is an experimental API called <a href="https://developers.google.com/web/updates/2016/04/intersectionobserver">IntersectionObserver</a> that suits very well this use case. Instead of subscribing to the scroll event, and then go through the lazy-loaded images, IntersectionObserver allows us to subscribe to an event triggered when the image enters the rendered area (viewport).</p>
+<p><img src="/assets/images/posts/intersectionobserver.gif" alt="IntersectionObserver">
+<em>Source: <a href="https://developers.google.com/web/updates/2016/04/intersectionobserver">IntersectionObserver’s Coming into View</a>.</em></p>
+<p>The API is fully supported on Chrome, Opera and MS Edge. It’s <a href="http://caniuse.com/intersectionobserver">also enabled in Firefox</a>, behind the <code>dom.IntersectionObserver.enabled</code> preference.</p>
+<p>IntersectionObserver has also other interesting applications. The main one is probable a more fine control on ads, to make sure impressions are tracked for ads that the user actually sees. Another one is infinite scrolling lists, that can be implemented as sets of <em>pages</em> (top, current, bottom) that we can listen to for visibility events and load/unload rows or change the height of the pages.</p>
+<h3 id="Fallback-content-and-viewport"><a href="#Fallback-content-and-viewport" class="headerlink" title="Fallback content and viewport"></a>Fallback content and viewport</h3><p>When an image is displayed within the rendered area, we know it needs to be fetched. But we could also fetch it when, not being strictly within the rendered area, it is very close to it. This reduces the likeliness that a placeholder is rendered without its image, but can also mean requesting images that will never be displayed.</p>
+<p>Finally, we need to think of what will be rendered in the placeholder while the images are fetched. A possibility is to show an empty area. Why not an area filled with a dominant colour? You can revisit <a href="/medium-image-progressive-loading-placeholder/">the post about progressive image rendering</a> to get some ideas.</p>
+<h3 id="Browser-limitations"><a href="#Browser-limitations" class="headerlink" title="Browser limitations"></a>Browser limitations</h3><p>Some browsers may limit how much work is done while scrolling. WebKit on iOS 7 scroll event change <a href="http://developer.telerik.com/featured/scroll-event-change-ios-8-big-deal/">used to be fired when the scroll gesture stopped</a>, making it impossible to load. Fortunately, most used browsers today don’t present this limitation.</p>
+<h2 id="An-example-Spotify-Open-pages"><a href="#An-example-Spotify-Open-pages" class="headerlink" title="An example: Spotify Open pages"></a>An example: Spotify Open pages</h2><p>The <a href="https://open.spotify.com/">Spotify’s Open site</a>, where it shows information about Spotify catalogue, have been using lazy loading for the images for more than a year. Let’s use <a href="https://open.spotify.com/track/7oSUp4yZ0FbuSvVmCxH2ty?noredir=1">a track page</a> as an example.</p>
+<p>The main goal of the page is for the user to have information about the track, and click the Call to Action button (green button) to open the track in a Spotify client or sign up. That’s why it’s crucial that these elements are shown above the fold.</p>
+<p>The main image is not lazy loaded. Doing so would delay its rendering since the browser would need to first parse and execute the JS code that does the lazy loading, and then the image would be requested. However, the rest of the images below the fold, like the ones showing more albums by the same artist, don’t need to be fetched until the user scrolls down and they enter the screen.
+<img src="/assets/images/posts/open-pages-structure.png" alt="Structure of a Spotify Open page."></p>
+<p>The Open site uses a small library that provides lazy loading. Due to its small size, it can also be inlined in the markup, so there is no need to make a request for the script and images are requested a bit earlier.</p>
+<p>Instead of using the src attribute of an <code>&lt;img/&gt;</code> to point to the image file, we use data-src. We can also add 2x versions of the images, that will get loaded if the browser screen is a retina display.</p>
+<p>Internally, the library makes sure the scrolling performance is not affected when using lazy load. It uses passive event listeners,  throttles scroll events, caches image dimensions, and don’t process images already loaded. Finally, it uses IntersectionObserver on supported browsers, avoiding listening to the scroll event and asking for properties from the images.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>When building a website, consider lazy loading the assets when they are needed. This is both good for the user and the site’s servers and CDNs.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      When building a website, consider lazy loading the assets when they are needed. This post will focus in the specific case of lazy loading images.
+    
+    </summary>
+    
+    
+      <category term="images" scheme="https://jmperezperez.com/tags/images/"/>
+    
+      <category term="lazy-loading" scheme="https://jmperezperez.com/tags/lazy-loading/"/>
+    
+  </entry>
+  
+</feed>

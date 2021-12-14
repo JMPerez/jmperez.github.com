@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/seo/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Recommended Reading: Building Findable Websites</title>
+    <link href="https://jmperezperez.com//recommended-reading-building-findable-websites"/>
+    <id>https://jmperezperez.com//recommended-reading-building-findable-websites</id>
+    <published>2009-04-11T13:53:35.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>When designing a web site different goals are to be reached, but the main one is to get a high number of visits. To reach this, we could think that the most important point is to get a high position in the search engines (where the SEO analysis focuses) but they require a thorough analysis from the design of the pages to the tools that help to increase the returning visitors, for instance mailing lists and RSS feeds.
+<img src="/assets/images/posts/building-findable-websites-cover.jpg" alt="Building Findable Websites Cover"></p>
+<span id="more"></span>
+<p>Aarron Walter, the author of this book, doesn’t forget to write about the right choice of keywords that reflect the content of the site and are not unduly exploited by other websites, as well as the customization of 404 error pages.</p>
+<p>The book gives tips to make our website better indexed, so that indirectly improves its accessibility (making all the content visible to search engine bots will make it more reachable by people with disability).</p>
+<p>Chapter 7 “<strong>Preventing Findability Roadblocks</strong>“ is very interesting, since it focuses on techniques to make both the content of our flash movies and the AJAX content accessible for being indexed by search engines, using a technique that layers web sites and make them degrade correctly.</p>
+<p>On <a href="http://buildingfindablewebsites.com/">the book’s website</a> we can find more information about useful resources and extra chapters.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;When designing a web site different goals are to be reached, but the main one is to get a high number of visits. To reach this, we could think that the most important point is to get a high position in the search engines (where the SEO analysis focuses) but they require a thorough analysis from the design of the pages to the tools that help to increase the returning visitors, for instance mailing lists and RSS feeds.
+&lt;img src=&quot;/assets/images/posts/building-findable-websites-cover.jpg&quot; alt=&quot;Building Findable Websites Cover&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="book" scheme="https://jmperezperez.com/tags/book/"/>
+    
+      <category term="seo" scheme="https://jmperezperez.com/tags/seo/"/>
+    
+  </entry>
+  
+</feed>

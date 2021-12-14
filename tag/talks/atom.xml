@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/talks/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2021-12-14T07:52:53.535Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PiterCSS 2018</title>
+    <link href="https://jmperezperez.com//pitercss-2018"/>
+    <id>https://jmperezperez.com//pitercss-2018</id>
+    <published>2018-07-03T05:00:00.000Z</published>
+    <updated>2021-12-14T07:52:53.535Z</updated>
+    
+    <content type="html"><![CDATA[<p>A few weeks ago I attended <a href="https://pitercss.com/">PiterCSS</a>, the first international front-end conference in Saint Petersburg, Russia. There I gave a talk about creating a performance culture, based on the <a href="/fostering-web-performance-culture/">blog post I wrote recently</a>. You can find <a href="https://docs.google.com/presentation/u/1/d/1Ttow9QvHB9aTWcGcgmLzsVEaIyCQak0SJkxZ2fj_EFQ/edit?usp=sharing">the slides online</a>.</p>
+<p><img
+    loading="lazy"
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1529907011/speaking/pitercss-2018.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1529907011/speaking/pitercss-2018.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1529907011/speaking/pitercss-2018.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1529907011/speaking/pitercss-2018.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1529907011/speaking/pitercss-2018.jpg"
+    alt="Speaking at PiterCSS about Forstering Web Performance Culture" /></p>
+<span id="more"></span>
+
+<p>I could only attend the second day of the conference and I had a blast.</p>
+<p>I met the amazing <a href="https://twitter.com/una">Una Kravets</a>, whose job I have been following for a long time. I also met <a href="https://twitter.com/larsenwork">Andreas Larsen</a>, who inspired me to <a href="/optimising-svgs/">optimize SVGs beyond using SVGOMG</a>. There was the great <a href="https://twitter.com/smashingmag">Vitaly Friedman</a>, who I admire both for his work at Smashing Magazine and his focus to push web performance and user experience forward. Oh, and <a href="https://twitter.com/kornelski">Kornel Lesiński</a>, the creator of <a href="https://imageoptim.com/">ImageOptim</a>, a tool I use on a daily basis which has made image optimization a non-brainer for everyone. And lots of very talented speakers who taught me about accessibility, animations, VR, typography…</p>
+<p>The conference was held at a great venue. There was an extreme attention to small details, with lots of well designed posters, video intros, wall stickers, unique badges and even banners that the speakers could take back home. The best souvenir ever!</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Love the attention to detail from the <a href="https://twitter.com/hashtag/pitercss?src=hash&amp;ref_src=twsrc%5Etfw">#pitercss</a> crew that went into the conference badge <a href="https://twitter.com/hashtag/design?src=hash&amp;ref_src=twsrc%5Etfw">#design</a> (I think it was automated based on talk titles) – these are <a href="https://twitter.com/glyphe?ref_src=twsrc%5Etfw">@glyphe</a>, <a href="https://twitter.com/szynszyliszys?ref_src=twsrc%5Etfw">@szynszyliszys</a> and mine. <a href="https://t.co/trfkJNGyGd">pic.twitter.com/trfkJNGyGd</a></p>&mdash; Andreas Larsen (@larsenwork) <a href="https://twitter.com/larsenwork/status/1005463754413363201?ref_src=twsrc%5Etfw">9 June 2018</a></blockquote>
+
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">I love the banners the <a href="https://twitter.com/pitercss_conf?ref_src=twsrc%5Etfw">@pitercss_conf</a> organizers hung up and we get to take them home after the conference 😍 <a href="https://twitter.com/hashtag/pitercss?src=hash&amp;ref_src=twsrc%5Etfw">#pitercss</a> <a href="https://t.co/FRsgOAGjod">pic.twitter.com/FRsgOAGjod</a></p>&mdash; Lisi Linhart (@lisi_linhart) <a href="https://twitter.com/lisi_linhart/status/1005464974989451266?ref_src=twsrc%5Etfw">9 June 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>I would like to thank all the organizers for the great job they did and I hope they had a deserved relax time after the conference.</p>
+<p>This was my second time at a conference in Russia and I enjoyed it a lot. I really like the single track format with only talks in English. I would definitely recommend it to anyone interested in getting up to speed with frontend development.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      A short summary about this frontend conference hosted in Saint Petersburg, Russia. There I spoke about fostering a web performance culture.
+    
+    </summary>
+    
+    
+      <category term="talks" scheme="https://jmperezperez.com/tags/talks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Speaking at FrontFest 2017 in Moscow, Russia</title>
+    <link href="https://jmperezperez.com//frontfest-moscow-2017"/>
+    <id>https://jmperezperez.com//frontfest-moscow-2017</id>
+    <published>2017-12-03T16:00:00.000Z</published>
+    <updated>2021-12-14T07:52:53.530Z</updated>
+    
+    <content type="html"><![CDATA[<p>A couple of weeks ago I attended <a href="https://2017.frontfest.ru/">FrontFest 2017</a> in Moscow. There were around 200 attendees at Digital October, an impressive venue. I had a lot of fun and met many local developers.</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1512318752/frontfest/frontfest-01.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1512318752/frontfest/frontfest-01.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1512318752/frontfest/frontfest-01.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1512318752/frontfest/frontfest-01.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1512318752/frontfest/frontfest-01.jpg"
+    alt="Jose M. Perez speaking at Frontfest Moscow 2017" /></p>
+<span id="more"></span>
+
+<p>FrontFest is one of the several JS conferences that take place in Moscow, which has a healthy web community with several meetups that host up to 500 people.</p>
+<p>This single-day event was comprised of 5 tracks filled with talks and workshops. Most of the talks and workshops were in Russian, though there was always one talk or workshop in English at a given time.</p>
+<p>I especially liked <a href="https://2017.frontfest.ru/lecture/3/">Blaine Cook’s talk</a> about UX and developer responsibility managing user authentication. I also enjoyed Mathieu’s <a href="https://2017.frontfest.ru/lecture/15/">live-coding</a> and following workshop, where we coded <a href="https://github.com/p01/twinStickShooter">a simple yet very fun game</a>.</p>
+<h2 id="My-talk-about-“Progressive-Image-Rendering”"><a href="#My-talk-about-“Progressive-Image-Rendering”" class="headerlink" title="My talk about “Progressive Image Rendering”"></a>My talk about “Progressive Image Rendering”</h2><div class="videoWrapper">
+  <iframe width="720" height="405" src="https://www.youtube.com/embed/rmq1iEKsmBc" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p>I had been playing with SVG techniques during the weeks before the event, which I had documented on <a href="/svg-placeholders/">Using SVG as placeholders — More Image Loading Techniques</a>. Thus, it was a great opportunity to include them in the talk.</p>
+<p>I also mentioned the <a href="https://www.chromestatus.com/feature/5637156160667648">Image Decode API</a>. I first knew about it through <a href="https://twitter.com/p01/">Mathieu ‘p01’ Henri</a>, who told me there were early discussions to implement it when we met at <a href="/render-conf-oxford-2017/">RenderConf Oxford</a>. Even though it’s not widely supported I thought it was a good opportunity to talk about it.</p>
+<p>This API prevents the browser from blocking the UI when decoding an image, and can be handy when doing lazy-load. Check also <a href="https://medium.com/dailyjs/image-loading-with-image-decode-b03652e7d2d2">this post</a> for an example on how to use it.</p>
+<h3 id="Slides"><a href="#Slides" class="headerlink" title="Slides"></a>Slides</h3><p>The slides are available on <a href="https://slides.com/jmperez/pir-frontfest">slides.com/jmperez/pir-frontfest</a> and you can also see them right here embedded:</p>
+<div class="videoWrapper">
+<iframe src="//slides.com/jmperez/pir-frontfest/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+]]></content>
+    
+    <summary type="html">
+    
+      I attended FrontFest 2017 conference and talked about image performance, lazy-loading, placeholders and creative SVGs.
+    
+    </summary>
+    
+    
+      <category term="talks" scheme="https://jmperezperez.com/tags/talks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Speaking at Alicante Frontend</title>
+    <link href="https://jmperezperez.com//speaking-alicante-frontend"/>
+    <id>https://jmperezperez.com//speaking-alicante-frontend</id>
+    <published>2017-09-09T06:00:00.000Z</published>
+    <updated>2021-12-14T07:52:53.528Z</updated>
+    
+    <content type="html"><![CDATA[<p>This week I had a blast speaking at <a href="https://www.meetup.com/Alicante-Frontend/events/242461990/">a meetup organised by Alicante Frontend</a>. To me this was really special. Alicante is my home town and it’s also where I studied Computer Science.</p>
+<p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1510326708/alicante-frontend_anptgy.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1510326708/alicante-frontend_anptgy.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1510326708/alicante-frontend_anptgy.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1510326708/alicante-frontend_anptgy.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1510326708/alicante-frontend_anptgy.jpg"
+    alt="Alicante Frontend" /></p>
+<span id="more"></span>
+
+<p>After having been far from the region for some time, I was happy to catch up with some colleagues and confirm that web development is really healthy in Alicante. There are more companies, co-working spaces, meetups and conferences than ever. There is a feeling of collaboration and helping each other that will continue fostering good things.</p>
+<h2 id="Visiting-ULab"><a href="#Visiting-ULab" class="headerlink" title="Visiting ULab"></a>Visiting ULab</h2><p><img src="/assets/images/posts/ulab.jpg" alt="Entrance of ULab — taken from ulab.es">
+<small class="caption">Entrance of ULab — taken from <a href="https://ulab.es">ulab.es</a></small></p>
+<p>The meetup was hosted at <a href="https://ulab.es/">ULab</a>, a coworking space in the centre of Alicante. They offer desks, offices, training rooms and meeting rooms for rent, and have been hosting Alicante Frontend meetups.</p>
+<p>I had the chance to meet with <a href="http://www.soyisabelromero.com/">Isabel Romer</a>, Product Manager at ULab, who showed me the facilities. We talked about the ecosystem of companies in the area and how Alicante is becoming a hub of tech start-ups.</p>
+<p>The space reminded me of <a href="https://skillsmatter.com/event-space">CodeNode London</a>, though a bit smaller (1,300 vs 2,100 sqm). I had heard of a few co-working spaces in the region but whenever I checked their website it felt like old offices recycled as mere desks for rent, not taking advantage of an eco-system of companies and professionals collaborating with each other, nor hosting external events.</p>
+<p>I was actually looking for a place like this. I have tried to work remotely sporadically while spending some days in Alicante visiting my family. I’ll definitely try it out when coming back.</p>
+<h2 id="Meeting-the-team-behind-Alicante-Frontend"><a href="#Meeting-the-team-behind-Alicante-Frontend" class="headerlink" title="Meeting the team behind Alicante Frontend"></a>Meeting the team behind Alicante Frontend</h2><p><img
+    style="max-width:100%; border: 0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1523909911/alicante-frontend-organisers_rx52os.jpg 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1523909911/alicante-frontend-organisers_rx52os.jpg 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1523909911/alicante-frontend-organisers_rx52os.jpg 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1523909911/alicante-frontend-organisers_rx52os.jpg 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1523909911/alicante-frontend-organisers_rx52os.jpg"
+    alt="Alex Jover, me, Alex Mayol and Álvaro Yuste. The first ones arriving at ULab to prepare the meetup" /></p>
+<p><small class="caption">Alex Jover, me, Alex Mayol and Álvaro Yuste. The first ones arriving at ULab to prepare the meetup. — <a href="https://twitter.com/alexjoverm/status/905118087648858112">Twitter</a></small></p>
+<p>After attending JSDayES 2017 I came in contact with lots of web developers in Spain and got to join two large Slack channels where Frontend developers hang out, at a national (Frontaneros) regional level (Alicante Frontend).</p>
+<p>The organisers of Alicante Frontend gave me the opportunity of speaking at their meetup. They have been arranging events since December 2016 and are very active on Twitter, GitHub and the aforementioned Slack channels.</p>
+<h2 id="The-talk"><a href="#The-talk" class="headerlink" title="The talk"></a>The talk</h2><p>I talked about web performance optimisation focused on images. The talk was based on the one I gave at JSDayES, but this time I translated it to Spanish.</p>
+<p>Here are <a href="https://slides.com/jmperez/pir-alicante-frontend">the slides</a>:</p>
+<div class="videoWrapper">
+<iframe src="//slides.com/jmperez/pir-alicante-frontend/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+
+<p>There were many questions in the Q&amp;A. Some of them were related with the contents of the talk, like how to tackle retina displays, some doubts about lazy loading and whether I had been using Service Workers in my projects at Spotify.</p>
+<p>Lots of other questions were about Spotify and Sweden. How is it working at Spotify, what the culture is like, how we are organised or how we work with designers were a few ones. Also whether it’s very cold and there are lots of depressed people in Sweden. If you wonder, it’s not that cold, at least in Stockholm, and darkness can affect your humour but you’ll probably be fine.</p>
+<p>There were around 60 attendees, and I was told this was the most crowded meetup organised by Alicante Frontend, which made me extra happy.</p>
+<p>I’m sure Alicante Frontend will continue growing and showcasing the local talent.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      I have presented a talk at Alicante Frontend, a meetup about web development in Spain.
+    
+    </summary>
+    
+    
+      <category term="talks" scheme="https://jmperezperez.com/tags/talks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Speaking at JSDayES 2017</title>
+    <link href="https://jmperezperez.com//jsdayes-madrid-2017"/>
+    <id>https://jmperezperez.com//jsdayes-madrid-2017</id>
+    <published>2017-05-14T10:50:00.000Z</published>
+    <updated>2018-12-22T08:33:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I just attended <a href="http://2017.jsday.es/">JSDayES 2017</a> in Madrid, where I gave my talk about images and web performance. It feels great to be back to the same venue where <a href="/spain-js-2013">I gave my first talk 4 years ago in SpainJS</a> with <a href="https://twitter.com/tomasperezv">Tomás Pérez</a>, who also made it to the event.</p>
+<p>I have caught up with lots of colleagues I used to work with in Tuenti, and lots of JS devs from the Spanish community. There is a lot going on in Madrid and the rest of Spain, with very interesting companies building awesome products.</p>
+<span id="more"></span>
+
+<p>There were 500+ attendees and the event had 3 tracks with 26 talks, shorter and longer ones, and workshops. It was difficult to attend the talks and workshops I wanted to, not only because of time constraints but also space. I’m looking forward to watching some of the talks on video when they upload the recordings, and update this post with the ones I find most interesting.</p>
+<p>The event showcased the local talent, with a track dedicated to “rising stars” for speakers with less experience, which I think was a great idea. There was an international one with English-speaking talks, and finally the main track with some talks in English, some others in Spanish.</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510476603/jsdayes-2017-pinchito-substack_gvvsvg.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="Pinchito and Substack"/>
+<small class="caption">Alex (<a href="https://twitter.com/pinchito">@pinchito</a>) introducing James Halliday’s (<a href="https://twitter.com/substack">@substack</a>) talk.</small></p>
+<p>This is the third edition of the event, which is consolidating as the main Javascript conference in Spain.</p>
+<p>Being a Spaniard myself it was fine, but I would like to see even more talks in English, making the event more internationally renowned. This would not only help the event, but also the speakers which could have a higher impact by making their talks more accessible to the rest of the world.</p>
+<p><img
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto,c_scale/v1510496367/jsdayes-2017-sign_lojgs2.jpg"
+    sizes="(max-width: 768px) 100vw, 684px" alt="The JSDayES 2017 sign by the entrance of the venue"/></p>
+<h2 id="My-talk-about-“Progressive-Image-Rendering”"><a href="#My-talk-about-“Progressive-Image-Rendering”" class="headerlink" title="My talk about “Progressive Image Rendering”"></a>My talk about “Progressive Image Rendering”</h2><div class="videoWrapper">
+<iframe src="https://player.vimeo.com/video/220960739?byline=0&portrait=0" width="684" height="385" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+
+<p>This talk is similar to the one I gave at <a href="/cssconf-au-2016/">CSSConf AU</a> and <a href="/render-conf-oxford-2017/">RenderConf Oxford</a>. I decided to give <a href="https://slides.com/">slides.com</a> a try and moved my presentation to their platform.</p>
+<p>I also made some changes in the content. I tried to focus more on user’s perceived performance and remove other parts to not make it that heavy. I also revisited the examples and used JSDayES’s site to illustrate a few of those.</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Great talk by <a href="https://twitter.com/jmperezperez">@jmperezperez</a> about image loading process in a <a href="https://twitter.com/hashtag/Website?src=hash">#Website</a> | let&#39;s have fun trying different type of loading! Seen at <a href="https://twitter.com/hashtag/JsDayEs?src=hash">#JsDayEs</a> <a href="https://t.co/jgNJpzFB6n">pic.twitter.com/jgNJpzFB6n</a></p>&mdash; Belen Moreno (@belenxi) <a href="https://twitter.com/belenxi/status/863380478132461569">13 May 2017</a></blockquote>
+
+<p>I think it went pretty well and got positive feedback both <a href="http://2017.jsday.es/#5740078466859008/99974003">online</a> and there in person.</p>
+<h3 id="Slides"><a href="#Slides" class="headerlink" title="Slides"></a>Slides</h3><p>The slides are available on <a href="https://slides.com/jmperez/pir">slides.com/jmperez/pir</a> and you can also see it right here embedded:</p>
+<div class="videoWrapper">
+<iframe src="//slides.com/jmperez/pir/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+]]></content>
+    
+    <summary type="html">
+    
+      I spoke at JSDayES 2017 in Madrid about web performance and images.
+    
+    </summary>
+    
+    
+      <category term="talks" scheme="https://jmperezperez.com/tags/talks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Speaking at Render Oxford 2017</title>
+    <link href="https://jmperezperez.com//render-conf-oxford-2017"/>
+    <id>https://jmperezperez.com//render-conf-oxford-2017</id>
+    <published>2017-03-31T17:00:00.000Z</published>
+    <updated>2018-12-22T08:33:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I just attended <a href="http://www.render-conf.com/">Render 2017</a>, where I gave a talk about images and web performance. It’s my first time in Oxford and I was impressed by its beauty. The organisation was great and I had a lot of fun.</p>
+<p><a href="/assets/images/posts/render-conf-2017-sign.jpg"><img src="/assets/images/posts/render-conf-2017-sign.jpg" alt="The Render Conf 2017 sign by the entrance of King&#39;s Centre"></a></p>
+<span id="more"></span>
+
+<p>This is the second time they organise Render Conf, which commenced as the evolution of jQuery UK. The venue was next to the Thames river, with a very spacious room for the talks, another large room for sponsors and meals, and a third room for speakers.</p>
+<p>I have only talked in two other occasions and this is the first time I get to enjoy a speakers room. It really helps calming the nerves, focusing, and making those last minute fixes to the slides. And there are always nice words when a speaker finishes their talk and need these positive messages the most.</p>
+<h2 id="My-talk-about-“Progressive-Image-Rendering”"><a href="#My-talk-about-“Progressive-Image-Rendering”" class="headerlink" title="My talk about “Progressive Image Rendering”"></a>My talk about “Progressive Image Rendering”</h2><p>This talk is similar to the one I gave at <a href="/cssconf-au-2016/">CSSConf AU</a>. This time I wasn’t able to make many changes, and I just updated a couple of things and double checked the browser support for IntersectionObserver.</p>
+<div class="videoWrapper">
+  <iframe width="720" height="405" src="https://www.youtube.com/embed/S70xyRYCNdY?list=PLBzScQzZ83I_n5kvxmUaRNZvc_vsCuEQD" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p>I felt less nervous than at CSSConf, and everything went well except for some minor tech issues (completely my fault) and things I wanted to mention but forgot to.</p>
+<p><a href="https://twitter.com/malweene">Malwine</a>‘s drawing summarises the talk very well:</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Progressive Image Rendering by <a href="https://twitter.com/jmperezperez">@jmperezperez</a> at <a href="https://twitter.com/hashtag/RenderConf?src=hash">#RenderConf</a> <a href="https://t.co/B3cOEyi3VI">pic.twitter.com/B3cOEyi3VI</a></p>&mdash; Malwine (@malweene) <a href="https://twitter.com/malweene/status/847487007018418176">30 March 2017</a></blockquote>
+
+<p>After the talk I had some nice conversations with some attendees both in person and on Twitter who were trying to implement lazy-loading or were interested in web performance.</p>
+<h3 id="Slides"><a href="#Slides" class="headerlink" title="Slides"></a>Slides</h3><p>The slides are available on <a href="https://jmperezperez.com/renderconf17/">jmperezperez.com/renderconf17</a> and contain some animations and videos. A <em>static</em> version <a href="https://speakerdeck.com/jmperez/progressive-image-rendering-1">is available on SpeakerDeck</a>.</p>
+<div class="videoWrapper">
+<iframe width="560" height="315" src="https://speakerdeck.com/player/90be5b09730b45618fe43359ee2877ba"></iframe>
+</div>
+
+<h2 id="Some-personal-reflections"><a href="#Some-personal-reflections" class="headerlink" title="Some personal reflections"></a>Some personal reflections</h2><p>When I attend a conference I usually have a hard time breaking the ice and talking with other people, but when you are the speaker it makes lot easier since people recognises you and approach. And the dinner prior to the conference is a very good opportunity to know about the other speakers, their projects, experience, tips… In short, attending a speaker makes me enjoy the conference a lot more.</p>
+<p>Moreover, this time I managed to meet some devs I have been following on Twitter and reading their blog posts for a long time.</p>
+<ul>
+<li><a href="https://adactio.com/">Jeremy Keith</a>, whose <a href="https://resilientwebdesign.com/">Resilient Web Design</a> I read recently and included in <a href="/2017-01-reading-list/">my reading list post</a>.</li>
+<li><a href="http://www.p01.org/">Mathieu Henry aka @p01</a> who did an AWESOME live-coding visualisation using the Audio API and canvas.</li>
+</ul>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Pretty sure that <a href="https://twitter.com/p01">@p01</a> had hypnotised the whole <a href="https://twitter.com/render_conf">@render_conf</a> audience with that live code art! <a href="https://twitter.com/hashtag/RenderConf?src=hash">#RenderConf</a> <a href="https://t.co/rRfU6nGs59">pic.twitter.com/rRfU6nGs59</a></p>&mdash; Ben Seymour (@bseymour) <a href="https://twitter.com/bseymour/status/847470593171636227">30 March 2017</a></blockquote>
+
+<ul>
+<li><a href="https://andydavies.me/">Andy Davies</a>, who knows a ton about Webpagetest and how to make sites fast. He gave a workshop the day before the conference about web performance.</li>
+<li><a href="https://www.clicktorelease.com/">Jaume Sanchez aka @thespite</a> who builds crazy visualisations (<a href="https://www.clicktorelease.com/code/polygon-shredder/">example</a>) and redesigned his site recently and used <a href="/more-progressive-image-loading#Clicktorelease">a creative technique to load images</a>.</li>
+<li><a href="https://rachelandrew.co.uk/">Rachel Andrew</a>, from whom I first knew about the CSS Grid specification when I attended <a href="/fronteers-2015/">Fronteers 2015</a>. Her talk at Render was the first one after all major browsers finally supported CSS Grids, so it was an interesting way to close the circle.</li>
+<li>And the rest of speakers from which I learned some devtools tricks, convolutional neural networks and how web sites don’t only run on browsers anymore.</li>
+</ul>
+<p><a href="/assets/images/posts/render-conf-jaume-elias.jpg"><img src="/assets/images/posts/render-conf-jaume-elias.jpg" alt="Jaume Elias (thespite) talking about Virtual Reality on the Web at Render Conf"></a>
+^ <em>Jaume Elias talking about Virtual Reality on the Web at Render Conf</em></p>
+<p>It’s been a great honour sharing stage with such a great line-up. I felt like I was doing the opening act’s performance at a concert by your favourite band.</p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+]]></content>
+    
+    <summary type="html">
+    
+      I spoke at Render Conf 2017 in Oxford about web performance and images.
+    
+    </summary>
+    
+    
+      <category term="talks" scheme="https://jmperezperez.com/tags/talks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Speaking at CSSConf Australia 2016</title>
+    <link href="https://jmperezperez.com//cssconf-au-2016"/>
+    <id>https://jmperezperez.com//cssconf-au-2016</id>
+    <published>2016-12-01T09:46:00.000Z</published>
+    <updated>2021-12-14T07:52:53.527Z</updated>
+    
+    <content type="html"><![CDATA[<p>I just attended <a href="http://2016.cssconf.com.au/">CSSConf Australia in Melbourne</a>, where I gave a talk about images and web performance. It was a blast! Very well organised and with a great atmosphere. In this post I give a short introduction about the event and I include links to the slides, videos and the script.
+<img src="/assets/images/posts/cssconf-au-2016-sign.jpg" alt="The CSSConf AU 2016 sign at the entrance"></p>
+<span id="more"></span>
+
+<h2 id="Call-for-Papers-and-Organization"><a href="#Call-for-Papers-and-Organization" class="headerlink" title="Call for Papers and Organization"></a>Call for Papers and Organization</h2><p>Back in August I sent a proposal for <a href="http://2016.cssconf.com.au/call-for-speakers/">CSSConf AU 2016’s Call For Papers</a> and I got accepted. Just by reading their CFP it was clear this event was very well organised. I liked that the projects and companies mentioned in the CFP had to be renamed to PROJECT_A, COMPANY_A, etc to make the selection process more fair. It’s also refreshing seeing speakers with very different background, and I love how the organisation has made diversity and inclusion the pillars of the triplet CSSConf / JSConf / Decompress. Details like the variety of food and live captioning show that they are serious about it.</p>
+<p>As a speaker, they have been very supportive providing all the information about the event way ahead of time, and offering help with the design of the slides and preparation. And once in Melbourne they also prepared a nice welcome pack, including a SIM card that has been great for me to be in contact with my family during these days.</p>
+<p>When they say it’s taken them 9 months to prepare the conference I don’t question it. One can see they had covered every little detail.</p>
+<p>I recommend to check <a href="http://brett.cool/photoessays/2016/cssconfau/">Brett Jones’ write-up about the event</a>, that is full with great pictures and descriptions about the talks.</p>
+<p>Personally, it’s the first time I travel so far from home, and I have also accomplished a personal dream of speaking at a top-level large conference.</p>
+<h2 id="My-talk-about-“Progressive-Image-Rendering”"><a href="#My-talk-about-“Progressive-Image-Rendering”" class="headerlink" title="My talk about “Progressive Image Rendering”"></a>My talk about “Progressive Image Rendering”</h2><p>The talk I gave is based on some posts I have been writing during last 1.5 years. It’s a combination of insights while redesigning (and rewriting) <a href="https://open.spotify.com/">open.spotify.com</a>, plus some smaller projects I had been working on, also related with images.</p>
+<p>A month before the talk, the folks at <a href="https://www.meetup.com/es-ES/Stockholm-Web-Performance-Group/events/234796510/">Stockholm Web Performance Group</a> gave me a slot in one of their Meetups to present it, which was really useful to get feedback. I fixed some typos, investigated some information that was missing and adjusted the length. Presenting it to a smaller audience made me present a first version of the talk, which I polished thanks to their feedback and an extended Q&amp;A session, and be more confident.</p>
+<h3 id="Slides-and-video"><a href="#Slides-and-video" class="headerlink" title="Slides and video"></a>Slides and video</h3><p>The slides are available on <a href="https://jmperezperez.com/cssconfau16/">jmperezperez.com/cssconfau16</a> and contain some animations and videos. A <em>static</em> version <a href="https://speakerdeck.com/jmperez/progressive-image-rendering">is available on SpeakerDeck</a>.</p>
+<div class="videoWrapper">
+<iframe width="560" height="315" src="https://speakerdeck.com/player/26551189899c4996a8f9fae2b5e8e10a"></iframe>
+</div>
+
+<p><a href="https://www.youtube.com/watch?v=szmVNOnkwoU">The video of the talk is on Youtube</a>:</p>
+<div class="videoWrapper">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/szmVNOnkwoU" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p>Last, but not least, <a href="https://twitter.com/ghammadi">Guillaume Hammadi</a> drew this amazing illustration that summarises the talk:</p>
+<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Progressive image <a href="https://twitter.com/hashtag/rendering?src=hash">#rendering</a> by <a href="https://twitter.com/jmperezperez">@jmperezperez</a> at <a href="https://twitter.com/cssconfau">@cssconfau</a> <a href="https://twitter.com/hashtag/cssconfau16?src=hash">#cssconfau16</a> <a href="https://t.co/pKtcWWvjVL">pic.twitter.com/pKtcWWvjVL</a></p>&mdash; guillaume hammadi (@ghammadi) <a href="https://twitter.com/ghammadi/status/803830326657249282">30 November 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h3 id="Script"><a href="#Script" class="headerlink" title="Script"></a>Script</h3><p>Here is the script I had prepared for the talk. Of course I failed to stick to 100%.</p>
+<hr>
+<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>As users we like applications and websites to load fast, or at least feel like the load fast. As developers we struggle finding the best way to optimize and serve the assets needed for our projects in the best way.</p>
+<p>We tend to talk a lot about the size of CSS and JS. We love discussing about this or that library, on saving some bytes at the cost of functionality. React vs preact?</p>
+<p>It is very easy to forget about images. Images still represent roughly two thirds of the size of a web page, and the trend is pretty stable, increasing over time. Let’s not forget about the main culprit.</p>
+<p>In this presentation I want to discuss about images, making the case for using them and only then find the best way to serve them. I will talk about different ways to load images that some sites and applications use in real life. They try to improve the user’s perceived performance using placeholders, blurry thumbnails and dominant colours.</p>
+<p>Some of them are not as standard as we would like them to be, but they are there to fill a gap.</p>
+<p>Like most developers, I try to get up to date with the latest techniques to build fast and pretty websites. I try many things, but only a few end up working. Some of those techniques are good in theory, but don’t cover our use case completely.</p>
+<p>I will show some examples of pages I have implemented or seen out there, and the issues found addressing image performance.</p>
+<h4 id="The-case-for-using-images"><a href="#The-case-for-using-images" class="headerlink" title="The case for using images"></a>The case for using images</h4><p>We’ve been using images on the web for a long time. Not only to show nice pictures, but also for rounded corners and gradients before CSS finished with these hacks. But it would be silly to try to improve the perceived performance of images that are not optimized, or are not even needed.</p>
+<p>With the trend of flat and minimalist design we have reduced the need of images on the web. Fewer images also means less problems to make our site look good on multiple devices without sending too many bytes down the wire. And reducing images, especially bitmap ones, prevents us from generating several sizes and keeping an “original” image for future modifications (think of PSD files).</p>
+<p>The fact of reducing the need of images also means that there is more bandwidth to load other resources. This is especially important in slow networks.</p>
+<p>Some images might look great on desktop but provide little value on mobile. Maybe we don’t even need to load that image in certain viewports. Setting the display property to “none” will hide the image, but won’t prevent the browser from requesting it. A better alternative is to set a background-image using CSS. Similarly, hiding sections in your markup that contain images won’t prevent the request. A better approach is to use a template engine that only adds to the markup the needed section. These days lots of people use a component-based library that will take care of this.</p>
+<h4 id="Optimising-images"><a href="#Optimising-images" class="headerlink" title="Optimising images"></a>Optimising images</h4><p><em>More info on <a href="/ssim-jpeg-io">JPG compression level, SSIM and Jpeg.io</a></em></p>
+<p>I can’t find a reason why not to optimize images. We have had good tools like jpegoptim and imageoptim for a long time. They will output the same image with fewer bytes. For formats like JPEG it is difficult for us to choose what compression level we should use. 80? 90? It really depends on the source image. There are tools that will find the best compression level to generate an image that is visually identical to a given one.</p>
+<p>Performance is a difficult topic. A heavier page might be perceived as faster. Think of a page that inlines its critical CSS and lazy loads the full stylesheet. Overall, it is sending more bytes, but it will be perceived as faster.</p>
+<h4 id="Picture-element-and-srcset-sizes"><a href="#Picture-element-and-srcset-sizes" class="headerlink" title="Picture element and srcset/sizes"></a>Picture element and srcset/sizes</h4><p>We have seen examples where we could avoid requesting an image and have gone through optimizations that we can apply to an image. For large images we have a valuable HTML element and img’s attributes we can use. We can finally use responsive images in all modern browsers. You define what images you want to serve depending on some media queries.</p>
+<p>In theory it is a good approach, in practice I see two things that are far from ideal.</p>
+<p>Firstly, the browser knows the dimensions of the window, but needs extra information to pick the right image to download. This is so it can request the images without having to wait until the CSS is downloaded and parsed. The markup can get quite verbose, and these values depend on the visual design, which CSS is supposed to dictate. In the end you end up with duplication, and it is not easy to defined those media queries once and import them both in CSS and HTML.</p>
+<p>Secondly, the lack of a standard lazy-loading solution. Most users don’t scroll through the whole page, and it makes sense to delay the request of images below the fold until they are needed. The most performant request is the one that is never made. You want to use <code>&lt;img&gt;</code> for all images, since it’s the most sensible and standard thing to do. But the browser sees them and requests all of them even if they are far from the visible area.
+I wish there was a way for browsers to do this in a standard way.</p>
+<p>A middle ground is to use responsive images for above the fold content, and lazy load the rest. This is in fact what we do in Spotify for pages like albums, where we display the cover art above the fold, and then we show a section with more albums by that artist, in which we lazy load the images.</p>
+<h4 id="How-to-lazy-load"><a href="#How-to-lazy-load" class="headerlink" title="How to lazy load"></a>How to lazy load</h4><p><em>More info on <a href="/lazy-loading-images">How to lazy-load images to improve loading time and save bandwidth</a></em></p>
+<p>When doing lazy load, we want to detect when the page is scrolled or resized, and then check whether the placeholder for our image is within the rendered section of the page. And this needs to be performed for all the images we want to lazy load.</p>
+<p>Scroll listeners can have a negative impact in scrolling performance. During the scroll movement, the browser triggers many scroll events, and finding out the position and dimension of our images causes a layout recalculation. This is an expensive operation that makes the browser spend too long drawing frames, producing stuttering when scrolling. So what should be an improvement might spoil the perceived performance.</p>
+<p>There is an experimental API called IntersectionObserver that suits very well this use case. Instead of subscribing to the scroll event, and then go through the lazy-loaded images, IntersectionObserver allows us to subscribe to an event that is triggered when the image enters the rendered area (viewport).</p>
+<p>It is supported in Chrome and Opera, and in development in Firefox and Edge.</p>
+<h4 id="What-to-show-while-the-image-is-loading"><a href="#What-to-show-while-the-image-is-loading" class="headerlink" title="What to show while the image is loading"></a>What to show while the image is loading</h4><p>An interesting topic in loading images is what to show until the image is downloaded. And this is even more important when doing lazy loading.</p>
+<p>When the image is loading we can do several things. The easiest one is not to do anything. We reserve some area in which the image will be eventually loaded. Another possibility is showing a placeholder. If you do this, try to use inlined SVG so they are served quicker.</p>
+<p>Then we have the more interesting options. One could fill the area where an image is going to be loaded with a solid colour. The colour will be obtained from the image. It can be the dominant colour, the more vivid colour… There are libraries to extract these colours as a palette. A drawback is that you need some pre-processing of your images to calculate these colours.</p>
+<p>One last option is to use a small version of the image, like a thumbnail, scale it and apply a blur effect. For this one you need to generate that smaller image, so it is the option that increases the size of the overall page the most.</p>
+<p>Solid colour and blurry images are the ones that are used to improve user’s perceived performance. We will see how real sites put them in practice.</p>
+<h4 id="Examples-of-solid-colour"><a href="#Examples-of-solid-colour" class="headerlink" title="Examples of solid colour"></a>Examples of solid colour</h4><p>First of all, let’s see examples of using a solid colour as the background.</p>
+<p>Google added recently an option to Google Chrome, especially targeted to slow connections. In those cases it doesn’t serve images, replacing them with a solid colour. Then, once the user taps on “Load images”, those images are requested.</p>
+<p>Arts and Culture is another example by Google, where you can browse art from museums. The placeholders give us a hint: we know that an image will appear there, we know the dimensions and we see a pleasant colour that transitions to the full image.</p>
+<p>We don’t need to go too far to see this in action. Search for images on Google and you’ll see those placeholders. In case you are wondering, I was throttling the connection to record this. But if you are using a shared connection, or using internet on a plane, you will see them.</p>
+<h4 id="Examples-of-Progressive-Image-Loading"><a href="#Examples-of-Progressive-Image-Loading" class="headerlink" title="Examples of Progressive Image Loading"></a>Examples of Progressive Image Loading</h4><p><em>More info on <a href="/medium-image-progressive-loading-placeholder">How Medium does progressive image loading</a></em></p>
+<p>Moving on, let’s see some examples of sites that show a blurry image to transition to the final image.</p>
+<p>One of the biggest sites using it is Medium. In this video we can see what the transition looks like. And because is web, we can inspect and see what’s going on behind the scenes. In order to do this they render a div, then they request a small thumbnail image, which they draw to a canvas. Then thy apply a blur effect. At the same time they request the large image, and when it is received they replace the canvas with the image.</p>
+<p>The markup for the technique includes a <code>&lt;div&gt;</code> for setting an intrinsic aspect ratio, then we have the small image, the large one, the canvas and a <code>&lt;noscript&gt;</code> tag to support browsers with JS disabled.</p>
+<p>There are 2 interesting points in Medium’s implementation. One is that the thumbnail, though very small, it’s an external file. They could as well have inlined it in the initial payload. Secondly, <code>&lt;canvas&gt;</code> is an option for accomplishing the blur effect, but so are blur filter that can be applied using CSS or SVG.</p>
+<p>Overall, one can’t say it is straightforward, but the point is to achieve lazy-loading of images, and a seamless transition between a small thumbnail and the large image to improve perceived performance.</p>
+<h4 id="How-do-users-perceive-it"><a href="#How-do-users-perceive-it" class="headerlink" title="How do users perceive it?"></a>How do users perceive it?</h4><p>It seems fair to ask ourselves how do users see it?. I searched on Twitter to find some reactions and this is what I found.</p>
+<p>But since this is a subjective topic, we also find people who don’t like it. This shouldn’t surprise us. We have had a similar technique for a long time in the form of progressive JPEGs. However, only 7% of JPEG images are progressive.</p>
+<blockquote>
+<p>“When, as with the Progressive JPEG method, image rendition is a two-stage process in which an initially coarse image snaps into sharp focus, cognitive fluency is inhibited and the brain has to work slightly harder to make sense of what is being displayed.”</p>
+</blockquote>
+<p>Users find it more difficult to process progressive JPEGs, even though at first sight we would think the experience is better.</p>
+<h4 id="Is-this-technique-reliable"><a href="#Is-this-technique-reliable" class="headerlink" title="Is this technique reliable?"></a>Is this technique reliable?</h4><blockquote>
+<p>“If you’re viewing this on desktop and the above image looks a bit blurry, please refresh the page…”</p>
+</blockquote>
+<p>It turns out that sometimes users end up just seeing the blurry images… which is probably worst than not seeing nothing at all.</p>
+<h4 id="Facebook-Inlining-thumbnail-image-in-payload"><a href="#Facebook-Inlining-thumbnail-image-in-payload" class="headerlink" title="Facebook - Inlining thumbnail image in payload"></a>Facebook - Inlining thumbnail image in payload</h4><p>Medium are not alone on this. Facebook has also experimented with it for their mobile client in developing markets like India. For loading a profile page for a user, their app would make a request to fetch the data, which included the url for the cover photo image. Then, they needed to make a second request to fetch the image.</p>
+<p>This is pretty standard, but they wanted to try to serve a small version of the image in the payload of the first request. They decided it should be smaller than 200 bytes for this to be worth it.</p>
+<p>There was a problem, though. The headers of a JPEG image are larger of 200 bytes, but removing it they were close to 200 bytes. So they decided to use a common header for all images, which is stored in their client, and then only the JPEG data is returned.</p>
+<p>Quite creative, right? In the path to solve the problem with loading images, we end up questioning the current formats and find work-arounds.</p>
+<h4 id="Generating-tiny-thumbnails"><a href="#Generating-tiny-thumbnails" class="headerlink" title="Generating tiny thumbnails"></a>Generating tiny thumbnails</h4><p><em>More info on <a href="/webp-placeholder-images">Using WebP to create tiny preview images</a></em></p>
+<p>I came across the article several months after it was posted. When I read it I wondered, how small can JPEG images be? I scaled down a few cover arts to 42x42 pixels, which is the size Facebook uses according to their post. And effectively, they were larger than their 200 Bytes budget.</p>
+<p>Then I tried with other formats, like GIF and PNG, but they were even bigger. Until I tried with WebP, which resulted in roughly 1/4th of the size of the JPEG. One could say that the images are not exactly the same, and they are right. But once we apply a blur effect they look almost the same.</p>
+<p>Regarding support for WebP, we should keep in mind that Facebook was trying to solve this for their mobile client. And there are libraries for rendering WebP on Android and iOS, so this seems a good solution.</p>
+<h4 id="Getting-creative-with-SVGs"><a href="#Getting-creative-with-SVGs" class="headerlink" title="Getting creative with SVGs"></a>Getting creative with SVGs</h4><p><em>More info on <a href="/drawing-edges-svg/">Using SVGs to achieve a cool drawing effect</a></em></p>
+<p>Who doesn’t like SVGs? They are powerful and they can also be applied to image loading.</p>
+<p>Some time ago I came across this site. It’s a review for the PS4 on Polygon.com. They use SVGs with an animation that looks like the image is being drawn.</p>
+<p>Given a SVG it is easy to apply an animation of the stroke dash, as we see in this Spotify logo. On my quest to finding other ways to represent images, I thought of this technique. Sure thing, given a SVG we can “draw” it. But how can we apply this to bitmap images? Do we need to vectorize them?</p>
+<p>It turns out we can draw the edges of an image. For that, we can detect the edges using an algorithm like Canny Edge. And the result is quite fun. The SVG is drawn and finally transitioned to the full image. We can detect edges, create polylines with SVG following those edges and apply the same technique we just saw to animate them.</p>
+<p>The idea would be to pre-generate SVGs server-side, and inline them in the HTML. We have full control on how many lines to draw and the amount of detail. We can use a smaller version of the image to generate the points, still getting an accurate set of polylines. And the resulting SVG can be further optimized with svgo, and its size is around 2 or 3kB.</p>
+<h4 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h4><p>Should we do this? I believe these techniques should be part of your toolbelt. The picture element is great for some applications, but we need to consider other scenarios like lazy-loading. Every approach has its advantages and disadvantages and we should use the more appropriate tool.</p>
+<p>The Web is fun. You can right click and see the source code. The web is a great environment for anyone to learn. Go and experiment making your site faster.</p>
+<p>Thanks!</p>
+]]></content>
+    
+    <summary type="html">
+    
+      I spoke at CSSConf AU 2016 in Melbourne about images on the web and what we can do to reduce their impact in our site&#39;s performance.
+    
+    </summary>
+    
+    
+      <category term="talks" scheme="https://jmperezperez.com/tags/talks/"/>
+    
+  </entry>
+  
+</feed>

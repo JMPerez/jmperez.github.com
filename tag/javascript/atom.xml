@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/javascript/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Removing voice from songs using Javascript</title>
+    <link href="https://jmperezperez.com//javascript-karaoke-remove-voice"/>
+    <id>https://jmperezperez.com//javascript-karaoke-remove-voice</id>
+    <published>2013-07-17T15:41:54.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>These days I have been playing with the Web Audio API in <a href="/karaoke/">a small pet project</a>. It consists on a web page where you can drag and drop an audio file and play it removing the vocals. Perfect for a basic karaoke!
+And it even works on mobile!</p>
+<span id="more"></span>
+<p>You can check out <a href="https://github.com/JMPerez/karaoke">the code on Github</a>.</p>
+<p>It is exciting to see how powerful it can be, making it super easy to manipulate sound client-side.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;These days I have been playing with the Web Audio API in &lt;a href=&quot;/karaoke/&quot;&gt;a small pet project&lt;/a&gt;. It consists on a web page where you can drag and drop an audio file and play it removing the vocals. Perfect for a basic karaoke!
+And it even works on mobile!&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+      <category term="web audio api" scheme="https://jmperezperez.com/tags/web-audio-api/"/>
+    
+      <category term="karaoke" scheme="https://jmperezperez.com/tags/karaoke/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mloc.js conference in Budapest</title>
+    <link href="https://jmperezperez.com//mlocjs-conference-budapest"/>
+    <id>https://jmperezperez.com//mlocjs-conference-budapest</id>
+    <published>2013-02-17T15:05:54.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>These days I have been attending the <a href="http://mloc-js.com/">mloc.js conference</a> in Budapest. It was a nice experience with a great organisation and good speakers working around Javascript limitations (more about that below).
+<img src="/assets/images/posts/design-terminal-welcome-heroes-300x171.jpg" alt="Welcome our heroes! at Terminal Building, Budapest"></p>
+<p><em>Welcome our heroes! at Terminal Building, Budapest</em></p>
+<span id="more"></span>
+<p>The mloc.js conference was quite focused on generating JS from compiled languages and programming paradigms for safer, faster, more productive development tools. Initially it also included multiplatform development using JS as a runtime environment.</p>
+<p>Not much information about large scale applications on JS, and a lot about generating JS from compiled languages, often functional ones, to work-around the lack of static typing in JS. To name some of them: Scala, Haskell, F# and C#.</p>
+<p>Lots of speakers were pointing out the limitation of Javascript in regards of typing, but instead of using what the language provides or extending it somehow, they encouraged developers to use a completely different language to generate Javascript. Then, it was needed to mock the interface of popular JS libraries so their code could still refer to these libraries and not break.</p>
+<p>Even though I find this interesting, sometimes it became a bit too dense. I wondered many times the real application of such compilers, how they could help out when developing a large code base, and if it was really worth it trying to introduce them in a project.
+<a href="/assets/images/posts/nick-fisher-soundcloud.jpg"><img src="/assets/images/posts/nick-fisher-soundcloud-300x234.jpg" alt="Nick Fisher talking about the new design of Soundcloud"></a>
+<em>Nick Fisher talking about the new design of Soundcloud</em></p>
+<p>I did like a lot talks around solving the so-called callback hell, improvements in Mozilla’s SpiderMonkey, information about Bacon.js, a new compiler for CoffeeScript, and insights on how the new Soundcloud site was implemented.</p>
+<p>The conference also included some 4-minute long lightning talks, and I gave one of them about web development in Spotify (<a href="https://speakerdeck.com/jmperez/x-platform-web-dev-in-spotify">slides here</a>).</p>
+<p><a href="http://lanyrd.com/2013/mlocjs/">On Lanyrd</a> you can find the whole list of talks and slides.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;These days I have been attending the &lt;a href=&quot;http://mloc-js.com/&quot;&gt;mloc.js conference&lt;/a&gt; in Budapest. It was a nice experience with a great organisation and good speakers working around Javascript limitations (more about that below).
+&lt;img src=&quot;/assets/images/posts/design-terminal-welcome-heroes-300x171.jpg&quot; alt=&quot;Welcome our heroes! at Terminal Building, Budapest&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Welcome our heroes! at Terminal Building, Budapest&lt;/em&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+      <category term="conference" scheme="https://jmperezperez.com/tags/conference/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Revisitando la nueva web del Senado</title>
+    <link href="https://jmperezperez.com//revisitando-nueva-web-senado"/>
+    <id>https://jmperezperez.com//revisitando-nueva-web-senado</id>
+    <published>2012-12-03T20:20:16.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hace unos días hacía un <a href="/estudiando-el-rediseno-de-la-web-del-senado-de-espana/">análisis del rediseño de la web del Senado</a>, justo tras su lanzamiento, desde el punto de vista de rendimiento web y mejores prácticas a la hora de desarrollar sitios web. La nueva web del Senado sufría múltiples problemas poco más que inaceptables para un proyecto tan reciente y con tal presupuesto.</p>
+<span id="more"></span>
+<p>Pero al igual que destacaba dichos problemas, unas semanas después debo mencionar que varios de ellos han sido resueltos. Aunque aún quedan algunos por resolver, es de destacar que hayan seguido trabajando en el sitio.
+<img src="/assets/images/posts/web-senado.jpg" alt="Web del Senado de España"></p>
+<h2 id="Mejoras"><a href="#Mejoras" class="headerlink" title="Mejoras"></a>Mejoras</h2><h3 id="Senado-es-ya-funciona-sin-www"><a href="#Senado-es-ya-funciona-sin-www" class="headerlink" title="Senado.es ya funciona sin www"></a>Senado.es ya funciona sin www</h3><p>Ahora, la URL <a href="http://senado.es/">senado.es</a> redirecciona a <a href="http://www.senado.es/">www.senado.es</a> (<a href="http://www.webpagetest.org/result/121203_ZZ_4QD/1/details/">fuente</a>)</p>
+<h3 id="Indexable-por-robots"><a href="#Indexable-por-robots" class="headerlink" title="Indexable por robots"></a>Indexable por robots</h3><p>Su <a href="http://www.senado.es/robots.txt">robots.txt</a> ha cambiado y ahora permite a los buscadores indexar el contenido del sitio.</p>
+<h3 id="Compresi-243-n-Gzip"><a href="#Compresi-243-n-Gzip" class="headerlink" title="Compresi&#243;n Gzip"></a>Compresi&#243;n Gzip</h3><p>Ahora los recursos se sirven con compresión GZIP habilitada (<a href="http://gtmetrix.com/compare/BN8ZgvCB/3gwi5Qp4">fuente</a>). Entre otras mejoras, la página principal <em>pesa</em> ahora menos de la mitad, y han mejorado considerablemente el índica PageSpeed y YSlow (<a href="http://gtmetrix.com/reports/www.senado.es/eS68ECWL">fuente</a>).</p>
+<h3 id="Errores-404"><a href="#Errores-404" class="headerlink" title="Errores 404"></a>Errores 404</h3><p>Ahora en la página principal, ya sólo hay 1 request que da error 404 (<a href="http://www.webpagetest.org/result/121203_ZZ_4QD/1/details/">fuente</a>).</p>
+<h2 id="Todav-237-a-hay-algunos-problemas-que-solucionar"><a href="#Todav-237-a-hay-algunos-problemas-que-solucionar" class="headerlink" title="Todav&#237;a hay algunos problemas que solucionar"></a>Todav&#237;a hay algunos problemas que solucionar</h2><p>Pese a todo, aún quedan mejoras por hacer, como la minificación de ficheros, optimización de imágenes, tratar de reducir el número de peticiones y corregir el Mime Type devuelto por el servidor.</p>
+<p>Además, con la modificación del fichero <a href="http://www.senado.es/robots.txt">robots.txt</a> existen detalles dignos de mención. El fichero actual tiene este contenido:</p>
+<pre><code>User-agent: *
+Disallow: /cgi-bin/
+Disallow: /detalleiniciativa/
+Disallow: /expedientappendixblobservlet/
+Disallow: /expedientdocblobservlet/
+Disallow: /fichasenador/
+Disallow: /resultadobuscador/
+Disallow: /senstream/
+Disallow: /*senstream*
+Disallow: /legis9/publicaciones/html/textos/CG_B015.html
+Disallow: /legis9/publicaciones/pdf/cortes/bocg/CG_B015.PDF
+Disallow: /legis9/publicaciones/html/textos/CG_B100.html
+Disallow: /legis9/publicaciones/pdf/cortes/bocg/CG_B100.PDF
+Disallow: /legis4/publicaciones/pdf/senado/bocg/l0019.PDF
+Disallow: /legis3/publicaciones/pdf/senado/bocg/l0342.PDF
+Disallow: /legis3/publicaciones/pdf/senado/bocg/l0347.PDF
+Disallow: /legis2/publicaciones/pdf/senado/bocg/l0140.PDF
+Visit-time: 0200-0600
+</code></pre>
+<p>Si lo comparamos con <a href="/estudiando-el-rediseno-de-la-web-del-senado-de-espana/#no-indexable">la versión del mismo fichero</a> cuando publicaron el rediseño, ahora vemos nuevas direcciones bloqueadas.</p>
+<p>Que se pretenda evitar el indexado de las iniciativas parlamentarias y fichas de los senadores atenta directamente contra la transparencia de información y el servicio que pretende dar esta web. Además, el bloqueo se realiza sobre una dirección que ni siquiera es la dirección donde está dicho contenido.</p>
+<p>¿Por qué se evita el indexado del contenido más útil para el ciudadano?</p>
+<p>Aunque en ese caso, en lugar de restringir /detalleiniciativa/, /web/actividadparlamentaria/iniciativas/detalleiniciativa/</p>
+<p>Y en vez de /fichasenador/ deberían haber restringido algo como /web/composicionorganizacion/senadores/composicionsenado/fichasenador/</p>
+<p>Por otra parte, se evita el indexado de una serie de documentos PDF y páginas HTML, también por alguna razón que me supera. Pero es casi peor el hecho de que de los 6 documentos, sólo 2 existen y las 2 páginas HTML tampoco existen.</p>
+<p>Por último, han introducido la limitación del indexado de páginas para que se haga entre las 02:00 y 06:00 AM GMT.  A mí me parece un poco extraño querer limitar el rastreo a las horas de menos tráfico. Un documento creado durante el día no podrá aparecer en los resultados de búsqueda hasta el día siguiente como mínimo. Y no deja de ser una señal de que el sitio no se comporta bien con un tráfico normal más el tráfico que puedan generar los bots de los buscadores.</p>
+<h2 id="Conclusiones"><a href="#Conclusiones" class="headerlink" title="Conclusiones"></a>Conclusiones</h2><p>En general, está bien que hayan continuado haciendo mejoras en el sitio, aunque por el camino han tomado decisiones ciertamente discutibles.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hace unos días hacía un &lt;a href=&quot;/estudiando-el-rediseno-de-la-web-del-senado-de-espana/&quot;&gt;análisis del rediseño de la web del Senado&lt;/a&gt;, justo tras su lanzamiento, desde el punto de vista de rendimiento web y mejores prácticas a la hora de desarrollar sitios web. La nueva web del Senado sufría múltiples problemas poco más que inaceptables para un proyecto tan reciente y con tal presupuesto.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Estudiando el rediseño de la web del Senado de España</title>
+    <link href="https://jmperezperez.com//estudiando-el-rediseno-de-la-web-del-senado-de-espana"/>
+    <id>https://jmperezperez.com//estudiando-el-rediseno-de-la-web-del-senado-de-espana</id>
+    <published>2012-11-12T17:17:35.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Echa un vistazo al <a href="/revisitando-nueva-web-senado">análisis más reciente que he hecho de la web del Senado</a>, donde hablo sobre algunos cambios que han llevado a cabo desde que publicó el nuevo sitio.
+<a href="/assets/images/posts/senado-es-portada.jpg"><img src="/assets/images/posts/senado-es-portada-300x175.jpg" alt="Portada de Senado.es"></a></p>
+<span id="more"></span>
+<p>Hoy se ha presentado el rediseño de la web del Senado de España. Sin entrar a valorar su coste o la necesidad, quería analizarla desde el punto de vista de implementación frontend.</p>
+<p>Particularmente, me gustan los análisis que hacen webs como <a href="http://zoompf.com/blog">zoompf</a> sobre distintos sitios web, presentando los problemas encontrados y ofreciendo soluciones.</p>
+<p>Aquí hablaré sobre algunos problemas de ámbito general y otros específicos sobre rendimiento web.</p>
+<h2 id="Problemas-generales"><a href="#Problemas-generales" class="headerlink" title="Problemas generales"></a>Problemas generales</h2><p>Hay algunos problemas relacionados con XSS (que parece que ya se ha resuelto), indexado y navegación.</p>
+<h3 id="senado-es-no-funciona-sin-www"><a href="#senado-es-no-funciona-sin-www" class="headerlink" title="senado.es no funciona sin www"></a>senado.es no funciona sin www</h3><p><a href="/assets/images/posts/www-senado.png"><img src="/assets/images/posts/www-senado-300x153.png" alt="Conversación en Twitter sobre redirección de la web del Senado"></a></p>
+<p>Al igual que en la anterior versión de la web, la dirección <a href="http://senado.es/">senado.es</a> no funciona. Es necesario acceder a <a href="http://www.senado.es/">www.senado.es</a> para poder ver el contenido. Aunque se puede solucionar fácilmente, es un pena que se les haya pasado por alto.</p>
+<p>Pese <a href="https://twitter.com/jmperezperez/status/267910552288911360">haber sido notificados</a>, 2 días después del lanzamiento, el problema persistía.</p>
+<h3 id="No-indexable"><a href="#No-indexable" class="headerlink" title="No indexable"></a>No indexable</h3><p>Por alguna razón, han decidido que su <a href="http://www.senado.es/robots.txt">robots.txt</a> indique a los buscadores que su contenido no se indexe (<a href="https://twitter.com/polpitart/status/267930153592709120">fuente</a>).</p>
+<pre><code>#No permitimos acceso a todos los robots de indexación
+User-agent: Oracle Secure Enterprise Search
+Disallow:
+User-agent: *
+Disallow: /
+Disallow: /legis9/publicaciones/html/textos/CG_B015.html
+Disallow: /legis9/publicaciones/pdf/cortes/bocg/CG_B015.PDF
+Disallow: /legis9/publicaciones/html/textos/CG_B100.html
+Disallow: /legis9/publicaciones/pdf/cortes/bocg/CG_B100.PDF
+# No limitamos la hora de indexación
+#Visit-time: 0300-0400
+</code></pre>
+<p>Además, no se ha implementado ningún tipo de redirección para mantener el acceso a las páginas de la antigua web que estaban indexadas en los motores de búsqueda (<a href="http://formatinternet.wordpress.com/2012/11/12/los-problemas-del-desarrollo-web-en-espana-resumidos-en-senado-es/">fuente</a>).</p>
+<h3 id="Problemas-de-conexi-243-n"><a href="#Problemas-de-conexi-243-n" class="headerlink" title="Problemas de conexi&#243;n"></a>Problemas de conexi&#243;n</h3><p>Desde que se publicó, el nuevo sitio web ha estado sin funcionar varias veces, ya sea por supuestos ataques DOS o por cualquier otra causa. Esto muestra que la infraestructura no es adecuada o no se han previsto mecanismos para mantener la web operativa en situaciones de mucho tráfico.</p>
+<h3 id="Selecci-243-n-de-idioma"><a href="#Selecci-243-n-de-idioma" class="headerlink" title="Selecci&#243;n de idioma"></a>Selecci&#243;n de idioma</h3><p>Aunque el sitio soporta múltiples idiomas, al cambiar el idioma se hace un envío de un formulario POST, se establece el idioma pero la URL se mantiene. Esto, unido a la política de indexación, hace imposible indexar el contenido en los distintos idiomas soportados por la web.</p>
+<h3 id="No-responsive-ni-m-243-vil"><a href="#No-responsive-ni-m-243-vil" class="headerlink" title="No responsive ni m&#243;vil"></a>No responsive ni m&#243;vil</h3><p>La verdad es que es difícil justificar la inexistencia de un sitio móvil o soporte de responsive design cuando se lleva a cabo un sitio completamente nuevo. Unido al poco cuidado en la carga de los distintos componentes de la página, se hace poco recomendable utilizar el sitio desde un dispositivo móvil (<a href="http://mobitest.akamai.com/m/results.cgi?testid=121114_K2_5">fuente</a>).</p>
+<h2 id="Rendimiento-web"><a href="#Rendimiento-web" class="headerlink" title="Rendimiento web"></a>Rendimiento web</h2><p>Si entramos a valorar el rendimiento web tenemos bastantes puntos que tratar. Puedes echar un vistazo a <a href="http://gtmetrix.com/reports/www.senado.es/cCUUkJUm">las puntuaciones Page Speed y YSlow de la página principal en GTmetrix</a>, el resultado de <a href="http://www.webpagetest.org/result/121112_7M_DP6/">WebPageTest usando Chrome desde París</a> y <a href="http://www.webpagetest.org/result/121112_RQ_F0H/">IE8 desde Madrid</a>, y el <a href="http://scans.zoompf.com/s/e2b8609e20721c1548291f3fd94acaed/report.html">análisis de zoompf</a>, este último teniendo en cuenta 146 páginas de la web del Senado.
+<img src="/assets/images/posts/gtmetrix-senado-es.jpg" alt="Puntuación Page Speed y YSlow de www.senado.es">
+<em>Puntuación Page Speed y YSlow de <a href="http://www.senado.es/">www.senado.es</a></em></p>
+<h3 id="Compresi-243-n-gzip"><a href="#Compresi-243-n-gzip" class="headerlink" title="Compresi&#243;n gzip"></a>Compresi&#243;n gzip</h3><p>Sólo en la página principal se podría ahorrar 476.6KiB (un 30% del total) habilitando la compresión gzip (<a href="http://gtmetrix.com/reports/www.senado.es/cCUUkJUm">fuente</a>).</p>
+<h3 id="Falta-de-cacheo"><a href="#Falta-de-cacheo" class="headerlink" title="Falta de cacheo"></a>Falta de cacheo</h3><p>No se especifica política alguna de cacheo de los distintos recursos (JS, PNG, JPG) por lo que el navegador decide si los cachea o no y por cuánto tiempo. Además, los recursos no especifican correctamente su tipo Mime (<a href="http://gtmetrix.com/reports/www.senado.es/cCUUkJUm">fuente</a>).</p>
+<h3 id="Errores-404"><a href="#Errores-404" class="headerlink" title="Errores 404"></a>Errores 404</h3><p>Al menos en la página principal, hay 2 requests que resultan en errores 404 (<a href="http://www.webpagetest.org/result/121112_7M_DP6/1/details/">fuente</a>).
+<img src="/assets/images/posts/404-senado-es.jpg" alt="Errores 404 en la web del Senado">
+<em>Errores 404 en la web del Senado</em></p>
+<h3 id="Im-225-genes-no-optimizadas"><a href="#Im-225-genes-no-optimizadas" class="headerlink" title="Im&#225;genes no optimizadas"></a>Im&#225;genes no optimizadas</h3><p>Las imágenes GIF, PNG y JPG pueden ser optimizadas ahorrando una cantidad valiosa de tráfico (<a href="http://scans.zoompf.com/s/e2b8609e20721c1548291f3fd94acaed/report.html#187">fuente</a>).</p>
+<h3 id="No-sprites"><a href="#No-sprites" class="headerlink" title="No sprites"></a>No sprites</h3><p>Hay 51 peticiones a imágenes en la página principal (de las 66 que hay en total). Muchas de ellas se corresponden con pequeños iconos que podrían fácilmente formar parte de un sprite. Y, mejor aún, algunas imágenes podrían reemplazarse utilizando CSS3.</p>
+<h3 id="Minificaci-243-n-de-ficheros"><a href="#Minificaci-243-n-de-ficheros" class="headerlink" title="Minificaci&#243;n de ficheros"></a>Minificaci&#243;n de ficheros</h3><p>El único CSS o JS minificado es la librería jQuery. Todo el resto de ficheros, incluida <a href="http://www.senado.es/web/js/jquery-ui-1.8-custom-v.js">una versión personalizada de jQuery UI</a>, está sin minificar. Claramente, no existe un proceso de <em>build</em> que tenga en cuenta la minificación de estos ficheros antes de subirlos al sitio web.</p>
+<h3 id="Malas-pr-225-cticas-de-Javascript"><a href="#Malas-pr-225-cticas-de-Javascript" class="headerlink" title="Malas pr&#225;cticas de Javascript"></a>Malas pr&#225;cticas de Javascript</h3><p>Echando un vistazo a ficheros como <a href="http://www.senado.es/web/js/funciones.js">funciones.js</a>, vemos como se repiten una y otra vez los mismos selectores de elementos del DOM.</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">inicializarVariablesGenerales</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// No lleva el var por eso son globales</span>
+    globales <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        monthNames<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#calendario_nombre_meses option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        resultAjax<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token number">31</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        dateFormat<span class="token punctuation">:</span> <span class="token string">'ddmmyy'</span><span class="token punctuation">,</span>
+        firstDay<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                <span class="token operator">...</span>
+</code></pre>
+<h2 id="Otros-sitios-cubriendo-detalles-de-implementaci-243-n"><a href="#Otros-sitios-cubriendo-detalles-de-implementaci-243-n" class="headerlink" title="Otros sitios cubriendo detalles de implementaci&#243;n"></a>Otros sitios cubriendo detalles de implementaci&#243;n</h2><p>Otras webs están recogiendo también algunos problemas a nivel técnico:</p>
+<ul>
+<li><a href="http://formatinternet.wordpress.com/2012/11/12/los-problemas-del-desarrollo-web-en-espana-resumidos-en-senado-es/">Los problemas del desarrollo web en España resumidos en senado.es</a> en format internet</li>
+<li><a href="http://www.pedroventura.com/desarrollo-web/la-nueva-timo-web-del-senado-que-cuesta-medio-millon-de-euros/">La nueva timo web del Senado que cuesta medio millón de euros</a> en pedroventura.com</li>
+<li><a href="http://www.social4u.es/analisis-de-la-web-del-senado/">Análisis de la web del Senado</a> en social4u.es</li>
+</ul>
+<h2 id="M-225-s-problemas"><a href="#M-225-s-problemas" class="headerlink" title="M&#225;s problemas"></a>M&#225;s problemas</h2><p>Si sabes de algún problema más o alguna posible mejora, añádelo en los comentarios. El propósito de este post es promover las mejores prácticas en cuanto a desarrollo web se refiere.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Echa un vistazo al &lt;a href=&quot;/revisitando-nueva-web-senado&quot;&gt;análisis más reciente que he hecho de la web del Senado&lt;/a&gt;, donde hablo sobre algunos cambios que han llevado a cabo desde que publicó el nuevo sitio.
+&lt;a href=&quot;/assets/images/posts/senado-es-portada.jpg&quot;&gt;&lt;img src=&quot;/assets/images/posts/senado-es-portada-300x175.jpg&quot; alt=&quot;Portada de Senado.es&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Avoid showing address bar on iPhone when loading ajax</title>
+    <link href="https://jmperezperez.com//prevent-iphone-navigation-bar-ajax-link-click"/>
+    <id>https://jmperezperez.com//prevent-iphone-navigation-bar-ajax-link-click</id>
+    <published>2011-06-11T16:28:08.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>You can find a <a href="/demos/iphone-links"><strong>demo</strong> showing the default behaviour and the one using Facebook’s technique</a>. Use an iPhone or iPod Touch to see the effect.</p>
+<p>When clicking a link for ajax navigation on iPhone and iPod Touch, the navigation bar slides down and up for every link, even when they are enhanced to support ajax navigation and its click event is captured and we load content using XMLHttpRequest instead.</p>
+<span id="more"></span>
+<p>This is a bit annoying and some developers have already tried to solve it. See these links:</p>
+<ul>
+<li><p><a href="http://stackoverflow.com/questions/1788605/can-iphone-safari-be-prevented-from-showing-the-navigation-bar-during-an-ajax-cal">Can iPhone Safari be prevented from showing the navigation bar during an AJAX call?</a></p>
+</li>
+<li><p><a href="https://forum.jquery.com/topic/ios-urlbar-shows-then-hides-when-clicking-internal-link">iOS urlbar shows then hides when clicking internal link</a></p>
+</li>
+<li><p><a href="https://forum.jquery.com/topic/stopping-the-url-bar-from-dropping-down-i-discovered-a-workaround">Stopping the url bar from dropping down - I discovered a workaround</a></p>
+</li>
+<li><p><a href="http://forum.jquery.com/topic/how-do-i-stop-mobile-safari-from-dropping-down-its-url-loading-bar-whenever-i-submit-an-ajax-request">How do i stop mobile safari from dropping down its URL/Loading bar whenever i submit an ajax request?</a></p>
+</li>
+</ul>
+<p>The fact of having an anchor with an href attribute is enough for Safari Mobile to show the bar unless the address is preceded by the hash sign. It is not the fact of changing the URL, because if you preventDefault() the click on the link and avoid the navigation, the bar is shown anyway.</p>
+<p>I realized that Facebook, among others sites with iPhone adapted versions (see jQtouch, Sencha Touch or Twitter), didn’t show that bar dropping from the top of the screen.</p>
+<p>Looking at Facebook’s mobile site code, I found out that they made a workaround. They attach to the touchend event, which is fired before the click event fires, and then replace the value of the href attribute:</p>
+<pre class=" language-js"><code class="language-js">JX<span class="token punctuation">.</span><span class="token function">install</span><span class="token punctuation">(</span><span class="token string">"MLinkHack"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>initialize<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>JX<span class="token punctuation">.</span>MTouchClick<span class="token punctuation">.</span><span class="token function">hasTouchEvents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  JX<span class="token punctuation">.</span>Stratcom<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token string">"touchend"</span><span class="token punctuation">,</span> <span class="token string">"tag:a"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> c <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">getNode</span><span class="token punctuation">(</span><span class="token string">"tag:a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"target"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"_blank"</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> b <span class="token operator">=</span> c<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>b <span class="token operator">||</span> b<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">"#"</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> d <span class="token operator">=</span> JX<span class="token punctuation">.</span><span class="token function">$U</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getProtocol</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>d <span class="token operator">&amp;&amp;</span> d <span class="token operator">!==</span> <span class="token string">"http"</span> <span class="token operator">&amp;&amp;</span> d <span class="token operator">!==</span> <span class="token string">"https"</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> statics<span class="token punctuation">:</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>_hack<span class="token punctuation">:</span><span class="token string">"#!"</span><span class="token punctuation">,</span> add<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  a<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">,</span> JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span>_hack <span class="token operator">+</span> a<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> remove<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> a <span class="token operator">=</span> b<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  a <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span>_hack<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">?</span> a<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> a<span class="token punctuation">;</span>
+  b<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Later, the href value is set back to its original value, calling to the <code>JX.MLinkHack.remove()</code> method:</p>
+<pre class=" language-js"><code class="language-js">JX<span class="token punctuation">.</span><span class="token function">behavior</span><span class="token punctuation">(</span><span class="token string">"m-link"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+  JX<span class="token punctuation">.</span>Stratcom<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token string">"tag:a"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>JX<span class="token punctuation">.</span>Stratcom<span class="token punctuation">.</span><span class="token function">pass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> e <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getRawEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> link <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getNode</span><span class="token punctuation">(</span><span class="token string">"tag:a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"onclick"</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>which <span class="token operator">||</span> e<span class="token punctuation">.</span>button<span class="token punctuation">)</span> <span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>FW_BFF_ENABLED<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        event<span class="token punctuation">.</span><span class="token function">kill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        FWBff<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">"/fb/onclick"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"target"</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>user_action<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token function">user_action</span><span class="token punctuation">(</span>link<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>link<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> href <span class="token operator">=</span> link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token operator">...</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>As we see, this is only done for touch devices. Non-touch devices see normal links, so we can provide the default navigation for the rest of devices. That is nice for our progressive enhancement approach.</p>
+<p>This workaround works nice when applied to a hash based ajax navigation. In addition, if we want to use History API, then we could call <code>history.pushState()</code> in the click event, once we have replaced the href to its original value. That way we would use the hash as a temporary hack to prevent Safari browser from showing the bar. Have a look at this snippet:</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//hide bar on page load</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  window<span class="token punctuation">.</span><span class="token function">scrollTo</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//attach event touchend</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>
+    <span class="token string">'touchend'</span><span class="token punctuation">,</span>
+    <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> target <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>target<span class="token punctuation">.</span>nodeName <span class="token operator">!==</span> <span class="token string">'A'</span> <span class="token operator">&amp;&amp;</span> target<span class="token punctuation">.</span>nodeName <span class="token operator">!==</span> <span class="token string">'BODY'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            target <span class="token operator">=</span> target<span class="token punctuation">.</span>parentNode<span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">.</span>nodeName <span class="token operator">===</span> <span class="token string">'A'</span> <span class="token operator">&amp;&amp;</span>
+            target<span class="token punctuation">.</span>className <span class="token operator">===</span> <span class="token string">'facebook'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                target<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token string">'#!'</span> <span class="token operator">+</span> target<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+    <span class="token boolean">false</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//attach event click</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>
+    <span class="token string">'click'</span><span class="token punctuation">,</span>
+    <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>nodeName <span class="token operator">===</span> <span class="token string">'A'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>className <span class="token operator">===</span> <span class="token string">'prevent'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>className <span class="token operator">===</span> <span class="token string">'facebook'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">var</span> href <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>href<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'#!'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                    <span class="token keyword">var</span> newHref <span class="token operator">=</span> href<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>href <span class="token operator">=</span> newHref<span class="token punctuation">;</span>
+                    location<span class="token punctuation">.</span>hash <span class="token operator">=</span> newHref<span class="token punctuation">;</span>
+                    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+    <span class="token boolean">false</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>I will try to check the techniques that other sites have implemented to solve this, but they might be similar to this one.</p>
+<p>And I find this less hacky than using a ‘link’ attribute instead of ‘href’ attribute in anchors, or replace anchors by buttons, as I have read somewhere.</p>
+<p>Want to see it in action? <a href="/demos/iphone-links"><strong>See the demo</strong></a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Workaround to avoid showing the loading address bar when loading ajax content on iPhone.
+    
+    </summary>
+    
+    
+      <category term="ios" scheme="https://jmperezperez.com/tags/ios/"/>
+    
+      <category term="facebook" scheme="https://jmperezperez.com/tags/facebook/"/>
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+      <category term="ajax" scheme="https://jmperezperez.com/tags/ajax/"/>
+    
+      <category term="mobile" scheme="https://jmperezperez.com/tags/mobile/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Front End Tech Talk - Facebook</title>
+    <link href="https://jmperezperez.com//facebook-frontend-javascript"/>
+    <id>https://jmperezperez.com//facebook-frontend-javascript</id>
+    <published>2011-01-30T16:29:22.000Z</published>
+    <updated>2021-12-14T07:52:53.525Z</updated>
+    
+    <content type="html"><![CDATA[<p>Yesterday I watched this <a href="http://www.facebook.com/video/video.php?v=596368660334">Front End Tech Talk by Facebook</a>. I found it very interesting because they explained how they faced the problem of having a lot of javascript code and how they managed to reduce it. I think this can be applied not only to a website of the size of Facebook’s, but also any other project where we could refactor existing code.</p>
+<blockquote>
+<p>We had about 1MB of JS on the homepage</p>
+</blockquote>
+<p>They realized they had a problem with so much JS code and they worked at different levels to shrink it.
+<a href="/assets/images/posts/facebook-1mb-javascript.jpg"><img src="/assets/images/posts/facebook-1mb-javascript-1024x574.jpg" alt="We had about of 1MB of JS on the homepage"></a></p>
+<span id="more"></span>
+<h2 id="Haste"><a href="#Haste" class="headerlink" title="Haste"></a>Haste</h2><p>Haste is a package and dependency manager for CSS and JS files. In each file they specify the name of the package provided by the file and those files that are required to run the file. Thus, Haste can manage what files are needed to run a certain script.</p>
+<p>This helps managing how files are requested and even which sets of files should be merged. This system was further explained by <a href="https://www.linkedin.com/in/davidwei79/">Xiaoliang “David” Wei</a> at his talk about <a href="http://velocity.oreilly.com.cn/2010/ppts/VelocityChina2010Dec7StaticResource.pdf"><em>Static resource management &amp; optimization</em></a> that took place on December 2010 at Velocity China.</p>
+<h2 id="Bootloader"><a href="#Bootloader" class="headerlink" title="Bootloader"></a>Bootloader</h2><p>Bootloader consists of a JS library that helps loading and unloading static resources on demand. Not too far of RequireJS or LabJS. It uses dynamic script injection and executes a callback function once the resource is loaded.</p>
+<p>The good point is that you can even suggest static resources that are not immediately needed but could be prefetched at background.</p>
+<h2 id="Primer"><a href="#Primer" class="headerlink" title="Primer"></a>Primer</h2><p>Makinde Adeagbo <a href="http://jsconf.blip.tv/file/3839676/">already talked about Primer at JSConf 2010</a> (<a href="http://www.slideshare.net/makinde/javascript-primer">slides</a>).</p>
+<p>A waterfall analysis showed that CSS resources where requested quite at the bottom and a lot of javascript on the head. Moving Javascript code to the bottom showed that the user interface would freeze while downloading/parsing/executing this code and that would provide a bad user experience. In some way, this is quite similar to what Yahoo! also found out, and I explained on my <em><a href="/yahoo-tips-website-performance-flush-bottom/">The not so good performance tips</a></em> post.</p>
+<p>They decided to rewrite their JS code so that they could load a small file at the top that would provide the common functionality needed (about 80% of the interactions). And they moved Javascript client code to PHP code on the server. Instead of calling to a function like this one:
+<a href="/assets/images/posts/prev-dialog-code.jpg"><img src="/assets/images/posts/prev-dialog-code-1024x574.jpg" alt="Before Primer"></a>
+<em>Javascript code to build a dialog</em></p>
+<p>they rewrote dialogs as anchors with a rel=”dialog” attribute:
+<a href="/assets/images/posts/after-dialog-code.jpg"><img src="/assets/images/posts/after-dialog-code-1024x574.jpg" alt="Dialog link using Primer"></a> <em>Simplified code to mark a link as a dialog</em></p>
+<p>Basically they embraced progressive enhancement. This dialog links would be ajaxified later using a common Javascript code:
+<a href="/assets/images/posts/after-dialog-code-common.jpg"><img src="/assets/images/posts/after-dialog-code-common-1024x573.jpg" alt="Adding dialog behavior using Javascript"></a>
+<em>Adding a listener to manage click events on links marked as dialogs</em></p>
+<p>And instead of letting Javascript set the title, content and the rest of dialog properties, it is the server the one that serves the dialog formatted as needed.
+<a href="/assets/images/posts/dialog-server-code.jpg"><img src="/assets/images/posts/dialog-server-code-1024x574.jpg" alt="PHP code to generate a dialog"></a>
+<em>PHP chainable code to create a dialog and set different properties</em></p>
+<p>It is like converting a jQuery widget plugin into an ajax call and let the server generate the widget content.</p>
+<p>They used this same approach to replace chunks of similar Javascript code. In async calls that retrieved html to replace existing markup, they are now generating javascript code (using PHP) on the server side and executing it in the async response. And if the url that should be requested when clicking an ajaxified link is a different one, they specify it using a custom <code>ajaxify</code> attribute. They also use this <code>ajaxify</code> attribute to specify that a form should be ajaxified.</p>
+<p>Like Makindo says,</p>
+<blockquote>
+<p>if you are writing a site with tons and tons of Javascript it is very easy to forget about actual forms</p>
+</blockquote>
+<p>All this common interactions are shown in the comments form:
+<a href="/assets/images/posts/application-comment-form.jpg"><img src="/assets/images/posts/application-comment-form-1024x573.jpg" alt="Facebook&#39;s comment form"></a>
+<em>An example of common interactions that in their comment form</em></p>
+<p>The top red arrow indicates that Comment is a label, so clicking on it focuses the comment textarea.</p>
+<p>Some sample Javascript code is available on <a href="https://gist.github.com/376039">https://gist.github.com/376039</a>.</p>
+<p>They managed to not only reduce Javascript size, but loading CSS on the top and being able to load Javascript at the bottom in an async mode.</p>
+<p>This talk shows that sometimes it is necessary to return to the basic elements and build interactions from there, trying to find common functionality to reduce the code needed, and embracing progressive enhancement as a way to achieve it.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Nice ideas taken from Facebook&#39;s Front End Tech Talk about implementing common interactions and patterns to reduce Javascript file size and use progressive enhancement.
+    
+    </summary>
+    
+    
+      <category term="facebook" scheme="https://jmperezperez.com/tags/facebook/"/>
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+      <category term="bootloader" scheme="https://jmperezperez.com/tags/bootloader/"/>
+    
+      <category term="frontend" scheme="https://jmperezperez.com/tags/frontend/"/>
+    
+      <category term="haste" scheme="https://jmperezperez.com/tags/haste/"/>
+    
+      <category term="primer" scheme="https://jmperezperez.com/tags/primer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Lazy loading Javascript: On-demand scripts to faster load times</title>
+    <link href="https://jmperezperez.com//ondemand-javascript-lazy-loading-stubs"/>
+    <id>https://jmperezperez.com//ondemand-javascript-lazy-loading-stubs</id>
+    <published>2010-11-13T15:14:34.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Loading on-demand code can boost website performance in the sense that the browser does not need to request and execute Javascript code that is not needed. Depending on the script, a different approach can be taken to lazy load it.</p>
+<span id="more"></span>
+<h2 id="Progressive-enhancement-Javascript"><a href="#Progressive-enhancement-Javascript" class="headerlink" title="Progressive enhancement Javascript"></a>Progressive enhancement Javascript</h2><p>This is by far the best scenario. Javascript is used to improve user experience but the web page can work without Javascript (in example, browsers with Javascript disabled). In this case, script loading can be delayed to the very moment it is needed or it can be loaded after some timeout.</p>
+<p>An example would be a form used to post a comment. This form could be ajaxify using a script that is requested when the textarea is focused. This way, this script would just be downloaded when potentially needed. Another example would be an input search that is improved using autocompletion once it is focused.</p>
+<h2 id="Using-mocks-stubs-for-Javascript-only-functionality"><a href="#Using-mocks-stubs-for-Javascript-only-functionality" class="headerlink" title="Using mocks/stubs for Javascript-only functionality"></a>Using mocks/stubs for Javascript-only functionality</h2><p>Some times Javascript is used to allow functionality that cannot implemented other way. In this case, a mockup approach can be taken.</p>
+<p>Mockup Javascript only defines the signatures of the functions and as
+little functionality as possible. We can use mocks to load the “real”
+Javascript and avoid calls to non-declared functions. This is similar to
+how <a href="http://www.stevesouders.com/blog/2009/09/08/doloto-javascript-download-optimizer/">Microsoft Doloto</a> works. Stub functions can make as little as
+just preventing undefined symbols, or as much as loading real script and
+re-execute the javascript call so that the real script (that has
+just overridden the stub function) executes. Steve Souders explains this
+technique in his <a href="http://books.google.es/books?id=E7p-07kNfXYC&lpg=PA24&ots=ULjpQKecMk&dq=souders%20doloto&pg=PA24#v=onepage&q&f=false"><em>Even faster web sites</em> book</a>.</p>
+<p>We would have one file to functions declarations (mockup) and another file that will override mockup:</p>
+<p><strong>functions_mock.js</strong></p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">loadJs</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> cb<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> script <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  script<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'src'</span><span class="token punctuation">,</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  script<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'type'</span><span class="token punctuation">,</span> <span class="token string">'text/javascript'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> loaded <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> loadFunction <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>loaded<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    loaded <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    cb <span class="token operator">&amp;</span>amp<span class="token punctuation">;</span> <span class="token function">cb</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+  script<span class="token punctuation">.</span>onload <span class="token operator">=</span> loadFunction<span class="token punctuation">;</span>
+  script<span class="token punctuation">.</span>onreadystatechange <span class="token operator">=</span> loadFunction<span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"head"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>script<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token function">loadJs</span><span class="token punctuation">(</span><span class="token string">'functions.js'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>functions.js</strong></p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>n<span class="token operator">></span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> n<span class="token operator">*</span><span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>index.html</strong></p>
+<pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!doctype html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>functions_mock.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(factorial(10));<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Factorial!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Maybe the <code>factorial</code> function is not the best one. In fact, the size of mock file is greater than the “real” JavaScript file, but the idea is that mock file would replace large functions, achieving smaller files and faster execution times, especially if we use stubs to only prevent undefined symbols and load real scripts after some delay.</p>
+<p>In the case of stub loading real script we should take into account that some functions may need synchronous downloading of real script file. This is the case of functions that return a value that is used later. In our example, if we change the button call function to something like:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>var f <span class="token punctuation">=</span> factorial(10); alert(f);<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Factorial!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>we will get an undefined value because factorial stub function returns before calling real function. This can be solved by loading functions.js in a blocking way, though this can affect user experience.</p>
+<p>In conclusion, we should consider what is the best way to defer JavaScript execution (and if it is worth). Personally I think that it can be useful in the case of large JavaScript files with few global variables that we can manage properly.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      How to load JavaScript on-demand using stub functions and progressive enhancements
+    
+    </summary>
+    
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+      <category term="lazy loading" scheme="https://jmperezperez.com/tags/lazy-loading/"/>
+    
+      <category term="stub" scheme="https://jmperezperez.com/tags/stub/"/>
+    
+  </entry>
+  
+</feed>

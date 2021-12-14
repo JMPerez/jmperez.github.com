@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/cookies/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Using HTML5 features today</title>
+    <link href="https://jmperezperez.com//progressively-using-html5-features"/>
+    <id>https://jmperezperez.com//progressively-using-html5-features</id>
+    <published>2010-07-02T09:17:27.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I have already started to use different HTML5 features to progressive
+enhance web applications developed in my current job. HTML5 has a good
+thing: users with modern browsers can enjoy enhancements without harming
+those who use older ones. This allows you integrate new features
+provided by HTML5 and don’t worry about incompatibilities.</p>
+<span id="more"></span>
+<p>So far we are using:</p>
+<ul>
+<li><strong>New input types</strong>: though currently our customers use desktop
+  browsers above all, these new input types degrade gracefully to
+  typical input texts while showing a custom keyboard when you focus
+  them using a mobile browser (ie: mobile safari). Thus, specific
+  keyboard optimized to numerical, email address or url inputs
+  provides a better experience if supported by the browser.</li>
+<li><strong>Placeholder</strong> attribute: Placeholder provides a straightforward
+  way to show a hint to inform the users about the content the have to
+  provide inside an input element (for instance you can place the
+  label text or a date format). This is nicely supported in webkit
+  browsers and can be easily implemented using javascript as a
+  fallback.</li>
+<li><strong>LocalStorage</strong> vs cookies: LocalStorage is great to store current
+  user browsing preferences like expanded/collapsed menus or selected
+  tabs. It is much better than using cookies if you do not need to
+  read their content in your server. This reduces data traffic in
+  every request for resources residing in the same domain you set he
+  cookie. A nice example is <a href="http://jqueryui.com/demos/tabs/#cookie">the jQuery UI tabs plugin</a>, which has
+  an option to remember the selected tab using a cookie. This cookie
+  would have to contain every selected tab in each of your pages.
+  Another example is <a href="https://github.com/jzaefferer/jquery-treeview/blob/master/jquery.treeview.js#L191">the persistence approach that TreeView plugin
+  takes</a>,
+  also based on cookies. Why don’t just use localStorage to
+  keep that information? In addition, taking into account graceful
+  degradation, cookies approximation can be used if localStorage is
+  not supported by the browser (although even IE8 supports it
+  currently).</li>
+</ul>
+<p>HTML5 provides a bunch of other features you should be taking into
+account in your projects. Maybe you don’t find them useful at all, but
+they can be the solution to problems you may encounter. Until IE9 starts
+to take off and replaces IE8 (and especially, please, IE6 and IE7) we
+will have to adopt HTML5 features progressively, trying to offer an
+alternative implementation to those older browsers.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      You can already use different HTML5 to improve your websites. These are some that I have already started to use in several web applications, offering an equivalent functionality in older browsers.
+    
+    </summary>
+    
+    
+      <category term="cookies" scheme="https://jmperezperez.com/tags/cookies/"/>
+    
+      <category term="html5" scheme="https://jmperezperez.com/tags/html5/"/>
+    
+      <category term="localstorage" scheme="https://jmperezperez.com/tags/localstorage/"/>
+    
+      <category term="progressive enhancement" scheme="https://jmperezperez.com/tags/progressive-enhancement/"/>
+    
+  </entry>
+  
+</feed>

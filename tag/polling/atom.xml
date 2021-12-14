@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/polling/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Server Sent Events on iOS</title>
+    <link href="https://jmperezperez.com//server-sent-events-iphone"/>
+    <id>https://jmperezperez.com//server-sent-events-iphone</id>
+    <published>2011-08-08T17:13:31.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>You have probably heard about web sockets, which promise to be a better  alternative to short and long polling to achieve real time updated  websites. But maybe you didn’t know about <strong>server sent events</strong>. They are nice to send information from server to client using the same server  technology you probably have, using a lighter approach than polling.</p>
+<p><a href="http://www.html5rocks.com/en/tutorials/eventsource/basics/">Here you can find a nice explanation</a>, and you can give it a try by visiting this <a href="http://html5.firejune.com/demo/sse.html">Server-sent Event Demo</a> from a capable browser.</p>
+<span id="more"></span>
+<h2 id="How-iOS-devices-react-to-Server-Sent-Events"><a href="#How-iOS-devices-react-to-Server-Sent-Events" class="headerlink" title="How iOS devices react to Server Sent Events"></a>How iOS devices react to Server Sent Events</h2><p><a href="/assets/images/posts/server-sent-events-iphone.png"><a href="/assets/images/posts/server-sent-events-iphone-200x300.png">Server Sent Event on iPhone</a></a>
+<em>SSE will fire on iOS even if the page is not active</em></p>
+<p>Having a look at how iPhone behaves when using Server Sent Events I  realized that even if the tab showing a page using SSE is not the  active one, Server Sent Events are processed. In short, events are  processed as long as that page is loaded in any tab, no matter if it  focused or not, and even after Safari is closed using Home button or the  device is locked using the top button. The difference is that only when using Safari, a loading spinner is shown on top.</p>
+<p>The behaviour of iPad is quite similar. It also processes SSE when it is locked or when a different tab is active, but it won’t process them when closing Safari.</p>
+<p>Is this how iPhone and iPad should behave? <a href="http://dev.w3.org/html5/eventsource/">According to W3C</a>, yes. They state:</p>
+<blockquote>
+<p>The “push proxy” service uses a technology such as OMA push to convey   the event to the mobile device, which wakes only enough to process the   event and then returns to sleep.</p>
+</blockquote>
+<p>But I can’t find out how this can be useful at all. If only a notification system was  available, a chat application could be implemented and notify the user  whenever other person in the chat mentions him. But currently there’s no way a  non-active page can react to a server sent event, thus no useful event processing.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Server Sent Events are fired on iOS even when the page is not active. Are there any good applications for this?
+    
+    </summary>
+    
+    
+      <category term="ios" scheme="https://jmperezperez.com/tags/ios/"/>
+    
+      <category term="ajax" scheme="https://jmperezperez.com/tags/ajax/"/>
+    
+      <category term="polling" scheme="https://jmperezperez.com/tags/polling/"/>
+    
+      <category term="server sent events" scheme="https://jmperezperez.com/tags/server-sent-events/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/ajax/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Server Sent Events on iOS</title>
+    <link href="https://jmperezperez.com//server-sent-events-iphone"/>
+    <id>https://jmperezperez.com//server-sent-events-iphone</id>
+    <published>2011-08-08T17:13:31.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>You have probably heard about web sockets, which promise to be a better  alternative to short and long polling to achieve real time updated  websites. But maybe you didn’t know about <strong>server sent events</strong>. They are nice to send information from server to client using the same server  technology you probably have, using a lighter approach than polling.</p>
+<p><a href="http://www.html5rocks.com/en/tutorials/eventsource/basics/">Here you can find a nice explanation</a>, and you can give it a try by visiting this <a href="http://html5.firejune.com/demo/sse.html">Server-sent Event Demo</a> from a capable browser.</p>
+<span id="more"></span>
+<h2 id="How-iOS-devices-react-to-Server-Sent-Events"><a href="#How-iOS-devices-react-to-Server-Sent-Events" class="headerlink" title="How iOS devices react to Server Sent Events"></a>How iOS devices react to Server Sent Events</h2><p><a href="/assets/images/posts/server-sent-events-iphone.png"><a href="/assets/images/posts/server-sent-events-iphone-200x300.png">Server Sent Event on iPhone</a></a>
+<em>SSE will fire on iOS even if the page is not active</em></p>
+<p>Having a look at how iPhone behaves when using Server Sent Events I  realized that even if the tab showing a page using SSE is not the  active one, Server Sent Events are processed. In short, events are  processed as long as that page is loaded in any tab, no matter if it  focused or not, and even after Safari is closed using Home button or the  device is locked using the top button. The difference is that only when using Safari, a loading spinner is shown on top.</p>
+<p>The behaviour of iPad is quite similar. It also processes SSE when it is locked or when a different tab is active, but it won’t process them when closing Safari.</p>
+<p>Is this how iPhone and iPad should behave? <a href="http://dev.w3.org/html5/eventsource/">According to W3C</a>, yes. They state:</p>
+<blockquote>
+<p>The “push proxy” service uses a technology such as OMA push to convey   the event to the mobile device, which wakes only enough to process the   event and then returns to sleep.</p>
+</blockquote>
+<p>But I can’t find out how this can be useful at all. If only a notification system was  available, a chat application could be implemented and notify the user  whenever other person in the chat mentions him. But currently there’s no way a  non-active page can react to a server sent event, thus no useful event processing.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Server Sent Events are fired on iOS even when the page is not active. Are there any good applications for this?
+    
+    </summary>
+    
+    
+      <category term="ios" scheme="https://jmperezperez.com/tags/ios/"/>
+    
+      <category term="ajax" scheme="https://jmperezperez.com/tags/ajax/"/>
+    
+      <category term="polling" scheme="https://jmperezperez.com/tags/polling/"/>
+    
+      <category term="server sent events" scheme="https://jmperezperez.com/tags/server-sent-events/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Avoid showing address bar on iPhone when loading ajax</title>
+    <link href="https://jmperezperez.com//prevent-iphone-navigation-bar-ajax-link-click"/>
+    <id>https://jmperezperez.com//prevent-iphone-navigation-bar-ajax-link-click</id>
+    <published>2011-06-11T16:28:08.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>You can find a <a href="/demos/iphone-links"><strong>demo</strong> showing the default behaviour and the one using Facebook’s technique</a>. Use an iPhone or iPod Touch to see the effect.</p>
+<p>When clicking a link for ajax navigation on iPhone and iPod Touch, the navigation bar slides down and up for every link, even when they are enhanced to support ajax navigation and its click event is captured and we load content using XMLHttpRequest instead.</p>
+<span id="more"></span>
+<p>This is a bit annoying and some developers have already tried to solve it. See these links:</p>
+<ul>
+<li><p><a href="http://stackoverflow.com/questions/1788605/can-iphone-safari-be-prevented-from-showing-the-navigation-bar-during-an-ajax-cal">Can iPhone Safari be prevented from showing the navigation bar during an AJAX call?</a></p>
+</li>
+<li><p><a href="https://forum.jquery.com/topic/ios-urlbar-shows-then-hides-when-clicking-internal-link">iOS urlbar shows then hides when clicking internal link</a></p>
+</li>
+<li><p><a href="https://forum.jquery.com/topic/stopping-the-url-bar-from-dropping-down-i-discovered-a-workaround">Stopping the url bar from dropping down - I discovered a workaround</a></p>
+</li>
+<li><p><a href="http://forum.jquery.com/topic/how-do-i-stop-mobile-safari-from-dropping-down-its-url-loading-bar-whenever-i-submit-an-ajax-request">How do i stop mobile safari from dropping down its URL/Loading bar whenever i submit an ajax request?</a></p>
+</li>
+</ul>
+<p>The fact of having an anchor with an href attribute is enough for Safari Mobile to show the bar unless the address is preceded by the hash sign. It is not the fact of changing the URL, because if you preventDefault() the click on the link and avoid the navigation, the bar is shown anyway.</p>
+<p>I realized that Facebook, among others sites with iPhone adapted versions (see jQtouch, Sencha Touch or Twitter), didn’t show that bar dropping from the top of the screen.</p>
+<p>Looking at Facebook’s mobile site code, I found out that they made a workaround. They attach to the touchend event, which is fired before the click event fires, and then replace the value of the href attribute:</p>
+<pre class=" language-js"><code class="language-js">JX<span class="token punctuation">.</span><span class="token function">install</span><span class="token punctuation">(</span><span class="token string">"MLinkHack"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>initialize<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>JX<span class="token punctuation">.</span>MTouchClick<span class="token punctuation">.</span><span class="token function">hasTouchEvents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  JX<span class="token punctuation">.</span>Stratcom<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token string">"touchend"</span><span class="token punctuation">,</span> <span class="token string">"tag:a"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> c <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">getNode</span><span class="token punctuation">(</span><span class="token string">"tag:a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"target"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"_blank"</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> b <span class="token operator">=</span> c<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>b <span class="token operator">||</span> b<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">"#"</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> d <span class="token operator">=</span> JX<span class="token punctuation">.</span><span class="token function">$U</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getProtocol</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>d <span class="token operator">&amp;&amp;</span> d <span class="token operator">!==</span> <span class="token string">"http"</span> <span class="token operator">&amp;&amp;</span> d <span class="token operator">!==</span> <span class="token string">"https"</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> statics<span class="token punctuation">:</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>_hack<span class="token punctuation">:</span><span class="token string">"#!"</span><span class="token punctuation">,</span> add<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  a<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">,</span> JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span>_hack <span class="token operator">+</span> a<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> remove<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> a <span class="token operator">=</span> b<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  a <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span>_hack<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">?</span> a<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> a<span class="token punctuation">;</span>
+  b<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Later, the href value is set back to its original value, calling to the <code>JX.MLinkHack.remove()</code> method:</p>
+<pre class=" language-js"><code class="language-js">JX<span class="token punctuation">.</span><span class="token function">behavior</span><span class="token punctuation">(</span><span class="token string">"m-link"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+  JX<span class="token punctuation">.</span>Stratcom<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token string">"tag:a"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>JX<span class="token punctuation">.</span>Stratcom<span class="token punctuation">.</span><span class="token function">pass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> e <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getRawEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> link <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getNode</span><span class="token punctuation">(</span><span class="token string">"tag:a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"onclick"</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>which <span class="token operator">||</span> e<span class="token punctuation">.</span>button<span class="token punctuation">)</span> <span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>FW_BFF_ENABLED<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        event<span class="token punctuation">.</span><span class="token function">kill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        FWBff<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">"/fb/onclick"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"target"</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>user_action<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token function">user_action</span><span class="token punctuation">(</span>link<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>link<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> href <span class="token operator">=</span> link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token operator">...</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>As we see, this is only done for touch devices. Non-touch devices see normal links, so we can provide the default navigation for the rest of devices. That is nice for our progressive enhancement approach.</p>
+<p>This workaround works nice when applied to a hash based ajax navigation. In addition, if we want to use History API, then we could call <code>history.pushState()</code> in the click event, once we have replaced the href to its original value. That way we would use the hash as a temporary hack to prevent Safari browser from showing the bar. Have a look at this snippet:</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//hide bar on page load</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  window<span class="token punctuation">.</span><span class="token function">scrollTo</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//attach event touchend</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>
+    <span class="token string">'touchend'</span><span class="token punctuation">,</span>
+    <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> target <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>target<span class="token punctuation">.</span>nodeName <span class="token operator">!==</span> <span class="token string">'A'</span> <span class="token operator">&amp;&amp;</span> target<span class="token punctuation">.</span>nodeName <span class="token operator">!==</span> <span class="token string">'BODY'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            target <span class="token operator">=</span> target<span class="token punctuation">.</span>parentNode<span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">.</span>nodeName <span class="token operator">===</span> <span class="token string">'A'</span> <span class="token operator">&amp;&amp;</span>
+            target<span class="token punctuation">.</span>className <span class="token operator">===</span> <span class="token string">'facebook'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                target<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token string">'#!'</span> <span class="token operator">+</span> target<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+    <span class="token boolean">false</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//attach event click</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>
+    <span class="token string">'click'</span><span class="token punctuation">,</span>
+    <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>nodeName <span class="token operator">===</span> <span class="token string">'A'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>className <span class="token operator">===</span> <span class="token string">'prevent'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>className <span class="token operator">===</span> <span class="token string">'facebook'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">var</span> href <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>href<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'#!'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                    <span class="token keyword">var</span> newHref <span class="token operator">=</span> href<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>href <span class="token operator">=</span> newHref<span class="token punctuation">;</span>
+                    location<span class="token punctuation">.</span>hash <span class="token operator">=</span> newHref<span class="token punctuation">;</span>
+                    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+    <span class="token boolean">false</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>I will try to check the techniques that other sites have implemented to solve this, but they might be similar to this one.</p>
+<p>And I find this less hacky than using a ‘link’ attribute instead of ‘href’ attribute in anchors, or replace anchors by buttons, as I have read somewhere.</p>
+<p>Want to see it in action? <a href="/demos/iphone-links"><strong>See the demo</strong></a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Workaround to avoid showing the loading address bar when loading ajax content on iPhone.
+    
+    </summary>
+    
+    
+      <category term="ios" scheme="https://jmperezperez.com/tags/ios/"/>
+    
+      <category term="facebook" scheme="https://jmperezperez.com/tags/facebook/"/>
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+      <category term="ajax" scheme="https://jmperezperez.com/tags/ajax/"/>
+    
+      <category term="mobile" scheme="https://jmperezperez.com/tags/mobile/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/meteor/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Meteor meetup in Stockholm</title>
+    <link href="https://jmperezperez.com//meteor-hackathon-stockholm"/>
+    <id>https://jmperezperez.com//meteor-hackathon-stockholm</id>
+    <published>2014-02-23T11:50:00.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Yesterday I attended <a href="http://www.meetup.com/Meteor-Stockholm/events/164634952/">a meetup</a> by <a href="http://www.meetup.com/Meteor-Stockholm/">Meteor Stockholm</a> in which there were some talks and a short hack event.
+<a href="/assets/images/posts/meteor-hackathon.jpg"><img src="/assets/images/posts/meteor-hackathon-sm.jpg" alt="Meteor meetup in Stockholm"></a></p>
+<span id="more"></span>
+<p>What did I hack? Well, in 2 hours I just had time to play around with a <a href="https://www.meteor.com/examples/leaderboard">basic Meteor example</a> and try to add custom functionality. Nothing I can feel proud of, but at least I could get my hands dirty with Meteor.</p>
+<p>Meteor has been one of those magic frameworks that I had a look at when was released and I was amazed. And rediscovering it felt very well. Building a small website with real time updates is a non-brainer task.</p>
+<p>I have started working with AngularJS and I got a similar feeling. When you build something you wonder how much time you would have spent with other tools (or some years ago) to build something equivalent. The problem is that even thought it looks like magic, you really need to understand what is going on in there when you want to go more in depth.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Meteor Stockholm organized a meetup to talk about meteor and build an app during a hack event.
+    
+    </summary>
+    
+    
+      <category term="meteor" scheme="https://jmperezperez.com/tags/meteor/"/>
+    
+  </entry>
+  
+</feed>

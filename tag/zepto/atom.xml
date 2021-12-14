@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/zepto/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>On webkit-only mobile javascript libraries</title>
+    <link href="https://jmperezperez.com//webkit-only-mobile-js-libraries"/>
+    <id>https://jmperezperez.com//webkit-only-mobile-js-libraries</id>
+    <published>2012-01-08T15:39:02.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>During the last days I have been looking for a Javascript library targeted to recent mobile devices. Though I am familiar with jQuery, there is a lot of code that deals with browsers and issues that are specific to desktop browsers, but not to mobile ones, at least when working with browsers running on smartphones and tablets.
+<a href="/assets/images/posts/jq-mobi-requires-webkit-browser.png"><img src="/assets/images/posts/jq-mobi-requires-webkit-browser-164x300.png" alt="jQ.mobi demo running on a WP7 emulator"></a></p>
+<p>All of them work seamlessly on webkit browsers, which are the most broadly used ones, but only a few take into account Internet Explorer, Opera Mobile or Firefox.</p>
+<span id="more"></span>
+<h2 id="The-current-status-of-modern-mobile-browsers"><a href="#The-current-status-of-modern-mobile-browsers" class="headerlink" title="The current status of modern mobile browsers"></a>The current status of modern mobile browsers</h2><p>Although there is a vast diversity of mobile devices, I will focus on those running on smartphones and tablets, which normally have a quite good support of HTML5 features and provide a native DOM selector through <code>document.querySelector</code> function.</p>
+<p>There are nice sites showing comparison of different Javascript libraries for mobile, i.e <a href="http://www.markus-falk.com/mobile-frameworks-comparison-chart/">Markus Falk’s</a>.</p>
+<p>In my case I would like to find a library that works across all devices that support HTML5. I have been using <a href="http://zeptojs.com/">zepto.js</a> for some time. It is quite small and it has a jQuery-ish syntax. However, it lacks support of some HTML5 compliant browsers:</p>
+<blockquote>
+<p>Zepto supports Safari, Chrome, Firefox and Opera and any mobile WebKit-based browser, including iOS Mobile Safari, Android browser, HP webOS browser, Blackberry Tablet OS browser and others. Zepto does not support Internet Explorer.</p>
+</blockquote>
+<p>You are the only one who knows better what platforms your products are targeted to and what browsers your visitors are using to reach your site. Just keep in mind that there are more players apart from webkit.</p>
+<h3 id="Windows-Phone-7"><a href="#Windows-Phone-7" class="headerlink" title="Windows Phone 7"></a>Windows Phone 7</h3><p>Not supporting Internet Explorer, Zepto doesn’t support Windows Phone 7 devices. <a href="http://en.wikipedia.org/wiki/Windows_Phone#Web_browser">WP7’s browser</a> is an Internet Explorer version for mobile, that at least in its latest version 9 supports widely HTML5 features. At least from a mobile-targeted JS library point of view, it provides <code>document.querySelectorAll</code> and it is compatible with the standard way to add, for instance, an event using <code>element.addEventListener</code>.</p>
+<p>Microsoft is working hard in order to provide Windows Phone 7 devices with a top browser that mobile specific libraries seem to ignore.</p>
+<h3 id="Firefox-for-Mobile-aka-Fennec"><a href="#Firefox-for-Mobile-aka-Fennec" class="headerlink" title="Firefox for Mobile (aka Fennec)"></a>Firefox for Mobile (aka Fennec)</h3><p>By only supporting webkit devices, Mozilla’s <a href="http://www.mozilla.org/mobile/">Firefox for Mobile</a> is put aside, even though they are working hard on adding promising HTML5 APIs. Recently, I got the chance to play around with the Battery API, the Camera API and the Vibrator API checking out <a href="http://johnhammink.blogspot.com/2011/11/lets-have-look-at-some-recently-landed.html">John Hammink’s demos</a> using a nightly version of this browser on an Android phone.</p>
+<h3 id="Opera-Mobile"><a href="#Opera-Mobile" class="headerlink" title="Opera Mobile"></a>Opera Mobile</h3><p><a href="http://my.opera.com/operamobile/blog/opera-mobile-11-for-android-and-symbian">Opera Mobile</a>, being powered by a Presto engine, is also disregarded by webkit-only frameworks. And it seems they are doing a great job supporting HTML5 functionality. Seeing how they are performing in the <a href="https://market.android.com/details?id=com.opera.browser">Android Market</a> with increasing download rates and good reviews, we should keep an eye on it.</p>
+<h2 id="A-tip-for-mobile-JS-libraries-developers"><a href="#A-tip-for-mobile-JS-libraries-developers" class="headerlink" title="A tip for mobile JS libraries developers"></a>A tip for mobile JS libraries developers</h2><p>It is clear that supporting more platforms means having to deal with specific browser’s issues that may lead to more work to be done in order to maintain the library. Moreover, these libraries have a small size as one of its main constraints.</p>
+<p>However, take into account that most recent versions of Internet Explorer and Opera Mobile have a similar feature set to the webkit’s one, and adding support to them could be quite easy.</p>
+<p>Having a look at their source code, I have seen that some libraries rely on non-standard features, like proprietary property <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/proto"><strong>proto</strong></a>, to provide a chain-able API and add custom functions like addClass or removeClass to an element, or ready to a document.</p>
+<p>Take <a href="https://github.com/madrobby/zepto/blob/master/src/zepto.js#L74">zepto.js as an example</a>:</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Z</span><span class="token punctuation">(</span>dom<span class="token punctuation">,</span> selector<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    dom <span class="token operator">=</span> dom <span class="token operator">||</span> emptyArray<span class="token punctuation">;</span>
+    dom<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> Z<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
+    dom<span class="token punctuation">.</span>selector <span class="token operator">=</span> selector <span class="token operator">||</span> <span class="token string">''</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> dom<span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The usage of <code>__proto__</code> to extend the DOM element by modifying the prototype chain doesn’t work on IE or Opera, as a user <a href="https://github.com/madrobby/zepto/issues/272">already pointed out</a>.</p>
+<p>This is an approach to avoid <a href="http://perfectionkills.com/whats-wrong-with-extending-the-dom/">extending the DOM</a>, defining every helper method in every retrieved DOM element, or implementing a wrapper around an HTMLElement like jQuery does with its jQuery object, but only supporting Gecko and Webkit browsers.</p>
+<h2 id="A-tip-for-webapps-developers"><a href="#A-tip-for-webapps-developers" class="headerlink" title="A tip for webapps developers"></a>A tip for webapps developers</h2><p>I would like to tell developers that they should try to go the extra mile and consider supporting non-webkit mobile browsers. Definitely, manufacturers like Nokia are betting on WP7 (you only have to see their <a href="http://www.huffingtonpost.co.uk/2011/11/30/nokia-lumia-deadmau5-london_n_1120266.html">Lumia 800 ad campaign</a>) and we could see an increase in IE mobile share. In addition, as browsers other than the default one can be installed on some devices like Android ones, opening the door to Opera Mobile and Firefox, we can’t be sure that an Android user will be using a webkit browser.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Many mobile-focused JS libraries doesn&#39;t support Opera or Windows Phone 7. Thus, not all smartphones are covered.
+    
+    </summary>
+    
+    
+      <category term="js library" scheme="https://jmperezperez.com/tags/js-library/"/>
+    
+      <category term="windows phone" scheme="https://jmperezperez.com/tags/windows-phone/"/>
+    
+      <category term="wp7" scheme="https://jmperezperez.com/tags/wp7/"/>
+    
+      <category term="zepto" scheme="https://jmperezperez.com/tags/zepto/"/>
+    
+  </entry>
+  
+</feed>

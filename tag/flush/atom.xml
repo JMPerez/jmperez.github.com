@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/flush/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>The not so good web performance tips</title>
+    <link href="https://jmperezperez.com//yahoo-tips-website-performance-flush-bottom"/>
+    <id>https://jmperezperez.com//yahoo-tips-website-performance-flush-bottom</id>
+    <published>2010-12-28T18:46:41.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Yesterday I was reading <a href="http://www.slideshare.net/nzakas/performance-yahoohomepage">Zakas’ Performance on the Yahoo! Homepage slideshare presentation</a>, and I got very surprised when I saw that Yahoo had realised that two of the wide accepted tips for improving website performance had not work so well for them.
+<img src="/assets/images/posts/yahoo-homepage.jpg" alt="Yahoo&#39;s Home page"></p>
+<span id="more"></span>
+<p><strong>1) Put scripts at the bottom</strong> (slide 37)
+Or at least that is <a href="http://developer.yahoo.com/performance/rules.html#js_bottom">what Yahoo recommends</a>, and it contributes as one of the indicators to calculate YSlow score. But they found out that page would stay frozen while fetching, executing and parsing Javascript and this was worse over slow connections.</p>
+<p>The solution was loading Javascript using dynamic <code>script</code> tags. This solution is better applied when using progressive enhancement because users can try to perform actions that are provided by this non-blocking javascript.</p>
+<p><strong>2) Flush after head</strong> (slide 51)
+This is another <a href="http://developer.yahoo.com/performance/rules.html#flush">recommended practice by Yahoo</a>. They found out that the best solution was to flush at different points, especially when a block of a considerable size had been output. They also recommend to avoid having a big external <code>div</code> containing the different sections, and place directly the sections as <code>body</code> children.</p>
+<p>In conclusion, the best you can do is test the different alternatives, especially when trying to find the one the provides the best user’s perceived page load time.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Yesterday I was reading &lt;a href=&quot;http://www.slideshare.net/nzakas/performance-yahoohomepage&quot;&gt;Zakas’ Performance on the Yahoo! Homepage slideshare presentation&lt;/a&gt;, and I got very surprised when I saw that Yahoo had realised that two of the wide accepted tips for improving website performance had not work so well for them.
+&lt;img src=&quot;/assets/images/posts/yahoo-homepage.jpg&quot; alt=&quot;Yahoo&amp;#39;s Home page&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="flush" scheme="https://jmperezperez.com/tags/flush/"/>
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+      <category term="yahoo" scheme="https://jmperezperez.com/tags/yahoo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tutorial: Implementing Facebook&#39;s BigPipe Using ASP.Net MVC - Part 1</title>
+    <link href="https://jmperezperez.com//tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-1"/>
+    <id>https://jmperezperez.com//tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-1</id>
+    <published>2010-09-18T07:37:07.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Parts of the tutorial</p>
+<ol>
+<li> Introduction to BigPipe</li>
+<li><a href="/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-2">How ASP.Net MVC fits in the model. Registering and generating
+ pagelets</a></li>
+<li><a href="/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-3">Browser implementation of BigPipe. Loading pagelets and their
+ resources effectively</a></li>
+<li> <a href="https://github.com/JMPerez/BigPipe">Check out the demo Visual Studio solution</a></li>
+</ol>
+<p>Through a series of posts I will explain how we can implement BigPipe Facebook using ASP.Net MVC.</p>
+<!-- more -->
+<p>In this first post I will describe what BigPipe is and sketch how we can make a similar implementation using ASP.Net MVC.</p>
+<p>You can clone the code from <a href="https://github.com/JMPerez/BigPipe">the BigPipe project on GitHub</a>  that includes all the source code needed to run the sample.</p>
+<h2 id="What-is-BigPipe"><a href="#What-is-BigPipe" class="headerlink" title="What is BigPipe"></a>What is BigPipe</h2><p>BigPipe is a <a href="/techniques-optimize-web-sites">website performance technique</a> used and coined by Facebook to serve web pages improving user’s perceived load speed. In general, it consists of serving quickly the main content of the page, and then serve the content from other regions of the page called pagelets.</p>
+<p>The implementation of these pagelets is performed in parallel on the server and served to the browser as soon as they are generated. This allows:</p>
+<ol>
+<li>Browser can start rendering the page content earlier (early
+ flushing)</li>
+<li>Pagelets are served as soon as they are ready and the browser can
+ render them in their container.</li>
+<li>If one pagelet takes longer to run, it will not delay the generation
+ of the rest of pagelets.</li>
+<li>Pagelets are generated in several concurrent asynchronous threads
+ and when a thread finishes its execution, it flushes the content so
+ the browser can start rendering.</li>
+</ol>
+<p>Sequence of the different stages during a pagelet generation:</p>
+<p><img src="/assets/images/posts/bigpipe-sequence.svg" alt="Sequence of the different stages during a pagelet generation"></p>
+<p>Apart from the pagelet generation, parallelism is also applied during the processing of the pagelet by the browser. Each pagelet can define a set of CSS and JS files that it needs to work properly. These files are requested in such a way that it keeps a good performance.</p>
+<p>Graph showing how pagelets resources are requested:</p>
+<p><img src="/assets/images/posts/bigpipe-pagelet-process.svg" alt="Graph showing how pagelets resources are requested"></p>
+<ol>
+<li> For each pagelet, request in parallel every necessary CSS resource</li>
+<li>Once a pagelet has the necessary CSS files, inject the HTML code
+ inside its container.</li>
+<li>When every pagelet has finished request its CSS files and is
+ inserted in the document, proceed to request in parallel the JS
+ files needed by the whole set of pagelets.</li>
+</ol>
+<p>By keeping these steps we make sure that the pagelets are appended to
+the document and set their style, avoiding a FUOC (Flash Of Unstyled
+Content). By delaying the download of JS resources we are prioritizing
+CSS requests for content be shown earlier, as well as other pagelets to
+be downloaded.</p>
+<h3 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h3><p>Your browser must support Javascript, since the content is embedded
+using Javascript. Our implementation takes into account progressive
+enhancement to serve pages not using BigPipe for browsers without
+Javascript or search engine bots (keeping SEO and accessibility).</p>
+<h3 id="Benefits"><a href="#Benefits" class="headerlink" title="Benefits"></a>Benefits</h3><ul>
+<li>Load time perceived by the user is better. Rendering earlier the
+  main content of the page, browser starts making requests for
+  resources CSS and Javascript earluer, as well as inerpreting the DOM
+  tree.</li>
+<li>We take advantage of the parallelism in the server side,  running
+  simultaneously multiple pagelets.</li>
+<li>In general, improving the parallelism of the system. As the browser
+  renders a region, some others are being transmitted through the wire
+  and some other being built in the server.</li>
+<li>Everything is done in a single request by the client. You could
+  implement BigPipe using Ajax calls from the browser to generate the
+  pagelets, but at the expense of a greater number of requests (this
+  will be covered in another post).</li>
+</ul>
+<h3 id="Disadvantages"><a href="#Disadvantages" class="headerlink" title="Disadvantages"></a>Disadvantages</h3><ul>
+<li>When you flush each pagelet more packets are sent from server to
+  client (however we can always decide to send more than one pagelet
+  in each flushing).</li>
+<li>Browser has to interpret the code and insert pagelets in their
+  containers. This causes repaintings and reflows which can be
+  annoying to the user.</li>
+</ul>
+<p><a href="/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-2">In part 2 of the tutorial</a> I explain how to use ASP.Net MVC to implement BigPipe, using RenderActions and threads pool to execute the pagelets.</p>
+<h4 id="Other-resources"><a href="#Other-resources" class="headerlink" title="Other resources"></a>Other resources</h4><p>Some other people have implemented the basics of this technique using Java (<a href="http://www.olympum.com/java/facebook-bigpipe-in-an-async-servlet">Bruno Fernandez-Ruiz</a> and <a href="http://codemonkeyism.com/facebook-bigpipe-java/">Stephan Schmidt</a>) and using Node.js (<a href="http://www.subbu.org/blog/2010/07/bigpipe-done-in-node-js">Subbu Allamaraju</a>).</p>
+]]></content>
+    
+    <summary type="html">
+    
+      First part of the tutorial to implement Facebook&#39;s BigPipe using ASP.Net MVC. BigPipe improves pages loading time dividing them into regions that are generated on the server concurrently.
+    
+    </summary>
+    
+    
+      <category term="flush" scheme="https://jmperezperez.com/tags/flush/"/>
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="bigpipe" scheme="https://jmperezperez.com/tags/bigpipe/"/>
+    
+      <category term="facebook" scheme="https://jmperezperez.com/tags/facebook/"/>
+    
+      <category term="performance" scheme="https://jmperezperez.com/tags/performance/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Response.Flush to make more responsive websites using ASP.Net MVC</title>
+    <link href="https://jmperezperez.com//making-more-responsive-websites-using-asp-net-mvc-response-flush"/>
+    <id>https://jmperezperez.com//making-more-responsive-websites-using-asp-net-mvc-response-flush</id>
+    <published>2010-04-23T05:47:53.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>While I was watching a <a href="https://www.youtube.com/watch?v=aJGC0JSlpPE">Google I/O 2009 video</a> by Steve Souders, the author of <a href="http://oreilly.com/catalog/9780596529307">High Performance Websites</a> and <a href="http://oreilly.com/catalog/9780596522315">Even Faster Websites</a>, I really liked the fact of using <strong>flushing</strong> to send earlier the document to the browser, allowing a prefetching of external resources.
+<a href="/assets/images/posts/response-flush-short.jpg"><img src="/assets/images/posts/response-flush-short-300x101.jpg" alt="Response Flush in Google Chrome"></a></p>
+<span id="more"></span>
+<p>I looked for the way of using flush in ASP.Net MVC as I am currently developing websites using this platform, and this can be accomplished by using <code>Response.Flush()</code>. The idea is to execute a flush in the view after some external files have been referenced. For instance we can call it after the head tag has been closed:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>reset.css<span class="token punctuation">"</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>my-styles.css<span class="token punctuation">"</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    ...
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">asp:</span>ContentPlaceHolder</span> <span class="token attr-name">ID</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>head<span class="token punctuation">"</span></span> <span class="token attr-name">runat</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>server<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">asp:</span>ContentPlaceHolder</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">Response.Flush();</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    ...
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>It can also be a good idea to call it before a bunch of code that will probably take some time to execute. However, remember that if this code contains database retrievals, this should be accomplished in the controller part, so that when the view starts rendering it has access to the data, stored in its ViewData. Anyway, you can call it in large pages, sending the document split in several parts.</p>
+<p>I have found it useful to flush in the Site.Master, just before the ContentPlaceHolder that is used to render the main content, so the browser gets content to be shown to the user (the header) and some files to download (mainly CSS if JS are referenced at the bottom of the page). It is a good idea to parallelize the generation of the rest of the HTML code with the download of a heavy JS file (as it can be the case with jQuery) if it is referenced in the head section. Remember that is usually better to load JS files at the bottom of the document to prevent the browser being blocked while downloading javascript resources.</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>reset.css<span class="token punctuation">"</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>my-styles.css<span class="token punctuation">"</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    ...
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Scripts/jquery-1.4.2.min.js<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">asp:</span>ContentPlaceHolder</span> <span class="token attr-name">ID</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>head<span class="token punctuation">"</span></span> <span class="token attr-name">runat</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>server<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">asp:</span>ContentPlaceHolder</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">Response.Flush();</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    ...
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Flushing has its disadvantages. I find it a bit strange to just see the header in the page when it takes some time to load the page. Some people will argue that when navigating to a page it is better showing the user the current page while retrieving the next one and then update the whole page. Others will prefer the user to have quick feedback.</p>
+<p>In addition, flushing is more useful when static files are not cached, but once they are cached the flush action will not fire any request to download cached resources, it will just make content appear faster in the browser, what in fact is nice.</p>
+<p>According to <a href="http://msdn.microsoft.com/en-us/library/ms526001.aspx">MSDN</a>, <code>Response.Buffer</code> must be set to TRUE to use Response.Flush, but this is the default value since IIS 5.0. And we should take into account that</p>
+<blockquote>
+<p><em>[using Response.Buffer]</em> saves time because the server does not have to create a new connection for each client request
+So this way we can manage the flushing and make it just when it can improve performance, without overloading too much the server.</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;While I was watching a &lt;a href=&quot;https://www.youtube.com/watch?v=aJGC0JSlpPE&quot;&gt;Google I/O 2009 video&lt;/a&gt; by Steve Souders, the author of &lt;a href=&quot;http://oreilly.com/catalog/9780596529307&quot;&gt;High Performance Websites&lt;/a&gt; and &lt;a href=&quot;http://oreilly.com/catalog/9780596522315&quot;&gt;Even Faster Websites&lt;/a&gt;, I really liked the fact of using &lt;strong&gt;flushing&lt;/strong&gt; to send earlier the document to the browser, allowing a prefetching of external resources.
+&lt;a href=&quot;/assets/images/posts/response-flush-short.jpg&quot;&gt;&lt;img src=&quot;/assets/images/posts/response-flush-short-300x101.jpg&quot; alt=&quot;Response Flush in Google Chrome&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="flush" scheme="https://jmperezperez.com/tags/flush/"/>
+    
+  </entry>
+  
+</feed>

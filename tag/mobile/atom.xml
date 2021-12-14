@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/mobile/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Giving Android development a try</title>
+    <link href="https://jmperezperez.com//giving-android-development-a-try"/>
+    <id>https://jmperezperez.com//giving-android-development-a-try</id>
+    <published>2013-06-04T05:03:59.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>It may seem a bit strange that I talk about Android. After all I am a web developer and I have been actively promoting Web for mobile development. But after a course I have been taking, I wanted to share some thoughts.</p>
+<span id="more"></span>
+<h2 id="Mobile-development-some-time-ago"><a href="#Mobile-development-some-time-ago" class="headerlink" title="Mobile development some time ago"></a>Mobile development some time ago</h2><p>Back in 2007 the first iPhone was released. By then, I started developing mobile applications for PDAs using Windows CE and Windows Mobile. And also Windows Applications for POS with touch screen. Mobile browsers were quite rudimentary and native development provided many more possibilities, with proper database support (SQL Server Mobile) and access to hardware (i.e. barcode reader).</p>
+<p>Since then I moved towards web development. And as browsers become more powerful, I was convinced web was the answer to deliver a proper experience to a myriad of smartphones, device capabilities and operating systems. Native development was following its own way, and I mostly read about it through avid discussions around web vs native, that still arise from time to time. And I think each case is different, and one should make informed decisions about which technologies use in every specific project. For instance, I still think <a href="/developing-mobile-webapp-first/">mockups can be quickly built</a> and iterated on using web, and there are situations where we can take the most out of both technologies through <a href="/desktop-hybrid-apps-not-only-mobile/">hybrid apps</a>.</p>
+<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p>I must admit I really liked this course. It was only a week, but it was quite extensive and covered the main topics to get a background about how to build an app. And by using certain approaches and fallbacks you can provide a good experience to old Android devices, without penalising modern devices.</p>
+<p>It is true that some things involve many steps, and the code for implementing basic features looks sometimes too much. However, I think that when a framework exposes a super simple API, it is usually easy to implement the most basic points, but rather difficult to customise or go more into depth, quickly having to dismiss the simplistic API and deal with internals.</p>
+<p>I think Android has a proper balance and it is fairly easy to isolate and reuse components once you are familiar with them.</p>
+<p>I have some pet project on mind with which I want to dig more into Android development, now that I have touched the basics. It feels great to have gone back a bit and learnt again a new development environment, and it has helped me to know more about another important player in mobile development.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;It may seem a bit strange that I talk about Android. After all I am a web developer and I have been actively promoting Web for mobile development. But after a course I have been taking, I wanted to share some thoughts.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="mobile" scheme="https://jmperezperez.com/tags/mobile/"/>
+    
+      <category term="android" scheme="https://jmperezperez.com/tags/android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Proxy mobile browsers are coming back</title>
+    <link href="https://jmperezperez.com//mobile-proxy-browsers-back"/>
+    <id>https://jmperezperez.com//mobile-proxy-browsers-back</id>
+    <published>2013-03-08T08:08:24.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Mobile proxy browsers are coming back. For a long time we had Opera Mini. And these days we have seen the release of Opera Beta for Android and an update to Chrome Beta for Android, both highlighting data compression features. And they are not the only ones. About a year ago Amazon introduced their Silk browser with a similar proxy solution to Google’s.</p>
+<p>On desktop, although this feature hasn’t become that popular due to the higher bandwidth that is usually available, Opera also had presence with their <a href="http://www.opera.com/turbo">Opera Turbo</a> feature.</p>
+<span id="more"></span>
+<h2 id="Opera’s-Off-Road-Mode"><a href="#Opera’s-Off-Road-Mode" class="headerlink" title="Opera’s Off-Road Mode"></a>Opera’s Off-Road Mode</h2><p><a href="http://www.opera.com/mobile/android">Opera Beta for Android</a> is a webkit browser with an “Off-Road mode”, which is not more than an Opera Mini embedded. In fact, it states it uses Presto in its User Agent. In practice, this means they use different browser engine for the compressed and not-compressed modes, resulting in different user experiences when browser the same site depending on this mode. You can check it accessing sites like Google or Facebook.</p>
+<h2 id="Data-Compression-Proxy-in-Chrome-Beta"><a href="#Data-Compression-Proxy-in-Chrome-Beta" class="headerlink" title="Data Compression Proxy in Chrome Beta"></a>Data Compression Proxy in Chrome Beta</h2><p>Meanwhile, <a href="http://blog.chromium.org/2013/03/data-compression-in-chrome-beta-for.html">Chrome Beta connects through SPDY</a> to a proxy server that carries out a myriad of optimizations, such as converting images to WebP, minifying HTML, Javascript and CSS and adding gzip compression (info about <a href="http://googlesystem.blogspot.ca/2013/03/try-chromes-data-compression-proxy.html">how to enable it here</a>). In short, instead of waiting for developers to optimize their sites, Google is applying transparently some well-known techniques to improve website performance, similar to those they apply in their <a href="https://developers.google.com/speed/pagespeed/mod">mod_pagespeed Apache module</a>.</p>
+<h2 id="What-you-as-developer-can-do"><a href="#What-you-as-developer-can-do" class="headerlink" title="What you, as developer, can do"></a>What you, as developer, can do</h2><p>It is tempting to just forget about <a href="/techniques-optimize-web-sites/">optimization techniques</a>, leaving
+the hard work to these proxies. The truth is that we should be the ones that optimize by default our sites to provide the best experience regardless of user’s browsers. These tools are showing us how important good performance is, especially when using mobile devices.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Mobile proxy browsers are coming back. For a long time we had Opera Mini. And these days we have seen the release of Opera Beta for Android and an update to Chrome Beta for Android, both highlighting data compression features. And they are not the only ones. About a year ago Amazon introduced their Silk browser with a similar proxy solution to Google’s.&lt;/p&gt;
+&lt;p&gt;On desktop, although this feature hasn’t become that popular due to the higher bandwidth that is usually available, Opera also had presence with their &lt;a href=&quot;http://www.opera.com/turbo&quot;&gt;Opera Turbo&lt;/a&gt; feature.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="mobile" scheme="https://jmperezperez.com/tags/mobile/"/>
+    
+      <category term="proxy-browsers" scheme="https://jmperezperez.com/tags/proxy-browsers/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Webapp first: An approach to developing for mobile</title>
+    <link href="https://jmperezperez.com//developing-mobile-webapp-first"/>
+    <id>https://jmperezperez.com//developing-mobile-webapp-first</id>
+    <published>2012-05-21T05:21:17.000Z</published>
+    <updated>2021-12-14T07:52:53.526Z</updated>
+    
+    <content type="html"><![CDATA[<p>Mobile web apps are not at the same level of native ones. Until browsers don’t implement HTML5 API specifications to access device hardware (device API, audio, video), implement push notifications, and improve general performance (animations, scroll) web apps will not be able to deliver the experience that can’t be reach through native development.</p>
+<p>However, there are some advantages when taking a webapp first approach for mobile development.</p>
+<span id="more"></span>
+<h2 id="UI-mocking"><a href="#UI-mocking" class="headerlink" title="UI mocking"></a>UI mocking</h2><p>Some UI designers are so familiar with web that they use HTML+CSS to implement native apps mockups. Then, this mockups are used by iOS or Android developers to implement the app UI. Why don’t take advantage of that web mockup and use it for a web app?</p>
+<h2 id="Hybrid-application"><a href="#Hybrid-application" class="headerlink" title="Hybrid application"></a><a name="hybrid"></a>Hybrid application</h2><p>Your web development can be easily reused to make a hybrid application. Your native app can be a wrapper of your webapp, and you can use PhoneGap or Titanium to access hardware through JS bridges. In addition, you can iterate and port parts of your application to native controls if you realize it is more suitable. You don’t lose your previous development, since you can reuse them in your mobile site.</p>
+<p>Take Google+ iPhone app as an example:
+<img src="/assets/images/posts/google-plus-hybrid.jpg" alt="Google+ iPhone app"></p>
+<p>The Google+ iPhone app was basically a wrapper around their mobile webapp. From there, they have evolve it to a much richer one. However, certain features like the login page remain the same. And there is the mobile site, that looks a lot like the ‘old’ iPhone app.</p>
+<h2 id="Testing-new-features"><a href="#Testing-new-features" class="headerlink" title="Testing new features"></a>Testing new features</h2><p>Deploying changes in a webapp is easier than building and distributing an app. Thus, you can easily perform A/B testing or introduce new features on your webapp and use it as a way to get feedback before porting those changes to native apps.</p>
+<h2 id="Defensive-development-Future-Friendly"><a href="#Defensive-development-Future-Friendly" class="headerlink" title="Defensive development - Future Friendly"></a>Defensive development - Future Friendly</h2><p>Having a webapp makes your solution compatible with future devices, no matter what OS they are running. Your users will be able to use your application on their mobile phones through their browser. <a href="http://www.openwebdevice.com/">Open Web Device</a> gaining traction? You are ready. <a href="http://www.slashgear.com/intels-first-medfield-phone-coming-this-week-claims-ceo-17223318/">Intel Mobile phone</a>? You are ready too. E-book reader? Of course! And take into account that your application wouldn’t be compatible with these devices if you had chosen any of current ‘native’ environments.</p>
+<p>In addition, as OS software updates are being released and more powerful browsers are available, our web apps will behave better. If we have embraced progressive enhancement, our apps will be able to take advantage of most recent HTML5 APIs as soon as the browser in which they are running supports them.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Mobile web apps are not at the same level of native ones. Until browsers don’t implement HTML5 API specifications to access device hardware (device API, audio, video), implement push notifications, and improve general performance (animations, scroll) web apps will not be able to deliver the experience that can’t be reach through native development.&lt;/p&gt;
+&lt;p&gt;However, there are some advantages when taking a webapp first approach for mobile development.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="progressive enhancement" scheme="https://jmperezperez.com/tags/progressive-enhancement/"/>
+    
+      <category term="mobile" scheme="https://jmperezperez.com/tags/mobile/"/>
+    
+      <category term="future friendly" scheme="https://jmperezperez.com/tags/future-friendly/"/>
+    
+      <category term="webapp" scheme="https://jmperezperez.com/tags/webapp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Avoid showing address bar on iPhone when loading ajax</title>
+    <link href="https://jmperezperez.com//prevent-iphone-navigation-bar-ajax-link-click"/>
+    <id>https://jmperezperez.com//prevent-iphone-navigation-bar-ajax-link-click</id>
+    <published>2011-06-11T16:28:08.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>You can find a <a href="/demos/iphone-links"><strong>demo</strong> showing the default behaviour and the one using Facebook’s technique</a>. Use an iPhone or iPod Touch to see the effect.</p>
+<p>When clicking a link for ajax navigation on iPhone and iPod Touch, the navigation bar slides down and up for every link, even when they are enhanced to support ajax navigation and its click event is captured and we load content using XMLHttpRequest instead.</p>
+<span id="more"></span>
+<p>This is a bit annoying and some developers have already tried to solve it. See these links:</p>
+<ul>
+<li><p><a href="http://stackoverflow.com/questions/1788605/can-iphone-safari-be-prevented-from-showing-the-navigation-bar-during-an-ajax-cal">Can iPhone Safari be prevented from showing the navigation bar during an AJAX call?</a></p>
+</li>
+<li><p><a href="https://forum.jquery.com/topic/ios-urlbar-shows-then-hides-when-clicking-internal-link">iOS urlbar shows then hides when clicking internal link</a></p>
+</li>
+<li><p><a href="https://forum.jquery.com/topic/stopping-the-url-bar-from-dropping-down-i-discovered-a-workaround">Stopping the url bar from dropping down - I discovered a workaround</a></p>
+</li>
+<li><p><a href="http://forum.jquery.com/topic/how-do-i-stop-mobile-safari-from-dropping-down-its-url-loading-bar-whenever-i-submit-an-ajax-request">How do i stop mobile safari from dropping down its URL/Loading bar whenever i submit an ajax request?</a></p>
+</li>
+</ul>
+<p>The fact of having an anchor with an href attribute is enough for Safari Mobile to show the bar unless the address is preceded by the hash sign. It is not the fact of changing the URL, because if you preventDefault() the click on the link and avoid the navigation, the bar is shown anyway.</p>
+<p>I realized that Facebook, among others sites with iPhone adapted versions (see jQtouch, Sencha Touch or Twitter), didn’t show that bar dropping from the top of the screen.</p>
+<p>Looking at Facebook’s mobile site code, I found out that they made a workaround. They attach to the touchend event, which is fired before the click event fires, and then replace the value of the href attribute:</p>
+<pre class=" language-js"><code class="language-js">JX<span class="token punctuation">.</span><span class="token function">install</span><span class="token punctuation">(</span><span class="token string">"MLinkHack"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>initialize<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>JX<span class="token punctuation">.</span>MTouchClick<span class="token punctuation">.</span><span class="token function">hasTouchEvents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  JX<span class="token punctuation">.</span>Stratcom<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token string">"touchend"</span><span class="token punctuation">,</span> <span class="token string">"tag:a"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> c <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">getNode</span><span class="token punctuation">(</span><span class="token string">"tag:a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"target"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"_blank"</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> b <span class="token operator">=</span> c<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>b <span class="token operator">||</span> b<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">"#"</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> d <span class="token operator">=</span> JX<span class="token punctuation">.</span><span class="token function">$U</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getProtocol</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>d <span class="token operator">&amp;&amp;</span> d <span class="token operator">!==</span> <span class="token string">"http"</span> <span class="token operator">&amp;&amp;</span> d <span class="token operator">!==</span> <span class="token string">"https"</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> statics<span class="token punctuation">:</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>_hack<span class="token punctuation">:</span><span class="token string">"#!"</span><span class="token punctuation">,</span> add<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  a<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">,</span> JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span>_hack <span class="token operator">+</span> a<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> remove<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> a <span class="token operator">=</span> b<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  a <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span>_hack<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">?</span> a<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> a<span class="token punctuation">;</span>
+  b<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Later, the href value is set back to its original value, calling to the <code>JX.MLinkHack.remove()</code> method:</p>
+<pre class=" language-js"><code class="language-js">JX<span class="token punctuation">.</span><span class="token function">behavior</span><span class="token punctuation">(</span><span class="token string">"m-link"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+  JX<span class="token punctuation">.</span>Stratcom<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token string">"tag:a"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>JX<span class="token punctuation">.</span>Stratcom<span class="token punctuation">.</span><span class="token function">pass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> e <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getRawEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> link <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getNode</span><span class="token punctuation">(</span><span class="token string">"tag:a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"onclick"</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>which <span class="token operator">||</span> e<span class="token punctuation">.</span>button<span class="token punctuation">)</span> <span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>FW_BFF_ENABLED<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        event<span class="token punctuation">.</span><span class="token function">kill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        FWBff<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">"/fb/onclick"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"target"</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>user_action<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token function">user_action</span><span class="token punctuation">(</span>link<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      JX<span class="token punctuation">.</span>MLinkHack<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>link<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> href <span class="token operator">=</span> link<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token operator">...</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>As we see, this is only done for touch devices. Non-touch devices see normal links, so we can provide the default navigation for the rest of devices. That is nice for our progressive enhancement approach.</p>
+<p>This workaround works nice when applied to a hash based ajax navigation. In addition, if we want to use History API, then we could call <code>history.pushState()</code> in the click event, once we have replaced the href to its original value. That way we would use the hash as a temporary hack to prevent Safari browser from showing the bar. Have a look at this snippet:</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//hide bar on page load</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  window<span class="token punctuation">.</span><span class="token function">scrollTo</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//attach event touchend</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>
+    <span class="token string">'touchend'</span><span class="token punctuation">,</span>
+    <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> target <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>target<span class="token punctuation">.</span>nodeName <span class="token operator">!==</span> <span class="token string">'A'</span> <span class="token operator">&amp;&amp;</span> target<span class="token punctuation">.</span>nodeName <span class="token operator">!==</span> <span class="token string">'BODY'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            target <span class="token operator">=</span> target<span class="token punctuation">.</span>parentNode<span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">.</span>nodeName <span class="token operator">===</span> <span class="token string">'A'</span> <span class="token operator">&amp;&amp;</span>
+            target<span class="token punctuation">.</span>className <span class="token operator">===</span> <span class="token string">'facebook'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                target<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token string">'#!'</span> <span class="token operator">+</span> target<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+    <span class="token boolean">false</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//attach event click</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>
+    <span class="token string">'click'</span><span class="token punctuation">,</span>
+    <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>nodeName <span class="token operator">===</span> <span class="token string">'A'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>className <span class="token operator">===</span> <span class="token string">'prevent'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>className <span class="token operator">===</span> <span class="token string">'facebook'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">var</span> href <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>href<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'#!'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                    <span class="token keyword">var</span> newHref <span class="token operator">=</span> href<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>href <span class="token operator">=</span> newHref<span class="token punctuation">;</span>
+                    location<span class="token punctuation">.</span>hash <span class="token operator">=</span> newHref<span class="token punctuation">;</span>
+                    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+    <span class="token boolean">false</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>I will try to check the techniques that other sites have implemented to solve this, but they might be similar to this one.</p>
+<p>And I find this less hacky than using a ‘link’ attribute instead of ‘href’ attribute in anchors, or replace anchors by buttons, as I have read somewhere.</p>
+<p>Want to see it in action? <a href="/demos/iphone-links"><strong>See the demo</strong></a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Workaround to avoid showing the loading address bar when loading ajax content on iPhone.
+    
+    </summary>
+    
+    
+      <category term="ios" scheme="https://jmperezperez.com/tags/ios/"/>
+    
+      <category term="facebook" scheme="https://jmperezperez.com/tags/facebook/"/>
+    
+      <category term="javascript" scheme="https://jmperezperez.com/tags/javascript/"/>
+    
+      <category term="ajax" scheme="https://jmperezperez.com/tags/ajax/"/>
+    
+      <category term="mobile" scheme="https://jmperezperez.com/tags/mobile/"/>
+    
+  </entry>
+  
+</feed>

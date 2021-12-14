@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jose M. Perez&#39;s Blog</title>
+  <subtitle>Web development, performance, and some other good practices.</subtitle>
+  <link href="/tag/spotify%20apps/atom.xml" rel="self"/>
+  
+  <link href="https://jmperezperez.com/"/>
+  <updated>2018-12-16T17:51:46.000Z</updated>
+  <id>https://jmperezperez.com/</id>
+  
+  <author>
+    <name>Jose M. Perez</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spotify Apps Development</title>
+    <link href="https://jmperezperez.com//developing-spotify-apps"/>
+    <id>https://jmperezperez.com//developing-spotify-apps</id>
+    <published>2013-09-09T16:35:37.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I have been working for some time with <a href="https://developer.spotify.com/technologies/apps/">Spotify Apps</a>. Creating them is a great way to extend the Spotify client with extra features using web technologies. As it exposes a Chrome-ish browser, you can tweak your apps and take advantage of running on a well-known environment.</p>
+<span id="more"></span>
+<h2 id="Developing-apps-for-Spotify"><a href="#Developing-apps-for-Spotify" class="headerlink" title="Developing apps for Spotify"></a>Developing apps for Spotify</h2><p>Spotify desktop client includes a CEF engine that allows HTML5 web apps to interact through a JS API with the native layer. You can find more info on how to develop an app <a href="https://github.com/spotify/apps-tutorial">on this tutorial</a>.</p>
+<h2 id="Optimizing-apps"><a href="#Optimizing-apps" class="headerlink" title="Optimizing apps"></a>Optimizing apps</h2><p>When your app is published, users can find it and add it to their desktop client. During installation, the app is downloaded and saved in the user’s computer, while showing a loading bar. After being installed, users can open the app and make use of it.</p>
+<p>In order to offer the best experience, there are some points that should be taken into account.</p>
+<h3 id="Bundle-size"><a href="#Bundle-size" class="headerlink" title="Bundle size"></a>Bundle size</h3><p>It makes sense to try to optimize the size of the bundle so that it takes less time for the user to download it. Also, the less JS code to execute, the better.</p>
+<p>In addition, since we know about the environment on which our app will run, we can take advantage of it in several ways. As of September 2013, Spotify 0.9.3 uses a Chrome v.27 browser.</p>
+<h3 id="Javascript-code"><a href="#Javascript-code" class="headerlink" title="Javascript code"></a>Javascript code</h3><p>Of course it is a personal preference, but many developers don’t conceive a web app without libraries such as jQuery. Amongst the reasons, we don’t like to deal with incompatibilities on the targeted browsers. That is true when you need to take into account browsers like IE6/7, but in this case, the browser on which our web app will run is known and finite.</p>
+<p>Thus, you can safely use a webkit-only library if you want an easier to use API, or you can even use Vanilla JS. I really recommend having a look at <a href="http://vimeo.com/40873227">Christian Heilmann’s talk <em>Embracing and celebrating redundancy</em></a> and <a href="http://sharedfil.es/js-48hIfQE4XK.html">this conversion table from jQuery to Javascript</a>.</p>
+<h3 id="CSS-code"><a href="#CSS-code" class="headerlink" title="CSS code"></a>CSS code</h3><p>You can safely skip most browser prefixes. In this case, it doesn’t make sense to include <code>-moz</code> or <code>-o</code> prefixes, since they will be skipped by CEF. Some CSS properties are supported with no prefix (i.e. <code>border-radius</code>), although some others aren’t (<code>transition</code>). Thus, to make sure you are specifying the right rule, take a look at <a href="http://caniuse.com/">caniuse.com</a>. For instance, <a href="http://caniuse.com/#search=transition">this is the page for the transition property</a>.</p>
+<p>I recommend you to use a CSS processor such as LESS, so you only define what rules are needed in one specific place.</p>
+<h3 id="Further-optimizations"><a href="#Further-optimizations" class="headerlink" title="Further optimizations"></a>Further optimizations</h3><p>Good web performance practices are quite well known and are the base for the emerging Web Performance Optimization techniques. Additionally, we could write about the best way to architect an app, with lazily loaded resources. Why load resources for every tab in a certain app, and not only the active one?</p>
+<p>Ideally, an app should load the required content as fast as possible, and lazy load the rest as it is needed. Avoid loading bars, which are usually a smell of a bigger problem underneath, which is the one that should be targeted.</p>
+<p>All in all, developing a Spotify app is quite similar to developing a web app, except that most assets are bundled in a package.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I have been working for some time with &lt;a href=&quot;https://developer.spotify.com/technologies/apps/&quot;&gt;Spotify Apps&lt;/a&gt;. Creating them is a great way to extend the Spotify client with extra features using web technologies. As it exposes a Chrome-ish browser, you can tweak your apps and take advantage of running on a well-known environment.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+      <category term="spotify apps" scheme="https://jmperezperez.com/tags/spotify-apps/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Charlando sobre Desarrollo Web en Spotify - HTML5Spain</title>
+    <link href="https://jmperezperez.com//charla-desarrollo-web-spotify"/>
+    <id>https://jmperezperez.com//charla-desarrollo-web-spotify</id>
+    <published>2013-02-07T12:29:12.000Z</published>
+    <updated>2018-12-16T17:51:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>El pasado 7 de febrero hablé sobre Desarrollo Web en Spotify en <a href="http://html5spain.wordpress.com/2013/02/03/evento-online-desarrollo-web-en-spotify/">un hangout con los compañeros de HTML5Spain</a>. Aquí está la presentación:</p>
+<span id="more"></span>
+<script async class="speakerdeck-embed" data-id="9a7600c053260130765612313d18c439" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>y el vídeo:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PRIBtJxdQoM" frameborder="0" allowfullscreen></iframe>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;El pasado 7 de febrero hablé sobre Desarrollo Web en Spotify en &lt;a href=&quot;http://html5spain.wordpress.com/2013/02/03/evento-online-desarrollo-web-en-spotify/&quot;&gt;un hangout con los compañeros de HTML5Spain&lt;/a&gt;. Aquí está la presentación:&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="spotify" scheme="https://jmperezperez.com/tags/spotify/"/>
+    
+      <category term="spotify apps" scheme="https://jmperezperez.com/tags/spotify-apps/"/>
+    
+  </entry>
+  
+</feed>

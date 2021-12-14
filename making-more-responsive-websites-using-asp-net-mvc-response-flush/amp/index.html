@@ -1,0 +1,894 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://jmperezperez.com/making-more-responsive-websites-using-asp-net-mvc-response-flush/" >
+    <title>Response.Flush to make more responsive websites using ASP.Net MVC - Web development, performance, and some other good practices.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="Response.Flush to make more responsive websites using ASP.Net MVC - José M. Pérez" property="og:title">
+		
+		<meta name="twitter:site" content="@jmperezperez">
+		
+		<meta property="og:image" content="https://res.cloudinary.com/jmperez/image/upload/f_auto,c_scale/v1519156883/profile_ysrm5y.jpg">
+		<meta name="twitter:image" content="https://res.cloudinary.com/jmperez/image/upload/f_auto,c_scale/v1519156883/profile_ysrm5y.jpg">
+		
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    
+
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "Response.Flush to make more responsive websites using ASP.Net MVC",
+			
+			"description": "&lt;p&gt;While I was watching a &lt;a href=&#34;https://www.youtube.com/watch?v=aJGC0JSlpPE&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google I/O 2009 video&lt;/a&gt; by Steve Souders, the author of &lt;a href=&#34;http://oreilly.com/catalog/9780596529307&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;High Performance Websites&lt;/a&gt; and &lt;a href=&#34;http://oreilly.com/catalog/9780596522315&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Even Faster Websites&lt;/a&gt;, I really liked the fact of using &lt;strong&gt;flushing&lt;/strong&gt; to send earlier the document to the browser, allowing a prefetching of external resources. &lt;a href=&#34;/assets/images/posts/response-flush-short.jpg&#34;&gt;&lt;img src=&#34;/assets/images/posts/response-flush-short-300x101.jpg&#34; alt=&#34;Response Flush in Google Chrome&#34;&gt;&lt;/a&gt;&lt;/p&gt;",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"making-more-responsive-websites-using-asp-net-mvc-response-flush/"
+			},
+			"datePublished": "2010-04-23T05:47:53.000Z",
+			"dateModified": "2018-12-16T17:51:46.000Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Jose M. Perez"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Jose M. Perez&#39;s Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "https://jmperezperez.com/amp-dist/logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	<style amp-custom>
+		
+			/*--RESET--*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+input,
+button {
+  background: none;
+}
+
+html {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/*--BODY--*/
+
+body {
+  background: #fff;
+  color: #555;
+  font-family: Georgia, Times;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%; /* fixes a too large font issue in horizontally scrollable <pre> on webkit */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #212121;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+#menu a,
+.button {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+p,
+.post ul,
+.post ol,
+iframe,
+video,
+amp-video,
+amp-vimeo,
+amp-youtube {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+twitterwidget {
+  margin-bottom: 1em ;
+}
+
+a {
+  color: #2a7cb2;
+  font-weight: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease-out, border-bottom-color 0.15s ease-out;
+}
+
+a:hover {
+  color: #2a7cb2;
+}
+
+abbr {
+  border-bottom: 1px dashed #ccc;
+  text-decoration: none;
+}
+
+p a {
+  border-bottom: 1px solid #eee;
+}
+
+p a:hover {
+  border-bottom-color: #212121;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 1.7rem;
+}
+
+h2 {
+  color: #444;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h3 {
+  color: #666;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h4 {
+  font-size: 1.18rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+a h1,
+a h2,
+a h3,
+a h4,
+a h5 {
+  transition: color 0.15s ease-out;
+}
+
+a:hover h1,
+a:hover h2,
+a:hover h3,
+a:hover h4,
+a:hover h5 {
+  color: #3498db;
+}
+
+.quote {
+  margin: 0 0 15px 0;
+}
+
+blockquote {
+  border-left: 2px solid #ccc;
+  font-style: italic;
+  margin: 0 0 15px 0;
+  padding-left: 20px;
+}
+
+ul,
+ol {
+  margin: 0 0 15px 0;
+  padding-left: 25px;
+}
+
+ul {
+  list-style: square;
+}
+
+ol {
+  list-style: decimal;
+}
+
+hr {
+  background: #eee;
+  color: #eee;
+  clear: both;
+  display: block;
+  height: 2px;
+  margin: 30px auto;
+  width: 50%;
+}
+
+pre,
+code {
+  color: #333;
+  font-family: Courier, Menlo, Monaco;
+  font-size: 0.8em;
+  letter-spacing: 0px;
+  overflow-x: auto;
+}
+
+pre {
+  padding: 0.8em 1em;
+  white-space: pre-wrap;
+}
+
+code {
+  margin: 0;
+}
+
+/*--CLEARFIXES--*/
+
+.post::after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
+/*--HEADER--*/
+
+.main-header {
+  background-color: #005689;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+/*--MENU--*/
+
+#menu {
+  display: inline-block;
+  line-height: 2rem;
+}
+
+#menu a {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  padding: 1rem 0.5rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 500px) {
+  #menu a {
+    margin-left: 0.5rem;
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+#menu a:first-child {
+  margin-left: 0;
+}
+
+#menu a[aria-current] {
+  font-weight: bold;
+}
+
+/*--PAGE--*/
+
+#page {
+  margin: 0 auto;
+  max-width: 41rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+.videoWrapper {
+  height: 0;
+  margin-bottom: 1em;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  position: relative;
+}
+
+.videoWrapper iframe,
+.videoWrapper amp-youtube {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/*--WRAPPER--*/
+
+.wrapper {
+  border-top: 2px solid #eee;
+  padding-top: 2rem;
+}
+
+.wrapper:first-child {
+  border-top: none;
+  padding-top: 1rem;
+}
+
+.posts-list h2 {
+  margin-top: 0;
+}
+
+/*--POSTS--*/
+
+.post {
+  display: block;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.post div[itemprop='articleBody'] > p:first-child {
+  color: #333;
+}
+
+.post li {
+  margin-bottom: 0.5rem;
+}
+
+.post p + img {
+  margin-bottom: 1rem;
+}
+
+.post p img {
+  border: 1px solid #eee;
+  display: block;
+  max-width: 100%;
+}
+
+.post img + .caption {
+  padding-top: 0.5rem;
+}
+
+.post .svg-container {
+  margin-bottom: 5%;
+  max-width: 100%;
+  text-align: center;
+}
+
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+.post .svg-container object {
+  width: 100%;
+}
+
+.tag-list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+.tag-list-item {
+  display: inline-block;
+  margin-left: 0.8em;
+}
+
+/*--PAGINATION--*/
+
+.pagination {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.pagination a {
+  min-width: 30px;
+  max-height: 30px;
+  text-align: center;
+}
+
+/*--FOOTER--*/
+
+footer {
+  border-top: 1px dashed #ddd;
+  padding: 2em;
+  text-align: center;
+}
+
+.timing-stats {
+  font-size: 0.7em;
+  padding: 0.35em;
+}
+
+/*--BUTTONS--*/
+
+.button {
+  background-color: #fff;
+  border: 1px solid #555;
+  border-radius: 2rem;
+  color: #555;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s ease-out;
+}
+
+.button:hover {
+  background-color: #3498db;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.inactive {
+  background-color: #ccc;
+  color: #fff;
+}
+
+/*--404--*/
+.search-goog input {
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+
+.search-goog input[type='submit'] {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /*--PAGE--*/
+
+  #page,
+  .wrapper {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /*--WRAPPER--*/
+
+  .wrapper {
+    padding-top: 2rem;
+  }
+
+  .wraper::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+}
+
+/*--ACCESSIBILITY--*/
+.outscreen {
+  height: 1px;
+  left: -1000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+/*--CALLOUT--*/
+.callout {
+  border: 1px solid #eee;
+  border-left-color: #777;
+  border-left-width: 5px;
+  border-radius: 3px;
+  font-size: .9rem;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.author {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.author .name {
+  line-height: 1rem;
+  padding-top: 0.5rem;
+}
+
+.media,
+.bd {
+  overflow: hidden;
+  _overflow: visible;
+  
+}
+
+.media .img {
+  float: left;
+}
+
+.avatar-img {
+  border-radius: 100%;
+  height: 3rem;
+  margin-right: 0.5rem;
+  width: 3rem;
+}
+
+/* SYNTAX HIGHLIGHTING */
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #393a34;
+  font-family: 'Consolas', 'Bitstream Vera Sans Mono', 'Courier New', Courier,
+    monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 0.85em;
+  line-height: 1.2em;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+  background: #b3d4fc;
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+  background: #b3d4fc;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  padding: 0.2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999988;
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.string,
+.token.attr-value {
+  color: #e3116c;
+}
+.token.punctuation,
+.token.operator {
+  color: #393a34; /* no highlight */
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted {
+  color: #005cc5;
+}
+
+.token.keyword {
+  color: #d73a49;
+}
+
+.token.atrule,
+.token.attr-name {
+  color: #6f42c1;
+}
+
+.token.function,
+.token.deleted {
+  color: #6f42c1;
+}
+
+.token.selector {
+  color: #00009f;
+}
+
+.token.tag {
+  color: #22863a;
+}
+
+.token.class-name {
+  color: #6f42c1;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.caption {
+  display: block;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.codepen-aspect-ratio > iframe {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.twitter-tweet {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.twitter-tweet::after {
+  content: '';
+  display: block;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.me {
+  max-width: 22rem;
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
+.me > div {
+  height: 8rem;
+  margin: 0 auto;
+  position: relative;
+  width: 8rem;
+}
+
+.me svg {
+  border-radius: 100%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.me img {
+  border-radius: 100%;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.me h1 {
+  font-size: 1.7rem;
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #38444c;
+    color: #eee;
+  }
+  a {
+    color: #9dcae8;
+  }
+  a:hover {
+    color: #fff;
+  }
+  p a {
+    border-bottom: 1px solid #6d7a82;
+  }
+  p a:hover {
+    border-bottom: 1px solid #fff;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #eee;
+  }
+  a:hover h1,
+  a:hover h2,
+  a:hover h3,
+  a:hover h4,
+  a:hover h5 {
+    color: #4b89b1;
+  }
+  .button:hover {
+    background-color: #4b89b1;
+  }
+  code,
+  pre {
+    color: #ddd;
+  }
+  .main-header {
+    background-color: #4b89b1;
+  }
+}
+
+		
+		amp-iframe {
+			margin-bottom: 10px;
+		}
+	</style>
+  </head>
+  <body>
+
+  	<!-- google analytics -->
+  	
+  	<amp-analytics type="googleanalytics" id="google-analytics">
+		<script type="application/json">
+		{
+		  "vars": {
+		    "account": "UA-39254352-1"
+		  },
+		  "triggers": {
+		    "trackPageview": {
+		      "on": "visible",
+		      "request": "pageview"
+		    }
+		  }
+		}
+		</script>
+	</amp-analytics>
+	
+
+  <header class="main-header">
+      <nav id="menu">
+          <a href="/">JMPerez Blog</a>
+          <a href="/projects/">Projects</a>
+          <a href="/talks/">Speaking</a>
+          <a href="/about-me/">About</a>
+      </nav>
+  </header>
+
+  <article>
+  	<div class="post">
+	  	<div id="page">
+
+		    <article id="post-making-more-responsive-websites-using-asp-net-mvc-response-flush" class="post wrapper">
+
+        <div class="media author">
+          <div class="img">
+            <a href="/about-me/">
+              <amp-img src="/assets/images/jmperez.jpg" class="avatar-img" alt="" height="53" width="53">
+            </a>
+          </div>
+          <div class="bd">
+            <address class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="/about-me/" itemprop="name">José M. Pérez</a></address>
+            <meta class="post-data" itemprop="datePublished" content="2010-04-23T05:47:53.000Z">
+              April 23 2010
+            </meta>
+          </div>
+        </div>
+
+				<!-- entry title -->
+				<header class="entry-header">
+					
+					  <h1 class="article-title entry-title" itemprop="name">
+					    Response.Flush to make more responsive websites using ASP.Net MVC
+					  </h1>
+					
+				</header>
+
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			  		<p>While I was watching a <a href="https://www.youtube.com/watch?v=aJGC0JSlpPE" target="_blank" rel="noopener">Google I/O 2009 video</a> by Steve Souders, the author of <a href="http://oreilly.com/catalog/9780596529307" target="_blank" rel="noopener">High Performance Websites</a> and <a href="http://oreilly.com/catalog/9780596522315" target="_blank" rel="noopener">Even Faster Websites</a>, I really liked the fact of using <strong>flushing</strong> to send earlier the document to the browser, allowing a prefetching of external resources. <a href="/assets/images/posts/response-flush-short.jpg"></a></p><div class="amp-img-wrapper"><a href="/assets/images/posts/response-flush-short.jpg"><amp-img src="/assets/images/posts/response-flush-short-300x101.jpg" width="300" height="101" layout="responsive"></amp-img></a></div><a id="more"></a><p>I looked for the way of using flush in ASP.Net MVC as I am currently developing websites using this platform, and this can be accomplished by using <code>Response.Flush()</code>. The idea is to execute a flush in the view after some external files have been referenced. For instance we can call it after the head tag has been closed:</p><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>reset.css<span class="token punctuation">&quot;</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/css<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>my-styles.css<span class="token punctuation">&quot;</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/css<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    ...
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">asp:</span>ContentPlaceHolder</span> <span class="token attr-name">ID</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>head<span class="token punctuation">&quot;</span></span> <span class="token attr-name">runat</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>server<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">asp:</span>ContentPlaceHolder</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">Response.Flush();</span> <span class="token attr-name">%</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    ...
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre><p>It can also be a good idea to call it before a bunch of code that will probably take some time to execute. However, remember that if this code contains database retrievals, this should be accomplished in the controller part, so that when the view starts rendering it has access to the data, stored in its ViewData. Anyway, you can call it in large pages, sending the document split in several parts.</p><p>I have found it useful to flush in the Site.Master, just before the ContentPlaceHolder that is used to render the main content, so the browser gets content to be shown to the user (the header) and some files to download (mainly CSS if JS are referenced at the bottom of the page). It is a good idea to parallelize the generation of the rest of the HTML code with the download of a heavy JS file (as it can be the case with jQuery) if it is referenced in the head section. Remember that is usually better to load JS files at the bottom of the document to prevent the browser being blocked while downloading javascript resources.</p><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>reset.css<span class="token punctuation">&quot;</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/css<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>my-styles.css<span class="token punctuation">&quot;</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/css<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    ...
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Scripts/jquery-1.4.2.min.js<span class="token punctuation">&quot;</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/javascript<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">asp:</span>ContentPlaceHolder</span> <span class="token attr-name">ID</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>head<span class="token punctuation">&quot;</span></span> <span class="token attr-name">runat</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>server<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">asp:</span>ContentPlaceHolder</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">Response.Flush();</span> <span class="token attr-name">%</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    ...
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre><p>Flushing has its disadvantages. I find it a bit strange to just see the header in the page when it takes some time to load the page. Some people will argue that when navigating to a page it is better showing the user the current page while retrieving the next one and then update the whole page. Others will prefer the user to have quick feedback.</p><p>In addition, flushing is more useful when static files are not cached, but once they are cached the flush action will not fire any request to download cached resources, it will just make content appear faster in the browser, what in fact is nice.</p><p>According to <a href="http://msdn.microsoft.com/en-us/library/ms526001.aspx" target="_blank" rel="noopener">MSDN</a>, <code>Response.Buffer</code> must be set to TRUE to use Response.Flush, but this is the default value since IIS 5.0. And we should take into account that</p><blockquote><p><em>[using Response.Buffer]</em> saves time because the server does not have to create a new connection for each client request So this way we can manage the flushing and make it just when it can improve performance, without overloading too much the server.</p></blockquote>
+			  	</div>
+
+		  	</article>
+		</div>
+    <footer>
+        <section class="links">
+            <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter · <a href="https://github.com/JMPerez">GitHub</a> · <a href="http://www.linkedin.com/in/jmperezperez">LinkedIn</a>
+        </section>
+    </footer>
+
+	</div>
+  </article>
+
+  </body>
+</html>

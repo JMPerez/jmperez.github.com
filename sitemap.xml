@@ -380,6 +380,33 @@
   </url>
   
   <url>
+    <loc>https://jmperezperez.com/recommended-reading-building-findable-websites</loc>
+    
+    <lastmod>2018-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/google-make-web-faster</loc>
+    
+    <lastmod>2018-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/recommended-reading-j2ee-antipatterns</loc>
+    
+    <lastmod>2018-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jmperezperez.com/making-more-responsive-websites-using-asp-net-mvc-response-flush</loc>
     
     <lastmod>2018-12-16</lastmod>
@@ -461,7 +488,7 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/ondemand-javascript-lazy-loading-stubs</loc>
+    <loc>https://jmperezperez.com/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-3</loc>
     
     <lastmod>2018-12-16</lastmod>
     
@@ -470,7 +497,7 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/tutorial-how-to-implement-bigpipe-using-asp-net-mvc-part-3</loc>
+    <loc>https://jmperezperez.com/ondemand-javascript-lazy-loading-stubs</loc>
     
     <lastmod>2018-12-16</lastmod>
     
@@ -506,25 +533,7 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/recommended-reading-building-findable-websites</loc>
-    
-    <lastmod>2018-12-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/recommended-reading-j2ee-antipatterns</loc>
-    
-    <lastmod>2018-12-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/google-make-web-faster</loc>
+    <loc>https://jmperezperez.com/bigpipe-in-asp-net-mvc-using-razor</loc>
     
     <lastmod>2018-12-16</lastmod>
     
@@ -534,15 +543,6 @@
   
   <url>
     <loc>https://jmperezperez.com/changing-job</loc>
-    
-    <lastmod>2018-12-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/bigpipe-in-asp-net-mvc-using-razor</loc>
     
     <lastmod>2018-12-16</lastmod>
     
@@ -668,15 +668,6 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/spotify-hack-week-2013</loc>
-    
-    <lastmod>2018-12-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jmperezperez.com/meteor-hackathon-stockholm</loc>
     
     <lastmod>2018-12-16</lastmod>
@@ -686,7 +677,7 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/emigrando-a-suecia</loc>
+    <loc>https://jmperezperez.com/spotify-hack-week-2013</loc>
     
     <lastmod>2018-12-16</lastmod>
     
@@ -696,6 +687,15 @@
   
   <url>
     <loc>https://jmperezperez.com/facebook-news-feed-redesign</loc>
+    
+    <lastmod>2018-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/emigrando-a-suecia</loc>
     
     <lastmod>2018-12-16</lastmod>
     
@@ -866,7 +866,7 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/bpm-detection-javascript</loc>
+    <loc>https://jmperezperez.com/implementing-polymer-element</loc>
     
     <lastmod>2018-12-16</lastmod>
     
@@ -875,7 +875,7 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/implementing-polymer-element</loc>
+    <loc>https://jmperezperez.com/bpm-detection-javascript</loc>
     
     <lastmod>2018-12-16</lastmod>
     
@@ -1127,6 +1127,69 @@
 
   
   <url>
+    <loc>https://jmperezperez.com/tags/book/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/tags/seo/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/tags/google/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/tags/optimization/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/tags/anti-patterns/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/tags/java/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/tags/patterns/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/tags/google-page-speed/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/tags/images/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jmperezperez.com/tags/flush/</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -1176,13 +1239,6 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/tags/optimization/</loc>
-    <lastmod>2021-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jmperezperez.com/tags/geolocation/</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -1191,13 +1247,6 @@
   
   <url>
     <loc>https://jmperezperez.com/tags/maps/</loc>
-    <lastmod>2021-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/tags/google/</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1267,55 +1316,6 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/tags/book/</loc>
-    <lastmod>2021-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/tags/seo/</loc>
-    <lastmod>2021-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/tags/anti-patterns/</loc>
-    <lastmod>2021-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/tags/java/</loc>
-    <lastmod>2021-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/tags/patterns/</loc>
-    <lastmod>2021-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/tags/google-page-speed/</loc>
-    <lastmod>2021-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/tags/images/</loc>
-    <lastmod>2021-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jmperezperez.com/tags/bootloader/</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -1344,6 +1344,13 @@
   </url>
   
   <url>
+    <loc>https://jmperezperez.com/tags/razor/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jmperezperez.com/tags/signum-framework/</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -1352,13 +1359,6 @@
   
   <url>
     <loc>https://jmperezperez.com/tags/signum-software/</loc>
-    <lastmod>2021-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jmperezperez.com/tags/razor/</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1505,14 +1505,14 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/tags/suecia/</loc>
+    <loc>https://jmperezperez.com/tags/cross-platform/</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/tags/cross-platform/</loc>
+    <loc>https://jmperezperez.com/tags/suecia/</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1673,13 +1673,6 @@
   </url>
   
   <url>
-    <loc>https://jmperezperez.com/tags/bpm/</loc>
-    <lastmod>2021-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jmperezperez.com/tags/web-components/</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -1688,6 +1681,13 @@
   
   <url>
     <loc>https://jmperezperez.com/tags/polymer/</loc>
+    <lastmod>2021-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jmperezperez.com/tags/bpm/</loc>
     <lastmod>2021-12-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

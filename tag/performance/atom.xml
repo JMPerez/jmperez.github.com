@@ -5,7 +5,7 @@
   <link href="/tag/performance/atom.xml" rel="self"/>
   
   <link href="https://jmperezperez.com/"/>
-  <updated>2021-12-14T11:39:25.603Z</updated>
+  <updated>2021-12-14T16:26:36.108Z</updated>
   <id>https://jmperezperez.com/</id>
   
   <author>
@@ -20,11 +20,17 @@
     <link href="https://jmperezperez.com//assess-performance-impact"/>
     <id>https://jmperezperez.com//assess-performance-impact</id>
     <published>2020-03-14T06:15:00.000Z</published>
-    <updated>2021-12-14T11:39:25.603Z</updated>
+    <updated>2021-12-14T16:26:36.108Z</updated>
     
     <content type="html"><![CDATA[<p>Web Performance is important for user experience and business metrics. Estimating its impact is key to be able to prioritize it, yet it’s difficult to quantify its benefits until the work has been done.</p>
-<div style="position:relative;padding-bottom:39.6285%;margin-bottom:1rem">
-  <img src="/assets/images/posts/assess-performance-impact/performance-is-money.svg" alt="" style="position:absolute;top:0;left:0">
+<div style="position:relative;padding-bottom:39.65%;margin-bottom:1rem">
+<img
+    loading="lazy"
+    style="max-width:100%; border: 0;position:absolute;top:0;left:0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1584188336/assess-performance-impact/performance-is-money.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1584188336/assess-performance-impact/performance-is-money.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1584188336/assess-performance-impact/performance-is-money.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1584188336/assess-performance-impact/performance-is-money.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584188336/assess-performance-impact/performance-is-money.png"
+    alt="" />
 </div>
 
 <p>We need to break this chicken-and-egg loop. This post explains several ways of assessing the potential performance gains with little effort and, more importantly, without actually implementing fixes.</p>
@@ -1986,9 +1992,9 @@ Javascript or search engine bots (keeping SEO and accessibility).</p>
     </summary>
     
     
-      <category term="flush" scheme="https://jmperezperez.com/tags/flush/"/>
-    
       <category term="optimization" scheme="https://jmperezperez.com/tags/optimization/"/>
+    
+      <category term="flush" scheme="https://jmperezperez.com/tags/flush/"/>
     
       <category term="bigpipe" scheme="https://jmperezperez.com/tags/bigpipe/"/>
     

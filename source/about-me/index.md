@@ -20,7 +20,7 @@ I am a Software Engineer who likes web development and performance optimization.
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1529411366/jose-perez-pitercss_fa1qly.jpg"
     alt="José M. Pérez at PiterCSS frontend conference." />
 </div>
-<small class="caption">Q&amp;A with Vitaly Friedman after talking at [PiterCSS 2018](https://pitercss.com/) ([source](https://www.instagram.com/p/Bj0RVZGAvtw/))</small>
+<small class="caption">Q&amp;A with Vitaly Friedman after talking at <a href="https://pitercss.com/">PiterCSS 2018</a>) (<a href="https://www.instagram.com/p/Bj0RVZGAvtw/">source</a>)</small>
 
 I believe in the openness of the web and that everyone has the right to enjoy and access its content. I like working with companies to improve their sites, ensuring they load quickly regardless of device and network conditions. From the initial developing process to auditing and analysis.
 

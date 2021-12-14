@@ -8,7 +8,6 @@ subtitle: Web development, performance, and some other good practices.
 description: I am a software engineer who loves web development. Speaker and open-source contributor.
 author: Jose M. Perez
 language: en
-? timezone
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'

@@ -15,7 +15,7 @@ tags:
 Web Performance is important for user experience and business metrics. Estimating its impact is key to be able to prioritize it, yet it's difficult to quantify its benefits until the work has been done.
 
 <div style="position:relative;padding-bottom:39.6285%;margin-bottom:1rem">
-  <img src="/assets/images/posts/assess-performance-impact/performance-is-money.svg" alt="" style="position:absolute;top:0;left:0">
+  <img src="/assets/images/posts/assess-performance-impact/performance-is-money.png" alt="" style="position:absolute;top:0;left:0">
 </div>
 
 We need to break this chicken-and-egg loop. This post explains several ways of assessing the potential performance gains with little effort and, more importantly, without actually implementing fixes.
@@ -60,8 +60,9 @@ The idea is that **if we can prove that users having a better web performance ar
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584185288/assess-performance-impact/assess-performance-impact_simplified-first-paint-cr_obhsnn.png"
     alt="Plotting Conversion Rate for each First Paint Category (good, average, slow)" />
 </div>
-<figcaption>Plotting Conversion Rate for each First Paint Category (good, average, slow) ([source](https://simplified.dev/performance/impact-of-web-performance))</figcaption>
+<figcaption>Plotting Conversion Rate for each First Paint Category (good, average, slow) (<a href="https://simplified.dev/performance/impact-of-web-performance">source</a>)</figcaption>
 </figure>
+
 One could wonder if users having a better performance and spending more because they are using better devices (ie the latest iPhone), which have better CPUs and their users have likely a higher purchase power.
 
 <figure>
@@ -74,7 +75,7 @@ One could wonder if users having a better performance and spending more because 
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584185288/assess-performance-impact/assess-performance-impact_simplified-iphone8-dollar-per-session_zdvrlm.png"
     alt="Plotting Revenue per session for a specific device (iPhone 8) depending on FPS after click" />
 </div>
-<figcaption>Plotting Revenue per session for a specific device (iPhone 8) depending on FPS after click ([source](https://simplified.dev/performance/impact-of-web-performance))</figcaption>
+<figcaption>Plotting Revenue per session for a specific device (iPhone 8) depending on FPS after click (<a href="https://simplified.dev/performance/impact-of-web-performance">source</a>)</figcaption>
 </figure>
 
 Using Google Analytics you can see what type of device the user is using and plot results by specific models to get an answer.
@@ -106,6 +107,7 @@ In this case the Rel mCvR is 40%.
 
 Google says that **a good target for Rel mCvR is 70%**, meaning that mobile conversion rates are 30% lower than desktop. The reason why Rel mCvR can be a good metric is that it is not influenced by changes in traffic (eg seasonality or promotional campaigns). The following diagram explains it in more detail:
 
+<figure>
 <div style="position:relative;padding-bottom:50.1462%">
 <img
     loading="lazy"
@@ -115,7 +117,7 @@ Google says that **a good target for Rel mCvR is 70%**, meaning that mobile conv
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584185288/assess-performance-impact/assess-performance-impact_rel-mcvr_jgbeqo.png"
     alt="Explanation of Relative mobile conversion rate and its components" />
 </div>
-<figcaption>Explanation of Relative mobile conversion rate and its components ([source](https://www.blog.google/products/marketingplatform/analytics/mobile-challenge-and-how-measure-it/))</figcaption>
+<figcaption>Explanation of Relative mobile conversion rate and its components (<a href="https://www.blog.google/products/marketingplatform/analytics/mobile-challenge-and-how-measure-it/">source</a>)</figcaption>
 </figure>
 
 Note that Rel mCvR is influenced by UX too, since a bad UX on mobile will hurt mobile conversion rates. **You should use [Lighthouse](https://web.dev/measure) or [WebPageTest](https://www.webpagetest.org/) to ensure that there are performance issues and speed is the main contributor in Rel mCvR, and not usability.**
@@ -139,7 +141,7 @@ Google has [a handy microsite called Test My Site](https://www.thinkwithgoogle.c
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584185288/assess-performance-impact/assess-performance-impact_test-my-site_yxsqan.png"
     alt="Screenshot of Google's Test My Site page" /></a>
 </div>
-<figcaption>Screenshot of [Google's Test My Site page](https://www.thinkwithgoogle.com/feature/testmysite/)</figcaption>
+<figcaption>Screenshot of <a href="https://www.thinkwithgoogle.com/feature/testmysite/">Google's Test My Site page</a></figcaption>
 </figure>
 
 To calculate the potential increase in revenue you only need to provide your average monthly visitors, conversion rate, and average order value.
@@ -154,7 +156,7 @@ To calculate the potential increase in revenue you only need to provide your ave
     src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584185288/assess-performance-impact/assess-performance-impact_test-my-site-potential-revenue_meu5vx.png"
     alt="Calculating potential increase in annual revenue using Google's Test My Site" /></a>
 </div>
-<figcaption>Calculating potential increase in annual revenue using [Google's Test My Site page](https://www.thinkwithgoogle.com/feature/testmysite/)</figcaption>
+<figcaption>Calculating potential increase in annual revenue using <a href="https://www.thinkwithgoogle.com/feature/testmysite/">Google's Test My Site page</a></figcaption>
 </figure>
 
 Behind the scenes it is powered by data from the Chrome User Experience report database or HTTP Archive, which contains performance metrics gathered from real users that have visited your site (if you are interested in this data I recommend checking [CRUX.RUN](https://crux.run/)). It also uses Lighthouse to calculate the potential savings in loading time.

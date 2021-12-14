@@ -10,7 +10,6 @@
 </div>
 <div class="row posts-list">
  {% for post in page.posts %}
-  {% if post.lang == 'en' %}
    <div class="wrapper">
      <div class="post">
        <a href="{{ url_for(post.path) }}">
@@ -24,7 +23,6 @@
       {% endif %}
      </div>
    </div>
-  {% endif %}
   {% endfor %}
   {{ partial('_partial/pagination')}}
 </div>

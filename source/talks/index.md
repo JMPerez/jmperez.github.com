@@ -53,7 +53,7 @@ Here you can find a list of my talks at web conferences and local meetups. You c
     <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1542607868/speaking/gdg-stockholm.png">
   </div>
 </a>
-**[Google Developer Group May 2019 — Stockholm, , SWE](https://noti.st/jmperez/nErUWP/finding-web-performance-issues-you-didnt-know-you-had)**<br/>
+<strong><a href="https://noti.st/jmperez/nErUWP/finding-web-performance-issues-you-didnt-know-you-had">Google Developer Group May 2019 — Stockholm, SWE</a></strong><br/>
 Finding web performance issues you didn’t know you had<br/>
 May 2019
 </li>
@@ -63,7 +63,7 @@ May 2019
     <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1543704714/speaking/codemotion-madrid-2018.jpg">
   </div>
 </a>
-**[Codemotion — Madrid, SPA](https://noti.st/jmperez/bSkEUc/better-performance-for-component-based-web-apps)**<br/>
+<strong><a href="https://noti.st/jmperez/bSkEUc/better-performance-for-component-based-web-apps">Codemotion — Madrid, SPA</a></strong><br/>
 Better performance for component-based web apps<br/>
 Nov 2018
 </li>
@@ -73,8 +73,7 @@ Nov 2018
       <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1542607868/speaking/gdg-stockholm.png">
     </div>
   </a>
-**[Google Developer Group Nov. 2018 — Stockholm, SWE](https://www.meetup.com/Stockholm-Google-Developer-Group/events/255690962/)**<br/>
-Better performance for component-based web apps<br/>
+  <strong><a href="https://www.meetup.com/Stockholm-Google-Developer-Group/events/255690962/">Google Developer Group Nov. 2018 — Stockholm, SWE</a></strong><br/>
 Nov 2018
 </li>
 <li>
@@ -83,8 +82,7 @@ Nov 2018
       <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1542536510/speaking/reactjs-stockholm.jpg">
     </div>
   </a>
-**[ReactJS Meetup — Stockholm, SWE](https://www.meetup.com/Stockholm-ReactJS-Meetup/events/253918039/)**<br/>
-Increase the Performance of your Site with Lazy-Loading and Code-Splitting<br/>
+    <strong><a href="https://www.meetup.com/Stockholm-ReactJS-Meetup/events/253918039/">Increase the Performance of your Site with Lazy-Loading and Code-Splitting</a></strong><br/>
 Sep 2018
 </li>
 <li>
@@ -93,8 +91,7 @@ Sep 2018
       <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1529907011/speaking/pitercss-2018.jpg">
     </div>
   </a>
-**[PiterCSS — St. Petersburg, RUS](/pitercss-2018/)**<br/>
-Fostering a Web Performance Culture<br/>
+      <strong><a href="/pitercss-2018/">Fostering a Web Performance Culture</a></strong><br/>
 Jun 2018
 </li>
 <li>
@@ -104,7 +101,7 @@ Jun 2018
     <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1511851846/speaking/frontfest-moscow.jpg">
   </div>
 </a>
-**[FrontFest — Moscow, RUS](/frontfest-moscow-2017/)**<br/>
+      <strong><a href="/frontfest-moscow-2017/">FrontFest — Moscow, RUS</a></strong><br/>
 Progressive Image Rendering<br/>
 Nov 2017
 </li><li>
@@ -114,7 +111,7 @@ Nov 2017
     <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1511851918/speaking/alicante-frontend.jpg">
   </div>
 </a>
-**[Alicante Frontend — Alicante, SPA](/speaking-alicante-frontend/)**<br/>
+      <strong><a href="/speaking-alicante-frontend/">Alicante Frontend — Alicante, ESP</a></strong><br/>
 Cargando imágenes de una forma óptima<br/>
 Sep 2017
 </li>
@@ -124,7 +121,7 @@ Sep 2017
     <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1511851846/speaking/jsdayes-madrid.jpg">
   </div>
   </a>
-**[JSDayES — Madrid, SPA](/jsdayes-madrid-2017/)**<br/>
+        <strong><a href="/jsdayes-madrid-2017/">JSDayES — Madrid, ESP</a></strong><br/>
 Progressive Image Rendering<br/>
 May 2017
 </li><li>
@@ -132,7 +129,7 @@ May 2017
 <div class="intrinsic-ratio">
   <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1511852554/speaking/renderconf-oxford.jpg">
 </div></a>
-**[RenderConf — Oxford, UK](/render-conf-oxford-2017/)**<br/>
+        <strong><a href="/render-conf-oxford-2017/">RenderConf — Oxford, UK</a></strong><br/>
 Progressive Image Rendering<br/>
 Mar 2017
 </li><li>
@@ -140,7 +137,7 @@ Mar 2017
 <div class="intrinsic-ratio">
   <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1512145736/speaking/cssconf16.jpg">
 </div></a>
-**[CSSConfAU — Melbourne, AUS](/cssconf-au-2016/)**<br/>
+        <strong><a href="/cssconf-au-2016/">CSSConfAU — Melbourne, AUS</a></strong><br/>
 Progressive Image Rendering<br/>
 Dec 2016
 </li><li>
@@ -148,7 +145,7 @@ Dec 2016
 <div class="intrinsic-ratio">
   <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1512145730/speaking/stockholm-web-performance-group.png">
 </div></a>
-**[Stockholm Web Performance Group — Stockholm, SWE](https://www.meetup.com/Stockholm-Web-Performance-Group/events/234796510/)**<br/>
+        <strong><a href="https://www.meetup.com/Stockholm-Web-Performance-Group/events/234796510/">Stockholm Web Performance Group — Stockholm, SWE</a></strong><br/>
 Progressive Image Rendering<br/>
 Nov 2016
 </li><li>
@@ -157,7 +154,7 @@ Nov 2016
   <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1512147305/speaking/spainjs-2013.jpg">
 </div>
 </a>
-**[SpainJS — Madrid, SPA](/spain-js-2013/)**<br/>
+        <strong><a href="/spain-js-2013/">SpainJS — Madrid, ESP</a></strong><br/>
 Cross platform web app development<br/>
 Jul 2013
 </li><li>
@@ -165,7 +162,7 @@ Jul 2013
 <div class="intrinsic-ratio">
   <img src="https://res.cloudinary.com/jmperez/image/upload/w_auto,f_auto,c_scale,w_630/v1512147128/speaking/mlocjs-2013.png">
 </div></a>
-**[Mloc.js — Budapest, HUN](/mlocjs-conference-budapest/)**<br/>
+        <strong><a href="/mlocjs-conference-budapest/">Mloc.js — Budapest, HUN</a></strong><br/>
 X-platform web dev in Spotify<br/>
 Feb 2013
 </li></ul>

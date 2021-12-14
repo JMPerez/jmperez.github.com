@@ -1,0 +1,906 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://jmperezperez.com//pwas-on-desktop" >
+    <title>What PWAs for Desktop means for Users and Developers - Web development, performance, and some other good practices.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="What PWAs for Desktop means for Users and Developers - José M. Pérez" property="og:title">
+		<meta name="twitter:description" content="Progressive Web Apps for desktop fills an important gap for the web. Native apps might not be worth thanks to the new capabilities of the web" property="og:description">
+		<meta name="twitter:site" content="@jmperezperez">
+		
+		<meta property="og:image" content="https://jmperezperez.com/assets/images/posts/spotify-pwa.jpg">
+		<meta name="twitter:image" content="https://jmperezperez.com/assets/images/posts/spotify-pwa.jpg">
+		
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    
+    <script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
+		
+
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "What PWAs for Desktop means for Users and Developers",
+			
+			"description": "Progressive Web Apps for desktop fills an important gap for the web. Native apps might not be worth thanks to the new capabilities of the web",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"/pwas-on-desktop"
+			},
+			"datePublished": "2019-03-19T07:15:00.000Z",
+			"dateModified": "2021-12-14T07:52:53.543Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1552998597/spotify-pwa-mac_szshj0.png",
+				"width" : "700",
+				"height" : "535"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Jose M. Perez"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Jose M. Perez&#39;s Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "https://jmperezperez.com/amp-dist/logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	<style amp-custom>
+		
+			/*--RESET--*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+input,
+button {
+  background: none;
+}
+
+html {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/*--BODY--*/
+
+body {
+  background: #fff;
+  color: #555;
+  font-family: Georgia, Times;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%; /* fixes a too large font issue in horizontally scrollable <pre> on webkit */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #212121;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+#menu a,
+.button {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+p,
+.post ul,
+.post ol,
+iframe,
+video,
+amp-video,
+amp-vimeo,
+amp-youtube {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+twitterwidget {
+  margin-bottom: 1em ;
+}
+
+a {
+  color: #2a7cb2;
+  font-weight: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease-out, border-bottom-color 0.15s ease-out;
+}
+
+a:hover {
+  color: #2a7cb2;
+}
+
+abbr {
+  border-bottom: 1px dashed #ccc;
+  text-decoration: none;
+}
+
+p a {
+  border-bottom: 1px solid #eee;
+}
+
+p a:hover {
+  border-bottom-color: #212121;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 1.7rem;
+}
+
+h2 {
+  color: #444;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h3 {
+  color: #666;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h4 {
+  font-size: 1.18rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+a h1,
+a h2,
+a h3,
+a h4,
+a h5 {
+  transition: color 0.15s ease-out;
+}
+
+a:hover h1,
+a:hover h2,
+a:hover h3,
+a:hover h4,
+a:hover h5 {
+  color: #3498db;
+}
+
+.quote {
+  margin: 0 0 15px 0;
+}
+
+blockquote {
+  border-left: 2px solid #ccc;
+  font-style: italic;
+  margin: 0 0 15px 0;
+  padding-left: 20px;
+}
+
+ul,
+ol {
+  margin: 0 0 15px 0;
+  padding-left: 25px;
+}
+
+ul {
+  list-style: square;
+}
+
+ol {
+  list-style: decimal;
+}
+
+hr {
+  background: #eee;
+  color: #eee;
+  clear: both;
+  display: block;
+  height: 2px;
+  margin: 30px auto;
+  width: 50%;
+}
+
+pre,
+code {
+  color: #333;
+  font-family: Courier, Menlo, Monaco;
+  font-size: 0.8em;
+  letter-spacing: 0px;
+  overflow-x: auto;
+}
+
+pre {
+  padding: 0.8em 1em;
+  white-space: pre-wrap;
+}
+
+code {
+  margin: 0;
+}
+
+/*--CLEARFIXES--*/
+
+.post::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+/*--HEADER--*/
+
+.main-header {
+  background-color: #005689;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+/*--MENU--*/
+
+#menu {
+  display: inline-block;
+  line-height: 2rem;
+}
+
+#menu a {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  padding: 1rem 0.5rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 500px) {
+  #menu a {
+    margin-left: 0.5rem;
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+#menu a:first-child {
+  margin-left: 0;
+}
+
+#menu a[aria-current] {
+  font-weight: bold;
+}
+
+/*--PAGE--*/
+
+#page {
+  margin: 0 auto;
+  max-width: 41rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+.videoWrapper {
+  height: 0;
+  margin-bottom: 1em;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  position: relative;
+}
+
+.videoWrapper iframe,
+.videoWrapper amp-youtube {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/*--WRAPPER--*/
+
+.wrapper {
+  border-top: 2px solid #eee;
+  padding-top: 2rem;
+}
+
+.wrapper:first-child {
+  border-top: none;
+  padding-top: 1rem;
+}
+
+.posts-list h2 {
+  margin-top: 0;
+}
+
+/*--POSTS--*/
+
+.post {
+  display: block;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.post div[itemprop="articleBody"] > p:first-child {
+  color: #333;
+}
+
+.post li {
+  margin-bottom: 0.5rem;
+}
+
+.post p + img {
+  margin-bottom: 1rem;
+}
+
+.post p img {
+  border: 1px solid #eee;
+  display: block;
+  max-width: 100%;
+}
+
+.post img + .caption,
+.post img + figcaption {
+  padding-top: 0.5rem;
+}
+
+.post .svg-container {
+  margin-bottom: 5%;
+  max-width: 100%;
+  text-align: center;
+}
+
+figure {
+  padding-bottom: 1em;
+}
+
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+.post .svg-container object {
+  width: 100%;
+}
+
+.tag-list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+.tag-list-item {
+  display: inline-block;
+  margin-left: 0.8em;
+}
+
+/*--PAGINATION--*/
+
+.pagination {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.pagination a {
+  min-width: 30px;
+  max-height: 30px;
+  text-align: center;
+}
+
+/*--FOOTER--*/
+
+footer {
+  border-top: 1px dashed #ddd;
+  padding: 2em;
+  text-align: center;
+}
+
+.timing-stats {
+  font-size: 0.7em;
+  padding: 0.35em;
+}
+
+/*--BUTTONS--*/
+
+.button {
+  background-color: #fff;
+  border: 1px solid #555;
+  border-radius: 2rem;
+  color: #555;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s ease-out;
+}
+
+.button:hover {
+  background-color: #3498db;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.inactive {
+  background-color: #ccc;
+  color: #fff;
+}
+
+/*--404--*/
+.search-goog input {
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+
+.search-goog input[type="submit"] {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /*--PAGE--*/
+
+  #page,
+  .wrapper {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /*--WRAPPER--*/
+
+  .wrapper {
+    padding-top: 2rem;
+  }
+
+  .wraper::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+
+/*--ACCESSIBILITY--*/
+.outscreen {
+  height: 1px;
+  left: -1000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+/*--CALLOUT--*/
+.callout {
+  border: 1px solid #eee;
+  border-left-color: #777;
+  border-left-width: 5px;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.author {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.author .name {
+  line-height: 1rem;
+  padding-top: 0.5rem;
+}
+
+.media,
+.bd {
+  overflow: hidden;
+  _overflow: visible;
+  
+}
+
+.media .img {
+  float: left;
+}
+
+.avatar-img {
+  border-radius: 100%;
+  height: 3rem;
+  margin-right: 0.5rem;
+  width: 3rem;
+}
+
+/* SYNTAX HIGHLIGHTING */
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #393a34;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier,
+    monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 0.85em;
+  line-height: 1.2em;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
+  background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+  background: #b3d4fc;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: 0.2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999988;
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.string,
+.token.attr-value {
+  color: #e3116c;
+}
+.token.punctuation,
+.token.operator {
+  color: #393a34; /* no highlight */
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted {
+  color: #005cc5;
+}
+
+.token.keyword {
+  color: #d73a49;
+}
+
+.token.atrule,
+.token.attr-name {
+  color: #6f42c1;
+}
+
+.token.function,
+.token.deleted {
+  color: #6f42c1;
+}
+
+.token.selector {
+  color: #00009f;
+}
+
+.token.tag {
+  color: #22863a;
+}
+
+.token.class-name {
+  color: #6f42c1;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.caption,
+figcaption {
+  display: block;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.codepen-aspect-ratio > iframe {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.twitter-tweet {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.twitter-tweet::after {
+  content: "";
+  display: block;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.me {
+  max-width: 22rem;
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
+.me > div {
+  height: 8rem;
+  margin: 0 auto;
+  position: relative;
+  width: 8rem;
+}
+
+.me svg {
+  border-radius: 100%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.me img {
+  border-radius: 100%;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.me h1 {
+  font-size: 1.7rem;
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.read-next {
+  background-color: #fdf6ea;
+  margin: 2rem 0;
+  padding: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #38444c;
+    color: #eee;
+  }
+  a {
+    color: #9dcae8;
+  }
+  a:hover {
+    color: #fff;
+  }
+  p a {
+    border-bottom: 1px solid #6d7a82;
+  }
+  p a:hover {
+    border-bottom: 1px solid #fff;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #eee;
+  }
+  a:hover h1,
+  a:hover h2,
+  a:hover h3,
+  a:hover h4,
+  a:hover h5 {
+    color: #4b89b1;
+  }
+  .button:hover {
+    background-color: #4b89b1;
+  }
+  code,
+  pre {
+    color: #ddd;
+  }
+  .main-header {
+    background-color: #4b89b1;
+  }
+  .read-next {
+    background-color: #020915;
+  }
+}
+
+.amp-img-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+#hexo-amp-id-1{position:relative;padding-bottom:76.47%;margin-bottom:1rem}#hexo-amp-id-2{position:relative;padding-bottom:75%;margin-bottom:1rem}
+		
+		amp-iframe {
+			margin-bottom: 10px;
+		}
+	</style>
+  </head>
+  <body>
+
+  	<!-- google analytics -->
+  	
+
+  <header class="main-header">
+      <nav id="menu">
+          <a href="/">JMPerez Blog</a>
+          <a href="/projects/">Projects</a>
+          <a href="/talks/">Speaking</a>
+          <a href="/about-me/">About</a>
+      </nav>
+  </header>
+
+  <article>
+  	<div class="post">
+	  	<div id="page">
+
+		    <article id="post-2019/2019-03-19-pwas-on-desktop" class="post wrapper">
+
+        <div class="media author">
+          <div class="img">
+            <a href="/about-me/">
+              <amp-img src="/assets/images/jmperez.jpg" class="avatar-img" alt="" height="53" width="53">
+            </a>
+          </div>
+          <div class="bd">
+            <address class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="/about-me/" itemprop="name">José M. Pérez</a></address>
+            <meta class="post-data" itemprop="datePublished" content="2019-03-19T07:15:00.000Z">
+              March 19 2019
+            </meta>
+          </div>
+        </div>
+
+				<!-- entry title -->
+				<header class="entry-header">
+					
+					  <h1 class="article-title entry-title" itemprop="name">
+					    What PWAs for Desktop means for Users and Developers
+					  </h1>
+					
+				</header>
+
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			  		<p>As Progressive Web Apps make their way on desktop I wanted to talk about why I consider this is a breakthrough. I have talked in the past <a href="/shades-of-pwa/">about different uses cases for PWA</a>. In this post I want to focus on PWAs for desktop.</p>
+<div id="hexo-amp-id-1">
+<div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1552998597/spotify-pwa-mac_szshj0.png" width="700" height="535" layout="responsive"></amp-img></div>
+</div>
+
+<p>The current version of Google Chrome stable is Chrome 73. This version <a href="https://twitter.com/rauschma/status/1105599978880331777">lets you install Progressive Web Apps natively on macOS</a>. You can find more information about the release on <a href="https://developers.google.com/web/updates/2019/03/nic73#pwas-everywhere">Pete LePage’s “New in Chrome 73” notes</a>.</p>
+<span id="more"></span>
+
+<p>Wasn’t this possible before? Well, yes. On Chrome 72 the only option was to <a href="https://developers.google.com/web/fundamentals/app-install-banners/#listen_for_beforeinstallprompt">wait for a <code>beforeinstallprompt</code> event</a> to then show some button on your page to let the user install the website as a PWA. Since version 73 users can install the PWA directly from Chrome’s context menu.</p>
+<p>Now, going back to why this is a milestone. <a href="https://twitter.com/jmperezperez/status/1107565909906997250">I recently tweeted about how to install Spotify’s web player as a PWA</a> using Chrome’s context menu.</p>
+<p>I got this great question:</p>
+<amp-twitter data-tweetid="1107782132791947271" width="800" height="600" layout="responsive"></amp-twitter>
+
+
+<h2 id="Understanding-What-to-Optimize-for"><a href="#Understanding-What-to-Optimize-for" class="headerlink" title="Understanding What to Optimize for"></a>Understanding What to Optimize for</h2><p>If you are working on a new website you will see that PWAs for desktop is a nice addition to your site. Users who want to run it as a desktop app can do it. This has some obvious benefits, nicely summarized on <a href="https://developers.google.com/web/progressive-web-apps/desktop">Pete LePage’s “Desktop Progressive Web Apps” article</a>:</p>
+<blockquote>
+<p>They’re fast. Feel integrated because they launched in the same way as other apps, and run in an app window, without an address bar or tabs. They’re reliable because service workers can cache all of the assets they need to run. And they create an engaging experience for users.</p>
+</blockquote>
+<p>If you have been working on a project that was a desktop app, the question can be the opposite: <strong>“What benefit does a desktop app gives you vs the website?”</strong>. We have seen this battle over and over again on the mobile landscape, with apps vs mobile web. The main advantage of an app is its discoverability, through the Play Store / App Store, but more than that is the presence on your home screen. When you install the app on your phone it’s there on your grid of apps. You will see the icon easily and you will open it with just a tap. You might get notifications if you opt-in, which will be a good way for the app owner to let you re-engage with you. Doing this on the web is possible, but more difficult. The discoverability is less straightforward. Knowing that a web site can be installed is not that obvious.</p>
+<p>Discoverability is great, but companies look at other important metrics that installable apps excel at against the web: <strong>retention and engagement</strong>. If you have a shortcut to an app on your home screen you will be more likely to use the app than if you don’t have it. Same thing if you get push notifications. And in the case of Spotify’s desktop application you will even get the app open automatically when you start your computer. It’s difficult not to engage with it.</p>
+<p>For services with both app and website there is also another aspect that is usually disregarded. Users that have downloaded and installed your app have higher intention of using the app than those that only only the web version. It’s natural to think that the end goal is to take users to the platform that has better metrics, so the web is usually seen as a place to put banners and modals that beg the user to install the app.</p>
+<p>What is ignored is that in the way towards the installable app <strong>there will be many users abandoning because they don’t want to, or can’t, download and install the app</strong>.</p>
+<p>Retention and engagement was one of the reasons why Spotify keeps developing a desktop application, but also capabilities. A desktop application allowed performant music streaming in the days when network was the bottleneck. It also let premium users download music to be played offline. And it also had a much better integration with the operating system (eg adding custom buttons to the Touch Bar on MacOS, or custom taskbar buttons on Windows).</p>
+<div id="hexo-amp-id-2">
+<div class="amp-img-wrapper"><amp-img src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1552998304/spotify-mac-touch-bar_q7ywci.jpg" width="700" height="525" layout="responsive"></amp-img></div>
+</div>
+
+<h2 id="What-the-Web-can-Do"><a href="#What-the-Web-can-Do" class="headerlink" title="What the Web can Do"></a>What the Web can Do</h2><p>The web has been ticking off most of these. Take for instance offline capabilities with encrypted content which <a href="https://www.youtube.com/watch?v=--KA2VrPDao">Paul Lewis explained how to implement two years ago</a>.</p>
+<p>For companies that currently have 2 implementations of their service, one as an app and another as a website, the question should be “is the cost of developing 2 different versions of the same thing worth it?”. And in most cases PWA for desktop means that, at least on desktop, there is no strong advantage in having the overhead of developing multiple versions. This is especially true in the case that the code base of these versions differs greatly, as in the case of Spotify’s desktop app and web player.</p>
+<p>The web has also a couple of great benefits over a hybrid app on desktop. Push notifications encourage users to go back to your site even if it’s not open currently on a browser. And more importantly, the web makes it extremely easy to deliver feature updates and fixes (bug fixes, security fixes, code roll backs). No need to go through release cycles nor app store approvals. Having every user on the latest version is a great perk that should be more appreciated.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>As I wanted to highlight, for the user the good news is that there are no news. They can install a PWA as a desktop application and won’t miss any “truly desktop app” capabilities. For a company, though, this can save a lot of duplicated work, help their developers move faster and deliver the best experience for the user regardless of their device.</p>
+<p>Because the web was always great for this.</p>
+
+			  	</div>
+
+		  	</article>
+		</div>
+    <footer>
+        <section class="links">
+            <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter · <a href="https://github.com/JMPerez">GitHub</a> · <a href="http://www.linkedin.com/in/jmperezperez">LinkedIn</a>
+        </section>
+    </footer>
+
+	</div>
+  </article>
+
+  </body>
+</html>

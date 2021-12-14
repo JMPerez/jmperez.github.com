@@ -1,0 +1,910 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://jmperezperez.com//jpegoptim-optimize-jpg-page-speed" >
+    <title>Optimizing images for web with Google Page Speed and jpegoptim - Web development, performance, and some other good practices.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="Optimizing images for web with Google Page Speed and jpegoptim - José M. Pérez" property="og:title">
+		
+		<meta name="twitter:site" content="@jmperezperez">
+		
+		<meta property="og:image" content="https://res.cloudinary.com/jmperez/image/upload/f_auto,c_scale/v1519156883/profile_ysrm5y.jpg">
+		<meta name="twitter:image" content="https://res.cloudinary.com/jmperez/image/upload/f_auto,c_scale/v1519156883/profile_ysrm5y.jpg">
+		
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    
+
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "Optimizing images for web with Google Page Speed and jpegoptim",
+			
+			"description": "This post shows a script to recursively optimize a set of JPG files using jpegoptim",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"/jpegoptim-optimize-jpg-page-speed"
+			},
+			"datePublished": "2009-06-27T13:42:44.000Z",
+			"dateModified": "2021-12-14T07:52:53.525Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Jose M. Perez"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Jose M. Perez&#39;s Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "https://jmperezperez.com/amp-dist/logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	<style amp-custom>
+		
+			/*--RESET--*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+input,
+button {
+  background: none;
+}
+
+html {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/*--BODY--*/
+
+body {
+  background: #fff;
+  color: #555;
+  font-family: Georgia, Times;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%; /* fixes a too large font issue in horizontally scrollable <pre> on webkit */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #212121;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+#menu a,
+.button {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+p,
+.post ul,
+.post ol,
+iframe,
+video,
+amp-video,
+amp-vimeo,
+amp-youtube {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+twitterwidget {
+  margin-bottom: 1em ;
+}
+
+a {
+  color: #2a7cb2;
+  font-weight: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease-out, border-bottom-color 0.15s ease-out;
+}
+
+a:hover {
+  color: #2a7cb2;
+}
+
+abbr {
+  border-bottom: 1px dashed #ccc;
+  text-decoration: none;
+}
+
+p a {
+  border-bottom: 1px solid #eee;
+}
+
+p a:hover {
+  border-bottom-color: #212121;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 1.7rem;
+}
+
+h2 {
+  color: #444;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h3 {
+  color: #666;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+h4 {
+  font-size: 1.18rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+a h1,
+a h2,
+a h3,
+a h4,
+a h5 {
+  transition: color 0.15s ease-out;
+}
+
+a:hover h1,
+a:hover h2,
+a:hover h3,
+a:hover h4,
+a:hover h5 {
+  color: #3498db;
+}
+
+.quote {
+  margin: 0 0 15px 0;
+}
+
+blockquote {
+  border-left: 2px solid #ccc;
+  font-style: italic;
+  margin: 0 0 15px 0;
+  padding-left: 20px;
+}
+
+ul,
+ol {
+  margin: 0 0 15px 0;
+  padding-left: 25px;
+}
+
+ul {
+  list-style: square;
+}
+
+ol {
+  list-style: decimal;
+}
+
+hr {
+  background: #eee;
+  color: #eee;
+  clear: both;
+  display: block;
+  height: 2px;
+  margin: 30px auto;
+  width: 50%;
+}
+
+pre,
+code {
+  color: #333;
+  font-family: Courier, Menlo, Monaco;
+  font-size: 0.8em;
+  letter-spacing: 0px;
+  overflow-x: auto;
+}
+
+pre {
+  padding: 0.8em 1em;
+  white-space: pre-wrap;
+}
+
+code {
+  margin: 0;
+}
+
+/*--CLEARFIXES--*/
+
+.post::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+/*--HEADER--*/
+
+.main-header {
+  background-color: #005689;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+/*--MENU--*/
+
+#menu {
+  display: inline-block;
+  line-height: 2rem;
+}
+
+#menu a {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  padding: 1rem 0.5rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 500px) {
+  #menu a {
+    margin-left: 0.5rem;
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+#menu a:first-child {
+  margin-left: 0;
+}
+
+#menu a[aria-current] {
+  font-weight: bold;
+}
+
+/*--PAGE--*/
+
+#page {
+  margin: 0 auto;
+  max-width: 41rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+.videoWrapper {
+  height: 0;
+  margin-bottom: 1em;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  position: relative;
+}
+
+.videoWrapper iframe,
+.videoWrapper amp-youtube {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/*--WRAPPER--*/
+
+.wrapper {
+  border-top: 2px solid #eee;
+  padding-top: 2rem;
+}
+
+.wrapper:first-child {
+  border-top: none;
+  padding-top: 1rem;
+}
+
+.posts-list h2 {
+  margin-top: 0;
+}
+
+/*--POSTS--*/
+
+.post {
+  display: block;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.post div[itemprop="articleBody"] > p:first-child {
+  color: #333;
+}
+
+.post li {
+  margin-bottom: 0.5rem;
+}
+
+.post p + img {
+  margin-bottom: 1rem;
+}
+
+.post p img {
+  border: 1px solid #eee;
+  display: block;
+  max-width: 100%;
+}
+
+.post img + .caption,
+.post img + figcaption {
+  padding-top: 0.5rem;
+}
+
+.post .svg-container {
+  margin-bottom: 5%;
+  max-width: 100%;
+  text-align: center;
+}
+
+figure {
+  padding-bottom: 1em;
+}
+
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+.post .svg-container object {
+  width: 100%;
+}
+
+.tag-list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+.tag-list-item {
+  display: inline-block;
+  margin-left: 0.8em;
+}
+
+/*--PAGINATION--*/
+
+.pagination {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.pagination a {
+  min-width: 30px;
+  max-height: 30px;
+  text-align: center;
+}
+
+/*--FOOTER--*/
+
+footer {
+  border-top: 1px dashed #ddd;
+  padding: 2em;
+  text-align: center;
+}
+
+.timing-stats {
+  font-size: 0.7em;
+  padding: 0.35em;
+}
+
+/*--BUTTONS--*/
+
+.button {
+  background-color: #fff;
+  border: 1px solid #555;
+  border-radius: 2rem;
+  color: #555;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s ease-out;
+}
+
+.button:hover {
+  background-color: #3498db;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.inactive {
+  background-color: #ccc;
+  color: #fff;
+}
+
+/*--404--*/
+.search-goog input {
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+
+.search-goog input[type="submit"] {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /*--PAGE--*/
+
+  #page,
+  .wrapper {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /*--WRAPPER--*/
+
+  .wrapper {
+    padding-top: 2rem;
+  }
+
+  .wraper::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+
+/*--ACCESSIBILITY--*/
+.outscreen {
+  height: 1px;
+  left: -1000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+/*--CALLOUT--*/
+.callout {
+  border: 1px solid #eee;
+  border-left-color: #777;
+  border-left-width: 5px;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.author {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.author .name {
+  line-height: 1rem;
+  padding-top: 0.5rem;
+}
+
+.media,
+.bd {
+  overflow: hidden;
+  _overflow: visible;
+  
+}
+
+.media .img {
+  float: left;
+}
+
+.avatar-img {
+  border-radius: 100%;
+  height: 3rem;
+  margin-right: 0.5rem;
+  width: 3rem;
+}
+
+/* SYNTAX HIGHLIGHTING */
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #393a34;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier,
+    monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 0.85em;
+  line-height: 1.2em;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
+  background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+  background: #b3d4fc;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: 0.2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999988;
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.string,
+.token.attr-value {
+  color: #e3116c;
+}
+.token.punctuation,
+.token.operator {
+  color: #393a34; /* no highlight */
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted {
+  color: #005cc5;
+}
+
+.token.keyword {
+  color: #d73a49;
+}
+
+.token.atrule,
+.token.attr-name {
+  color: #6f42c1;
+}
+
+.token.function,
+.token.deleted {
+  color: #6f42c1;
+}
+
+.token.selector {
+  color: #00009f;
+}
+
+.token.tag {
+  color: #22863a;
+}
+
+.token.class-name {
+  color: #6f42c1;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.caption,
+figcaption {
+  display: block;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.codepen-aspect-ratio > iframe {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.twitter-tweet {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.twitter-tweet::after {
+  content: "";
+  display: block;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.me {
+  max-width: 22rem;
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
+.me > div {
+  height: 8rem;
+  margin: 0 auto;
+  position: relative;
+  width: 8rem;
+}
+
+.me svg {
+  border-radius: 100%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.me img {
+  border-radius: 100%;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.me h1 {
+  font-size: 1.7rem;
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.read-next {
+  background-color: #fdf6ea;
+  margin: 2rem 0;
+  padding: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #38444c;
+    color: #eee;
+  }
+  a {
+    color: #9dcae8;
+  }
+  a:hover {
+    color: #fff;
+  }
+  p a {
+    border-bottom: 1px solid #6d7a82;
+  }
+  p a:hover {
+    border-bottom: 1px solid #fff;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #eee;
+  }
+  a:hover h1,
+  a:hover h2,
+  a:hover h3,
+  a:hover h4,
+  a:hover h5 {
+    color: #4b89b1;
+  }
+  .button:hover {
+    background-color: #4b89b1;
+  }
+  code,
+  pre {
+    color: #ddd;
+  }
+  .main-header {
+    background-color: #4b89b1;
+  }
+  .read-next {
+    background-color: #020915;
+  }
+}
+
+.amp-img-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+		
+		amp-iframe {
+			margin-bottom: 10px;
+		}
+	</style>
+  </head>
+  <body>
+
+  	<!-- google analytics -->
+  	
+
+  <header class="main-header">
+      <nav id="menu">
+          <a href="/">JMPerez Blog</a>
+          <a href="/projects/">Projects</a>
+          <a href="/talks/">Speaking</a>
+          <a href="/about-me/">About</a>
+      </nav>
+  </header>
+
+  <article>
+  	<div class="post">
+	  	<div id="page">
+
+		    <article id="post-2009/2009-06-27-jpegoptim-optimize-jpg-page-speed" class="post wrapper">
+
+        <div class="media author">
+          <div class="img">
+            <a href="/about-me/">
+              <amp-img src="/assets/images/jmperez.jpg" class="avatar-img" alt="" height="53" width="53">
+            </a>
+          </div>
+          <div class="bd">
+            <address class="name" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="/about-me/" itemprop="name">José M. Pérez</a></address>
+            <meta class="post-data" itemprop="datePublished" content="2009-06-27T13:42:44.000Z">
+              June 27 2009
+            </meta>
+          </div>
+        </div>
+
+				<!-- entry title -->
+				<header class="entry-header">
+					
+					  <h1 class="article-title entry-title" itemprop="name">
+					    Optimizing images for web with Google Page Speed and jpegoptim
+					  </h1>
+					
+				</header>
+
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			  		<p>Image optimization is a big topic these days. The main culprit in site traffic are images, and <a href="https://httparchive.org/reports/state-of-the-web">their transfer size is increasing over time</a>.</p>
+<p>You may have wondered how to optimize your images. First, check if there is room for improvement. For that I will be using <a href="https://developers.google.com/speed/">Google Page Speed</a>, which offers several tools for analyzing your site. One of them is a handy <a href="https://developers.google.com/speed/pagespeed/insights/">online analyzer</a>. Type there the name of your site and click to analyze it.</p>
+<!-- more -->
+<p>I like the ‘Optimize images’ section. It tells you what resources can be optimized and how much traffic you can save, both in the mobile version of your site and the one served for desktop:
+<a href="/assets/images/posts/google-pagespeed-insights-report.png"></a></p><div class="amp-img-wrapper"><a href="/assets/images/posts/google-pagespeed-insights-report.png"><amp-img src="/assets/images/posts/google-pagespeed-insights-report-thumb.jpg" width="400" height="436" layout="responsive"></amp-img></a></div>
+<em>Analyzing the analyzer: Here you can see the ‘Optimize images’ section for the Google PageSpeed Insights page. Notice the it reports the optimizable images and how much size you can save.</em>
+<h2 id="Optimizing-your-JPG-images-with-Jpegoptim"><a href="#Optimizing-your-JPG-images-with-Jpegoptim" class="headerlink" title="Optimizing your JPG images with Jpegoptim"></a>Optimizing your JPG images with Jpegoptim</h2><p>The truth is that when you save a JPG image, you don’t know exactly how much compression level you should apply. Sometimes we try different values until we find the best balance between quality and size. Google Page Speed must be using an algorithm that optimizes this relationship, performing a lossless compression to JPG and PNG files.</p>
+<p>As mentioned in the <a href="http://code.google.com/speed/page-speed/docs/payload.html#CompressImages">section on optimization of images</a>, we can use tools like <a href="http://jpegclub.org/">jpegtran</a> and <a href="http://freshmeat.net/projects/jpegoptim/">jpegoptim</a></p>
+<p>You can install jpegoptim in GNU / Linux easily. If you are an Ubuntu user, it is included in the section on Graphics (universe) and simply run:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> jpegoptim
+</code></pre>
+<p>If you want to make the optimization of images across your website, or simply reduce the size of your photo albums, you can run this script, that will recursively scan folders to optimize every JPG file. The files will be overwritten with the optimized version.</p>
+<pre class=" language-bash"><code class="language-bash">optimize<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment">#123;</span>
+  jpegoptim *.jpg --strip-all
+  <span class="token keyword">for</span> i <span class="token keyword">in</span> *
+  <span class="token keyword">do</span>
+    <span class="token keyword">if</span> <span class="token function">test</span> -d <span class="token variable">$i</span>
+    <span class="token keyword">then</span>
+      <span class="token function">cd</span> <span class="token variable">$i</span>
+      <span class="token keyword">echo</span> <span class="token variable">$i</span>
+      optimize
+      <span class="token function">cd</span> <span class="token punctuation">..</span>
+    <span class="token keyword">fi</span>
+  <span class="token keyword">done</span>
+  <span class="token keyword">echo</span>
+<span class="token operator">&amp;</span><span class="token comment">#125;</span>
+optimize
+</code></pre>
+<p>This script uses the option <code>--strip-all</code> to strip out the text information contained in the file (comments and EXIF data) that are not necessary on web images (for your own pictures you’d better keep them).</p>
+<p>If you are interested in image optimization, I recommend you having a look at:</p>
+<h2 id="Other-tools-for-optimizing-images"><a href="#Other-tools-for-optimizing-images" class="headerlink" title="Other tools for optimizing images"></a>Other tools for optimizing images</h2><p>I have been using image optimization actively for a long time. Depending on your needs, I recommend you one of these methods:</p>
+<ul>
+<li><strong>Optimization of a few files through a desktop app (on Mac)</strong>: Use <a href="http://imageoptim.com/">ImageOptim</a>. Drag and drop JPG and PNG files and you are goo to go.</li>
+<li><strong>Optimization of images on Wordpress</strong>: Use <a href="http://wordpress.org/plugins/wp-smushit/">Smush.it</a>. It optimizes uploaded images automatically, and you can also run the plug-in against the existing images. Check out <a href="https://10web.io/blog/the-best-image-optimization-solutions-in-wordpress/">Best Image Optimization Plugins for WordPress</a> to read about different options to optimize images on this platform.</li>
+<li><strong>Optimizing PNG files using lossy compression</strong>: Use <a href="https://tinypng.com/">TinyPNG</a>. It can reduce PNG images size a lot, but double check the result before, since sometimes you can notice the difference in the colours.</li>
+<li><strong>Best Image Optimization Plugins for WordPress</strong>: Read <a href="https://10web.io/blog/the-best-image-optimization-solutions-in-wordpress/">this article</a> that<h2 id="Read-also"><a href="#Read-also" class="headerlink" title="Read also"></a>Read also</h2></li>
+</ul>
+<p>I wrote a post about <a href="/image-optimization-lossy-lossless-techniques/">Image optimization: Lossy, lossless and other techniques</a> in which I explain some tools and considerations when compressing images.</p>
+
+			  	</div>
+
+		  	</article>
+		</div>
+    <footer>
+        <section class="links">
+            <a href="https://twitter.com/jmperezperez">@jmperezperez</a> on Twitter · <a href="https://github.com/JMPerez">GitHub</a> · <a href="http://www.linkedin.com/in/jmperezperez">LinkedIn</a>
+        </section>
+    </footer>
+
+	</div>
+  </article>
+
+  </body>
+</html>

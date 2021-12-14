@@ -7,7 +7,6 @@
   {% set title = page.title or "Full-stack Engineer and Web Performance Expert" %}
   <title>{{ title }} - José M. Pérez</title>
   <link rel="dns-prefetch" href="//res.cloudinary.com" />
-  <link rel="dns-prefetch" href="//www.google-analytics.com" />
   {% if page.description or config.description %}<meta name="description" content="{{ page.description or config.description }}">{% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <link rel="author" href="https://plus.google.com/107456024651797783420" />
@@ -40,7 +39,6 @@
   {% endfor %}
 </head>
 <body>
-  {{ partial('_partial/ga')}}
   {{ partial('_partial/header')}}
   <div id="page">
     {{ body }}

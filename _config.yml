@@ -88,7 +88,6 @@ generator_amp:
     path: sample/sample-substituteTitleImage.png
     width: 1024
     height: 800
-  google_analytics: UA-39254352-1
   warningLog: false
 
 marked:

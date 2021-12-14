@@ -14,8 +14,14 @@ tags:
 
 Web Performance is important for user experience and business metrics. Estimating its impact is key to be able to prioritize it, yet it's difficult to quantify its benefits until the work has been done.
 
-<div style="position:relative;padding-bottom:39.6285%;margin-bottom:1rem">
-  <img src="/assets/images/posts/assess-performance-impact/performance-is-money.png" alt="" style="position:absolute;top:0;left:0">
+<div style="position:relative;padding-bottom:39.65%;margin-bottom:1rem">
+<img
+    loading="lazy"
+    style="max-width:100%; border: 0;position:absolute;top:0;left:0"
+    sizes="(max-width: 768px) 100vw, 684px"
+    srcset="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:400,f_auto/v1584188336/assess-performance-impact/performance-is-money.png 400w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:800,f_auto/v1584188336/assess-performance-impact/performance-is-money.png 800w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1200,f_auto/v1584188336/assess-performance-impact/performance-is-money.png 1200w, https://res.cloudinary.com/jmperez/image/upload/w_auto:100:1400,f_auto/v1584188336/assess-performance-impact/performance-is-money.png 1400w"
+    src="https://res.cloudinary.com/jmperez/image/upload/w_auto:100:684,f_auto/v1584188336/assess-performance-impact/performance-is-money.png"
+    alt="" />
 </div>
 
 We need to break this chicken-and-egg loop. This post explains several ways of assessing the potential performance gains with little effort and, more importantly, without actually implementing fixes.

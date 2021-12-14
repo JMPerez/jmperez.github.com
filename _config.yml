@@ -74,21 +74,6 @@ deploy:
   repo: git@github.com:JMPerez/jmperez.github.com.git
   branch: master
 
-# Quick start Settings of hexo-amp-generator
-generator_amp:
-  cssFilePath: ../jmperez/source/css/main.css
-  templateDir: themes/amp
-  assetDistDir: amp-dist
-  logo:
-    path: logo.png
-    width: 600
-    height: 60
-  substituteTitleImage:
-    path: sample/sample-substituteTitleImage.png
-    width: 1024
-    height: 800
-  warningLog: false
-
 marked:
   breaks: false
 

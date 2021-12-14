@@ -9,7 +9,6 @@
     "clean-css": "^5.2.2",
     "hexo": "^5.4.0",
     "hexo-deployer-git": "^3.0.0",
-    "hexo-generator-amp": "JMPerez/hexo-generator-amp",
     "hexo-generator-feed": "^3.0.0",
     "hexo-generator-index": "^2.0.0",
     "hexo-generator-sitemap": "^2.2.0",
